@@ -12,7 +12,7 @@
 \maketitle
 
 \section{}
-Let $\vec{A}=\hat{i}$, $\vec{B}=\hat{j}$, and $\vec{C}=\hat{j}$. We don't need to compute to see that this fails to be associative: in $\vec{A}\times(\vec{B}\times\vec{C})$, we observe that the first-evaluated product is zero, since the angle between a vector and itself is zero; the overall product is therefore zero as well. However, in $(\vec{A}\times\vec{B})\times\vec{C})$ the first-evaluated product is a nonzero vector perpendicular to the $\hat{i}$-$\hat{j}$ plane, and therefore the cross product of this vector with $\hat{j}$ is nonzero.
+Let $\vec{A}=\hat{i}$, $\vec{B}=\hat{j}$, and $\vec{C}=\hat{j}$. We don't need to compute to see that this fails to be associative: in $\vec{A}\times(\vec{B}\times\vec{C})$, we observe that the first-evaluated product is zero, since the angle between a vector and itself is zero; the overall product is therefore zero as well. However, in $(\vec{A}\times\vec{B})\times\vec{C}$ the first-evaluated product is a nonzero vector perpendicular to the $\hat{i}$-$\hat{j}$ plane, and therefore the cross product of this vector with $\hat{j}$ is nonzero.
 \section{}
 We denote components as $\vec{A}=A_x\hat{i}+A_y\hat{j}+A_z\hat{k}$ and so on. Then
 \[\vec{B}\times\vec{C}=\begin{vmatrix} \hat{i} & \hat{j} & \hat{k}\\ B_x & B_y & B_z \\ C_x & C_y & C_z \end{vmatrix}=(B_yC_z-B_zC_y)\hat{i}-(B_xC_z-B_zC_x)\hat{j}+(B_xC_y-B_yC_x)\hat{k}\]
@@ -36,12 +36,20 @@ which is precisely what was obtained from the cross product, simply rearranged w
 \[\nabla f = \left(\frac{\partial}{\partial x}\hat{i} + \frac{\partial}{\partial y}\hat{j} + \frac{\partial}{\partial z}\hat{k}\right)e^xy^3\sin(z)=e^xy^3\sin(z)\hat{i}+3e^xy^2\sin(z)\hat{j}+e^xy^3\cos(z)\hat{k}\]
 
 \section*{3c}
-\[\nabla f = \left(\frac{\partial}{\partial x}\hat{i} + \frac{\partial}{\partial y}\hat{j} + \frac{\partial}{\partial z}\hat{k}\right)e^{-(x^2+y^2+z^2)}=-2xe^{-(x^2+y^2+z^2)}\hat{x}-2ye^{-(x^2
+\[\nabla f = \left(\frac{\partial}{\partial x}\hat{i} + \frac{\partial}{\partial y}\hat{j} + \frac{\partial}{\partial z}\hat{k}\right)e^{-(x^2+y^2+z^2)}=-2xe^{-(x^2+y^2+z^2)}\hat{i}-2ye^{-(x^2
     +y^2+z^2)}\hat{j}-2ze^{-(x^2+y^2+z^2)}\hat{k}\]
 
 \section*{4}
 We write $\vec{A} = A_x\hat{i}+A_y\hat{j}+A_z\hat{k}$. \[\nabla \times \vec{A} = \begin{vmatrix}\hat{i} & \hat{j} & \hat{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ A_x & A_y & A_z \end{vmatrix} = \left(\frac{\partial A_z}{\partial y}-\frac{\partial A_y}{\partial z}\right)\hat{i} - \left(\frac{\partial A_z}{\partial x} - \frac{\partial A_x}{\partial z}\right)\hat{j} + \left(\frac{\partial A_y}{\partial x} - \frac{\partial A_x}{\partial y}\right)\hat{k}\]
-The divergence of this is \[\nabla \cdot (\nabla \times \vec{A}) = \frac{\partial}{\partial x}\]
+The divergence of this is \[\nabla \cdot (\nabla \times \vec{A}) = \frac{\partial}{\partial x}\left(\frac{\partial A_z}{\partial y}-\frac{\partial A_y}{\partial z}\right) - \frac{\partial}{\partial y}\left(\frac{\partial A_z}{\partial x} - \frac{\partial A_x}{\partial z}\right) + \frac{\partial}{\partial z}\left(\frac{\partial A_y}{\partial x} - \frac{\partial A_x}{\partial y}\right)\]
+\[=\frac{\partial^2 A_z}{\partial x\partial y} - \frac{\partial^2 A_y}{\partial x\partial z} - \frac{\partial^2 A_z}{\partial y\partial x}+\frac{\partial^2 A_x}{\partial y\partial z} +\frac{\partial^2 A_y}{\partial z\partial x}-\frac{\partial^2 A_x}{\partial z\partial y}\]
+Presuming continuity of all second pure partials, it is justified to interchange the order of partial differentiation.
+Setting each term in the order $x$-$y$-$z$, it becomes evident that the expression is three pairs of cancelling terms, and the identity is thus proven.
+\section*{5}
+Simply,
+\[\vec{A}\cdot \nabla=A_x\frac{\partial}{\partial x} + A_y\frac{\partial}{\partial y}+A_z\frac{\partial}{\partial z}\]\[\Rightarrow (\vec{A}\cdot\nabla)\vec{B}=\left(A_x\frac{\partial}{\partial x} + A_y\frac{\partial}{\partial y}+A_z\frac{\partial}{\partial z}\right)B_x+\left(A_x\frac{\partial}{\partial x} + A_y\frac{\partial}{\partial y}+A_z\frac{\partial}{\partial z}\right)B_y\]\[+\left(A_x\frac{\partial}{\partial x} + A_y\frac{\partial}{\partial y}+A_z\frac{\partial}{\partial z}\right)B_z\]\[=A_x\frac{\partial B_x}{\partial x} + A_y\frac{\partial B_x}{\partial y} + A_z\frac{\partial B_x}{\partial z}+A_x\frac{\partial B_y}{\partial x}+A_y\frac{\partial B_y}{\partial y}+A_z\frac{\partial B_y}{\partial z}+A_x\frac{\partial B_z}{\partial x}+A_y\frac{\partial B_z}{\partial y}+A_z\frac{\partial B_z}{\partial z}\]
+
+
 \end{document}
 %%% Local Variables:
 %%% mode: latex

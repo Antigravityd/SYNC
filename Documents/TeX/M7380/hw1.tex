@@ -1,0 +1,31 @@
+\documentclass{article}
+\usepackage[letterpaper]{geometry}
+\title{7380 HW 1}
+\author{Duncan Wilkie}
+\date{12 September 2021}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+Presuming $\epsilon$ is everywhere nonzero, we may rewrite (2) as $\frac{i}{\omega\epsilon}\left(\nabla\times H\right) = E$.
+Taking the curl of both sides and substituting the right side of (1) in for $\nabla\times E$ yields
+\[\nabla\times\left(\frac{i}{\omega\epsilon}\left(\nabla\times H\right)\right) = i\omega\mu H\]
+Since $H$ is always perpendicular to the $(x_1,x_2)$ plane, it only has a component in the $x_3$ direction, and so its curl is computed as
+$\left(\frac{\partial H}{\partial x_2}, -\frac{\partial H}{\partial x_1}, 0\right)$ using the abusive notation $H=|H|$.
+Moving the constants to the other side, the subsequent curl is
+\[\left(-\frac{1}{\epsilon}\frac{\partial^2H}{\partial x_3\partial x_1} - \frac{1}{\epsilon^2}\frac{\partial\epsilon}{\partial x_3}, \frac{1}{\epsilon^2}\frac{\partial \epsilon}{\partial x_3}\frac{\partial H}{\partial x_2}-\frac{1}{\epsilon}\frac{\partial^2 H}{\partial x_3\partial x_2}, \frac{1}{\epsilon^2}\left(\frac{\partial\epsilon}{\partial x_1}\frac{\partial H}{\partial x_1}+\frac{\partial \epsilon}{\partial x_2}\frac{\partial H}{\partial x_2}\right)+\frac{1}{\epsilon}\left(\frac{\partial^2 H}{\partial x_1^2}+\frac{\partial^2 H}{\partial x_2^2}\right)\right)\]
+Since neither $H$ nor $\epsilon$ depend on $x_3$, all the terms containing those partials are zero. This expression then reduces to \[\left(0, 0, \frac{1}{\epsilon^2}\left(\frac{\partial\epsilon}{\partial x_1}\frac{\partial H}{\partial x_1}+\frac{\partial \epsilon}{\partial x_2}\frac{\partial H}{\partial x_2}\right)+\frac{1}{\epsilon}\left(\frac{\partial^2 H}{\partial x_1^2}+\frac{\partial^2 H}{\partial x_2^2}\right)\right)\]
+On the right hand side, we similarly have a nonzero component only in the $x_3$ direction since $H$ is perpendicular to the $(x_1, x_2)$ plane. Thus, we obtain a single scalar equation. Applying the same abusive notation to the right side, this equation is
+\[\frac{1}{\epsilon^2}\left(\frac{\partial\epsilon}{\partial x_1}\frac{\partial H}{\partial x_1}+\frac{\partial \epsilon}{\partial x_2}\frac{\partial H}{\partial x_2}\right)+\frac{1}{\epsilon}\left(\frac{\partial^2 H}{\partial x_1^2}+\frac{\partial^2 H}{\partial x_2^2}\right) = \omega^2\mu H\]
+This is clearly a scalar second-order (linear) PDE for H, as desired.
+
+\section{}
+
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

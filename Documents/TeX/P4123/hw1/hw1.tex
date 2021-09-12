@@ -1,5 +1,6 @@
 \documentclass{article}
 \usepackage[letterpaper]{geometry}
+\usepackage{amsmath}
 
 \title{4123 HW 1}
 \author{Duncan Wilkie}
@@ -16,10 +17,11 @@ The integral of this expression for $dt$ is of course the total travel time,\[J[
 Since there is no direct dependence on $x$ in this expression, the first integral of the Euler-Lagrange equations must be satisfied.
 We then have, letting $\kappa$ being an arbitrary constant,
 \[f-y'\frac{\partial f}{\partial y'} = \kappa\Leftrightarrow \frac{\sqrt{1+y'^2}}{c\eta(y)}-y'\frac{\partial}{\partial y'}\left(\frac{\sqrt{1+y'^2}}{c\eta(y)}\right) = \kappa\]
-\[\Leftrightarrow \frac{\sqrt{1+y'^2}}{c\eta(y)}-\frac{y'^2}{c\eta(y)}\frac{1}{\sqrt{1+y'^2}}=\kappa\Leftrightarrow\sqrt{1+y'^2}\left(1-\frac{y'^2\sq}{1+y'^2}\right)=\kappa c\eta(y)\]
+\[\Leftrightarrow \frac{\sqrt{1+y'^2}}{c\eta(y)}-\frac{y'^2}{c\eta(y)}\frac{1}{\sqrt{1+y'^2}}=\kappa\Leftrightarrow\sqrt{1+y'^2}\left(1-\frac{y'^2}{1+y'^2}\right)=\kappa c\eta(y)\]
 \[\Leftrightarrow\sqrt{1+y'^2}\left(\frac{1}{1+y'^2}\right)=\kappa c\eta(y)\Leftrightarrow\eta(y)=\frac{K}{\sqrt{1+y'^2}}\]
 
 \end{document}
+
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: t

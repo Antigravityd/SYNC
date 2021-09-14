@@ -4,15 +4,15 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
+\graphicspath{{./img/}}
 \usepackage{grffile}
 \usepackage{longtable}
-\usepackage{wrapfig}
-\usepackage{rotating}
+
 \usepackage[normalem]{ulem}
 \usepackage{amsmath}
 \usepackage{textcomp}
 \usepackage{amssymb}
-\usepackage{capt-of}
+
 \usepackage{hyperref}
 \date{\today}
 \title{}
@@ -70,7 +70,8 @@ int main() {
     ++n;
     element *= -x/n;
     sum += element;
-    cout << "n: " << n << ", element: " << element << ", sum: " << sum << ", exact: " << exact << endl;
+    cout << "n: " << n << ", element: " << element << ", sum: " << sum \
+        << ", exact: " << exact << endl;
   } while (sum == 0 || fabs(element / sum) > error);
 
 
@@ -113,7 +114,8 @@ int main() {
     } while (sum == 0 || fabs(element / sum) > error);
 
 
-    outfile << n << " " << x << " " << sum << " " << exact << " " << sum - exact << endl;
+    outfile << n << " " << x << " " << sum << " " << exact \
+        << " " << sum - exact << endl;
 
     x += xstep;
   }
@@ -127,8 +129,10 @@ int main() {
 \section{Program 1 Analysis}
 \label{sec:orgdb0e617}
 
-A graph of the finite and exact results as a function of \(n\) appears below.
-Clearly, there is a quick convergence towards the exact solution in this case, with nearly indistinguishable results at \(n=\).
+Graphs of the finite and exact results as a function of \(n\) for $x=0.8$ and $x=10$ appear below.
+\[\includegraphics[scale=0.5]{img/chart.png}\]
+\[\includegraphics[scale=0.5]{img/chart1.png}\]
+Clearly, there is a quick convergence towards the exact solution in this case, with nearly indistinguishable results at \(n=5\) in the first case and $n=20$ in the second.
 
 For \(x=10\), part of the output of Program 1 appears below.
 
@@ -163,3 +167,7 @@ Below is a plot of the computed and exact solutions as a function of \(x\in[6, 1
 
 The absolute error as a function of \(N\) appears below. 
 \end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

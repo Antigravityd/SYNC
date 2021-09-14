@@ -1,0 +1,45 @@
+\documentclass{article}
+\usepackage[letterpaper]{geometry}
+\usepackage{amsmath}
+
+\title{2231 HW 2}
+\author{Duncan Wilkie}
+\date{Septenber 16 2021}
+
+\begin{document}
+
+\maketitle
+
+\section*{1a}
+The charge will be taken to be lying along the $z$ axis, centered at the origin. In that case, \[\rho(\vec{r})=\delta(x)\delta(y)\int_{-L/2}^{L/2}\frac{Q\delta(z)}{L}dz\]
+\section*{1b}
+Supposing $d$ is in the positive $z$ direction, we can apply physical intuition to the problem to say that the electric field must also point in the positive $z$ direction, depending of course on the sign of $Q$.
+We can calculate its magnitude by adding up the electric fields due to a differential charge $dq = \frac{Q}{L}dz$:
+\[E=\int_{-L/2}^{L/2}\frac{kQ}{L(d-z)^2}dz=\frac{kQ}{L}
+  \int_{-L/2}^{L/2}\frac{1}{(d-z)^2}dz = \frac{kQ}{L}\int_{d+L/2}^{d-L/2}\frac{-1}{u^2}du\]
+\[=\frac{kQ}{L}\left(\frac{1}{u}\bigg|_{d+L/2}^{d-L/2}\right)=\frac{kQ}{L}\left(\frac{1}{d-L/2}-\frac{1}{d+L/2}\right)\]
+\section*{2a}
+We apply the differential form of Gauss's law: \[\nabla\cdot \vec{E} = \frac{\rho(\vec{r})}{\epsilon_0}\Rightarrow \rho(\vec{r})= \epsilon_0\frac{1}{r^2}(6kr^5)=6\epsilon_0kr^3\]
+where we have applied the formula for the divergence in spherical coordinates.
+\section*{2b}
+This is \[Q(R)=\int_0^R6\epsilon_0kr^3dV=6\epsilon_0k\int_0^R\int_0^{2\pi}\int_0^\pi r^3r^2\sin(\theta)drd\phi d\theta=6\epsilon_0k(2\pi)\int_0^Rr^5dr\int_0^\pi\sin(\theta)d\theta\]
+\[=E 4\pi\epsilon_0kR^6\]
+\section*{3}
+When $r<R$, we may choose a Gaussian surface that is a sphere of radius $r$ so that Gauss's law implies that the electric field produced by a point charge, i.e. \[\vec{E}=\frac{kq}{r^2}\hat{r}\textrm{,  }r<R\]
+When $r>R$, the electric field from the spherical shell is superposed onto that from the point charge, and the spherical shell behaves as though all its charge was concentrated at its center. So we only need calculate the total charge on the sphere, and add it to the above result. This is \[Q=\int\sigma dS=\int_0^{2\pi}\int_0^\pi\sigma R^2\sin(\theta)d\theta d\phi=4\sigma\pi R^2\]
+The total result for the outside of the sphere is then \[\vec{E}=\frac{k(q+4\sigma\pi R^2)}{r^2}, r>R\]
+\section*{4a}
+The Gaussian surface used will be a concentric cylinder in each case, of differing radius. In the hollow core, there is no charge enclosed, so \[\Phi=\int\vec{E}\cdot d\vec{A} = 0\Rightarrow \vec{E}=0, s<a\]
+\section*{4b}
+In this case, some charge is enclosed, namely \[Q_{enc}=\int\rho dV=\int_a^s\int_0^{2\pi}\int_0^L\rho rdrd\theta dz=\pi\rho L (s^2-a^2)\]
+The left-hand side of Gauss's law is \[\Phi=\int\vec{E}\cdot d\vec{A} = 2\pi sLE\] Fully applying Gauss's law yields \[E=\frac{\rho (s^2-a^2)}{2\epsilon_0s}, a<s<b\]
+\section*{4c}
+This part is identical to the above, but the $s$ in the expression for $Q$ becomes $b$, since we have to stop integrating when the cylinder of charge ends, while the $s$ in the expression for $\Phi$ remains as $s$, since the radius of the Gaussian cylinder still increases. This yields
+\[E=\frac{\rho(b^2-a^2)}{2\epsilon_0s}, s>b\]
+
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

@@ -162,3 +162,26 @@ Disadvantages:
 - Since C has no dynamic arrays, all arrays must have declared length. (F2PY has no such restriction)
 - Likely would require some Python library code to abstract away the Cython/ctypes and generate nice pythonic code.
 - Single-threaded?
+
+* Speed Comparison
+
+We'll test the following function for finding the GCD:
+
+#+begin_src fortran :tangle ./testprog.f90
+   
+        FUNCTION NGCD(NA, NB)
+          IA = NA
+          IB = NB
+      1   IF (IB.NE.0) THEN
+            ITEMP = IA
+            IA = IB
+            IB = MOD(ITEMP, IB)
+            GOTO 1
+          END IF
+          NGCD = IA
+          RETURN
+          END
+      
+#+end_src
+
+

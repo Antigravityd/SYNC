@@ -1,0 +1,5 @@
+* Array-Oriented High-Level Synthesis
+
+This is an effort to create a program that efficiently translates BQN programs to the SystemVerilog. The choice of BQN is driven by the language's simplicity, leading to feasible implementation by a single author, its emphasis on tacit programing, which closely parallels the design of circuits for message handling with many composed modules, and its support for system-provided values which enable low-level configuration of input data types.
+
+The compiler is written in Haskell 

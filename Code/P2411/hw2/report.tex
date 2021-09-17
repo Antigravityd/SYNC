@@ -14,15 +14,27 @@ The trapezoid rule is the only one that can be used here, since there is no way 
 The program appears in the Script Files section.
 Gaussian quadrature is also unuseable here, since we cannot choose evaluation points.
 \section{}
-Finding a unique solution for $\alpha, \beta, \gamma$ is a proof of uniqueness of the parabola.
-\[f(0)=4.5\Leftrightarrow \alpha(0)^2+\beta(0)+\gamma = 4.5 \Leftrightarrow \gamma = 4.5/\]
+Finding a unique solution for $\alpha, \beta, \gamma$ is a proof of uniqueness of the parabola, since no two parabolas share the same equation.
+\[f(0)=4.5\Leftrightarrow \alpha(0)^2+\beta(0)+\gamma = 4.5 \Leftrightarrow \gamma = 4.5\]
 \[f(-1)=2\Leftrightarrow 4\alpha+2\beta + 4.5 = 2\Leftrightarrow 4\alpha+2\beta = -2.5\]
 \[f(1)=0.9\Leftrightarrow \alpha+\beta + 4.5 = 0.9 \Leftrightarrow \alpha+\beta=-3.6\]
 Subtracting twice the third resulting equation from the second yields
-\[2\alpha = 4.7 \Leftrigharrow \alpha = 2.35\]
+\[2\alpha = 4.7 \Leftrightarrow \alpha = 2.35\]
 Plugging this in to the second equation,
 \[2.35+\beta = -3.6\Leftrightarrow \beta = -5.95\]
+Applying Simpson's rule to the integral yields
+\[\frac{b-a}{2}\left(f(a)+4f\left(\frac{b+a}{2}\right)+f(b)\right)=\frac{1-(-1)}{2}\left(f(-1)+4f(0)+f(1)\right)=\left(2+4(4.5)+0.9\right)=11.4\]
 \section{}
+The program and its results appears in the Script Files section. The approximate and the exact computations agree to the 14th place.
+\section{}
+The Gauss points are the roots of these polynomials. Applying the quadratic formula in $y^2$ yields
+\[y^2=\frac{30/8\pm\sqrt{(30/8)^2-4(35/8)(3/8)}}{2(35/8)}=\frac{3}{7}\pm\frac{2\sqrt{\frac{6}{5}}}{7}\]
+\[\Rightarrow y = \pm\sqrt{\frac{3}{7}\pm\frac{2\sqrt{\frac{6}{5}}}{7}}=\pm0.33998, \pm0.86114\]
+The points for the trapezoid rule on [-1,1] with 4 points are -0.6, -0.2, 0.2, 0.6. These are equally-spaced, as opposed to the variably-spaced Gauss points.
+The trapezoid rule also requires evaluation of the endpoints, whereas Gaussian quadrature does not.
+
+\section*{Script Files}
+
 \end{document}
 %%% Local Variables:
 %%% mode: latex

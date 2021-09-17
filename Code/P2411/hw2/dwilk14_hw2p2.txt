@@ -1,0 +1,51 @@
+Script started on Fri 17 Sep 2021 03:35:09 PM CDT
+tput: unknown terminal "st-256color"
+tcsh: No entry for terminal type "st-256color"
+tcsh: using dumb terminal settings.
+[dwilk14@tigers ~/HW2]$ cat dwilk14_hw2p2.cpp
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+double f(double x) {
+  double k = 9.E9;
+  double lambda = 2.E-10;
+  double d = 0.1;
+
+  return k * lambda / sqrt(pow(x,2) + pow(d,2));
+
+}
+
+int main() {
+  double k = 9.E9;
+  double lambda = 2.E-10;
+  double d = 0.1;
+
+  double L = 0.5;
+  double step = L / 514;
+  double a = 0.;
+  
+  double result;
+  for (int i = 0; i < 514; i++) {
+    double b = a + step;
+
+    result += (b - a) / 6 * (f(a) + 4 * f((a + b) / 2) + f(b));
+
+    a = b;
+  }
+
+  cout.precision(15);
+  cout << "Integral estimate: " << result << " V" << endl;
+  cout << "Exact: " << k * lambda * log((L + sqrt(pow(L, 2)+pow(d, 2))) / d) << " V" << endl;
+  
+  return 0;
+}
+[dwilk14@tigers ~/HW2]$ g++ dwilk14_hw2p2.cpp -o dwilk14_hw2pw 2
+[dwilk14@tigers ~/HW2]$ ./dwilk14_hw2p2
+Integral estimate: 4.16238901429091 V
+Exact: 4.16238901429096 V
+[dwilk14@tigers ~/HW2]$ cp dwilk14_hw2p2.txt /home3/krs istina/phys2411/.
+[dwilk14@tigers ~/HW2]$ exit
+exit
+
+Script done on Fri 17 Sep 2021 03:36:06 PM CDT

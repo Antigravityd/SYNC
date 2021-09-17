@@ -34,7 +34,104 @@ The points for the trapezoid rule on [-1,1] with 4 points are -0.6, -0.2, 0.2, 0
 The trapezoid rule also requires evaluation of the endpoints, whereas Gaussian quadrature does not.
 
 \section*{Script Files}
+\subsection*{Program 1}
+\begin{verbatim}
+Script started on Fri 17 Sep 2021 03:32:54 PM CDT
+tput: unknown terminal "st-256color"
+tcsh: No entry for terminal type "st-256color"
+tcsh: using dumb terminal settings.
+[dwilk14@tigers ~/HW2]$ cat dwilk14_hw2p1.cpp
+#include <fstream>
+#include <iostream>
 
+using namespace std;
+
+int main() {
+  double x[9] = {-1., -0.75, -0.50, -0.25, 0, 0.25, 0.5, 0.75, 1.};
+  double fx[9] = {-24.0000, -16.9063, -11.5000, -7.5938, -5.0000, -3.5313, -3.0000, \
+    -3.2188, -4.0000};
+
+  // we are unable to apply Simpson's rule in a satisfactory manner, as there is no way to 
+  //calculate f((a+b)/2) for most of the points.
+
+  double result = 0.;
+  for (int i = 0; i < 8; i++) {
+    double a = x[i];
+    double b = x[i+1];
+
+    result += (b-a) * 0.5 * (fx[i] + fx[i+1]);
+  }
+
+  cout << "Integral estimate: " << result << endl;
+
+  return 0;
+
+}
+[dwilk14@tigers ~/HW2]$ g++ dwilk14_hw2p1.cpp -o dwilk14_hw2p1
+[dwilk14@tigers ~/HW2]$ ./dwilk14_hw2p1
+Integral estimate: -16.1876
+[dwilk14@tigers ~/HW2]$ cp dwilk14_hw2p1.txt /home3/kristina/phys2411/.
+[dwilk14@tigers ~/HW2]$ exit
+exit
+
+Script done on Fri 17 Sep 2021 03:35:01 PM CDT
+
+\end{verbatim}
+\subsection*{Program 2}
+\begin{verbatim}
+Script started on Fri 17 Sep 2021 03:35:09 PM CDT
+tput: unknown terminal "st-256color"
+tcsh: No entry for terminal type "st-256color"
+tcsh: using dumb terminal settings.
+[dwilk14@tigers ~/HW2]$ cat dwilk14_hw2p2.cpp
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+double f(double x) {
+  double k = 9.E9;
+  double lambda = 2.E-10;
+  double d = 0.1;
+
+  return k * lambda / sqrt(pow(x,2) + pow(d,2));
+
+}
+
+int main() {
+  double k = 9.E9;
+  double lambda = 2.E-10;
+  double d = 0.1;
+
+  double L = 0.5;
+  double step = L / 514;
+  double a = 0.;
+
+  double result;
+  for (int i = 0; i < 514; i++) {
+    double b = a + step;
+
+    result += (b - a) / 6 * (f(a) + 4 * f((a + b) / 2) + f(b));
+
+    a = b;
+  }
+
+  cout.precision(15);
+  cout << "Integral estimate: " << result << " V" << endl;
+  cout << "Exact: " << k * lambda * log((L + sqrt(pow(L, 2)+pow(d, 2))) / d) << " V" << endl;
+
+  return 0;
+}
+[dwilk14@tigers ~/HW2]$ g++ dwilk14_hw2p2.cpp -o dwilk14_hw2p2
+[dwilk14@tigers ~/HW2]$ ./dwilk14_hw2p2
+Integral estimate: 4.16238901429091 V
+Exact: 4.16238901429096 V
+[dwilk14@tigers ~/HW2]$ cp dwilk14_hw2p2.txt /home3/kristina/phys2411/.
+[dwilk14@tigers ~/HW2]$ exit
+exit
+
+Script done on Fri 17 Sep 2021 03:36:06 PM CDT
+
+\end{verbatim}
 \end{document}
 %%% Local Variables:
 %%% mode: latex

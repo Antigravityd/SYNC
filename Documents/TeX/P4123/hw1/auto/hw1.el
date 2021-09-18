@@ -8,6 +8,7 @@
     "article"
     "art10"
     "geometry"
-    "amsmath"))
+    "amsmath"
+    "amsfonts"))
  :latex)
 

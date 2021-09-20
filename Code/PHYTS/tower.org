@@ -1,4 +1,3 @@
-
 * Introduction
 
 PHITS (Particle and Heavy Ion Transport code System) is Fortran software used widely by medical physicists. However, the speed Fortran provides is at the expense of integration with many common utilities for scientific and general computation alike. There are two languages better known to physicists, Python and C/C++, which have an ocean of tools that could be utilized if PHITS were able to be run in them: Python has ML APIs such as Tensorflow and PyTorch, while NVIDIA's CUDA framework is written to provide GPU acceleration for C/C++. Not to menton the FitsGeo module, which handles PHITS geometry files. 
@@ -218,7 +217,7 @@ yields
 
 To apply F2PY, we need to convert this to a function & remove the print statements. That is done with the following program, placed in a file named =mc_py=.
 
-(for some reason, tangling this out adds "begin program" and "end program" tags, which cause it not to compile. Need to figure out how to disable... put a PR in?)
+(for some reason, tangling this out adds "begin program main" and "end program main" lines, which cause it not to compile. Need to figure out how to disable... put a PR in?)
 
 #+begin_src fortran
 

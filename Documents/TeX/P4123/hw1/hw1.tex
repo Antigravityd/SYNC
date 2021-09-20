@@ -44,8 +44,31 @@ Applying the second,
 Substituting within the integrated form these values of $c_1,c_2$ yields
 \[\frac{x^2}{2}-2y=-7x\Leftrightarrow y =\frac{x^2}{4}+\frac{7}{2}x\]
 \section*{3}
-I'll assume 
-  
+I'll assume that we're trying to show that the desired equations hold when $I$ is extremized.
+Applying the first integral,
+\[y+\ln(y')-y'\left( \frac{1}{y'} \right)=c_1\Leftrightarrow  \ln(y')=c_2-y\]
+where $c_1\in\mathbb{R}$ and $c_2=c_1+1$.
+Exponentiating this,
+\[y'=\tilde{c}e^{-y}\]
+where $\tilde{c}=e^{c_2}$. This is the first equation.
+Applying Euler-Lagrange to the integrand,
+\[1-\frac{d}{dx}\frac{1}{y'}= 0\]
+We can integrate this with respect to $x$ to obtain the second equation,
+\[x-\frac{1}{y'}=0\Leftrightarrow y' = \frac{1}{x+c}\Leftrightarrow y = \ln(x+c)+c'\]
+where $c,c'\in\mathbb{R}$. Applying the boundary conditions, $\ln(2) = \ln(1+c)+c'$ and $\ln(3)=\ln(2+c)+c'$.
+Subtracting the first from the second, we obtain $\ln(3/2) = \ln(\frac{2+c}{1+c}) \Leftrightarrow 3+3c=4+2c\Leftrightarrow c=1$.
+Applying this to the first condition, $c'=0$ and consequently $y=\ln(1+x)$.
+
+\section*{4}
+Given a sphere and two points, we may choose the spherical coordinate system such that one of the points is the north pole.
+Technically, this is not justified if the other point is diametrically opposed to the first, since its azimuthal coordinate would be undefined (at least two charts are required for any atlas of $S^2$); this is resolved trivially on proof of the desired result.
+Assume for now without loss of generality that the second point has well-defined coordinates $(r,\phi,\theta)$. The north pole of course has coordinates $(R, 0, 0)$ presuming the sphere has radius $R$. For an arbitrary arc, the arc length in spherical coordinates is given by the functional
+
+\[L=\int_{p_1}^{p_2}ds=\int_{p_1}^{p_2}\sqrt{dr^2+d\phi^2+d\theta^2}=\int_0^\pi\sqrt{\left( \frac{dr}{d\theta} \right)^2+\left( \frac{d\phi}{d\theta} \right)^2+1}d\theta\]
+\[=\int_0^{\theta'}\sqrt{1+\left(\frac{d\phi}{d\theta}\right)^2}d\theta\]
+where we have used that the radial coordinate is constant on the surface of a sphere.
+We may apply the Euler-Lagrange equation to this to obtain
+\[\frac{d}{d\theta}\left( \frac{\phi'}{\sqrt{1+\phi'^2}} \right)=0\Leftrightarrow \]
 
 \end{document}
 

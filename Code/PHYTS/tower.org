@@ -165,23 +165,195 @@ Disadvantages:
 
 * Speed Comparison
 
-We'll test the following function for finding the GCD:
+We'll convert the following F90 program (file named =mc_pi.f90=) to Python, which does a billion iterations of Monte-Carlo to calculate $\pi$. The precision is nowhere near good enough to justify that many iterations, but it's just a test anyway.
 
-#+begin_src fortran :tangle ./testprog.f90
-   
-        FUNCTION NGCD(NA, NB)
-          IA = NA
-          IB = NB
-      1   IF (IB.NE.0) THEN
-            ITEMP = IA
-            IA = IB
-            IB = MOD(ITEMP, IB)
-            GOTO 1
-          END IF
-          NGCD = IA
-          RETURN
-          END
-      
+#+begin_src fortran :tangle ./mc_pi.f90
+
+        program pi
+        implicit none
+
+        integer :: count, n, i
+        real :: r, x, y, exact
+        count = 0
+        n = 1000000000
+        CALL RANDOM_SEED
+
+        DO i = 1, n
+           CALL RANDOM_NUMBER(x)
+           CALL RANDOM_NUMBER(y)
+           IF (x*x + y*y <1.0) count = count + 1
+
+           IF (MODULO(i, 100) .EQ. 0) THEN
+              r = 4 * REAL(count)/i
+           END IF
+        END DO
+
+        end program pi
+
 #+end_src
 
+Compiling under zsh with the command
 
+#+begin_src shell
+
+  gfortran mc_pi.f90 -o mc_pi
+
+#+end_src
+
+and running via
+
+#+begin_src shell
+
+  time ./mc_pi
+
+#+end_src
+
+yields
+
+#+begin_src shell
+
+  ./mc_pi  14.97s user 0.01s system 99% cpu 14.981 total
+
+#+end_src
+
+To apply F2PY, we need to convert this to a function & remove the print statements. That is done with the following program, placed in a file named =mc_py=.
+
+(for some reason, tangling this out adds "begin program" and "end program" tags, which cause it not to compile. Need to figure out how to disable... put a PR in?)
+
+#+begin_src fortran
+
+      
+        FUNCTION PI()
+        IMPLICIT NONE
+        integer :: count, n, i
+        real :: r, x, y, PI
+        count = 0
+        n = 1000000000
+        CALL RANDOM_SEED
+
+        DO i = 1, n
+           CALL RANDOM_NUMBER(x)
+           CALL RANDOM_NUMBER(y)
+           IF (x*x + y*y <1.0) count = count + 1
+
+           IF (MODULO(i, 100) .EQ. 0) THEN
+              r = 4 * REAL(count)/i
+           END IF
+        END DO
+        PI = r
+        END FUNCTIONFUNCTION PI()
+        IMPLICIT NONE
+        integer :: count, n, i
+        real :: r, x, y, PI
+        count = 0
+        n = 1000000000
+        CALL RANDOM_SEED
+
+        DO i = 1, n
+           CALL RANDOM_NUMBER(x)
+           CALL RANDOM_NUMBER(y)
+           IF (x*x + y*y <1.0) count = count + 1
+
+           IF (MODULO(i, 100) .EQ. 0) THEN
+              r = 4 * REAL(count)/i
+           END IF
+        END DO
+        PI = r
+        END FUNCTION
+
+#+end_src
+
+We then use the quick conversion method, since there is little likelyhood of difference in speed between the methods and this function takes no arguments.
+
+#+begin_src shell
+
+  python -m numpy.f2py -c mc_py.f90 -m mc_py
+
+#+end_src
+
+We then fire up a Python interpreter (by running =python= in the shell, for documentation's sake) and use the =timeit= module.
+
+#+begin_src python
+
+  >>> import numpy
+  >>> import mc_py
+  >>> import timeit
+
+  >>> print(mc_py.pi())
+  3.1416306495666504
+
+  >>> timeit.timeit(mc_py.pi, number=1)
+  15.67807888801326
+
+#+end_src
+
+It appears that the Python overhead is roughly 0.05%.
+
+Next, we use the =iso_c_binding= method. The module is natively a part of GNU Fortran, so all we need to place in =mc_cpi.f90= is
+
+#+begin_src fortran
+
+        PROGRAM main
+        END PROGRAM main
+
+        FUNCTION PI()
+        USE ISO_C_BINDING
+        IMPLICIT NONE
+        integer :: count, n, i
+        real :: r, x, y
+        real(C_FLOAT) :: PI
+        count = 0
+        n = 1000000000
+        CALL RANDOM_SEED
+
+        DO i = 1, n
+           CALL RANDOM_NUMBER(x)
+           CALL RANDOM_NUMBER(y)
+           IF (x*x + y*y <1.0) count = count + 1
+
+           IF (MODULO(i, 100) .EQ. 0) THEN
+              r = 4 * REAL(count)/i
+           END IF
+        END DO
+
+        PI = r
+        END FUNCTION
+
+#+end_src
+
+We then write a C declaration of this function in =mc_cpi.c=:
+
+#+begin_src C :tangle ./mc_cpi.c
+
+  float pi();
+
+#+end_src
+
+Now, the linking process is rather subtle, and entirely undocumented (unless you want to sift through the 100kline GCC manual). One must run
+
+#+begin_src shell
+
+  gfortran -c mc_cpi.f90 -o mc_cpi.of
+  gcc -c mc_cpi.c -o mc_cpi.oc
+  gcc mc_cpi.oc mc_cpi.of -o mc_cpi -lgfortran
+
+#+end_src
+
+I have absolutely no understanding of why/how this works; if this is the preferred method I need to read up on the linker. A makefile will need to be used to streamline any sufficiently complicated (e.g. more than single-file) build.
+
+Now that the C library is built, we can import it using Cython as follows:
+
+#+begin_src cython
+
+  import timeit
+
+  cdef extern:
+      float pi()
+
+  print(pi())
+
+  timeit.timeit(pi, number=1)
+
+#+end_src
+
+At this point, I've given up on this. It is evident from the output file naming from running =cythonize= on the above that this method is how F2PY is implemented. The linking command above generates a valid C source, and using =g++= would produce a valid C++ source. Binding to the result manually in Python is far too much effort for an identical (or possibly worse; we don't know what optimizations F2PY does) product.

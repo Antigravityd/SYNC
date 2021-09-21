@@ -61,8 +61,8 @@ Applying this to the first condition, $c'=0$ and consequently $y=\ln(1+x)$.
 
 \section*{4}
 Given a sphere and two points, we may choose the spherical coordinate system such that one of the points is the north pole.
-Assume without loss of generality that the second point has well-defined coordinates $(r,\phi,\theta)$. The north pole of course has coordinates $(R, 0, 0)$ presuming the sphere has radius $R$. For an arbitrary arc, the arc length in spherical coordinates is given by the functional
-
+Assume without loss of generality that the second point has well-defined coordinates $(r,\theta,\phi)$. The north pole of course has coordinates $(R, 0, 0)$ presuming the sphere has radius $R$. For an arbitrary arc, the arc length in spherical coordinates (where $\theta$ is azimuthal)
+is given by the functional
 \[L=\int ds=\int\sqrt{dr^2+r^2d\phi^2+r^2\sin^2(\phi)d\theta^2}=\int\sqrt{\left( \frac{dr}{dt} \right)^2+r^2\left( \frac{d\phi}{dt} \right)^2+r^2\sin^2(\phi)\left( \frac{d\theta}{dt}\right)^2}dt\]
 \[=\int r\sqrt{\theta'^2\sin^2(\phi)+\phi'^2}dt\]
 where we have used that the radial coordinate is constant on the surface of a sphere.

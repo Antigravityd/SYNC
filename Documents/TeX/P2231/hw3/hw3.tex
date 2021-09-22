@@ -1,0 +1,53 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage[letterpaper]{geometry}
+\usepackage{wasysym}
+\title{2231 HW 3}
+\author{Duncan Wilkie}
+\date{23 September 2021}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+The first field has curl
+\[\nabla\times\vec{E}=
+  \begin{vmatrix} \hat{i} & \hat{j} & \hat{k} \\
+    \frac{\partial }{\partial x} & \frac{\partial}{\partial y} &\frac{\partial}{\partial z} \\
+    kxy & 2kyz & 3kxz
+  \end{vmatrix}
+  =-2ky\hat{i}-3kz\hat{j}+kx\hat{k}\neq 0\]
+which implies by the Maxwell equations the existance of a time-varying magnetic field, and therefore at least a quasistatic system.
+\section{}
+The electric field is given by Gauss's law:
+\[2\pi sLE=\frac{\lambda L}{\epsilon_0}\Leftrightarrow E=\frac{\lambda}{2\pi\epsilon_0 s}\]
+The integral of this with respect to $s$ is the potential, in terms of some reference point distance $a$ away from the charge:
+\[V=-\int_a^sE(s)ds=-\int_a^s\frac{\lambda ds}{2\pi\epsilon_0 s}=-\frac{\lambda}{2\pi\epsilon_0}\ln\left(\frac{s}{a}\right)\]
+The gradient of this is (since there's no angle dependence)
+\[\nabla V=\frac{\partial V}{\partial s}=-\frac{\lambda}{2\pi\epsilon_0}\frac{1}{s/a}\frac{1}{a}=-\frac{\lambda}{2\pi\epsilon_0 s}\]
+which is exactly the field from above.
+\section{}
+The potential at $z$ due to a differential element of charge $dq=\sigma dA$ a distance ${r}$ from the center of the disk is $\frac{1}{4\pi\epsilon_0}\frac{dq}{\sqrt{{r}^2+z^2}}$. Integrating this over the disk via a $u$-substitution of $r^2$ yields \[V=\frac{1}{4\pi\epsilon_0}\int_0^R\int_0^{2\pi}\frac{\sigma}{r^2+z^2}rdrd\theta=\frac{\sigma}{4\epsilon_0}\int_0^{R^2}\frac{du}{u+z^2}=\frac{\sigma}{4\epsilon_0}\ln\left(1+\frac{R^2}{z^2}\right)\]
+Taking its gradient will give the field:
+\[\vec{E}=-\nabla V=\frac{\sigma}{2\epsilon_0}\frac{R^2}{z^3+zR^2}\]
+\section*{4a}
+Let the side length of the triangle be $a$. We first bring the $-q$ charge in from infinity, requiring zero work. Bringing the first $+q$ charge requires
+\[W_1=-\int_\infty^aF\cdot d\vec{l}=-\int_\infty^a\frac{-kq^2}{r^2}dr=-\frac{kq^2}{r}\]
+Bringing in the second, we apply superposition to calculate this in two parts, each of which is mathematically identical to the above except for the sign of the charge. For the negative, $W_2=-\frac{kq^2}{r}$ and for the positive, $W_3=\frac{kq^2}{r}$. The total work is therefore the sum of these, $W=-\frac{kq^2}{r}$.
+\section*{4b}
+The distance between the three charges and the center is $s\frac{\sqrt{3}}{3}$, so the potential at the center with respect to infinity is the sum of the point potentials at this distance:
+\[V=\frac{kq}{s\sqrt{3}/{3}}-\frac{kq}{s\sqrt{3}/3}+\frac{kq}{s\sqrt{3}/3}=3\sqrt{3}\frac{kq}{s}\]
+The work required to bring a $-q$ charge to the center is \[W=qV=-3\sqrt{3}\frac{kq}{s}\]
+\section*{5}
+The electric field inside a uniformly charged sphere is, by Gauss's law, \[4\pi r^2E=\rho\frac{4\pi r^3}{3\epsilon_0}\Leftrightarrow E=\frac{\rho r}{3\epsilon_0}\]
+The first integral is therefore \[\int_VE^2d\tau=\frac{\rho^2}{9\epsilon_0^2}\int_0^R\int_0^{2\pi}\int_0^\pi r^4\sin(\phi)drd\theta d\phi=\frac{4\pi\rho^2R^5}{45\epsilon_0^2}\]
+The potential is the integral of the $E$ from the outside, which is $\frac{k(\frac{4}{3}\pi R^3)}{r^2}$, so \[V=-\frac{ \rho R^3}{3\epsilon_0}\int_\infty^R\frac{1}{r^2}dr=\frac{\rho R^2}{3\epsilon_0}\]
+The second is, since the potental is constant on the surface of the sphere and the electric field is constant and orthogonal, \[4\pi R^2VE=4\pi R^2 \frac{\rho R^2}{3\epsilon_0}\frac{\rho  R}{3\epsilon_0}=\frac{4\pi\rho^2 R^5}{9\epsilon_0^2 }\]
+The overall result is then \[W=\frac{\epsilon_0}{2}\left(\int_VE^2d\tau+\oint_SV\vec{E}\cdot d\vec{A}\right)=\frac{\epsilon_0}{2}\left(\frac{4\pi\rho^2R^5}{45\epsilon_0^2}+\frac{4\pi\rho^2 R^5}{9\epsilon_0^2 }\right)\]
+\[=\frac{2\pi\rho^2R^5}{45\epsilon_0}+\frac{2\pi\rho^2R^5}{9\epsilon_0}\]
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

@@ -1,0 +1,61 @@
+\documentclass{article}
+\usepackage{graphicx}
+\graphicspath{{./img/}}
+\title{2411 HW 3}
+\author{Duncan Wilkie}
+\date{24 September 2021}
+
+\begin{document}
+
+\section*{1a}
+The total error is the sum of the roundoff and approximaiton errors.
+We can find critical points of this error function to determine its minimum in terms of $N$.
+For the trapezoid rule, the total error
+\[E=\frac{1}{N^2}+10^{-15}\sqrt{N}\]
+is extremized when
+\[\frac{dE}{dN} = 0\Leftrightarrow \frac{-2}{N^3}+\frac{10^{-15}}{2\sqrt{N}} = 0\Leftrightarrow N=(4\times 10^{15})^{2/5}=1.741\times10^6\]
+For Simpson's rule, the total error
+\[E=\frac{1}{N^4}+10^{-15}\sqrt{N}\]
+is extremized when
+\[\frac{dE}{dN}=0\Leftrightarrow \frac{-4}{N^5}+\frac{10^{-15}}{2\sqrt{N}} = 0 \Leftrightarrow N = (8\times 10^{15})^{2/9}=3420.\]
+Clearly, this shows that Simpson's rule has minimum total error for fewer points.
+
+\section*{1b}
+We evaluate the error expressions at the extremal $N$ values found above.
+For the trapezoid rule, the minimum error is $1.649\times 10^{-12}$, and for Simpson's rule, the minimum error is $6.579\times10^{-14}$.
+The latter is good to the pentultimate digit of machine precision.
+
+\section*{2}
+The program appears in the Script Files section.
+
+A plot of the potential, its numeric gradient, and the theoretical electric field appears below, indicating good agreement between numeric and exact computation.
+
+\[\includegraphics[scale=0.5]{plot1.png}\]
+
+\section*{3}
+The Taylor expansion of $f$ about $x_i$ is $f(x) = \sum_{n=0}^\infty\frac{f^{(n)}(x_i)}{n!}(x-x_i)^n$. The integral of this is $F(x) =\sum_{n=0}^\infty\frac{f^{(n)}(x_i)}{(n+1)!}(x-x_i)^{n+1}$. Since Simpson's rule truncates the expansions after $n=2$, $F(x)$ and the Simpson's rule integral agree to the $(x-x-i)^3$ term for each interval. Therefore, by the Lagrange form of the truncation remainder, the difference between them is bounded by the first neglected term of $F(x)$, i.e. $\frac{f^4(x_i)}{5!}(x-x_i)^5$, which is again bounded by $\frac{f^4(x_i)}{5!}h^5$ which is $O(2h^5/5!)f^4(x_i)$ as desired.
+
+\section*{4}
+The program appears in the Script Files section.
+
+The plots of each method's absolute errors appear below, and indicate that extrapolated difference is the most accurate method for this problem. The extrapolated difference has what looks to be quartic error.
+
+\[\includegraphics[scale=0.5]{plot2.png}\]
+\[\includegraphics[scale=0.5]{plot3.png}\]
+\[\includegraphics[scale=0.5]{plot4.png}\]
+
+\section*{Script Files}
+\subsection*{2}
+\begin{verbatim}
+
+\end{verbatim}
+\subsection*{4}
+\begin{verbatim}
+
+\end{verbatim}
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

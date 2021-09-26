@@ -1,0 +1,32 @@
+\documentclass{article}
+\usepackage[letterpaper]{geometry}
+\title{3355 Quiz 2}
+\author{Duncan Wilkie}
+\date{25 September 2021}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+Let $K$ be the event that you are killed in a shark attack while on vacation in Florida and let $A$ be the event that you are attacked by a shark while on vacation in Florida.
+Then the probability that you are killed in a shark attack, given that you are attacked by a shark, while on vacation in Florida is
+\[P(K|A) = \frac{P(KA)}{P(A)}=\frac{1/(85\times 10^6)}{3/(10\times 10^6)}=\frac{2}{51}\]
+\section{}
+$P(B|A)$ is the probability the second ball is red, given that the first ball was red.
+The first ball being red reduces the number of red outcomes in the sample space, so that this is equivalent to the probability of drawing a red ball from an urn with 3 red balls and 5 blue balls.
+The total number of balls is 8, so this probability is
+\[P(B|A)=\frac{\textrm{number of red balls}}{\textrm{total number of balls}}=\frac{3}{8}\]
+$P(B|A^c)$ is the probability the second ball is red, given that the first ball was not red, which in this case implies it was blue.
+Similarly, this reduces the number of blue outcomes in the sample space, so that this is equivalent to the probability of drawing a red ball from an urn with 4 red balls and 4 blue balls.
+The total number of balls is again 8, so this probability is
+\[P(B|A^c)=\frac{\textrm{number of red balls}}{\textrm{total number of balls}}=\frac{4}{8}=\frac{1}{2}\]
+The total probability that the second ball is red is therefore
+\[P(B)=P(B|A)P(A)+P(B|A^c)P(A^c)=\left( \frac{3}{8} \right)\left( \frac{4}{9} \right)+\left( \frac{1}{2} \right)\left(1- \frac{4}{9} \right)=\frac{4}{9}\]
+where we have found the probability the first ball is red by \[P(A)=\frac{\textrm{number of red balls}}{\textrm{total number of balls}}=\frac{4}{4+5}=\frac{4}{9}\]
+and of course used that $P(A^c)=1-P(A)$.
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

@@ -5,6 +5,3 @@ This is an effort to create a program that efficiently translates BQN programs t
 This will be in conjunction with a longer-term project to develop a reconfigurable computing system, where all computations are done on FPGAs instead of microcontrollers with fixed arrangement of silicon. Some related speculation appears [[./dreams.org][here]]. 
 
 The compiler is written in Haskell because pattern-matching makes things a breeze.
-
-
-

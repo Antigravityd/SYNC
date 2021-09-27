@@ -19,10 +19,17 @@ Moving the constants to the other side, the subsequent curl is
 Since neither $H$ nor $\epsilon$ depend on $x_3$, all the terms containing those partials are zero. This expression then reduces to \[\left(0, 0, \frac{1}{\epsilon^2}\left(\frac{\partial\epsilon}{\partial x_1}\frac{\partial H}{\partial x_1}+\frac{\partial \epsilon}{\partial x_2}\frac{\partial H}{\partial x_2}\right)+\frac{1}{\epsilon}\left(\frac{\partial^2 H}{\partial x_1^2}+\frac{\partial^2 H}{\partial x_2^2}\right)\right)\]
 On the right hand side, we similarly have a nonzero component only in the $x_3$ direction since $H$ is perpendicular to the $(x_1, x_2)$ plane. Thus, we obtain a single scalar equation. Applying the same abusive notation to the right side, this equation is
 \[\frac{1}{\epsilon^2}\left(\frac{\partial\epsilon}{\partial x_1}\frac{\partial H}{\partial x_1}+\frac{\partial \epsilon}{\partial x_2}\frac{\partial H}{\partial x_2}\right)+\frac{1}{\epsilon}\left(\frac{\partial^2 H}{\partial x_1^2}+\frac{\partial^2 H}{\partial x_2^2}\right) = \omega^2\mu H\]
-This is clearly a scalar second-order (linear) PDE for H, as desired.
+This is clearly a scalar second-order PDE for H, as desired.
 
 \section{}
 
+
+\section*{5}
+Let $\tau = t-t_0$. Then $\tilde{E}(x,t)=E(x,\tau)$, $\tilde{H}(x,t)=H(x,\tau)$ and subsequently
+\[\nabla \times \tilde{E}(x,t) = -\frac{\partial}{\partial t}(\mu*\tilde{H}(x,t)) \Leftrightarrow \nabla\times E(x,\tau)=-\left( \frac{\partial}{\partial\tau}(\mu*H(x,\tau))\right)\frac{\partial\tau}{\partial t}\]
+\[\Leftrightarrow \nabla \times E(x,\tau)=-\frac{\partial}{\partial\tau}(\mu*H(x,\tau))\]
+This is identical to the assumption that $E$ and $H$ satisfy this equation in $t$.
+An identical argument holds for the second equation of the system.
 \end{document}
 %%% Local Variables:
 %%% mode: latex

@@ -1,5 +1,8 @@
 \documentclass{article}
 \usepackage[letterpaper]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
 \title{7380 HW 1}
 \author{Duncan Wilkie}
 \date{12 September 2021}
@@ -22,9 +25,45 @@ On the right hand side, we similarly have a nonzero component only in the $x_3$ 
 This is clearly a scalar second-order PDE for H, as desired.
 
 \section{}
+For the forward implication, let $\nabla \times F = A$. We then write
+\[\nabla \times A = J \Leftrightarrow (\nabla\times A) \cdot \Phi = J\cdot \Phi\]
+There is a vector identity for the cross product
+\[\nabla\cdot (A\times B) = (\nabla \times A)\cdot B -A \cdot (\nabla \times B)\]
+\[\Leftrightarrow (\nabla\times A) \cdot B = \nabla \cdot (A\times B) + A\cdot (\nabla \times B)\]
+which we may apply to the previous expression to obtain
+\[\nabla \cdot(A\times \Phi)+A\cdot (\nabla \times \Phi) = J\cdot \Phi\]
+Expanding the expression for $A$,
+\[\Leftrightarrow \nabla \cdot ((\nabla \times F) \times \Phi) + (\nabla \times F)\cdot (\nabla \times \Phi) = J\cdot \Phi\]
+Integrating both sides over $\mathbb{R}^3$, set $B = (\nabla \times F)\times \Phi$ and use the linearity of the integral to obtain
+\[\int \nabla \cdot B dV+\int (\nabla\times F)\cdot (\nabla \times \Phi)dV = \int J\cdot \Phi dV\]
+Since $\Phi$ is compactly supported, there exists some bounded region $W\subseteq \mathbb{R}^3$ whose interior encloses the support of $\Phi$.
+We may integrate over the interior of $W$ instead, since $\Phi$ being zero elsewhere implies the integrand and associated contributions to the integral are zero elsewhere.
+The first summand on the left side is by the divergence theorem equal to
+$\int_{\partial W}n\cdot B dS$, which, since we have established that the integrand is zero outside the support of $\Phi$, must be zero.
+Therefore, we obtain the desired result, that
+\[\int (\nabla\times F)\cdot(\nabla\times\Phi)dV = \int J\cdot \Phi dV\]
+For the reverse direction, we may apply much of the same logic in reverse: we may add 0 to the left hand side in the form of $\int_{\partial W}n\cdot ((\nabla \times F)\times \Phi)=\int_W\nabla \cdot ((\nabla \times F)\times \Phi) dV$;
+merging the integrals using linearity yields an integrand equal to the right hand side of the cross product identity used above. Applying it yields \[\int (\nabla\times\nabla \times F) \cdot \Phi = \int J \cdot \Phi \Leftrightarrow \int (\nabla\times\nabla\times F)\cdot \Phi - J\cdot \Phi = 0\]
+\[\Leftrightarrow \int (\nabla\times\nabla\times F - J)\cdot \Phi = 0\]
+using the linearity of the dot product. The problem then reduces, setting $C=\nabla\times\nabla\times F -J$, to showing that if $\forall\Phi$, $I=\int C\cdot \Phi = 0$, then $C=0$. We prove the contrapositive: let $C\neq 0$, then there exists some $\Phi$ such that $I\neq 0$. Since $F$ is smooth, all its derivatives are smooth, and so its curl and its curl's curl are both smooth. Since $J$ is also smooth, this implies $C$ is smooth and therefore continuous. Let $\Phi = C$. Then $C\cdot \Phi = C\cdot C = |C|^2$, which is also continuous since the Euclidean norm and squaring both are. Further, for a point $x$ such that $C(x)\neq 0$, $|C(x)|^2\neq 0$. Since $|C|^2$ is continuous and nonzero at a point, there is a region of positive measure where it is nonzero. Since the function is also non-negative everywhere, this implies its integral is nonzero.
+\section{}
+There is a vector calculus theorem that for $W\in\mathbb{R}^3$
+\[\int_{\partial W} A\times ndS = -\int_W\nabla\times AdV\]
+or, by anticommutativity of the cross product,
+\[\int_{\partial W} n\times AdS  = \int_W\nabla\times AdV\]
+Over each of $W_1$ and $W_2$, we construct a preliminary estimate of the surface integral, using $m$ for a general normal vector to a surface (i.e. sometimes meaning different things in a single equation corresponding to the surface being integrated over), as
+\[\int_{\partial W_1}m\times F_1dS+\int_{\partial W_2}m\times F_2dS\]
+This over-counts the regions $\partial W_1\cap\Gamma$ and $\partial W_2\cap\Gamma$, so we subtract them out to obtain
+\[\int_{\partial W}m\times FdS=\int_{\partial W_1}m\times F_1dS+\int_{\partial W_2}m\times F_2dS - \int_{\partial W_1\cap\Gamma}m\times F_1dS -\int_{\partial W_2\cap\Gamma}m\times F_2dS\]
+We may apply the theorem from above and use that $F_1=F_2=F$ on $W\setminus\Gamma$ to get
+\[\int_{\partial W}m\times FdS=\int_{W_1\cup W_2}\nabla\times FdV - \int_{\partial W_1\cap\Gamma}m\times F_1dS -\int_{\partial W_2\cap\Gamma}m\times F_2dS\]
+The rightmost two terms may be rewritten in terms of $n$, since in the first integral $m=n$ and in the second $m=-n$, to yield
+\[\int_{\partial W}m\times FdS=\int_{W_1\cup W_2}\nabla\times FdV+\int_{\partial W_2\cap\Gamma}n\times F_2dS-\int_{\partial W_1\cap\Gamma}n\times F_1dS\]
+By the linearity of the integral and cross product, and by definition of $[F]$, this is exactly the equation desired:
+\[\int_{\partial W}m\times FdS=\int_{W_1\cup W_2}\nabla\times FdV+\int_{W\cap\Gamma}n\times[F]dS\]
+\section{}
 
-
-\section*{5}
+\section{}
 Let $\tau = t-t_0$. Then $\tilde{E}(x,t)=E(x,\tau)$, $\tilde{H}(x,t)=H(x,\tau)$ and subsequently
 \[\nabla \times \tilde{E}(x,t) = -\frac{\partial}{\partial t}(\mu*\tilde{H}(x,t)) \Leftrightarrow \nabla\times E(x,\tau)=-\left( \frac{\partial}{\partial\tau}(\mu*H(x,\tau))\right)\frac{\partial\tau}{\partial t}\]
 \[\Leftrightarrow \nabla \times E(x,\tau)=-\frac{\partial}{\partial\tau}(\mu*H(x,\tau))\]

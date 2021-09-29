@@ -7,6 +7,8 @@
     "latex2e"
     "article"
     "art10"
-    "geometry"))
+    "geometry"
+    "amsmath"
+    "amsfonts"))
  :latex)
 

@@ -46,6 +46,7 @@ For the reverse direction, we may apply much of the same logic in reverse: we ma
 merging the integrals using linearity yields an integrand equal to the right hand side of the cross product identity used above. Applying it yields \[\int (\nabla\times\nabla \times F) \cdot \Phi = \int J \cdot \Phi \Leftrightarrow \int (\nabla\times\nabla\times F)\cdot \Phi - J\cdot \Phi = 0\]
 \[\Leftrightarrow \int (\nabla\times\nabla\times F - J)\cdot \Phi = 0\]
 using the linearity of the dot product. The problem then reduces, setting $C=\nabla\times\nabla\times F -J$, to showing that if $\forall\Phi$, $I=\int C\cdot \Phi = 0$, then $C=0$. We prove the contrapositive: let $C\neq 0$, then there exists some $\Phi$ such that $I\neq 0$. Since $F$ is smooth, all its derivatives are smooth, and so its curl and its curl's curl are both smooth. Since $J$ is also smooth, this implies $C$ is smooth and therefore continuous. Let $\Phi = C$. Then $C\cdot \Phi = C\cdot C = |C|^2$, which is also continuous since the Euclidean norm and squaring both are. Further, for a point $x$ such that $C(x)\neq 0$, $|C(x)|^2\neq 0$. Since $|C|^2$ is continuous and nonzero at a point, there is a region of positive measure where it is nonzero. Since the function is also non-negative everywhere, this implies its integral is nonzero.
+
 \section{}
 There is a vector calculus theorem that for $W\in\mathbb{R}^3$
 \[\int_{\partial W} A\times ndS = -\int_W\nabla\times AdV\]
@@ -61,7 +62,15 @@ The rightmost two terms may be rewritten in terms of $n$, since in the first int
 \[\int_{\partial W}m\times FdS=\int_{W_1\cup W_2}\nabla\times FdV+\int_{\partial W_2\cap\Gamma}n\times F_2dS-\int_{\partial W_1\cap\Gamma}n\times F_1dS\]
 By the linearity of the integral and cross product, and by definition of $[F]$, this is exactly the equation desired:
 \[\int_{\partial W}m\times FdS=\int_{W_1\cup W_2}\nabla\times FdV+\int_{W\cap\Gamma}n\times[F]dS\]
+
 \section{}
+We may plug $v(k\cdot x\pm \omega t)$ into the PDE, and use the chain rule to obtain
+\[\frac{\partial^2}{\partial t^2}v(k\cdot x\pm \omega t) = c^2\nabla^2v(k\cdot x\pm \omega t)\]
+\[\Leftrightarrow \omega^2 v''(k\cdot x\pm \omega t)=c^2(k_1^2v''(k\cdot x\pm \omega t)+k_2^2v''(k\cdot x\pm \omega t)+k_3^2v''(k\cdot x\pm \omega t)) \]
+\[\Leftrightarrow \omega^2=c^2|k|^2\Leftrightarrow |\omega| = c|k|\]
+At points where $v''=0$, and therefore the above argument is made invalid, the PDE is satisfied trivially while for other points the argument holds. The above expression constrains all solutions of the PDE with the given form, and given that it holds, any twice-differentiable $v$ will satisfy the PDE, since the above argument was entirely equivalences.
+
+In sum, all solutions of $\frac{\partial^2}{\partial t}u=c^2\nabla^2 u$ of the form $u(x,t)=v(k\cdot t\pm \omega t)$ are given by $v(k\cdot t\pm c|k|t)$ for all $v$ such that $v''$ exists everywhere.
 
 \section{}
 Let $\tau = t-t_0$. Then $\tilde{E}(x,t)=E(x,\tau)$, $\tilde{H}(x,t)=H(x,\tau)$ and subsequently

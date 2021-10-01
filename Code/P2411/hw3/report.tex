@@ -7,6 +7,8 @@
 
 \begin{document}
 
+\maketitle
+
 \section*{1a}
 The total error is the sum of the roundoff and approximaiton errors.
 We can find critical points of this error function to determine its minimum in terms of $N$.
@@ -47,10 +49,108 @@ The plots of each method's absolute errors appear below, and indicate that extra
 \section*{Script Files}
 \subsection*{2}
 \begin{verbatim}
+Script started on Fri 24 Sep 2021 04:33:12 PM CDT
+[dwilk14@tigers ~/HW3]$ cat dwilk14_hw3p2.cpp
+#include <iostream>
+#include <fstream>
+#include <cmath>
+
+using namespace std;
+
+float V(float r) {
+  if (r <= 0.80) {
+    return -5.625;
+  } else {
+    return -4.5 / r;
+  }
+}
+
+float E(float r) {
+  if (r <= 0.80) {
+    return 0.0;
+  } else {
+    return 4.5 / pow(r, 2);
+  }
+}
+
+int main() {
+  ofstream outfile;
+  float a = 0.001, b = 4.0, h = 0.02, space = (b - a) / 22, x = a + space;
+  outfile.open("output.txt");
+
+  outfile << "x\tV\tNumerical E\tTheoretical E" << endl;
+
+  for (int i = 0 ; i < 21; i++) {
+    outfile << x << " " << V(x) << " " << (V(x + h) - V(x)) / h << " " << E(x) << endl;
+    x += space;
+  }
+
+  return 0;
+
+}
+[dwilk14@tigers ~/HW3]$ g++ dwilk14_hw3p2.cpp -o dwilk14_hw3p2
+[dwilk14@tigers ~/HW3]$ ./dwilk14_hw3p2
+[dwilk14@tigers ~/HW3]$ cp dwilk14_hw3p2.txt /home3/kristina/phys2411/.
+[dwilk14@tigers ~/HW3]$ exit
+exit
+
+Script done on Fri 24 Sep 2021 04:35:18 PM CDT
 
 \end{verbatim}
 \subsection*{4}
 \begin{verbatim}
+Script started on Fri 24 Sep 2021 04:35:36 PM CDT
+[dwilk14@tigers ~/HW3]$ cat dwilk14_hw3p4.cpp
+#include <iostream>
+#include <fstream>
+#include <cmath>
+
+using namespace std;
+
+double p4(double x) {
+  return (3 - 30 * pow(x, 2) + 35 * pow(x, 4)) / 8;
+}
+
+double FD(double (*f)(double), double x, double h) {
+  return (f(x + h) - f(x)) / h;
+}
+
+double CD(double (*f)(double), double x, double h) {
+  return (f(x + h/2) - f(x-h/2)) / h;
+}
+
+double ED(double (*f)(double), double x, double h) {
+  return 1 / (3 * h) * (8 * (f( x + h/4) - f(x - h/4)) - f(x + h/2) + f(x - h/2));
+}
+
+double exact(double x) {
+  return 35 / 2 * pow(x, 3) - 7.5 * x;
+}
+
+int main() {
+  ofstream outfile;
+  outfile.open("output4.txt");
+  double h = 0.1, a = -1, b = 1, step = (b - a) / 22, x = a + step;
+
+  outfile << "x\tP_4(x)\tFD err\tCD err\tED err" << endl;
+
+  for (int i = 0; i < 21; i++) {
+    outfile << x << " " << p4(x) << " " << abs(FD(p4, x, h) - exact(x)) << " " \
+        << abs(CD(p4, x, h) - exact(x)) << " " << abs(ED(p4, x, h) - exact(x)) << endl;
+
+    x += step;
+  }
+
+  return 0;
+
+}
+[dwilk14@tigers ~/HW3]$ g++ dwilk14_hw3p4.cpp -o dwilk14_hw3p4
+[dwilk14@tigers ~/HW3]$ ./dwilk14_hw3p4
+[dwilk14@tigers ~/HW3]$ cp dwilk14_hw3p4.txt /home3/kristina/phys2411/.
+[dwilk14@tigers ~/HW3]$ exit
+exit
+
+Script done on Fri 24 Sep 2021 04:36:39 PM CDT
 
 \end{verbatim}
 

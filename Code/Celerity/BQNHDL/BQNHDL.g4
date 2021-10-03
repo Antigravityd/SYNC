@@ -28,10 +28,10 @@ fragment ALPHANUMERIC : ALPHABETIC | NUMERIC ;
 fragment ALPHABETIC : '_' | [a-zA-Z] ;
 fragment NUMERIC : '¯' | '∞' | 'π' | [0-9] | '.' [0-9] ;
 
-
-
 WS : [ \t] -> skip ;
 COMMENT :  '#' .*? '\n' -> skip ;
+
+
 
 /** parser rules */
 program : sep?  ( stmt sep )* stmt sep? ;
@@ -44,7 +44,7 @@ any : atom | func | mod1 | mod2 ;
 mod2 : ( atom '.' )? C | Cl | '(' m1Expr ')'   | brMod2 ;
 mod1 : ( atom '.' )? M | Ml | '(' m2Expr ')'   | brMod1 ;
 func : ( atom '.' )? F | Fl | '(' funcExpr ')' | brFunc ;
-atom : ( atom '.' )? S | Sl | '(' subExpr ')'  | brSub  | list ;
+atom : atom '.' S | S | Sl | '(' subExpr ')'  | brSub  | list ;
 list : '⟨' sep? ( ( expr sep )* expr sep? )? '⟩' ;
 subject : atom | any ( '‿' any )+ ;
 
@@ -52,15 +52,16 @@ asgn : '←' | '⇐' | '↩' ;
 m2Expr : mod2 | C asgn m2Expr ;
 m1Expr : mod1 | mod2 ( subject | func ) | operand mod2 | M asgn m1Expr ;
 
-derv : func | operand mod1 | operand mod2 ( subject | func ) | return ;
-return : ( name | '𝕊' | '𝕣' ) '→' ;
+derv : func | subject mod1 | derv mod1 | subject mod2 ( subject | func )
+            | derv mod2 ( subject | func ) | ret;
+ret : ( name | '𝕊' | '𝕣' ) '→' ;
 operand : subject | derv ;
 fork : derv | operand derv fork | nothing derv fork ;
 train : fork | derv fork ;
 funcExpr : train | F asgn funcExpr ;
 
 arg : subExpr | ( subject | nothing )? derv arg ;
-nothing : '·' | ( subject | nothing )? derv nothing ;
+nothing : '·' | derv nothing | subject derv nothing | nothing derv nothing;
 name : S | F | M | C ;
 lhs_any : name | lhsList ;
 lhs_atom : lhs_any | '(' lhsStr ')' ;
@@ -69,7 +70,7 @@ lhs_entry : lhs_elt | lhs '⇐' name ;
 lhsStr : lhs_atom ( '‿' lhs_atom )+ ;
 lhsList : '⟨' sep? ( ( lhs_entry sep )* lhs_entry sep? )? '⟩' ;
 lhs : S | lhsList | lhsStr ;
-subExpr : arg | lhs asgn subExpr | lhs derv '↩' subExpr ;
+subExpr : ( subject | nothing )? derv arg | lhs asgn subExpr | lhs derv '↩' subExpr ;
 
 headW : subject | '𝕨' ;
 headX : subject | '𝕩' ;

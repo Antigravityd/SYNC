@@ -1,0 +1,102 @@
+\documentclass{article}
+\usepackage[letterpaper]{geometry}
+\title{4123 HW 2}
+\author{Duncan Wilkie}
+\date{5 October 2021}
+
+\begin{document}
+
+\maketitle
+
+\section*{1a}
+The Lagrangian is, from the reference frame of the attatchment point,
+\[L=T-U=\frac{1}{2}m_1v_1^2+\frac{1}{2}m_2v_2^2-m_1gy_1-m_2gy_2\]
+where $y_1$ and $y_2$ are the (signed) vertical components of the distance from that point to each mass.
+The two constraints of this system are the lengths $l_1$ and $l_2$; mathematically,
+\[\vec{r}_1\cdot\vec{r}_1=l_1^2\]
+and
+\[(\vec{r}_2-\vec{r}_1)\cdot(\vec{r}_2-\vec{r}_1)=l_2^2\]
+where $\vec{r}_1, \vec{r}_2$ are the vectors from the attatchment point of the double pendulum to each of the masses.
+In the absence of constraints in two dimensions, this would have $2N=4$ degrees of freedom.
+These constraints reduce that to 2, so that we have two generalized coordinates (the system is holonomic, as the constraints are expressible as $f=0$ for some function $f$).
+We choose as our generalized coordinates $\theta$, the angle between the positive $x$ direction and $\vec{r}_1$, and $\phi$, the angle between $\vec{r}_1$and $\vec{r}_2$.
+In terms of the new coordinates,
+\[x_1= l_1\cos(\theta), y_1=-l_1\sin(\theta)\] \[v_1=\sqrt{\dot{x_1}^2+\dot{y_1}^2}=\sqrt{l_1^2\sin^2(\theta)\dot{\theta}^2+l_1^2\cos^2(\theta)\dot{\theta}^2}=l_1\dot{\theta}\]
+\[x_2=x_1+l_2\cos(\phi)=l_1\cos(\theta)+l_2\cos(\phi), y_2=y_1-l_2\sin(\phi)=-l_1\sin(\theta)-l_2\sin(\phi)\]
+\[v_2=\sqrt{\dot{x_2}^2+\dot{y_2}^2}=\sqrt{(l_1\sin(\theta)\dot{\theta}+l_2\sin(\phi)\dot{\phi})^2+(l_1\cos(\theta)\dot{\theta}+l_2\cos(\phi)\dot{\phi})^2}\]
+Expanding the binomials and getting creative with product-to-sum identities, this is
+\[=\sqrt{l_1^2\dot{\theta^2}+l_2^2\dot{\phi}^2+2l_1l_2\dot{\theta}\dot{\phi}\cos(\theta-\phi)}\]
+Therefore,
+\[L=\frac{1}{2}m_1l_1^2\dot{\theta}^2+\frac{1}{2}m_2[l_1^2\dot{\theta^2}+l_2^2\dot{\phi}^2+2l_1l_2\dot{\theta}\dot{\phi}\cos(\theta-\phi)]+(m_1+m_2)gl_1\sin(\theta)+m_2gl_2\sin(\phi)\]
+The two Euler-Lagrange equations for these generalized coordinates are
+\[\frac{\partial L}{\partial \theta}=\frac{d}{dt}\frac{\partial L }{\partial \dot{\theta}}\Leftrightarrow(m_1+m_2)gl_1\cos(\theta)-m_2l_1l_2\dot{\theta}\dot{\phi}\sin(\theta-\phi)=\frac{d}{dt}[(m_1+m_2)l_1^2\dot{\theta}+2l_1l_2\dot{\phi}\cos(\theta-\phi)]\]
+\[\Leftrightarrow (m_1+m_2)gl_1\cos(\theta)-m_2l_1l_2\dot{\theta}\dot{\phi}\sin(\theta-\phi) \]\[= (m_1+m_2)l_1^2\ddot{\theta}+2l_1l_2[\ddot{\phi}\cos(\theta-\phi)-\dot{\phi}\dot{\theta}\sin(\theta-\phi)+\dot{\phi}^2\sin(\theta-\phi)]\]
+and
+\[\frac{\partial L}{\partial \phi}=\frac{d}{dt}\frac{\partial L}{\partial \dot{\phi}}\Leftrightarrow m_2gl_2\cos(\phi)+2l_1l_2\dot{\theta}\dot{\phi}\sin(\theta-\phi)=\frac{d}{dt}[m_2l_2^2\dot{\phi}+2l_1l_2\dot{\theta}\cos(\theta-\phi)]\]
+\[\Leftrightarrow m_2gl_2\cos(\phi)+2l_1l_2\dot{\theta}\dot{\phi}\sin(\theta-\phi)=m_2l_2^2\ddot{\phi}+2l_1l_2[\ddot{\theta}\cos(\theta-\phi)+\dot{\phi}\dot{\theta}\sin(\theta-\phi)-\dot{\theta}^2\sin(\theta-\phi)]\]
+
+\section*{1b}
+For small oscillations, $\sin(x)\approx x$ and $\cos(x)\approx 1-\frac{x^2}{2}$. Going back to the calculation of $v_2$, by this cosine approximation we can obtain in terms of $l$ the following:
+\[v_2\approx l\sqrt{\dot{\theta}^2+\dot{\phi}^2+2\dot{\theta}\dot{\phi}(1-\frac{(\theta-\phi)^2}{2})}=l\sqrt{\dot{\theta}^2-\dot{\theta}\dot{\phi}\theta^2+2\dot{\theta}\dot{\phi}\theta\phi-\dot{\theta}\dot{\phi}\phi^2+2\dot{\theta}\dot{\phi}+\dot{\phi}^2}\]
+The Lagrangian is then
+\[L=\frac{1}{2}ml^2\dot{\theta}^2+\frac{1}{2}ml^2[\dot{\theta}^2-\dot{\theta}\dot{\phi}\theta^2+2\dot{\theta}\dot{\phi}\theta\phi-\dot{\theta}\dot{\phi}\phi^2+2\dot{\theta}\dot{\phi}+\dot{\phi}^2]+2mgl\theta+mgl\phi\]
+and the Euler-Lagrange equations are
+\[\frac{\partial L}{\partial \theta}=\frac{d}{dt}\frac{\partial L}{\partial \dot{\theta}}\Leftrightarrow ml^2\dot{\theta}\dot{\phi}\phi-ml^2\dot{\theta}\dot{\phi}\theta+2mgl\]\[=\frac{d}{dt}\left[ ml^2\dot{\theta}+ml^2\dot{\theta}-\frac{1}{2}ml^2\dot{\phi}\theta^2 +ml^2\dot{\phi}\theta\phi-\frac{1}{2}ml^2\dot{\theta}\phi^2\right]\]
+\[=ml^2\left(2\ddot{\theta}-\dot{\phi}\theta\dot{\theta}-\frac{1}{2}\ddot{\phi}\theta^2+\dot{\phi}(\theta\dot{\phi}+\dot{\theta}\phi)+\ddot{\phi}\theta\phi-\dot{\theta}\phi\dot{\phi}-\frac{1}{2}\ddot{\theta}\phi^2\right)\]
+\[\Leftrightarrow \dot{\theta}\dot{\phi}(\phi-\theta)+\frac{2g}{l}=\dot{\theta}\ddot{\theta}+\ddot{\theta}-\dot{\phi}\theta\dot{\theta}-\frac{1}{2}\ddot{\phi}\theta^2+\dot{\phi}(\theta\dot{\phi}+\dot{\theta}\phi)+\ddot{\phi}\theta\phi-\dot{\theta}\phi\dot{\phi}-\frac{1}{2}\ddot{\theta}\phi^2\]
+and
+\[\frac{\partial L}{\partial \phi}=\frac{d}{dt}\frac{\partial L}{\partial \dot{\phi}}\Leftrightarrow ml^2\dot{\theta}\dot{\phi}\theta-ml^2\dot{\theta}\dot{\phi}\phi+mgl\]
+\[=ml^2\frac{d}{dt}\left[  -\frac{1}{2}\dot{\theta}\theta^2+\dot{\theta}\theta\phi-\frac{1}{2}\dot{\theta}\phi^2+\dot{\theta}+\dot{\phi}\right]\]
+\[=ml^2\left( -\dot{\theta}^2\theta-\frac{1}{2}\ddot{\theta}\theta^2+\dot{\theta}(\theta\dot{\phi}+\dot{\theta}\phi)+\ddot{\theta}\theta\phi - \dot{\theta}\phi\dot{\phi}-\frac{1}{2}\ddot{\theta}\phi^2+\dot{\theta}+\dot{\phi} \right)\]
+\section*{2}
+The Lorentz force is given by $\vec{F}=qE+qv\times B$. Writing the fields in terms of some potential,
+$-\nabla U=-q\nabla \phi+qv\times(\nabla \times\vec{A})$. We can integrate this along an arbitrary path $\gamma$ between two points $\gamma_0$ and $\gamma_1$ and take the zero point of the potential to be at $\gamma_0$, yielding
+\[U=q\phi+q\int_\gamma v\times(\nabla\times \vec{A})\]
+We write out
+\[v\times(\nabla\times\vec{A})=v\times\left[\left(\frac{\partial A_z}{\partial y}-\frac{\partial A_y}{\partial z}\right)\hat{i}+\left(\frac{\partial A_x}{\partial z}-\frac{\partial A_z}{\partial x}\right)\hat{j}+\left(\frac{\partial A_y}{\partial x}-\frac{\partial A_x}{\partial y}\right)\hat{k}\right]\]
+\[=\left[ v_y\left(\frac{\partial A_y}{\partial x}-\frac{\partial A_x}{\partial y} \right)-v_z\left( \frac{\partial A_x}{\partial z}-\frac{\partial A_z}{\partial x} \right)\right]\hat{i}-\left[ v_x\left( \frac{\partial A_y}{\partial x}-\frac{\partial A_x}{\partial y}\right)-v_z\left(\frac{\partial A_z}{\partial y}-\frac{\partial A_y}{\partial z}\right) \right]\hat{j}\]
+\[+\left[ v_x\left(  \frac{\partial A_x}{\partial z}-\frac{\partial A_z}{\partial x}\right)-v_y\left(\frac{\partial A_z}{\partial y}-\frac{\partial A_y}{\partial z}  \right) \right]\hat{k}\]
+The line integral of this is, up to a constant,
+\[\int_\gamma\left[ v_y\left(\frac{\partial A_y}{\partial x}-\frac{\partial A_x}{\partial y} \right)-v_z\left( \frac{\partial A_x}{\partial z}-\frac{\partial A_z}{\partial x} \right)\right]dx-\left[ v_x\left(\frac{\partial A_y}{\partial x}-\frac{\partial A_x}{\partial y}\right)-v_z\left(\frac{\partial A_z}{\partial y}-\frac{\partial A_y}{\partial z}\right) \right]dy\]
+\[+\left[ v_x\left(  \frac{\partial A_x}{\partial z}-\frac{\partial A_z}{\partial x}\right)-v_y\left(\frac{\partial A_z}{\partial y}-\frac{\partial A_y}{\partial z}  \right) \right]dz\]
+\[=\left( v_yA_y-v_y\int_\gamma \frac{\partial A_x}{\partial y}dx-v_z\int_\gamma\frac{\partial A_z}{\partial z}dx + v_zA_z\right)-\left(v_x\int_\gamma \frac{\partial A_y}{\partial x}dy-v_xA_x-v_zA_z+v_z\int_\gamma\frac{\partial A_y}{\partial z}dy  \right)\]
+\[+\left( v_xA_x-v_x\int_\gamma\frac{\partial A_z}{\partial x}dz-v_y\int_\gamma\frac{\partial A_z}{\partial y}dz+v_yA_y\right)\]
+\[=2v\cdot A-\int_\gamma \left(v_y\frac{\partial A_x}{\partial y}+v_z\frac{\partial A_x}{\partial z}\right)dx+\left( v_x\frac{\partial A_y}{\partial x}+v_z\frac{\partial A_y}{\partial z} \right)dy+\left( v_x\frac{\partial A_z}{\partial x}+v_y\frac{\partial A_z}{\partial y} \right)dz\]
+
+\section*{3}
+The Lagrangian is $L=T-V=\frac{1}{2}mv^2-mgy=\frac{1}{2}m(\dot{x}+\dot{y})^2-mgy$.
+The constraint for this system is $\vec{r}\cdot\vec{r}=R\Leftrightarrow x^2+y^2=R$.
+We obtain two constrained Euler-Lagrange equations:
+\[\frac{\partial L}{\partial y}+\lambda\frac{\partial f}{\partial y}=\frac{d}{dt}\frac{\partial L}{\partial \dot{y}}\Leftrightarrow -mg+2\lambda y=\frac{d}{dt}(m\dot{y})\Leftrightarrow2\lambda y-mg=m\ddot{y}\]
+\[\frac{\partial L}{\partial x}+\lambda\frac{\partial f}{\partial x}=\frac{d}{dt}\frac{\partial L}{\partial \dot{x}}\Leftrightarrow  2\lambda x=\frac{d}{dt}(m\dot{x})\Leftrightarrow2\lambda x=m\ddot{x}\]
+The equations of motion above are in the form of Newton's second law, and so we see the constraint force is precisely $2\lambda x\hat{x}+2\lambda y\hat{y}$
+
+\section*{4}
+For this problem, we have the same Lagrangian, but take spherical instead of polar coordinates:
+\[L=\frac{1}{2}mv^2-mgy \Leftrightarrow L=\frac{1}{2}mv^2-mgr\sin(\phi)\sin(\theta)\]
+Our constraint is $\vec{r}\cdot\vec{r}=l^2\Leftrightarrow r=l$, so this becomes
+\[L=\frac{1}{2}ml^2(l^2\dot{\theta}^2+l^2\dot{\phi}^2\sin^2(\theta))-mgl\sin(\theta)\sin(\phi)\]
+There are then two Euler-Lagrange equations:
+\[\frac{\partial L}{\partial \phi}=\frac{d}{dt}\frac{\partial L}{\partial \dot{\phi}}\Leftrightarrow-mgl\sin(\theta)\cos(\phi)=\frac{d}{dt}\left[ ml^4\dot{\phi}\sin^2(\theta) \right]\]
+\[\Leftrightarrow -mgl\sin(\theta)\cos(\theta)=ml^4\ddot{\phi}\sin^2(\theta)+ml^4\dot{\phi}\sin(2\theta)\dot{\theta}\]
+and
+\[\frac{\partial L}{\partial \theta}=\frac{d}{dt}\frac{\partial L}{\partial\dot{\theta}}\Leftrightarrow ml^2\dot{\phi}^2\sin(2\theta)-mgl\cos(\theta)\sin(\phi)=\frac{d}{dt}\left[ ml^4\dot{\theta} \right]\]
+\[\Leftrightarrow ml^2\dot{\phi}^2\sin(2\theta)-mgl\cos(\theta)\sin(\phi)=ml^4\ddot{\theta}\]
+For small angles, these become
+\[-g(1-\theta/2)=l^3\ddot{\phi}\theta+2l^3\dot{\phi}\dot{\theta}\]
+and
+\[2l\dot{\phi}^2\theta-g(1-\theta^2/2)\phi=l^3\ddot{\theta}\]
+\section*{5}
+We have the same inital Lagrangian as before, but keep the problem in rectangular coordinates:
+\[L=\frac{1}{2}mv^2-mgy\Leftrightarrow L=\frac{1}{2}m(\dot{x}^2+\dot{y}^2+\dot{z}^2)-mgy\]
+with constraint $f(x,y,z)=c\Leftrightarrow\vec{r}\cdot\vec{r}=l^2\Leftrightarrow x^2+y^2+z^2=l^2$.
+This yields three constrained Euler-Lagrange equations
+\[\frac{\partial L}{\partial x}+\lambda\frac{\partial f}{\partial x}=\frac{d}{dt}\frac{\partial L}{\partial \dot{x}}\Leftrightarrow2\lambda x=m\ddot{x}\]
+\[\frac{\partial L}{\partial y}+\lambda\frac{\partial f}{\partial y}=\frac{d}{dt}\frac{\partial L}{\partial \dot{y}}\Leftrightarrow2\lambda y-mg=m\ddot{z}\]
+\[\frac{\partial L}{\partial y}+\lambda\frac{\partial f}{\partial z}=\frac{d}{dt}\frac{\partial L}{\partial \dot{z}}\Leftrightarrow2\lambda z=m\ddot{z}\]
+which are all equations of motion in the form of Newton's second law, so the constraint force (equal in magnitude to the tension in the string) is $2\lambda x\hat{x}+2\lambda y\hat{y}+2\lambda z\hat{z}$
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

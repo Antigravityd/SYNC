@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage[letterpaper]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\title{2231 HW 4}
+\author{Duncan Wilkie}
+\date{1 October 2021}
+
+\begin{document}
+
+\maketitle
+
+\section*{1a}
+The field at the boundary of a Gaussian surface concentric with the cavity entirely contained within the conducting material must be zero.
+Therefore, its integral over the whole surface is zero, and by Gauss's law the enclosed charge must be (net) zero, and subsequently $\sigma_a = -\frac{q_a}{4\pi a^2}$ and $\sigma_b=-\frac{q_b}{4\pi b^2}$.
+Since the sphere is neutrally charged, the outer surface must have a charge equal to the negative of the total charge on the inner ones, so $\sigma_R=\frac{q_a+q_b}{4\pi R^2}$.
+
+\section*{1b}
+Gauss's law is again applicable: taking the surface to be a concentric sphere of radius $r$, the field is perpendicular and of constant magnitude, so
+\[\int_SEdA=4\pi r^2|E|=\frac{q_{enc}}{\epsilon_0}\Leftrightarrow |E|=\frac{q_a+q_b}{4\pi\epsilon_0r^2}\]
+pointing radially away from the sphere's center.
+
+\section*{1c}
+Within each cavity, the enclosed charge is simply the respective point charge, so by the same reasoning
+\[|E|=\frac{q_a}{4\pi\epsilon_0r^2}\]
+and
+\[|E|=\frac{q_b}{4\pi\epsilon_0r^2}\]
+The directions are of course radially outward from the centers of the cavities.
+
+\section*{1d}
+The point charges feel no force, since the electric fields within the cavities are identical to that produced if each were in free space.
+Since there is no self-interaction of such a field in the case of free space, it is unreasonable to presume there would be such an interaction in this one.
+
+\section*{1e}
+The field outside the conductor would change, since the field would no longer be orthogonal to a concentric spherical Gaussian surface.
+Additionally, the surface charge density on the outside of the sphere is no longer a constant function of position on the sphere, since that lack of orthogonality in the field at the conductor's boundary would induce lateral movement of the surface charges.
+The arguments for the other answers depend only on the geometry of the conductor in relation to the point charges' position and the field inside conductors being zero; this doesn't change with the introduction of an external charge.
+
+\section*{2}
+The electric field due to an infinitely long cylinder is, using a concentric Gaussian cylinder, is $2\pi rLE=\frac{\lambda L}{\epsilon_0}\Leftrightarrow E=\frac{\lambda}{2\pi\epsilon_0r}$. In this case, $\lambda=\sigma 2\pi R$ where $R$ is the radius of the cylinder in question. The odd notation is due to me doing it wrong the first time, and not wanting to change a billion variables for some constants that cancel out in the end.
+In the case of two concentric cylinders, the presence of the second doesn't affect the direction of the field or its being constant, so Gauss's law still holds, giving a compound field by superpostion of
+\[E=\begin{cases}
+    0, r < a \\
+    \frac{\lambda_1}{2\pi\epsilon_0 r}, a<r<b \\
+    \frac{\lambda_2+\lambda_1}{2\pi\epsilon_0 r}, r>b \\
+  \end{cases}\]
+Integrating this from $a$ to $b$ yields a plate voltage of
+\[V=\int_a^b\frac{\lambda_1}{2\pi\epsilon_0 r}dr=\frac{\lambda_1}{2\pi\epsilon_0}\ln(\frac{b}{a})\]
+The charge on the tubes being $q=\lambda_1 L$, the capacitance is
+\[C=\frac{q}{V}=\frac{\lambda_1 L}{\lambda_1\ln(b/a)/(2\pi\epsilon_0)}=\frac{2\pi\epsilon_0 L}{\ln(b/a)}\]
+
+\section*{3a}
+The electric field for a line charge may be found via a method identical to the one above for cylindrical charges, but where $\lambda$ actually does represent a linear charge density.
+Integrating the result from the distance to the grounded plate yields a potential
+\[V=-\int_d^r\frac{\lambda}{2\pi\epsilon_0 r}dr=-\frac{\lambda}{2\pi\epsilon_0}\ln(\frac{r}{d})\]
+for all points distance $R$ from the line charge.
+\section*{3b}
+Since the field is the same for any values of the $x$ variable due to its dependence on distance from the line charge alone, we have
+\[E=\frac{\sigma}{\epsilon_0}\hat{n}\Leftrightarrow{\hat{n}}\cdot E=\frac{\sigma}{\epsilon_0}\Leftrightarrow \sigma = \frac{\lambda}{2\pi r}\hat{r}\cdot\hat{n}=\frac{\lambda}{2\pi \sqrt{d^2+y^2}}\hat{r}\cdot \hat{n}\]
+Using that by simple geometric inspection $\hat{r}\cdot\hat{n}=\cos(\cos^{-1}(\frac{r}{d}))=\sqrt{d^2+y^2}/d$, the charge density is $\sigma=\frac{\lambda}{2\pi d}$.
+\section*{4}
+The part of the Laplace operator in spherical coordinates not made zero by derivatives with respect to angular variables is $\frac{1}{r}\frac{\partial^2}{\partial r^2}r$.
+Applying this to a function and integrating,
+\[\Delta f=0\Leftrightarrow \frac{\partial^2}{\partial r^2}(rf)=0\Leftrightarrow rf = c_1r+c_2\Leftrightarrow f=c_1+\frac{c_2}{r}\]
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

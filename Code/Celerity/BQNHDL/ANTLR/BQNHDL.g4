@@ -28,10 +28,10 @@ fragment ALPHANUMERIC : ALPHABETIC | NUMERIC ;
 fragment ALPHABETIC : '_' | [a-zA-Z] ;
 fragment NUMERIC : '¯' | '∞' | 'π' | [0-9] | '.' [0-9] ;
 
-
-
 WS : [ \t] -> skip ;
 COMMENT :  '#' .*? '\n' -> skip ;
+
+
 
 /** parser rules */
 program : sep?  ( stmt sep )* stmt sep? ;
@@ -40,13 +40,13 @@ sep : ( '⋄' | ',' | '\n' )+ ;
 expr : subExpr | funcExpr | m1Expr | m2Expr ;
 export : lhs_elt? '⇐' ;
 
-any : atom | func | mod1 | mod2 ;
+anything : atom | func | mod1 | mod2 ;
 mod2 : ( atom '.' )? C | Cl | '(' m1Expr ')'   | brMod2 ;
 mod1 : ( atom '.' )? M | Ml | '(' m2Expr ')'   | brMod1 ;
 func : ( atom '.' )? F | Fl | '(' funcExpr ')' | brFunc ;
-atom : atom '.' S | S | Sl | '(' subExpr ')'  | brSub  | list ;
-list : '⟨' sep? ( ( expr sep )* expr sep? )? '⟩' ;
-subject : atom | any ( '‿' any )+ ;
+atom : atom '.' S | S | Sl | '(' subExpr ')'  | brSub  | lis ;
+lis : '⟨' sep? ( ( expr sep )* expr sep? )? '⟩' ;
+subject : atom | anything ( '‿' anything )+ ;
 
 asgn : '←' | '⇐' | '↩' ;
 m2Expr : mod2 | C asgn m2Expr ;
@@ -78,7 +78,7 @@ headF : F | '𝕗' | '𝔽' ;
 headG : F | '𝕘' | '𝔾' ;
 mod1H1 : headF ( M | '_𝕣' ) ;
 mod2H1 : headF ( C | '_𝕣_' ) headG ;
-funcHead : headW? ( F | '𝕊' ) headX | Sl | '(' subExpr ')' | brSub | list | any ( '‿' any )+ | undoHead ;
+funcHead : headW? ( F | '𝕊' ) headX | Sl | '(' subExpr ')' | brSub | lis | anything ( '‿' anything )+ | undoHead ;
 m1Head : headW? mod1H1 headX ;
 m2Head :  headW? mod2H1 headX ;
 

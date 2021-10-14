@@ -1,0 +1,44 @@
+* The Reason
+
+This is an HLS language for working with communication protocols on FPGAs. This is bred by our desire to use FPGAs for iAP2 over USB with SpaRTAN Physics' detector development.
+
+* Grammar
+
+We describe this in EBNF with ANTLR syntax.
+
+A program consists of an input statement, which configures how binary data is read from a set of pins on the FPGA, some processing, which consists of pattern-matching the binary data read from that input against a grammar and constructing a new stream of binary data based on the value of that data,  and an output statement, which configures how binary data is written to FPGA pins after transformation.
+
+There is an implicit passing of a binary multidimensional array between sections of programs; in functional programming terms this is the only type in the language.
+
+The input and output statements are optional to enable writing modules, import statements of which may replace statements of each kind--including transform statements.
+
+#+begin_src C
+
+  program: (inputStmt | inputImport) | transformStmt+ | (outputStmt | outputImport);
+
+  inputStmt: "input"  pins+ ":" inputParseStmt*;
+
+  transformStmt: "matching" ":" pattern+;
+
+  outputStmt: "output" pins+ ":" outputParseStmt*;
+
+#+end_src
+
+** Input
+
+Input statements ought to be able to to take arbitrarily many digital streams (possibly not just binary) and "unfurl" them in arbitrary ways: e.g. given pin 1 input 0010001 and pin 2 input 10100101 it should be possible to obtain the implicit structures [ [0010001], [10100101] ], [001000110100101], and so on, for any arbitrary array computation of this type ("associativity" operations, perhaps?).
+To do this, we introduce a sort of standard library of functions, which use Haskell composition syntax.
+
+*** Chunk
+
+This is how you turn a binary stream into a byte stream. The statement =chunk n a1= takes the binary stream from pin =a1= and turns it into a stream of bytes  with size =n=. Without a first argument, this defaults to =n = 8= for the common case of the 8-bit byte.
+
+*** Zip
+
+This is how you turn several parallel binary streams into a byte stream composed of bits from each binary component. The statement =zip a1 a2 a3 a4...= does this for arbitrary byte size.
+
+*** More to come
+
+** Transform
+
+This section of the program performs matching of the stream emanating from the input statement against a grammar defined by the programmer, and performing optional actions when the grammar is matched (such setting a timeout timer, or writing to the output pins) possibly based on the runtime value of the input received.

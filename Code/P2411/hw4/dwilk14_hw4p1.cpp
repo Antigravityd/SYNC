@@ -1,6 +1,7 @@
 #include <cmath>
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
 
 using namespace std;
 
@@ -28,12 +29,15 @@ double f(double V) {
 double exact(double t) {
   return 5 * exp(-t / 2);
 }
+
 int main() {
+  ofstream outfile;
+  outfile.open("output.txt");
   array result = euler(f, 0, 4, 5, 0.1);
   double t = 0.1;
   for (int i = 0; i < result.size; i++) {
     t += 0.1;
-    cout << t << " " << result.vals[i] << " " << exact(0.1 + i * 0.1)<< endl;
+    outfile << t << " " << result.vals[i] << " " << exact(0.1 + i * 0.1) << endl;
   }
 
   return 0;

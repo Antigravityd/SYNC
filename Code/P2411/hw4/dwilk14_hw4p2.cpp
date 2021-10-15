@@ -13,13 +13,14 @@ double c2d(double (*f)(double), double x, double h) {
 }
 
 int main() {
-  double x = M_PI, h = M_PI / 9, end = 8 * M_PI;
-  int n = (end - x) / h;
+  ofstream outfile;
+  outfile.open("output2");
+  double x = M_PI, end = 8 * M_PI, h = M_PI / 18;
 
-  cout << "x[rad] x[deg] sin(x) sin(x)' sin(x)''" << endl;
+  outfile << "x[rad] x[deg] sin(x) sin(x)' sin(x)''" << endl;
 
-  for (int i = 0; i < n + 1; i++) {
-    cout << x << " " << x * 180 / M_PI << " " << sin(x) << " " \
+  while (x < end) {
+    outfile << x << " " << x * 180 / M_PI << " " << sin(x) << " " \
 	 << cd(sin, x, h) << " " << c2d(sin, x, h) << endl;
     x += h;
   }

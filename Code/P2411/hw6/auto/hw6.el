@@ -7,6 +7,7 @@
     "latex2e"
     "article"
     "art10"
-    "geometry"))
+    "geometry"
+    "graphicx"))
  :latex)
 

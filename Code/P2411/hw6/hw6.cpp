@@ -19,10 +19,10 @@ int main() {
   double guess1 = 4.4,  guess2 = 7.6, fx1 = f(guess1), fx2 = f(guess2);
 
 
-  outfile << "n x1 fx1" << endl;
+  /* outfile << "n, x1, fx1" << endl;
 
   for (int i = 0; i < 15; i++) {
-    outfile << i << " " << guess1 << " " << fx1 << endl;
+    outfile << i << ", " << guess1 << ", " << fx1 << endl;
 
     if (abs(fx1) < 1e-8) {
       break;
@@ -31,13 +31,13 @@ int main() {
     guess1 -= fx1 / deriv(guess1);
     fx1 = f(guess1);
 
-  }
+  }*/
 
-  outfile << "n x2 fx2" << endl;
+  outfile << "n, x2, fx2" << endl;
 
 
   for (int i = 0; i < 15; i++) {
-    outfile << i << " " << guess2 << " " << fx2 << endl;
+    outfile << i << ", " << guess2 << ", " << fx2 << endl;
 
     if (abs(fx2) < 1e-8) {
       break;

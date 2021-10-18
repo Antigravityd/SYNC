@@ -26,7 +26,7 @@ The input and output statements are optional to enable writing modules, import s
 
 ** Input
 
-Input statements ought to be able to to take arbitrarily many digital streams (possibly not just binary) and "unfurl" them in arbitrary ways: e.g. given pin 1 input 0010001 and pin 2 input 10100101 it should be possible to obtain the implicit structures [ [0010001], [10100101] ], [001000110100101], and so on, for any arbitrary array computation of this type ("associativity" operations, perhaps?).
+Input statements ought to be able to to take arbitrarily many digital streams (possibly not just binary) and "unfurl" them in arbitrary ways: e.g. given pin 1 input 0010001 and pin 2 input 10100101 it should be possible to obtain the implicit stream output [ [0010001], [10100101] ], [001000110100101], and so on, for any arbitrary array computation of this type ("associativity" operations, perhaps?).
 To do this, we introduce a sort of standard library of functions, which use Haskell composition syntax.
 
 *** Chunk
@@ -35,10 +35,31 @@ This is how you turn a binary stream into a byte stream. The statement =chunk n 
 
 *** Zip
 
-This is how you turn several parallel binary streams into a byte stream composed of bits from each binary component. The statement =zip a1 a2 a3 a4...= does this for arbitrary byte size.
+This is how you turn several parallel binary streams into a byte stream composed of bits from each binary component. The statement =zip a1 a2 a3 a4...= does this for arbitrary stream dimensions and arbitrary byte sizes. This function can also be used on byte streams, to for example package a byte stream and a flag bit stream as [[00101011, 1], ...].
 
-*** More to come
+*** Knit
+
+The statement =knit a1 a2 2 3= returns the stream =a1= with two elements from =a2= inserted after every 3 elements from =a1=.
+
+*** More to come?
 
 ** Transform
 
-This section of the program performs matching of the stream emanating from the input statement against a grammar defined by the programmer, and performing optional actions when the grammar is matched (such setting a timeout timer, or writing to the output pins) possibly based on the runtime value of the input received.
+This section of the program performs matching of the stream emanating from the input statement against a grammar defined by the programmer, and performing optional actions when the grammar is matched (such setting a timeout timer, or writing to the output pins) possibly based on the runtime value of the input received. Implicitly, each line after the matching statement matches an element of the implicit input stream, with the line continuation character =\=.
+Annotations with the =@= symbol define patterns as special values, such as the length or a checksum. Identifiers can be bound to parts of a pattern. The pattern matching is analogous Haskell and BNF syntax; here's an example:
+
+#+begin_src C
+
+  matching:
+    0xff
+    0xfa
+    packetID
+    ackID
+    msgSize @length  all
+    headerCHK @checksum 3-8
+
+#+end_src
+
+** Output
+
+This mirrors all statements available in the input section, but it writes the implicit stream to the output pin.

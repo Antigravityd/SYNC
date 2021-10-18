@@ -1,0 +1,50 @@
+\documentclass{article}
+\usepackage[letterpaper]{geometry}
+
+\title{4123 HW 3}
+\author{Duncan Wilkie}
+\date{19 October 2021}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+Call the position of the natural length of the spring at $t=0$ $x_0$.
+The Lagrangian is then $L=\frac{1}{2}m\dot{x}^2-\frac{1}{2}k(x-vt-x_0)^2$. The resulting Euler-Lagrange equation is
+\[\frac{\partial L}{\partial x}=\frac{d}{dt}\frac{\partial L}{\partial \dot{x}}\Leftrightarrow -k(x-vt-x_0)=m\ddot{x} \Leftrightarrow m\ddot{x}+kx =kvt+kx_0\]
+We may solve the homogeneous equation via the ansatz $x=e^{mt}$ as \[m=\pm i\sqrt{\frac{k}{m}}\Rightarrow x=c_1e^{ti\sqrt{\frac{k}{m}}}-c_2e^{-ti\sqrt{\frac{k}{m}}}=C_1\sin\left(t\sqrt{\frac{k}{m}}\right)+C_2\cos\left(t\sqrt{\frac{k}{m}}\right)\]\[=A\sin\left(t\sqrt{\frac{k}{m}}+\delta\right)\]
+A particular solution to the non-homogeneous case is by inspection $x=vt+x_0$, so the full solution is
+\[x(t)=x_0+vt+A\sin\left(t\sqrt{\frac{k}{m}}+\delta\right)\]
+The generalized momentum is\[\frac{\partial L}{\partial \dot{x}}=m\dot{x}=m\left[  v+A\sqrt{\frac{k}{m}}\cos\left( t\sqrt{\frac{k}{m}}+\delta \right)\right]\]
+If $x=vt$, $A=0$ and $x_0=0$. Therefore the generalized momentum is $mv$, which is a constant and therefore conserved.
+
+\section{}
+The contrapositive of this was proven in class, but I'll do it again.
+If the Lagrangian is symmetric under time translations, it does not depend on time. Then we may apply the Euler-Lagrange first integral to each of the Euler-Lagrange equations for the system obtain
+\[\frac{\partial L}{\partial \dot{q_i}}\dot{q}_i-L = \textrm{const}\]
+The formal definition of the Hamiltonian is $H=\sum_i\frac{\partial L}{\partial\dot{q}_i}\dot{q}_i- L $. $L$ is a constant with respect to time, and the first-integral equation therefore implies that each term of the sum is constant as well. Thus, the Hamiltonian is not time-dependent.
+
+\section{}
+The Lagrangian for such a system is
+\[L=\frac{1}{2}mv^2+mgy\]
+This does not depend on $x$, $z$, or $t$, and so the quantities $p_x$, $p_z$, and $E$ are conserved.
+
+\section{}
+Applying the Euler-Lagrange first integral,
+\[f-y'\frac{\partial f}{\partial y'}=c_1\Leftrightarrow y\sqrt{1+y'^2}-\frac{yy'^2}{\sqrt{1+y'^2}}=c_1\Leftrightarrow y+yy'^2-yy'^2=c_1\sqrt{1+y'^2}\]
+\[\Leftrightarrow y^2=c_1^2(1+y'^2)\Leftrightarrow 1+y'^2= \frac{y^2}{c_1^2}\]
+From the normal Euler-Lagrange equations,
+\[\frac{\partial f}{\partial y}=\frac{d}{dx}\frac{\partial f}{\partial y'}\Leftrightarrow \sqrt{1+y'^2}=\frac{d}{dx}\left[ \frac{yy'}{\sqrt{1+y'^2}} \right]\]
+\[\Leftrightarrow \sqrt{1+y'^2}=\frac{y'^2}{\sqrt{1+y'^2}}+yy''\left(\frac{1}{\sqrt{1+y'^2}}- \frac{y'^2}{(1+y'^2)^{3/2}} \right)\]
+\[\Leftrightarrow (1+y'^2)^2=y'^2+y'^4+yy''+yy'^2y''-yy'^2y''\]
+\[\Leftrightarrow y'^4+2y'^2+1=y'^2+y'^4+yy''\]\[\Leftrightarrow y'^2-yy''+1=0\]
+Substituting the first-integral expression for $1+y'^2$,
+\[\frac{y^2}{c_1^2}=yy''\Leftrightarrow y''-c^2y=0\]
+Via the ansatz $y=e^{mx}$, $m^2-c^2=0\Rightarrow y=c_1e^{cx}+c_2e^{-cx}$ is the general solution to the homogeneous equation and $y=c_1e^{cx}+c_2e^{-cx}+1$ is the particular solution.
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

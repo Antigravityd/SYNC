@@ -1,0 +1,24 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\title{3355 Quiz 4}
+\author{Duncan Wilkie}
+\date{19 October 2021}
+
+\begin{document}
+\maketitle
+\section{}
+The number of half-point gains in a five-day period is a binomial random variable. We are looking for the probability that this this random variable takes the value 3, which is \[p(x)=P(X=x)=\binom{5}{3}\left( \frac{1}{4} \right)^3\left( 1-\frac{1}{4} \right)^{5-3}=\frac{45}{512}\]
+
+\section{}
+The number of families with an income of more than \$100,000 is a binomial random variable, with a success being a family with a higher income. We are looking for the probability this random variable is at least 2, which is 1 minus the probability this random variable is 1 or 0. This is given by the sum of the two probability mass functions evaluated at this point. Since the number of trials is large and the probability of finding a rich family small, the Poisson approximation is justified. We compute $\lambda =np = 100 * 0.05 = 5$, and subsequently
+\[P(X=0) \approx \frac{e^{-\lambda}\lambda^0}{0!}=e^{-5}=0.00673\]
+\[P(X=1)\approx \frac{e^{-\lambda}\lambda^1}{1!}=5e^{-5}=0.03369\]
+\[\Rightarrow p = 1 - (P(X=0) + P(X=1)) = 0.9596\]
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+c

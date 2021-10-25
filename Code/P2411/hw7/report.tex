@@ -1,0 +1,48 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{amsmath}
+
+\title{2411 HW 7}
+\author{Duncan Wilkie}
+\date{25 October 2021}
+
+\begin{document}
+\section{}
+The corresponding program appears in the script files section.
+
+\section{}
+Gaussian elimination may be applied to solve the matrix inverse problem $\mathbf{A}\vec{x}=\vec{b}$. All linear systems of equations, where one has some linear combination of variables equal to a constant in each of the eqations, may be written as a problem of this form. Classify the use of Gaussian elimination to find that a system is over- or underdetermined as ``solving'' the system of equations (otherwise, one would need to actualy solve the system to determine if a well-defined solution were possible).
+\subsection{}
+This one can be reduced to a linear system by setting $x = \cos(\alpha)$ and $y = \tan^2(\phi)$. Gaussian elimination becomes directly applicable.
+\subsection{}
+Expanding $(u-2v)^2=u^2-4uv+4v^2$, it becomes evident we may linearize the system by setting $x = u^2$, $y=v^2$. Gaussian elimination becomes directly applicable.
+\subsection{}
+Gaussian elimination is applicable here without modification.
+\subsection{}
+Once again, Gaussian elimination is directly applicable.
+\subsection{}
+In this case, it is impossible to write $e^z$ as a linear function of $z$ (stated without proof---technically follows from a polynomial-ring-over-field proof of it being a trancendental function, which is highly nontrivial). Therefore, this cannot be reduced to a linear system, and Gaussian elimination is impossible to apply.
+
+\section{}
+The first print statement outputs
+\[\begin{bmatrix}
+    1 & 8 & 10\\
+    2 & 1 & 11\\
+    5 & -50 & -14
+  \end{bmatrix}\]
+The second print statement outputs the superposed version of the matrix from the in-place decomposition algorithm (the ``Hadamard sum,'' I suppose):
+\[\begin{bmatrix}
+    1 & 8 & 10 \\
+    2 & -15 & -9 \\
+    5 & 6 & -10
+  \end{bmatrix}\]
+\section*{Script Files}
+\begin{verbatim}
+
+\end{verbatim}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

@@ -1,0 +1,38 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{amsmath}
+
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Ci}{\mathrm{Ci}}
+
+\title{3355 Quiz 5}
+\author{Duncan Wilkie}
+\date{26 October 2021}
+
+\begin{document}
+
+\maketitle
+
+\section*{1a}
+Simply applying the definition,
+\[E(x)=\int_{-\infty}^\infty xf(x)dx=\int_1^\infty\frac{2}{x^2}dx=-\frac{2}{x}\bigg|_1^\infty=0-(-2)=2\]
+
+\section*{1b}
+From the definition,
+\[\Var(X)=\int_{-\infty}^\infty (x-\mu)^2f(x)dx=\int_1^\infty(x-2)^2\frac{2}{x^3}dx=\int_1^\infty \frac{2}{x} - \frac{8}{x^2}+\frac{8}{x^3}dx\]
+\[=2\ln(x)+\frac{8}{x}-\frac{4}{x^2}\bigg|_1^\infty\]
+This diverges in the upper limit, and is finite at the lower value. Therefore, the variance does not exist.
+
+\section*{1c}
+By the law of the unconscious statistician,
+\[E(\cos(X))=\int_{-\infty}^\infty\cos(x)f(x)dx=\int_{1}^\infty \frac{2\cos{x}}{x^3}dx=-\frac{\cos x}{x^2}\bigg|_1^\infty -\int_1^\infty\frac{ \sin{x}}{x^2}dx\]
+\[=-\frac{\cos{x}}{x^2}\bigg|_1^\infty+\frac{\sin x}{x}\bigg|_1^\infty+\int_1^\infty \frac{\cos x}{x}dx\]
+\[=\Ci(1)+\sin(1)-\cos(1)\]
+where $\Ci(x)$ is the non-elementary function defined as $\int_x^\infty\frac{\cos(x)}{x}dx$
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021 Gentoo Linux) (preloaded format=pdflatex 2021.10.9)  17 OCT 2021 07:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021 Gentoo Linux) (preloaded format=pdflatex 2021.10.19)  27 OCT 2021 11:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -188,12 +188,12 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] (./hw2.aux) ) 
 Here is how much of TeX's memory you used:
  1692 strings out of 480954
- 23350 string characters out of 5908242
+ 23350 string characters out of 5908241
  319858 words of memory out of 5000000
  18947 multiletter control sequences out of 15000+600000
  410678 words of font info for 56 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 68i,6n,74p,1194b,215s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 68i,6n,74p,734b,215s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/sha
 re/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/
 fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/pu
@@ -204,7 +204,7 @@ usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf
 e1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pf
 b></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on hw2.pdf (2 pages, 102912 bytes).
+Output written on hw2.pdf (2 pages, 102324 bytes).
 PDF statistics:
  55 PDF objects out of 1000 (max. 8388607)
  39 compressed objects within 1 object stream

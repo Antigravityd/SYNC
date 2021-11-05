@@ -1,0 +1,39 @@
+\begin{thebibliography}{1}
+
+\bibitem{mal}
+A.~Malinowski and H.~Yu, ``Comparison of embedded system design for industrial
+  applications,'' {\em IEEE Transactions on Industrial Informatics}, vol.~7,
+  no.~2, pp.~244--254, 2011.
+
+\bibitem{vlog}
+``Ieee standard for systemverilog--unified hardware design, specification, and
+  verification language,'' {\em IEEE Std 1800-2017 (Revision of IEEE Std
+  1800-2012)}, pp.~1--1315, 2018.
+
+\bibitem{vhdl}
+``Ieee standard for vhdl language reference manual,'' {\em IEEE Std 1076-2019},
+  pp.~1--673, 2019.
+
+\bibitem{Marlow_haskell2010}
+``Haskell 2010 language report.''
+
+\bibitem{bnf}
+J.~Backus, F.~Bauer, J.~Green, {\em et~al.}, ``Revised report on the
+  algorithmic language algol 60,'' {\em Numerical Mathematics}, vol.~4,
+  p.~420–453, 1962.
+
+\bibitem{antlr}
+T.~Parr, {\em The Definitive ANTLR 4 Reference}.
+\newblock 2013.
+
+\bibitem{moth}
+S.~Hauck and A.~DeHon, {\em Reconfigurable Computing: The Theory and Practice
+  of FPGA-Based Computation}.
+\newblock 2008.
+
+\bibitem{recon}
+E.~L\"{u}bbers and M.~Platzner, ``Reconos: Multithreaded programming for
+  reconfigurable computers,'' {\em ACM Trans. Embed. Comput. Syst.}, vol.~9,
+  Oct. 2009.
+
+\end{thebibliography}

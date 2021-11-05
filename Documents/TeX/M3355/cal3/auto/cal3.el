@@ -1,5 +1,5 @@
 (TeX-add-style-hook
- "hw2"
+ "cal3"
  (lambda ()
    (TeX-add-to-alist 'LaTeX-provided-package-options
                      '(("geometry" "letterpaper")))
@@ -7,10 +7,7 @@
     "latex2e"
     "article"
     "art10"
-    "mathtools"
-    "amsfonts"
-    "amssymb"
-    "amsmath"
-    "geometry"))
+    "geometry"
+    "graphicx"))
  :latex)
 

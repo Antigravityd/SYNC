@@ -1,4 +1,4 @@
-\documentclass{article}
+\message{ !name(hw2.tex)}\documentclass{article}
 
 \usepackage{mathtools}
 \usepackage{amsfonts}
@@ -11,6 +11,9 @@
 \date{29 October 2021}
 
 \begin{document}
+
+\message{ !name(hw2.tex) !offset(-3) }
+
 
 \maketitle
 
@@ -73,17 +76,25 @@ Similarly for $u_{xx}$,
 Since the two are the same, $u_{xx}=u_{tt}$.
 
 \section*{5.23}
-We are inspired by the proof for $\frac{1}{r}$ in the book. The Laplacian is
-\[\left(\frac{1}{r^2},\Delta\phi(\vec{x})\right)=\int_{\mathbb{R}^3}\frac{\Delta\phi(\vec{x})}{r^2}=\lim_{\epsilon\to 0}\int_{r\geq\epsilon}\frac{\Delta\phi}{r^2}\]
-Integrating by parts,
-\[=\lim_{\epsilon\to 0}\int_{r\geq \epsilon}\Delta\left( \frac{1}{r^2}\right)\phi dV-\int_{r=\epsilon}\frac{\partial \phi}{\partial r}\frac{1}{r^2}dS+\int_{r=\epsilon}\phi\frac{\partial }{\partial r}\frac{1}{r^2} dS\]
-
-Since $\phi$ is compactly supported, the first term is zero. Since remaining the integrals don't depend on $r$, we are free to pull them out of the integral and evaluate them at $\epsilon$. In the third, the factor due to the $r$ thus gotten is $O(\epsilon^3)$, whereas the surface integral will be $O(\epsilon^2)$ since it results in an area; this term therefore goes to zero. The second integral may then be written
-\[=\lim_{\epsilon\to 0}\frac{-1}{\epsilon^2}\int_{r=\epsilon}\frac{\partial\phi}{\partial r}dS\]
-This is $-4\pi$ times the average of $\frac{\partial \phi}{\partial r}$ on the surface of a sphere of radius $\epsilon$, so in the limit as $\epsilon\to 0$ this becomes $-4\pi\frac{\partial \phi}{\partial r}(0)$. This seems likely wrong to me, but spending the last few hours playing with more promising methods always yielded arguments that seemed to fall apart on the pentultimate step.
+The Laplacian is
+\[\left(\frac{1}{r^2},\Delta\phi(\vec{x})\right)=\int_{\mathbb{R}^3}\frac{\Delta\phi(\vec{x})}{r^2}=\int_{\mathbb{R}^3}\frac{1}{r}\Delta\phi(\vec{x})drd\theta dz\]
+Letting $\xi=1/r^2$, there is a vector identity that
+\[\xi\Delta\phi=\nabla\cdot(\xi\nabla\phi)-\nabla\xi\cdot\nabla\phi\]
+Applying this to the integral above,
+\[=\int_{\mathbb{R}^3}\nabla\cdot\left(\frac{1}{r^2}\nabla\phi\right)-\int_{\mathbb{R}^3}\nabla\left(\frac{1}{r^2}\right)\cdot\nabla\phi=\int_{\mathbb{R}^3}\nabla\cdot\left(\frac{1}{r^2}\nabla\phi\right)-\int_{\mathbb{R}^3}\phi_r\frac{-2}{r^3}\]
+Taking the integrals over a region $S$ containing the support of $\phi$, we may apply the divergence theorem to obtain
+\[=2\left(\int_{\partial S}\frac{1}{r^3}\nabla\phi+\int_{\mathbb{R}^3}\phi_r\frac{1}{r^3}\right)\]
+Since $\phi$ and therefore $\nabla\phi$ are zero on the boundary of $S$, the first integral is zero. Evaluating the second integral,
+\[=\int_{0}^\pi\int_0^{2\pi}\int_0^\infty\phi_r\frac{1}{r^3}r^2\sin\varphi drd\theta d\varphi\]
+\[=\int_0^\pi\int_0^{2\pi}\lim_{\epsilon\to 0}\frac{\phi}{\epsilon}-\int_\epsilon^\infty \frac{\phi}{r}drd\thetad\varphi\]
+The innermost integral must be computed by principal value. Integrating by parts in the limit,
+\[=\int_{-\infty}^\infty\int_0^{2\pi}\lim_{\epsilon\to 0}\left[ \frac{\phi}{r^2}\bigg|_\epsilon^\infty-\int_\epsilon^\infty\frac{-2\phi}{r^3} \right]\]
+The first term in the limit is zero at infinity since $\phi$ is compactly supported, and
 
 \end{document}
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: t
 %%% End:
+
+\message{ !name(hw2.tex) !offset(-100) }

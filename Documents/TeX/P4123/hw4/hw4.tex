@@ -1,0 +1,53 @@
+\documentclass{article}
+
+\title{4123 HW 4}
+\author{Duncan Wilkie}
+\date{9 November 2021}
+\begin{document}
+
+\maketitle
+
+\section*{1a}
+The Lagrangian for this system is
+\[L=\frac{1}{2}m(\dot{x}^2+\dot{y}^2)+mgy\]
+The modified Euler-Lagrange equations are
+\[\frac{\partial L}{\partial x}+\lambda\frac{\partial C}{\partial x}=\frac{d}{dt}\frac{\partial L}{\partial \dot{x}}\Leftrightarrow 2\lambda x=m\ddot{x}\]
+and
+\[\frac{\partial L}{\partial y}+\lambda\frac{\partial C}{\partial y}=\frac{d}{dt}\frac{\partial L}{\partial\dot{y}}\Leftrightarrow mg+2\lambda y = m\ddot{y}\]
+Adding these together and solving for $\lambda$, we obtain
+\[mg+2\lambda(x+y)=m(\ddot{x}+\ddot{y})\Leftrightarrow \lambda = \frac{m}{2}\frac{\ddot{x}+\ddot{y}-g}{x+y}\]
+
+\section*{1b}
+Differentiating the constraint twice,
+\[C=0\Rightarrow x\dot{x}+y\dot{y}=0\Rightarrow x\ddot{x}+\dot{x}^2+y\ddot{y}+\dot{y}^2=0\]
+Solving for $\ddot{x}$ and $\ddot{y}$,
+\[\ddot{x}=-\frac{y\ddot{y}+\dot{x}^2+\dot{y}^2}{x}\]
+\[\ddot{y}=-\frac{x\ddot{x}+\dot{x}^2+\dot{y}^2}{y}\]
+Adding,
+\[\ddot{x}+\ddot{y}=-\left( \frac{y^2\ddot{y}+y\dot{x}^2+y\dot{y}^2+x^2\ddot{x}+x\dot{x}^2+x\dot{y}^2}{xy} \right)\]\[=\frac{-1}{xy}\left( x^2\ddot{x}+y^2\ddot{y}+(x+y)(\dot{x}^2+\dot{y}^2) \right)\]
+Plugging this in to the equation for $\lambda$,
+\[\lambda = -\frac{m}{2}\left(  \frac{x^2\ddot{x}+y^2\ddot{y}}{x^2y+y^2x}+\frac{\dot{x}^2+\dot{y}^2}{xy} +\frac{g}{x+y}\right)\]
+%\[=-\frac{m}{2}\left( \frac{x^2\ddot{x}+y^2\ddot{y}+(x+y)(\dot{x}^2+\dot{y}^2)+gxy}{x^2y+y^2x}\right)\]
+Multiplying by $1=\frac{l^2}{l^2}$ and noting that $l^2=x^2+y^2=(x+y)^2-2xy$,
+%\[=-\frac{m}{2l^2}\left[ \left( l^2(x^2\ddot{x}+y^2\ddot{y})+\frac{(x+y)^2(\dot{x}^2+\dot{y}^2)}{xy}-2\dot{x}^2-\right)\]
+\[=\]
+
+\section*{2}
+If $U=0$, the effective potential is
+\[U_{\textrm{eff}}(r)=U_{\textrm{cf}}=\frac{l^2}{2\mu r^2}\approx \frac{l^2}{2m_2 r^2}\]
+The approximation is from $m_1\gg m_2$. The resulting Lagrangian in the CM frame (which is approximately the $m_2$ frame for the same reason) is
+\[L=\frac{1}{2}m_2\dot{r}^2-\frac{l^2}{2m_2 r^2}\]
+The resulting Euler-Lagrange equation of motion is
+\[\frac{\partial L}{\partial r}=\frac{d}{dt}\frac{\partial L}{\partial \dot{r}}\Leftrightarrow \frac{l^2}{m_2 r^3}=m_2\ddot{r}\Leftrightarrow \frac{l^2}{m_2^2}=r^3\ddot{r}\]
+This is a second-order autonomous equation with no first-derivative dependence, and so can be solved as
+\[t(r)+c_1=\pm\int\frac{dr}{\sqrt{2\int\frac{l^2}{m_2^2 r^3}dr+c_2}}=\pm\sqrt{\frac{m_2^2}{l^2}}\int\frac{dr}{\sqrt{c_2-\frac{1}{r^2}}}=\pm\sqrt{\frac{m_2^2}{l^2}}\frac{r\sqrt{c_2-\frac{1}{r^2}}}{c_2}\]
+\[\Rightarrow \sqrt{r^2c_2-{1}}=\pm\left(c_2t\sqrt{\frac{l^2}{m_2^2}}+c_1c_2\right)\]
+\[\Leftrightarrow r=\sqrt{1+\left( t\sqrt{\frac{l^2}{m_2^2}}+c \right)^2}\]
+
+
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

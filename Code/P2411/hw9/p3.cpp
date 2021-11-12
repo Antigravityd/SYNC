@@ -1,4 +1,4 @@
-#include <fstream>
+#include <iostream>
 #include <cmath>
 
 using namespace std;
@@ -20,7 +20,7 @@ int main() {
     stdv = sqrt(pow(stdv, 2) + pow(y[i]-mean, 2));
   }
 
-  stdv /= sqrt(itotal)
+  stdv /= sqrt(itotal);
 
   cout << "The estimated population mean is " << mean << endl;
   cout << "The standard deviation is " << stdv << endl;

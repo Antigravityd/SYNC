@@ -8,29 +8,40 @@
 \maketitle
 
 \section*{1a}
-The Lagrangian for this system is
-\[L=\frac{1}{2}m(\dot{x}^2+\dot{y}^2)+mgy\]
+The Lagrangian for this system is, taking down to be the $+y$ direction,
+\[L=\frac{1}{2}m(\dot{x}^2+\dot{y}^2)-mgy\]
 The modified Euler-Lagrange equations are
 \[\frac{\partial L}{\partial x}+\lambda\frac{\partial C}{\partial x}=\frac{d}{dt}\frac{\partial L}{\partial \dot{x}}\Leftrightarrow 2\lambda x=m\ddot{x}\]
 and
-\[\frac{\partial L}{\partial y}+\lambda\frac{\partial C}{\partial y}=\frac{d}{dt}\frac{\partial L}{\partial\dot{y}}\Leftrightarrow mg+2\lambda y = m\ddot{y}\]
-Adding these together and solving for $\lambda$, we obtain
-\[mg+2\lambda(x+y)=m(\ddot{x}+\ddot{y})\Leftrightarrow \lambda = \frac{m}{2}\frac{\ddot{x}+\ddot{y}-g}{x+y}\]
+\[\frac{\partial L}{\partial y}+\lambda\frac{\partial C}{\partial y}=\frac{d}{dt}\frac{\partial L}{\partial\dot{y}}\Leftrightarrow -mg+2\lambda y = m\ddot{y}\]
+Solving for $x$ and $y$,
+\[x = \frac{m\ddot{x}}{2\lambda}, y = \frac{m\ddot{y}+mg}{2\lambda}\]
+Plugging this in to the constraint equation,
+\[\left( \frac{m\ddot{x}}{2\lambda} \right)^2+\left( \frac{m\ddot{y}+mg}{2\lambda} \right)^2=l^2\]
+\[\Leftrightarrow \lambda^2=\frac{m^2}{4l^2}\left( \ddot{x}^2+\ddot{y}^2+2\ddot{y}g+g^2 \right)\]
 
 \section*{1b}
+Multiplying by $1=\frac{l^2}{l^2}$,
+\[\lambda^2=\frac{m^2}{4l^4}\left( x^2+y^2 \right)\left( \ddot{x}^2+\ddot{y}^2+2\ddot{y}g+g^2 \right)\]
+\[=\frac{m^2}{4l^4}\left( x^2\ddot{x}^2+x^2\ddot{y}^2+2x^2\ddot{y}g+g^2x^2+g^2y^2+y^2\ddot{x}^2+y^2\ddot{y}^2+2y^2\ddot{y}g+g^2y^2 \right)\]
 Differentiating the constraint twice,
 \[C=0\Rightarrow x\dot{x}+y\dot{y}=0\Rightarrow x\ddot{x}+\dot{x}^2+y\ddot{y}+\dot{y}^2=0\]
-Solving for $\ddot{x}$ and $\ddot{y}$,
-\[\ddot{x}=-\frac{y\ddot{y}+\dot{x}^2+\dot{y}^2}{x}\]
-\[\ddot{y}=-\frac{x\ddot{x}+\dot{x}^2+\dot{y}^2}{y}\]
-Adding,
-\[\ddot{x}+\ddot{y}=-\left( \frac{y^2\ddot{y}+y\dot{x}^2+y\dot{y}^2+x^2\ddot{x}+x\dot{x}^2+x\dot{y}^2}{xy} \right)\]\[=\frac{-1}{xy}\left( x^2\ddot{x}+y^2\ddot{y}+(x+y)(\dot{x}^2+\dot{y}^2) \right)\]
-Plugging this in to the equation for $\lambda$,
-\[\lambda = -\frac{m}{2}\left(  \frac{x^2\ddot{x}+y^2\ddot{y}}{x^2y+y^2x}+\frac{\dot{x}^2+\dot{y}^2}{xy} +\frac{g}{x+y}\right)\]
-%\[=-\frac{m}{2}\left( \frac{x^2\ddot{x}+y^2\ddot{y}+(x+y)(\dot{x}^2+\dot{y}^2)+gxy}{x^2y+y^2x}\right)\]
-Multiplying by $1=\frac{l^2}{l^2}$ and noting that $l^2=x^2+y^2=(x+y)^2-2xy$,
-%\[=-\frac{m}{2l^2}\left[ \left( l^2(x^2\ddot{x}+y^2\ddot{y})+\frac{(x+y)^2(\dot{x}^2+\dot{y}^2)}{xy}-2\dot{x}^2-\right)\]
-\[=\]
+\[\Leftrightarrow \dot{x}^2+\dot{y}^2=-x\ddot{x}-y\ddot{y}\]
+Plugging this in to the target equation, we obtain
+\[\lambda = \frac{m}{2l^2}(x\ddot{x}+y\ddot{y}+gy)\]
+\[\Leftrightarrow \lambda^2=\frac{m^2}{4l^4}\left( x^2\ddot{x}^2+2x\ddot{x}y\ddot{y}+2x\ddot{x}gy+y^2\ddot{y}^2+2y^2\ddot{y}g+g^2y^2 \right)\]
+Equating the two expressions for $\lambda^2$, we must have
+\[x^2\ddot{y}^2-2x\ddot{x}y\ddot{y}+2x^2\ddot{y}g-2x\ddot{x}gy+y^2\ddot{x}^2+g^2x^2+g^2y^2=0\]
+\[\Leftrightarrow (\ddot{x}y-x\ddot{y})^2-2xg(y\ddot{x}-x\ddot{y})+g^2l^2=0\]
+\[\Leftrightarrow y\ddot{x}-x\ddot{y}=gx\pm g\sqrt{l^2-x^2}=gx\pm gy\]
+\[\Leftrightarrow x(g-\ddot{y})=\pm y(g-\ddot{x})\]
+By physical intuition, we always expect $g > \ddot{y}$ and $g>\ddot{x}$. The branch therefore changes to make the signs of the two sides agree, and we may write this as
+\[|x|(g-\ddot{y})=|y|(g-\ddot{x})\]
+\[\Leftrightarrow |\tan\theta|=\frac{g-\ddot{y}}{g-\ddot{x}}\]
+By itself, this is a nice way to describe the motion of a pendulum. We must prove it holds. Multiply the right side by $1=\frac{m}{m}$ and move the denominator over. Breaking up the tangent as well, his becomes a force equation
+\[mg|\sin\theta|-m\ddot{x}|\sin\theta|=mg|\cos\theta|-m\ddot{y}|\cos\theta|\]
+Since we have Newton's third law, and the above is a weakening (by adding absolute values) of the sum of the equations for the two components, the equality holds.
+
 
 \section*{2a}
 Since there is no ``real'' potential, there is no force on $m_2$ and it must move with constant velocity. 

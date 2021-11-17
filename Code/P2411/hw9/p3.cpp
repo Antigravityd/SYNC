@@ -25,6 +25,11 @@ int main() {
   cout << "The estimated population mean is " << mean << endl;
   cout << "The standard deviation is " << stdv << endl;
 
+  double P = exp(-mean);
+  for (int i = 0; i < 7; i++) {
+    cout << P << endl;
+    P *= mean / y[i];
+  }
   return 0;
 
 }

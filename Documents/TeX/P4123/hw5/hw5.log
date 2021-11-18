@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021 Gentoo Linux) (preloaded format=pdflatex 2021.10.19)  15 NOV 2021 23:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021 Gentoo Linux) (preloaded format=pdflatex 2021.10.19)  17 NOV 2021 21:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -236,27 +236,27 @@ File: phaseplot.png Graphic file (type png)
 <use phaseplot.png>
 Package pdftex.def Info: phaseplot.png  used on input line 47.
 (pdftex.def)             Requested size: 240.89572pt x 240.89572pt.
- [2 <./phaseplot.png>] [3] (./hw5.aux) ) 
+ [2 <./phaseplot.png>] [3] [4] (./hw5.aux) ) 
 Here is how much of TeX's memory you used:
  2856 strings out of 480954
  37681 string characters out of 5908241
- 336533 words of memory out of 5000000
+ 337533 words of memory out of 5000000
  20077 multiletter control sequences out of 15000+600000
  410678 words of font info for 56 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  68i,6n,74p,408b,215s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
-usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf
--dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb
-></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on hw5.pdf (3 pages, 101842 bytes).
+</usr/share/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pf
+b></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7
+.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on hw5.pdf (4 pages, 107724 bytes).
 PDF statistics:
- 52 PDF objects out of 1000 (max. 8388607)
- 35 compressed objects within 1 object stream
+ 55 PDF objects out of 1000 (max. 8388607)
+ 37 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

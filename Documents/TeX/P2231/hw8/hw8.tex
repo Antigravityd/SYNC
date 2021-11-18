@@ -14,14 +14,14 @@ If the particles are moving in a straight line, they aren't accelerating (since 
 \section*{1b}
 The magnetic Lorentz force now counteracts the centripetal acceleration, so
 $qvB=m\frac{v^2}{R}$. Substituting the expression for $v$ found above,
-\[qB=m\frac{E}{BR}\Leftrightarrow \frac{q}{m}=\frac{E}{B^2R}\]
+\[qE=m\frac{E^2}{B^2R}\Leftrightarrow \frac{q}{m}=\frac{E^}{B^2R}\]
 
 \section*{2a}
 The surface current is defined as current per unit width, so if the distribution is uniform we have
 \[K=\frac{I}{2\pi a}\]
 
 \section*{2b}
-We are assuming $J(r)=\frac{k}{r}$. Since the aptly-named volume current density is current per unit area, integrating this over a disk sluced out from the wire should equal the current.
+We are assuming $J(r)=\frac{k}{r}$. Since the aptly-named volume current density is current per unit area, integrating this over a disk sliced out from the wire should equal the current.
 \[I=\int_0^{2\pi}\int_0^a\frac{k}{r}rdrd\theta=2\pi ka\]
 Solving the resulting expression,
 \[k=\frac{I}{2\pi a}\]
@@ -29,14 +29,14 @@ Substituting,
 \[J(r)=\frac{I}{2\pi a r}\]
 
 \section*{3}
-We apply the Biot-Savart law over the square $S$:
+We apply the Biot-Savart law over the square $S$ with side length $L/4$:
 \[B=\frac{\mu_0 I}{4\pi}\int_S\frac{d\vec{l}'\times \hat{s}}{s^2}\]
 By symmetry, the contributions from each of the four sides (all of which point in the same direction by the right-hand rule) will be the same. Further, the contribution of a side will be twice the contribution from the middle of a side to the corner. By the expression found in the book for the magnetic field from a straight wire,
-\[B=\frac{\mu_0 I}{4\pi(L/8)}\left( \sin\theta_2-\sin\theta_1 \right)=\frac{2\mu_0 I}{\pi L}2[\sin(315)-\sin(270)]=\frac{4\mu_0 I}{\pi L}\left( 1-\frac{\sqrt{2}}{2} \right)\]
+\[B=8\frac{\mu_0 I}{4\pi(L/8)}\left( \sin\theta_2-\sin\theta_1 \right)=\frac{16\mu_0 I}{\pi L}[\sin(315)-\sin(270)]=\frac{16\mu_0 I}{\pi L}\left( 1-\frac{\sqrt{2}}{2} \right)\]
 
 \section*{4}
-We apply Ampere's law on a circular loop concentric with the wire. When the current is concentrated on the surface of wire, the current enclosed when $r < a$ is zero, so the magnetic field is zero. When $r > a$ in both cases, the field is $2\pi rB=\mu_0I\Leftrightarrow B = \frac{\mu_0 I}{2\pi r}$.
-When the current is uniformly distributed and $r < a$, the current enclosed is $I_{enc}=\frac{I}{\pi r^2}$ so the field is $B=\frac{\mu_0I}{2\pi^2r^3}$.
+We apply Ampere's law on a circular loop concentric with the wire, since the magnetic field is expected to circulate around the wire homogeneously. When the current is concentrated on the surface of wire, the current enclosed when $r < a$ is zero, so the magnetic field is zero. When $r > a$ in both cases, the field is $2\pi rB=\mu_0I\Leftrightarrow B = \frac{\mu_0 I}{2\pi r}$.
+When the current is uniformly distributed and $r < a$, the current enclosed is $I_{enc}=\frac{R^2}{r^2}I$ so the field is $B=\frac{\mu_0R^2I}{2\pi r^3}$.
 
 \section*{5}
 We compute this by superposition, using that the field outside a solenoid is zero and the field inside is $\mu_0n I$.

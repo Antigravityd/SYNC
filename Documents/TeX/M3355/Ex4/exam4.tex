@@ -1,0 +1,82 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\title{3355 Exam 4}
+\author{Duncan Wilkie}
+\date{22 November 2021}
+
+\DeclareMathOperator{\Cov}{Cov}
+\begin{document}
+
+\maketitle
+
+\section*{1a}
+The PDF is
+\[f(x)=\begin{cases}\lambda e^{-\lambda x} & x\geq 0 \\ 0 & x < 0\end{cases}\]
+\[=\begin{cases}\frac{e^{-x/4}}{4} & x\geq 0 \\ 0 & x < 0\end{cases}\]
+
+\section*{1b}
+The expectation is
+\[E(X)=\int_\mathbb{R}xf(x)dx=\int_\mathbb{R}x\frac{e^{-x/4}}{4}dx
+  =-x{e^{-x/4}}\bigg|_{0}^\infty+\int_\mathbb{R}e^{-x/4}dx = -4e^{-x/4}\bigg|_0^\infty=4\]
+
+\section*{1c}
+The CDF for the random variable is
+\[F(x)=\begin{cases}
+    1-e^{- x/4} & x\geq 0 \\
+    0 & x < 0
+  \end{cases}\]
+The probability in question is
+\[P(X > 2E) =1-F(2E)=1-F(8)=1-e^{-2}\approx0.865\]
+
+\section*{2}
+The PDF is the normal distribution with these parameters:
+\[f(x)=\frac{1}{\sigma\sqrt{2\pi}}\exp\left[ -\frac{(x-\mu)^2}{2\sigma^2} \right]=\frac{1}{100\sqrt{2\pi}}\exp\left[ -\frac{(x-82)^2}{20,000} \right]\]
+The probabilities, since for continuous distributions the left and right limits are equal, are given in terms of the normal CDF as
+\[P(X\geq 90)=1-F(90)\]
+\[P(80\leq X< 90)=F(90)-F(80)\]
+If we standardize these values, we obtain $Z$-scores $90\mapsto \frac{90-82}{100}=.08$ and $80\mapsto \frac{80-82}{100}=-.02$. Going to the standard normal table, we find $F(90)=0.5319$ and $F(80)=0.4920$. The desired probabilities become then
+\[P(X\geq 90)=1-0.5319=0.4681=46.81\%\]
+and
+\[P(80\leq X<90)=0.5391-0.4920=0.0471=4.71\%\]
+
+\section*{3a}
+By definition, the integral over all variables must be one, so
+\[\int_0^1\int_0^1c(x+2y)dxdy=\int_0^1\left(\frac{c}{2}+2cy \right)dy=\frac{c}{2}+c=\frac{3c}{2}=1\Rightarrow c=\frac{2}{3}\]
+
+\section*{3b}
+\[E(XY)=\int_0^1\int_0^1xy\frac{2}{3}\left(x+2y  \right)dxdy=\frac{2}{3}\int_0^1\left( \frac{y}{3}+y \right)dy=\frac{4}{9}\]
+
+\section*{3c}
+\[f_X(x)=\frac{2}{3}\int_0^1\left( x+2y \right)dy=\frac{2}{3}\left( x+1 \right)\]
+and
+\[f_Y(y)=\frac{2}{3}\int_0^1\left( x+2y \right)dx=\frac{2}{3}\left( \frac{1}{2}+2y \right)\]
+
+\section*{3d}
+We first calculate the expectations of each variable from the marginal densities above:
+\[E(X)=\int_0^1xf_X(x)dx=\frac{2}{3}\int_0^1x\left( x+1 \right)dx=\frac{2}{9}+\frac{1}{3}=\frac{5}{9}\]
+\[E(Y)=\int_0^1yf_Y(y)dy=\frac{2}{3}\int_0^1y\left( \frac{1}{2}+2y \right)dy=\frac{1}{6}+\frac{4}{9}=\frac{11}{18}\]
+We now can compute
+\[\Cov(X, Y)=E(XY)-E(X)E(Y)=\frac{4}{9}-\frac{5}{9}\frac{11}{18}=\frac{17}{162}\]
+
+\section*{4a}
+We first need the marginal density for $y$:
+\[f_Y(y)=\int_0^\infty f(x,y)dx=-3e^{-3x}\bigg|_0^\infty=3\]
+The conditional PDF is by definition
+\[f_{X|Y}(x|y)=\frac{f(x,y)}{f_Y(y)}=\begin{cases}3e^{-3x} & x,y>0 \\ 0 & \textrm{otherwise}\end{cases}\]
+
+\section*{4b}
+The expectation is that of the above (univariate) PDF:
+\[E(X|Y=y)=\int_0^\infty 3xe^{-3x}dx=-xe^{-3x}\bigg|_0^\infty+\int_0^\infty e^{-3x}dx=-\frac{e^{-3x}}{3}\bigg|_0^\infty= \frac{1}{3}\]
+This is ordinarily a function of $y$, but there was no such dependence in the joint PDF.
+
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

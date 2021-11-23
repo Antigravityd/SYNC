@@ -1,5 +1,8 @@
-\documentclass{article}\usepackage{amsmath}
+\documentclass{article}
+
+\usepackage{amsmath}
 \usepackage[letterpaper]{geometry}
+
 \title{HW 8}
 \date{16 November 2021}
 \author{Duncan Wilkie}
@@ -12,9 +15,8 @@
 If the particles are moving in a straight line, they aren't accelerating (since the magnetic field never does work and the electric field is perpendicular to the direction of travel). Therefore, the net force is zero. If the direction of the beam is the $\hat{i}$ direction, and the direction of the magnetic field is in the $\hat{j}$ direction, the part of the force from the magnetic field is in the $-\hat{k}$ direction since the charge is negative, and has magnitude $|q\vec{v}\times\vec{B}|=qvB\sin\theta=qvB$. The force from the electric field must balance this force, and so we obtain the relation $qE=qvB\Leftrightarrow v=\frac{E}{B}$
 
 \section*{1b}
-The magnetic Lorentz force now counteracts the centripetal acceleration, so
-$qvB=m\frac{v^2}{R}$. Substituting the expression for $v$ found above,
-\[qE=m\frac{E^2}{B^2R}\Leftrightarrow \frac{q}{m}=\frac{E^}{B^2R}\]
+The magnetic Lorentz force now is centripetal, so $qvB=m\frac{v^2}{R}$. Substituting the expression for $v$ found above,
+\[qE=m\frac{E^2}{B^2R}\Leftrightarrow \frac{q}{m}=\frac{E}{B^2R}\]
 
 \section*{2a}
 The surface current is defined as current per unit width, so if the distribution is uniform we have
@@ -29,17 +31,15 @@ Substituting,
 \[J(r)=\frac{I}{2\pi a r}\]
 
 \section*{3}
-We apply the Biot-Savart law over the square $S$ with side length $L/4$:
-\[B=\frac{\mu_0 I}{4\pi}\int_S\frac{d\vec{l}'\times \hat{s}}{s^2}\]
-By symmetry, the contributions from each of the four sides (all of which point in the same direction by the right-hand rule) will be the same. Further, the contribution of a side will be twice the contribution from the middle of a side to the corner. By the expression found in the book for the magnetic field from a straight wire,
-\[B=8\frac{\mu_0 I}{4\pi(L/8)}\left( \sin\theta_2-\sin\theta_1 \right)=\frac{16\mu_0 I}{\pi L}[\sin(315)-\sin(270)]=\frac{16\mu_0 I}{\pi L}\left( 1-\frac{\sqrt{2}}{2} \right)\]
+By symmetry, the contributions from each of the four sides (all of which point in the same direction by the right-hand rule) will be the same. By the expression found in the book for the magnetic field from a straight wire,
+\[B=4\frac{\mu_0 I}{4\pi(L/8)}\left( \sin\theta_2-\sin\theta_1 \right)=\frac{8\mu_0 I}{\pi L}\left[\sin\left(\frac{\pi}{4}\right)-\sin\left(-\frac{\pi}{4}\right)\right]=\frac{8\sqrt{2}\mu_0 I}{\pi L}\]
 
 \section*{4}
 We apply Ampere's law on a circular loop concentric with the wire, since the magnetic field is expected to circulate around the wire homogeneously. When the current is concentrated on the surface of wire, the current enclosed when $r < a$ is zero, so the magnetic field is zero. When $r > a$ in both cases, the field is $2\pi rB=\mu_0I\Leftrightarrow B = \frac{\mu_0 I}{2\pi r}$.
 When the current is uniformly distributed and $r < a$, the current enclosed is $I_{enc}=\frac{R^2}{r^2}I$ so the field is $B=\frac{\mu_0R^2I}{2\pi r^3}$.
 
 \section*{5}
-We compute this by superposition, using that the field outside a solenoid is zero and the field inside is $\mu_0n I$.
+We compute this by superposition, using that the field outside a solenoid is zero and the field inside is $\mu_0n I$. The direction given by the right-hand rule applied to the current in the outer solenoid is taken to be the $+\hat{z}$ direction.
 \[B=\begin{cases}
     0, & r > b \\
     \mu_0n_2I\hat{z}, & a < r < b \\

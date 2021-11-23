@@ -17,7 +17,6 @@
     (modify-syntax-entry ?=  "."  st)
     (modify-syntax-entry ?*  "."  st)
     (modify-syntax-entry ?/  "."  st)
-    (modify-syntax-entry ?%  "."  st)
     (modify-syntax-entry ?\' "\"" st)
     (modify-syntax-entry ?\" "\"" st)
     (modify-syntax-entry ?\\ "\\" st)
@@ -26,10 +25,15 @@
     (modify-syntax-entry ?\! "<"  st)
     (modify-syntax-entry ?\# "<"  st)
     (modify-syntax-entry ?\n ">"  st)
-    (modify-syntax-entry ?% "<"  st)
+    (modify-syntax-entry ?%  "<"  st)
     st)
   "Syntax table used for .inp files.")
 
+
+;;(defun align-to-equals (begin end)
+;;  "Align region to equal signs"
+;;   (interactive "r")
+;;   (align-regexp begin end "\\(\\s-*\\)=" 1 1 ))
 
 
 
@@ -45,7 +49,7 @@
   `("^ *\\([[:alnum:]<>-]+\\)\\( *\\|(.*)\\|\\[.*\\]\\) *="   ,(list 1  font-lock-variable-name-face))
   "Highlight anything on the left hand side of an equals sign that is also the first word on a line")
 
-(defvar phits-label-font-lockn
+(defvar phits-label-font-lock
   `("^\\(\\w*\\):"  ,(list 1 font-lock-keyword-face))
   "Highlight directives that look like C label statements, e.g. ^set: varable.")
 
@@ -100,7 +104,8 @@
   "Testing mode I whipped up that's inspired in small part by https://github.com/kbat/mc-tools/blob/master/mctools/phits/phits-mode.el"
   :syntax-table phits-mode-syntax-table
   (setq-local abbrev-all-caps t)
-  (setq-local font-lock-defaults `(,phits-font-lock nil t)))
+  (setq-local font-lock-defaults `(,phits-font-lock nil t))
+  (setq-local indent-line-function #'phits-indent-line))
 
 ;; (add-to-list 'auto-mode-alist '(".inp\\'" phits-mode))
 

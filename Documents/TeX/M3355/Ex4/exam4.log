@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021 Gentoo Linux) (preloaded format=pdflatex 2021.10.19)  21 NOV 2021 01:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021 Gentoo Linux) (preloaded format=pdflatex 2021.10.19)  22 NOV 2021 19:23
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -191,7 +191,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 Here is how much of TeX's memory you used:
  2107 strings out of 480954
  27549 string characters out of 5908241
- 323549 words of memory out of 5000000
+ 324549 words of memory out of 5000000
  19359 multiletter control sequences out of 15000+600000
  410678 words of font info for 56 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -209,7 +209,7 @@ ts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public
 are/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texmf-dist/
 fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/pub
 lic/amsfonts/symbols/msbm7.pfb>
-Output written on exam4.pdf (3 pages, 130525 bytes).
+Output written on exam4.pdf (3 pages, 130580 bytes).
 PDF statistics:
  70 PDF objects out of 1000 (max. 8388607)
  50 compressed objects within 1 object stream

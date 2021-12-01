@@ -1,0 +1,12 @@
+:PROPERTIES:
+:ID:       3270c065-76c9-4bc5-815a-412cec88eee7
+:END:
+#+title: Yggdrasil
+
+* Motivation
+
+Tyranny-free social media is great. However, new platforms lead to fragmented user bases, which ostensibly increases political division and hostility. What if there were a platform that could integrate all of the different alternatives, allowing content from every media site one uses to be displayed in a single place? Moreover, this could allow one to browse glowy sites in safe ways---taking hints from the crypto world, one could perhaps pool together locally-stored user subscription fetch requests at random and query the Youtube API for all at once, which would prevent them from collecting meaningful data. The working name, Yggdrasil, is a rather on-the-nose Norse cosmological analogy to the World Tree, which unites the Nine Worlds.
+
+* Implementation
+
+This is probably best implemented as a highly streamlined RSS viewer, preferrably written with a very portable framework like Qt.

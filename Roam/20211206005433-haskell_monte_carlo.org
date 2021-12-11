@@ -1,0 +1,7 @@
+:PROPERTIES:
+:ID:       f45b5a8b-beb9-47f0-ae03-0fdd81a1e5b1
+:END:
+#+title: Haskell Monte-Carlo
+* Motivation
+
+Lazy evaluation might substantially speed up Monte Carlo simulations, as computations not necessary for the quantities one is measuring wouldn't be necessary.

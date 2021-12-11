@@ -1,0 +1,27 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{7380 HW Corrections}
+\author{Duncan Wilkie}
+\date{4 December 2021}
+
+\begin{document}
+
+\maketitle
+
+\section*{5.20}
+My confusion with this problem came down to the interpretation of ``with a piecewise continuous derivative,'' which I took to mean that a derivative is defined at every point of the domain of $f$, in concert with the usual analytical meaning of existence of a derivative. Under that definition, $f$ is vacuously piecewise continuous. I presume they mean instead ``has a piecewise continuous derivative on the set where $f$ is continuous,'' and proceed accordingly.
+
+By definition,
+\[\left\langle\frac{\partial f}{\partial x}, \phi\right\rangle=-\left\langle f, \frac{\partial \phi}{\partial x} \right\rangle=-\int_\mathbb{R} f\frac{\partial \phi}{\partial x}dx\]
+Call the set on which $f$ is continuous $\Omega$ and the points of discontinuity $J=\{x_0,...,x_n\}$; the integral may be split over this partition:
+\[\left\langle\frac{\partial f}{\partial x},\phi \right\rangle=-\int_\Omega f\frac{\partial \phi}{\partial x}dx - \int_Jf \frac{\partial \phi}{\partial x}dx\]
+The first term is, since $\Omega$ is an open subset of $\mathbb{R}$ on which $f$ is $C^1$, exactly $\langle f', \phi \rangle$ where $f'$ is the classical derivative. Since $J$ is a finite set,
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

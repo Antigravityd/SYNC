@@ -50,4 +50,135 @@ Computing this sum for the output of \verb|drand48()| and the custom linear cong
 and
 \[H(X_2)=5.5235\]
 respectively. \verb|drand48()| is clearly closer, and is within 10\% of the theoretical value, so it is random. On the other hand, the custom generator is not.
+
+\section{Script Files}
+\subsection{}
+\begin{verbatim}
+Script started on Fri 19 Nov 2021 04:45:01 PM CST
+tput: unknown terminal "st-256color"
+tcsh: No entry for terminal type "st-256color"
+tcsh: using dumb terminal settings.
+[dwilk14@tigers ~/HW10]$ cat dwilk14_hw10p1.cpp
+#include <cstdlib>
+#include <fstream>
+
+using namespace std;
+
+double piMC(int n) {
+  int inside = 0;
+  for (int i = 0; i < n; i++) {
+    double x = 2 * drand48() - 1, y = 2 * drand48() - 1;
+    if (x*x + y*y <= 1)
+      ++inside;
+  }
+
+  return 4 * (double)inside / (double)n;
+
+}
+
+
+int main() {
+  ofstream out;
+  out.open("output1.txt");
+  srand48(12);
+
+
+  out << "n " << "approx pi" << endl;
+  out << "100 " << piMC(100) << endl;
+  out << "10000 " << piMC(10000) << endl;
+  out << "100000 " << piMC(100000) << endl;
+
+  return 0;
+
+}
+[dwilk14@tigers ~/HW10]$ g++ dwilk14_hw10p1.cpp -o dwilk14_hw10p1
+[dwilk14@tigers ~/HW10]$ ./dwilk14_hw10p1
+[dwilk14@tigers ~/HW10]$ cp dwilk14_hw10p1.txt /home3/kristina/phys2411/.
+[dwilk14@tigers ~/HW10]$ exit
+exit
+
+Script done on Fri 19 Nov 2021 04:45:38 PM CST
+\end{verbatim}
+
+\subsection{}
+\begin{verbatim}
+  Script started on Fri 19 Nov 2021 04:45:48 PM CST
+tput: unknown terminal "st-256color"
+tcsh: No entry for terminal type "st-256color"
+tcsh: using dumb terminal settings.
+[dwilk14@tigers ~/HW10]$ cat dwilk14_hw10p2.cpp
+#include <fstream>
+#include <cstdlib>
+#include <cmath>
+
+using namespace std;
+
+
+double moment48(int n, int k) {
+  double sum = 0;
+  for (int i = 0; i < n; i++) {
+    sum += pow(drand48(), k);
+  }
+
+  return sum / n;
+
+}
+
+double momentCustom(int n, int k, int last) {
+  double sum = 0;
+  for (int i = 0; i < n; i++) {
+    last = (57 * last + 1) % 256;
+    sum += pow((double)last / 256., k);
+  }
+
+  return sum / n;
+
+}
+
+
+
+
+int main() {
+  ofstream out;
+  out.open("output2.txt");
+  srand48(12);
+  int last = 10;
+
+  out << "k n moment" << endl;
+
+  for (int k = 1; k < 4; k++) {
+    for (int ex = 2; ex < 6; ex++) {
+      int n = pow(10, ex);
+      out << k << " " << n << " " << momentCustom(n, k, last) << endl;
+    }
+  }
+
+  out << "k n moment" << endl;
+
+  for (int k = 1; k < 4; k++) {
+    for (int ex = 2; ex < 6; ex++) {
+      int n = pow(10, ex);
+      out << k << " " << n << " " << moment48(n, k) << endl;
+    }
+  }
+
+
+  return 0;
+
+}
+[dwilk14@tigers ~/HW10]$ g++ dwilk14_hw10p2.cpp -o dwilk14_hw10p2
+[dwilk14@tigers ~/HW10]$ ./dwilk14_hw10p2
+[dwilk14@tigers ~/HW10]$ cp dwilk14_hw10p2.txt /home3/kristina/p
+phtrol.sit  phys2411/
+[dwilk14@tigers ~/HW10]$ cp dwilk14_hw10p2.txt /home3/kristina/phys2411/.
+[dwilk14@tigers ~/HW10]$ exit
+exit
+
+Script done on Fri 19 Nov 2021 04:46:53 PM CST
+\end{verbatim}
 \end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

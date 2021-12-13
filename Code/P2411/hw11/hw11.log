@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021 Gentoo Linux) (preloaded format=pdflatex 2021.10.19)  23 NOV 2021 01:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021 Gentoo Linux) (preloaded format=pdflatex 2021.8.16)  23 NOV 2021 17:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -172,25 +172,25 @@ Package pdftex.def Info: ./img//better.png  used on input line 19.
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./img//beta.png> <./img//b
 etter.png>]
-[2] (./hw11.aux) ) 
+[2] [3] (./hw11.aux) ) 
 Here is how much of TeX's memory you used:
- 1717 strings out of 480954
- 25170 string characters out of 5908241
- 313809 words of memory out of 5000000
- 18974 multiletter control sequences out of 15000+600000
- 407070 words of font info for 39 fonts, out of 8000000 for 9000
+ 1720 strings out of 480954
+ 25200 string characters out of 5908242
+ 319809 words of memory out of 5000000
+ 18976 multiletter control sequences out of 15000+600000
+ 407238 words of font info for 40 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 68i,6n,74p,503b,191s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.
-pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/shar
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/c
-msy10.pfb>
-Output written on hw11.pdf (2 pages, 73819 bytes).
+ 68i,6n,74p,503b,260s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmb
+x12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/
+share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on hw11.pdf (3 pages, 94707 bytes).
 PDF statistics:
- 39 PDF objects out of 1000 (max. 8388607)
- 24 compressed objects within 1 object stream
+ 46 PDF objects out of 1000 (max. 8388607)
+ 29 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

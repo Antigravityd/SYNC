@@ -17,9 +17,29 @@ My confusion with this problem came down to the interpretation of ``with a piece
 
 By definition,
 \[\left\langle\frac{\partial f}{\partial x}, \phi\right\rangle=-\left\langle f, \frac{\partial \phi}{\partial x} \right\rangle=-\int_\mathbb{R} f\frac{\partial \phi}{\partial x}dx\]
-Call the set on which $f$ is continuous $\Omega$ and the points of discontinuity $J=\{x_0,...,x_n\}$; the integral may be split over this partition:
-\[\left\langle\frac{\partial f}{\partial x},\phi \right\rangle=-\int_\Omega f\frac{\partial \phi}{\partial x}dx - \int_Jf \frac{\partial \phi}{\partial x}dx\]
-The first term is, since $\Omega$ is an open subset of $\mathbb{R}$ on which $f$ is $C^1$, exactly $\langle f', \phi \rangle$ where $f'$ is the classical derivative. Since $J$ is a finite set,
+It is sufficient for now to consider a function with a single jump discontinuity. Call the point of discontinuity $x_0$, and the value of the left- and right-hand limits $f^-(x_0)$ and $f^+(x_0)$, respectively. We have
+\[\left\langle\frac{\partial f}{\partial x},\phi\right\rangle=-\int_{-\infty}^{a}f\frac{\partial\phi}{\partial x}dx\int_{b}^\infty f\frac{\partial\phi}{\partial x}dx - \int_a^bf\frac{\partial \phi}{\partial x}=-f\phi\bigg|_{-M}^{x_0}+\int_{-\infty}^{x_0}f'\phi dx-f\phi\bigg|_{x_0}^{M}+\int_{x_0}^\infty f'\phi dx\]\[=\int_{\mathbb{R}\setminus x_0}f'\phi dx-(f^+(x_0)-f^-(x_0))\phi(x_0)\]
+Writing the integral in the form $f'\bigg|_{\mathbb{R}\setminus x_0}$ and noting that the constant term is the action of a shifted delta distribution, this may be identified for multiple discontinuities in a finite set $J$ with the distribution
+\[f'\bigg|_{\mathbb{R}\setminus J}+\sum_{x_i\in J}\delta(x-x_0)(f^-(x_i)+f^+(x_i))\]
+
+\section*{5.22}
+Substituting $v=x+t$, $w=x-t$
+\[(u, \phi_{tt})=\int_{\mathbb{R}^2}f(x+t)\phi_{tt}(x,t)=\int_{\mathbb{R}^2}f(v)\frac{\partial^2}{\partial t^2} \phi\left(\frac{v+w}{2},\frac{v-w}{2}\right)(-2)dvdw\]
+\[=-2\int_{\mathbb{R}^2}f(v)\frac{\partial}{\partial t}\left( \frac{\partial \phi}{\partial w}\frac{\partial w}{\partial t}+\frac{\partial \phi}{\partial v}\frac{\partial v}{\partial t} \right)dvdw\]
+
+\[=-2\int_{\mathbb{R}^2}f(v)\left[ \frac{\partial^2\phi}{\partial w^2}\left( \frac{\partial w}{\partial t} \right)^2-2\frac{\partial^2\phi}{\partial v\partial w}+\frac{\partial^2\phi}{\partial v}\left( \frac{\partial v}{\partial t} \right)^2 \right]dvdw=-2\int_{\mathbb{R}^2}f(v)\left[ \frac{\partial^2\phi}{\partial w^2}-2\frac{\partial^2\phi}{\partial v\partial w}+\frac{\partial^2\phi}{\partial v^2} \right]dvdw\]
+
+Similarly for $u_{xx}$,
+\[(u,\phi_{tt})=\int_{\mathbb{R}^2}f(x+t)\phi_{tt}(x,t)=\int_{\mathbb{R}^2}f(v)\frac{\partial^2}{\partial x^2}\phi\left(\frac{v+w}{2},\frac{v-w}{2}\right)(-2)dvdw\]
+\[=-2\int_{\mathbb{R}^2}f(v)\frac{\partial}{\partial x}\left(\frac{\partial \phi}{\partial w}\frac{\partial w}{\partial x}+\frac{\partial \phi}{\partial v}\frac{\partial v}{\partial x}  \right)=-2\int_{\mathbb{R}^2}f(v)\left[ \frac{\partial^2\phi}{\partial w^2}\left( \frac{\partial w}{\partial x} \right)^2+2\frac{\partial^2\phi}{\partial w\partial v}+\frac{\partial^2 \phi}{\partial v^2}\left( \frac{\partial v}{\partial x} \right)^2 \right]\]
+\[=-2\int_{\mathbb{R}^2}f(v)\left[  \frac{\partial^2\phi}{\partial w^2}+2\frac{\partial^2\phi}{\partial w\partial v}+\frac{\partial^2\phi}{\partial v^2}\right]\]
+
+Taking $u_{xx}-u_{tt}$ and performing the integral with respect to $w$,
+\[u_{xx}-u_{tt}=-2\int_{\mathbb{R}^2}f(v)\left[4\frac{\partial^2\phi}{\partial w\partial v}\right]dvdw=-8\int_{\mathbb{R}}f(v)\frac{\partial\phi}{\partial v}dv\]
+\[=-8\int_\mathbb{R}f(x+t)\frac{\partial \phi}{\partial t}dt=8\int_\mathbb{R}f(x+t)\frac{\partial \phi}{\partial x}dx\]
+The last two equalities come from the two choices of variable to write $v$ in terms of; $u_{xx}-u_{tt}$ is equal to them both. However, one is the negation of the other, since the difference between them is merely a change of symbol. In other words,
+\[u_{xx}-u_{tt}=c=-c\]
+which implies $c=0$, i.e. $u_{xx}=u_{tt}$.
 \end{document}
 %%% Local Variables:
 %%% mode: latex

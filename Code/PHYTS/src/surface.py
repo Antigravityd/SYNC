@@ -1,10 +1,13 @@
 import numpy as np
+import Transform
 
 class Surface: # all surfaces carry symbols and reflectiveness/whiteness
-    def __init__(self, symb, reflective=False, white=False):
+    def __init__(self, symb, reflective=False, white=False,
+                 transform=idTransform):
         self.reflective = reflective
         self.white = white
         self.symb = symb
+        self.transform = transform
 
 
 class Plane(Surface): # Planar surface stored as Ax+By+Cz-D = 0.

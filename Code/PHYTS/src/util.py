@@ -4,21 +4,25 @@ mat_identifiers =  {"ac", "actinium", "ag", "silver", "al", "aluminum", "am", "a
  
 def parse_mat_long(s, index):
     
-def condense_set(ints):
+def condense_set(ints): # takes an iterable of numbers and returns PHITS-optimized string,
+                        # e.g [1,2,3,5,6,7] -> { 1 - 3 } { 5 - 7 }
     ints = list(set(ints)).sort()
 
     result = "( "
-    globbing = 0
+    glob_start = None
     for i, e in enumerate(ints):
         if i == 0:
             break
         if e - ints[i-1] > 1:
-            if globbing:
-                result += f"\{ {globbing} - {ints[i-1]} \} {e} "
+            if glob_start is not None:
+                result += f"\{ {glob_start} - {ints[i-1]} \} "
+                glob_start = None
             else:
-                result += e + ' '
-        else:
-            globbing = e
+                if i == len(ints) - 1 or ints[i+1] - e > 1:
+                    result += f"{e} "
+                else:
+                    glob_start = e  
+    
 
     result += ')'
 

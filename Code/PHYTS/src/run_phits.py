@@ -197,13 +197,20 @@ def make_input(sources, cells, tallies, title=str(datetime.now()), parameters=di
     return inp
 
     
-def run_phits(sources, cells, tallies, title=str(datetime.now()), **kwargs):
+def run_phits(sources, cells, tallies, command="phits", throws=False, title=str(datetime.now()), **kwargs):
     # TODO: consider how to read stdout/output files into returnable formats
+    # WARNING: setting the command variable opens up shell injection attacks, as sp.run() with
+    # shell=True is done unfiltered. Should see about using shlex.quote() to sanitize. 
     inp = make_input(sources, cells, tallies, title=title, **kwargs)
     with open(f"{title}.inp", "r+") as inp_file:
         inp_file.write(inp)
 
-    phits_cmd = 
+    result = sp.run(f"phits {title}.inp", shell=True, capture_output=True, text=True, check=throws)
+
+    # TODO: parse STDOUT and STDERR of the CompletedProcess object above for the results of the tallies,
+    # and return them, alongside any other useful information.
+
+    
         
             
         

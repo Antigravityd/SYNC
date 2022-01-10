@@ -5,9 +5,9 @@ class Cell: # dictionary of properties and a frozenset of tuples with type (Surf
             # what the equality in the surface function ought to be replaced with to get the orientation.
             # As a heuristic rule, consider r -> ∞ and check the sign of the LHS; choose accordingly.
 
-            # Operations &, |, >>, <<, and ~ are the set operations on the regions. & and | clear properties
+            # Operations &, |, >>, <<, and ~ are the set operations on the regions. & and | clear properties,
             # inversion preserves them, and << and >> copy properties of one cell onto another.
-            # The property dictionary has equivalent natural language and array syntaxes,
+            # The property dictionary has equivalent natural language and array syntaxes (hopefully!),
             # e.g. {material: "60% water, 40% lead 208"} ↔ {material: [(0.6, "H20"), (0.4, "Pb-206")]}
             # Every property that applies to a cell ought to be supported, like transform, tallies, etc.
     def __init__(self, regions, **kwargs):

@@ -16,8 +16,8 @@
 
 
 \begin{document}
-\section*{A Hardware Definition Language for Quick Implementation of Messaging Protocols in FPGAs}
-Field-programmable gate arrays (FPGAs) provide alternatives to microcontrollers for embedded development. They often provide faster speeds and lower power consumption than their counterparts \cite{mal}. However, this can come at the cost of increased development time: our lab decided against use of an FPGA in a recent embedded project, despite the project calling for high data throughput and low power draw, precisely because of a time crunch. Existing hardware definition languages (HDLs) used to create FPGA circuits \cite{vlog}\cite{vhdl} are very general-purpose, and programmers must spend a large amount of time concerned with implementation details that are largely secondary to their objectives. In a word, they are too low-level to enable fast development of solutions to simple problems by small teams. A potential solution to this problem is to borrow from UNIX philosophy: have many interoperable languages of narrow scope built on top of a common low-level foundation, each with syntax optimized for brief resolution of the problems to which they are tailored. I propose the following coarse specification for such a purpose-specific HDL designed for easy implementation of hardware communication protocols, inspired by precisely the problem we ought to have used an FPGA for.
+\section*{A Hardware Definition Language for Quick Implementation of Messaging Protocols in Field-Programmable Gate Arrays}
+Field-programmable gate arrays (FPGAs) provide an alternative to microcontrollers for embedded development. They often provide faster speeds and lower power consumption than their counterparts \cite{mal}. However, this can come at the cost of increased development time: our lab decided against use of an FPGA in a recent embedded project, despite the project calling for high data throughput and low power draw, precisely because of a time crunch. Existing hardware definition languages (HDLs) used to create FPGA circuits \cite{vlog}\cite{vhdl} are very general-purpose, and programmers must spend a large amount of time concerned with implementation details that are largely secondary to their objectives. In a word, they are too low-level to enable fast development of solutions to simple problems by small teams. A potential solution to this problem is to borrow from UNIX philosophy: have many interoperable languages of narrow scope built on top of a common low-level foundation, each with syntax optimized for brief resolution of the problems to which they are tailored. I propose the following coarse specification for such a purpose-specific HDL designed for easy implementation of hardware communication protocols, inspired by precisely the problem we ought to have used an FPGA for.
 \newline
 
 The basic task of interpreting a hardware message is this:
@@ -45,10 +45,10 @@ match:
   0x5f        // start of packet MSB
   0xf0 | 0xf1 // start of packet LSB options
   packetID // bind identifier packetID to the binary value here
-  msgSize @length  // tell the compiler this value influences matching
+  msgSize[2] @length  // 16-bit value, decorated to influence matching
   headerCHK
 
-  payload* // A payload can be any number of bytes
+  payload[+] // A payload can be any positive number of bytes 
 
   payloadCHK
 
@@ -65,7 +65,7 @@ I intend to fully specify this language, including its module system, typing, pr
 I know very little about SystemVerilog and FPGA computation in general, and hope to greatly expand my capacities in that area as well as compiler and programming language design.
 \newline
 
-The long-term stretch goal of working on this and similar projects is to form a whole class of interoperable domain-specific languages, as mentioned above. A significant amount of work has been put into the development of reconfigurable computing systems over the years\cite{moth} due to the wild parallelism possible with FPGAs, but activity appears concentrated in 2000-2010, with projects like ReconOS\cite{recon}, a reconfigurable computing operating system, seeing no commits in four years. I see no reason for the draw of FPGA compute to have diminished; it seems there's a wealth of opportunity to get computational physics on the bleeding edge of computing performance again.
+The long-term stretch goal of working on this and similar projects is to form a whole class of interoperable domain-specific languages, as mentioned above. A significant amount of work has been put into the development of reconfigurable computing systems over the years\cite{moth} due to the wild parallelism possible with FPGAs, but activity appears concentrated in 2000-2010, with projects like ReconOS\cite{recon}, a reconfigurable computing operating system, seeing no commits in four years. I see no reason for the appeal of FPGA compute to have diminished; it seems there's a wealth of opportunity to get computational physics and mathematics on the bleeding edge of computing performance again. This work enables progress towards that goal, both directly with the languages produced and by developing skills for further projects in this area. 
 
 \bibliography{ref}
 \bibliographystyle{ieeetr}

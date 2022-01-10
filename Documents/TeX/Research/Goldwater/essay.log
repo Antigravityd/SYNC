@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021 Gentoo Linux) (preloaded format=pdflatex 2021.10.19)  31 OCT 2021 22:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021 Gentoo Linux) (preloaded format=pdflatex 2021.8.16)  23 DEC 2021 16:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -178,10 +178,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 64--67
 
  []
 
-(./essay.bbl
-LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <12> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 5.
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -190,7 +186,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[2])
+[2] (./essay.bbl
+LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <12> not available
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 5.
+)
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -202,17 +201,17 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [3] (./essay.aux) ) 
 Here is how much of TeX's memory you used:
  1279 strings out of 480954
- 19083 string characters out of 5908241
+ 19083 string characters out of 5908242
  314253 words of memory out of 5000000
  18553 multiletter control sequences out of 15000+600000
  409782 words of font info for 36 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 68i,10n,74p,1311b,283s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 68i,10n,74p,1313b,186s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/sha
 re/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texmf-dist/
 fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/helv
 etic/uhvr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on essay.pdf (3 pages, 45398 bytes).
+Output written on essay.pdf (3 pages, 46326 bytes).
 PDF statistics:
  31 PDF objects out of 1000 (max. 8388607)
  21 compressed objects within 1 object stream

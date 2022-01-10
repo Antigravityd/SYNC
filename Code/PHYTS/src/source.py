@@ -1,4 +1,3 @@
-
 class Source:
     def __init__(self, s_type, projectile, spin=(0, 0, 0), mask=(None, 1000),
                  transform=None, different_charge=None):
@@ -154,23 +153,84 @@ class Spherical:
         else:
             self.e_type = projectile_energy      
 
-class Beam:
+class Beam: # I don't understand what this is trying to do
+    def __init__(self, center=(0.0, 0.0), xbound=(0.0, 0.0), ybound=(0.0, 0.0), zbound=(0.0,0.0),
+                 gradx=0.0, grady=0.0)
     
 class Conical:
-
+    def __init__(self, projectile, spin=(0, 0, 0), mask=(None, 1000), transform=idTransform,
+                 different_charge=None,  top=(0.0, 0.0, 0.0), altitude=(0.0, 0.0, 0.0),
+                 trim_bottom=0.0, trim_top=0.0, slope=0.0, elevation=1.0, azimuth=None,
+                 dispersion=0.0, projectile_energy):
+        super().__init__(18, projectile, spin, mask, transform, different_charge)
+        self.x0 = top[0]
+        self.y0 = top[1]
+        self.z0 = top[2]
+        self.x1 = altitude[0]
+        self.y1 = altitude[1]
+        self.z1 = altitude[2]
+        self.r0 = trim_bottom
+        self.r1 = trim_top
+        self.dir = elevation #TODO: implement "all" and "data" support
+        self.phi = azimuth
+        self.dom = dispersion
+        if isinstance(projectile_energy, float):
+            self.e0 = projectile_energy
+        else:
+            self.e_type = projectile_energy
+            
+                
 class Prism:
+    def __init__(self, projectile, spin=(0, 0, 0), mask=(None, 1000), transform=idTransform,
+                 different_charge=None, origin=(0.0, 0.0, 0.0), side1=(0.0, 0.0, 0.0),
+                 side2=(0.0, 0.0, 0.0), extrusion=(0.0, 0.0, 0.0), attenuation=0.0,
+                 elevation=1.0, azimuth=None, dispersion=0.0, projectile_energy):
+        super().__init__(20, projectile, spin, mask, transform, different_charge)
+        self.x0 = origin[0]
+        self.y0 = origin[1]
+        self.z0 = origin[2]
+        self.x1 = side1[0]
+        self.y1 = side1[1]
+        self.z1 = side1[2]
+        self.x2 = side2[0]
+        self.y2 = side2[1]
+        self.z2 = side2[2]
+        self.x3 = extrusion[0]
+        self.y3 = extrusion[1]
+        self.z3 = extrusion[2]
+        self.exa = attenuation
+        self.dir = elevation
+        self.phi = azimuth
+        self.dom = dispersion
+        if isinstance(projectile_energy, float):
+            self.e0 = projectile_energy
+        else:
+            self.e_type = projectile_energy
 
-class Grid:
+    
+    
+class Grid: # TODO: requires xyz-mesh from tallies
 
-class Tetrahedral:
+class Tetrahedral: # TODO: requires tetrahedral geometry and universes
 
-class Energy:
+class SurfaceSource: # TODO: think about how this can interact with surface numbers, and how
+                     # cuts will work
+     def __init__(self, projectile, spin=(0, 0, 0), mask=(None, 1000), transform=idTransform,
+                  different_charge=None, surface, cuts, elevation, azimuth, dispersion,
+                  projectile_energy):
+         super().__init__(26, projectile, spin, mask, transform, different_charge)
+         
+    
 
-class Angular:
+# class Energy: This is actually about the e-type subsection. Need a class perhaps?
 
-class TimeDependent:
+# class Angular: part of a-type subsection defined for each source. Should overload
+# elevation parameter to support a list of a-type options. 
 
-class Fissile:
+# class TimeDependent: part of t-type subsections defined for each 
 
+# class Fissile: part of e-type
 
-
+class UnsupportedSource: # just copies input text into source file
+    def __init__(self, definition):
+        self.definition = definition

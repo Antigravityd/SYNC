@@ -1,0 +1,48 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\begin{document}
+
+\section*{7.2a}
+The voltage drop across a capacitor is $ V = \frac{q}{C}$, and the voltage drop across the resistor is $V=IR=\frac{dq}{dt}R$. Tracking the voltage drops around the loop,
+\[\frac{q}{C}+\frac{dq}{dt}R=0\Leftrightarrow -\frac{dt}{RC}=\frac{dq}{q}\Leftrightarrow \ln q=-\frac{t}{RC}+c_1\Leftrightarrow q(t)=c_2e^{-{t}/{RC}}\]
+Applying the boundary condition $q(0)=CV_0$,
+\[q(t)=CV_0e^{-t/RC}\]
+The current is
+\[I(t)=\frac{dq}{dt}=\frac{V_0}{R}e^{-t/RC}\]
+
+\section*{7.2b}
+The initial energy in the capacitor is $E=\frac{1}{2}CV_0^2$. Integrating, \[P=I^2R=\frac{V_0^2}{R}e^{-2t/RC}\]
+\[\Rightarrow E=\int_0^\infty\frac{V_0^2}{R}e^{-2t/RC}dt=\frac{V_0^2}{R}\left( -\frac{RC}{2}e^{-2t/RC}\bigg|_0^\infty \right)=\frac{1}{2}CV_0^2\]
+
+\section*{7.2c}
+Similarly to above,
+\[V_0-\frac{q}{C}-\frac{dq}{dt}R=0\]
+Using non-homogeneous constant coefficients,
+\[q(t)=c_1e^{-t/RC}+CV_0\]
+Applying the boundary condition that $q(0)=0$,
+\[q(t)=CV_0(1-e^{-t/RC})\]
+Differentiating,
+\[I(t)=\frac{V_0}{R}e^{-t/RC}\]
+
+\section*{7.2d}
+The total energy output of the battery is
+\[E=\int_0^\infty V_0I(t)dt=\int_0^\infty \frac{V_0^2}{R}e^{-t/RC}dt=\frac{V_0^2}{R}\left( -RCe^{-t/RC}\bigg|_0^\infty \right)=C{V_0^2}\]
+The energy dissipated by the resistor is found by
+\[P=I^2R=\frac{V_0^2}{R}e^{-2t/RC}\Rightarrow E=\int_0^\infty \frac{V_0^2}{R}e^{-2t/RC}dt=\frac{1}{2}CV_0^2\]
+The energy left on the capacitor at the end is the difference between the two:
+\[E_o=E_R+E_C\Rightarrow E_C=CV_0^2-\frac{1}{2}CV_0^2=\frac{1}{2}CV_0^2\]
+This half the total work done by the battery, and confirms what is obvious; as $t\to\infty$, the current becomes negligible, so the voltage across the capacitor is $V_0$, so the energy stored in it must be the above.
+
+\section*{7.3a}
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

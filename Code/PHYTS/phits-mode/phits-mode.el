@@ -30,10 +30,10 @@
   "Syntax table used for .inp files.")
 
 
-;;(defun align-to-equals (begin end)
-;;  "Align region to equal signs"
-;;   (interactive "r")
-;;   (align-regexp begin end "\\(\\s-*\\)=" 1 1 ))
+(defun align-to-equals (begin end)
+  "Align region to equal signs"
+   (interactive "r")
+   (align-regexp begin end "\\(\\s-*\\)=" 1 1 ))
 
 
 
@@ -46,8 +46,8 @@
   "Highlight section header (anything inside brackets alone on a line that starts in the first 4 columns).")
 
 (defvar phits-parameter-font-lock
-  `("^ *\\([[:alnum:]<>-]+\\)\\( *\\|(.*)\\|\\[.*\\]\\) *="   ,(list 1  font-lock-variable-name-face))
-  "Highlight anything on the left hand side of an equals sign that is also the first word on a line")
+  `("^[:blank:]*\\([[:alnum:]<>-]+\\)\\((.*)\\|\\[.*\\]\\)[:blank:]*="   ,(list 1  font-lock-variable-name-face))
+  "Highlight anything on the left hand side of an equals sign that is also the first word on a line.")
 
 (defvar phits-label-font-lock
   `("^\\(\\w*\\):"  ,(list 1 font-lock-keyword-face))
@@ -86,7 +86,7 @@
 			   "hex" "rec" "trc" "ell" "wed" "vol" "tmp" "trcl" "u" "lat" "fill" "mat" "rho") t)
 	     "\\)\\>"
 	     "\\|^\\( *[[:alpha:]] *\\)+") . font-lock-type-face)
-  "Highlight special names in material and surface sections, as well as any header lines of array-like sections")
+  "Highlight special names in material and surface sections, as well as any header lines of array-like sections.")
 
 
 (defvar phits-font-lock
@@ -98,6 +98,20 @@
 	   phits-function-font-lock
 	   phits-special-font-lock))
 
+(defvar phits-source-dir "~/PHITS/phits326A/phits"
+  "The directory unpacked from the archive obtained from JAEA that contains the PHITS source files.")
+
+(defvar phits-command "phits.sh "
+  "The shell command through which PHITS is to be run.  Should be everything but the filename (which will be placed at the end), and contain a trailing space.")
+
+(defun run-phits ()
+  "Run phits-command on the current buffer asynchronously, displaying output in a new buffer and placing output files in the same directory as the current buffer's file."
+  (interactive)
+  (let ((default-directory (file-name-directory buffer-file-name)))
+    (async-shell-command (concat phits-command buffer-file-name))))
+
+(defun phits-view-results ()
+  "Open summary of tally results in external image viewer.")
 
 ;;;###autoload
 (define-derived-mode phits-mode prog-mode "PHITS Input"
@@ -105,9 +119,11 @@
   :syntax-table phits-mode-syntax-table
   (setq-local abbrev-all-caps t)
   (setq-local font-lock-defaults `(,phits-font-lock nil t))
-  (setq-local indent-line-function #'phits-indent-line))
+  ;; TODO  (setq-local indent-line-function #'phits-indent-line)
+  )
 
 ;; (add-to-list 'auto-mode-alist '(".inp\\'" phits-mode))
+
 
 (provide 'phits-mode)
 

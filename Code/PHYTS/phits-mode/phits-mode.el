@@ -64,7 +64,7 @@
 	  "\\)\\>"
 	  "\\|^\\( *[[:alpha:]] *\\)+"))
 
-(defvar phits-delimeter-param-regexp "\\(<[[:alnum:]]>\\)")
+
 
 (defun align-to-equals (begin end)
   "Align region to equal signs."
@@ -74,9 +74,9 @@
 (defun phits-line-matching (regexp)
   "Return t if current line will match REGEXP, otherwise nil."
   (when (string-match regexp
-		    (buffer-substring-no-properties
-		     (line-beginning-position)
-		     (line-end-position)))
+		      (buffer-substring-no-properties
+		       (line-beginning-position)
+		       (line-end-position)))
     t))
 
 (defun phits-get-line ()
@@ -94,40 +94,51 @@
   "Return length of the match of REGEXP in STRING."
   (length (progn (string-match regexp string) (match-string 1 string))))
 
-(defun phits-count-previous-parameters ()
-  "Return the number of parameter lines in a row above the current one"
-
-)
+(defun phits-previous-parameter-count ()
+  "Return the number of parameter lines in a row above (i.e. not including) the current one."
+  (1- (count-lines (point)
+		   (save-excursion
+		     (while (phits-line-matching phits-parameter-regexp) (forward-line -1))
+		     (point)))))
 
 (defun phits-parameter-align ()
   "Align current equals sign with equals sign above.  If there's no space, align every parameter above to accomodate current.  If there's no equals sign above, left-justify and add one space before equals sign."
   (let ((word-length (phits-match-length "<?\\(\\w\\|-\\)+>?" (phits-get-line)))
-	(equals-idx (string-match "=" (phits-get-prev-line))))
+	(equals-idx (string-match "=" (phits-prev-line))))
     (if equals-idx
 	(if (< word-length equals-idx)
 	    (progn
 	      (beginning-of-line)
-	      (re-search-forward "^[[:blank:]]*" (line-end-position))
+	      (re-search-forward "^[[:blank:]]+" (line-end-position))
 	      (replace-match (apply 'concat (make-list (- equals-idx word-length 1) " ")))
 	      (re-search-forward "[[:blank:]]*=")
 	      (replace-match " ="))
-	  (progn
-	    (setq max-above-word-len word-length)
-	    (while max-above-word-len)))
+	  (dotimes (i, (phits-previous-parameter-count))
+	    (progn
+	      (forward-line -1)
+	      (beginning-of-line)
+	      (re-search-forward "^[[:blank:]]+" (line-end-position))
+	      (replace-match
+	       (apply 'concat
+		      (make-list (- word-length
+				    (string-match "=" (phits-get-line))
+				    -1)
+				 " "))))))
       (progn
 	(beginning-of-line)
 	(re-search-forward "^[[:blank:]]*")
 	(replace-match "")))))
 
-(defun phits-indent-line (&optional indent)
+(or (phits-line-matching phits-label-regexp) (phits-line-matching phits-section-regexp))
+
+(defun phits-indent-line ()
   "Indent current line as a PHITS .inp file."
-  (interactive)
-  (cond ((phits-line-matching phits-section-regexp)
-	 (replace-regexp "^[[:blank:]]+" "" nil (line-beginning-position) (line-end-position)))
-	((phits-line-matching phits-parameter-regexp)
-	 (;; TODO: complicated enough for a separate function call.
-	  ))
-	((phits-line-matching phits-))))
+  (cond ((or (phits-line-matching phits-label-regexp) (phits-line-matching phits-section-regexp))
+	  (beginning-of-line)
+	  (re-search-forward "^[[:blank:]]+" (line-end-position))
+	  (replace-match ""))
+	 ((phits-line-matching phits-parameter-regexp)
+	  (phits-parameter-align))))
 
 
 (defvar phits-archaic-comment-font-lock

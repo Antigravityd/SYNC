@@ -9,6 +9,7 @@
     "art10"
     "geometry"
     "amsmath"
-    "amssymb"))
+    "amssymb"
+    "siunitx"))
  :latex)
 

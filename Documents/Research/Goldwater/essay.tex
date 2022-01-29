@@ -32,7 +32,7 @@ Before streams of binary data are interpretable, it is usually necessary to shuf
 After the input is interpreted in the correct general format, it can be compared to a specification. Inspiration as to precisely how is drawn from Haskell's pattern matching system \cite{Marlow_haskell2010} and the BNF grammar specification  language family\cite{bnf}. The hope is that the intuitive, mathematical syntax will allow effortless translation from protocol specification documents to this part of a program. In this section, data from the input streams is taken until either it matches the specified pattern or it stops matching the specified pattern (depending on whether greedy or non-greedy behavior is desired). Once the final match is found, identifiers appearing in the pattern are bound to values in the stream, and execution proceeds to the next section.
 \newline
 
-The final step most closely resembles standard imperative programs. Based on the variables produced in the above step, a series of commands are issued to perform whatever actions need be done as a result, such as outputting the received data in a different format or calling a computation on it.
+The final step most closely resembles standard imperative programs. Based on the variables produced in the above step, a series of commands are issued to perform whatever actions need be done as a result, such as outputting the received data in a different format or calling a computational routine on it.
 \newline
 
 The following program is an example for a very simple message structure, showcasing how these elements might work.
@@ -44,7 +44,7 @@ input a1:
 match:
   0x5f        // start of packet MSB
   0xf0 | 0xf1 // start of packet LSB options
-  packetID // bind identifier packetID to the binary value here
+  packetID // bind identifier packetID to the byte here
   msgSize[2] @length  // 16-bit value, decorated to influence matching
   headerCHK
 
@@ -62,10 +62,10 @@ do:
 
 
 I intend to fully specify this language, including its module system, typing, primitives, standard library, and so on. Once that is completed, I'll plug the grammar into the ANTLRv4 parser generator \cite{antlr} to produce a program capable of lexing and parsing source files for the language. I'll then fill in the parser actions to produce the compiled SystemVerilog program. This may then be directly applied to FPGAs via the vendor-supplied compiler toolchains.
-I know very little about SystemVerilog and FPGA computation in general, and hope to greatly expand my capacities in that area as well as compiler and programming language design.
+I know very little about SystemVerilog and FPGA computation in general, and hope to greatly expand my capacities in that area as well as compiler and programming language design. I do have extensive experience using a wide variety of programming languages, as well as writing embedded programs that handle protocol translation, which I hope will enable me to create a very practical and useful HDL.
 \newline
 
-The long-term stretch goal of working on this and similar projects is to form a whole class of interoperable domain-specific languages, as mentioned above. A significant amount of work has been put into the development of reconfigurable computing systems over the years\cite{moth} due to the wild parallelism possible with FPGAs, but activity appears concentrated in 2000-2010, with projects like ReconOS\cite{recon}, a reconfigurable computing operating system, seeing no commits in four years. I see no reason for the appeal of FPGA compute to have diminished; it seems there's a wealth of opportunity to get computational physics and mathematics on the bleeding edge of computing performance again. This work enables progress towards that goal, both directly with the languages produced and by developing skills for further projects in this area. 
+The long-term goal of working on this and similar projects is to form a whole class of interoperable domain-specific languages, as mentioned above. A significant amount of work has been put into the development of so-called reconfigurable computing systems over the years\cite{moth} due to the wild parallelism possible with FPGAs, but activity appears concentrated in 2000-2010, with projects like ReconOS\cite{recon}, a reconfigurable computing operating system, seeing no commits in four years. I conjecture the decline is due in large part to recalcitrant silicon providers refusing to open-source HDL compilers or binary formats for reprogramming, which prevents academics from producing systems capable of generating optimized binaries and flashing FPGAs with them automatically (\cite{moth} draws its example architectures entirely from the turn of the millennium despite being written in 2008; those are the most recent examples whose low-level design characteristics are public). The modularity enabled by such free and open tools is almost required for developing disruptive computational technology, and there are a small number of people working on open FPGA compiler technology with the LLVM project for this reason. I doubt the personal computer would have been developed if no CPU providers let the individual consumer have the assembly language manual! It seems there's a wealth of opportunity being stifled by chip vendors protecting their existing electrical engineering market share at the expense of a chance at a massive new market in computation. Beyond enabling further work to improve outcomes in high-performance scientific and mathematical computing, this work would indicate to FPGA manufacturers that their customers are capable of generating useful innovations in compiler architecture, and, failing to convince them to change practices on that basis, generates experience that could be used to bring a satisfactory alternative to market.
 
 \bibliography{ref}
 \bibliographystyle{ieeetr}

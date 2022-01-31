@@ -101,7 +101,7 @@
 		     (while (phits-line-matching phits-parameter-regexp) (forward-line -1))
 		     (point)))))
 
-(defun phits-parameter-align ()
+(defun phits-parameter-align () ;; probably doesn't handle line continuation well...
   "Align current equals sign with equals sign above.  If there's no space, align every parameter above to accomodate current.  If there's no equals sign above, left-justify and add one space before equals sign."
   (let ((word-length (phits-match-length "<?\\(\\w\\|-\\)+>?" (phits-get-line)))
 	(equals-idx (string-match "=" (phits-prev-line))))
@@ -128,6 +128,9 @@
 	(beginning-of-line)
 	(re-search-forward "^[[:blank:]]*")
 	(replace-match "")))))
+
+(defun phits-grid-align ()
+  "Align a gridlike region to columns as best as can be managed.")
 
 (or (phits-line-matching phits-label-regexp) (phits-line-matching phits-section-regexp))
 
@@ -202,8 +205,7 @@
   :syntax-table phits-mode-syntax-table
   (setq-local abbrev-all-caps t)
   (setq-local font-lock-defaults `(,phits-font-lock nil t))
-  ;; TODO  (setq-local indent-line-function #'phits-indent-line)
-  )
+  (setq-local indent-line-function #'phits-indent-line))
 
 ;; (add-to-list 'auto-mode-alist '(".inp\\'" phits-mode))
 ;; (add-to-list 'auto-mode-alist '(".out\\'" phits-mode))

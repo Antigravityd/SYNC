@@ -1,0 +1,61 @@
+++\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{siunitx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{4141 HW 1}
+\author{Duncan Wilkie}
+\date{28 January 2021}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+The Stefan-Boltzmann law gives the power per unit area at the surface of the Sun as
+\[\frac{P}{A}=\sigma T^4=\frac{2\pi^5k^4}{15c^2h^3}T^4=\frac{2\pi^5(\SI{1.38e-23}{J/K})^4}{15(\SI{3e8}{m/s})^2(\SI{6.6e-34}{J\cdot s})^3}(\SI{6000}{K})^4=\SI{7.41e7}{W/m^2}\]
+The total power radiated is then
+\[P=A(\SI{7.41e7}{W/m^2})=(4\pi(\SI{7e8}{m}^2))(\SI{7.41e7}{W/m^2})=\SI{4.56e26}{W}\]
+This is the same total power that must be spread over the sphere with radius equal to the distance from the Earth to the Sun, so the power per unit area due to the sun on the Earth's surface is
+\[\frac{P}{A'}=\frac{\SI{4.56e26}{W}}{4\pi R'^2}=\frac{\SI{4.56e26}{W}}{4\pi(\SI{1.5e11}{m})^2}=\SI{1.61}{kW/m^2}\]
+
+\section{}
+The maximum kinetic energy of photoelectrons is
+\[K=h(v-v_0)=hv-W_f\]
+where $W_f=hv_0$ is the work function of the material in question and $h$ is Planck's constant.
+We have two points, so we may calculate these parameters easily. The frequencies corresponding to the two wavelengths are
+\[\nu_1=\frac{c}{\lambda_1}=\frac{\Si{3e8}{m/s}}{\SI{200e-9}{m}}=\SI{1.5e15}{Hz}, \nu_2=\frac{c}{\lambda_2}=\frac{\SI{3e8}{\SI{258e-9}{m}}}=\SI{1.16e15}{Hz}\]
+Planck's constant is the slope, so
+\[h=\frac{\SI{0.9}{eV}-\SI{2.3}{eV}}{\SI{1.16e15}{Hz}-\SI{1.5e15}{Hz}}=\SI{4.12e-15}{eV\cdot s}\]
+The work function may then be found by
+\[W_f=hv-K=(\SI{4.12e-15}{eV\cdot s})(\SI{1.5e15}{Hz})-\SI{2.3}{eV}=\SI{3.88}{eV}\]
+
+\section{}
+The maximum energy loss can be expected to be suffered when the photon rebounds completely, i.e. is scattered at $180^\circ$. By the Compton scattering formula, this results in a change in wavelength of the photon of
+\[\Delta \lambda=\frac{h}{m_ec}(1-\cos\theta)=\frac{\SI{6.6e-34}{J\cdot s}}{(\SI{9.11e-31}{kg})(\SI{3e8}{m/s})}(1-\cos{180})=\SI{4.83e-12}{m}\]
+This corresponds to a change in energy of the photon of
+\[\Delta E=\frac{h}{\Delta \lambda}=\frac{\SI{6.6e-34}{J\cdot s}}{\SI{4.83e-12}{m}}=\SI{1.37e-22}{J}=\SI{8.55e-4}{eV}\]
+This is by conservation of energy the maximum energy the electron can lose.
+
+\section{}
+The de Broglie wavelength of electrons of a given energy is
+\[\lambda=\frac{hc}{E}\Leftrightarrow E=\frac{hc}{\lambda}\]
+Calculating this for the given lambdas,
+\[E_i=\frac{(\SI{6.6e-34}{J\cdot s})(\SI{3e8}{m/s})}{\SI{15e-9}{m}}=\SI{1.32e-17}{J}=\SI{82}{eV}\]
+\[E_{ii}=\frac{(\SI{6.6e-34}{J\cdot s})(\SI{3e8}{m/s})}{\SI{0.5e-9}{m}}=\SI{3.96e-16}{J}=\SI{2472}{eV}\]
+These are the approximate electron energies needed to resolve the given separations.
+\section{}
+The energy corresponding to that spectrum is
+\[E=\frac{h}{\lambda}=\frac{\SI{6.6e-34}{J\cdot s}}{\SI{e-3}{m}}=\SI{6.6e-31}{J}\]
+If we presume this equates to a classical rotational kinetic energy of a rigid body of two point masses a fixed distance apart, we have
+\[E=\frac{1}{2}I\omega^2=\frac{1}{2}mr^2\omega^2\]
+where $m=\SI{3.3e-27}{kg}$ is the mass of a hydrogen molecule. If we write the angular velocity as $\omega=\frac{L}{I}=\frac{L}{mr^2}$ and apply quantization of angular momentum, so that $L=\hbar$, we obtain
+\[E=\frac{\hbar^2}{2mr^2}\Leftrightarrow r=\sqrt{\frac{\hbar^2}{2mE}}=\sqrt{\frac{(\SI{1.1e-34}{J\cdot s})^2}{2(\SI{3.3e-27}{kg})(\SI{6.6e-31}{J})}}=\SI{1.67e-6}{m}\]
+At this scale, the atoms would be visible with even low-magnification optics; this likely represents the failures of the classical model.
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

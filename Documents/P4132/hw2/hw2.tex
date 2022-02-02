@@ -1,0 +1,95 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{siunitx}
+
+\title{4132 HW 2}
+\author{Duncan Wilkie}
+\date{1 February 2022}
+
+\begin{document}
+
+\maketitle
+
+\section*{7.12}
+The flux through the loop is $\Phi=\vec{B}\cdot{\vec{A}}=BA=B_0\cos(\omega t)\frac{\pi a^2}{4}$. The induced emf is then
+\[\mathcal{E}=-\frac{d\Phi}{dt}=B_0\omega\sin(\omega t)\frac{\pi a^2}{4}\]
+The induced current is then by Ohm's law
+\[I=\frac{\mathcal{E}}{R}=B_0\omega\frac{\pi a^2}{4R}\sin(\omega t)\]
+
+\section*{7.15}
+Inside the solenoid, the magnetic field may be calculated via an Amperian loop as a rectangle in the radial plane from the axis of the solenoid:
+\[\int_L\vec{B}\cdot dl=\mu_0I_{enc}\Leftrightarrow BL=\mu_0(I(t)nL) \Leftrightarrow B=\mu_0nI(t)\]
+If we consider circular loops or radius $r<a$ coaxial with the solenoid, the flux through them is
+\[\Phi(t)=\vec{B}\cdot\vec{A}=BA=\mu_0n\pi r^2I(t)\]
+Applying Ampere's law again thanks to the quasistatic approximation, the electric field satisfies
+\[\int_L\vec{E}\cdot dl=-\frac{d\Phi}{dt}\Leftrightarrow 2\pi rE=-\mu_0n\pi r^2I'(t)\Leftrightarrow E=-\frac{1}{2}\mu_0nrI'(t)\]
+The electric field will be tangent to the loop, with unit vector oriented counterclockwise with respect to the direction of the magnetic field ($\hat{\phi}$ direction, same as the current) so that an increase in $I'$ and thus the magnetic field, which produces an increase in flux, results in a clockwise current producing a magnetic field opposing the change in flux.
+
+This same rationale holds outside the solenoid, but the radius term in the magnetic flux becomes fixed at $a$. The electric field is therefore
+\[\int_L\vec{E}\cdot dl=-\frac{d\Phi}{dt}\Leftrightarrow 2\pi rE=-\mu_0n\pi a^2I'(t)\Leftrightarrow E=-\mu_0n\frac{a^2}{2r}I'(t)\]
+in the same direction as above.
+
+\section*{7.17a}
+Using the flux expression derived in the second part of the above problem, the induced EMF is
+\[\mathcal{E}=-\mu_0n{\pi a^2}{}I'(t)\]
+The current in the loop is then by Ohm's law
+\[J(t)=-\frac{\mu_0nk\pi a^2}{R}\]
+By the directional argument given in the above problem, it flows in the opposite direction of the current, which is right through the resistor as it's drawn in the book.
+
+\section*{7.17b}
+When the solenoid is fully extracted, the flux is zero since there's no magnetic field. Before the pulling begins, the flux is the expression derived above. So
+\[\Delta \Phi=0-(-\mu_0n\pi a^2I)\]
+By definition of current,
+\[I=\frac{\Delta q}{\Delta t}=-\frac{1}{R}\frac{\Delta \Phi}{\Delta t}\Leftrightarrow \Delta q=-\frac{\Delta \Phi}{R}=-\frac{\mu_0n\pi a^2I}{R}\]
+This is the net charge passing through the resistor.
+
+\section*{7.23}
+Exploiting the symmetry of mutual inductance, we calculate the flux through the square if there were current $I$ in the big loop. The magnetic field inside the square is the sum of that due to two wires, since by the right-hand rule the resulting fluxes add. The field strength due to one wire is a standard expression derived in the book, so the flux due to one wire is
+\[\Phi_1=\int_A\vec{B}\cdot d\vec{a}=\int_a^{2a}\frac{\mu_0I}{2\pi s}ads=\frac{\mu_0aI}{2\pi}\ln(s)\bigg|_a^{2a}=\frac{\mu_0aI}{2\pi}\ln(2)\]
+The total flux is twice this, so
+\[\Phi=\frac{\mu_0aI}{\pi}\ln(2)\]
+The emf is then
+\[\mathcal{E}=-\frac{d\Phi}{dt}=-\frac{\mu_0ak}{\pi}\ln(2)\]
+The current by Lenz's law flows to produce a magnetic field opposing the change in flux. By the right-hand rule, the increasing current creates an increasing magnetic field directed into the page, if the assembly were to be drawn in one and the ``clockwise'' current directed accordingly. Therefore, the current flows counterclockwise to produce a magnetic field out of the page.
+
+\section*{7.27}
+The voltage drop across the capacitor is $V=\frac{q}{C}$. The voltage drop across the inductor is $L\frac{dI}{dt}$. Taking a Kirchoff loop starting at the negatively-charged side of the capacitor, the equation describing the system is then, presuming clockwise current,
+\[\frac{q}{C}+L\frac{dI}{dt}=0\]
+Writing the current in terms of its definition,
+\[q(t)+LC\frac{d^2q}{dt^2}=0\]
+Applying constant-coefficients, the auxiliary equation is $1+LCm^2=0\Leftrightarrow m=\pm\frac{i}{\sqrt{LC}}$
+This corresponds to a solution
+\[q(t)=A\sin\left(\frac{t}{\sqrt{LC}}+\delta\right)\]
+The initial condition $q(0)=CV$ implies $A\sin(\delta)=CV$. Additionally, the initial current can be expected to be zero, since at $t=0$ the charge is at its maximum (to say there was ever any more would violate conservation of charge), and so is a critical point, i.e. a zero of the derivative of charge in time.
+Differentiating,
+\[I(t)=\frac{A}{\sqrt{LC}}\cos\left(\frac{t}{\sqrt{LC}}+\delta\right)\Rightarrow I(0)=\cos(\delta)=0\Rightarrow \delta=\frac{\pi}{2}\]
+The current is therefore, combining the two initial conditions,
+\[I(t)=\frac{CV}{\sqrt{LC}}\sin\left(\frac{t}{\sqrt{LC}}\right)\]
+Including a resistor changes the original differential equation to
+\[q(t)+LC\frac{d^2q}{dt^2}+C\frac{dq}{dt}R=0\]
+The auxiliary equation is now $Lm^2+Rm+\frac{1}{C}=0$. By the quadratic formula,
+\[m_1=\frac{-R+\sqrt{R^2-4LC}}{2L}, m_2=\frac{-R-\sqrt{R^2-4LC}}{2L}\]
+This corresponds to a general solution
+\[q(t)=c_1\exp\left( t\frac{-R+\sqrt{R^2-4LC}}{2L} \right)+c_2\exp\left( t\frac{-R-\sqrt{R^2-4LC}}{2L} \right)\]
+Differentiating,
+\[I(t)=c_1m_1e^{m_1t}+c_2m_2e^{m_2t}\]
+Applying the same boundary conditions as before,
+\[CV=c_1+c_2\]
+and
+\[c_1m_1=-c_2m_2\Leftrightarrow c_1\frac{-R+\sqrt{R^2-4LC}}{2L}=-c_2\frac{-R-\sqrt{R^2-4LC}}{2L}\]
+Eliminating $c_2$ in the second equation using the first,
+\[c_1\frac{-R+\sqrt{R^2-4LC}}{2L}=(c_1-CV)\frac{-R-\sqrt{R^2-4LC}}{2L}\]
+\[\Leftrightarrow c_1=\left( CV\frac{-R+\sqrt{R^2-4LC}}{2L} \right)\left( \frac{-R+\sqrt{R^2-4LC}}{2L}-\frac{-R-\sqrt{R^2-4LC}}{2L} \right)^{-1}\]
+\[=CV\frac{-R+\sqrt{R^2-4LC}}{2\sqrt{R^2-4LC}}=\frac{CV}{2}-\frac{CVR}{2\sqrt{R^2-4LC}}\]
+\[\Rightarrow c_2=\frac{CV}{2}+\frac{CVR}{2\sqrt{R^2-4LC}}\]
+Overall,
+\[I(t)=\left( \frac{CV}{2}-\frac{CVR}{2\sqrt{R^2-4LC}} \right)\exp\left( t\frac{-R+\sqrt{R^2-4LC}}{2L} \right)\]\[+\left( \frac{CV}{2}+\frac{CVR}{2\sqrt{R^2-4LC}} \right)\exp\left( t\frac{-R-\sqrt{R^2-4LC}}{2L} \right)\]
+This is damped oscillation: if $R^2-4LC > 0$, $R > \sqrt{R^2-4LC}$, so the exponents of both exponentials are negative. This implies $I\to 0$ as $t\to \infty$. When $R^2-4LC < 0$, the situation is much less clear, but one can envision since there's a real and imaginary component in argument of the exponentials, it's like the case of an imaginary solution to an auxiliary equation in constant coefficients, and there is an exponential term dependent upon the real part in the amplitude of the final sign wave. Since the real part is in both cases negative, the same decay behavior is observed, albeit with more initial oscillation.
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

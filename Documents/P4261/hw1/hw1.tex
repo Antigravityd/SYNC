@@ -1,0 +1,39 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{siunitx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{4261 HW 1}
+\author{Duncan Wilkie}
+\date{3 February 2022}
+
+\begin{document}
+
+\maketitle
+
+\section*{1a}
+The partition function given corresponds to
+\[Z(\beta)=\frac{1}{(2\pi h)^3}\int \exp\left( -\beta\frac{\vec{p}^2}{2m} \right)d\vec{p}\int \exp\left( -\beta k\frac{\vec{x}^2}{2} \right)d\vec{x}\]
+The integral in one dimension
+\[I=\int_{-\infty}^\infty e^{-ax^2}dx\]
+may be calculated by first squaring the integral:
+\[I^2=\int_{-\infty}^\infty e^{-ax^2}dx\int_{-\infty}^\infty e^{-ay^2}dy=\int_{-\infty}^\infty\int_{-\infty}^\infty e^{-a(x^2+y^2)}dxdy\]
+Transforming to polar coordinates, the Jacobian determinant of which you'll recall is $rdrd\theta$, the above becomes
+\[I^2=\int_{0}^{2\pi}\int_0^\infty re^{-ar^2}drd\theta\]
+This can be solved trivially by a $u$-substitution $u=r^2$, $du=2rdr$:
+\[I^2=2\pi\left( \frac{1}{2}\int_0^\infty e^{-au}du\right)=\pi\left( -\frac{e^{-au}}{a}\bigg|_0^\infty \right)=\frac{\pi}{a}\]
+Therefore, the integral is equal to $\sqrt{\frac{\pi}{a}}$.
+
+The integral terms of the partition function are then a product of three such integrals with $a=\frac{\beta}{2m}$ for the three scalar variables of momentum and a product of three such integrals with $a=\frac{\beta k}{2}$ for the three scalar variables of position, i.e.
+\[Z(\beta)=\frac{1}{(2\pi h)^3}\left( \sqrt{\frac{\pi}{\beta/2m}} \right)^3\left( \sqrt{\frac{\pi}{\beta k/2}} \right)^3=\frac{m^{3/2}}{h^3\beta^3k^{3/2}}\]
+\section*{1b}
+Evaluating the above partition function at $\beta=\frac{1}$
+
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

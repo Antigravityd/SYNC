@@ -1,6 +1,6 @@
 #!/bin/bash
 
-phitsin_path="/home/dnw/PHITS/phits326A/phits/phits.in"
+
 phits_MPI="/home/dnw/PHITS/phits326A/phits/bin/phits326_lin_mpi.exe"
 phits_OMP="/home/dnw/PHITS/phits326A/phits/bin/phits326_lin_openmp.exe"
 phits_single="/home/dnw/PHITS/phits326A/phits/bin/phits326_lin.exe"
@@ -12,7 +12,8 @@ while getopts ":MOh" option; do
 	    echo "; see phits -h for help."
 	    exit;;
 
-	M)  # borrowed from calandoa on SO
+	M)  phitsin_path="$(pwd)/phits.in"
+	    # borrowed from calandoa on SO
 	    nextopt=${!OPTIND}
 	    if [[ $nextopt != -* && $nextopt != ${@: -1} ]] ; then
 		OPTIND=$((OPTIND + 1))

@@ -10,6 +10,7 @@
     "geometry"
     "siunitx"
     "amsmath"
+    "graphicx"
     "amssymb"))
  :latex)
 

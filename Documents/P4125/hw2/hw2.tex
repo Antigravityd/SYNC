@@ -13,8 +13,28 @@
 
 \maketitle
 
-\section*{}
-x
+\section*{1.34a}
+For process A, the volume is constant, so there is no work done on the gas. Therefore, $\Delta U=-Q$. There are five degrees of freedom, all quadratic, for a diatomic molecule with frozen-out vibrational modes; the internal energy is therefore $\frac{5}{2}kT_i$ at the beginning of the process and $\frac{5}{2}kT_f$ at the end. The delta is then, applying the equation of state,
+\[\Delta U=\frac{5}{2}k(T_f-T_i)=\frac{5}{2}\left(P_fV_f-P_iV_i \right)=\frac{5}{2}(P_2V_1-P_1V_1)\]
+The heat put into the gas is then $Q=\frac{5}{2}(P_1V_1-P_2V_1)$.
+
+For process B, the pressure is constant, so the work done by the gas is the integral $W=\int PdV$. Since the process is a horizontal line on the $PV$ diagram, this is just the area of the rectangle, i.e. $W=P(V_f-V_i)=P_2(V_2-V_1)$. The internal energy is the same as above, so the change in it is
+\[\Delta U=\frac{5}{2}k(T_f-T_i)=\frac{5}{2}(P_2V_2-P_2V_1)\]
+The heat put in the gas is therefore \[Q=P(V_f-V_i)-\frac{5P}{2}(V_f-V_i)=-\frac{3}{2}P_2(V_2-V_1)\]
+
+Processes C and D have the same formulas in terms of initial and final varaibles as processes A and B, just with different values for those variables.
+For process C,
+\[W=0\textrm{, } \Delta U=\frac{5}{2}(P_1V_2-P_2V_2)\textrm{, } Q=\frac{5}{2}(P_2V_2-P_1V_2)\]
+For process D,
+\[W=P_1(V_1-V_2)\textrm{, }\Delta U=\frac{5}{2}(P_1V_1-P_1V_2)\textrm{, }Q=-\frac{3}{2}P_1(V_1-V_2)\]
+
+\section*{1.34b}
+During step A, heat is added to the gas and the piston is held fixed. During step B, the piston is pulled back and heat added so the pressure remains constant. During step C, the piston is held fixed and heat is removed. During step D, the piston is pushed in and heat removed from the gas so the pressure remains constant.
+
+\section*{1.34c}
+These net values are just the sums of their values in each case, i.e.
+\[W=W_A+W_B+W_C+W_D=0+P_2(V_2-V_1)+0-\frac{3}{2}P_1(V_1-V_2)=(P_2+\frac{3}{2}P_1)(V_2-V_1)\]
+
 \end{document}
 %%% Local Variables:
 %%% mode: latex

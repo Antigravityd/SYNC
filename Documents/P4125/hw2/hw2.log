@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021 Gentoo Linux) (preloaded format=pdflatex 2022.1.18)  1 FEB 2022 23:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/Homebrew) (preloaded format=pdflatex 2021.9.30)  2 FEB 2022 17:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -7,9 +7,9 @@ entering extended mode
 (./hw2.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-02-18>
-(/usr/share/texmf-dist/tex/latex/base/article.cls
+(/usr/local/Cellar/texlive/58837/share/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
-(/usr/share/texmf-dist/tex/latex/base/size10.clo
+(/usr/local/Cellar/texlive/58837/share/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
 )
 \c@part=\count179
@@ -24,17 +24,18 @@ File: size10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
 \belowcaptionskip=\skip48
 \bibindent=\dimen138
 )
-(/usr/share/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/local/Cellar/texlive/58837/share/texmf-dist/tex/latex/geometry/geometry.s
+ty
 Package: geometry 2020/01/02 v5.9 Page Geometry
 
-(/usr/share/texmf-dist/tex/latex/graphics/keyval.sty
+(/usr/local/Cellar/texlive/58837/share/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks15
 )
-(/usr/share/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/local/Cellar/texlive/58837/share/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 
-(/usr/share/texmf-dist/tex/generic/iftex/iftex.sty
+(/usr/local/Cellar/texlive/58837/share/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2020/03/06 v1.0d TeX engine tests
 ))
 \Gm@cnth=\count187
@@ -50,29 +51,31 @@ Package: iftex 2020/03/06 v1.0d TeX engine tests
 \Gm@layoutvoffset=\dimen146
 \Gm@dimlist=\toks16
 )
-(/usr/share/texmf-dist/tex/latex/siunitx/siunitx.sty
-(/usr/share/texmf-dist/tex/latex/l3kernel/expl3.sty
+(/usr/local/Cellar/texlive/58837/share/texmf-dist/tex/latex/siunitx/siunitx.sty
+(/usr/local/Cellar/texlive/58837/share/texmf-dist/tex/latex/l3kernel/expl3.sty
 Package: expl3 2021-02-18 L3 programming layer (loader) 
 
-(/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+(/usr/local/Cellar/texlive/58837/share/texmf-dist/tex/latex/l3backend/l3backend
+-pdftex.def
 File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count190
 \l__pdf_internal_box=\box47
 ))
-(/usr/share/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
-(/usr/share/texmf-dist/tex/latex/l3packages/xparse/xparse-2020-10-01.sty
-(/usr/share/texmf-dist/tex/latex/l3packages/xparse/xparse-generic.tex)))
+(/usr/local/Cellar/texlive/58837/share/texmf-dist/tex/latex/l3packages/xparse/x
+parse.sty
+(/usr/local/Cellar/texlive/58837/share/texmf-dist/tex/latex/l3packages/xparse/x
+parse-2020-10-01.sty
+(/usr/local/Cellar/texlive/58837/share/texmf-dist/tex/latex/l3packages/xparse/x
+parse-generic.tex)))
 Package: siunitx 2020/02/25 v2.8b A comprehensive (SI) units package
 
-(/usr/share/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/local/Cellar/texlive/58837/share/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01 AMS text
-
-(/usr/share/texmf-dist/tex/latex/amsmath/amsgen.sty
+(/usr/local/Cellar/texlive/58837/share/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks17
 \ex@=\dimen147
-))
-(/usr/share/texmf-dist/tex/latex/tools/array.sty
+)) (/usr/local/Cellar/texlive/58837/share/texmf-dist/tex/latex/tools/array.sty
 Package: array 2020/10/01 v2.5c Tabular extension package (FMi)
 \col@sep=\dimen148
 \ar@mcellbox=\box48
@@ -82,7 +85,8 @@ Package: array 2020/10/01 v2.5c Tabular extension package (FMi)
 \backup@length=\skip50
 \ar@cellbox=\box49
 )
-(/usr/share/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+(/usr/local/Cellar/texlive/58837/share/texmf-dist/tex/latex/l3packages/l3keys2e
+/l3keys2e.sty
 Package: l3keys2e 2021-03-12 LaTeX2e option processing using LaTeX3 keys
 )
 \l__siunitx_tmp_box=\box50
@@ -126,19 +130,19 @@ Package: l3keys2e 2021-03-12 LaTeX2e option processing using LaTeX3 keys
 \l__siunitx_table_number_align_skip=\skip53
 \l__siunitx_table_text_align_skip=\skip54
 
-(/usr/share/texmf-dist/tex/latex/translator/translator.sty
+(/usr/local/Cellar/texlive/58837/share/texmf-dist/tex/latex/translator/translat
+or.sty
 Package: translator 2020-08-03 v1.12c Easy translation of strings in LaTeX
 ))
-(/usr/share/texmf-dist/tex/latex/amsmath/amsmath.sty
+(/usr/local/Cellar/texlive/58837/share/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2020/09/23 v2.17i AMS math features
 \@mathmargin=\skip55
-
 For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-dist/tex/latex/amsmath/amsbsy.sty
+(/usr/local/Cellar/texlive/58837/share/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen162
-)
-(/usr/share/texmf-dist/tex/latex/amsmath/amsopn.sty
+) (/usr/local/Cellar/texlive/58837/share/texmf-dist/tex/latex/amsmath/amsopn.st
+y
 Package: amsopn 2016/03/08 v2.02 operator names
 )
 \inf@bad=\count274
@@ -179,18 +183,19 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
 LaTeX Info: Redefining \[ on input line 2923.
 LaTeX Info: Redefining \] on input line 2924.
 )
-(/usr/share/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/local/Cellar/texlive/58837/share/texmf-dist/tex/latex/amsfonts/amssymb.st
+y
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
-(/usr/share/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+(/usr/local/Cellar/texlive/58837/share/texmf-dist/tex/latex/amsfonts/amsfonts.s
+ty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-))
-No file hw2.aux.
+)) (./hw2.aux)
 \openout1 = `hw2.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
@@ -207,6 +212,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
 LaTeX Font Info:    ... okay on input line 12.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
 LaTeX Font Info:    ... okay on input line 12.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -241,42 +247,54 @@ LaTeX Font Info:    ... okay on input line 12.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-(/usr/share/texmf-dist/tex/latex/siunitx/siunitx-abbreviations.cfg
+
+(/usr/local/Cellar/texlive/58837/share/texmf-dist/tex/latex/siunitx/siunitx-abb
+reviations.cfg
 File: siunitx-abbreviations.cfg 2017/11/26 v2.7k siunitx: Abbreviated units
 )
-(/usr/share/texmf-dist/tex/latex/translator/translator-basic-dictionary-English
-.dict
+(/usr/local/Cellar/texlive/58837/share/texmf-dist/tex/latex/translator/translat
+or-basic-dictionary-English.dict
 Dictionary: translator-basic-dictionary, Language: English 
 )
 LaTeX Font Info:    Trying to load font information for U+msa on input line 12.
 
- (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
+
+(/usr/local/Cellar/texlive/58837/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 12.
 
 
-(/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
+(/usr/local/Cellar/texlive/58837/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+)
+[1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./hw2.aux) ) 
+{/usr/local/Cellar/texlive/58837/share/texmf-dist/fonts/map/pdftex/updmap/pdfte
+x.map}] (./hw2.aux) ) 
 Here is how much of TeX's memory you used:
- 4566 strings out of 480954
- 97300 string characters out of 5908242
- 364144 words of memory out of 5000000
- 21783 multiletter control sequences out of 15000+600000
+ 4571 strings out of 478994
+ 99017 string characters out of 5851139
+ 376179 words of memory out of 5000000
+ 22039 multiletter control sequences out of 15000+600000
  413499 words of font info for 68 fonts, out of 8000000 for 9000
- 14 hyphenation exceptions out of 8191
- 71i,6n,75p,219b,195s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr17.pfb>
-Output written on hw2.pdf (1 page, 26851 bytes).
+ 1141 hyphenation exceptions out of 8191
+ 71i,6n,75p,404b,195s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/Cellar/texlive/58837/share/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmbx12.pfb></usr/local/Cellar/texlive/58837/share/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/Cellar/texlive/58837
+/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/Cellar/
+texlive/58837/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/l
+ocal/Cellar/texlive/58837/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10
+.pfb></usr/local/Cellar/texlive/58837/share/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmr12.pfb></usr/local/Cellar/texlive/58837/share/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr17.pfb></usr/local/Cellar/texlive/58837/share/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/Cellar/texlive/58837/share/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on hw2.pdf (1 page, 86708 bytes).
 PDF statistics:
- 20 PDF objects out of 1000 (max. 8388607)
- 13 compressed objects within 1 object stream
+ 44 PDF objects out of 1000 (max. 8388607)
+ 31 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

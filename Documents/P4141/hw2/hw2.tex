@@ -1,0 +1,26 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{siunitx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{4141 HW 2}
+\author{Duncan Wilkie}
+\date{4 February 2022}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+The probability amplitude is
+\[P=\int_\mathbb{R}\psi\psi^*=\int_\mathbb{R}|\psi^2|=C^2\int_{-\infty}^\infty\frac{1}{(a^2+x^2)^2}dx\]
+Using the substitution $x=a\tan u$, $dx=a\sec^2u du$ this is
+\[=C^2\int\frac{a\sec^2u}{a^2+a^2\tan^2u}du=C^2\int\frac{a\sec^2u}{a^2(\sec^2u)}du\]
+\[=\frac{C^2}{a}\int du=\frac{C^2}{a}u=\frac{C^2}{a}\tan^{-1}\left( \frac{x}{a} \right)\bigg|_{-\infty}^\infty=\frac{\pi C^2}{a}\]
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

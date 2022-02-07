@@ -5,6 +5,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 
+\DeclareMathOperator{\Res}{Res}
 \title{4141 HW 2}
 \author{Duncan Wilkie}
 \date{4 February 2022}
@@ -14,11 +15,35 @@
 \maketitle
 
 \section{}
-The probability amplitude is
-\[P=\int_\mathbb{R}\psi\psi^*=\int_\mathbb{R}|\psi^2|=C^2\int_{-\infty}^\infty\frac{1}{(a^2+x^2)^2}dx\]
+The total probability of such a wave function is
+\[1=\int_\mathbb{R}\psi\psi^*=\int_\mathbb{R}|\psi|^2=C^2\int_{-\infty}^\infty\frac{1}{(a^2+x^2)^2}dx\]
 Using the substitution $x=a\tan u$, $dx=a\sec^2u du$ this is
-\[=C^2\int\frac{a\sec^2u}{a^2+a^2\tan^2u}du=C^2\int\frac{a\sec^2u}{a^2(\sec^2u)}du\]
-\[=\frac{C^2}{a}\int du=\frac{C^2}{a}u=\frac{C^2}{a}\tan^{-1}\left( \frac{x}{a} \right)\bigg|_{-\infty}^\infty=\frac{\pi C^2}{a}\]
+\[=C^2\int\frac{a\sec^2u}{(a^2+a^2\tan^2u)^2}du=C^2\int\frac{a\sec^2u}{a^4\sec^4u}du\]
+\[=\frac{C^2}{a^3}\int \cos^2(u)du=\frac{C^2}{a^3}\left( \int \frac{1}{2}-\frac{1}{2}\cos(2u) du\right)=\frac{C^2}{2a^3}\left(u-\frac{1}{2}\sin(2u)  \right)\]\[=\frac{C^2}{2a^3}\left( \tan^{-1}\left( \frac{x}{a} \right)\bigg|_{-\infty}^\infty-\frac{1}{2}\sin\left[ 2\tan^{-1}\left(  \frac{x}{a}\right)\right]\bigg|_{-\infty}^\infty \right)=\frac{C^2}{2a^3}\left( \pi-\frac{1}{2}\left[ \sin\left( c \right) -\sin\left( {-\pi} \right)\right] \right)\]
+\[=\frac{\pi C^2}{2a^3}\Leftrightarrow C=\sqrt{\frac{2a^3}{\pi}}\]
+The wave function therefore must be
+\[\psi(x)=\frac{\sqrt{2a^3/\pi}}{a^2+x^2}\]
+which is valid for any fixed $a$.
+The expectation values are:
+\[\langle x \rangle=\int_\mathbb{R}x|\psi(x)|^2dx=\frac{2a^3}{\pi}\int_{-\infty}^\infty\frac{x}{(a^2+x^2)}dx=\frac{a^3}{\pi}\int_{-\infty}^\infty\frac{1}{u^2}du=\frac{a^3}{\pi}\left( -\frac{1}{a^2+x^2}\bigg|_{-\infty}^\infty \right)=0\]
+\[\langle x^2 \rangle=\int_\mathbb{R}x^2|\psi(x)|^2dx=\frac{2a^3}{\pi}\int_{-\infty}^\infty\frac{x^2}{(a^2+x^2)^2}dx=\frac{2a^3}{\pi}\int_{-\infty}^\infty\frac{x^2+a^2-a^2}{(a^2+x^2)^2}dx\]
+\[=\frac{2a^3}{\pi}\int_{-\infty}^\infty\frac{1}{x^2+a^2}-\frac{a^2}{(a^2+x^2)^2}dx=\frac{2a^3}{\pi}\left( \frac{1}{a}\tan^{-1}\left( \frac{x}{a} \right)\bigg|_{-\infty}^\infty-a^2\frac{1}{C^2}\right)=2a^2-a^2=a^2\]
+The Fourier transform is
+\[\mathcal{F}(\psi)=\frac{\sqrt{2a^3/\pi}}{2\pi \hbar}\int_{-\infty}^\infty\frac{\exp\left( i\frac{px}{\hbar} \right)}{a^2+x^2}dx=\frac{\sqrt{2a^3/\pi}}{2\pi\hbar}\int_{-\infty}^\infty\frac{\cos\left(\frac{p}{\hbar}x \right)+i\sin\left( \frac{p}{\hbar}x \right)}{a^2+x^2}dx\]
+\[=\frac{\sqrt{2a^3/\pi}}{2\pi\hbar}\left( \int_{-\infty}^\infty\frac{\cos\left( \frac{p}{\hbar}x \right)}{a^2+x^2}dx +i\int_{-\infty}^\infty\frac{\sin\left( \frac{p}{\hbar}x \right)}{a^2+x^2}dx\right)\]
+The imaginary part is the integral of the product of an even and odd function that is therefore odd, and so is equal to zero. The problem is therefore to calculate an integral of the form
+\[I=\int_{-\infty}^\infty f(x)\cos(cx)dx\]
+This is a standard task in Fourier analysis, one so common the Brown-Churchill complex variables text includes a section on solving improper integrals of this form.
+
+In this case, we introduce the complex function $f(z)=\frac{1}{z^2+a^2}$. Its singularities are $z=\pm ia$, so for any sufficiently large $R$ forming the radius of a semicircle centered on the origin in the upper half-plane, the integration around the boundary of the semicircle is
+\[\int_C\frac{\exp\left( i\frac{pz}{\hbar} \right)}{z^2+a^2}dz+\int_{-R}^R\frac{\exp\left( i\frac{px}{\hbar} \right)}{x^2+a^2}dx=2\pi i\underset{z=ia}{\Res} \left[ \frac{\exp\left( i\frac{pz}{\hbar} \right)}{z^2+a^2}\right]\]
+where $C$ denotes the arc of the semicircle and Cauchy's residue theorem has been used. We may write the function in the argument of the residue operator as
+\[\frac{\exp\left( i\frac{pz}{\hbar} \right)/(z+ia)}{z-ia}\]
+This implies that the value of the residue is the numerator evaluated at the pole, so the total contour integral is equal to
+\[2\pi i\left( \frac{\exp\left( i\frac{p}{\hbar}(ia) \right)}{ia+ia} \right)=\frac{\pi}{a}e^{-pa/\hbar}\]
+Now we show that the real part of the integral over $C$ goes to zero as $R\to\infty$, so the number above is the result.
+\[\left| \Re\int_C\frac{\exp\left( i\frac{pz}{\hbar} \right)}{z^2+a^2} \right|\leq \left| \int_C\frac{\exp\left( i\frac{pz}{\hbar} \right)}{z^2+a^2} \right|\leq \int_C\frac{1}{|z^2+a^2|}\to 0\]
+where the last inequality is a consequence of the triangle inequality: the magnitude of a sum is less than the sum of magnitudes.
 \end{document}
 %%% Local Variables:
 %%% mode: latex

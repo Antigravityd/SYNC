@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021 Gentoo Linux) (preloaded format=pdflatex 2022.1.18)  8 FEB 2022 22:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021 Gentoo Linux) (preloaded format=pdflatex 2022.1.18)  10 FEB 2022 09:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**hw3.tex
-(./hw3.tex
+**hw2.tex
+(./hw2.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-02-18>
 (/usr/share/texmf-dist/tex/latex/base/article.cls
@@ -189,8 +189,8 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)) (./hw3.aux)
-\openout1 = `hw3.aux'.
+)) (./hw2.aux)
+\openout1 = `hw2.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
 LaTeX Font Info:    ... okay on input line 12.
@@ -260,29 +260,59 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 12.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] (./hw3.aux) ) 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (5.74158pt too wide) in paragraph at lines 83--83
+[]\OT1/cmtt/m/n/10 [e**2*m*n*t/(B**2*e**2*t**2 + m**2),     B*e**3*n*t**2/(B**2
+*e**2*t**2 + m**2), 0],[] 
+ []
+
+
+Overfull \hbox (5.74158pt too wide) in paragraph at lines 83--83
+[]\OT1/cmtt/m/n/10 [-B*e**3*n*t**2/(B**2*e**2*t**2 + m**2), e**2*m*n*t/(B**2*e*
+*2*t**2 + m**2),    0],[] 
+ []
+
+
+Overfull \hbox (10.99153pt too wide) in paragraph at lines 83--83
+[]\OT1/cmtt/m/n/10 [0,                                      0,                 
+           e**2*n*t/m]])[] 
+ []
+
+[2] [3] [4] [5] [6]
+Overfull \hbox (4.37137pt too wide) detected at line 207
+\OML/cmm/m/it/10 ^^M \OT1/cmr/m/n/10 = [][] \OMS/cmsy/m/n/10 ) \OML/cmm/m/it/10
+ E[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 k[]T[] \OT1/cmr/m/n/10 = [][] = [][] = 
+[] []
+ []
+
+[7] (./hw2.aux) ) 
 Here is how much of TeX's memory you used:
- 4572 strings out of 480954
- 97355 string characters out of 5908242
- 376135 words of memory out of 5000000
- 21787 multiletter control sequences out of 15000+600000
- 413499 words of font info for 68 fonts, out of 8000000 for 9000
+ 4584 strings out of 480954
+ 97485 string characters out of 5908242
+ 382135 words of memory out of 5000000
+ 21793 multiletter control sequences out of 15000+600000
+ 415439 words of font info for 74 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 71i,8n,75p,330b,601s stack positions out of 5000i,500n,10000p,200000b,80000s
-<
-/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
-0.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/sha
-re/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-sy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on hw3.pdf (4 pages, 122926 bytes).
+ 71i,14n,75p,511b,782s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.e
+nc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmmi5.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
+/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr5.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
+usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-dist/fonts/ty
+pe1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/type1/publi
+c/amsfonts/symbols/msbm7.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super
+/sfrm1000.pfb>
+Output written on hw2.pdf (7 pages, 173872 bytes).
 PDF statistics:
- 61 PDF objects out of 1000 (max. 8388607)
- 43 compressed objects within 1 object stream
+ 93 PDF objects out of 1000 (max. 8388607)
+ 67 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

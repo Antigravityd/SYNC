@@ -5,8 +5,100 @@
 
 * Motivation
 
-Tyranny-free social media is great. However, new platforms lead to fragmented user bases, which ostensibly increases political division and hostility. What if there were a platform that could integrate all of the different alternatives, allowing content from every media site one uses to be displayed in a single place? Moreover, this could allow one to browse glowy sites in safe ways---taking hints from the crypto world, one could perhaps pool together locally-stored user subscription fetch requests at random and query the Youtube API for all at once, which would prevent them from collecting meaningful data. The working name, Yggdrasil, is a rather on-the-nose Norse cosmological analogy to the World Tree, which unites the Nine Worlds.
+YouTube has a technical monopoly on video content delivery.
+
+I mean this in the sense Milton Friedman defined: a "monopoly...[arising] because it is technically efficient to have a single producer or enterprise." The value of a social network is largely dependent on its user base, and no matter how technically excellent a video platform may be, if it lacks creators posting content and users consuming it there is no reason for either the creators or the users to change platforms. Any competitor looking to attract converts from YouTube must have a user base large enough that there is no loss for the creator in switching, and a large enough creator base that there is no loss for the user in switching—quite the catch-22.
+
+A quite reasonable counter-argument is that it's not necessary for either to fully convert, stopping use of YouTube entirely. However, the principle at work remains an obstacle to competition even if the game isn't zero-sum. It is incredibly frustrating for users to hop between apps, accounts, and interfaces merely to access exactly the same fundamental service. Likewise, it takes a nontrivial amount of additional effort for a creator to host their content on multiple platforms, particularly if they're the type to interact with their viewers a lot. The additional value of the alternative, then, must still overcome the costs of these frictions in order to win users and start the flywheel spinning of its own accord.
+
+Competition is again obstructed by many, similar-sized ants fighting for the scraps the giant happens to let go. With Rumble, LBRY, Bitchute, and so many others necessarily competing against each other as well as YouTube, it makes it even more unlikely for any one of them to win.
+
+However, what if those competitors could challenge the conditions of the monopoly? In Friedman's words, "[i]n a rapidly changing society...the conditions making for technical monopoly frequently change and I suspect that both public regulation and public monopoly are likely to be less responsive to such changes in conditions...than private monopoly." The locus of YouTube's dominance is that it is easier to use one video platform than multiple. What if there were a platform that could integrate all of the different alternatives, allowing content from every media site one uses to be displayed in a single place? Such a platform could integrate the good features of those which already exist, have options to greatly enhance users' capital-f Freedom, and prevent the political monoculture that doubtless discourages some of the less-based from exploring the alternatives.
+
+Such integration could also be extended to social medias of all types, remedying similar effects present in Twitter alternatives and so on. It also would make easier using social media in general, since switching apps would no longer be necessary.
+
+* Feasibility
+
+The only player which stands to lose from such integration is YouTube. Smaller platforms would win users by being accessible through the unified location, and so would be incentivized to provide an API to the developer, if only through contract. And making a YouTube "API" is already possible: since it's so big, tools like =youtube-dl= have been made to supplement the functionality officially provided (legality questionable, but the legal buck is easily passed to the end user).
+
+Beyond cooperation from the separate platforms, the only other challenges are of nature common to every project seeking to provide a Web-oriented, multi-platform, user-friendly application.
+
+* Similar Work
+
+The [[https://matrix.org/][Matrix]] protocol, used for private text and voice communication, has managed to provide a similar level of integration using "bridges" to text and voice chats on existing platforms, like the myriad IRC servers and Discord. It may be advisable to follow a similar pattern of specifying an open protocol alongside some official client and server infrastructure, allowing users to write their own interfaces to suit their needs (e.g. the Emacs clients for Matrix) and allowing video platforms to provide APIs conforming to the standard that are then easily integrated with existing clients.
+
+Compatibility with Matrix would be desirable as well.
 
 * Implementation
 
-This is probably best implemented as a highly streamlined RSS viewer, preferrably written with a very portable framework like Qt.
+A dynamic list of features it'd be nice to have and implementation details
+
+** Free-As-In-Freedom and Private by Default
+
+*** As Federated As Possible
+
+Why pay for servers when users would prefer you didn't?
+
+*** E2EE
+
+'Nuff said.
+
+*** User Request Pooling
+
+Monero, a hyper-private cryptocurrency, anonymizes transactions on the blockchain by processing them in pools. Similarly, a sort of VPN-like pooling of video platform requests could be done to prevent YouTube's undesirable data collection policies.
+
+*** Web 3.0 Profit Model
+
+Having opt-in cryptocurrency mining instead of advertisement as an economic engine frees the parent company from worrying about "advertiser-friendly content."
+
+*** Local Content Algorithm
+
+Why can't users decide how they want content served? An official default could be provided, but doing content recommendation client-side would enable users to decide what criteria they would like to set for recommending content, as well as full transparency over what the algorithm does.
+
+An example use-case would be far better parental control options, where parents could collaborate on methods for filtering out the absolutely absurd drivel that gets onto YouTube Kids these days, and filtering in general-audience educational content (e.g. Mr. Carlson's Lab, an electronics repair channel, I would consider absolutely suitable for my child to watch but is not technically kid-friendly in the eyes of Susan &co., whereas many leftist-propaganda-ridden channels thrive on Kids).
+
+** A "Creator Dashboard" Client
+
+The technical monopoly is twofaceted: both the creators and the users correspond to forces that impede competition which it'd be desirable to mitigate. Having an application that could automatically mirror content on multiple platforms and aggregate performance statistics, user feedback, and revenue from them all would help with this other half of the problem.
+
+** Internal Tech Stack
+
+I've drunk the Kool-Aid on functional programming, Lisp, Rust, and friends. Writing server applications using Haskell, web apps in WASM, native clients in Rust, user configuration in Scheme, and so on, would be the stack I'd prefer to work with. It would also provide a practical test of these more academic tools in an industrial setting, generating feedback I'm certain the academics would love.
+
+** Platform Categories
+
+*** Video
+
+YouTube alternatives; the primary focus initially.
+
+*** Image
+
+Instagram and derivatives
+
+*** Sloganeering
+
+Twitter, Gettr, and other hells-on-earth.
+
+*** Chat
+
+This'd be copying Matrix's homework. The infrastructure thus-developed would be useful in deploying comment interfaces for other platforms.
+
+*** Video Conferencing / Remote Work
+
+Zoom, Microsoft Teams, Slack, and on down.
+
+*** Long Text
+
+Ability to read Substack, blogs, and so on. This is likely the easiest technically, since RSS feeds already exist.
+
+*** Message Boards
+
+4chan, Reddit, Tumblr, and other cesspools.
+
+*** Crowdfunding
+
+Less "social," but recent events highlight its necessity. Many people use services like Patreon, Subscribestar, and so on to compensate creators on other platforms of all types, and this space suffers from the same fragmentation as social media.
+
+*** Pure Networking
+
+Facebook, Linkedin, and others whose primary value is connecting users.

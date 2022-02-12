@@ -1,0 +1,15 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file nil
+
+
+* Satellite Kernel
+:PROPERTIES:
+:ARCHIVE_TIME: 2022-02-12 Sat 00:21
+:ARCHIVE_FILE: ~/Roam/20220211232010-celerity.org
+:ARCHIVE_OLPATH: Implementation/Components
+:ARCHIVE_CATEGORY: ???
+:END:
+
+I don't even know if it counts as a kernel, because it need only do one thing: run a JIT compiler for the corresponding MLIR dialect(s). Closest thing would be an exokernel, because the JIT compiler ought to have /carte blanche/ control over how the node is managed.

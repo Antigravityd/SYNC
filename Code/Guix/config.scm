@@ -1,3 +1,4 @@
+
 (use-modules (gnu))
 (use-service-modules networking ssh)
 (use-package-modules screen ssh)
@@ -33,5 +34,4 @@
 				  (openssh-configuration
 				   (openssh openssh-sans-x)
 				   (port-number 2222))))
-		   %base-services))
- )
+		   %base-services)))

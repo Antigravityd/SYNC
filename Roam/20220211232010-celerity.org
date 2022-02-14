@@ -22,7 +22,7 @@ The closed-source, not-for-distribution Microsoft Helios is an apparently succes
 
 ** Specification-First
 
-It isn't likely that the original open source implementation will remain in any way resembling its eventual forms. Look at the *NIX world; there is so much fragmentation one might consider it almost inevitable. POSIX was an afterthought, which is among the many reasons it's nearly never followed. Having a complete specification alongside the initial release of the operating system would, along with serving as documentation and explanation, serve to ease the negative consequences of that fragmentation, as designers of derivatives and applications meant to work across those derivatives could consider how to implement things so that they break only where it's strictly necessary.
+It isn't likely that the original open source implementation will remain in any way resembling its eventual forms. Look at the *NIX world; there is so much fragmentation one might consider it almost inevitable. POSIX and SUS were an afterthought, which is among the many reasons they're nearly never followed. Having a complete specification alongside the initial release of the operating system would, along with serving as documentation and explanation, serve to ease the negative consequences of that fragmentation, as designers of derivatives and applications meant to work across those derivatives could consider how to implement things so that they break only where it's strictly necessary.
 
 ** Modern Language
 
@@ -40,7 +40,11 @@ Microkernel, because monolithic bad. Probably should target x86_64.
 
 *** Satellite Kernel
 
-I don't even know if it counts as a kernel, because it need only do one thing: run a JIT compiler/interpreter for the corresponding MLIR dialect(s) coming over the wire. Closest thing might be an exokernel or megalithic kernel, because the JIT compiler ought to have /carte blanche/ control over how the node is managed.
+I don't even know if it counts as a kernel, because it need only do one thing: run a JIT compiler/interpreter for the corresponding MLIR dialect(s) coming over the wire. The closest thing might be an exokernel or megalithic kernel, because the JIT compiler ought to have /carte blanche/ control over how the node is managed.
+
+The MLIR instructions would come off the control bus at some speed. If the execution speed is faster than the bus throughput, the satellite waits a while in between instructions; if the execution is slower, a buffer of instructions is accumulated (ideally without processor intervention using DMA or something).
+
+Executing arbitrary MLIR text with no filtering may run into issues with how low-level assembly can be. The master kernel must therefore allocate a sensibly complete unit of MLIR for each satellite.
 
 *** Glue Architecture
 
@@ -69,3 +73,11 @@ This is so critical to the performance of the operating system that it may call 
 *** Scheduling
 
 Reading required. Some system that assesses network performance among the satellites, takes into account the costs and benefits of using a faster on-chip but slower in-route FPGA satellite versus a closer, slower CPU one, and all that. There's whole journals on distributed systems; my guess is this is one of the primary problems of interest.x
+
+*** Executable Format
+
+ELF should be sufficient. The
+
+*** Drivers
+
+The NetBSD [[https://wiki.netbsd.org/rumpkernel/][rump kernels]] may be an easy way to get a whole lot of hardware support easily.

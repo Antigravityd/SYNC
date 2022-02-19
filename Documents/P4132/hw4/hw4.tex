@@ -14,9 +14,66 @@
 \maketitle
 
 \section*{8.2a}
+As in the other problem, the capacitance is
+\[C=\frac{q(t)}{V}=\frac{\epsilon_0 A}{d}\Leftrightarrow V=\frac{wq(t)}{\epsilon_0A}\Rightarrow \vec{E}=\frac{q(t)}{\pi\epsilon_0a^2}\hat{z}=\frac{It}{\pi\epsilon_0 a^2}\hat{z}\]
+presuming the current is along $\hat{z}$.
+Differentiating,
+\[\frac{\partial\vec{E}}{\partial t}=\frac{I}{\pi\epsilon_0 a^2}\hat{z}\]
+By the Amp\`ere-Maxwell equation, observing that there's no current through the gap, we have
+\[\nabla\times \vec{B}=\mu_0\epsilon_0\frac{\partial\vec{E}}{\partial t}=\frac{\mu_0I}{\pi a^2}\hat{z}\]
+Integrating over a disc centered on the axis of the wire with radius $s \ll a$,
+\[\int_C\vec{B}\cdot d\vec{\ell}=\int_0^{2\pi}\int_0^s \frac{\mu_0I}{\pi a^2}rdrd\theta \Rightarrow 2\pi s B=\mu_0 I \frac{s^2}{a^2} \Leftrightarrow  B = \frac{\mu_0 I}{2\pi a^2}s\]
+directed in the $\hat{\phi}$ direction.
 
+\section*{8.2b}
+The energy density is
+\[u_{em}=\frac{1}{2}\left( \epsilon_0E^2+\frac{1}{\mu_0}B^2 \right)=\frac{1}{2}\left( \frac{I^2t^2}{\epsilon_0\pi^2a^4}+\frac{\mu_0I^2s^2}{4\pi^2a^4} \right)=\frac{I^2}{2\pi^2a^4}\left( \frac{t^2}{\epsilon_0}+\frac{\mu_0 s^2}{4} \right)\]
+The Poynting vector is
+\[\vec{S}=\frac{1}{\mu_0}\left( \vec{E}\times\vec{B} \right)=\frac{I^2ts}{2\epsilon_0\pi^2a^4}\hat{s}\]
 
+\section*{8.2c}
+The total energy in the gap is the integral of the energy density over the gap:
+\[E=\int_Vu_{em}dV=\frac{I^2}{2\pi^2a^4}\int_0^w\int_0^{2\pi}\int_0^a\left( \frac{t^2}{\epsilon_0}+\frac{\mu_0 s^2}{4}\right)sdsd\phi dz=\frac{I^2}{2\pi^2a^4}\left( \pi w\frac{a^2t^2}{\epsilon_0} +\pi w\frac{\mu_0a^4}{8}\right)\]
+\[=\frac{wI^2}{2\pi a^2}\left( \frac{t^2}{\epsilon_0}+\frac{\mu_0a^2}{8} \right)\]
+The total power flowing into the gap is the integral of the Poynting vector over the surface of the gap. It's pointed radially outwards, so it's parallel to the caps and perpendicular to the sides of the cylinder, implying
+\[P=\int_0^w\int_0^{2\pi}\frac{I^2ta}{2\epsilon_0\pi^2 a^4}ad\phi dz=\frac{wt I^2}{\epsilon_0\pi a^2}\]
+Differentiating the total energy in the gap, we obtain
+\[\frac{dE}{dt}=\frac{wtI^2}{\epsilon_0\pi a^2}=P\]
 
+\section*{8.4a}
+We may take the midpoint of the line connecting the two charges to be the origin, and the line to be the $z$ axis. The plane is then the $x$-$y$ plane. The vector from a general point $(r,\theta, z)$ to each of the charges in the spherical coordinate system using this origin is the vector difference $\vec{r}-\vec{s}$ where $r$ is the vector from the origin to $(r,\theta,z)$ and $\vec{s}$ is the vector from the origin to the charge in question. The electric field is then
+\[\vec{E}=\frac{kq}{r^2+\theta^2+(z-a)^2}(\hat{r}-\hat{z})+\frac{kq}{r^2+\theta^2+(z+a)^2}(\hat{r}+\hat{z})\]
+\[=\left( \frac{kq}{r^2+\theta^2+(z+a)^2}+\frac{kq}{r^2+\theta^2+(z-a)^2}\right)\hat{r}+\left( \frac{kq}{r^2+\theta^2+(z+a)^2}-\frac{kq}{r^2+\theta^2+(z-a)^2}\right)\hat{z}\]
+The magnetic field is of course zero, as the charges are stationary. The Maxwell stress tensor is componentwise
+\[T_{ij}=\epsilon_0\left( E_iE_j-\frac{1}{2}\delta_{ij}E^2\right)+\frac{1}\mu_0\left( B_iB_j-\frac{1}{2}\delta_{ij}B^2 \right)\]
+\[\Rightarrow \overset{\leftrightarrow}{T}=
+  \epsilon_0\begin{pmatrix}
+    \frac{1}{2}\left( \frac{kq}{r^2+\theta^2+(z+a)^2}+\frac{kq}{r^2+\theta^2+(z-a)^2}\right)^2 & 0 & \left( \frac{kq}{r^2+\theta^2+(z+a)^2}\right)^2-\left( \frac{kq}{r^2+\theta^2+(z-a)^2}\right)^2 \\
+    0 & 0 & 0 \\
+    \left( \frac{kq}{r^2+\theta^2+(z+a)^2}\right)^2-\left( \frac{kq}{r^2+\theta^2+(z-a)^2}\right)^2  & 0 & \frac{1}{2}\left( \frac{kq}{r^2+\theta^2+(z+a)^2}-\frac{kq}{r^2+\theta^2+(z-a)^2}\right)^2
+  \end{pmatrix}
+\]
+\[=\frac{q^2}{16\pi^2\epsilon_0}\begin{pmatrix}
+    \frac{1}{2}\left( \frac{1}{r^2+\theta^2+(z+a)^2}+\frac{1}{r^2+\theta^2+(z-a)^2}\right)^2 & 0 & \left( \frac{1}{r^2+\theta^2+(z+a)^2}\right)^2-\left( \frac{1}{r^2+\theta^2+(z-a)^2}\right)^2 \\
+    0 & 0 & 0 \\
+    \left( \frac{1}{r^2+\theta^2+(z+a)^2}\right)^2-\left( \frac{1}{r^2+\theta^2+(z-a)^2}\right)^2  & 0 & \frac{1}{2}\left( \frac{1}{r^2+\theta^2+(z+a)^2}-\frac{1}{r^2+\theta^2+(z-a)^2}\right)^2
+  \end{pmatrix}\]
+
+We must now integrate this over the plane $z=0$. The differential area element is $rdrd\theta\hat{z}$; its left dot product by the stress tensor is
+\[\overset{\leftrightarrow}{T}\cdot d\vec{a}=
+  \begin{pmatrix}
+    \left[ \left( \frac{1}{r^2+\theta^2+(z+a)^2}\right)^2-\left( \frac{1}{r^2+\theta^2+(z-a)^2}\right)^2\right]rdrd\theta \\
+    0 \\
+    \frac{1}{2}\left( \frac{1}{r^2+\theta^2+(z+a)^2}-\frac{1}{r^2+\theta^2+(z-a)^2}\right)^2rdrd\theta
+  \end{pmatrix}
+\]
+Evaluating this at $z=a$, it is evident both components are zero. Therefore, the integral of this vector is zero, i.e. there is no net force on the charges, i.e. Newton's third law holds.
+
+\section*{8.4b}
+If the charges are opposite in sign, the electric field becomes (presuming the negative charge is the one below the $x$-$y$ plane)
+\[\vec{E}=\frac{kq}{r^2+\theta^2+(z-a)^2}(\hat{r}-\hat{z})-\frac{kq}{r^2+\theta^2+(z+a)^2}(\hat{r}+\hat{z})\]
+\[=\left( \frac{kq}{r^2+\theta^2+(z-a)^2}-\frac{kq}{r^2+\theta^2+(z+a)^2}\right)\hat{r}+\left( -\frac{kq}{r^2+\theta^2+(z+a)^2}-\frac{kq}{r^2+\theta^2+(z-a)^2}\right)\hat{z}\]
+The remainder of the argument proceeds identically,
 \end{document}
 %%% Local Variables:
 %%% mode: latex

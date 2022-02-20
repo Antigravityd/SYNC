@@ -1,0 +1,127 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{siunitx}
+
+\title{4125 HW 3}
+\author{Duncan Wilkie}
+\date{19 February 2022}
+
+\begin{document}
+
+\maketitle
+
+\section*{2.25a}
+Since the probability of stepping forwards and backwards are equal, the expected value after many steps will be zero.
+
+\section*{2.25b}
+The variance, since the square of the expectation value, is the expectation value of the square of the distance. This is the sum of the expectation values of the squares, so 10,000 in this case. The standard deviation is the square root of this, or 100. This is the expectation value of the distance after 10,000 steps.
+
+
+
+\section*{2.26}
+All that changes in this argument is the dimensionality of the momentum space. Since increasing the volume into which a single particle may expand in a microstate increases the number of position states the particle can be in, and increasing any of the components of its allowed momenta (and thus the ``volume'' of the possible states in momentum space) also increases the number of momentum states the particle can be in, for a single-particle gas we expect
+\[\Omega\propto VV_{p}\]
+By dimensional analysis and a handwavy appeal to quantum mechanics, it can be argued that the proportionality constant is $\frac{1}{h^{2}}$ since ``momentum volume'' has units of momentum squared implying the units of $VV_{p}$ are $\SI{}{m^{2}\cdot kg^2\cdot m^2 / s^2}= \SI{}{J^{2}\cdot s^{2}}$.
+The kinetic energy constraint on the momenta is the equation
+\[U=\frac{1}{2m}(p_{x}^{2}+p_{y}^{2})\Leftrightarrow p_{x}^{2}+p_{y}^{2}=2mU\]
+which is the equation of a circle in momentum-space with radius $\sqrt{2mU}$.
+For $n$ identical particles, this becomes
+\[\sum_{k=0}^{n}p_{kx}^{2}+p_{kz}^{2}=2mU\]
+which is the equation of a $2n$-dimensional hypersphere with the same radius as above. The momentum volume is the surface area of this hypersphere, since in a given macrostate the total energy is constant. The volume microstates simply multiply, since for every position state of one particle there is a state where every other particle is in every other position. The dimensional argument for the proportionality constant above may be immediately modified based on the dimension of $V_{p}$ to see that the constant becomes $h^{2n}$. The formula for the surface area of a hypersphere is
+\[S=\frac{2\pi^{d/2}}{(\frac{d}{2}-1)!}r^{d-1}\Rightarrow V_{p}=\frac{2\pi^{n}}{(n-1)!}(2mU)^{n-\frac{1}{2}}\]
+Putting it all together,
+\[\Omega=\frac{A^{2n}}{h^{2n}}\frac{2\pi^{n}}{(n-1)!}(2mU)^{n-\frac{1}{2}}\]
+However, this overcounts by a factor of $n!$ since the particles are identical, and therefore interchanging any two of them yields the same microstate. Therefore, we finally get
+\[\Omega=\frac{A^{2n}}{n!h^{2n}}\frac{2\pi^{n}}{(n-1)!}(2mU)^{n-\frac{1}{2}}\]
+
+\section*{2.31}
+We begin with the expression for the multiplicity
+\[\Omega_{n}=\frac{1}{n!}\frac{V^{n}}{h^{3n}}\frac{\pi^{3n/2}}{(3n/2)!}\left( 2mU \right)^{3n/2}\]
+Taking the logarithm of both sides,
+\[\ln(\Omega_{n})=n\ln(V)-\ln(n!)-3n\ln(h)+\frac{3n}{2}\ln(\pi)-\ln[(3n/2)!]+\frac{3n}{2}\ln(2mU)\]
+Applying Stirling's formula,
+\[\ln(\Omega_{n})=n\ln(V)-n\ln(n) + n -3n\ln(h) +\frac{3n}{2}\ln(\pi)-\frac{3n}{2}\ln(3n/2)+\frac{3n}{2}+\frac{3n}{2}\ln(2mU)\]
+\[=n\left[ \ln(V)-\ln(n)+1-3\ln(h) +\frac{3}{2}\left( \ln(\pi)-\ln(3n/2) +1+\ln(2mU)\right) \right]\]
+\[=n\left[ \ln\left(\frac{V}{nh^{3}}  \right) +1 +\frac{3}{2}+ \ln\left( \left( \frac{4\pi mU}{3n}\right)^{3/2} \right)\right]\]
+\[=n\left[ \ln\left( \frac{V}{n} \left( \frac{4\pi mU}{nh^{2}} \right)^{3/2}\right)+\frac{5}{2} \right]\]
+\[\Rightarrow S=nk\left[ \ln\left( \frac{V}{n} \left( \frac{4\pi mU}{nh^{2}} \right)^{3/2}\right)+\frac{5}{2} \right]\]
+as desired.
+
+\section*{2.34}
+Since the process is isothermal, the internal energy is constant. This implies $Q=-W$. However, the work for an isothermal process is by the equation of state
+\[W=-\int_{V_{i}}^{V_{f}}P(V)dV=-\int_{V_{i}}^{V_{f}}\frac{nkT}{V}dV=-nkT\ln\left(\frac{V_{f}}{V_{i}}\right)\]
+Therefore,
+\[\frac{Q}{T}=nk\ln\left( \frac{V_{f}}{V_{i}} \right)\]
+Since the right expression is the the change in entropy under isothermal expansion, we have proven
+\[\Delta S=\frac{Q}{T}\]
+
+\section*{2.37}
+When gas $A$ expands to fill the whole volume, its entropy changes by
+\[\Delta S_{A}=n(1-x)k\ln\left( \frac{V_{f}}{V_{i}} \right)=n(1-x)k\ln(2)\]
+The entropy of $B$ similarly changes by
+\[\Delta S_{B}=nxk\ln\left( \frac{V_{f}}{V_{i}} \right)=nxk\ln(2)\]
+The total change in entropy is therefore
+\[\Delta S=nk\ln(2)\]
+
+
+\section*{2.39}
+By the Sackur-Tetrode equation, using  a volume of $V=\frac{nkT}{P}$ and an internal energy of $U=\frac{3}{2}kT$, we obtain a distinguishable entropy of
+\[S=Nk\left[ \ln\left( \frac{nkT}{P}\left( \frac{6\pi m k T}{3Nh^{2}} \right)^{3/2} \right)+\frac{5}{2} \right]\]
+Taking a molar mass of $\SI{4}{g/mol}$ and a room temperature at $\SI{300}{K}$,
+\[=(\SI{6.02e23}{})(\SI{1.38e-23}{J/K})\]\[\cdot\left[ \ln\left( \frac{(\SI{6.02e23}{})(\SI{1.38e-23}{J/K})(\SI{300}{K})}{\SI{1.01e5}{Pa}}\left( \frac{6\pi(\SI{0.004}{kg})(\SI{1.38e-23}{J/K})(\SI{300}{K})}{3(\SI{6.02e23}{})(\SI{6.63e-34}{J\cdot s})^{2}} \right)^{3/2}\right) +\frac{5}{2}\right]\]
+\[=\SI{581}{J/K}\]
+This is more than quadruple the real value of $\SI{126}{J/K}$.
+
+\section*{2.42a}
+It's almost easier to compute this directly by Newtonian methods. The escape velocity is the speed necessary to leave the gravitational influence of a body from its surface, and may be calculated from the gravitational work:
+\[U=\int_{r}^{\infty}\frac{GMm}{r^{2}}dr=\frac{GMm}{r}\Rightarrow \frac{1}{2}mv_{e}^{2}=\frac{GMm}{r}\Leftrightarrow r=\frac{2GM}{v_{e}^{2}}\]
+If we take $v_{e}=c$, we obtain the radius from the center of mass of a black hole within which light cannot escape, because its kinetic energy is smaller than the gravitational potential; this is exactly the property we want from the event horizon. Therefore,
+\[r=\frac{2GM}{c^{2}}\]
+
+\section*{2.42b}
+The logarithm term in the entropy of an ideal gas is usually a small positive number for most magnitudes. Therefore, it's a half-decent approximation to take $S=Nk$. In natural units, which take $k=1$, we then have the order-of-magnitude approximation $S=N$.
+
+\section*{2.42c}
+The energy of a single photon of black-hole-radius wavelength is
+\[E_{p}=\frac{hc}{\lambda}=\frac{hc^{3}}{2GM}\]
+
+The maximum possible number of photons (and thus the maximum entropy in natural units) is the total energy divided by the above number:
+\[S=\frac{Mc^{2}}{E_{p}}=\frac{2GM^{2}}{hc}\]
+
+\section*{2.42d}
+Evaluating the above expression in SI units (multiplying by $k$), we obtain an entropy
+\[S=\frac{2(\SI{6.67e-11}{N m^{2}/kg^{2}})(\SI{2e30}{kg})^{2}}{(\SI{6.63e-34}{J\cdot s})(\SI{3e8}{m/s})}(\SI{1.38e-23}{J/K})=\SI{3.7e52}{J/K}\]
+This is absolutely enormous.
+
+\section*{3.7}
+Writing the entropy as a function of temperature,
+\[S=\frac{2GMU}{hc^{3}}k\]
+Differentiating with respect to $U$ and inverting gives
+\[T=\frac{h c^{3}}{2GMk}\]
+Evaluating this at $M=\SI{2e30}{kg}$,
+\[T_{\circ}=\frac{(\SI{6.63e-34}{J\cdot s})(\SI{3e8}{m/s})^{3}}{2(\SI{6.67e-11}{Nm^{2}/kg^{2}})(\SI{2e30}{kg})(\SI{1.38e-23}{J/K})}=\SI{4.86e-6}{K}\]
+
+\section*{1a}
+Let $A$ be the random variable corresponding to testing positive, $B$ be that of having the disease.
+By Bayes' formula,
+\[P(B|A)=\frac{P(A|B)P(B)}{P(A|B)P(B)+P(A|B^{c})P(B^{c})}=\frac{(0.99)(0.005)}{(0.99)(0.005)+(0.01)(0.995)}=0.33\]
+
+\section*{1b}
+The exact reasoning from above applies, just let $A$ be the probability of testing positive twice and compute the conditionals by multiplication.
+\[P(B|A)=\frac{(0.99)^{2}(0.005)}{(0.99)^{2}(0.005)+(0.01)^{2}(0.995)}=0.98\]
+
+\section*{1c}
+This may be done exactly like part (a), but everything is within the sample space of symptomatic persons.
+\[P(B|A)=\frac{(0.99)(0.005/0.05)}{(0.99)(0.005/0.05)+(0.01)(1-0.005/0.05)}=.91\]
+
+\section*{2}
+In order for the elevator to be moving down when he gets on, it would have to be on floor 14 and headed up, on floor 15, on floor 14 and headed down, or on floor 13 and headed down. Out of the 28 possible states of the elevator (the top and bottom states are always headed down and up respectively), these are only 4. The probability of this happening is therefore $\frac{1}{7}$, which explains why he feels it's an infrequent occurance.
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

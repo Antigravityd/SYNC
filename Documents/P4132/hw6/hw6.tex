@@ -1,0 +1,130 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{siunitx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{4132 HW 6}
+\author{Duncan Wilkie}
+\date{9 March 2022}
+
+\begin{document}
+
+\maketitle
+
+\section*{1a}
+The wavevector is $(k,0,0)$, and the polarization vector is $(0,0,1)$.
+The fields are therefore
+\[\vec{E}(\vec{x},t)=E_{0}\Re e^{\vec{k}\cdot \vec{x}-\omega t+\delta}\hat{n}=E_{0}\cos(kx+\omega t)\hat{z}\]
+and
+\[\vec{B}=\frac{1}{c}\hat{k}\times\vec{E}=\frac{E_{0}}{c}\cos(kx+\omega t)(\hat{k}\times\hat{z})=-\frac{E_{0}}{c}\cos(kx+\omega t)\hat{y}\]
+
+\section*{1b}
+The wavevector is $\frac{k\sqrt{3}}{3}(1,1,1)$. The polarization is any vector on the unit circle in the $xz$ plane, i.e. $\hat{n}=(x_{n},0,z_{n})$ where $x_{n}^{2}+z_{n}^{2}=1$. The fields may be written
+\[\vec{E}(\vec{x},t)=E_{0}\Re e^{\vec{k}\cdot\vec{x}-\omega t+\delta}\hat{n}=E_{0}\cos(k\frac{\sqrt{3}}{3}(x+y+z)-\omega t)(x_{n},0,z_{n})\]
+and
+\[\vec{B}(\vec{x},t)=\frac{\hat{k}}{c}\times \vec{E}=\frac{E_{0}\sqrt{3}}{3c}\cos(\frac{k\sqrt{3}}{3}(x+y+z)-\omega t)\left(z_{n}, x_{n}-z_{n}, x_{n}\right)\]
+where the last term is the cross product $(1,1,1)\times(x_{n},0,z_{n})$.
+
+\section*{2}
+If the incident wave is polarized perpendicular to the plane of incidence, the reflected and transmitted waves must have the same polarization. The only boundary condition on the electric field that survives is therefore part of the third condition,
+\[\left( \vec{E}_{0I}+\vec{E}_{0R} \right)_{y}=\left( \vec{E}_{0T} \right)_{y}\]
+Since the electric field is only in the $y$ direction, we may drop the component subscript and write
+\[\vec{E}_{0I}+\vec{E}_{0R}=\vec{E}_{0T}\]
+
+The magnetic field vector will lie in the plane of incidence by the right-hand rule; it will be the perpendicular to $\vec{k}$ on the $-x$ side. The fourth boundary condition is
+\[\frac{1}{\mu_{1}}\left( \vec{B}_{0I}+\vec{B}_{0R}\right)_{x}=\frac{1}{\mu_{2}}\left( \vec{B}_{0T} \right)_{x}\]
+Since by the right-hand rule
+\[\vec{B}=\frac{\vec{k}}{v_{1}}\times \vec{E}\Rightarrow B_{0I}=\frac{k}{c}E_{0I}(-\cos\theta_{I}\hat{x}+\sin\theta_{I}\hat{z})\]
+\[\Rightarrow B_{0R}=\frac{k}{v_{1}}E_{0R}(\cos\theta_{R}\hat{x}+\sin\theta_{R}\hat{z})\]
+\[\Rightarrow B_{0T}=\frac{k}{v_{2}}E_{0T}(-\cos\theta_{T}\hat{x}+\sin\theta_{T}\hat{z})\]
+ we may rewrite this in terms of the electric fields as
+ \[\frac{1}{\mu_{1}}\left( \frac{k}{v_{1}}E_{0I}(-\cos\theta_{I}) \right)+\frac{1}{\mu_{1}}\left( \frac{k}{v_{1}}E_{0R} (\cos\theta_{R})\right)=\frac{1}{\mu_{2}}\left( \frac{k}{v_{2}}E_{0T}(-\cos\theta_{T}) \right)\]
+ \[\Leftrightarrow -E_{0I}\cos\theta_{I}+E_{0R}\cos\theta_{R}=-\frac{\mu_{1}v_{1}}{\mu_{2}v_{2}}E_{0T}\cos\theta_{T} \]
+By the definition of $\alpha$ and $\beta$ and the law of reflection,
+\[\Leftrightarrow E_{0I}-E_{0R}=\alpha\beta E_{0T}\]
+We therefore have the system
+\[E_{0I}+E_{0R}=E_{0T}\]
+\[E_{0I}-E_{0R}=\alpha\beta E_{0T}\]
+Adding,
+\[2E_{0I}=(1+\alpha\beta)E_{0T}\Leftrightarrow E_{0T}=\frac{2}{1+\alpha\beta}E_{0I}\]
+Resubstituting,
+\[E_{0I}-\frac{2}{1+\alpha\beta}E_{0I}=E_{0R}\Leftrightarrow E_{0R}=\left( 1-\frac{2}{1+\alpha\beta} \right)E_{0I}\]
+Intensity is defined by $\frac{1}{2}\epsilon vE_{0}^{2}\cos\theta$, and the reflection and transmission coefficents are defined by $R=\frac{I_{R}}{I_{I}}$ and $T=\frac{I_{T}}{I_{I}}$, which are in this case
+\[R=\frac{\epsilon_{1}v_{1}E_{0R}^{2}\cos\theta_{R}/2}{\epsilon_{1}v_{1}E_{0I}^{2}\cos\theta_{I}/2}=\left( \frac{\left( 1-\frac{2}{1+\alpha\beta}\right)E_{0I}}{E_{0I}} \right)^{2}=\left( 1-\frac{2}{1+\alpha\beta}\right)^{2}\]
+and
+\[T=\frac{\epsilon_{2}v_{2}E_{0T}^{2}\cos\theta_{T}/2}{\epsilon_{1}v_{1}E_{0I}^{2}\cos\theta_{I}/2}=\frac{\epsilon_{2}v_{2}\cos\theta_{T}}{\epsilon_{1}v_{1}\cos\theta_{I}}\left( \frac{\left( \frac{2}{1+\alpha\beta} \right)E_{0I}}{E_{0I}} \right)^{2}=\alpha\beta\left( \frac{2}{1+\alpha\beta} \right)^{2}\]
+where we have applied $v^{2}=\epsilon\mu$ to the definition of $\beta$
+
+\section*{3a}
+The definition of $\kappa$ in general is
+\[\kappa=\omega\sqrt{\frac{\epsilon\mu}{2}}\left[ \sqrt{1+\left( \frac{\sigma}{\epsilon\omega} \right)^{2}}-1 \right]^{1/2}\]
+When $\sigma$ is small, we may apply the truncated Maclaurin expansion approximation $\sqrt{1+x^{2}}=1+\frac{x^{2}}{2}+O(x^{4})$ to the term involving $\sigma$ to obtain
+\[\kappa\approx\omega\sqrt{\frac{\epsilon\mu}{2}}\left[ 1+\frac{\sigma^{2}}{2\epsilon^{2}\omega^{2}} -1\right]^{1/2}=\frac{\sigma}{2\sqrt{\epsilon/\mu}}\]
+\[\Rightarrow d=\frac{1}{\kappa}=\frac{2\sqrt{\epsilon/\mu}}{\sigma}\]
+Evaluating this for pure water (using some random internet values),
+\[d=\frac{2\sqrt{(\SI{7.1e-10}{C^{2}/Nm^{2}})/(\SI{1.25e-6}{H/m})}}{(\SI{1.2e-4}{\mho/m})}=\SI{397}{m}\]
+
+\section*{3b}
+Since $k$ and $\kappa$ have the same asymptotic behavior as $\sigma\to\infty$, relations that hold for $k$ hold very well for $\kappa$ in its place at large $\sigma$. I.e., the wavelength relation $k=\frac{2\pi}{\lambda}$ suggests
+\[\kappa\approx \frac{2\pi}{\lambda}\Rightarrow d=\frac{1}{\kappa}\approx\frac{\lambda}{2\pi}\]
+Going back to the full expression for $\kappa$, for a typical metal we compute
+\[d=\frac{1}{\kappa}=\frac{1}{\omega\sqrt{\frac{\epsilon\mu}{2}}\left[ \sqrt{1+\left( \frac{\sigma}{\epsilon\omega} \right)^{2}}-1 \right]^{1/2}}\]
+\[=\frac{1}{(\SI{1e15}{Hz})\sqrt{\frac{(\SI{8.85e-12}{C^{2}/Nm^{2}})(\SI{1.25e-6}{H/m})}{2}}\left[ \sqrt{1+\left( \frac{\SI{1e6}{\mho/m}}{(\SI{8.85e-12}{C^{2}/Nm})(\SI{1e15}{Hz})} \right)^{2}}-1 \right]^{1/2+}}\]
+\[=\SI{4.02e-8}{m}=\SI{40.2}{nm}\]
+Since electromagnetic waves in the visible spectrum can only penetrate several nanometers into a metal, it isn't possible for light to be transmitted through a metal, i.e. metals are opaque.
+
+\section*{3c}
+The electric and magnetic fields of a wave propagating in the $z$ direction in a conductor are
+\[\vec{E}(z,t)=E_{0}e^{-\kappa z}e^{i(kz-\omega t)}\hat{z}\]
+\[\vec{B}(z,t)=\frac{\tilde{k}}{\omega}E_{0}e^{-\kappa z}e^{i(kz-\omega t)}\hat{y}\]
+The change in the phase from the first to the second is clearly the phase of the complex constant $\tilde{k}$, i.e.
+\[\delta_{B}-\delta_{E}=\phi\]
+where $\phi$ is $\tan^{-1}\left( \frac{\kappa}{k} \right)$.
+The argument above showed that $k\approx \kappa$ for large $\sigma$, so for good conductors the phase shift between the fields is $\tan^{-1}(1)=45^{\circ}$.
+The ratio of the amplitudes is clearly
+\[\frac{|B|}{|E|}=\frac{|\tilde{k}|}{\omega}=\frac{k^{2}-\kappa^{2}}{\omega}={\omega\epsilon\mu}\]
+
+\section*{4}
+The anomalous dispersion width is defined as the spacing between two points where the index of refraction is at a critical point. At the single resonance, the contribution of the other terms to the sum is negligible, so
+\[n\approx1+\frac{Nq^{2}}{2m\epsilon_{0}}\frac{(\omega_{0}^{2}-\omega^{2})}{\left(\omega_{0}^{2}-\omega^{2}\right)^{2}+\gamma^{2}\omega^{2}}\]
+\[\Rightarrow \frac{dn}{d\omega}\approx\frac{Nq^{2}}{2m\epsilon_{0}}\left( \frac{-2\omega[(\omega_{0}^{2}-\omega^{2})^{2}+\gamma^{2}\omega^{2}]-(\omega_{0}^{2}-\omega^{2})[2(\omega_{0}^{2}-\omega^{2})(-2\omega)+2\gamma^{2}\omega]}{[(\omega_{0}^{2}-\omega^{2})^{2}+\gamma^{2}\omega^{2}]^{2}}) \right)\]
+\[=\frac{Nq^{2}}{2m\epsilon_{0}}\left( \frac{2\omega_{0}^{4}\omega+2\omega^{5}-2\gamma^{2}\omega\omega_{0}^{2}-4\omega_{0}^{2}\omega^{3}}{[(\omega_{0}^{2}-\omega^{2})^{2}+\gamma^{2}\omega^{2}]^{2}} \right)=0\]
+\[\Leftrightarrow 2\omega_{0}^{4}\omega+2\omega^{5}-\omega_{0}^{2}(2\gamma^{2}\omega+4\omega^{3})=0\]
+
+\[\Leftrightarrow2\omega_{0}^{4}-2\gamma^{2}\omega_{0}^{2}+2\omega^{4}-4\omega_{0}^{2}\omega^{2}=0\]
+\[\Leftrightarrow \omega^{2}=\frac{4\omega_{0}^{2}\pm\sqrt{16\omega_{0}^{4}-16(\omega_{0}^{4}-\gamma^{2}\omega_{0}^{2})}}{4}=\omega_{0}^{2}\pm\sqrt{\gamma^{2}\omega_{0}^{2}}=\omega_{0}^{2}\pm\gamma\omega_{0}\]
+\[\Leftrightarrow \omega=\sqrt{\omega_{0}^{2}\pm\gamma\omega_{0}}=\omega_{0}\sqrt{1\pm\frac{\gamma}{\omega_{0}}}\approx\omega_{0}\left( 1\pm\frac{\gamma}{2\omega_{0}} \right)=\omega_{0}\pm\frac{\gamma}{2}\]
+where we have justified the approximation by the assumption $\gamma$ is small with respect to $\omega_{0}$.
+The difference betweent the two roots is $\gamma$; this is the width of the anomalous dispersion.
+
+The absorption is expected to have a maximum at $\omega_{0}$ on physical grounds; there it takes value
+\[\alpha=\frac{Nq^{2}\omega^{2}}{m\epsilon_{0}c}\frac{\gamma}{(\omega_{0}^{2}-\omega^{2})^{2}+\gamma^{2}\omega^{2}}=\frac{Nq^{2}}{m\epsilon_{0}c\gamma}\]Evaluating it at the roots found above,
+\[\alpha=\frac{Nq^{2}\omega_{0}^{2}}{m\epsilon_{0}c}\frac{\gamma}{(\omega^{2}_{0}-\omega^{2})^{2}+\gamma^{2}\omega^{2}}=\frac{Nq^{2}(\omega_{0}^{2}\pm\omega_{0}\gamma)}{m\epsilon_{0}c}\frac{\gamma}{(\omega_{0}^{2}-\omega_{0}^{2}\mp\gamma\omega_{0})^{2}+\gamma^{2}\omega_{0}^{2}\pm\gamma^{3}\omega_{0}}\]
+\[=\frac{Nq^{2}}{m\epsilon_{0}c}\frac{1}{\gamma}\frac{\omega_{0}^{2}\pm\omega_{0}\gamma}{2\omega_{0}^{2}\pm\gamma\omega_{0}}\]
+Since $\gamma$ is small with respect to $\omega$, the right term is almost $1/2$, since the $\omega_{0}^{2}$ dominate $\gamma\omega_{0}$. Therefore, the maxima and minima of the index of refraction occur at the half-maximum of the absorption.
+
+
+
+\section*{5}
+The cutoff frequency for a given mode is
+\[\omega_{mn}=c\pi\sqrt{\left( \frac{m}{a} \right)^{2}+\left( \frac{n}{b}\right)^{2}}\Leftrightarrow m^{2}b^{2}+n^{2}a^{2}=a^{2}b^{2}\frac{\omega_{mn}^{2}}{c^{2}\pi^{2}}\]
+Evaluating this at the given dimensions and frequency,
+\[m^{2}(\SI{1.02}{cm})+n^{2}(\SI{5.20}{cm})=\SI{1725}{cm}\]
+The interpretation of this is that any $m$ and $n$ which satisfy the associated inequality
+\[m^{2}(\SI{1.02}{cm})+n^{2}(\SI{5.20}{cm})\geq\SI{1725}{cm}\]
+are modes that propagate when this frequency is applied. Over the real numbers, this is would define the exterior of an ellipse, so it'd be very easy to find all the modes which don't propagate by exhaustion.
+To excite only one TE mode, one must choose $\omega_{mn}$ so that there is only one solution of the above inequality. Any mode that has a cutoff frequncy higher than some other mode will excite that lower mode at any time when the higher is excited, therefore the only $m,n$ for which only one mode is excited are those that correspond to the lowest cutoff frequency: $m=1$, $n=0$. Any frequency between this lowest mode and the next-lowest mode $\omega_{11}$ will only excite $T_{10}$, and no other modes.
+We have
+\[\omega_{10}=\frac{c\pi}{a}=\frac{(\SI{3e8}{m/s})\pi}{(\SI{0.0228}{m})}=\SI{41.3e9}{Hz}=\SI{41.3}{GHz}\]
+and
+\[\omega_{11}={c\pi}\sqrt{(1/a)^{2}+(1/b)^{2}}=\SI{102}{GHz}\]
+as the endpoints of the frequency range that only excites one TE mode.
+
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

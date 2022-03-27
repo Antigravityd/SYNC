@@ -1,0 +1,69 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{graphicx}
+
+\graphicspath{{./img/}}
+
+\title{2411 HW 11}
+\author{Duncan Wilkie}
+\date{23 November 2021}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+The program appears in the script files section. Plots of the value of each of the RNGs against their previous value appear below.
+\[\includegraphics[scale=.6]{beta.png}\]
+\[\includegraphics[scale=.6]{better.png}\]
+It is evident the second RNG is less correlated than the first.
+
+\section{}
+The seed is the first value, which is 1. The period is the number of elements it takes before the sequence repeats itself, in this case 8. The next number in the sequence is therefore 4. To generate uniform random numbers in $[-1,1]$, we take the values of the RNG, divide by the period to get a floating-point RNG over $[0,1]$, and then apply the transformation $x\mapsto 2x-1$ to get a floating-point RNG over $[-1,1]$. Doing this, the first two numbers of the RNG become $-0.75$ and $0.5$.
+
+\section{Script Files}
+\begin{verbatim}
+Script started, file is dwilk14_hw11p1.txt
+[dwilk14@tigers ~/HW11]$ cat dwilk14_hw11p1.cpp
+#include <fstream>
+#include <cmath>
+
+using namespace std;
+
+int main() {
+  ofstream out;
+  out.open("output.txt");
+  double beta = 10, better = 10;
+
+  out << "beta_i better_i beta_i+1 better_i+1" << endl;
+
+  for (int i = 0; i < 1000; i+=2) {
+    out << beta << " " << better << " ";
+    beta = fmod((57. * beta + 1.), 256.);
+    better = fmod((25214903917. * better + 11.), 3.0E14);
+    out << beta << " " << better << endl;
+    beta = fmod((57. * beta + 1.), 256.);
+    better = fmod((25214903917. * better + 11.), 3.0E14);
+  }
+
+
+  return 0;
+
+}
+[dwilk14@tigers ~/HW11]$ g++ dwilk14
+dwilk14_hw11p1.cpp  dwilk14_hw11p1.txt  
+[dwilk14@tigers ~/HW11]$ g++ dwilk14_hw11p1.cpp -o dwilk14_hw11p1
+[dwilk14@tigers ~/HW11]$ ./dwilk14hw11p1
+./dwilk14hw11p1: Command not found.
+[dwilk14@tigers ~/HW11]$ ./dwilk14_hw11p1                                                                                                                                                    
+[dwilk14@tigers ~/HW11]$ cp dwilk14_hw11p1.txt /home3/kristina/phys2411/.
+[dwilk14@tigers ~/HW11]$ exit
+exit
+Script done, file is dwilk14_hw11p1.txt
+\end{verbatim}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

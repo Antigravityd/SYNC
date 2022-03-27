@@ -1,0 +1,104 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{2231 HW 7}
+\author{Duncan Wilkie}
+\date{9 November 2021}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+The bound surface charge density is $\sigma_b=P\cdot\hat{n}$ and the bound volume charge density is $\rho_b=-\nabla\cdot \vec{P}$. The sum of the totals of these two charges must be zero, i.e.
+\[q=\int_{\partial V}{\sigma_b}dA+\int_V{\rho_b}dV=\int_{\partial V}1{\vec{P}\cdot\hat{n}}dA-\int_V1{\nabla\cdot\vec{P}}dV\]
+This is the right half of an integration by parts, with the ones inserted to make correspondence with the cannonical statement obvious. The associated left side is
+\[\int_{V}\vec{P}\cdot \nabla 1 dV\]
+which is clearly zero, since $\nabla 1 = 0$.
+
+\section{}
+The electric field inside the first configuration without the dielectric is $\frac{\sigma}{\epsilon_0}$. In the dielectric, it is $\frac{\sigma}{\epsilon}$, and integrating piecewise to find the potential we obtain $V=\frac{\sigma d}{2\epsilon_0}+\frac{\sigma d}{2\epsilon}$. Writing out the charge density as $\frac{Q}{A}$ and factoring out $2\epsilon_0$, this becomes $V=\frac{Qd}{2\epsilon_0A}\left( 1+\frac{\epsilon_0}{\epsilon} \right)$; the corresponding capacitance is $C=\frac{Q}{V}=\frac{2\epsilon_0A}{d(1+\epsilon_0/\epsilon)}$. This differs from the vacuum value of $C=\frac{A\epsilon_0}{d}$ by a factor of $\frac{2}{1+1/\epsilon_r}$.
+
+For the second configuration, we instead express $Q$ in terms of $V$. In the region without the dielectric,  $E=\frac{\sigma}{\epsilon_0}\Leftrightarrow \sigma=\frac{\epsilon_0 V}{d}$. In the other region, $\sigma'=\frac{\epsilon V}{d}$.
+The total charge is then $Q=\frac{A}{2}\sigma+\frac{A}{2}\sigma'=\frac{\epsilon_0A V}{2d}+\frac{\epsilon AV}{2d}$. Dividing by $V$ and factoring out $\epsilon_0$, $C=\frac{\epsilon_0 A}{2d}\left( 1+\frac{\epsilon}{\epsilon_0}\right)$. This differs from the vacuum capacitance by a factor of $\frac{1+\epsilon/\epsilon_0}{2}$.
+
+The calculations for each of the values of interest have been all but done already, so we present them without comment:
+\[E_a=\begin{cases}
+    \frac{-2(\epsilon+\epsilon_0) V}{\epsilon d}\hat{z} & \textrm{in the dielectric} \\
+    \frac{-2(\epsilon + \epsilon_0) V}{\epsilon_0 d}\hat{z} & \textrm{in the air}
+
+  \end{cases} \]
+\[E_b = \begin{cases}
+    -\frac{V}{d}\hat{z} & \textrm{in the air} \\
+    -\frac{V}{d}\hat{z} & \textrm{in the dielectric}
+  \end{cases}\]
+\[P_a=\begin{cases}
+    0 & \textrm{in the air} \\
+    \epsilon(\epsilon_r-1)\left( \frac{-2(\epsilon+\epsilon_0) V}{\epsilon d}\hat{z}\right) & \textrm{in the dielectric}
+  \end{cases}\]
+\[P_b=\begin{cases}
+    0 & \textrm{in the air} \\
+    \epsilon(\epsilon_r-1)\left( -\frac{V}{d}\hat{z} \right) & \textrm{in the dielectric}
+  \end{cases}\]
+\[D_a=\begin{cases}
+    \epsilon_0\frac{-2(\epsilon+\epsilon_0) V}{\epsilon d}\hat{z} & \textrm{in the air} \\
+    \epsilon_0\frac{-2(\epsilon+\epsilon_0) V}{\epsilon_0 d}+\epsilon(\epsilon_r-1)\frac{-2(\epsilon+\epsilon_0) V}{\epsilon_0 d}\hat{z} & \textrm{in the dielectric}
+  \end{cases}\]
+\[D_b=\begin{cases}
+    -\frac{V}{b}\hat{z} & \textrm{in the air} \\
+    -\frac{V}{b}\hat{z}+\epsilon(\epsilon_r-1)\left( -\frac{V}{d}\right)\hat{z} & \textrm{in the dielectric}
+  \end{cases}\]
+
+\[\sigma_{fa}=-\nabla\cdot P_a=0, \]
+\[\sigma_{ba}=P_a\cdot\hat{n}=\epsilon(\epsilon_r-1)\left( \frac{-2(\epsilon+\epsilon_0)V}{\epsilon d} \right)\]
+\[\sigma_{fb}=-\nabla\cdot P_b=0\]
+\[\sigma_{bb}=P_b\cdot \hat{n}=\epsilon(\epsilon_r-1)\left(-\frac{V}{d}\right)\]
+\section{}
+Since the displacement follows Gauss's law with the free charge, we have
+\[4\pi r^2D=q\Leftrightarrow D=\frac{q}{4\pi r^2}\]
+Since $D=\epsilon E$, we can calculate $E$ as
+\[\vec{E}=\begin{cases}
+    \frac{q}{4\pi\epsilon r^2}\hat{r}, & r\leq R \\
+    \frac{q}{4\pi\epsilon_0 r^2}\hat{r} & r> R
+  \end{cases}\]
+We can write $P=\epsilon_0\chi_eE$, so
+\[P=\begin{cases}
+    \frac{\epsilon_0\chi_e q}{4\pi\epsilon r^2}\hat{r}  & r \leq R \\
+    \frac{\chi_e q}{4\pi r^2}\hat{r} & r> R
+  \end{cases}\]
+For the bound charge, we have since $P$ is radial
+\[\sigma_b=P\cdot\hat{n}=P\]
+Totalling this density over the surface area of the sphere, \[q_b=4\pi R^2\left(  \frac{\epsilon_0\chi_e q}{4\pi\epsilon R^2}\right)=\frac{\chi_e}{1+\chi_e}q\]
+The corresponding negative charge is clustered at the center of the dielectric near the point charge.
+
+\section{}
+Like above, we may calculate the electric field via Gauss's law on the displacement.
+\[D=\begin{cases}
+    \frac{Q}{4\pi r^2}\hat{r}, & r > b \\
+    \frac{Q}{4\pi r^2}\hat{r}, & a < r < b \\
+    0, & r < a
+  \end{cases}\]
+The electric field is then, employing $\epsilon=\epsilon_0(1+\chi_e)$
+\[E=\frac{D}{\epsilon}=\begin{cases}
+    \frac{Q}{4\pi\epsilon_0 r^2}\hat{r}, & r > b \\
+    \frac{Q}{4\pi\epsilon r^2}\hat{r}, & a \leq r \leq b \\
+    0, & r < a
+  \end{cases}\]
+The energy of the configuration is
+\[W=\frac{1}{2}\int_{\mathbb{R}^3}E\cdot DdV=\frac{1}{2}\int_0^\pi\int_0^{2\pi}\left( \int_0^a+\int_a^b+\int_b^\infty\right)E\cdot Dr^2\sin\theta drd\varphi d\theta\]
+\[=2\pi\left( \int_a^b\frac{Q^2}{16\pi^2\epsilon r^2}dr+\int_b^\infty\frac{Q^2}{16\pi^2\epsilon_0r^2}dr \right)\]
+\[=\frac{Q^2}{8\pi}\left(\frac{1}{\epsilon a}-\frac{1}{\epsilon b}+\frac{1}{\epsilon_0 b} \right)\]
+
+\section{}
+The potential in the absence of the dielectric is, according to the book,
+\[V(r,\theta)=-E_0\left( r-\frac{R^3}{r^2} \right)\cos\theta\]
+Therefore the field is the negative gradient of this potential:
+\[E=E_0\left[\left(1+2\frac{R^3}{r^3}\right)\cos\theta\hat{r}-\left(1-\frac{R^3}{r^3}\right)\sin\theta\hat{\theta} \right]\]
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

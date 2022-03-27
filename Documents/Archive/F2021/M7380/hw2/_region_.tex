@@ -1,0 +1,100 @@
+\message{ !name(hw2.tex)}\documentclass{article}
+
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[letterpaper]{geometry}
+
+\title{7380 HW 2}
+\author{Duncan Wilkie}
+\date{29 October 2021}
+
+\begin{document}
+
+\message{ !name(hw2.tex) !offset(-3) }
+
+
+\maketitle
+
+\section*{5.5}
+Suppose there existed a continuous $f$ that satisfied the $\delta$-function property, that
+\[(f,\phi)=\int_\Omega f(x)\phi(x)dx=\phi(0)\] for all $\phi\in D(\Omega)$. Consider two such test functions $\phi_1,\phi_2$ with the same value at 0. Then
+\[\int_\Omega f(x)\phi_1(x)dx-\int_\Omega f(x)\phi_2(x)dx = \phi_1(0)-\phi_2(0)\Rightarrow \int_\Omega f(x)(\phi_1(x)-\phi_2(x))dx = 0\]
+We consider the slight modification of the fundamental lemma of the calculus of variations result proven on the previous homework where instead of requiring that the varying factor do so over all $C^\infty(\Omega)$, it does so over $\{\phi\in C^\infty(\Omega): \phi(0)=0\}$, and implying that $f(x)=0$ for all $x\neq 0 $, instead of for all $x$. The proof is much the same: if $f(x)\neq 0$, then there exists a point $x_0$ where it is nonzero. By continuity, there also exists an interval $[a,b]\ni x_0 $ where it is is supported. There also exists a closed interval not containing zero where it is supported: suppose $0\in[a,b]$; if $b\neq 0$ then $[b/2, b]$ is such an interval, otherwise $[a, a/2]$ is. Choose $\phi$ with support restricted to and value strictly positive on this non-zero-containing interval; the integral must be nonzero, since $f$ has the same sign at all points in this interval (by continuity, if it changes sign it must cross the $x$-axis and not be supported when it does) and $\phi$ is nonzero only in that interval and also has a constant sign. Since the relation must hold for all $\phi$, $f$ cannot satisfy the relation and be continuous.
+\section*{5.11}
+For $\sin(nx)$,
+\[\sin(nx)\to 0\Leftrightarrow\int_\Omega\sin(nx)\phi(x)dx\to \int_\Omega0\cdot\phi(x)dx=0\]
+Much like on the previous homework, since all $\phi$ are compactly supported (i.e. region of being nonzero is bounded) there exists some $M$ for each of them such that $\phi(v)=\phi(-v)=0$ for all $v\geq M$. The integral may the be rewritten and integration by parts applied as
+\[\int_{-M}^M\sin(nx)\phi(x)dx=\frac{\cos(nx)}{n}\phi(x)\bigg|_{-M}^M-\int_{-M}^M\frac{\cos(nx)}{n}\phi'(x)dx\]
+\[=-\int_{-M}^M\frac{\cos(nx)}{n}\phi'(x)dx\]
+We now take the limit as $n\to\infty$. $\frac{\cos(nx)}{n}$ converges uniformly to zero, since $\cos(nx)$ is bounded between negative and positive one so for any $\epsilon$ all $N> 1/\epsilon$ have $|\frac{\cos(Nx)}{N}|<|\frac{\cos{x/\epsilon}}{\frac{1}{\epsilon}}| \leq \epsilon$. If $f_n\to f$ uniformly, then $f_ng\to fg$ when $g$ is bounded: for any $\epsilon'$, choose the $N$ corresponding to $\epsilon= \epsilon' / \max{g}$ in the proof $f_n\rightrightarrows f$; $|f_ng-fg| =|g\cdot(f_n-f)| =|g|\cdot|f_n-f|< |\max{g}|\cdot|\epsilon'/\max g| < \epsilon '$. $\phi'\in C_0^\infty(\Omega)$ is of course bounded, so $\frac{\cos(nx)}{n}\phi'\to 0$ uniformly, and the limit and the integral may be interchanged to prove the integral is zero.
+
+Conversely,
+\[\lim_{n\to\infty}\sin^2(nx)=\int_\Omega \sin^2(nx)\phi(x)dx=\int_{-M}^M\sin^2(nx)\phi(x)dx\]
+\[=\left( \frac{x}{2}-\frac{1}{4n}\sin(2nx)\right)\phi(x)\bigg|_{-M}^M-\int_{-M}^M\left( \frac{x}{2}-\frac{1}{4n}\sin(2nx) \right)\phi'(x)dx\]
+\[=-\int_{-M}^M\frac{x\phi'(x)}{2}dx-\int_{-M}^M\frac{\sin{2nx}}{4n}\phi'(x)dx\]
+By a change of variables $u=2nx$, the second integral is zero by the argument for the first case. However, there exist $\phi'$ such that the first integral is nonzero: choose any bump function that is entirely positive, and supported only on the positive $x$ axis where $\frac{x}{2}$ is also strictly positive. Therefore, it cannot converge uniformly to the zero functional.
+
+\section*{5.13}
+
+\[\lim_{n\to\infty}\sqrt{n}\exp(-nx^2)=\int_\mathbb{R}\sqrt{n}\exp(-nx^2)\phi(x)dx\]
+Letting $u = \sqrt{n}x$,
+\[=\int_\mathbb{R}e^{-u^2}\phi\left( \frac{u}{\sqrt{n}} \right)du=\phi(0)\int_{-\infty}^\infty e^{-u^2}du=\sqrt{\pi}\phi(0)\]
+Therefore, this converges in the distributional sense to $\sqrt{\pi}\delta(x)$
+\section*{5.20}
+Since $f$ has a piecewise continuous derivative, it is $C^1(\mathbb{R})$, so the distributional derivative and the classical derivative agree by construction, as mentioned in the book. We show this now: let $g\in C^1(\mathbb{R})$. Then
+\[\left( \frac{dg}{dx}, \phi \right)=\int_\Omega \frac{d g}{d x} \phi(x)dx=g\phi\bigg|_{-\infty}^\infty-\int_{-\infty}^\infty g(x)\phi'(x)dx =-\left( g, \frac{d\phi}{dx} \right)\]
+where the first term above is zero because $\phi$ is compactly supported. The overall relation is how the distributional derivative of $f$ is defined even when $\frac{dg}{dx}$ does not exist in a classical sense, but if it does, the above must hold.
+
+\section*{5.21}
+The distributional derivative of a function $f$ is defined as the distribution $f'$ such that
+\[(f',\phi)=-(f, \phi')\]
+In this case,
+\[-(f, \phi')=-\int_\mathbb{R}\ln|x|\phi'(x)dx\]
+
+\[=-\lim_{\epsilon\to 0}\left( \int_{-\infty}^{-\epsilon}\ln|x|\phi'(x)dx+\int_\epsilon^\infty\ln|x|\phi'(x)dx\right)\]
+\[=-\lim_{\epsilon\to 0}\left( \ln(-x)\phi(x)\bigg|_{-M}^{-\epsilon}-\int_{-M}^{-\epsilon}\frac{1}{x}\phi(x)dx+\ln|x|\phi(x)\bigg|_\epsilon^M-\int_{\epsilon}^M\frac{1}{x}\phi(x)dx \right)\]
+\[=-\lim_{\epsilon\to 0}\left[  \ln(\epsilon)\phi(-\epsilon)-\ln(\epsilon)\phi(\epsilon) \right]+\int_\mathbb{R}\frac{1}{x}\phi(x)dx\]
+The limit goes to zero by L'Hopital:
+\[\lim_{\epsilon\to 0}\ln(\epsilon)\left( \phi(-\epsilon)-\phi(\epsilon) \right)=\lim_{\epsilon\to 0}\frac{\phi(-\epsilon)-\phi(\epsilon)}{\frac{1}{\ln\epsilon}}=\lim_{\epsilon\to 0}\frac{-\phi'(-\epsilon)-\phi'(\epsilon)}{\frac{-1}{\epsilon\ln^2\epsilon}}=2\phi'(0)\lim_{\epsilon\to 0}\epsilon\ln^2\epsilon\]
+\[=C\lim_{\epsilon\to 0} \frac{\ln^2\epsilon}{\frac{1}{\epsilon}}=C\lim_{\epsilon\to 0}\frac{\frac{2\ln\epsilon}{\epsilon}}{\frac{-1}{\epsilon^2}}=-C\lim_{\epsilon\to 0}\epsilon\ln\epsilon=-C\lim_{\epsilon\to 0}\frac{\ln\epsilon}{\frac{1}{\epsilon}}=-C\lim_{\epsilon\to 0}\frac{\frac{1}{\epsilon}}{\frac{-1}{\epsilon^2}}=C\lim_{\epsilon\to 0}\epsilon=0\]
+Therefore, the distributional derivative of $\ln|x|$ is $\frac{1}{x}$.
+
+
+\section*{5.22}
+As above, we first find $u_{tt}$ by Substituting $v=x+t$, $w=x-t$
+\[(u, \phi_{tt})=\int_{\mathbb{R}^2}f(x+t)\phi_{tt}(x,t)=\int_{\mathbb{R}^2}f(v)\frac{\partial^2}{\partial t^2} \phi\left(\frac{v+w}{2},\frac{v-w}{2}\right)(-2)dvdw\]
+\[=-2\int_{\mathbb{R}^2}f(v)\frac{\partial}{\partial t}\left( \frac{\partial \phi}{\partial u}\frac{\partial u}{\partial t}+\frac{\partial \phi}{\partial v}\frac{\partial v}{\partial t} \right)\]
+Since the second derivatives of $u$ and $v$ are zero, the integral is
+\[=-2\int_{\mathbb{R}^2}f(v)\left[ \frac{\partial^2\phi}{\partial u^2}\left( \frac{\partial u}{\partial t} \right)^2+\frac{\partial^2\phi}{\partial v}\left( \frac{\partial v}{\partial t} \right)^2 \right]=-2\int_{\mathbb{R}^2}f(v)\left[ \frac{\partial^2\phi}{\partial u^2}+\frac{\partial^2\phi}{\partial v^2} \right]\]
+
+Similarly for $u_{xx}$,
+\[(u,\phi_{tt})=\int_{\mathbb{R}^2}f(x+t)\phi_{tt}(x,t)=\int_{\mathbb{R}^2}f(v)\frac{\partial^2}{\partial x^2}\phi\left(\frac{v+w}{2},\frac{v-w}{2}\right)(-2)dvdw\]
+\[=-2\int_{\mathbb{R}^2}f(v)\frac{\partial}{\partial x}\left(\frac{\partial \phi}{\partial u}\frac{\partial u}{\partial x}+\frac{\partial \phi}{\partial v}\frac{\partial v}{\partial x}  \right)=-2\int_{\mathbb{R}^2}f(v)\left[ \frac{\partial^2\phi}{\partial u^2}\left( \frac{\partial u}{\partial x} \right)^2+\frac{\partial^2 \phi}{\partial v^2}\left( \frac{\partial v}{\partial x} \right)^2 \right]\]
+\[=-2\int_{\mathbb{R}^2}f(v)\left[  \frac{\partial^2\phi}{\partial u^2}+\frac{\partial^2\phi}{\partial v^2}\right]\]
+Since the two are the same, $u_{xx}=u_{tt}$.
+
+\section*{5.23}
+The Laplacian is
+\[\left(\frac{1}{r^2},\Delta\phi(\vec{x})\right)=\int_{\mathbb{R}^3}\frac{\Delta\phi(\vec{x})}{r^2}=\int_{\mathbb{R}^3}\frac{1}{r}\Delta\phi(\vec{x})drd\theta dz\]
+Letting $\xi=1/r^2$, there is a vector identity that
+\[\xi\Delta\phi=\nabla\cdot(\xi\nabla\phi)-\nabla\xi\cdot\nabla\phi\]
+Applying this to the integral above,
+\[=\int_{\mathbb{R}^3}\nabla\cdot\left(\frac{1}{r^2}\nabla\phi\right)-\int_{\mathbb{R}^3}\nabla\left(\frac{1}{r^2}\right)\cdot\nabla\phi=\int_{\mathbb{R}^3}\nabla\cdot\left(\frac{1}{r^2}\nabla\phi\right)-\int_{\mathbb{R}^3}\phi_r\frac{-2}{r^3}\]
+Taking the integrals over a region $S$ containing the support of $\phi$, we may apply the divergence theorem to obtain
+\[=2\left(\int_{\partial S}\frac{1}{r^3}\nabla\phi+\int_{\mathbb{R}^3}\phi_r\frac{1}{r^3}\right)\]
+Since $\phi$ and therefore $\nabla\phi$ are zero on the boundary of $S$, the first integral is zero. Evaluating the second integral,
+\[=\int_{0}^\pi\int_0^{2\pi}\int_0^\infty\phi_r\frac{1}{r^3}r^2\sin\varphi drd\theta d\varphi\]
+\[=\int_0^\pi\int_0^{2\pi}\lim_{\epsilon\to 0}\frac{\phi}{\epsilon}-\int_\epsilon^\infty \frac{\phi}{r}drd\thetad\varphi\]
+The innermost integral must be computed by principal value. Integrating by parts in the limit,
+\[=\int_{-\infty}^\infty\int_0^{2\pi}\lim_{\epsilon\to 0}\left[ \frac{\phi}{r^2}\bigg|_\epsilon^\infty-\int_\epsilon^\infty\frac{-2\phi}{r^3} \right]\]
+The first term in the limit is zero at infinity since $\phi$ is compactly supported, and
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\message{ !name(hw2.tex) !offset(-100) }

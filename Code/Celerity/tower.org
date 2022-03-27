@@ -1,0 +1,7 @@
+* Array-Oriented High-Level Synthesis
+
+This is an effort to create a program that efficiently translates BQN programs to the SystemVerilog. The choice of BQN is driven by the language's simplicity, leading to feasible implementation by a single author, its emphasis on tacit programing, which closely parallels the design of circuits for message handling with many composed modules, and its support for system-provided values which enable low-level configuration of input data types.
+
+This will be in conjunction with a longer-term project to develop a reconfigurable computing system, where all computations are done on FPGAs instead of microcontrollers with fixed arrangement of silicon. Some related speculation appears [[./dreams.org][here]]. 
+
+The compiler is written in Haskell because pattern-matching makes things a breeze.

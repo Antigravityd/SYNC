@@ -1,0 +1,84 @@
+
+This file is where I'm developing the multiboot-compatible bootstrap code and the linking process for the eventual Rust binary.
+
+* Bootstrap Assembly
+
+For now, closely follows [[https://wiki.osdev.org/Bare_Bones][osdev]] example.
+
+#+begin_src asm
+
+          ;; initialize constants
+          .set ALIGN, 1<<0 	// ?
+          .set MEMINFO, 1<<1	// really need to learn what this bitshift does
+          .set FLAGS, ALIGN | MEMINFO
+          .set MAGIC, 0x1BADB002
+          .set CHECKSUM, -(MAGIC + FLAGS) // all three in the multiboot spec
+
+
+          ;; create header
+          .section .multiboot
+          .align 4
+          .long MAGIC
+          .long FLAGS
+          .long CHECKSUM
+
+          ;; allocate stack; multiboot doesn't do it for us
+          .section .bss
+          .align 16
+  stack_bottom:
+          .skip 16384
+  stack_top:
+
+          ;; tell the linker/bootloader to start kernel executable. Intitialization code too.
+          .section .text
+          .global _start
+          .type _start, @function //
+  _start:
+          mov $stack_top, %esp // set stack pointer on stack
+          ;; more processor state initialization here
+
+          call kmain
+
+          ;; loop if kmain returns--should replace with recovery shell
+          cli
+  1:	hlt
+          jmp 1b
+
+          .size _start, . - _start // set size of the _start symbol for debug
+
+#+end_src
+
+* Link!
+
+Follows osdev again.
+
+#+begin_src ld-script
+
+  ENTRY(_start)
+
+  SECTIONS {
+           . = 1M; /* apparently convetion */
+
+           .text BLOCK(4K) : ALIGN(4K) {
+                 ,*(.multiboot)
+                 ,*(.text)
+           }
+
+           .rodata BLOCK(4K) : ALIGN(4K) {
+                   ,*(.rodata)
+           }
+
+           .data BLOCK(4K) : ALIGN(4K) {
+                 ,*(.data)
+           }
+
+           .bss BLOCK(4K) : ALIGN(4K) {
+                ,*(COMMON)
+                ,*(.bss)
+           }
+
+           /* add more sections corresponding to compiled binary sections;
+              section names should match function names */
+  }
+
+#+end_src

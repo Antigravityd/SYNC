@@ -1,0 +1,120 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage[letterpaper]{geometry}
+\title{2231 HW 5}
+\author{Duncan Wilkie}
+\date{11 October 2021}
+
+\begin{document}
+
+\maketitle
+
+\section*{1a}
+Since there is no charge inside the arrangement of conductors, the potential follows the Laplace equation $\Delta V=0$ with explicit boundary conditions $V(x,0,z)=V(x,a,z)=V(0,y,z)=0$ and $V(b,y,z)=V_0(y)$, and asymptotic boundary conditions $V\to 0$ as $z\to\infty$ and $z\to-\infty$. Physically, we expect that the problem is symmetric in $z$, so the problem reduces to two dimensions. We proceed by separation of variables: presuming that $V(x,y,z)=f(x)g(y)h(z)$, \[\Delta V=0\Leftrightarrow f''(x)g(y)+f(x)g''(y)=0\Leftrightarrow\frac{f''(x)}{f(x)}=-\frac{g''(y)}{g(y)}\]
+Since both sides depend on a single variable, each must be constant---if this were not true, and say without loss of generality that the left side is nonconstant, any variation of the $x$ varaible must produce a variation in the right side, or in other words the right side must depend on $x$, which is a contradiction. So, calling the constant each side is equal to $\omega$, $f''(x)=\omega f(x)$ and $g''(y)=-\omega g(y)$. These are now linear, second-order, non-homogeneous ODEs of constant coefficients, and so are easily solved. The ansatze $e^{mx}$ and $e^{my}$ yield auxilliary equations $m^2-\omega=0$ and $m^2+\omega=0$, which correspond to solutions
+\[f(x)=a_1e^{\sqrt{\omega}x}+a_2e^{-\sqrt{\omega}x}\]
+\[g(y)=b_1\sin(\sqrt{\omega}y)+b_2\cos(\sqrt{\omega}y)\]
+The solutions $V$ are then
+\[V=\left( a_1e^{\sqrt{\omega}x}+a_2e^{-\sqrt{\omega}x} \right)\left( b_1\sin(\sqrt{\omega}y)+b_2\cos(\sqrt{\omega}y) \right)\]
+Applying the boundary conditions at $y=0$,
+\[\left( a_1e^{\sqrt{\omega}x}+a_2e^{-\sqrt{\omega}x} \right)b_2=0\]
+Since the exponentials are always nonzero, this implies that either $a_1=a_2=0$ or $b_2=0$.
+Applying the condition at $x=0$,
+\[\left( a_1+a_2 \right)(b_1\sin(\sqrt{\omega}y)+b_2\cos(\sqrt{\omega}y))=0\]
+Since it is possible to choose $y$ such that the trigonometric functions are both nonzero, this implies that either $a_1+a_2=0$ or $b_1=b_2=0$.
+The only combination of the logical or statements above which yields a nontrivial solution is $b_2=0$, and $a_1=-a_2$ where both are nonzero. Call the magnitude of $a_1$ $A$, and rename $b_1$ to $B$. Then we have
+\[V=AB\sin(\sqrt{\omega}y)\left(e^{\sqrt{\omega}x}-e^{-\sqrt{\omega}x}  \right)\]
+Applying the boundary condition at $y=b$,
+\[AB\sin(\sqrt{\omega}b)\left( e^{\sqrt{\omega}x}-e^{-\sqrt{\omega}x} \right)=0\]
+which implies $\sqrt{\omega}=\frac{n\pi}{b}$ for integral $n$.
+The boundary condition at $x=b$ seems to require that
+\[V_0(y)=AB\sin\left(\frac{n\pi}{b}y\right)\left( e^{n\pi}-e^{-n\pi} \right)\]
+Since linear combinations of solutions of this form remain solutions, we can replace the right side by a linear combination
+$\sum_{n=1}^\infty C_n\sin\left( \frac{n\pi}{b}y \right)$ with coefficients such that the solution is a Fourier series for $V_0(y)$. The form these coefficients take can be found by multiplying each side of the supposed equality by $\sin\left( \frac{n'\pi}{b}y \right)$ and integrating from $0$ to $b$:
+\[\sum_{n=1}^\infty C_n\int_0^b\sin\left(\frac{n'\pi}{b}y\right)\sin\left( \frac{n\pi}{b}y \right)dy=\int_0^bV_0(y)\sin\left(\frac{n'\pi}{b}y\right)dy\]
+The integral on the left is zero if $n\neq n'$, and $b/2$ otherwise.
+Therefore, the coefficients are
+\[C_n=\frac{2}{b}\int_0^bV_0(y)\sin\left(\frac{n\pi}{b}y\right)dy\]
+and the solution for the initial condition is of the form
+\[V(b,y)=\sum_{n=1}^\infty\frac{2}{b}\sin\left( \frac{n\pi}{b}y \right)\int_0^bV_0(y)\sin\left( \frac{n\pi}{b}{y} \right)dy\]
+Here $C_n$ contains a factor of $AB(e^{n\pi x}-e^{-n\pi x})$, so the overall solution is
+\[V=\frac{1}{AB}\sum_{n=1}^\infty\frac{1}{\left( e^{n\pi x}-e^{-n\pi x} \right)}\frac{2}{b}\sin\left( \frac{n\pi}{b}y \right)\int_0^bV_0(y)\sin\left(\frac{n\pi}{b}y \right)dy\]
+
+\section*{1b}
+If $V_0$ is a constant, then \[C_n=\frac{2V_0}{b}\left( \frac{-b}{n\pi}\cos\left( \frac{n\pi}{b}y \right) \right)\bigg|_0^b=\frac{2V_0}{n\pi}\left(1-\cos({n\pi}) \right)=\begin{cases}
+    0 & n \textrm{ even } \\
+    \frac{4V_0}{n\pi} & n \textrm{ odd }
+  \end{cases}\]
+The solution is then
+\[V=\frac{1}{AB}\sum_{k=0}^\infty\frac{1}{\left( e^{(2k+1)\pi x}-e^{-(2k+1)\pi x} \right)}\frac{4V_0}{(2k+1)\pi}\sin\left( \frac{(2k+1)\pi}{b}y \right)\]
+
+\section*{2}
+The general solution to Laplace's equation in the case that there is no dependence on $\phi$ (which there should not be in this case, since the boundary value is only dependent on $\theta$) is
+\[V(r,\theta)=\sum_{l=0}^\infty\left( A_lr^l+\frac{B_l}{r^{l+1}} \right)P_l(\cos(\theta))\]
+where $P_l$ is the $l$th Legendre polynomial. For the inside of the sphere, if $B_l$ were nonzero the potential at the origin would be infinite. Given there is no charge there, this is unphysical, so $B_l$ is zero. At $r=R$, we must have $V=V_0$, i.e.
+\[k\cos(2\theta)=2k\cos^2(\theta)-k=\sum_{l=0}^\infty A_lR^lP_l(\cos(\theta))\]
+By comparison of coefficients of the above as an equation of polynomials in $\cos(\theta)$, $A_l=0$ for $l >2$. For the $l=2$ term, the leading coefficient of $P_2(\cos(\theta))$ is $\frac{3}{2}$, so $A_2=\frac{4k}{3R^2}$. For the $l=1$ term, the leading coefficient of $P_1(\cos(\theta))$ is 0 and there is no $x$ term in $P_2$, so $A_1=0$. For the $l=0$ term, the coefficient of $P_0$ is 1 and there is a $\frac{2}{3}$ term from $l=2$ that needs to be accounted for, so $A_0=-\frac{k}{3}$. These imply
+\[V(r,\theta)=\frac{2kr^2}{3R^2} ({3\cos^2(\theta)-1})-\frac{k}{3}\]
+For the case outside the sphere, we must have $A_l=0$ in order for $V\to 0$ as $r\to\infty$. Once again,
+\[k\cos(2\theta)=2k\cos^2(\theta)-k=\sum_{l=0}^\infty\frac{B_l}{R^{l+1}}P_l(\cos(\theta))\]
+Again, we compare coefficients, having $B_l=0$ for $l>2$. The leading coefficient of $P_2$ is $\frac{3}{2}$, so $B_2=\frac{4kR^3}{3}$. $l=1$ is again absent, and for $l=0$ we must account for the $\frac{2}{3}$ term in the same way, so $A_0=-\frac{k}{3}$ These imply
+\[V(r,\theta)=\frac{2kR^3}{3r^3}(3\cos^2(\theta)-1)-\frac{k}{3}\]
+
+\section*{3}
+In cylindrical coordinates,
+\[\Delta f = 0 \Leftrightarrow \frac{1}{\rho}\frac{\partial }{\partial \rho}\left( \rho\frac{\partial f}{\partial \rho} \right)+\frac{1}{\rho^2}\frac{\partial^2f}{\partial \phi^2}=0\Leftrightarrow \frac{1}{\rho}\left( \rho\frac{\partial^2 f}{\partial \rho^2}+\frac{\partial f}{\partial\rho}\right)+\frac{1}{\rho^2}\frac{\partial ^2 f}{\partial \phi^2}=0\]
+Presuming $V=R(\rho)\Phi(\phi)$,
+\[\frac{\Phi(\phi)}{\rho}\left( \rho R''(\rho)+R'(\rho)\right)+\frac{R(\rho)}{\rho^2}\Phi''(\phi)=0\]
+\[\Leftrightarrow -\frac{\rho^2 R''(\rho)+\rho R'(\rho)}{R(\rho)}=\frac{\Phi''(\phi)}{\Phi(\phi)}\]
+Since both sides depend solely on a single variable, they are constant. We then write
+\[\Phi''(\phi)=\omega^2\Phi(\phi)\]
+and
+\[\rho^2R''(\rho)+\rho R'(\rho)+\omega^2R(\rho)=0\]
+The first was shown in the first problem to result in $\Phi(\phi)=c_1e^{\omega \phi}+c_2e^{-\omega\phi}$.
+The second we may write as \[R''(\rho)+\frac{1}{\rho} R'(\rho)+\frac{\omega^2}{\rho^2}R(\rho)=0\]
+One may check via differentiation that $R=b_1\rho^\omega+b_2\rho^{-\omega}$ are solutions to this equation. The overall solution is then
+\[V=[b_1\rho^\omega+b_2\rho^{-\omega}]\left[ c_1e^{\omega\phi}+c_2e^{-\omega\phi} \right]\]
+Since the potential must go to zero at infinity, $b_1=0\lor c_1=0$ and $b_1=0\lor c_2=0$. If $b_1\neq 0$, then $c_1=c_2=0 $ yields the trivial solution, so the general solution is
+\[V=b_2\rho^{-\omega}\left[ c_1e^{\omega\phi}+c_2e^{-\omega\phi} \right]\]
+All solutions in spherical coordinates are linear combinations of this.
+
+\section*{4}
+In this case, there is azimuthal symmetry, so the general solution to the Lagrange equations with such a symmetry has the form
+\[V(r,\theta)=\sum_{l=0}^\infty\left( A_lr^l+\frac{B_l}{r^{l+1}} \right)P_l(\cos(\theta))\]
+In the interior of the sphere, there is no charge, so there can be no discontinuities in the potential. This implies $B_l=0$, and
+\[V(r,\theta)=\sum_{l=0}^\infty A_lr^lP_l(\cos(\theta))\]
+In the exterior of the sphere, the potential goes to zero at infinity, so $A_l$ must all be zero, and
+\[V(r,\theta)=\sum_{l=0}^\infty \frac{B_l}{r^{l+1}}P_l(\cos(\theta))\]
+These two must have continuity on the boundary, so
+\[\sum_{l=0}^\infty A_lR^lP_l(\cos(\theta))=\sum_{l=0}^\infty \frac{B_l}{R^{l+1}}P_l(\cos(\theta))\]
+Comparing coefficients,
+\[A_lR^l=\frac{B_l}{R^{l+1}}\Leftrightarrow {B_l}=A_lR^{2l+1}\]
+There is a discontinuity in the derivative at the surface however, of magnitude
+\[\left( \frac{\partial V_{out}}{\partial r}-\frac{\partial V_{in}}{\partial r}\right)\bigg|_{r=R}=-\frac{\sigma(\theta)}{\epsilon_0}\]
+\[\Leftrightarrow-\sum_{l=0}^\infty (l+1)\frac{B_l}{R^{l+2}}P_l(\cos(\theta))-\sum_{l=0}^\infty lA_lR^{l-1}P_l(\cos(\theta))=-\frac{\sigma(\theta)}{\epsilon_0}\]
+\[\Leftrightarrow \sum_{l=0}^\infty (2l+1)A_lR^{l-1}P_l(\cos(\theta))=\frac{\sigma(\theta)}{\epsilon_0}\]
+Multiplying both sides by $P_{l'}(\cos(\theta))\sin(\theta)$, since the Legendre polynomials are orthogonal on $[-1,1]$, and integrating from $0$ to $\pi$,
+\[\sum_{l=0}^\infty(2l+1)A_kR^{l-1}\int_0^\pi P_l(\cos(\theta))P_{l'}(\cos(\theta))\sin(\theta)d\theta=\frac{1}{\epsilon_0}\int_0^\pi\sigma(\theta)P_{l'}(\cos(\theta))\sin(\theta) d\theta\]
+Since
+\[\int_{-1}^1P_l(x)P_{l'}(x)dx=\int_0^\pi P_l(\cos(\theta))P_{l'}(\cos(\theta))\sin(\theta)d\theta=\begin{cases}
+    0, & l'\neq l\\
+    \frac{2}{2l+1}, & l'=l
+  \end{cases}\]
+this becomes
+\[2A_lR^{l-1}=\frac{1}{\epsilon_0}\int_0^\pi\sigma(\theta)P_{l'}(\cos(\theta))\sin(\theta)d\theta\]
+\[\Leftrightarrow A_l=\frac{1}{2R^{l-1}\epsilon_0}\left( \int_0^{\pi/2}\sigma_0P_{l'}(\cos(\theta))\sin(\theta)d\theta-\int_{\pi/2}^{\pi}\sigma_0P_{l'}(\cos(\theta))\sin(\theta)d\theta\right)\]
+Since $\cos$ is odd and $\sin$ is even, and any function of an even function is even, the integrand is odd. Introducing a change of variables $\phi=\theta-\pi/2$ turns this to
+\[A_l=\frac{\sigma_0}{\epsilon_0R^{l-1}}\int_0^{\pi/2}P_{l'}(\cos(\theta))\sin(\theta)d\theta\]
+Evaluating these up to $l=4$,
+\[A_0=\frac{\sigma_0}{\epsilon_0R^{l-1}}\]
+\[A_1=\frac{\sigma_0}{2\epsilon_0R^{l-1}}\]
+\[A_2= 0\]
+\[A_3=-\frac{\sigma_0}{8\epsilon_0R^{l-1}}\]
+\[A_4=0\]
+That the even $l$s all evaluate to zero could likely be proven by an appeal to $\pi$ periodicity of those terms, however, that is not necessary for this problem.
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

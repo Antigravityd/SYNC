@@ -1,0 +1,29 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[letterpaper]{geometry}
+\usepackage{amsmath}
+
+\title{Math 3355 Quiz 1}
+\author{Duncan Wilkie}
+\date{11 September 2021}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1}
+Call the set of investors that invested in traditional annuities $A$, and the set of investors that invested in the stock market $B$.
+By the inclusion-exclusion principle, $|A\cup B|=|A| + |B| - |A\cap B|$. Solving for $|A\cap B|$, the size of the set of investors who invested in both, yields \[|A\cap B| = |A|+|B|-|A\cup B| = 60\% + 35\% - 80\% = 15\%\]
+
+\section*{Problem 2}
+The binomial theorem says $(a+b)^n = \sum_{k=0}^n\binom{n}{k}a^{n-k}b^k$. In this case, $a=2x$ and $b=5y$, and further since the power of $x$ is 7 and that of $y$ is 3, this corresponds to $n=10$ and $k=3$.
+Therefore, the full corresponding term is $\binom{10}{4}(2x)^7(5y)^3$.
+Pulling the constant terms out of the exponentiations yields a coefficient of $\binom{10}{4}\cdot2^7\cdot5^3 = 3,360,000$.
+\section*{Problem 3}
+The probability that a random point from $(a,b)$ falls into a subinterval $(\alpha, \beta)$ is $\frac{\beta-\alpha}{b-a}$ by definition of random selection.
+In this case, $(a,b) = (0,1)$ and $(\alpha, \beta) = (\frac{1}{3}, 1)$, so the probability the random point is drawn from the latter interval is \[\frac{\beta-\alpha}{b-a} = \frac{1-\frac{1}{3}}{1-0}=\frac{2}{3}\]
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

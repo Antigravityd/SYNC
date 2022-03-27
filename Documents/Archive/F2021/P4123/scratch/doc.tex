@@ -1,0 +1,32 @@
+\documentclass{article}
+\usepackage[letterpaper]{geometry}
+\usepackage{amsmath}
+\title{E-L Proof}
+\author{Duncan Wilkie}
+\date{10 October 2021}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+We wish to find a function $f$ that extremizes the functional
+\[J=\int_{x_0}^{x_1}K(x, f, f')dx\]
+A small variation of the function $f$ may be written as $\delta f=f(x)+\epsilon\eta(x)$, where $\eta(x_0)=\eta(x_1)=0$. Parameterizing the functional with respect to $\epsilon$, which controlls the ``size'' of the variation,
+\[J_\epsilon=\int_{x_0}^{x_1}K(x,\delta f, \delta f')dx\]
+If $f$ extremizes $J$, the value of $J$ is not changing with respect to an infintesimal variation in the function $f$, i.e.
+\[\frac{dJ_\epsilon}{d\epsilon}=0\Leftrightarrow \int_{x_0}^{x_1}\frac{dK(x,\delta f, \delta f')}{d\epsilon}dx = 0\]
+By the multivariable chain rule,
+\[\Leftrightarrow \int_{x_0}^{x_1}\frac{\partial K}{\partial x}\frac{d x}{d \epsilon}+\frac{\partial K}{\partial f}\frac{df}{d\epsilon}+\frac{\partial K}{\partial f'}\frac{df'}{d\epsilon}dx = 0\]
+\[\Leftrightarrow\int_{x_0}^{x_1}0+\frac{\partial K}{\partial f}\eta(x)+\frac{\partial K}{\partial f'}\eta'(x)dx\]
+Breaking this into two integrals and applying integration by parts to the second,
+\[\Leftrightarrow \int_{x_0}^{x_1}\frac{\partial K}{\partial f}\eta(x)dx + \frac{\partial K}{\partial f'}\eta(x)\bigg|_{x_0}^{x_1}-\int_{x_0}^{x_1}\eta(x)\frac{d}{dt}\left( \frac{\partial K}{\partial f'} \right)dx\]
+Applying the boundary conditions on $\eta$,
+\[\Leftrightarrow \int_{x_0}^{x_1}\left( \frac{\partial K}{\partial f}-\frac{d}{dt}\frac{\partial K}{\partial f'} \right)\eta(x)dx\]
+Since this must hold for all $\eta(x)$, a couple extra real analytic steps we're expected to take for granted imply
+\[\Leftrightarrow \frac{\partial K}{\partial f}-\frac{d}{dt}\frac{\partial K}{\partial f'}=0\]
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

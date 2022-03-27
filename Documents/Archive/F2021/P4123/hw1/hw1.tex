@@ -1,0 +1,82 @@
+\documentclass{article}
+\usepackage[letterpaper]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+
+\title{4123 HW 1}
+\author{Duncan Wilkie}
+\date{16 September 2021}
+
+\begin{document}
+
+\maketitle
+
+\section*{1a}
+Since we would like to extremize with respect to time, we must find a functional that expresses the travel time in terms of the variables given.
+We can write $dt = \frac{ds}{v(y)}=\frac{\eta(y)dx\sqrt{1+y'^2}}{c}$.
+The integral of this expression for $dt$ is of course the total travel time,\[J[y]  = \int\frac{\eta(y)\sqrt{1+y'^2}}{c}dx\]
+Since there is no direct dependence on $x$ in this expression, the first integral of the Euler-Lagrange equations must be satisfied.
+We then have, letting $\kappa$ being an arbitrary constant,
+\[f-y'\frac{\partial f}{\partial y'} = \kappa\Leftrightarrow \frac{\eta(y)\sqrt{1+y'^2}}{c}-y'\frac{\partial}{\partial y'}\left(\frac{\eta(y)\sqrt{1+y'^2}}{c}\right) = \kappa\]
+\[\Leftrightarrow \frac{\eta(y)\sqrt{1+y'^2}}{c}-\frac{\eta(y)y'^2}{c}\frac{1}{\sqrt{1+y'^2}}=\kappa\Leftrightarrow\frac{\eta(y)}{c}\sqrt{1+y'^2}\left(1-\frac{y'^2}{1+y'^2}\right)=\kappa\]
+\[\Leftrightarrow\frac{\eta(y)}{c}\sqrt{1+y'^2}\left(\frac{1}{1+y'^2}\right)=\kappa \Leftrightarrow\eta(y)=K{\sqrt{1+y'^2}}\]
+
+\section*{1b}
+The Euler-Lagrange equation applied to the functional above yields
+\[\frac{\partial}{\partial y}\left(\frac{\eta(y)\sqrt{1+y'^2}}{c}\right)-\frac{d}{dx}\frac{\partial}{\partial y'}\left(\frac{\eta(y)\sqrt{1+y'^2}}{c}\right) = 0\]
+\[\Leftrightarrow\frac{\sqrt{1+y'^2}}{c}\eta'(y)-\frac{d}{dx}\left(\frac{\eta(y)}{c}\frac{y'}{\sqrt{1+y'^2}}\right)=0\]
+\[\Leftrightarrow\frac{\sqrt{1+y'^2}}{c}\eta'(y)-\frac{1}{c}\left(\frac{y'^2}{\sqrt{1+y'^2}}\eta'(y)+\eta(y)y''\left(\frac{-y'^2}{{(1+y'^2)}^{3/2}}+\frac{1}{\sqrt{1+y'^2}}\right)\right)=0\]
+\[\Leftrightarrow \eta'(y)(1+y'^2)=y'^2\eta'(y)+\eta(y)y''\left(\frac{-y'^2}{1+y'^2}+1\right)\]
+\[\Leftrightarrow 1=\frac{\eta(y)}{\eta'(y)}y''\left(\frac{-y^2}{1+y'^2}+1\right)\]
+\[\Leftrightarrow 1 = \frac{\eta(y)}{\eta'(y)}y''\frac{1}{1+y'^2}\]
+\[\Leftrightarrow y''=\frac{\eta'(y)(1+y'^2)}{\eta(y)}\]
+If the refractive index decreases, $\eta'(y) < 0$. $\eta(y)$ is positive (except for certain exotic occasions, according to my MATH 7380 professor), and of course $1+y'^2$ is as well. Therefore $y'' < 0$, i.e.\ the path concaves downwards.
+\section*{2}
+We apply the Euler-Lagrange equation to get
+\[1-2y''=0\]
+Integrating twice,
+\[\frac{x^2}{2}-2y=c_1x+c_2\textrm{, where }c_1,c_2\in\mathbb{R}\]
+Applying the first boundary condition,
+\[c_2 = 0\]
+Applying the second,
+\[\frac{-7}{2}=\frac{c_1}{2}+c_2\Rightarrow c_1 = -7\]
+Substituting within the integrated form these values of $c_1,c_2$ yields
+\[\frac{x^2}{2}-2y=-7x\Leftrightarrow y =\frac{x^2}{4}+\frac{7}{2}x\]
+\section*{3}
+I'll assume that we're trying to show that the desired equations hold when $I$ is extremized.
+Applying the first integral,
+\[y+\ln(y')-y'\left( \frac{1}{y'} \right)=c_1\Leftrightarrow  \ln(y')=c_2-y\]
+where $c_1\in\mathbb{R}$ and $c_2=c_1+1$.
+Exponentiating this,
+\[y'=\tilde{c}e^{-y}\]
+where $\tilde{c}=e^{c_2}$. This is the first equation.
+Applying Euler-Lagrange to the integrand,
+\[1-\frac{d}{dx}\frac{1}{y'}= 0\]
+We can integrate this with respect to $x$ to obtain the second equation,
+\[x-\frac{1}{y'}=0\Leftrightarrow y' = \frac{1}{x+c}\Leftrightarrow y = \ln(x+c)+c'\]
+where $c,c'\in\mathbb{R}$. Applying the boundary conditions, $\ln(2) = \ln(1+c)+c'$ and $\ln(3)=\ln(2+c)+c'$.
+Subtracting the first from the second, we obtain $\ln(3/2) = \ln(\frac{2+c}{1+c}) \Leftrightarrow 3+3c=4+2c\Leftrightarrow c=1$.
+Applying this to the first condition, $c'=0$ and consequently $y=\ln(1+x)$.
+
+\section*{4}
+Given a sphere and two points, we may choose the spherical coordinate system such that one of the points is the north pole.
+Assume without loss of generality that the second point has well-defined coordinates $(r,\theta,\phi)$. The north pole of course has coordinates $(R, 0, 0)$ presuming the sphere has radius $R$. For an arbitrary arc, the arc length in spherical coordinates (where $\theta$ is azimuthal)
+is given by the functional
+\[L=\int ds=\int\sqrt{dr^2+r^2d\phi^2+r^2\sin^2(\phi)d\theta^2}=\int\sqrt{\left( \frac{dr}{dt} \right)^2+r^2\left( \frac{d\phi}{dt} \right)^2+r^2\sin^2(\phi)\left( \frac{d\theta}{dt}\right)^2}dt\]
+\[=\int r\sqrt{\theta'^2\sin^2(\phi)+\phi'^2}dt\]
+where we have used that the radial coordinate is constant on the surface of a sphere.
+From this, we obtain one of two Euler-Lagrange equations
+\[\frac{d}{dt}\left( \frac{\theta'\sin^2(\phi)}{\sqrt{\theta'^2\sin^2(\phi)+\phi'^2}} \right) = 0\]
+\[\Leftrightarrow \theta'^2\sin^4(\phi)=c^2\theta'^2\sin^2(\phi)+c^2\phi'^2\]
+\[\Leftrightarrow \theta'=\frac{c\phi'}{\sqrt{\sin^4(\phi)-\sin^2(\phi)c^2}}\]
+We integrate this for an expression of $\theta$:
+\[\theta=c\int\frac{d\phi}{\sqrt{\sin^4(\phi)-\sin^2(\phi)c^2}}\]
+Since the integrand is always positive, the integral is always positive over an interval of positive measure, and so the only way for $\theta=0$ is for $c=0$. However, $\theta = 0$ must occur, since the path starts at the north pole. Therefore, $c=0$ for all $t$, and the Euler-Lagrange equation becomes $\theta'\sin^2(\phi)=0$. $\sin^2(\phi)$ is zero only at the poles, and any path containing the poles with $\theta'\neq 0$ at those poles would have a discontinuous derivative---violating an implicit smoothness assumption made in the use of the Euler-Lagrange equations---so this implies $\theta'=0$ for all points on the path. This is a segment of a great circle: a path starting at the north pole and moving away with fixed $\theta$ defines a plane through the center of the sphere by any three distinct points on it.
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

@@ -1,0 +1,83 @@
+:PROPERTIES:
+:ID:       54b1c61f-382c-4481-9166-47c553232376
+:END:
+#+title: Celerity
+* Celerity
+
+A distributed, architecture-independent operating system inspired by [[https://dl.acm.org/doi/pdf/10.1145/1629575.1629597][Microsoft Helios]].
+
+* Motivation
+
+Computing systems are overdependent on CPUs. All operating systems, all compilers, all SMP schemes, all HPC systems are centered around the idea of some specific processing unit running some linear sequence of instructions. These systems are often hand-tuned to the specific kind of processing unit they are run on, which makes innovation in the space stifling. In order to compare, let's say, your latest ARM Neon instruction or RISC-V extension to common x86_64 silicon, you really need to fully implement most of the complexity of the modern computer over again from scratch.
+
+Compiler architects got tired of going through this process for each CPU microarchitecture they wanted to support. The LLVM project's Clang compiler, alongside many other compilers, initially compiles to [[https://llvm.org/docs/LangRef.html][LLVM IR]], a so-called /intermediate representation/ of the compiled code that is both language- and architecture-independent. This enables optimization passes done for one language or architecture to be freely applied to programs compiled from/to other languages/architectures, the optimizations done for the project's C compiler then being immediately transferable to their Fortran compiler. It also enables so-called /front-end/ developers, who are creating new languages, to write one code-generation step that is then further compileable to all microarchitectures, and for microarchitecture developers (/back-end/ developers) to write one, very simple compiler that enables compilers for all the other languages to be used with the new architecture. In short, modern developers have solved the classical "UNCOL problem" of the last century.
+
+This poses an enormous opportunity for people developing especially radical departures from the silicon CPU paradigm, like optical, quantum, and reconfigurable computing. The difficulty in making a practical computing system based on those technologies is as extreme as those technologies' departure from the norms ossified over 80 years.
+
+The few still interested in open-source FPGA compilers have taken interest in this development as well, as have those interested in GPU computation and machine learning accelerators. These technologies have fewer interested parties than C compilers, and so their developers have every incentive to use these advancements in modular compiler technology to ease their own workloads. The LLVM [[https://mlir.llvm.org/][MLIR]] project is a specification for a more general intermediate representation that includes sub-representations, among them the normal IR, which encode computations of a particular kind.
+
+The closed-source, not-for-distribution Microsoft Helios is an apparently successful attempt at a heterogeneous, distributed operating system that works by sending the .NET framework's own intermediate representation of computations to so-called /satellite kernels/ running on very many CPUs across a data center. The idea here is to replicate this in an open-source system using MLIR, thus practically enabling distribution of computation across arbitrarily many computational devices with radically heterogeneous architectures. Additionally, translation passes between MLIR dialects could be used to automatically detect portions of code that would benefit from being run on a particular architecture and convert it
+
+* Implementation
+
+** Specification-First
+
+It isn't likely that the original open source implementation will remain in any way resembling its eventual forms. Look at the *NIX world; there is so much fragmentation one might consider it almost inevitable. POSIX and SUS were an afterthought, which is among the many reasons they're nearly never followed. Having a complete specification alongside the initial release of the operating system would, along with serving as documentation and explanation, serve to ease the negative consequences of that fragmentation, as designers of derivatives and applications meant to work across those derivatives could consider how to implement things so that they break only where it's strictly necessary.
+
+** Modern Language
+
+Rust. We need to manage memory and do other low-level things, but 60% of bugs in big projects are memory leaks, and Rust is often faster than GCC anyway. It's compiled to LLVM by default as well. Enough said.
+
+** POSIX-Compliance Mode
+
+Wheels are hard to reinvent.
+
+** Components
+
+*** Master Kernel
+
+Microkernel, because monolithic bad. Probably should target x86_64.
+
+*** Satellite Kernel
+
+I don't even know if it counts as a kernel, because it need only do one thing: run a JIT compiler/interpreter for the corresponding MLIR dialect(s) coming over the wire. The closest thing might be an exokernel or megalithic kernel, because the JIT compiler ought to have /carte blanche/ control over how the node is managed.
+
+The MLIR instructions would come off the control bus at some speed. If the execution speed is faster than the bus throughput, the satellite waits a while in between instructions; if the execution is slower, a buffer of instructions is accumulated (ideally without processor intervention using DMA or something).
+
+Executing arbitrary MLIR text with no filtering may run into issues with how low-level assembly can be. The master kernel must therefore allocate a sensibly complete unit of MLIR for each satellite.
+
+*** Glue Architecture
+
+Something like data and control busses would be used to coordinate data and instruction distribution among the satellite kernels.
+
+*** File System
+
+This'll be radical, but hierarchical file systems seem dumb to me. A tags-based approach is more flexible and may allow for faster indexing with hash tables (haven't checked the algorithmics yet), especially on a distributed system where you'd like to keep track of which memory node every file is on. Emulation of hierarchical file systems is, of course, possible. For example, there is no need for symlinks, since you could just create a tag for files that do a certain thing. PATH and other environment variables are greatly simplified: if you want something to be executable from any user shell prompt, just tag it as such. Security and sandboxing are simplified, as one may restrict processes only to have certain types of access on files in their own tag without special permission; the Linux world hacks together something similar with user permissions.
+
+Apparently, this has been done with "database file systems" by IBM.
+
+Distribution aspects I'm still shaky on of course.
+
+*** Shells
+
+Structured message passing in the vein of [[https://www.nushell.sh/][nushell]] and Windows PowerShell would be desirable. A Lisp shell is also an attractive option.
+
+*** Memory Management
+
+??? Need to read a lot of books on distributed memory schemes before I can try and say what's best. Helios has a sort of NUMA domain system that seems to work, but I don't know if I could come up with something better.
+
+*** RPC / IPC
+
+This is so critical to the performance of the operating system that it may call for a custom solution. [[https://capnproto.org/][Cap'n Proto]] seems like a very sensible existing solution though, and has a full-featured Rust implementation.
+
+*** Scheduling
+
+Reading required. Some system that assesses network performance among the satellites, takes into account the costs and benefits of using a faster on-chip but slower in-route FPGA satellite versus a closer, slower CPU one, and all that. There's whole journals on distributed systems; my guess is this is one of the primary problems of interest.x
+
+*** Executable Format
+
+ELF should be sufficient. The
+
+*** Drivers
+
+The NetBSD [[https://wiki.netbsd.org/rumpkernel/][rump kernels]] may be an easy way to get a whole lot of hardware support easily.

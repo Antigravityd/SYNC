@@ -1,0 +1,81 @@
+\documentclass{article}
+
+\title{4123 HW 4}
+\author{Duncan Wilkie}
+\date{9 November 2021}
+\begin{document}
+
+\maketitle
+
+\section*{1a}
+The Lagrangian for this system is, taking down to be the $+y$ direction,
+\[L=\frac{1}{2}m(\dot{x}^2+\dot{y}^2)-mgy\]
+The modified Euler-Lagrange equations are
+\[\frac{\partial L}{\partial x}+\lambda\frac{\partial C}{\partial x}=\frac{d}{dt}\frac{\partial L}{\partial \dot{x}}\Leftrightarrow 2\lambda x=m\ddot{x}\]
+and
+\[\frac{\partial L}{\partial y}+\lambda\frac{\partial C}{\partial y}=\frac{d}{dt}\frac{\partial L}{\partial\dot{y}}\Leftrightarrow -mg+2\lambda y = m\ddot{y}\]
+Solving for $x$ and $y$,
+\[x = \frac{m\ddot{x}}{2\lambda}, y = \frac{m\ddot{y}+mg}{2\lambda}\]
+Plugging this in to the constraint equation,
+\[\left( \frac{m\ddot{x}}{2\lambda} \right)^2+\left( \frac{m\ddot{y}+mg}{2\lambda} \right)^2=l^2\]
+\[\Leftrightarrow \lambda^2=\frac{m^2}{4l^2}\left( \ddot{x}^2+\ddot{y}^2+2\ddot{y}g+g^2 \right)\]
+
+\section*{1b}
+Multiplying by $1=\frac{l^2}{l^2}$,
+\[\lambda^2=\frac{m^2}{4l^4}\left( x^2+y^2 \right)\left( \ddot{x}^2+\ddot{y}^2+2\ddot{y}g+g^2 \right)\]
+\[=\frac{m^2}{4l^4}\left( x^2\ddot{x}^2+x^2\ddot{y}^2+2x^2\ddot{y}g+g^2x^2+g^2y^2+y^2\ddot{x}^2+y^2\ddot{y}^2+2y^2\ddot{y}g+g^2y^2 \right)\]
+Differentiating the constraint twice,
+\[C=0\Rightarrow x\dot{x}+y\dot{y}=0\Rightarrow x\ddot{x}+\dot{x}^2+y\ddot{y}+\dot{y}^2=0\]
+\[\Leftrightarrow \dot{x}^2+\dot{y}^2=-x\ddot{x}-y\ddot{y}\]
+Plugging this in to the target equation, we obtain
+\[\lambda = \frac{m}{2l^2}(x\ddot{x}+y\ddot{y}+gy)\]
+\[\Leftrightarrow \lambda^2=\frac{m^2}{4l^4}\left( x^2\ddot{x}^2+2x\ddot{x}y\ddot{y}+2x\ddot{x}gy+y^2\ddot{y}^2+2y^2\ddot{y}g+g^2y^2 \right)\]
+Equating the two expressions for $\lambda^2$, we must have
+\[x^2\ddot{y}^2-2x\ddot{x}y\ddot{y}+2x^2\ddot{y}g-2x\ddot{x}gy+y^2\ddot{x}^2+g^2x^2+g^2y^2=0\]
+\[\Leftrightarrow (\ddot{x}y-x\ddot{y})^2-2xg(y\ddot{x}-x\ddot{y})+g^2l^2=0\]
+\[\Leftrightarrow y\ddot{x}-x\ddot{y}=gx\pm g\sqrt{l^2-x^2}=gx\pm gy\]
+\[\Leftrightarrow x(g-\ddot{y})=\pm y(g-\ddot{x})\]
+By physical intuition, we always expect $g > \ddot{y}$ and $g>\ddot{x}$. The branch therefore changes to make the signs of the two sides agree, and we may write this as
+\[|x|(g-\ddot{y})=|y|(g-\ddot{x})\]
+\[\Leftrightarrow |\tan\theta|=\frac{g-\ddot{y}}{g-\ddot{x}}\]
+By itself, this is a nice way to describe the motion of a pendulum. We must prove it holds. Multiply the right side by $1=\frac{m}{m}$ and move the denominator over. Breaking up the tangent as well, his becomes a force equation
+\[mg|\sin\theta|-m\ddot{x}|\sin\theta|=mg|\cos\theta|-m\ddot{y}|\cos\theta|\]
+Since we have Newton's third law, and the above is a weakening (by adding absolute values) of the sum of the equations for the two components, the equality holds.
+
+
+\section*{2a}
+Since there is no ``real'' potential, there is no force on $m_2$ and it must move with constant velocity. 
+
+\section*{2b}
+The resulting Lagrangian in the CM frame (which is approximately the $m_2$ frame for the same reason) is
+\[L=\frac{1}{2}m_2\dot{r}^2-\frac{l^2}{2m_2 r^2}\]
+The resulting Euler-Lagrange equation of motion is
+\[\frac{\partial L}{\partial r}=\frac{d}{dt}\frac{\partial L}{\partial \dot{r}}\Leftrightarrow \frac{l^2}{m_2 r^3}=m_2\ddot{r}\Leftrightarrow \frac{l^2}{m_2^2}=r^3\ddot{r}\]
+There is a centrifugal force term present.
+This is a second-order autonomous equation with no first-derivative dependence, and so can be solved as
+\[t(r)+c_1=\pm\int\frac{dr}{\sqrt{2\int\frac{l^2}{m_2^2 r^3}dr+c_2}}=\pm{\frac{m_2}{l}}\int\frac{dr}{\sqrt{c_2-\frac{1}{r^2}}}=\pm{\frac{m_2}{l}}\frac{r\sqrt{c_2-\frac{1}{r^2}}}{c_2}\]
+\[\Rightarrow \sqrt{r^2c_2-{1}}=\pm\left(c_2t{\frac{l}{m_2}}+c_1c_2\right)\]
+\[\Leftrightarrow r^2={1+\left( t{\frac{l}{m_2}}+c \right)^2}\]
+This is a hyperbola, translated in the $t$-axis by $c$. This is not consistent with a constant-velocity trajectory, but since hyperbolas have oblique asymptotes it becomes approximately a constant-velocity trajectory. Therefore, the deviance we see is a breakdown of the approximation of the CM frame by the $m_1$ frame.
+
+\section*{3}
+The ordinary central-force radial Lagrangian is
+\[L=\frac{1}{2}\mu\dot{r}^2-\frac{l^2}{2\mu r^2}-V(r)\]
+The corresponding Euler-Lagrange equation is
+\[\frac{\partial L}{\partial r}=\frac{d}{dt}\frac{\partial L}{\partial \dot{r}}\Leftrightarrow -\frac{\partial V}{\partial r}+\frac{l^2}{\mu r^3}=\mu\ddot{r}\Leftrightarrow F(r)+\frac{l^2}{\mu r^3}=\mu\ddot{r}\]
+Taking $r$ to be a function of $\theta$ alone, $\frac{d^2s}{d\theta^2}=\frac{\partial s}{\partial r}r''+\frac{\partial^2s}{\partial\theta\partial r}r'=\frac{-r''}{r^2}$ (since $s$ is not directly dependent on $\theta$). The target equation may be written in terms of $r$ as
+\[\frac{-r''}{r^2}+\frac{1}{r}=\frac{-\mu r^2}{l^2}F(r)\Leftrightarrow \frac{r''-r}{r^2}\frac{l^2}{\mu r^2}=F(r)
+\]\[\Leftrightarrow \frac{l^2r''}{\mu r^4}-\frac{l^2}{\mu r^3}=F(r)\]
+Noting that by the chain rule $\ddot{r}=r'\ddot{\theta}+r''\dot{\theta}^2=r''\dot{\theta}^2=r''\left(\frac{l}{\mu r^2}\right)^2$ (constant angular momentum $\Rightarrow$ no angular acceleration), $\frac{l^2r''}{\mu r^4}=\mu \ddot{r}$. Therefore, the target equation is
+\[\mu\ddot{r}-\frac{l^2}{\mu r^3}=F(r)\]
+which is clearly equivalent to the the Euler-Lagrange equation found above. 
+
+\section*{4}
+We have $s=\frac{1}{k\theta^2}$, so $\frac{d^2s}{d\theta^2}=\frac{6}{k\theta^4}$. The above equation is then
+\[\frac{6}{k\theta^4}+\frac{1}{k\theta^2}=\frac{-\mu k^2\theta^4}{l^2}F(r)\]
+\[\Leftrightarrow F(r)=\frac{-l^2}{\mu k^2\theta^4}\left(\frac{6}{k\theta^4}+\frac{1}{k\theta^2}\right)\]
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

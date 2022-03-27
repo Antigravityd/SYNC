@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       6ddb71d5-86a3-4c24-9f55-c54dc27cb2e6
+:END:
+#+title: Manifold
+* Basic Definitions
+A _chart_ is a pair  (U, p) consisting of an open set U and a continuous function p. 

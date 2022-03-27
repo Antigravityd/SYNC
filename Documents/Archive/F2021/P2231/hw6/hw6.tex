@@ -1,0 +1,56 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+
+\title{2231 HW 6}
+\author{Duncan Wilkie}
+\date{27 October 2021}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+The multipole expansion is given in general by
+\[V(r)=\frac{1}{4\pi\epsilon_0}\sum_{n=0}^\infty \frac{1}{r^{n+1}}\int(r')^nP_n(\cos\alpha)\rho(r')dV\]
+where $r$ is the distance from the origin to the point of consideration, $r'$ is the distance from the origin to the differential volume element of consideration, $\alpha$ is the angle between $r$ and $r'$, and $\rho(r')$ is the charge density at $r'$. The first three terms of this sum are, since $\rho(r')=\delta(\rho-R)\delta(z)\lambda$ where $\rho$ and $z$ are the radial and $z$ components of $r'$ respectively in cylindrical coordinates.
+\[V_0(r)=\frac{1}{4\pi\epsilon_0r}\int\rho(r')dV=\frac{\lambda R}{2\epsilon_0r}\]
+\[V_1(r)=\frac{1}{4\pi\epsilon_0r^2}\int r'\cos\alpha\rho(r')dV=\frac{1}{4\pi\epsilon_0r^2}\int_{-\infty}^\infty\int_0^{2\pi}\int_0^\infty r'\cos\alpha\delta(r'-R)\delta(z)\lambda r' dr' d\theta' dz'\]\[=\frac{\lambda R^2}{8\pi\epsilon_0 r^2}\int_0^{2\pi}\cos\alpha d\theta\]
+Noting
+\[\vec{r}=r\cos\theta\hat{i}+r\sin\theta\hat{j}+z\hat{k}, \vec{r}'=R\cos\theta'\hat{i}+R\sin\theta'\hat{j}\]
+\[\Rightarrow \vec{r}\cdot\vec{r}'=rR\cos{\alpha}=rR\cos\theta\cos\theta'+rR\sin\theta\sin\theta'\]
+\[\Rightarrow V_1(r)=\frac{\lambda R^2}{8\pi\epsilon_0r^2}\int_0^{2\pi}\cos\theta\cos\theta'+\sin\theta\sin\theta' d\theta'=0\]
+
+\[V_2(r)=\frac{1}{4\pi\epsilon_0 r^3}\int (r')^2P_2(\cos\alpha)\rho(r')dV=\frac{1}{4\pi\epsilon_0r^3}\int_{-\infty}^\infty\int_0^{2\pi}\int_0^\infty (r')^2\left( \frac{3}{2}\cos^2\alpha-\frac{1}{2} \right)\delta(r' - R)\delta(z)\lambda r'dr'd\theta'dz\]
+\[=\frac{\lambda R^3}{8\pi\epsilon_0r^3}\int_0^{2\pi}\left( \frac{3}{2}\cos^2\alpha -\frac{1}{2} \right)d\theta'=\frac{\lambda R^3}{8\pi\epsilon_0r^3}\int_0^{2\pi}\left( \frac{3}{2}(\cos\theta\cos\theta'+\sin\theta\sin\theta')^2-\frac{1}{2} \right)d\theta'\]
+\[=\frac{\lambda R^3}{8\pi\epsilon_0 r^3}\int_0^{2\pi}\left( \frac{3}{2}[\cos^2\theta\cos^2\theta'+2\cos\theta\cos\theta'\sin\theta\sin\theta'+\sin^2\theta\sin^2\theta']-\frac{1}{2} \right)d\theta'\]
+\[=\frac{\lambda R^3}{8\pi\epsilon_0 r^3}\left[ \frac{3}{2}\left( \cos^2\theta\int_0^{2\pi}\cos^2\theta'd\theta'+\frac{\sin(2\theta)}{2}\int_0^{2\pi}\sin(2\theta')d\theta' +\sin^2\theta\int_0^{2\pi}\sin^2\theta'd\theta'\right) -\int_0^{2\pi}\frac{1}{2}\right]\]
+\[=\frac{\lambda R^3}{8\pi\epsilon_0 r^3}\left[ \frac{3}{2}(\pi)-\pi \right]=\frac{\lambda R^3}{16\epsilon_0 r^3}\]
+
+\section{}
+By symmetry, $\vec{p}$ is in the $\hat{z}$ direction, so
+\[|\vec{p}|=\int \vec{r}\rho(\vec{r})dV=\int zk\cos\theta dA=k\int(R\cos\theta)\cos\theta R^2\sin\theta d\theta d\phi=2\pi kR^3\int\cos^2\theta\sin\theta d\theta\]\[=-2\pi kR^3 \frac{\cos^3(\theta)}{3}\bigg|_0^\pi=-\frac{4k\pi R^3}{3}\]
+
+
+\section{}
+The dipole moment of this arrangement should be in the $\hat{z}$ direction once again. This allows computation of
+\[|\vec{p}|=\int \vec{r}\rho(\vec{r})dV=\int_N z\rho_0dV - \int_S z \rho_0 dV \]\[=\int_0^{\frac{\pi}{2}}\int_0^{2\pi}\int_0^R\rho_0R\cos\theta R^2\sin\theta drd\phi d\theta-\int_{\frac{\pi}{2}}^\pi\int_0^{2\pi}\int_0^R \rho_0 R\cos\theta R^2\sin\theta drd\phi d\theta\]
+\[=2\pi\rho_0R^3\left( -\frac{\cos(2\theta)}{4}\bigg|_0^{\frac{\pi}{2}}+\frac{\cos(2\theta)}{4}\bigg|_{\frac{\pi}{2}}^\pi \right)=2\pi\rho_0R^3\]
+The corresponding electric field is
+\[E_{dip}(r,\theta)=\frac{p}{4\pi\epsilon_0r^3}(2\cos\theta\hat{r}+\sin\theta\hat{\theta})=\frac{\rho_0R^3}{2\epsilon_0r^3}(2\cos\theta\hat{r}+\sin\theta\hat{\theta})\]
+The force is attractive.
+\section{}
+The dipole moment of the atom due to the field of the charge is $\vec{p}=\alpha\frac{kq}{r^2}\hat{r}$. The force of attraction is
+\[F=(\vec{p}\cdot\nabla)\vec{E}=\frac{\alpha kq}{r^2}\frac{\partial }{\partial r}\frac{kq}{r^2}=-\frac{2\alpha k^2q^2}{r^5}\]
+
+\section{}
+We apply the method of images. A dipole $-\vec{p}$ at $-z$ instead of the plane is equivalent to this problem. The field due to this image dipole is
+\[\vec{E}=\frac{p}{4\pi\epsilon_0(2z)^3}(2\cos\theta\hat{r}+\sin\theta\hat{\theta})\]
+and the associated torque is, with the origin at the image dipole,
+\[\tau=\vec{p}\times \vec{E}=(p\cos\theta\hat{r} + p\sin\theta\hat{\theta})\times \left(\frac{p}{4\pi\epsilon_0r^3}(2\cos\theta\vec{r}+\sin\theta\vec{\theta})\right)\]
+\[=\frac{p^2}{4\pi\epsilon_0r^3}\left(-\frac{\sin(2\theta)}{2}\hat{\phi}\right)=-\frac{p^2\sin(2\theta)}{8\pi\epsilon_0r^3}\hat{\phi}\]
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

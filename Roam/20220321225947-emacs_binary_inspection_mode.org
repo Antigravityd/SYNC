@@ -1,0 +1,14 @@
+:PROPERTIES:
+:ID:       e57b70f1-780c-422f-bf1c-eafdbb5c3834
+:END:
+#+title: Emacs Binary Inspection Mode
+* Motivation
+
+Auditing binaries for compiler soundness, security, etc. is hard. Emacs is cool. Make them kiss?
+
+* Implementation
+
+- Use some tool to raise the binary to assembly or LLVM IR with excellent support for "folding" sections to hex and back
+- If the source is in hand then enable source-binary correlation via highlight and cursor sync
+- Decompilation?
+- Sensible navigation of object file, with options to display execution path, etc.

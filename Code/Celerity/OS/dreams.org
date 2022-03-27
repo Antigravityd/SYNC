@@ -1,0 +1,37 @@
+* Making Reconfigurable Computing Practical
+
+Idea: instead of CPUs with inflexible instruction sets, compute with FPGAs to allow implementation of specific algorithms in silicon. Implementation: really fucking hard, since this is throwing out all progress since ferrite bead memory was used to fly missles & space missions. However, this gives us the opportunity to do some things better, and the fact people have basically done this before means it probably won't take a 60-year worldwide effort to achieve results.
+
+This may pave the way for practical integration of quantum or optical computing, since all the infrastructure would need to be abstracted away from the hardware, e.g. one could imagine an OS that submits units of work to the FPGA processor unit, and such an OS wouldn't care if it happened to submit a computation to a QC.
+
+** Hardware
+
+A feasible way to accomplish this is with a ring-0 conventional processor (ARM because relative freedom) that handles the tasks of a microkernel (or exokernel), i.e. scheduling, flashing the FPGAs, managing device drivers running on the FPGAs, IPC, etc. This has the advantage of quick initial development, since I'm familiar with ARM microprocessor stuff, as well as the possibility of replacement by an ASIC if this ever scales. Further, physical separation of ring-0 can't hurt security. The device drivers running on the FPGAs can manage their own external hardware busses, enabling shortening of trace lengths and all such gamer datacenter optimizations.
+
+A general configuration of the gate array, e.g. that supports quick transport of the data bus to each implementation, could be set by the kernel, within which configurable blocks of gates are exposed to userspace. 
+
+** Kernel
+
+The resource that the kernel allocates to a program is a collection of gates on the FPGA, along with the usual RAM/ROM allocations. Programs must specify information about their gate usage, how I/O-heavy they are, which (if any) devices they want input from, etc. so ring-0 can place its gates optimally on the chip(s). One program which either runs on ring-0 or a separate processor/ASIC could be a JIT compiler/flasher, but to get any benefit we'd require custom FPGAs that allow flashing unused gates while the others operate.
+
+General-purpose cores could be flashed to the FPGA as well, for compatibility with existing software, and be subsequently used by multiple programs that support it. 
+
+** System Stack
+
+The lowest-level program would be effectively be an extensible assembler: one that takes two inputs, a sequence of instructions and a sequence of implementations of those instructions, and produces a file ready for ring-0 to flash the implementations to the FPGA and execute the instructions. Packaged with this assembler could be a sequence of general instructions and their implementations, such as many of the RISC-V or ARM instructions. 
+
+On top of this would be built compiler infrastructure; principally (or, at least, principally novel), BQNHDL or other high-level synthesis languages for use in the development of new instructions, but also conventional compilers like GCC & GHC. These have the advantage of being already quite well-bootstrapped, so only a few structures need be implemented before one can compile the compiler. Further, this allows easy porting of existing GNU/Linux tools and programs, albeit not in a terribly well-optimized form. To that same end, a porting of the standard syscalls would likely be required for any terribly useful programs. 
+
+Developing a custom suite of syscalls is likely also necessary, but I can't really begin to speculate on what those might need to be.
+
+** Shell
+
+Implementing an extremely optimizing Rust compiler, with the aim of making it the system language, would be inherently interesting since I like it. Doing so would enable the use of [[https://www.nushell.sh/][nushell]], which appears to be a sizeable improvement on bash, ksh, tcsh, & friends written in Rust. Its support for structured data streaming is quite compelling from a user's perspective, and it falls back to bash on unrecognized commands, so is a /strict superset/ of the existing Linux tools.
+
+** Package Management
+
+I've thought for a while on the optimal package manager, and have some Android notes to that end. Something like GNU Guix, but with Gentoo-style USE flags (no unwanted lines of code!) and special treatment of "child" package managers (e.g. MELPA, cargo, cabal, or pip) that allows updating their packages transparently alongside the parent. 
+
+* Much, Much More Thinking Later....
+
+I ended up designing about 80% of the highest-level features of [[https://dl.acm.org/doi/pdf/10.1145/1629575.1629597][Microsoft Helios]] for a fully-heterogeneous compute OS. The idea I have is to more-or-less port it under a Free license, where programs are compiled to LLVM MLIR (an meta-intermediate-representation that is both language- and architecture-independent) instead of their .NET CIL nonsense. Work has already progressed on developing MLIR dialects in the open-source EDA community; the [[https://circt.llvm.org][CIRCT project]] appears to be in a promising infancy. Of course, conventional languages and architectures are supported by the LLVM dialect and the associated backends, respectively. For IPC, the CIRCT guys have settled on the [[https://circt.llvm.org/docs/RationaleESI/][Elastic Silicon Interconnect]] (which they've actually merged into their project) for type-safe, higher-level physical signalling. This standard makes use of [[https://capnproto.org/][Cap'n Proto]], an RPC framework that seems promising. Through that, I was introduced to the CERN-developed/inspired [[https://en.wikipedia.org/wiki/ZeroMQ][ZeroMQ]], and its forks by the founders. All of these may be useful for quick, open-source IPC standards.

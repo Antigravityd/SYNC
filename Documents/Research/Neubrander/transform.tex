@@ -1,0 +1,42 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{siunitx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\title{Some Operational Calculus}
+\author{Duncan Wilkie}
+\date{6 March 2022}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+The Laplace differential equation
+\[(at+b)y''+(ct+d)y'+(et+f)y=0\]
+\[\Leftrightarrow aty''+(bt+c)y'+(dt+e)y=0\]
+where $a\neq 0$ may be solved algebraically in full generality.
+
+The commutative ring $C$ is defined as that of continuous, complex-valued functions on $[0,\infty)$ under convolution and the usual addition. The function $h=1$ acts as the antiderivative under this product.
+$C_{H}=\{\frac{f}{k} | f\in C\land k=h^{n}, n\in\mathbb{N}\setminus\{0\}\}$ with the standard fraction operations is an integral domain, since the multiplicative identity, which is $\frac{h}{h}$ since
+\[\frac{h}{h}\frac{f}{g}=\frac{f}{g}\Leftrightarrow hgf=hgf\]
+is in $C_{H}$, and there are no zero divisors by the Titchmarch convolution theorem
+The field $C/C$ is defined as the field of fractions over $C_{H}$.  A differentiation operator may be defined as $s=\frac{1}{h}$ that gives consistent resuts to the usual calculus. By the miracle of abstract algebra, this construction is identical in mechanics to numerical fractions, and so all the usual operations on ordinary fractions are readily extensible to this field. Notably, one may define
+\[h^{z}=\frac{h^{z+n}}{h^{n}}=\frac{t^{z+n-1}/\Gamma(z+n)}{t^{n-1}/\Gamma(n)}, z\in\mathbb{C}, n\textrm{ s.t. } \Re(z+n) > 1\]
+so that the complex power so-constructed has all the usual properties of an exponent. Further, partial fraction decomposition may be performed in the differential operator variable, and derivatives are expressed as
+\[f^{(n)}=s^{n}f-\sum_{k=1}^{n}s^{n-k}f^{k-1}(0)\]
+
+A derivation $D$ on these rings, defined by $Df=-tf(t)$ on $C$ and $Df/g=\frac{gDf-fDg}{g^{2}}$ on $C/C$ may be thought of a differentiation in the standard calculus sense with respect to the differentiation operator symbol $s$. The Laplace equation has hyperfunction form
+\[at[s^{2}y-sy(0)-y'(0)]+bt[sy-y(0)]+c[sy-y(0)]+dty+ey=0\]
+\[\Leftrightarrow -aD[s^{2}y-sy(0)-y'(0)]-bD[sy-y(0)]-dDy+c[sy-y(0)]+ey=0\]
+\[\Leftrightarrow -a[s^{2}Dy+2sy-y(0)]-b[sDy+y]-dDy+c[sy-y(0)]+ey=0\]
+\[\Leftrightarrow -[as^{2}+bs+d]Dy+[(c-2a)s+(e-b)]y+(a-c)y(0)=0\]
+This is now a trivial linear, first-order ODE for $y$; one may in principle solve the homogeneous equation and add the result to the particular solution $y=$
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

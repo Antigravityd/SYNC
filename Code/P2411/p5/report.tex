@@ -1,0 +1,31 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage[letterpaper]{geometry}
+
+\title{2411 Project 5}
+\author{Duncan Wilkie}
+\date{29 October 2021}
+
+\begin{document}
+
+\maketitle
+
+\section{Analytical Solution and Numerical Method}
+The solution to the Poisson equation for the gravitational potential with boundary conditions of a uniform charge density sphere of radius $R$ is
+\[V(r)=
+  \begin{cases}
+    \frac{1}{6}(r^2-3R^2), & r \leq R \\
+    -\frac{1}{3}\frac{R^3}{r}, & r > R \\
+  \end{cases}\]
+
+\section{Library Description}
+The inputs to the \verb|rmatrixlu| function are: the matrix to be decomposed, its number of rows, and its number of columns. The dimension of the input matrix is $m\times n$ for arbitrary $m,n\in\mathbf{R}$. The \verb|rmatrixlusolve| function takes an $n\times n$ $LU$-decomposed matrix and a constant $\vec{b}$ vector, outputting the solution vector.
+
+\section{Program 1}
+The program written, and its corresponding output, appears 
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

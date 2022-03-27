@@ -1,0 +1,3 @@
+[submodule "Code/Guix/Channel"]
+	path = Code/Guix/Channel
+	url = https://github.com/Antigravityd/dnw

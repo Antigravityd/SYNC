@@ -1,0 +1,14 @@
+ani:PROPERTIES:
+:ID:       56bc903a-5801-4274-a1ce-da784460b56c
+:END:
+#+title: Differential Topology
+
+* Basic Definitions
+
+A _topological space_ is a collection (X, t) of a set X and a _topology_ t, a collection of subsets of X called "open sets" that is subject to four conditions:
+
+asdf
+
+* Types of Topological Spaces
+
+One of the most important types of topological spaces is the [[id:6ddb71d5-86a3-4c24-9f55-c54dc27cb2e6][Manifold]].

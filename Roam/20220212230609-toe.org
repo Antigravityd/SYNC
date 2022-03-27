@@ -1,0 +1,11 @@
+:PROPERTIES:
+:ID:       51b2b07d-8934-4192-9ff3-77d37e314799
+:END:
+#+title: TOE
+* Rambling about Foundations
+
+These are just some conjectured axioms that may from the basis for a physical theory.
+
+** Take Planck Quantities Seriously
+
+Measuring distances shorter than the Planck length or time intervals shorter than the Planck time would require particles with such high energy density they would collapse into black holes before a measurement could be made. Therefore, why don't we model spacetime as a discrete, graph-like structure? Considering such graphs embedded in real space, so that there's a classical limit to speak of, an observer would be located at a central node, and there would be edges a Planck length/time going radially outward from the node spaced by the Planck angle; iterate this for the nodes at the end of these edges. All events in the reference frame of the observer would be constrained to lie at the

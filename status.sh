@@ -83,10 +83,9 @@ while true; do
 	fi
     fi
 
-
     datetime=$(date "+%a %-d %b %-I:%M %p")
 
-    xsetroot -name "   ( ${cpu_util[0]}%  ${cpu_util[1]}%  ${cpu_util[2]}%  ${cpu_util[3]}% ) | RAM ${mfree} |  ${dfree}/1.80TiB | ${tx_delta} ${rx_delta}   ${datetime} ; ${weather} ;${ticker} "
+    xsetroot -name "  <span foreground=\"#114477\"></span> ( ${cpu_util[0]}%  ${cpu_util[1]}%  ${cpu_util[2]}%  ${cpu_util[3]}% ) | <span foreground=\"#114477\"></span> ${mfree} | <span foreground=\"#114477\"></span> ${dfree}/1.80TiB | ${tx_delta}<span foreground=\"#114477\"></span> ${rx_delta}<span foreground=\"#114477\"></span>   ${datetime} ; ${weather} ;${ticker} "
 
     ((loop++))
     sleep 1

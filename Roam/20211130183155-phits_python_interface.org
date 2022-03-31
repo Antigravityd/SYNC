@@ -2,6 +2,7 @@
 :ID:       ac6388cd-d777-478d-8f12-cc5e3f40f1f9
 :END:
 #+title: PHITS Python Interface
+#+STARTUP: latexpreview
 
 * Motivation
 

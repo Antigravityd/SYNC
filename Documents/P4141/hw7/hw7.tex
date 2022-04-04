@@ -29,7 +29,7 @@ Therefore,
 \[[\Pi,T]=\Pi\frac{\hat{p}^{2}}{2m}-\frac{\hat{p}^{2}}{2m}\Pi=\frac{1}{2m}\left( -\hat{p}\Pi\hat{p} + \hat{p}\Pi\hat{p}\right)=0\]
 
 \section{}
-We know that in general $[\hat{x},\hat{p}]=i\hbar\neq 0$, $\hat{H}=\hat{T}+\hat{V}=\frac{\hat{p}^{2}}{2m}+\hat{V}$, and $\Pi: x\mapsto -x$. For the case of the free particle, $\hat{V}=0$. We can then write down commutation relations
+We know that in general $[\hat{x},\hat{p}]=i\hbar\neq 0$, $\hat{H}=\hat{T}+\hat{V}=\frac{\hat{p}^{2}}{2m}+\hat{V}$, and $\Pi: x\mapsto -x$. For the case of the free particle, $\hat{V}=0$, we can then write down commutation relations
 \[[\hat{x},\hat{p}]=i\hbar\neq 0\]
 \[[\hat{x},\hat{H}]=\hat{x}\frac{\hat{p}^{2}}{2m}-\frac{\hat{p}^{2}}{2m}\hat{x}=\frac{\hat{p}}{2m}\left( \hat{x}\hat{p}-\hat{p}\hat{x} \right)-\frac{\hat{p}\hat{x}\hat{p}}{2m}+\frac{x\hat{p}^{2}}{2m}=\frac{1}{2m}\left( \hat{p}[\hat{x},\hat{p}] + [\hat{x},\hat{p}]\hat{p} \right)\]
 \[=\frac{i\hbar}{2m}\left( \hat{p}+\hat{p} \right)=\frac{i\hbar}{m}\hat{p}\neq 0 \textrm{ if the particle is moving}\]
@@ -37,12 +37,22 @@ We know that in general $[\hat{x},\hat{p}]=i\hbar\neq 0$, $\hat{H}=\hat{T}+\hat{
 \[[\hat{p},\Pi]\neq 0 \textrm{ as shown above}\]
 \[[\hat{p}, \hat{H}]=\hat{p}\frac{\hat{p}^{2}}{2m}-\frac{\hat{p}^{2}}{2m}\hat{p}=\frac{1}{2m}\left( \hat{p}^{3}-\hat{p}^{3} \right)=0\]
 \[[\Pi,\hat{H}]=[\Pi,T]=0 \textrm{ as shown above}\]
-Therefore, the subsets which are mutually commutative are
+Therefore, the subsets which are internally mutually commutative are
 \[\{\hat{p},\hat{H}\}\]
 and
 \[\{\Pi,\hat{H}\}\]
 
 \section{}
+We must apply a change of basis to the original wavefunction so that one of its basis vectors is $|\psi_{f}\rangle$.
+\[|\psi_{i}\rangle=|\psi_{f}\rangle\langle \psi_{f}|\psi_{i} \rangle+|\beta\rangle\langle \beta|\psi_{i} \rangle+|\gamma\rangle\langle \gamma|\psi_{i} \rangle=((i-1)/\sqrt{3}+\frac{1}{3})|\psi_{f}\rangle+\sqrt{2/3}|\beta\rangle\]
+The probability is then the norm-squared of the coefficient of $|\psi_{f}\rangle$, so
+\[\Rightarrow P(|\psi_{f}\rangle)=|i/3|^{2}=\frac{1}{3}\]
+This expression of $|\psi_{i}\rangle$ retains normalization, which is always good to check.
+
+\section{}
+Normalization means $\langle \psi|\psi \rangle=1$. If this holds for $\psi$, then for some unitary operator $U$ we have
+\[\langle U\psi|U\psi \rangle=\langle  \psi | U^{\dagger}U\psi \rangle=\langle \psi | I\psi \rangle=\langle  \psi|\psi \rangle=1\]
+so unitary operators preserve normalization.
 \end{document}
 %%% Local Variables:
 %%% mode: latex

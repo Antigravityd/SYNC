@@ -1,0 +1,20 @@
+:PROPERTIES:
+:ID:       627cc0e9-b179-447d-bef5-c505b011eb07
+:END:
+#+title: Löøps Project
+#+filetags: Idea
+* Motivation
+
+Searching "loop quantum gravity computation" on Web of Science yields zero results. This can't be because it's impossible; the first computational topology conference was when the subject was done in ALGOL, and differential geometry is just a fancy way of writing down PDEs, so there's no reason computational tools couldn't be developed.
+
+* Similar Work
+
+?
+
+* Feasibility
+
+I've got enough of the math to make it somewhat possible. I'd be reading a lot of reviews though.
+
+* Implementation
+
+I'll need to talk to Agullo or one of the other LQG people about it, get their approval & reading recommendations, and have them loosely supervise progress. This would be ideal to supplement work with Chancellor over the summer.

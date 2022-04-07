@@ -1,0 +1,22 @@
+:PROPERTIES:
+:ID:       2501036a-b853-478b-97c9-d2df7fd00228
+:END:
+#+title: Physics FPU
+#+filetags: Idea
+* Motivation
+
+All numbers produced in physics ought to have an associated uncertainty. However, carrying around extra uncertainties is difficult and often computationaly expensive. What if we had a floating-point standard and FPU that inherently incorporated measurement uncertainty?
+
+* Similar Work
+
+A more extensive literature review is needed, but all I'm aware of that would help are the normal FPUs and standards.
+
+* Feasibility
+
+A sensible goal would be to develop a RISC-V extension and a reference implementation for that extension, and publish a paper comparing performance with the standard FPU extension.
+
+* Implementation
+
+The physics conceptualization of measurements is as a value-uncertainty pair. The uncertainty is rounded to one significant digit, and the value is rounded to the place of that digit in the uncertainty.
+
+A floating point value according to this would have some precision, of course, and would store the digit of the uncertainty, the value, and what digit of the value the uncertainty has the same place value as.

@@ -1,3 +1,4 @@
+
 :PROPERTIES:
 :ID:       51ac412f-c194-4214-9718-a2585030773f
 :END:
@@ -549,6 +550,174 @@ and
 \[\dot{p}=-\frac{\partial H}{\partial q}\]
 where $H$ is the Hamiltonian, $p$ is the generalized momentum, and $q$ is the generalized coordinate.
 
+** Central Force Lagrangian
+Lagrangian of a system under mutual attraction from a force whose potential may be expressed as a function of $r$ alone.
+*** Formula
+\[L(q,\dot{q},t)=\frac{1}{2}m\dot{r}^{2}+\frac{1}{2}mr^{2}\dot{\phi}^{2}-U(r)\]
+where $m$ is the mass of the orbiting object, $r$ is the radial variable, and $\phi$ is the azimuthal angular variable.
+*** Derivation
+Take the general Lagrangian in spherical coordinates, and choose the coordinate system such that $\theta=\pi/2$ for the whole system (central force $\Rightarrow$ motion is planar).
+
+** Effective Potential
+The potential that it appears the radial variable has, different from the usual expression because it incorporates a rotating term.
+*** Formula
+\[V(r)=\frac{l^{2}}{2mr^{2}}+U(r)\]
+where $l$ is the angular momentum of the orbit, $m$ is the mass of the orbiting object, $U$ is the potential, and $r$ is the distance from the origin as usual.
+*** Derivation
+Take the Euler-Lagrange equations for the central force Lagrangian and organize them like Newton's laws, as $m\ddot{r}$ equal to the spatial derivative of some function, which is identified with a potential.
+
+** Reduced Mass
+The mass of a system in a gravitational problem under a coordinate transformation from the origin being at the center of mass to one of the objects.
+*** Formula
+\[\mu=\frac{m_{1}m_{2}}{m_{1}+m_{2}}\]
+where $m_1$ is the mass of one object and $m_2$ is the mass of the other.
+*** Derivation
+Limiting cases: when one mass is much greater than the other, the center of mass is very close to the position of the object, so the coordinate transformation shouldn't be that consequential,  and the total mass should be almost equal to the bigger mass, i.e. $\mu \approx m_1$
+
+** Energy of an Orbit
+Energy of an object undergoing a force whose potential may be expressed as a function of $r$ alone.
+*** Formula
+\[E=\frac{1}{2}m\dot{r}^{2}+\frac{l^{2}}{2mr^{2}}+U(r)\]
+where $m$ is the mass of the orbiting object, $l$ is the angular momentum, $U$ is the potential, and $r$ is the radial distance from the origin.
+*** Derivation
+Kinetic energy plus effective potential.
+
+** Kepler's Third Law
+The behavior of orbital periods with size.
+*** Formula
+\[T\propto a^{3/2}\]
+where $a$ is the semi-major axis of the orbit and the constant of proportionality is the same for all planets.
+The proportionality constant, is, incidentally,
+\[\frac{2\pi}{\sqrt{G(m_{s}+m_{p})}}\]
+where $G$ is the universal gravitational constant, $m_s$ is the mass of the Sun, and $m_p$ is the mass of the orbiting object.
+*** Derivation
+Trust me bro...
+
+** Hooke's Law
+Force due to a displaced spring.
+*** Formula
+\[F=-kx\]
+where $k$ is the spring constant (a material property of the spring) and $x$ is the displacement from the origin.
+*** Derivation
+Axiomatic model of spring behavior.
+
+** Angular Velocity of a Mass-Spring System
+The angular velocity of a mass-spring system.
+*** Formula
+\[\omega=\sqrt{\frac{k}{m}}\]
+
+where $m$ is the mass of the oscillator and $k$ is its spring constant.
+*** Derivation
+To do it from scratch, one must solve the Hooke's law ODE. The hard part is remembering what's on top, which can be done by unit analysis: the spring constant has units of Force/Length, and mass obviously units of mass. The ratio therefore has units of  (Force / Mass) / Length, and by Newton's second law the numerator has units of acceleration. The square root of the ratio then has units of inverse time, i.e. it's a frequency.
+
+** Potential Energy of a Compressed Spring
+The potential energy of a mass-spring system.
+*** Formula
+\[U=\frac{1}{2}kx^{2}\]
+where $k$ is the spring constant and $x$ is the displacement of the mass.
+*** Derivation
+Integrate the Hooke force law, taking the reference point to be zero potential at zero displacement.
+
+** Equations of Motion for a System of Coupled Oscillators
+If one has a line of masses conected by springs, the system equations for the motion of each mass.
+*** Formula
+\[\sum_{j}A_{ij}q_{j}+m_{ij}\ddot{q}_{j}=0\]
+
+where $A_{ij}$ are initial conditions, $q_j$ are the displacement of each mass from equillibrium,and $m_{ij}$ are the TODO: Understand how to find $m_{ij}$
+*** Derivation
+Trust me bro
+
+** Normal Modes of a System of Coupled Oscillators
+If one has a line of masses connected by springs, the equation defining the frequencies in terms of which the system's evolution may be expressed as a linear combination.
+*** Formula
+\[\det\left( A_{ij}-\omega^{2}m_{ij} \right)=0\]
+where $A_{ij}$ are constants determined by the initial conditions and $m_{ij}$ are (TODO: find out how to compute $m_{ij}$)
+*** Derivation
+Trust me bro.
+
+** Damped Harmonic Oscillator
+Equation of motion for a mass on a spring with a dissipative force proportional to the velocity of the mass.
+*** Formula
+\[x(t)=Ae^{\beta t}\cos[(\omega_{0}^{2}-\beta^{2}) t-\delta]\]
+where the damping term $\beta=b/2m$ (where $b$ is the constant by which the dissipative force is proportional to velocity), the natural frequency $\omega_0$ is the simple harmonic oscillator angular frequency, and $A$ and $\delta$ are determined by initial conditions.
+*** Derivation
+Constant coefficients if you really wanna...
+
+** Resonant Frequency of a Driven Damped Harmonic Oscillator
+Resonant frequency of a damped harmonic oscillator.
+*** Formula
+\[\omega_{R}=\sqrt{\omega_{0}^{2}-2\beta^{2}}\]
+where $\omega_0$ is the natural frequency of the simple harmonic oscillator with this spring constant and $\beta=b/2m$ (where $b$ is the constant by which the damping force is proportional to velocity) is the damping term.
+*** Derivation
+No
+
+** Amplitude Scaling of a Driven Simple Harmonic Oscillator
+Amplitude scaling of a driven simple harmonic oscillator.
+*** Formula
+\[D\propto\frac{1}{|\omega_{0}^{2}-\omega^{2}|}\]
+where $\omega_0$ is the natural frequency of the simple harmonic oscillator and $\omega$ is the driving frequency.
+*** Derivation
+No.
+
+** Series Combination of Spring Constants
+Two springs are connected end-to-end. What's their combined spring constant?
+*** Formula
+Like capacitors, which are the opposite of resistors:
+\[k=\frac{1}{\frac{1}{k_{1}}+\frac{1}{k_{2}}}\]
+where $k_1$ and $k_2$ are the two spring constants.
+*** Derivation
+No.
+
+** Parallel Combination of Spring Constants
+Two springs are connected parallel to each other. What's their combined spring constant?
+*** Formula
+Like capacitors, which are the opposite of resistors:
+\[k=k_{1}+k_{2}\]
+where $k_1$ and $k_2$ are the two spring constants.
+
+** Angular Frequency of a Simple Pendulum
+Angular frequency of a simple pendulum.
+*** Formula
+Like springs, but $g$ instead of $k$ and $L$ instead of $m$:
+\[\omega=\sqrt{\frac{g}{L}}\]
+where $g$ is the gravitational acceleration and $L$ is the length of the pendulum arm.
+*** Derivation
+Write down Newton's second law, apply small-angle approximation, second-order, homogeneous constant coefficient ODE.
+
+** Angular Frequency of a Simple Rigid-Body Pendulum
+Angular frequency of a rigid body swinging about a point.
+*** Formula
+\[\omega=\sqrt{\frac{mgR}{I}}\]
+where $m$ is the mass of the body, $g$ is the gravitational acceleration, $I$ is the body's moment of intertia, and $R$ is the distance from the pivot to the center of mass of the body.
+*** Derivation
+Lagrangian. Unit analysis helps to remember.
+
+** Bernoulli's Principle
+Bernoulli's principle for flow of a fluid along a pipe.
+*** Formula
+\[\frac{v^{2}}{2}+gz+\frac{p}{\rho}=\textrm{constant}\]
+where $v$ is the velocity of the fluid, $g$ is the gravitational acceleration, $z$ is the height of the fluid above some reference, $p$ is the pressure of the fluid, and $\rho$ is its density.
+*** Derivation
+Follows from conservation of energy: the first two terms are kinetic and gravitational potential energy per unit mass, and the last has units of energy.
+
+** Fluid Conservation Equation
+Fluid conservation equation.
+*** Formula
+\[v_{1}A_{1}=v_{2}A_{2}\]
+where $v_i$ and $A_i$ are the fluid velocity and cross-sectional area of the fluid and pipe, respectively, at any point along the pipe.
+*** Derivation
+Conservation of mass implies
+\[\rho v_{1}A_{1}=\rho v_{2}A_{2}\]
+Presuming the fluid is incompressible, the densities are equal.
+
+** Buoyant Force
+Force on an object immersed in a fluid.
+*** Formula
+The force on the object is equal to the weight of the fluid it displaces.
+\[F=\rho Vg\]
+*** Derivation
+¯\_ (ツ)_/¯
+
 * E&M
 
 * Optics & Waves
@@ -577,3 +746,6 @@ where $H$ is the Hamiltonian, $p$ is the generalized momentum, and $q$ is the ge
 ** Multivariable Chain Rule
 ** Cross Product
 ** Dot Product
+** Spherical Coordinates
+** Cylindrical Coordinates
+** Linear Homogeneous ODEs With Constant Coefficients

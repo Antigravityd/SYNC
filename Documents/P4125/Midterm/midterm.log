@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.1.13)  7 APR 2022 09:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.1.13)  7 APR 2022 10:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -347,7 +347,7 @@ Overfull \hbox (8.31006pt too wide) detected at line 27
 
 {/gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf
 -dist/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4]
-Overfull \hbox (12.6061pt too wide) in paragraph at lines 125--127
+Overfull \hbox (12.6061pt too wide) in paragraph at lines 126--128
 \OT1/cmr/m/n/10 The spe-cific heat ca-pac-ity of ni-tro-gen at con-stant vol-um
 e is, from a ta-ble I found on-line, $[] []$.
  []
@@ -360,7 +360,7 @@ Here is how much of TeX's memory you used:
  22757 multiletter control sequences out of 15000+600000
  413499 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 71i,14n,75p,455b,976s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 71i,14n,75p,458b,976s stack positions out of 5000i,500n,10000p,200000b,80000s
 </gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texli
 ve-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></
 gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-d
@@ -383,7 +383,7 @@ texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></gnu
 /fonts/type1/public/amsfonts/cm/cmsy5.pfb></gnu/store/28laqzks03piac14aj23wsvkv
 skkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmsy7.pfb>
-Output written on midterm.pdf (7 pages, 149874 bytes).
+Output written on midterm.pdf (7 pages, 149915 bytes).
 PDF statistics:
  80 PDF objects out of 1000 (max. 8388607)
  57 compressed objects within 1 object stream

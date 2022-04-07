@@ -79,6 +79,7 @@ Using the equation of state to eliminate $V$,
 \[\mu=-\frac{P}{N}\frac{A^{3}NT^{3}}{27P^{2}}=-\frac{A^{3}T^{3}}{27P}\]
 
 \section*{3a}
+Throughout this problem, we presume the number of particles to be fixed.
 The first law of thermodynamics states
 \[dU=TdS-PdV\]
 Dividing by $dV$, and presuming $T$ to be constant,
@@ -116,7 +117,7 @@ Integrating with respect to $T$ (presuming $C_{V}$ to be constant with temperatu
 \[U=C_{V}T+f(V)\]
 These two equations together imply
 \[U=-\frac{a}{V}+C_{V}T+c\]
-where $c$ is a pure constant, but in the limit $T\to 0$, $V\to \infty$ (so also $P \to 0$), there is no particle velocity and there are no particle interactions (the particles are infinitely far apart in equilibrium, and the non-kinetic potential terms in the van der Waals equation only prevent infinite compressibility, i.e. are short-range), so it doesn't make much sense for the internal energy of the system to be nonzero in this limit.
+where $c$ is a pure constant, but in the limit $T\to 0$ and $V\to \infty$ (so also $P \to 0$), there is no particle velocity and there are no particle interactions (the particles are infinitely far apart in equilibrium, and the non-kinetic potential terms in the van der Waals equation only prevent infinite compressibility, i.e. are short-range), so it doesn't make much sense for the internal energy of the system to be nonzero in this limit.
 Therefore, we take $c=0$.
 
 \section*{3c}
@@ -128,30 +129,30 @@ The specific heat capacity of nitrogen at constant volume is, from a table I fou
 \[\SI{-11.7}{K}\]
 
 \section*{4a}
-The work $W_{-}$ is extracted during the isothermal expansion, during which some heat $Q_{h1}$ is transferred to it to keep the gas at $T_{1}$.
-During the isobaric compression, some heat $Q_{c}$ is transferred to the cold reservoir and work $W_{+}$ is done on the gas, and during the isochoric heating, some heat $Q_{h2}$ is transferred to the gas from the hot reservoir.
+The work is extracted during the isothermal expansion, during which some heat $Q_{h1}$ is transferred to it to keep the gas at $T_{1}$.
+During the isobaric compression, some heat $Q_{c}$ is transferred to the cold reservoir and work is done on the gas, and during the isochoric heating, some heat $Q_{h2}$ is transferred to the gas from the hot reservoir.
 We now need to write these heats in terms of temperature.
 
 By the definition of heat capacity at constant pressure,
 \[Q_{c}=C_{P}(T_{1}-T_{2})\]
-The heat consumed from the hot reservoir has two parts: the part from the constant-volume process, and the part from the isothermal process. The isothermal process has no change in energy since the temperature is constant. The heat absorbed during it is therefore the negative of the work done by the gas:
-\[Q_{hT}=-W=\int_{V_{3}}^{V_{1}}\frac{NkT_{1}}{V}dV=NkT_{1}\ln\frac{V_{1}}{V_{3}}\]
+The heat consumed from the hot reservoir has two parts: the part from the constant-volume process, and the part from the isothermal process. The isothermal process has no change in internal energy since the temperature is constant. The heat absorbed during it is therefore the negative of the work done by the gas:
+\[Q_{h1}=-W=\int_{V_{3}}^{V_{1}}\frac{NkT_{1}}{V}dV=NkT_{1}\ln\frac{V_{1}}{V_{3}}\]
 The heat from the isochoric process may be computed by the definition of the heat capacity at constant volume to obtain
-\[Q_{h}=Q_{hV}+Q_{hT}=C_{V}(T_{1}-T_{2})+NkT_{1}\ln\frac{V_{1}}{V_{3}}\]
+\[Q_{h}=Q_{h2}+Q_{h1}=C_{V}(T_{1}-T_{2})+NkT_{1}\ln\frac{V_{1}}{V_{3}}\]
 Digging around for a way to put the volume ratio in terms of temperature,
 \[\frac{T_{1}}{T_{2}}=\frac{P_{1}V_{1}/Nk}{P_{2}V_{2}/Nk}=\frac{P_{2}V_{1}}{P_{2}V_{3}}=\frac{V_{1}}{V_{3}}\]
-\[\Rightarrow e=1-\frac{C_{P}(T_{1}-T_{2})}{C_{V}(T_{1}-T_{2})+NkT_{1}\ln\frac{T_{1}}{T_{2}}}\]
 by the ideal gas law alongside $V_{2}=V_{3}$ and $P_{1}=P_{2}$.
 We then have
+\[ e=1-\frac{C_{P}(T_{1}-T_{2})}{C_{V}(T_{1}-T_{2})+NkT_{1}\ln\frac{T_{1}}{T_{2}}}\]
 \[e=1-\frac{Q_{c}}{Q_{h}}=1-\frac{C_{P}(T_{1}-T_{2})}{C_{V}(T_{1}-T_{2})+NkT_{1}\ln\frac{T_{1}}{T_{2}}}\]
-For an ideal gas, $C_{P}=C_{V}+Nk=\frac{fNk}{2}+Nk$
-\[\Rightarrow e=1-\frac{\frac{(f+2)Nk}{2}(T_{1}-T_{2})}{\frac{fNk}{2}(T_{1}-T_{2})+NkT_{1}\ln\frac{T_{1}}{T_{2}}}=1-\frac{f+2}{f+\frac{2T_{1}}{T_{1}-T_{2}}\ln\frac{T_{1}}{T_{2}}}\]
+For an ideal gas, $C_{P}=C_{V}+Nk=\frac{fNk}{2}+Nk$, so
+\[ e=1-\frac{\frac{(f+2)Nk}{2}(T_{1}-T_{2})}{\frac{fNk}{2}(T_{1}-T_{2})+NkT_{1}\ln\frac{T_{1}}{T_{2}}}=1-\frac{f+2}{f+\frac{2T_{1}}{T_{1}-T_{2}}\ln\frac{T_{1}}{T_{2}}}\]
 \[=1-\frac{f+2}{f+\frac{1}{1-T_{2}/T_{1}}\ln\frac{T_{1}^{2}}{T_{2}^{2}}}\]
 
 \section*{4b}
 For a monatomic gas, $f=3$, so with $\frac{T_{1}}{T_{2}}=2$ this is
 \[e=1-\frac{5}{3+\frac{1}{1-1/2}\ln 4}=\SI{0.134}{}=\SI{13.4}{\% }\]
-For a diatomic gas, $f=5$, so
+For a diatomic gas (presuming vibrational modes are frozen out, i.e. we're at a reasonable temperature), $f=5$, so
 \[e=1-\frac{7}{5+\frac{1}{1-1/2}\ln 4}=\SI{0.099}{=\SI{9.9}{\%}}\]
 Evidently, for this cycle fewer degrees of freedom are desirable.
 

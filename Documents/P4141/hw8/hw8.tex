@@ -77,8 +77,64 @@ with multiplicity 2. The eigenvectors may then be immediately computed as $(1-\s
 \]
 
 \section{}
-The variance of a probability distribution $P$ is $\Delta P=\langle  P\rangle^{2}-\langle P^{2} \rangle$.
-The -
+The variance of these observable quantities are
+\[
+  \Delta E =\left\langle \left( \hat{E}-\langle E \rangle \right)\Psi\bigg|\left( \hat{E}-\langle E \rangle \right)\Psi  \right\rangle
+\]
+and
+\[
+  \Delta x=\left\langle \left( \hat{x}\langle x \rangle\Psi\bigg|\left( \hat{x}-\langle x \rangle \right)\Psi \right)\right \rangle
+\]
+By Cauchy-Schwarz,
+By the generalized uncertainty principle,
+\[
+  \sigma_{E}^{2}\sigma_{x}^{2}\geq\left( \frac{1}{2i}\left\langle \left[ \hat{H},\hat{x} \right] \right\rangle \right)^{2}
+  =\left( \frac{1}{2i}\left\langle \frac{\hat{p}^{2}}{2m}\hat{x}+\hat{V}\hat{x}-\hat{x}\frac{\hat{p}^{2}}{2m}
+      -\hat{x}\hat{V} \right\rangle \right)^{2}
+  =\left( \frac{1}{2i}\left\langle\frac{\hat{p}^{2}}{2m}\hat{x}-\hat{x}\frac{\hat{p}^{2}}{2m}\right\rangle \right)^{2}
+\]
+\[
+  =\left(  \frac{1}{2i}\left\langle\frac{\hat{p}}{2m}\left[\hat{p}\hat{x}-\hat{x}\hat{p} \right] \right\rangle\right)^{2}
+  =\left( \frac{1}{2i}\left\langle\frac{\hat{p}}{2m}i\hbar \right\rangle \right)^{2}
+  =\left( \frac{\hbar}{4m}\langle \hat{p} \rangle\right)^{2}
+\]
+Taking the square root,
+\[\sigma_{E}\sigma_{x}\geq \frac{\hbar|\langle p \rangle|}{4m}\]
+
+\section{}
+The definition of the ladder operators for the harmonic oscillator is
+\[
+  \hat{a}_{+}=\frac{1}{\sqrt{2\hbar m\omega}}\left( m\omega x-i\hat{p} \right)
+\]
+\[
+  \hat{a}_{-}=\frac{1}{\sqrt{2\hbar m\omega}}\left( m\omega x+i\hat{p} \right)
+\]
+Adding them together, one eliminates $\hat{p}$ to obtain
+\[
+  \hat{a}_{+}+\hat{a}_{-}=\frac{2m\omega x}{\sqrt{2\hbar m\omega}}
+  \Leftrightarrow x=(\hat{a}_{+}+\hat{a}_{-})\sqrt{\frac{\hbar}{2m\omega}}
+\]
+Subtracting them, one eliminates $\hat{x}$ to obtain
+\[
+  \hat{a}_{+}-\hat{a}_{-}=\frac{-2i\hat{p}}{\sqrt{2\hbar m\omega}}
+  \Leftrightarrow \hat{p}=(\hat{a}_{+}-\hat{a}_{-})i\sqrt{\frac{\hbar m\omega}{2}}
+\]
+One can now square (in the sense of composition) these operators to obtain
+\[
+  \hat{x}^{2}=\frac{\hbar}{2m\omega}(\hat{a}_{+}^{2}+\hat{a}_{+}\hat{a}_{-}+\hat{a}_{-}\hat{a}_{+}+\hat{a}_{-}^{2})
+\]
+\[
+  \hat{p}^{2}=\frac{\hbar m\omega}{2}(\hat{a}_{-}^{2}-\hat{a}_{-}\hat{a}_{+}-\hat{a}_{+}\hat{a}_{-}+\hat{a}_{+}^{2})
+\]
+The kinetic energy is then
+\[
+ {T}=\frac{p^{2}}{2m}=\frac{\hbar\omega}{4}(\hat{a}_{-}^{2}-\hat{a}_{-}\hat{a}_{+}-\hat{a}_{+}\hat{a}_{-}+\hat{a}_{+}^{2})
+\]
+and the potential is
+\[V=\frac{1}{2}m\omega^{2}x^{2}=\frac{\hbar\omega}{4}(\hat{a}_{+}^{2}+\hat{a}_{+}\hat{a}_{-}+\hat{a}_{-}\hat{a}_{+}+\hat{a}_{-}^{2})\]
+In calculating the expectation values for both these quantities, the squared terms drop out, because they result in something proportional to the state with respect to which the expectation is taken with $n$ plus or minus 2, which, since the eigenvector basis is orthonormal, results in zero.
+We then need only calculate, since the other term is the negation of this,
+\[\langle \hat{a}_{-}\hat{a}_{+}+\hat{a}_{+}\hat{a}_{-} \rangle=\int_{\mathbb{R}}\psi_{n}^{*}(x)(\hat{a}_{-}\hat{a}_{+}+\hat{a}_{+}\hat{a}_{-})\psi_{n}(x)dx\]
 
 \end{document}
 %%% Local Variables:

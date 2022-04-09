@@ -17,28 +17,7 @@ while true; do
 	ticker=${ticker:2}
     fi
 
-    cpu_util=($(mpstat -P ALL 1 1 | awk '/Average:/ && $2 ~ /[0-9]/ {print $3}'))
-    # now_time=$(date +%s)
-    # for i in {0..3}
-    # do
-    # 	ln=$((i+2))
-    # 	usage=$(sed "${ln}q;d" /proc/stat)
-    # 	IFS=" " read -ra usage_arr <<< "$usage"
-
-    # 	now_use=$((usage_arr[1] + usage_arr[2] + usage_arr[3] + usage_arr[6] + usage_arr[7] + usage_arr[8]))
-    # 	now_idle=$((usage_arr[4] + usage_arr[5]))
-
-    # 	delta_time=$((now_time-last_time))
-    # 	delta_use=$((now_use-last_use[i]))
-    # 	delta_idle=$((now_idle-last_idle[i]))
-    # 	delta_total=$((delta_use+delta_idle))
-
-    # 	last_use[i]=${now_use}
-    # 	last_idle[i]=${now_idle}
-
-    # 	cpu_util[i]=$(bc -l <<< "100*${delta_use}/${delta_total}/${delta_time}" | cut -c -4)
-    # done
-    # last_time=$(date +%s)
+    cpu_util=($(mpstat -P ALL 1 1 | awk '/Average:/ && $2 ~ /[0-9]/ {print $3}')) # waits for one second for data to come in
     mfree=$(free -m | sed '2q;d' | awk '{print $3}')
     total=$(free -m | sed '2q;d' | awk '{print $2}')
     total=$(bc -l <<< "${total}/1000" | cut -c -4)
@@ -70,16 +49,20 @@ while true; do
     rx=$(ifconfig eno1 | sed '7q;d' | awk '{print $2}' | sed 's/bytes://')
 
     rx_delta=$(($rx-$last_rx))
+
     last_rx=$rx
     if [ $rx_delta -lt 1000 ]; then
-	rx_delta="${rx_delta}B/s"
+	rx_delta=$(echo ${rx_delta} | sed -e :a -e 's/^.\{1,3\}$/ &/;ta')
+	rx_delta="${rx_delta:0:4}B/s"
     else
 	if [ $rx_delta -lt 1000000 ]; then
 	    rx_delta=$(bc -l <<< "${rx_delta}/10^3")
-	    rx_delta="${rx_delta:0:3}kB/s"
+	    rx_delta=$(echo ${rx_delta} | sed -e :a -e 's/^.\{1,3\}$/ &/;ta')
+	    rx_delta="${rx_delta:0:4}kB/s"
 	else
 	    rx_delta=$(bc -l <<< "${rx_delta}/10^6")
-	    rx_delta="${rx_delta:0:3}MB/s"
+	    rx_delta=$(echo ${rx_delta} | sed -e :a -e 's/^.\{1,3\}$/ &/;ta')
+	    rx_delta="${rx_delta:0:4}MB/s"
 	fi
     fi
 

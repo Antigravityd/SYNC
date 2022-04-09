@@ -1,0 +1,25 @@
+:PROPERTIES:
+:ID:       2d8a6d26-c9c1-4130-9080-fd1a52a667a5
+:END:
+#+title: Guix Kernel Configuration
+#+filetags: Idea
+* Motivation
+
+Configuring the kernel on Guix is unnecessarily hard. A simple =cd /etc/src/linux && make menuconfig= gets one going on other distros; it should be similarly easy to start (if not finish for reproducibility reasons) editing one's current config on Guix.
+
+* Similar Work
+
+The Linux kernel menuconfig would be a reasonable starting point. Unfortunately, their recursive makefile nonsense makes it almost easier to start from scratch.
+
+* Feasibility
+
+Absolutely trivial in theory; minorly difficult in practice.
+
+* Implementation
+
+A scratch TUI, written in Rust (it's a good excuse to learn it; plus easy packaging with =guix import crate=).
+It would read the current configuration options set in =/proc/config.gz=, open a =make menuconfig=-like interface, and output a simple package definition, inherited from the base Linux-libre, that would include all the user's configuration options.
+
+Eventual mainlining into Guix would be possible if desired.
+
+A potential roadblock would be finding a list of current available configuration options. It's not clear where those lie in the Linux source files.

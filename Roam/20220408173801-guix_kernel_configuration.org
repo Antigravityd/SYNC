@@ -23,3 +23,4 @@ It would read the current configuration options set in =/proc/config.gz=, open a
 Eventual mainlining into Guix would be possible if desired.
 
 A potential roadblock would be finding a list of current available configuration options. It's not clear where those lie in the Linux source files.
+This is solved by =find <linux src root> -path '*Kconfig*' -exec grep "^config " {} \;= note: the bold Kconfig has asterisks surrounding it.

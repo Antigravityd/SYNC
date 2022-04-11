@@ -11,6 +11,8 @@
     "geometry"
     "amsmath"
     "amssymb"
-    "graphicx"))
+    "graphicx")
+   (TeX-add-symbols
+    "scriptr"))
  :latex)
 

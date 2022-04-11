@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.1.13)  8 APR 2022 13:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.1.13)  11 APR 2022 13:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -357,40 +357,40 @@ n/10 (\OML/cmm/m/it/10 ^^^\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 d^^^ \OT1/cmr/m/n/1
 [1
 
 {/gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf
--dist/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] (./hw8.aux) ) 
+-dist/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] (./hw8.aux) ) 
 Here is how much of TeX's memory you used:
  5319 strings out of 478994
  112905 string characters out of 5833534
- 394719 words of memory out of 5000000
+ 395719 words of memory out of 5000000
  22754 multiletter control sequences out of 15000+600000
  413499 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 71i,7n,75p,302b,382s stack positions out of 5000i,500n,10000p,200000b,80000s
-</gnu/store/28l
-aqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmbx12.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-t
-exlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pf
-b></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></gnu/store/28laqzks03piac14a
-j23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmmi7.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20
-210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></gnu/store/28
-laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr12.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-t
-exlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb
-></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></gnu/store/28laqzks03piac14aj23
-wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmsy10.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-2021
-0325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></gnu/store/28la
-qzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/type
-1/public/amsfonts/symbols/msbm10.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg5
-3h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/symbols/
-msbm7.pfb>
-Output written on hw8.pdf (3 pages, 114011 bytes).
+ 71i,6n,75p,329b,382s stack positions out of 5000i,500n,10000p,200000b,80000s
+</gnu/store
+/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmbx12.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg5
+3h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex1
+0.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></gnu/store/28laqzks03pia
+c14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmmi7.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texm
+f-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></gnu/stor
+e/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr12.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg5
+3h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17
+.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></gnu/store/28laqzks03piac14
+aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmsy10.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-
+20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></gnu/store/
+28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/
+type1/public/amsfonts/symbols/msbm10.pfb></gnu/store/28laqzks03piac14aj23wsvkvs
+kkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/symb
+ols/msbm7.pfb>
+Output written on hw8.pdf (4 pages, 117390 bytes).
 PDF statistics:
- 62 PDF objects out of 1000 (max. 8388607)
- 44 compressed objects within 1 object stream
+ 65 PDF objects out of 1000 (max. 8388607)
+ 46 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

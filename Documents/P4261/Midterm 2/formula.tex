@@ -1,0 +1,82 @@
+\documentclass[10pt]{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\usepackage{graphicx}
+
+
+\begin{document}
+\begin{tiny}
+
+
+\section*{Crystal Structure}
+A \textbf{lattice} is a vector space but with scalars in a ring instead of a field.
+In our case, the ring is $\mathbb{Z}$. A \textbf{unit cell} is any subset of a lattice which may be tiled to recover the whole lattice.
+A \textbf{primitive unit cell} is a unit cell that contains exactly one lattice point,
+where lattice points are counted according to the angles the incoming and outgoing lattice vectors make.
+The set of $\mathbb{R}^n$ points closest to a given lattice point is its \textbf{Wigner-Seitz cell},
+constructed by drawing lines from one point to all its neighbors and forming a polygon from the perpendicular bisectors halfway along these lines.
+Bases for lattices are constructed by choosing a reference point in the unit cell and labeling every lattice point in the unit cell as a linear combination of lattice vectors over $\mathbb{R}$.
+The \textbf{primitive lattice vectors}, the basis for the primitive unit cell, for the elementary lattices considered in this class appear below.
+\begin{center}
+  \begin{tabular}{ |c|c|c|c| }
+    \hline
+    Lattice Type & $a_{1}$ & $a_{2}$ & $a_{3}$ \\
+    \hline
+    \hline
+    simple cubic & [1,0,0] & [0,1,0] & [0,0,1] \\
+    \hline
+    bcc & [1,0,0] & [0,1,0] & $[\frac{1}{2},\frac{1}{2},\frac{1}{2}]$ \\
+    \hline
+    fcc & $[\frac{1}{2},\frac{1}{2},0]$ & $[\frac{1}{2},0,\frac{1}{2}]$ & $[0,\frac{1}{2},\frac{1}{2}]$ \\
+    \hline
+  \end{tabular}
+\end{center}
+The \textbf{reciprocal lattice points} $\vec{G}$ to a direct lattice $\vec{R}$ are defined by
+$e^{i\vec{G}\cdot\vec{R}}$.
+The primitive lattice vectors of the reciprocal lattice are defined by $\vec{a}_{i}\cdot\vec{b}_{j}=2\pi\delta_{ij}$
+and may be constructed as
+$\vec{b}_{i}=\frac{2\pi \vec{a}_{i+1}\times\vec{a}_{i+2}}{\vec{a}_{1}\cdot(\vec{a}_{2}\times\vec{a}_{3})}$
+where $a_{i}$ are the primitive lattice vectors of the direct lattice and the addition in the subscripts is modulo 3.
+One may consider the reciprocal lattice to be Fourier-conjugate to the direct lattice by writing the lattice as a delta function
+of the lattice points by $\rho(r)=\sum_{n}\delta(r-an)$ in one dimension,
+easily generalizable to more by identification of $r$ with $\vec{k}$ and $an$ with $\vec{G}$.
+The Fourier convention for this class is
+$\mathcal{F}(f(x))(k)=\int_{\mathbb{R}^{n}}f(x)e^{ik\cdot x}dx$;
+the inverse transform is correspondingly
+$\mathcal{F}^{-1}(g(k))(x)=\frac{1}{(2\pi)^{n}}\int_{\mathbb{R}^{n}}g(k)e^{-ik\cdot x}$.
+A \textbf{lattice plane} is a plane containing 3 non-collinear points of a lattice.
+A \textbf{family of lattice planes} is an infinite set of equally-spaced parallel lattice planes which together contain
+every lattice point.
+Families of lattice planes bijectively correspond to directions of reciprocal lattice vectors,
+so that the separation between planes is $d=2\pi/|\vec{G}_{min}|$ where $\vec{G}_{min}$ is the shortest reciprocal lattice vector
+in that direction.
+The \textbf{Miller indices} are simply an expression of the reciprocal lattice points inside any unit cell in terms of the reciprocal
+space vectors conjugate to edge vectors chosen for the unit cell in direct space;
+they can be negative, in which case they are conventionally denoted with an overline.
+To construct them, one takes the definition of the reciprocal lattice vectors from above and extends it to non-primitive-lattice
+vectors.
+The Miller indices do not necessarily represent reciprocal lattice vectors unless the unit cell is primitive.
+A \textbf{Brillouin zone} is a primitive unit cell of the reciprocal lattice.
+The $n$th Brillouin zone may be constructed by taking the perpendicular bisector halfway between the origin and each of the
+reciprocal lattice vectors in the unit cell.
+The $n$th Brillouin zone is the region where it takes at least $n-1$ crossings of perpendicular bisectors to reach the origin,
+where crossing at intersections of bisectors is disallowed.
+
+\section*{Scattering}
+Fermi's golden rule states the probability of transitioning from a state $|\vec{k}\rangle$ to $|\vec{k'}\rangle$ per unit time
+under a small perturbation of the potential $V$ is
+$\Gamma(\vec{k'},\vec{k})=\frac{2\pi}{\hbar}|\langle \vec{k'}|V|\vec{k} \rangle|^{2}\delta(E_{k'}-E_{k})$ where $E_{k'},E_{k}$
+are the energies of the associated states and $|k\rangle,|k'\rangle$ are the free-particle wave functions of that which is scattering.
+The matrix term may be seen, by assuming everything to be periodic and integrating over the unit cell, to be zero except for those
+vectors for which the \textbf{Laue condition} $\vec{k'}-\vec{k}=\vec{G}$ holds.
+Equivalent to the Laue condition is the \textbf{Bragg condition}, that $n\lambda = 2d\sin\theta$ where $\lambda$ is the wavelength
+of incoming particles, $d$ is the spacing between
+\end{tiny}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

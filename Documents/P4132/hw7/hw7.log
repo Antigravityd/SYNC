@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.1.13)  10 APR 2022 18:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.1.13)  18 APR 2022 17:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -376,71 +376,137 @@ File: ScriptR.pdf Graphic file (type pdf)
 <use ScriptR.pdf>
 Package pdftex.def Info: ScriptR.pdf  used on input line 62.
 (pdftex.def)             Requested size: 251.49918pt x 200.7495pt.
-File: ScriptR.pdf Graphic file (type pdf)
-<use ScriptR.pdf>
-Package pdftex.def Info: ScriptR.pdf  used on input line 64.
-(pdftex.def)             Requested size: 251.49918pt x 200.7495pt.
-File: ScriptR.pdf Graphic file (type pdf)
-<use ScriptR.pdf>
-Package pdftex.def Info: ScriptR.pdf  used on input line 64.
-(pdftex.def)             Requested size: 251.49918pt x 200.7495pt.
  [1
 
 {/gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf
 -dist/fonts/map/pdftex/updmap/pdftex.map} <./ScriptR.pdf>]
 File: ScriptR.pdf Graphic file (type pdf)
 <use ScriptR.pdf>
-Package pdftex.def Info: ScriptR.pdf  used on input line 68.
+Package pdftex.def Info: ScriptR.pdf  used on input line 64.
 (pdftex.def)             Requested size: 251.49918pt x 200.7495pt.
 File: ScriptR.pdf Graphic file (type pdf)
 <use ScriptR.pdf>
-Package pdftex.def Info: ScriptR.pdf  used on input line 68.
+Package pdftex.def Info: ScriptR.pdf  used on input line 64.
 (pdftex.def)             Requested size: 251.49918pt x 200.7495pt.
 File: ScriptR.pdf Graphic file (type pdf)
 <use ScriptR.pdf>
-Package pdftex.def Info: ScriptR.pdf  used on input line 71.
+Package pdftex.def Info: ScriptR.pdf  used on input line 96.
 (pdftex.def)             Requested size: 251.49918pt x 200.7495pt.
 File: ScriptR.pdf Graphic file (type pdf)
 <use ScriptR.pdf>
-Package pdftex.def Info: ScriptR.pdf  used on input line 90.
+Package pdftex.def Info: ScriptR.pdf  used on input line 96.
 (pdftex.def)             Requested size: 251.49918pt x 200.7495pt.
 File: ScriptR.pdf Graphic file (type pdf)
 <use ScriptR.pdf>
-Package pdftex.def Info: ScriptR.pdf  used on input line 103.
+Package pdftex.def Info: ScriptR.pdf  used on input line 99.
 (pdftex.def)             Requested size: 251.49918pt x 200.7495pt.
- [2] (./hw7.aux) ) 
+ [2]
+File: ScriptR.pdf Graphic file (type pdf)
+<use ScriptR.pdf>
+Package pdftex.def Info: ScriptR.pdf  used on input line 120.
+(pdftex.def)             Requested size: 251.49918pt x 200.7495pt.
+File: ScriptR.pdf Graphic file (type pdf)
+<use ScriptR.pdf>
+Package pdftex.def Info: ScriptR.pdf  used on input line 120.
+(pdftex.def)             Requested size: 251.49918pt x 200.7495pt.
+File: ScriptR.pdf Graphic file (type pdf)
+<use ScriptR.pdf>
+Package pdftex.def Info: ScriptR.pdf  used on input line 120.
+(pdftex.def)             Requested size: 251.49918pt x 200.7495pt.
+File: ScriptR.pdf Graphic file (type pdf)
+<use ScriptR.pdf>
+Package pdftex.def Info: ScriptR.pdf  used on input line 121.
+(pdftex.def)             Requested size: 251.49918pt x 200.7495pt.
+File: ScriptR.pdf Graphic file (type pdf)
+<use ScriptR.pdf>
+Package pdftex.def Info: ScriptR.pdf  used on input line 121.
+(pdftex.def)             Requested size: 251.49918pt x 200.7495pt.
+File: ScriptR.pdf Graphic file (type pdf)
+<use ScriptR.pdf>
+Package pdftex.def Info: ScriptR.pdf  used on input line 123.
+(pdftex.def)             Requested size: 251.49918pt x 200.7495pt.
+File: ScriptR.pdf Graphic file (type pdf)
+<use ScriptR.pdf>
+Package pdftex.def Info: ScriptR.pdf  used on input line 123.
+(pdftex.def)             Requested size: 251.49918pt x 200.7495pt.
+File: ScriptR.pdf Graphic file (type pdf)
+<use ScriptR.pdf>
+Package pdftex.def Info: ScriptR.pdf  used on input line 126.
+(pdftex.def)             Requested size: 251.49918pt x 200.7495pt.
+File: ScriptR.pdf Graphic file (type pdf)
+<use ScriptR.pdf>
+Package pdftex.def Info: ScriptR.pdf  used on input line 126.
+(pdftex.def)             Requested size: 251.49918pt x 200.7495pt.
+File: ScriptR.pdf Graphic file (type pdf)
+<use ScriptR.pdf>
+Package pdftex.def Info: ScriptR.pdf  used on input line 127.
+(pdftex.def)             Requested size: 251.49918pt x 200.7495pt.
+File: ScriptR.pdf Graphic file (type pdf)
+<use ScriptR.pdf>
+Package pdftex.def Info: ScriptR.pdf  used on input line 128.
+(pdftex.def)             Requested size: 251.49918pt x 200.7495pt.
+File: ScriptR.pdf Graphic file (type pdf)
+<use ScriptR.pdf>
+Package pdftex.def Info: ScriptR.pdf  used on input line 129.
+(pdftex.def)             Requested size: 251.49918pt x 200.7495pt.
+
+Overfull \hbox (11.99445pt too wide) detected at line 130
+[] \OT1/cmr/m/n/10 = [][](\OML/cmm/m/it/10 c[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/
+it/10 v[]\OT1/cmr/m/n/10 )(\OML/cmm/m/it/10 c \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/i
+t/10 v\OT1/cmr/m/n/10 )[] = [][][][] = [][][][] = [][][][]
+ []
+
+File: ScriptR.pdf Graphic file (type pdf)
+<use ScriptR.pdf>
+Package pdftex.def Info: ScriptR.pdf  used on input line 134.
+(pdftex.def)             Requested size: 251.49918pt x 200.7495pt.
+File: ScriptR.pdf Graphic file (type pdf)
+<use ScriptR.pdf>
+Package pdftex.def Info: ScriptR.pdf  used on input line 134.
+(pdftex.def)             Requested size: 251.49918pt x 200.7495pt.
+File: ScriptR.pdf Graphic file (type pdf)
+<use ScriptR.pdf>
+Package pdftex.def Info: ScriptR.pdf  used on input line 136.
+(pdftex.def)             Requested size: 251.49918pt x 200.7495pt.
+File: ScriptR.pdf Graphic file (type pdf)
+<use ScriptR.pdf>
+Package pdftex.def Info: ScriptR.pdf  used on input line 136.
+(pdftex.def)             Requested size: 251.49918pt x 200.7495pt.
+[3] [4] (./hw7.aux) ) 
 Here is how much of TeX's memory you used:
- 5327 strings out of 478994
- 113029 string characters out of 5833534
- 401781 words of memory out of 5000000
- 22762 multiletter control sequences out of 15000+600000
+ 5326 strings out of 478994
+ 113021 string characters out of 5833534
+ 404781 words of memory out of 5000000
+ 22761 multiletter control sequences out of 15000+600000
  413499 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 71i,12n,75p,233b,218s stack positions out of 5000i,500n,10000p,200000b,80000s
-</gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20
-210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></gnu/store/2
-8laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmex10.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h
--texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.
+ 71i,12n,75p,233b,223s stack positions out of 5000i,500n,10000p,200000b,80000s
+</gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf
+-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></gnu/stor
+e/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/font
+s/type1/public/amsfonts/cm/cmex10.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg
+53h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
+10.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/shar
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></gnu/store/28laqzks03pia
+c14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr10.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texm
+f-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></gnu/stor
+e/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr17.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg5
+3h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.
 pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></gnu/store/28laqzks03piac14
-aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmr10.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-2
-0210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></gnu/store/2
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></gnu/store/28laqzks03piac14a
+j23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmsy10.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-2
+0210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></gnu/store/2
 8laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmr17.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-
-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb
-></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></gnu/store/28laqzks03piac14aj
-23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmsy7.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-202
-10325/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></gnu/sto
-re/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fon
-ts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on hw7.pdf (2 pages, 119589 bytes).
+ype1/public/amsfonts/symbols/msam10.pfb></gnu/store/28laqzks03piac14aj23wsvkvsk
+kg53h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/symbo
+ls/msbm7.pfb>
+Output written on hw7.pdf (4 pages, 140362 bytes).
 PDF statistics:
- 104 PDF objects out of 1000 (max. 8388607)
- 68 compressed objects within 1 object stream
+ 137 PDF objects out of 1000 (max. 8388607)
+ 84 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 102 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 186 words of extra memory for PDF output out of 10000 (max. 10000000)
 

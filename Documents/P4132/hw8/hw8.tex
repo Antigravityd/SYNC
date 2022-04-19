@@ -1,0 +1,130 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{siunitx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\title{4132 HW 8}
+\author{Duncan Wilkie}
+\date{19 April 2022}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+The average power lost by the oscillating dipole is
+\[\langle P \rangle=\frac{\mu_{0}p_{0}^{2}\omega^{4}}{12\pi c}\]
+The current through the wire connecting the spheres is, by the definition of the charge on the spheres at time $t$,
+\[I(t)=\dot{q}(t)=-q_{0}\omega\sin(\omega t)\]
+The average power may be calculated from the RMS current, which is related to the peak current by
+$I_{rms}=I_{0}/\sqrt{2}=\frac{q_{0}\omega}{\sqrt{2}}$
+We then can calculate the average power using the DC equations using the RMS current:
+\[\langle P \rangle=I_{rms}^{2}R=\frac{q_{0}^{2}\omega^{2}}{2}R\]
+Equating the two expressions for average power and solving for $R$,
+\[
+  \frac{\mu_{0}p_{0}^{2}\omega^{4}}{12\pi c}=\frac{q_{0}^{2}\omega^{2}}{2}R
+  \Leftrightarrow R=\frac{\mu_{0}p_{0}^{2}\omega^{2}}{6\pi c q_{0}^{2}}
+\]
+The initial dipole moment is by definition $p_{0}=q_{0}d\Leftrightarrow \frac{p_{0}}{q_{0}}=d$
+and the angular frequency is related to the wavelength by
+$\omega=2\pi f\Rightarrow \lambda = \frac{c}{f}=\frac{2\pi c}{\omega}\Leftrightarrow \omega=\frac{2\pi c}{\lambda}$
+so we may write
+\[
+  R=\frac{\mu_{0}d^{2}\omega^{2}}{6\pi c}
+  =\frac{2\pi\mu_{0}c}{3}\frac{d^{2}}{\lambda^{2}}
+  =\frac{2\pi(4\pi\times 10^{-7})(\SI{3e8}{m/s})}{3}\frac{d^{2}}{\lambda^{2}}
+  =80\pi^{2}\frac{d^{2}}{\lambda^{2}}\approx 790\frac{d^{2}}{\lambda^{2}}\si{\ohm}
+\]
+The FM broadcast band is at about $\SI{3}{m}$ in wavelength.
+Taking the given wire length in an ordinary radio, the radiation resistance would evaluate to
+\[
+  R=790\frac{(\SI{5}{cm})^{2}}{(\SI{3}{m})^{2}}=\SI{0.22}{\ohm}
+\]
+Since the resistivity of copper is quite low, the resistance of even quite small-gauge copper wire at this length will be on the order of
+\si{m\ohm}; the radiation resistance is the bulk of the power lost along the wire.
+
+\section{}
+Using the equation for the peak radiated power of an arbitrary time-dependent charge configuration found in the book,
+\[P_{rad}(t_{0})=\frac{\mu_{0}}{6\pi c}\left[ \ddot{p}(t_{0}) \right]^{2}\]
+where $p(t_{0})$ is the initial magnitude of the dipole moment of the charge configuration.
+This initial dipole moment may be calculated by
+\[
+  \vec{p}=\int_{\textrm{charge}} \vec{r}\rho(\vec{r})dV
+  =\int_{-\infty}^{\infty}\int_{0}^{2\pi}\int_{0}^{\infty}\delta(z)\delta(r-b)(\cos\phi\hat{x}+\sin\phi\hat{y})
+  \lambda_{0}\sin\phi(rdrd\phi dz)
+\]
+\[
+  =b\int_{0}^{2\pi}(b\cos\phi\hat{x}+b\sin\phi\hat{y})\lambda_{0}\sin\phi d\phi
+  =b^{2} \lambda_{0}\hat{x}\int_{0}^{2\pi}\sin\phi\cos\phi d\phi+b^{2}\lambda_{0}\hat{y}\int_{0}^{2\pi}\sin^{2}\phi d\phi
+\]
+Using $2\sin(2\phi)=\sin\phi\cos\phi$, one notices the first is simply the integral of $\sin\phi$ over two periods which,
+since $\sin$ has average value $0$ over one cycle, integrates to zero.
+By the trig identities $\sin^{2}x=1-\cos^{2}x$ and $\cos(2x)=2\cos^{2}x-1\Leftrightarrow \cos^{2}x=\frac{1+\cos(2x)}{2}$, one may write
+$\sin^{2}x=\frac{1-\cos(2x)}{2}$, and so the second integral becomes
+\[
+  \int_{0}^{2\pi}\sin^{2}\phi d\phi=\int_{0}^{2\pi}\left[ \frac{1}{2}-\frac{1}{2}\cos(2\phi)\right]d\phi
+\]
+The later integral is zero by the same reasoning for $\sin(2\theta)$ above, but the first is equal to $\pi$.
+Therefore, the magnitude of the initial dipole moment is
+\[p_{0}=\pi\lambda_{0}b^{2}\]
+As the ring rotates about its center, its dipole moment
+% TODO: finish
+
+\section{}
+Applying the Larmour formula with $a=g$, the power lost to radiation per second is
+\[P_{rad}=\frac{\mu_{0}q^{2}g^{2}}{6\pi c}\]
+The time it takes the electron to fall a distance $h$ is by
+\[h=\frac{1}{2}gt^{2}\Leftrightarrow t=\sqrt{\frac{2h}{g}}\]
+The lost potential energy is $mgh$, so the ratio of the lost potential energy to the radiated power over the time period is
+\[
+  \frac{P_{rad}t}{mgh}
+  =\frac{(\mu_{0}q^{2}g^{2}/6\pi c)(\sqrt{2h/g})}{mgh}
+  =\frac{\mu_{0}q^{2}}{6\pi mc}\sqrt{\frac{2g}{h}}
+\]
+\[
+  =\frac{(\SI{1.26e-6}{N/A^{2}})(\SI{1.6e-19}{C})^{2}}{6\pi(\SI{9.11e-31}{kg})(\SI{3e8}{m/s})}\sqrt{\frac{2(\SI{9.81}{m/s^{2}})}{\SI{1}{cm}}}
+  =\SI{2.77e-22}{}
+\]
+
+\section{}
+The Coulomb attraction is equal to the centripetal acceleration, so
+\[\frac{1}{4\pi\epsilon_{0}}\frac{q^{2}}{r^{2}}=m\frac{v^{2}}{r}
+  \Leftrightarrow r=\frac{q^{2}}{4\pi\epsilon_{0}mv^{2}}
+\]
+This implies the velocity is only a reasonable fraction, say 10\%, of the speed of light whenever the radius is
+\[r=\frac{(\SI{1.6e-19}{C})^{2}}{4\pi(\SI{8.85e-12}{F/m})(\SI{9.11e-31}{kg})(0.1)^{2}(\SI{3e8}{m/s})^{2}}=\SI{2.8e-13}{m}\]
+which is $0.6\%$ of the initial radius, and at this point it's going at its fastest, so the proportion of the trip where the
+electron is relativistic is vanishingly small, justifying the use of the Larmour formula.
+The initial potential of the system is
+\[U=qV=\frac{q^{2}}{4\pi\epsilon_{0}r}=\frac{(\SI{1.6e-19}{C})^{2}}{4\pi(\SI{8.85e-12}{F/m})(\SI{5e-11}{m})}=\SI{4.6e-18}{J}\]
+The initial kinetic energy of the system, solving the force balancing equation written above for $mv^{2}$, is
+\[
+  T=\frac{1}{2}mv^{2}
+  =\frac{1}{8\pi\epsilon_{0}}\frac{q^{2}}{r^{2}}
+  =\frac{1}{8\pi(\SI{8.85e-12}{F/m})}\frac{(\SI{1.6e-19})^{2}}{(\SI{5e-11}{m})^{2}}
+  =\SI{4.6e-8}{J}
+\]
+Since the latter is larger by ten orders of magnitude, the total energy may be taken to simply be it.
+The amount of time it takes to radiate away all this energy is, by the Larmour formula,
+\[
+  t=\frac{T}{P}
+  =\frac{\mu_{0}q^{2}a^{2}}{6\pi c T}
+  =\frac{\mu_{0}q^{2}(v^{2}/r)}{6\pi cT}
+  =\frac{\mu_{0}q^{2}\left(\frac{q^{2}}{4\pi\epsilon_{0}m r^{2}}\right)}{6\pi cT}
+  =\frac{\mu_{0}q^{4}}{24\pi^{2}\epsilon_{0}mcr^{2}T}
+\]
+\[
+  =\frac{(\SI{1.26e-6}{N/A^{2}})(\SI{1.6e-19})^{4}}
+  {24\pi(\SI{8.85e-12}{F/m})(\SI{9.11e-31}{kg})(\SI{3e8}{m/s})(\SI{5e-11}{m})^{2}(\SI{4.6e-8}{J})}
+  =\SI{3.5e-34}{s}
+\]
+% TODO: correct
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

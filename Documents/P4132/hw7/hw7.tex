@@ -56,13 +56,41 @@ Applying the forced wave equation ansatz given in the text,
   \vec{A}(\vec{r},t)=\frac{\mu_{0}}{4\pi}\int_{\mathbb{R}}\frac{J(\vec{r}',t)}{\scriptr}dV
 \]
 \[
-  =\frac{\mu_{0}}{4\pi}\left( \int_{-b}^{-a}\frac{k\left( t-\frac{c}{\scriptr} \right)}{\scriptr}\hat{x}dx
-    +\int_{a}^{b}\frac{k\left( t-\frac{c}{\scriptr}\right)}{\scriptr}\hat{x}dx
-    +a\int_{0}^{\pi}\frac{k(t-\frac{c}{\scriptr})}{\scriptr}(-\hat{\theta})d\theta
-    +b\int_{0}^{2\pi}\frac{k(t-\frac{c}{\scriptr})}{\scriptr}(\hat{\theta})d\theta\right)
+  =\frac{\mu_{0}}{4\pi}\left( \int_{-b}^{-a}\frac{k\left( t-\frac{\scriptr}{c} \right)}{\scriptr}\hat{x}dx
+    +\int_{a}^{b}\frac{k\left( t-\frac{\scriptr}{c}\right)}{\scriptr}\hat{x}dx
+    +a\int_{0}^{\pi}\frac{k(t-\frac{\scriptr}{c})}{\scriptr}(-\hat{\theta})d\theta
+    +b\int_{0}^{\pi}\frac{k(t-\frac{\scriptr}{c})}{\scriptr}(\hat{\theta})d\theta\right)
 \]
-The $x$ and $\theta$ dependence of $\scriptr$ may be found from the relation $\scriptr=r-r'=(x)$
-% TODO: finish
+The $x$ and $\theta$ dependence of $\scriptr$ is, since the potential is being calculated at the origin, $\scriptr=x/\cos\theta$.
+Therefore,
+\[
+  =\frac{\mu_{0}}{4\pi}\bigg( \int_{-b}^{-a}\frac{k\cos\theta(t-\frac{cx}{\cos\theta})}{x}\hat{x}dx
+    +\int_{a}^{b}\frac{k\cos\theta(t-\frac{cx}{\cos\theta})}{x}\hat{x}dx
+    +a\int_{0}^{\pi}\frac{k(t-\frac{a}{c})}{a}(-\hat{\theta})d\theta
+\]
+\[
+    +b\int_{0}^{\pi}\frac{k(t-\frac{b}{c})}{b}\hat{\theta}d\theta\bigg)
+\]
+\[
+  =\frac{\mu_{0}}{4\pi}\left( \int_{-b}^{-a}\left( \frac{-kt}{x}-{ck}\right)\hat{x}dx
+    +\int_{a}^{b}\left( \frac{kt}{x}-{ck} \right)\hat{x}dx
+    +a\int_{0}^{\pi}\frac{k(t-\frac{a}{c})}{a}(-\hat{\theta})d\theta
+    +b\int_{0}^{\pi}\frac{k(t-\frac{b}{c})}{b}\hat{\theta}d\theta\right)
+\]
+\[
+  \frac{\mu_{0}}{4\pi}\left( -kt\ln(x)\bigg|_{-b}^{-a}\hat{x}-ckx\bigg|_{-a}^{-b}\hat{x}
+    +kt\ln(x)\bigg|_{a}^{b}\hat{x}-ckx\bigg|_{a}^{b}\hat{x}
+    -kt\pi\hat{\theta}+\frac{ak}{c}\pi\hat{\theta}
+    +kt\pi\hat{\theta}-\frac{bk}{c}\pi\hat{\theta}\right)
+\]
+\[
+  \frac{\mu_{0}}{4\pi}\left( 2kt\ln\frac{b}{a}\hat{x}+\pi \frac{k}{c}\left[ a-b \right]\hat{\theta}\right)
+\]
+Its derivative with respect to time is nonzero at
+\[\frac{\partial\vec{A}}{\partial t}=\frac{\mu_{0}k}{2\pi}\ln\frac{b}{a}\hat{x}\]
+Since the potential and therefore its gradient is zero, the electric field is the negative of the above.
+The magnetic field is incalculable because the curl of $\vec{A}$ cannot be determined from a single point.
+
 \section*{3}
 The scalar potential is
 \[V(\vec{r},t)=\frac{1}{4\pi\epsilon_{0}}\frac{qc}{|\scriptr| c-\scriptr\cdot v}\]
@@ -87,22 +115,51 @@ On the $z$-axis, this becomes
 \[\vec{A}(z,t)=\frac{1}{4\pi\epsilon_{0}c}\frac{a\omega q}{at\omega^{2}-c\sqrt{a^{2}+\omega^{2}t^{2}+z^{2}}}\hat{\theta}\]
 
 \section*{4}
-The Li\'enard-Wiechert potentials are, writing everything in one dimension and applying $\scriptr=r-r'$ with $x'$ as the position of the charge,
+The expression for the electric field of a moving charge is, using the equation from the book,
 \[
-  V(x,t)=\frac{1}{4\pi\epsilon_{0}}\frac{qc}{(x-x')c-(x-x')\dot{x}'}
-  =\frac{1}{4\pi\epsilon_{0}}\frac{qc}{(c-\dot{x}')(x-x')}
+  \vec{E}=\frac{q}{4\pi\epsilon_{0}}\frac{\scriptr}{(\vec{\scriptr}\cdot\vec{u})^{3}}
+  \left[ (c^{2}-v^{2})\vec{u}+\vec{\scriptr}\times(\vec{u}\times\vec{a}) \right]
 \]
-and
+where $\vec{u}=c\hat{\scriptr}-\vec{v}$ and $\vec{a}$ is the acceleration of the particle.
+In this case, the cross products are zero since everything's confined to a line, and the dot products are the scalar product of signed magnitudes, so
 \[
-  \vec{A}(x,t)=\frac{v}{c^{2}}V(\vec{r},t)
-  =\frac{1}{4\pi\epsilon_{0}}\frac{\dot{x}'q}{c(c-\dot{x}')({x-x'})}
+  \vec{E}=\frac{q}{4\pi\epsilon_{0}}\frac{\scriptr}{[\scriptr(c-v)]^{3}}(c^{2}-v^{2})(c-v)\hat{x}
+  =\frac{q}{4\pi\epsilon_{0}}\frac{1}{\scriptr^{2}}\frac{c^{2}-v^{2}}{(c-v)^{2}}\hat{x}
+  =\frac{q}{4\pi\epsilon_{0}}\frac{1}{\scriptr^{2}}\frac{(c+v)(c-v)}{(c-v)^{2}}\hat{x}
+  =\frac{q}{4\pi\epsilon_{0}}\frac{1}{\scriptr^{2}}\frac{c+v}{c-v}\hat{x}
 \]
-Taking the gradient of the first yields
+This is the given expression, save for the factor of $q$ missing in the assignment which I presume is a copying error.
+The magnetic field is, using the equation given in the same chapter,
 \[
-  \vec{E}(x,t)=-\frac{qc}{4\pi\epsilon_{0}(c-\dot{x})}\frac{1}{(x-x')^{2}}\hat{x}
-  =\frac{1}{4\pi\epsilon_{0}}\frac{-qc}{c-v}\frac{1}{\scriptr^{2}}
+  \vec{B}=\frac{1}{c}\hat{\scriptr}\times\vec{E}
 \]
-Taking the
+This cross product is zero, since $\hat{\scriptr}=\hat{x}$ and $\vec{E}$ was found to lie along the $x$-axis.
+
+\section*{5a}
+For a point distance $d$ from the wire, the distance from a differential charge element $dq=\lambda Rd\theta$ may be written in terms of angle as
+$R=d/\sin(\theta)$, as the distance from the wire forms a right triangle with opposite $d$ and hypotenuse $R$.
+Substituting this result and integrating over all $dq$,
+\[
+  \vec{E}=\int_{0}^{\pi}\frac{\lambda Rd\theta}{4\pi\epsilon_{0}}\frac{1-v^{2}/c^{2}}{(1-v^{2}\sin^{2}\theta/c^{2})^{3/2}}\frac{\hat{R}}{R^{2}}
+  =\frac{\lambda(1-v^{2}/c^{2})}{4\pi\epsilon_{0}}\overline{\hat{R}}
+  \int_{0}^{\pi}\frac{1}{(1-v^{2}\sin^{2}\theta/c^{2})^{3/2}}\frac{1}{d/\sin\theta}d\theta
+\]
+\[
+  =\frac{\lambda(1-v^{2}/c^{2})}{4\pi\epsilon_{0}d}\overline{\hat{R}}\int_{0}^{\pi}\frac{\sin\theta}{(1-v^{2}\sin^{2}\theta/c^{2})^{3/2}}d\theta
+\]
+Sympy says the nasty integral evaluates to $\frac{2}{1-v^{2}/c^{2}}$, so the electric field is
+\[\vec{E}=\frac{\lambda}{2\pi\epsilon_{0}d}\hat{r}\]
+\section*{5b}
+The magnetic field is, in the constant-velocity case,
+\[
+  \vec{B}=\frac{1}{c^{2}}(\vec{v}\times\vec{E})
+  =\frac{\lambda v}{2\pi\epsilon_{0}c^{2}d}\hat{\theta}=\frac{\mu_{0}I}{2\pi d}\hat{\theta}
+\]
+where the velocity is taken in the $\hat{z}$ direction and we have used $c^{2}=\frac{1}{\mu_{0}\epsilon_{0}}$.
+Both of these agree with the easy derivations from Coulomb's and Ampere's laws.
+
+
+
 
 \end{document}
 

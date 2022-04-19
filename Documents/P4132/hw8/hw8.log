@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.1.13)  18 APR 2022 19:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.1.13)  19 APR 2022 18:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -342,42 +342,150 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 {/gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf
 -dist/fonts/map/pdftex/updmap/pdftex.map}]
-[2]
-Overfull \hbox (9.24617pt too wide) detected at line 123
-\OT1/cmr/m/n/10 = [] = [] []
- []
 
-[3] (./hw8.aux) ) 
+LaTeX Warning: Command \= invalid in math mode on input line 75.
+
+./hw8.tex:75: Missing $ inserted.
+<inserted text> 
+                $
+l.75 ...\cos(\omega t)+\hat{y}\sin(\omega t))\=\pi
+                                                  \lambda_{0} b^{2}(\hat{x}\...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./hw8.tex:75: Improper \spacefactor.
+<recently read> \spacefactor 
+                             
+l.75 ...\cos(\omega t)+\hat{y}\sin(\omega t))\=\pi
+                                                  \lambda_{0} b^{2}(\hat{x}\...
+You can refer to \spacefactor only in horizontal mode;
+you can refer to \prevdepth only in vertical mode; and
+neither of these is meaningful inside \write. So
+I'm forgetting what you said and using zero instead.
+
+./hw8.tex:75: Extra }, or forgotten $.
+\add@accent ... \accent@spacefactor \spacefactor }
+                                                  \let \maybe@load@fontshape...
+l.75 ...\cos(\omega t)+\hat{y}\sin(\omega t))\=\pi
+                                                  \lambda_{0} b^{2}(\hat{x}\...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./hw8.tex:75: Please use \mathaccent for accents in math mode.
+\add@accent ... \let \ignorespaces \relax \accent 
+                                                  #1 #2\egroup \spacefactor ...
+l.75 ...\cos(\omega t)+\hat{y}\sin(\omega t))\=\pi
+                                                  \lambda_{0} b^{2}(\hat{x}\...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+./hw8.tex:75: Extra }, or forgotten $.
+\add@accent ...spaces \relax \accent #1 #2\egroup 
+                                                  \spacefactor \accent@space...
+l.75 ...\cos(\omega t)+\hat{y}\sin(\omega t))\=\pi
+                                                  \lambda_{0} b^{2}(\hat{x}\...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./hw8.tex:75: You can't use `\spacefactor' in math mode.
+\add@accent ... \accent #1 #2\egroup \spacefactor 
+                                                  \accent@spacefactor 
+l.75 ...\cos(\omega t)+\hat{y}\sin(\omega t))\=\pi
+                                                  \lambda_{0} b^{2}(\hat{x}\...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./hw8.tex:75: Missing $ inserted.
+<inserted text> 
+                $
+l.75 ...{x}\cos(\omega t)+\hat{y}\sin(\omega t))\]
+                                                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./hw8.tex:75: Missing } inserted.
+<inserted text> 
+                }
+l.75 ...{x}\cos(\omega t)+\hat{y}\sin(\omega t))\]
+                                                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./hw8.tex:75: Missing } inserted.
+<inserted text> 
+                }
+l.75 ...{x}\cos(\omega t)+\hat{y}\sin(\omega t))\]
+                                                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./hw8.tex:75: Missing $ inserted.
+<inserted text> 
+                $
+l.75 ...{x}\cos(\omega t)+\hat{y}\sin(\omega t))\]
+                                                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./hw8.tex:75: Display math should end with $$.
+<to be read again> 
+                   \endgroup 
+l.75 ...{x}\cos(\omega t)+\hat{y}\sin(\omega t))\]
+                                                  
+The `$' that I just saw supposedly matches a previous `$$'.
+So I shall assume that you typed `$$' both times.
+
+[2] [3] [4] (./hw8.aux) ) 
 Here is how much of TeX's memory you used:
  5322 strings out of 478994
  112936 string characters out of 5833534
- 394720 words of memory out of 5000000
+ 396720 words of memory out of 5000000
  22757 multiletter control sequences out of 15000+600000
  413499 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,14n,75p,219b,813s stack positions out of 5000i,500n,10000p,200000b,80000s
-</gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-202
-10325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></gnu/store/28
-laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmex10.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-
-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.p
-fb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></gnu/store/28laqzks03piac14a
-j23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmr10.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20
-210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></gnu/store/28
-laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr17.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-t
-exlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb>
-</gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf
--dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></gnu/store/28laqzks03piac14aj23w
-svkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmsy10.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210
-325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on hw8.pdf (3 pages, 124936 bytes).
+</gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-t
+exmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></gnu/
+store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmex10.pfb></gnu/store/28laqzks03piac14aj23wsvkv
+skkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmi10.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/
+share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></gnu/store/28laqzks0
+3piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr10.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-
+texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></gnu/
+store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr17.pfb></gnu/store/28laqzks03piac14aj23wsvkvs
+kkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr5.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/sha
+re/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></gnu/store/28laqzks03pia
+c14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmsy10.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-tex
+mf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on hw8.pdf (4 pages, 127736 bytes).
 PDF statistics:
- 58 PDF objects out of 1000 (max. 8388607)
- 41 compressed objects within 1 object stream
+ 61 PDF objects out of 1000 (max. 8388607)
+ 43 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

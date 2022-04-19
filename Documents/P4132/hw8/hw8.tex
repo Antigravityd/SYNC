@@ -68,10 +68,19 @@ $\sin^{2}x=\frac{1-\cos(2x)}{2}$, and so the second integral becomes
   \int_{0}^{2\pi}\sin^{2}\phi d\phi=\int_{0}^{2\pi}\left[ \frac{1}{2}-\frac{1}{2}\cos(2\phi)\right]d\phi
 \]
 The later integral is zero by the same reasoning for $\sin(2\theta)$ above, but the first is equal to $\pi$.
-Therefore, the magnitude of the initial dipole moment is
-\[p_{0}=\pi\lambda_{0}b^{2}\]
-As the ring rotates about its center, its dipole moment
-% TODO: finish
+Therefore, the initial dipole moment is
+\[\vec{p_{0}}=\pi\lambda_{0}b^{2}\hat{y}\]
+As the ring rotates about its center, its dipole moment will be of the same magnitude with direction rotating at constant angular velocity.
+We may therefore write
+\[\vec{p}(t)=|p_{0}|(\hat{x}\cos(\omega t)+\hat{y}\sin(\omega t))\=\pi\lambda_{0} b^{2}(\hat{x}\cos(\omega t)+\hat{y}\sin(\omega t))\]
+Differentiating twice with respect to time,
+\[\ddot{\vec{p}}(t)=\pi\lambda_{0}b^{2}\omega^{2}(-\hat{x}\cos(\omega t)-\hat{y}\sin(\omega t)=-\omega^{2}\vec{p}(t)\]
+which has magnitude $\pi\lambda_{0}b^{2}\omega^{2}$.
+We may then write
+\[
+  P_{rad}(t_{0})=\frac{\mu_{0}}{6\pi c}[\pi\lambda_{0}b^{2}\omega^{2}]^{2}=\frac{\mu_{0}\pi\lambda_{0}^{2}b^{4}\omega^{4}}{6c}
+\]
+
 
 \section{}
 Applying the Larmour formula with $a=g$, the power lost to radiation per second is
@@ -98,30 +107,44 @@ This implies the velocity is only a reasonable fraction, say 10\%, of the speed 
 \[r=\frac{(\SI{1.6e-19}{C})^{2}}{4\pi(\SI{8.85e-12}{F/m})(\SI{9.11e-31}{kg})(0.1)^{2}(\SI{3e8}{m/s})^{2}}=\SI{2.8e-13}{m}\]
 which is $0.6\%$ of the initial radius, and at this point it's going at its fastest, so the proportion of the trip where the
 electron is relativistic is vanishingly small, justifying the use of the Larmour formula.
-The initial potential of the system is
-\[U=qV=\frac{q^{2}}{4\pi\epsilon_{0}r}=\frac{(\SI{1.6e-19}{C})^{2}}{4\pi(\SI{8.85e-12}{F/m})(\SI{5e-11}{m})}=\SI{4.6e-18}{J}\]
-The initial kinetic energy of the system, solving the force balancing equation written above for $mv^{2}$, is
+Balancing the forces in the Bohr model, the magnitude of the centripetal force is equal to the magnitude of the Coulomb force.
+We can then find an expression for the kinetic energy in terms of $r$ by
 \[
-  T=\frac{1}{2}mv^{2}
-  =\frac{1}{8\pi\epsilon_{0}}\frac{q^{2}}{r^{2}}
-  =\frac{1}{8\pi(\SI{8.85e-12}{F/m})}\frac{(\SI{1.6e-19})^{2}}{(\SI{5e-11}{m})^{2}}
-  =\SI{4.6e-8}{J}
+  \frac{1}{4\pi\epsilon_{0}}\frac{q^{2}}{r^{2}}=m\frac{v^{2}}{r}
+  \Rightarrow T=\frac{1}{2}mv^{2}=\frac{1}{8\pi\epsilon_{0}}\frac{q^{2}}{r}
 \]
-Since the latter is larger by ten orders of magnitude, the total energy may be taken to simply be it.
-The amount of time it takes to radiate away all this energy is, by the Larmour formula,
+The electric potential between two point charges is of course
+\[U=qV=-\frac{1}{4\pi\epsilon_{0}}\frac{q^{2}}{r}\]
+In hindsight, the first may have been derived via the virial theorem from this potential.
+The total energy is then
+\[E=T+U=-\frac{1}{8\pi\epsilon_{0}}\frac{q^{2}}{r}\]
+Differentiating this with respect to time, we obtain an expression for the power radiated as
+\[P_{rad}=-\frac{dE}{dt}=-\frac{1}{8\pi\epsilon_{0}}\frac{q^{2}}{r^{2}}\frac{dr}{dt}\]
+We may equate this with the Larmour formula, applying Newton's second law to obtain the acceleration,
+\[P_{rad}=\frac{\mu_{0}q^{2}a^{2}}{6\pi c}=\frac{\mu_{0}q^{2}}{6\pi c}\left( \frac{1}{4\pi\epsilon_{0}}\frac{q^{2}}{mr^{2}} \right)^{2}\]
 \[
-  t=\frac{T}{P}
-  =\frac{\mu_{0}q^{2}a^{2}}{6\pi c T}
-  =\frac{\mu_{0}q^{2}(v^{2}/r)}{6\pi cT}
-  =\frac{\mu_{0}q^{2}\left(\frac{q^{2}}{4\pi\epsilon_{0}m r^{2}}\right)}{6\pi cT}
-  =\frac{\mu_{0}q^{4}}{24\pi^{2}\epsilon_{0}mcr^{2}T}
+  \Rightarrow -\frac{1}{8\pi\epsilon_{0}}\frac{q^{2}}{r^{2}}\frac{dr}{dt}=\frac{\mu_{0}q^{2}}{6\pi c}\frac{1}{16\pi^{2}\epsilon_{0}^{2}}
+  \frac{q^{4}}{m^{2}r^{4}}
+  \Leftrightarrow r^{2}dr=-\frac{\mu_{0}q^{4}}{12\pi^{2}\epsilon_{0}cm^{2}}dt
+\]
+Integrating,
+\[
+  \frac{r^{3}}{3}=-\sqrt{\frac{\mu_{0}^{3}}{\epsilon_{0}}}\frac{q^{4}}{12\pi^{2}m^{2}}t+C
+\]
+Applying the initial condition $r(t=0)=\SI{5e-11}{m}$, $C=(\SI{5e-11}{m})^{3}/3=\SI{4.17e-32}{m}$.
+Solving for $t$,
+\[
+  t=\left(C-\frac{r^{3}}{3} \right)\frac{12\pi^{2}m^{2}}{q^{4}}\sqrt{\frac{\epsilon_{0}}{\mu_{0}^{3}}}
+\]
+Evaluating at $t=0$,
+\[
+  t=C\frac{12\pi^{2} m^{2}}{q^{4}}\sqrt{\frac{\epsilon_{0}}{\mu_{0}^{3}}}
+  =(\SI{4.17e-32}{m})\frac{12\pi^{2}(\SI{9.11e-31}{kg})^{2}}{(\SI{1.6e-19}{C})^{4}}\sqrt{\frac{\SI{8.85e-12}{F/m}}{(\SI{1.26e-6}{N/A^{2}})^{3}}}
 \]
 \[
-  =\frac{(\SI{1.26e-6}{N/A^{2}})(\SI{1.6e-19})^{4}}
-  {24\pi(\SI{8.85e-12}{F/m})(\SI{9.11e-31}{kg})(\SI{3e8}{m/s})(\SI{5e-11}{m})^{2}(\SI{4.6e-8}{J})}
-  =\SI{3.5e-34}{s}
+  =\SI{1.32e-11}{s}
 \]
-% TODO: correct
+which is inconsistent with the existence of atomic matter.
 \end{document}
 
 %%% Local Variables:

@@ -1,0 +1,28 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{7590 HW 1}
+\author{Duncan Wilkie}
+\date{?}
+
+\begin{document}
+
+\maketitle
+
+\section*{1a}
+By the definition of the $L^2$ inner product and $A$,
+\[\langle Af|g \rangle=\langle f|Ag \rangle\Leftrightarrow \int_0^1f''(x)g(x)dx=\int_0^1f(x)g''(x)dx \]
+Integrating by parts,
+\[f'g\bigg|_0^1-\int_0^1f'(x)g'(x)dx=\int_0^1f(x)g''(x)dx\]
+\[\Leftrightarrow f'g\bigg|_0^1-fg'\bigg_0^1+\int_0^1f(x)g''(x)dx=\int_0^1f(x)g''(x)dx\]
+$g$ and $f$ must both be zero at $0$ and $1$ since smooth compactly-supported functions on open sets vanish in the limit to the boundary of their domains. Therefore, this operator is symmetric.
+However, if
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

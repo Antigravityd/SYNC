@@ -1,0 +1,751 @@
+
+:PROPERTIES:
+:ID:       51ac412f-c194-4214-9718-a2585030773f
+:END:
+#+title: pGRE Formulae
+#+STARTUP: latexpreview
+
+* Method
+
+Use =M-x org-drill= to be quizzed on all the formulae in this file.
+
+* Mechanics
+
+** First Kinematic No Acc                                            :drill:
+SCHEDULED: <2022-04-05 Tue>
+:PROPERTIES:
+:ID:       21f47b01-c210-43bf-a535-60cc8fe4cb69
+:DRILL_LAST_INTERVAL: 4.14
+:DRILL_REPEATS_SINCE_FAIL: 2
+:DRILL_TOTAL_REPEATS: 1
+:DRILL_FAILURE_COUNT: 0
+:DRILL_AVERAGE_QUALITY: 5.0
+:DRILL_EASE: 2.6
+:DRILL_LAST_QUALITY: 5
+:DRILL_LAST_REVIEWED: [2022-04-01 Fri 05:38]
+:END:
+Position of an object moving with constant velocity.
+*** Formula
+\[x(t)=x_{0}+v_{0}t\]
+where $x_0$ is the initial position of the object, $v_0$ is its initial velocity, and $t$ is the time of interest.
+*** Derivation
+Integrate the function \[x'(t)=v_0\].
+
+** First Kinematic                                                   :drill:
+SCHEDULED: <2022-04-05 Tue>
+:PROPERTIES:
+:ID:       87f54843-e930-4798-90ff-491b2cb6203f
+:DRILL_LAST_INTERVAL: 4.14
+:DRILL_REPEATS_SINCE_FAIL: 2
+:DRILL_TOTAL_REPEATS: 1
+:DRILL_FAILURE_COUNT: 0
+:DRILL_AVERAGE_QUALITY: 5.0
+:DRILL_EASE: 2.6
+:DRILL_LAST_QUALITY: 5
+:DRILL_LAST_REVIEWED: [2022-04-01 Fri 05:39]
+:END:
+Position of an object moving with constant acceleration.
+*** Formula
+\[x(t)=x_{0}+v_{0}t+\frac{1}{2}at^{2}\]
+where $x_0$ is the initial position of the object, $v_0$ is its initial velocity, $a$ is its acceleration, and $t$ is the time of interest.
+*** Derivation
+Integrate the function \[x''(t)=a\].
+
+** Third Kinematic                                                   :drill:
+SCHEDULED: <2022-04-05 Tue>
+:PROPERTIES:
+:ID:       e8879a9c-589e-4544-b9d8-a01791ba6d32
+:DRILL_LAST_INTERVAL: 4.14
+:DRILL_REPEATS_SINCE_FAIL: 2
+:DRILL_TOTAL_REPEATS: 1
+:DRILL_FAILURE_COUNT: 0
+:DRILL_AVERAGE_QUALITY: 5.0
+:DRILL_EASE: 2.6
+:DRILL_LAST_QUALITY: 5
+:DRILL_LAST_REVIEWED: [2022-04-01 Fri 05:37]
+:END:
+Relationship between initial & final velocities and acceleration & displacement.
+*** Formula
+\[v_{f}^{2}-v_{i}^{2}=2a\Delta x\]
+where $v_f$ and $v_i$ are the final and initial velocities, $a$ is the acceleration, and $\Delta x$ is the change in position over the event.
+*** Derivation
+Change in kinetic energy equals work done by constant force.
+
+** Centripetal Acceleration                                          :drill:
+SCHEDULED: <2022-04-05 Tue>
+:PROPERTIES:
+:ID:       8040e248-9aff-429f-8f68-da9dec7fa405
+:DRILL_LAST_INTERVAL: 4.14
+:DRILL_REPEATS_SINCE_FAIL: 2
+:DRILL_TOTAL_REPEATS: 1
+:DRILL_FAILURE_COUNT: 0
+:DRILL_AVERAGE_QUALITY: 5.0
+:DRILL_EASE: 2.6
+:DRILL_LAST_QUALITY: 5
+:DRILL_LAST_REVIEWED: [2022-04-01 Fri 05:38]
+:END:
+Centripetal acceleration under circular motion.
+*** Formula
+\[\vec{a}=\frac{v^{2}}{r}\hat{r}\]
+where $v$ is the linear speed of the object and $r$ is the radius of the circular motion.
+*** Derivation
+Trust me bro...
+
+** Centripetal Force                                                 :drill:
+SCHEDULED: <2022-04-05 Tue>
+:PROPERTIES:
+:ID:       330bc811-fabb-4156-856f-04bd6f2b2b25
+:DRILL_LAST_INTERVAL: 4.14
+:DRILL_REPEATS_SINCE_FAIL: 2
+:DRILL_TOTAL_REPEATS: 1
+:DRILL_FAILURE_COUNT: 0
+:DRILL_AVERAGE_QUALITY: 5.0
+:DRILL_EASE: 2.6
+:DRILL_LAST_QUALITY: 5
+:DRILL_LAST_REVIEWED: [2022-04-01 Fri 05:36]
+:END:
+Centripetal force resulting from circular motion.
+*** Formula
+\[\vec{F}=m\frac{v^{2}}{r}\hat{r}\]
+
+where $m$ is the mass of the object, $v$ is the linear speed of the object, and $r$ is the radius of the circular motion.
+
+*** Derivation
+Centripetal acceleration times mass.
+
+** Translational Kinetic Energy                                      :drill:
+:PROPERTIES:
+:ID:       55e91e53-1c43-4722-a654-6b298b78af2e
+:END:
+*** Formula
+\[T=\frac{1}{2}mv^{2}=\frac{p^{2}}{2m}\]
+where $m$ is the mass of the object, $v$ is the linear speed of the object, and $p$ is the linear momentum of the object.
+*** Derivation
+Trust me bro...
+
+** Rotational Kinetic Energy                                         :drill:
+SCHEDULED: <2022-04-05 Tue>
+:PROPERTIES:
+:ID:       d4d5ed9c-6ca5-42da-93e5-8615532e4081
+:DRILL_LAST_INTERVAL: 4.14
+:DRILL_REPEATS_SINCE_FAIL: 2
+:DRILL_TOTAL_REPEATS: 1
+:DRILL_FAILURE_COUNT: 0
+:DRILL_AVERAGE_QUALITY: 5.0
+:DRILL_EASE: 2.6
+:DRILL_LAST_QUALITY: 5
+:DRILL_LAST_REVIEWED: [2022-04-01 Fri 05:41]
+:END:
+Rotational kinetic energy.
+*** Formula
+\[T=\frac{1}{2}I\omega^{2}\]
+where $I$ is the moment of intertia of the object and $\omega$ is the angular speed of the object.
+*** Derivation
+Integrate translational kinetic energy over a rigid body rotating with velocity $\omega$ about an axis.
+
+** Gravitational Potential Energy                                    :drill:
+SCHEDULED: <2022-04-05 Tue>
+:PROPERTIES:
+:ID:       21583b4c-8853-42a7-add9-9a05cc980cad
+:DRILL_LAST_INTERVAL: 4.14
+:DRILL_REPEATS_SINCE_FAIL: 2
+:DRILL_TOTAL_REPEATS: 1
+:DRILL_FAILURE_COUNT: 0
+:DRILL_AVERAGE_QUALITY: 5.0
+:DRILL_EASE: 2.6
+:DRILL_LAST_QUALITY: 5
+:DRILL_LAST_REVIEWED: [2022-04-01 Fri 05:36]
+:END:
+Gravitational potential energy.
+*** Formula
+\[U=mgh\] where $m$ is the mass of the object, $g$ is the gravitational acceleration, and $h$ is the height of the object above a reference height.
+*** Derivation
+Integrate gravitational force over a change in height.
+
+** Spring Potential Energy                                           :drill:
+:PROPERTIES:
+:ID:       fe3f1e61-8b1c-4add-a29d-2dc8fb8cb6b3
+:END:
+*** Formula
+\[U=\frac{1}{2}kx^2\]
+where $k$ is the spring constant of the spring and $x$ is the displacement of the spring from its equillibrium position.
+*** Derivation
+Integrate the Hooke force law over a displacement from the equilibrium position $x$.
+
+** Work-Energy Theorem                                               :drill:
+SCHEDULED: <2022-04-05 Tue>
+:PROPERTIES:
+:ID:       39ecbba2-07cd-40bf-a105-dd1f27a9913b
+:DRILL_LAST_INTERVAL: 4.14
+:DRILL_REPEATS_SINCE_FAIL: 2
+:DRILL_TOTAL_REPEATS: 1
+:DRILL_FAILURE_COUNT: 0
+:DRILL_AVERAGE_QUALITY: 5.0
+:DRILL_EASE: 2.6
+:DRILL_LAST_QUALITY: 5
+:DRILL_LAST_REVIEWED: [2022-04-01 Fri 05:41]
+:END:
+Work-energy theorem.
+*** Formula
+\[\Delta U=-\int_{a}^{b}\vec{F}\cdot d\vec{l}\]
+where $\vec{F}$ is the force on the object and the integral is taken along the path connecting the initial point $a$ and the final point $b$.
+*** Derivation
+It's the definition of work and energy.
+
+** Gravitational Force                                               :drill:
+SCHEDULED: <2022-04-05 Tue>
+:PROPERTIES:
+:ID:       a8e430d5-e5f1-42b4-add6-ed438c95fb30
+:DRILL_LAST_INTERVAL: 4.14
+:DRILL_REPEATS_SINCE_FAIL: 2
+:DRILL_TOTAL_REPEATS: 1
+:DRILL_FAILURE_COUNT: 0
+:DRILL_AVERAGE_QUALITY: 5.0
+:DRILL_EASE: 2.6
+:DRILL_LAST_QUALITY: 5
+:DRILL_LAST_REVIEWED: [2022-04-01 Fri 05:39]
+:END:
+Gravitational force.
+*** Formula
+\[\vec{F}=\frac{Gm_{1}m_{2}}{r^{2}}\hat{r}\]
+where $G$ is the universal gravitational constant, $m_1$ and $m_2$ are the masses of the two objects, $r$ is the distance separating them, and $\hat{r}$ is the unit vector pointing from one object to the other.
+*** Derivation
+Newton derived this from Kepler's empirical observations.
+
+** Force From a Potential                                            :drill:
+SCHEDULED: <2022-04-05 Tue>
+:PROPERTIES:
+:ID:       bff36b65-11ad-4c59-9a77-7875fcb7837b
+:DRILL_LAST_INTERVAL: 4.14
+:DRILL_REPEATS_SINCE_FAIL: 2
+:DRILL_TOTAL_REPEATS: 1
+:DRILL_FAILURE_COUNT: 0
+:DRILL_AVERAGE_QUALITY: 5.0
+:DRILL_EASE: 2.6
+:DRILL_LAST_QUALITY: 5
+:DRILL_LAST_REVIEWED: [2022-04-01 Fri 05:36]
+:END:
+Find force from a potential.
+*** Formula
+\[\]\[\vec{F}=-\nabla U\]
+where $U$ is the potential and $\nabla$ is the gradient operator \[\nabla = \frac{\partial}{\partial x}\hat{x}+\frac{\partial}{\partial y}\hat{y}+\frac{\partial}{\partial z}\hat{z}\].
+*** Derivation
+Trust me bro...
+
+** Rolling Without Slipping                                          :drill:
+SCHEDULED: <2022-04-05 Tue>
+:PROPERTIES:
+:ID:       3fcc47a1-f3c3-4f27-bc90-3a6d251c4727
+:DRILL_LAST_INTERVAL: 4.0
+:DRILL_REPEATS_SINCE_FAIL: 2
+:DRILL_TOTAL_REPEATS: 1
+:DRILL_FAILURE_COUNT: 0
+:DRILL_AVERAGE_QUALITY: 4.0
+:DRILL_EASE: 2.5
+:DRILL_LAST_QUALITY: 4
+:DRILL_LAST_REVIEWED: [2022-04-01 Fri 05:40]
+:END:
+Fundamental condition for a circle to roll without slipping.
+*** Formula
+\[v=R\omega\]
+where $v$ is the velocity of the center of mass of the object, $R$ is its radius of whatever circular cross-section it's rolling in, and $\omega$ is the angular velocity of the rolling.
+*** Derivation
+Rolling without slipping $\Leftrightarrow$ point of contact with ground is stationary $\Leftrightarrow$ angular velocity exactly cancelling out translational velocity at point of contact.
+
+** Conservation of Energy                                            :drill:
+SCHEDULED: <2022-04-05 Tue>
+:PROPERTIES:
+:ID:       49bfaee3-99e2-4f9e-9408-920b9d4b8273
+:DRILL_LAST_INTERVAL: 4.14
+:DRILL_REPEATS_SINCE_FAIL: 2
+:DRILL_TOTAL_REPEATS: 1
+:DRILL_FAILURE_COUNT: 0
+:DRILL_AVERAGE_QUALITY: 5.0
+:DRILL_EASE: 2.6
+:DRILL_LAST_QUALITY: 5
+:DRILL_LAST_REVIEWED: [2022-04-01 Fri 05:35]
+:END:
+Conservation of energy.
+*** Formula
+\[E_{i}+W=E_{f}\]
+where $E_i$ is the initial energy of the system, $W$ is the work done by dissipative or non-conservative forces, and $E_f$ is the final energy of the system.
+or
+\[W=\Delta T\]
+where $W$ is the work done by all forces, dissipative or otherwise, and $\Delta T$ is the change in the kinetic energy of the system.
+
+In other words, joules don't disappear.
+*** Derivation
+Law of nature.
+
+** Definition of Work                                                :drill:
+SCHEDULED: <2022-04-05 Tue>
+:PROPERTIES:
+:ID:       84ad576a-87ce-4d9a-b651-d1f156febda0
+:DRILL_LAST_INTERVAL: 4.14
+:DRILL_REPEATS_SINCE_FAIL: 2
+:DRILL_TOTAL_REPEATS: 1
+:DRILL_FAILURE_COUNT: 0
+:DRILL_AVERAGE_QUALITY: 5.0
+:DRILL_EASE: 2.6
+:DRILL_LAST_QUALITY: 5
+:DRILL_LAST_REVIEWED: [2022-04-01 Fri 05:37]
+:END:
+Definition of work.
+*** Formula
+\[W=\int_{a}^{b}\vec{F}\cdot d\vec{l}\]
+where $\vec{F}$ is the force on the object and the integral is taken along the path connecting the initial point $a$ and the final point $b$.
+
+** Definition of Angular Momentum                                    :drill:
+SCHEDULED: <2022-04-05 Tue>
+:PROPERTIES:
+:ID:       ba862abf-8553-4968-8eb3-53c51d21e0c2
+:DRILL_LAST_INTERVAL: 4.14
+:DRILL_REPEATS_SINCE_FAIL: 2
+:DRILL_TOTAL_REPEATS: 1
+:DRILL_FAILURE_COUNT: 0
+:DRILL_AVERAGE_QUALITY: 5.0
+:DRILL_EASE: 2.6
+:DRILL_LAST_QUALITY: 5
+:DRILL_LAST_REVIEWED: [2022-04-01 Fri 05:36]
+:END:
+Definition of angular momentum.
+*** Formula
+\[\vec{L}=I\vec{\omega}\]
+where $I$ is the moment of intertia and $\vec{\omega}$ is the vector along the axis of rotation with magnitude equal to the angular speed, pointing in the direction specified by the right-hand rule.
+
+** Definition of Torque                                              :drill:
+SCHEDULED: <2022-04-05 Tue>
+:PROPERTIES:
+:ID:       b0861125-5dd7-4d33-8be3-c2a335b22879
+:DRILL_LAST_INTERVAL: 4.14
+:DRILL_REPEATS_SINCE_FAIL: 2
+:DRILL_TOTAL_REPEATS: 1
+:DRILL_FAILURE_COUNT: 0
+:DRILL_AVERAGE_QUALITY: 5.0
+:DRILL_EASE: 2.6
+:DRILL_LAST_QUALITY: 5
+:DRILL_LAST_REVIEWED: [2022-04-01 Fri 05:40]
+:END:
+Definition of torque.
+*** Formula
+\[\vec{\tau}=\vec{r}\times\vec{F}\]
+where $\vec{r}$ is the vector from the axis of rotation to the point of application and $\vec{F}$ is the force applied.
+
+** Centrifugal Force                                                 :drill:
+SCHEDULED: <2022-04-05 Tue>
+:PROPERTIES:
+:ID:       c800e82e-57a2-423f-b1b0-91b5124c6f75
+:DRILL_LAST_INTERVAL: 4.14
+:DRILL_REPEATS_SINCE_FAIL: 2
+:DRILL_TOTAL_REPEATS: 3
+:DRILL_FAILURE_COUNT: 2
+:DRILL_AVERAGE_QUALITY: 2.667
+:DRILL_EASE: 2.6
+:DRILL_LAST_QUALITY: 5
+:DRILL_LAST_REVIEWED: [2022-04-01 Fri 05:42]
+:END:
+Centrifugal force in a rotating reference frame.
+*** Formula
+\[\vec{F}=-m\omega^{2}r\hat{r}\]
+where $m$ is the mass of the object, $\omega$ is the angular speed of the reference frame, and $r$ is the distance from the origin of the reference frame to its axis of rotation.
+*** Derivation
+Trust me bro...
+
+** Coriolis Force                                                    :drill:
+SCHEDULED: <2022-04-05 Tue>
+:PROPERTIES:
+:ID:       4587ba9e-40ea-4e72-9509-6485c41aa2d7
+:DRILL_LAST_INTERVAL: 3.86
+:DRILL_REPEATS_SINCE_FAIL: 2
+:DRILL_TOTAL_REPEATS: 1
+:DRILL_FAILURE_COUNT: 0
+:DRILL_AVERAGE_QUALITY: 3.0
+:DRILL_EASE: 2.36
+:DRILL_LAST_QUALITY: 3
+:DRILL_LAST_REVIEWED: [2022-04-01 Fri 05:40]
+:END:
+Coriolis Force in a rotating reference frame.
+*** Formula
+\[\vec{F}=-2m\vec{\omega}\times\vec{v}\]
+where $m$ is the mass of the object, $\vec{\omega}$ is the angular velocity, $v$ is the velocity of the object in the rotating frame, and $\times$ is the vector cross product.
+*** Derivation
+Trust me bro...
+
+** Definiton of Moment of Inertia (particle)                         :drill:
+SCHEDULED: <2022-04-05 Tue>
+:PROPERTIES:
+:ID:       99925c33-385d-46fa-ad31-180edf820764
+:DRILL_LAST_INTERVAL: 4.14
+:DRILL_REPEATS_SINCE_FAIL: 2
+:DRILL_TOTAL_REPEATS: 1
+:DRILL_FAILURE_COUNT: 0
+:DRILL_AVERAGE_QUALITY: 5.0
+:DRILL_EASE: 2.6
+:DRILL_LAST_QUALITY: 5
+:DRILL_LAST_REVIEWED: [2022-04-01 Fri 05:39]
+:END:
+Moment of inertia of a point particle about an axis.
+*** Formula
+\[I=mr^{2}\]
+where $m$ is the mass of the point particle and $r$ is the distance from the particle to the axis.
+
+
+** Moment of Inertia (rigid body)                                    :drill:
+SCHEDULED: <2022-04-05 Tue>
+:PROPERTIES:
+:ID:       5cdfcde7-241a-4254-a922-eaa04e719ad7
+:DRILL_LAST_INTERVAL: 4.14
+:DRILL_REPEATS_SINCE_FAIL: 2
+:DRILL_TOTAL_REPEATS: 1
+:DRILL_FAILURE_COUNT: 0
+:DRILL_AVERAGE_QUALITY: 5.0
+:DRILL_EASE: 2.6
+:DRILL_LAST_QUALITY: 5
+:DRILL_LAST_REVIEWED: [2022-04-01 Fri 05:37]
+:END:
+Moment of inertia of a rigid body.
+*** Formula
+\[I=\int r^{2}dm\]
+where taking the integral with respect to $m$ involves computing the mass as a function of the distance $r$ from the axis of rotation and using the chain rule to integrate over space, or, if the body is discrete,
+\[I=\sum_i m_ir^2_i\]
+where $m_i$ is the mass of the \(i\)th particle and $r_i$ is the \(i\)th particle's distance from the origin.
+*** Derivation
+Add up the contributions of each point mass in the rigid body; in the continuous limit, $m_i\to 0$ exactly as space presuming a constant density, so it may be the integral variable.
+
+** Parallel Axis Theorem                                             :drill:
+SCHEDULED: <2022-04-05 Tue>
+:PROPERTIES:
+:ID:       c8e090a6-ab34-4b58-94ec-c4f194cf407a
+:DRILL_LAST_INTERVAL: 4.14
+:DRILL_REPEATS_SINCE_FAIL: 2
+:DRILL_TOTAL_REPEATS: 1
+:DRILL_FAILURE_COUNT: 0
+:DRILL_AVERAGE_QUALITY: 5.0
+:DRILL_EASE: 2.6
+:DRILL_LAST_QUALITY: 5
+:DRILL_LAST_REVIEWED: [2022-04-01 Fri 05:36]
+:END:
+How does the moment of inertia change when an axis of rotation through its center of mass is translated such that the new axis is parallel to the old?
+*** Formula
+\[I=I_{CM}+Mr^{2}\]
+where $I_{CM}$ is the moment of inertia about the original axis, $M$ is the mass of the object, and $r$ is the distance separating the two axes.
+*** Derivation
+Trust me bro...
+
+** Definition of Center of Mass                                      :drill:
+SCHEDULED: <2022-04-05 Tue>
+:PROPERTIES:
+:ID:       0a2b3275-2ce4-47e3-a519-0e4e9f7bc5fc
+:DRILL_LAST_INTERVAL: 3.86
+:DRILL_REPEATS_SINCE_FAIL: 2
+:DRILL_TOTAL_REPEATS: 1
+:DRILL_FAILURE_COUNT: 0
+:DRILL_AVERAGE_QUALITY: 3.0
+:DRILL_EASE: 2.36
+:DRILL_LAST_QUALITY: 3
+:DRILL_LAST_REVIEWED: [2022-04-01 Fri 05:39]
+:END:
+Vector pointing to the center of mass of a rigid body.
+*** Formula
+\[\vec{r}_{CM}=\frac{\int\vec{r}dm}{M}\]
+where the integral is over all the mass in the body, $\vec{r}$ is the vector pointing to the differential mass element, and $M$ is the total mass of the body, or, if the rigid body is discrete,
+\[\vec{r}_{CM}=\frac{\sum_{i}m_{i}\vec{r}_{i}}{M}\]
+where the sum runs over all the point masses in the body, $m_i$ is the mass of the \(i\)th particle, \(\vec{r}_i\) is vector pointing to the \(i\)th particle, and $M$ is the total mass of the body.
+
+** Definition of Classical Lagrangian                                :drill:
+SCHEDULED: <2022-04-05 Tue>
+:PROPERTIES:
+:ID:       e0d63734-c975-41fb-816a-7c20d4390d06
+:DRILL_LAST_INTERVAL: 4.14
+:DRILL_REPEATS_SINCE_FAIL: 2
+:DRILL_TOTAL_REPEATS: 1
+:DRILL_FAILURE_COUNT: 0
+:DRILL_AVERAGE_QUALITY: 5.0
+:DRILL_EASE: 2.6
+:DRILL_LAST_QUALITY: 5
+:DRILL_LAST_REVIEWED: [2022-04-01 Fri 05:41]
+:END:
+Definition of Lagrangian.
+*** Formula
+\[L(q,\dot{q},t)=T-U\]
+where $q$ is the "generalized coordinate," (i.e. it could be angle) $\dot{q}$ is the generalized velocity, $t$ is the time, $T$ is the kinetic energy as a function of $q$, $\dot{q}$ and $t$ (in practice equal to $\frac{1}{2}m\dot{q}^2$, and $U$ is the potential as a function of $q$, $\dot{q}$, and $t$.
+
+** Euler-Lagrange Equations                                          :drill:
+SCHEDULED: <2022-04-05 Tue>
+:PROPERTIES:
+:ID:       5a01f113-4307-4b4e-8b7d-cd06ae98f559
+:DRILL_LAST_INTERVAL: 4.14
+:DRILL_REPEATS_SINCE_FAIL: 2
+:DRILL_TOTAL_REPEATS: 1
+:DRILL_FAILURE_COUNT: 0
+:DRILL_AVERAGE_QUALITY: 5.0
+:DRILL_EASE: 2.6
+:DRILL_LAST_QUALITY: 5
+:DRILL_LAST_REVIEWED: [2022-04-01 Fri 05:38]
+:END:
+Euler-Lagrange equations/Lagrangian equations of motion.
+*** Formula
+\[\frac{\partial L}{\partial q}=\frac{d}{dt}\frac{\partial L}{\partial\dot{q}}\]
+where $L$ is the Lagrangian, $q$ is the generalized coordinate, and $\dot{q}$ is the generalized velocity.
+*** Derivation
+Equations of motion exremize the action, the integral of the Lagrangian with respect to time. Differentiate this integral, set the result equal to zero, apply the multivariable chain rule and the fundamental lemma of the calculus of variations and out pops the E-L equations. Trust me bro.
+
+** Definition of Generalized Momentum                                :drill:
+SCHEDULED: <2022-04-05 Tue>
+:PROPERTIES:
+:ID:       b151695f-89d8-43e9-a83f-d328cadabc0e
+:DRILL_LAST_INTERVAL: 4.14
+:DRILL_REPEATS_SINCE_FAIL: 2
+:DRILL_TOTAL_REPEATS: 1
+:DRILL_FAILURE_COUNT: 0
+:DRILL_AVERAGE_QUALITY: 5.0
+:DRILL_EASE: 2.6
+:DRILL_LAST_QUALITY: 5
+:DRILL_LAST_REVIEWED: [2022-04-01 Fri 05:39]
+:END:
+Definition of Generalized Momentum.
+*** Formula
+\[p=\frac{\partial L}{\partial \dot{q}}\]
+where $L$ is the Lagrangian and $\dot{q}$ is the generalized velocity.
+
+** Definition of the Hamiltonian                                     :drill:
+SCHEDULED: <2022-04-05 Tue>
+:PROPERTIES:
+:ID:       3e5693ce-881f-4500-86d6-dd27fa836ad8
+:DRILL_LAST_INTERVAL: 4.0
+:DRILL_REPEATS_SINCE_FAIL: 2
+:DRILL_TOTAL_REPEATS: 1
+:DRILL_FAILURE_COUNT: 0
+:DRILL_AVERAGE_QUALITY: 4.0
+:DRILL_EASE: 2.5
+:DRILL_LAST_QUALITY: 4
+:DRILL_LAST_REVIEWED: [2022-04-01 Fri 05:40]
+:END:
+Definition of the Hamiltonian.
+*** Formula
+\[H(p,q)=\sum_{i}p_{i}\dot{q}_{i}-L\]
+where $p_i$ is the \(i\)th generalized momentum coordinate, $\dot{q}_i$ is the \(i\)th generalized velocity, and $L$ is the Lagrangian. In practice, one uses the definition of the generalized momentum to eliminate $L$'s dependence on $\dot{q}_i$ in favor of $p$, doing the same for the sum.
+Alternatively, if the potential is velocity- and time-independent,
+\[H=T+U\]
+where $T$ is the kinetic energy and $U$ is the potential.
+
+** Hamilton's Equations                                              :drill:
+SCHEDULED: <2022-04-05 Tue>
+:PROPERTIES:
+:ID:       2a0893b7-57e1-49ae-b46c-8763a63b0aca
+:DRILL_LAST_INTERVAL: 4.0
+:DRILL_REPEATS_SINCE_FAIL: 2
+:DRILL_TOTAL_REPEATS: 1
+:DRILL_FAILURE_COUNT: 0
+:DRILL_AVERAGE_QUALITY: 4.0
+:DRILL_EASE: 2.5
+:DRILL_LAST_QUALITY: 4
+:DRILL_LAST_REVIEWED: [2022-04-01 Fri 05:38]
+:END:
+Hamilton's equations of motion.
+*** Formula
+\[\dot{q}=\frac{\partial H}{\partial p}\]
+
+and
+\[\dot{p}=-\frac{\partial H}{\partial q}\]
+where $H$ is the Hamiltonian, $p$ is the generalized momentum, and $q$ is the generalized coordinate.
+
+** Central Force Lagrangian
+Lagrangian of a system under mutual attraction from a force whose potential may be expressed as a function of $r$ alone.
+*** Formula
+\[L(q,\dot{q},t)=\frac{1}{2}m\dot{r}^{2}+\frac{1}{2}mr^{2}\dot{\phi}^{2}-U(r)\]
+where $m$ is the mass of the orbiting object, $r$ is the radial variable, and $\phi$ is the azimuthal angular variable.
+*** Derivation
+Take the general Lagrangian in spherical coordinates, and choose the coordinate system such that $\theta=\pi/2$ for the whole system (central force $\Rightarrow$ motion is planar).
+
+** Effective Potential
+The potential that it appears the radial variable has, different from the usual expression because it incorporates a rotating term.
+*** Formula
+\[V(r)=\frac{l^{2}}{2mr^{2}}+U(r)\]
+where $l$ is the angular momentum of the orbit, $m$ is the mass of the orbiting object, $U$ is the potential, and $r$ is the distance from the origin as usual.
+*** Derivation
+Take the Euler-Lagrange equations for the central force Lagrangian and organize them like Newton's laws, as $m\ddot{r}$ equal to the spatial derivative of some function, which is identified with a potential.
+
+** Reduced Mass
+The mass of a system in a gravitational problem under a coordinate transformation from the origin being at the center of mass to one of the objects.
+*** Formula
+\[\mu=\frac{m_{1}m_{2}}{m_{1}+m_{2}}\]
+where $m_1$ is the mass of one object and $m_2$ is the mass of the other.
+*** Derivation
+Limiting cases: when one mass is much greater than the other, the center of mass is very close to the position of the object, so the coordinate transformation shouldn't be that consequential,  and the total mass should be almost equal to the bigger mass, i.e. $\mu \approx m_1$
+
+** Energy of an Orbit
+Energy of an object undergoing a force whose potential may be expressed as a function of $r$ alone.
+*** Formula
+\[E=\frac{1}{2}m\dot{r}^{2}+\frac{l^{2}}{2mr^{2}}+U(r)\]
+where $m$ is the mass of the orbiting object, $l$ is the angular momentum, $U$ is the potential, and $r$ is the radial distance from the origin.
+*** Derivation
+Kinetic energy plus effective potential.
+
+** Kepler's Third Law
+The behavior of orbital periods with size.
+*** Formula
+\[T\propto a^{3/2}\]
+where $a$ is the semi-major axis of the orbit and the constant of proportionality is the same for all planets.
+The proportionality constant, is, incidentally,
+\[\frac{2\pi}{\sqrt{G(m_{s}+m_{p})}}\]
+where $G$ is the universal gravitational constant, $m_s$ is the mass of the Sun, and $m_p$ is the mass of the orbiting object.
+*** Derivation
+Trust me bro...
+
+** Hooke's Law
+Force due to a displaced spring.
+*** Formula
+\[F=-kx\]
+where $k$ is the spring constant (a material property of the spring) and $x$ is the displacement from the origin.
+*** Derivation
+Axiomatic model of spring behavior.
+
+** Angular Velocity of a Mass-Spring System
+The angular velocity of a mass-spring system.
+*** Formula
+\[\omega=\sqrt{\frac{k}{m}}\]
+
+where $m$ is the mass of the oscillator and $k$ is its spring constant.
+*** Derivation
+To do it from scratch, one must solve the Hooke's law ODE. The hard part is remembering what's on top, which can be done by unit analysis: the spring constant has units of Force/Length, and mass obviously units of mass. The ratio therefore has units of  (Force / Mass) / Length, and by Newton's second law the numerator has units of acceleration. The square root of the ratio then has units of inverse time, i.e. it's a frequency.
+
+** Potential Energy of a Compressed Spring
+The potential energy of a mass-spring system.
+*** Formula
+\[U=\frac{1}{2}kx^{2}\]
+where $k$ is the spring constant and $x$ is the displacement of the mass.
+*** Derivation
+Integrate the Hooke force law, taking the reference point to be zero potential at zero displacement.
+
+** Equations of Motion for a System of Coupled Oscillators
+If one has a line of masses conected by springs, the system equations for the motion of each mass.
+*** Formula
+\[\sum_{j}A_{ij}q_{j}+m_{ij}\ddot{q}_{j}=0\]
+
+where $A_{ij}$ are initial conditions, $q_j$ are the displacement of each mass from equillibrium,and $m_{ij}$ are the TODO: Understand how to find $m_{ij}$
+*** Derivation
+Trust me bro
+
+** Normal Modes of a System of Coupled Oscillators
+If one has a line of masses connected by springs, the equation defining the frequencies in terms of which the system's evolution may be expressed as a linear combination.
+*** Formula
+\[\det\left( A_{ij}-\omega^{2}m_{ij} \right)=0\]
+where $A_{ij}$ are constants determined by the initial conditions and $m_{ij}$ are (TODO: find out how to compute $m_{ij}$)
+*** Derivation
+Trust me bro.
+
+** Damped Harmonic Oscillator
+Equation of motion for a mass on a spring with a dissipative force proportional to the velocity of the mass.
+*** Formula
+\[x(t)=Ae^{\beta t}\cos[(\omega_{0}^{2}-\beta^{2}) t-\delta]\]
+where the damping term $\beta=b/2m$ (where $b$ is the constant by which the dissipative force is proportional to velocity), the natural frequency $\omega_0$ is the simple harmonic oscillator angular frequency, and $A$ and $\delta$ are determined by initial conditions.
+*** Derivation
+Constant coefficients if you really wanna...
+
+** Resonant Frequency of a Driven Damped Harmonic Oscillator
+Resonant frequency of a damped harmonic oscillator.
+*** Formula
+\[\omega_{R}=\sqrt{\omega_{0}^{2}-2\beta^{2}}\]
+where $\omega_0$ is the natural frequency of the simple harmonic oscillator with this spring constant and $\beta=b/2m$ (where $b$ is the constant by which the damping force is proportional to velocity) is the damping term.
+*** Derivation
+No
+
+** Amplitude Scaling of a Driven Simple Harmonic Oscillator
+Amplitude scaling of a driven simple harmonic oscillator.
+*** Formula
+\[D\propto\frac{1}{|\omega_{0}^{2}-\omega^{2}|}\]
+where $\omega_0$ is the natural frequency of the simple harmonic oscillator and $\omega$ is the driving frequency.
+*** Derivation
+No.
+
+** Series Combination of Spring Constants
+Two springs are connected end-to-end. What's their combined spring constant?
+*** Formula
+Like capacitors, which are the opposite of resistors:
+\[k=\frac{1}{\frac{1}{k_{1}}+\frac{1}{k_{2}}}\]
+where $k_1$ and $k_2$ are the two spring constants.
+*** Derivation
+No.
+
+** Parallel Combination of Spring Constants
+Two springs are connected parallel to each other. What's their combined spring constant?
+*** Formula
+Like capacitors, which are the opposite of resistors:
+\[k=k_{1}+k_{2}\]
+where $k_1$ and $k_2$ are the two spring constants.
+
+** Angular Frequency of a Simple Pendulum
+Angular frequency of a simple pendulum.
+*** Formula
+Like springs, but $g$ instead of $k$ and $L$ instead of $m$:
+\[\omega=\sqrt{\frac{g}{L}}\]
+where $g$ is the gravitational acceleration and $L$ is the length of the pendulum arm.
+*** Derivation
+Write down Newton's second law, apply small-angle approximation, second-order, homogeneous constant coefficient ODE.
+
+** Angular Frequency of a Simple Rigid-Body Pendulum
+Angular frequency of a rigid body swinging about a point.
+*** Formula
+\[\omega=\sqrt{\frac{mgR}{I}}\]
+where $m$ is the mass of the body, $g$ is the gravitational acceleration, $I$ is the body's moment of intertia, and $R$ is the distance from the pivot to the center of mass of the body.
+*** Derivation
+Lagrangian. Unit analysis helps to remember.
+
+** Bernoulli's Principle
+Bernoulli's principle for flow of a fluid along a pipe.
+*** Formula
+\[\frac{v^{2}}{2}+gz+\frac{p}{\rho}=\textrm{constant}\]
+where $v$ is the velocity of the fluid, $g$ is the gravitational acceleration, $z$ is the height of the fluid above some reference, $p$ is the pressure of the fluid, and $\rho$ is its density.
+*** Derivation
+Follows from conservation of energy: the first two terms are kinetic and gravitational potential energy per unit mass, and the last has units of energy.
+
+** Fluid Conservation Equation
+Fluid conservation equation.
+*** Formula
+\[v_{1}A_{1}=v_{2}A_{2}\]
+where $v_i$ and $A_i$ are the fluid velocity and cross-sectional area of the fluid and pipe, respectively, at any point along the pipe.
+*** Derivation
+Conservation of mass implies
+\[\rho v_{1}A_{1}=\rho v_{2}A_{2}\]
+Presuming the fluid is incompressible, the densities are equal.
+
+** Buoyant Force
+Force on an object immersed in a fluid.
+*** Formula
+The force on the object is equal to the weight of the fluid it displaces.
+\[F=\rho Vg\]
+*** Derivation
+¯\_ (ツ)_/¯
+
+* E&M
+
+* Optics & Waves
+
+* Thermo & Stat Mech
+
+* Quantum & Atomic
+
+* SR
+
+* Lab Methods
+
+* Special Topics
+
+* Constants
+
+* Unit
+
+* Math
+** Gradient
+** Divergence
+** Curl
+** Line Integral
+** Surface Integral
+** Volume Integral
+** Multivariable Chain Rule
+** Cross Product
+** Dot Product
+** Spherical Coordinates
+** Cylindrical Coordinates
+** Linear Homogeneous ODEs With Constant Coefficients

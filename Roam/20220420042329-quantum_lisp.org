@@ -1,0 +1,15 @@
+:PROPERTIES:
+:ID:       a637e4e7-f139-4b31-8428-dc8b596d52ec
+:END:
+#+title: Quantum Lisp
+#+filetags: Idea
+* Motivation
+
+Scheme, at its core, is barely more than lambda calculus. There's a quantum lambda calculus, developed by Selinger and Valiron, that's identical to lambda calculi used in linear logic, which differs from normal logic in the existence of "linear" terms, propositions that can only be used once (e.g. "I have five dollars" can be consumed by the deduction "I spend five dollars" which can be decided to be "true" or "possible" only once before it's no longer valid). Surely the lambda calculus differs at most marginally.
+
+* Similar Work
+
+
+* Feasibility
+
+* Implementation

@@ -1,0 +1,71 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{siunitx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\title{4261 HW 4}
+\author{Duncan Wilkie}
+\date{?}
+
+\begin{document}
+
+\maketitle
+
+\section*{1a}
+The second term's exponent is 6 to correspond with the distance dependence of the van der Waals interaction, which also has $O(1/r^6)$
+behavior as $x\to\infty$.
+\section*{1b}
+The minimum of the L-J potential occurs at
+\[
+  V'(x)=-48\epsilon\frac{\sigma^{12}}{x^{13}}+24\epsilon\frac{\sigma^{6}}{x^{7}}=0
+  \Leftrightarrow x^{6}=2{\sigma^{6}}
+  \Rightarrow x_{0}=\sigma \sqrt[6]{2}
+\]
+By the definition of Taylor series,
+\[
+  \kappa=V^{(2)}(x_{0})=624\epsilon\frac{\sigma^{12}}{x_{0}^{14}}-168\epsilon\frac{\sigma^{6}}{x_{0}^{8}}
+  =\left(\frac{624}{2^{7/3}}-\frac{168}{2^{4/3}}\right)\frac{\epsilon}{\sigma^{2}}=57.15\frac{\epsilon}{\sigma^{2}}
+\]
+\[
+  \kappa_{3}=V^{(3)}(x_{0})=-8736\epsilon\frac{\sigma^{12}}{x_{0}^{15}}+1344\epsilon\frac{\sigma^{6}}{x_{0}^{9}}
+  =\left( \frac{1344}{2^{3/2}}-\frac{8736}{2^{5/2}}\right)\frac{\epsilon}{\sigma^{3}}=-1069\frac{\epsilon}{\sigma^{3}}
+\]
+
+\section*{2a}
+The expansion is derived by
+\[
+  e^{-\beta V(x)}=e^{-\beta \left[ \frac{\kappa}{2}(x-x_{0})^{2}-\frac{\kappa_{3}}{6}(x-x_{0})^{3}+... \right]}
+  =e^{-\beta\frac{\kappa}{2}(x-x_{0})^{2}}e^{-\beta\left[ -\frac{\kappa_{3}}{6}(x-x_{0})^{3}+... \right]}
+\]
+\[
+  =e^{-\beta\frac{\kappa}{2}(x-x_{0})^{2}}
+  \left[ 1+\beta(\frac{\kappa_{3}}{6}(x-x_{0})^{3}-...)+\frac{\beta}{2}(\frac{\kappa_{3}}{6}(x-x_{0})^{3}-...)^{2} +...\right]
+\]
+\[
+  =e^{-\beta\frac{\kappa}{2}(x-x_{0})^{2}}\left[ 1+\frac{\beta\kappa_{3}}{6}(x-x_{0})^{3}+O(x^{4}) \right]
+\]
+The limits of integration may be taken to be infinite since the multiplier term will dominate in the limits and take the
+contributions to the integral outside the correct interval to zero.
+
+\section*{2b}
+Substituting the expansion into the expectation expression,
+\[
+  \langle x \rangle_{\beta}=\frac{\int_{\mathbb{R}}xe^{-\frac{\beta\kappa}{2}(x-x_{0})^{2}}
+    +x\frac{\beta\kappa_{3}}{6}(x-x_{0})^{3}e^{-\frac{\beta\kappa}{2}(x-x_{0})^{2}}dx}
+  {\int_{\mathbb{R}}e^{-\frac{\beta\kappa}{2}(x-x_{0})^{2}}+\frac{\beta\kappa_{3}}{6}(x-x_{0})^{3}e^{-\frac{\beta\kappa}{2}(x-x_{0})^{2}}dx}
+\]
+In the numerator, the first term is odd and the second is even.
+In the denominator, the first term is even and the second is odd.
+Since the integration is over a symmetric interval, we may write
+\[=\frac{\frac{\beta\kappa_{3}}{6}\int_{0}^{\infty}x(x-x_{0})^{3}e^{-\frac{\beta\kappa}{2}(x-x_{0})^{2}}dx}
+  {\int_{0}^{\infty}e^{-\frac{\beta\kappa}{2}(x-x_{0})^{2}}dx}\]
+The Gaussian integral in the denominator evaluates to $\sqrt{\frac{\pi}{2\beta\kappa}}$.
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

@@ -16,7 +16,10 @@ This poses an enormous opportunity for people developing especially radical depa
 
 The few still interested in open-source FPGA compilers have taken interest in this development as well, as have those interested in GPU computation and machine learning accelerators. These technologies have fewer interested parties than C compilers, and so their developers have every incentive to use these advancements in modular compiler technology to ease their own workloads. The LLVM [[https://mlir.llvm.org/][MLIR]] project is a specification for a more general intermediate representation that includes sub-representations, among them the normal IR, which encode computations of a particular kind.
 
-The closed-source, not-for-distribution Microsoft Helios is an apparently successful attempt at a heterogeneous, distributed operating system that works by sending the .NET framework's own intermediate representation of computations to so-called /satellite kernels/ running on very many CPUs across a data center. The idea here is to replicate this in an open-source system using MLIR, thus practically enabling distribution of computation across arbitrarily many computational devices with radically heterogeneous architectures. Additionally, translation passes between MLIR dialects could be used to automatically detect portions of code that would benefit from being run on a particular architecture and convert it
+The closed-source, not-for-distribution Microsoft Helios is an apparently successful attempt at a heterogeneous, distributed operating system that works by sending the .NET framework's own intermediate representation of computations to so-called /satellite kernels/ running on very many CPUs across a data center. The idea here is to replicate this in an open-source system using MLIR, thus practically enabling distribution of computation across arbitrarily many computational devices with radically heterogeneous architectures. Additionally, translation passes between MLIR dialects could be used to automatically detect portions of code that would benefit from being run on a particular architecture and convert it.
+
+The objective here is not just another distributed system. They've been doing that since the '80s. The objective is a /fully-abstracted operating system/, capable of performing all OS
+tasks regardless of the physical implementation.
 
 * Implementation
 
@@ -37,24 +40,28 @@ Wheels are hard to reinvent.
 *** Master Kernel
 
 Microkernel, because monolithic bad. Probably should target x86_64.
+Could look at GNU Mach and the Hurd? Getting the FSF boys on board would be an easy way to find manpower, but they'd want to stick with GCC. Given how compiler-dependent this project wants to be, the nightmare that is GIMPLE is best avoided.
 
 *** Satellite Kernel
 
-I don't even know if it counts as a kernel, because it need only do one thing: run a JIT compiler/interpreter for the corresponding MLIR dialect(s) coming over the wire. The closest thing might be an exokernel or megalithic kernel, because the JIT compiler ought to have /carte blanche/ control over how the node is managed.
+I don't even know if it counts as a kernel, because it need only do one thing: run a JIT compiler/interpreter for the corresponding MLIR dialect(s) coming over the wire, preferrably in parallel to execution. The closest thing might be an exokernel or megalithic kernel, because the JIT compiler ought to have /carte blanche/ control over how the node is managed.
 
-The MLIR instructions would come off the control bus at some speed. If the execution speed is faster than the bus throughput, the satellite waits a while in between instructions; if the execution is slower, a buffer of instructions is accumulated (ideally without processor intervention using DMA or something).
+The MLIR instructions would come off the control bus at some speed. If the execution speed is faster than the bus throughput, the satellite waits a while in between instructions; if the execution is slower, a buffer of instructions is accumulated (ideally without processor intervention using DMA or something). Schedule to prevent both!
 
 Executing arbitrary MLIR text with no filtering may run into issues with how low-level assembly can be. The master kernel must therefore allocate a sensibly complete unit of MLIR for each satellite.
 
 *** Glue Architecture
 
 Something like data and control busses would be used to coordinate data and instruction distribution among the satellite kernels.
+Synchronizing arival of control and data signals, locking execution on the arrival of both, is crucial.
 
 *** File System
 
 This'll be radical, but hierarchical file systems seem dumb to me. A tags-based approach is more flexible and may allow for faster indexing with hash tables (haven't checked the algorithmics yet), especially on a distributed system where you'd like to keep track of which memory node every file is on. Emulation of hierarchical file systems is, of course, possible. For example, there is no need for symlinks, since you could just create a tag for files that do a certain thing. PATH and other environment variables are greatly simplified: if you want something to be executable from any user shell prompt, just tag it as such. Security and sandboxing are simplified, as one may restrict processes only to have certain types of access on files in their own tag without special permission; the Linux world hacks together something similar with user permissions.
 
-Apparently, this has been done with "database file systems" by IBM.
+This is fundamentally identical to inodes with symlinks, but there may still be some low-level benefits, as well as a big abstraction advantage.
+
+Apparently, this has been done with "database file systems" by IBM in the mainframe days.
 
 Distribution aspects I'm still shaky on of course.
 
@@ -68,11 +75,12 @@ Structured message passing in the vein of [[https://www.nushell.sh/][nushell]] a
 
 *** RPC / IPC
 
-This is so critical to the performance of the operating system that it may call for a custom solution. [[https://capnproto.org/][Cap'n Proto]] seems like a very sensible existing solution though, and has a full-featured Rust implementation.
+This is so critical to the performance of the operating system that it may call for a custom solution. [[https://capnproto.org/][Cap'n Proto]] seems like a very sensible existing solution though, and has a full-featured Rust implementation. I'll need to look for some implementations of RPC-only systems, as it deviates wildly from the  =if (fork())= and pipes everyone is used to.
+Likely deviates for the better, though.
 
 *** Scheduling
 
-Reading required. Some system that assesses network performance among the satellites, takes into account the costs and benefits of using a faster on-chip but slower in-route FPGA satellite versus a closer, slower CPU one, and all that. There's whole journals on distributed systems; my guess is this is one of the primary problems of interest.x
+Reading required. Some system that assesses network performance among the satellites, takes into account the costs and benefits of using a faster on-chip but slower in-route FPGA satellite versus a closer, slower CPU one, and all that. There's whole journals on distributed systems; my guess is this is one of the primary problems of interest, despite occupying the fewest lines of code...
 
 *** Executable Format
 

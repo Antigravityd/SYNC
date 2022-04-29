@@ -13,13 +13,57 @@
 \maketitle
 
 \section*{1a}
-By the definition of the $L^2$ inner product and $A$,
+By the definition of the $L^2$ inner product and $A$, for any functions $f,g\in D(A)$ we have
 \[\langle Af|g \rangle=\langle f|Ag \rangle\Leftrightarrow \int_0^1f''(x)g(x)dx=\int_0^1f(x)g''(x)dx \]
 Integrating by parts,
 \[f'g\bigg|_0^1-\int_0^1f'(x)g'(x)dx=\int_0^1f(x)g''(x)dx\]
-\[\Leftrightarrow f'g\bigg|_0^1-fg'\bigg_0^1+\int_0^1f(x)g''(x)dx=\int_0^1f(x)g''(x)dx\]
-$g$ and $f$ must both be zero at $0$ and $1$ since smooth compactly-supported functions on open sets vanish in the limit to the boundary of their domains. Therefore, this operator is symmetric.
-However, if
+\[\Leftrightarrow f'g\bigg|_0^1-fg'\bigg|_0^1+\int_0^1f(x)g''(x)dx=\int_0^1f(x)g''(x)dx\]
+the evaluation terms  must both be zero at $0$ and $1$ since smooth compactly-supported functions on open sets vanish
+in the limit to the boundary of their domains. % TODO: proof?
+Therefore, this operator is symmetric.
+However, not all elements of $D(A^{\dagger})$ are elements of $D(A)$: $g\in H$ is an element of $D(A^{\dagger})$ iff there exists
+$h\in H$ such that $\forall f\in D(A)$
+\[
+  \int_{0}^{1}f''(x)g(x)dx=\int_{0}^{1}f(x)h(x)dx
+\]
+Applying the same integration-by-parts argument as above, we may equivalently write this as
+\[\Leftrightarrow f'g\bigg|_0^1-fg'\bigg|_0^1+\int_0^1f(x)g''(x)dx=\int_0^1f(x)h(x)dx\]
+Since $f$ is compactly supported, $f'$ is as well, so the evaluation terms are zero by the same argument given above.
+Letting $g=x^{2}$, we then have
+\[\int_{0}^{1}f(x)\cdot 2dx=\int_{0}^{1}f(x)h(x)dx\]
+from which we can clearly see the $L^{2}([0,1])$ function $h=2$ is the element adjoint to $g$ with respect to $A$.
+$g$ is therefore in $D(A^{\dagger})$.
+It isn't in $D(A)$ though, since $x^{2}$ doesn't vanish at 1 and therefore isn't compactly supported on this interval.
+This implies $D(A^{\dagger})\neq D(A)$, so $A\neq A^{\dagger}$, i.e. $A$ isn't self-adjoint.
+
+\section*{1b}
+Proceeding similarly,
+\[
+  \langle Af|g \rangle=\langle f|Ag \rangle
+  \Leftrightarrow \int_{0}^{1}(if'(x))^{*}g(x)dx=\int_{0}^{1}(f(x))^{*}ig'(x)dx
+\]
+\[
+  \Leftrightarrow -if^{*}g\bigg|_{0}^{1}+\int_{0}^{1}i(f(x))^{*}g'(x)dx=\int_{0}^{1}(f(x))^{*}ig'(x)dx
+\]
+By the same argument as above, the evaluation term is zero, in which case the equality follows immediately.
+This operator is symmetric.
+Once again, $x^{2}$ is in $D^{\dagger}(A)$ but not $D(A)$: from the formula derived for $\langle Af|g \rangle$ in the proof $A$ is symmetric,
+the definition of membership in $D^{\dagger}(A)$ is
+\[\int_{0}^{1}(f(x))^{*}2xdx=\int_{0}^{1}(f(x))^{*}h(x)dx\]
+which, choosing $h=2x\in L^{2}([0,1])$, clearly holds.
+$2x$ isn't compactly supported on $(0,1)$ since it doesn't vanish in the limit to 1, so $D(A^{\dagger})\neq D(A)$ and $A$ isn't self-adjoint.
+
+\section*{1c}
+One may write $\partial_{i}(a_{ij}(x)\partial_{j}f)=(\partial_{i}a_{ij})\partial_{j}f+a_{ij}\partial_{i}\partial_{j}f$.
+Applying the definition,
+\[
+  \langle Af|g \rangle=\langle f|Ag \rangle
+  \Leftrightarrow \int_{\Omega}[\partial_{i}a_{ij}(x)][\partial_{j}f(x)]g(x)dx+\int_{\Omega}a_{ij}(x)[\partial_{i}\partial_{j}f(x)]g(x)dx
+  =\int_{\Omega}f(x)\partial
+\]
+% TODO: get better at vector calc
+
+\section*{2a}
 
 \end{document}
 %%% Local Variables:

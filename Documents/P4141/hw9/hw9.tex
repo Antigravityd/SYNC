@@ -29,7 +29,19 @@ Presuming an induction hypothesis $[A^{n-1},C]=(n-1)A^{n-2}C$,
 \[
   =(A+B)e^{\lambda(A+B)}
 \]
-% TODO: finish
+Also,
+\[
+  \frac{d}{d\lambda}(e^{\lambda A}e^{\lambda B}e^{-\lambda^{2}C/2})
+  =Ae^{\lambda A}e^{\lambda B}e^{-\lambda^{2}C/2}+e^{\lambda A}Be^{\lambda B}e^{-\lambda^{2}C/2}
+  +e^{\lambda A}e^{\lambda B}\left( -\lambda Ce^{-\lambda^{2}C/2} \right)
+\]
+\[
+  =e^{\lambda A}e^{\lambda B}e^{-\lambda^{2}C/2}\left( A+B+\lambda C-\lambda C \right)
+  =(A+B)e^{\lambda A}e^{\lambda B}e^{-\lambda^{2}C/2}
+\]
+Since these functions satisfy the same differential equation and have the same value at $\lambda=0$, they must be the same function,
+so in particular for $\lambda=1$ we obtain the desired result.
+
 \section*{2a}
 The system is in state $\psi_{1}$ immediately after the measurement due to wave function collapse.
 \section*{2b}
@@ -74,9 +86,36 @@ By definition,
 \[\langle x \rangle=\int_{\mathbb{R}}\left( \sum_{n}c_{n}\psi_{n}(x)e^{-iE_{n} t/\hbar} \right)^{*}x
   \left( \sum_{n}c_{n}\psi_{n}(x)e^{-iE_{n} t/\hbar} \right)dx\]
 \[
-  =\int_{\mathbb{R}}x\sum_{m}\sum_{n}c_{n}^{*}c_{m}\psi_{n}(x)\psi_{m}(x)e^{it(E_{n}-E_{m})/\hbar}dx
-  =\sum_{m}\sum_{n}c_{n}^{*}c_{m}e^{it(E_{n}-E_{m})/\hbar}\int_{\mathbb{R}}x\psi_{n}(x)\psi_{m}(x)dx
+  =\int_{\mathbb{R}}x\sum_{m}\sum_{n}c_{n}^{*}c_{m}\psi_{n}(x)\psi_{m}(x)e^{-it(E_{n}-E_{m})/\hbar}dx
+  =\sum_{m}\sum_{n}c_{n}^{*}c_{m}e^{-it(E_{n}-E_{m})/\hbar}\int_{\mathbb{R}}x\psi_{n}(x)\psi_{m}(x)dx
 \]
+Using the hint for problem 3.39 in the book,
+\[
+  =\sum_{m}\sum_{n}c_{n}^{*}c_{m}e^{-it(E_n-E_{m})/\hbar}\left( \sqrt{\frac{\hbar}{2m\omega}}
+    \left[  \sqrt{m}\delta_{n,m-1}+\sqrt{n}\delta_{m,n-1} \right] \right)
+\]
+\[
+  =\sqrt{\frac{\hbar}{2m\omega}}\left(  \sum_{n}c_{n}^{*}c_{n+1}e^{-it(E_{n}-E_{n+1})/\hbar}\sqrt{n+1}
+    +\sum_{n}c_{n}^{*}c_{n-1}e^{-it(E_{n}-E_{n-1})/\hbar}\sqrt{n}\right)
+\]
+The energy eigenvalues for the simple harmonic oscillator are $E_{n}=\hbar\omega(n+\frac{1}{2})$, so the difference between successive
+terms is $E_{n}-E_{n-1}=-(E_{n}-E_{n+1})=\hbar\omega$. Substituting this,
+\[
+  =\sqrt{\frac{\hbar}{2m\omega}}\left( e^{-it\omega}\left[  \sum_{n}c_{n}^{*}c_{n+1}\sqrt{n+1} \right]
+  +e^{it\omega}\left[ \sum_{n}c_{n}^{*}c_{n-1} \sqrt{n}\right]\right)
+\]
+To get this in the desired form, notice that in the second term the $n=0$ term is zero, so relabeling $n$ to $n+1$ yields
+\[
+  =\sqrt{\frac{\hbar}{2m\omega}}\left( e^{-it\omega}\left[  \sum_{n}c_{n}^{*}c_{n+1}\sqrt{n+1} \right]
+  +e^{it\omega}\left[ \sum_{n}c_{n+1}^{*}c_{n} \sqrt{n+1}\right]\right)
+\]
+Since $(a^{*}b)^{*}=ab^{*}$, the two sum factors are merely some complex numbers which are conjugate to each other, which
+implies one may distribute the initial constant and write it times the sums as $Ce^{i\phi}$ and $Ce^{-i\phi}$. Multiplying and dividing by a factor of two,
+\[
+  =\frac{1}{2}\left( e^{-it\omega}Ce^{i\phi}+e^{it\omega}Ce^{-i\phi}\right)
+  =C\cos(\omega t-\phi)
+\]
+with constants of the given form.
 % Integrating by parts, we may write the integral as
 % \[
 %   x\bigg|_{-\infty}^{\infty}\int_{\mathbb{R}}\psi_{n}(x)\psi_{m}(x)\
@@ -148,8 +187,192 @@ For $A$, we have
     b \\
     c
   \end{pmatrix}
+  =2\lambda
+  \begin{pmatrix}
+    a \\
+    b \\
+    c
+  \end{pmatrix}
+  \Leftrightarrow
+  \begin{pmatrix}
+     b \\
+     a \\
+    2 c
+
+  \end{pmatrix}
   =
+  \begin{pmatrix}
+    2a \\
+    2b \\
+    2c
+  \end{pmatrix}
+  \Rightarrow a=0, b=0, c=1
 \]
+\[
+    \lambda
+  \begin{pmatrix}
+    0 & 1 & 0 \\
+    1 & 0 & 0 \\
+    0 & 0 & 2
+  \end{pmatrix}
+  \begin{pmatrix}
+    a \\
+    b \\
+    c
+  \end{pmatrix}
+  =\lambda
+  \begin{pmatrix}
+    a \\
+    b \\
+    c
+  \end{pmatrix}
+  \Leftrightarrow
+  \begin{pmatrix}
+     b \\
+     a \\
+    2 c
+
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    a \\
+    b \\
+    c
+  \end{pmatrix}
+  \Rightarrow a=1/\sqrt{2}, b=1/\sqrt{2}, c=0
+\]
+\[
+    \lambda
+  \begin{pmatrix}
+    0 & 1 & 0 \\
+    1 & 0 & 0 \\
+    0 & 0 & 2
+  \end{pmatrix}
+  \begin{pmatrix}
+    a \\
+    b \\
+    c
+  \end{pmatrix}
+  =-\lambda
+  \begin{pmatrix}
+    a \\
+    b \\
+    c
+  \end{pmatrix}
+  \Leftrightarrow
+  \begin{pmatrix}
+     b \\
+     a \\
+    2 c
+
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    -a \\
+    -b \\
+    -c
+  \end{pmatrix}
+  \Rightarrow a=1/\sqrt{2}, b=-1/\sqrt{2}, c=0
+\]
+where we have chosen normalized results.
+For $B$, we similarly have
+\[
+    \mu
+  \begin{pmatrix}
+    2 & 0 & 0 \\
+    0 & 0 & 1 \\
+    0 & 1 & 0
+  \end{pmatrix}
+  \begin{pmatrix}
+    a \\
+    b \\
+    c
+  \end{pmatrix}
+  =2\mu
+  \begin{pmatrix}
+    a \\
+    b \\
+    c
+  \end{pmatrix}
+  \Leftrightarrow
+  \begin{pmatrix}
+     2a \\
+     c \\
+     b
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    2a \\
+    2b \\
+    2c
+  \end{pmatrix}
+  \Rightarrow a=1, b=0, c=0
+\]
+\[
+      \mu
+  \begin{pmatrix}
+    2 & 0 & 0 \\
+    0 & 0 & 1 \\
+    0 & 1 & 0
+  \end{pmatrix}
+  \begin{pmatrix}
+    a \\
+    b \\
+    c
+  \end{pmatrix}
+  =\mu
+  \begin{pmatrix}
+    a \\
+    b \\
+    c
+  \end{pmatrix}
+  \Leftrightarrow
+  \begin{pmatrix}
+     2a \\
+     c \\
+     b
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    a \\
+    b \\
+    c
+  \end{pmatrix}
+  \Rightarrow a=0, b=1/\sqrt{2}, c=1/\sqrt{2}
+\]
+\[
+      \mu
+  \begin{pmatrix}
+    2 & 0 & 0 \\
+    0 & 0 & 1 \\
+    0 & 1 & 0
+  \end{pmatrix}
+  \begin{pmatrix}
+    a \\
+    b \\
+    c
+  \end{pmatrix}
+  =-\mu
+  \begin{pmatrix}
+    a \\
+    b \\
+    c
+  \end{pmatrix}
+  \Leftrightarrow
+  \begin{pmatrix}
+     2a \\
+     c \\
+     b
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    -a \\
+    -b \\
+    -c
+  \end{pmatrix}
+  \Rightarrow a=0, b=-1/\sqrt{2}, c=1/\sqrt{2}
+\]
+
 \section*{4b}
 We have
 \[
@@ -173,8 +396,45 @@ We have
     c_{2} \\
     c_{3}
   \end{pmatrix}
-  = \lambda\left(c_{1}^{*}c_{2}+c_{2}^{*}c_{1}\right)
+  = \lambda\left(c_{1}^{*}c_{2}+c_{2}^{*}c_{1}+2|c_{3}|^{2}\right)
 \]
+\[
+    \langle B \rangle=\langle S(0)|A|S(0) \rangle
+  =\mu
+  \begin{pmatrix}
+    c_{1}^{*} & c_{2}^{*} & c_{3}^{*}
+  \end{pmatrix}
+  \begin{pmatrix}
+    2 & 0 & 0 \\
+    0 & 0 & 1 \\
+    0 & 1 & 0
+  \end{pmatrix}
+  \begin{pmatrix}
+    c_{1} \\
+    c_{2} \\
+    c_{3}
+  \end{pmatrix}
+  = \mu\left( 2|c_{1}|^{2}+c_{2}^{*}c_{3}+c_{3}^{*}c_{2} \right)
+\]
+
+\section*{4c}
+We write
+\[
+  |S(t)\rangle=
+  \begin{pmatrix}
+    c_{1}e^{-itE_{1}/\hbar} \\
+    c_{2}e^{-itE_{2}/\hbar} \\
+    c_{3}e^{-itE_{3}/\hbar}
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    c_{1}e^{-it\omega} \\
+    c_{2}e^{-2it\omega} \\
+    c_{3}e^{-2it\omega} \\
+  \end{pmatrix}
+\]
+A measurement of the energy would yield $\hbar\omega$ with probability $|c_{1}e^{-it\omega}|^{2}=|c_{1}|^{2}$,
+and $2\hbar\omega$ with probability $|c_{2}e^{-2it\omega}|^{2}+|c_{3}e^{-2it\omega}|^{2}=|c_{2}|^{2}+|c_{3}|^{2}$
 \end{document}
 %%% Local Variables:
 %%% mode: latex

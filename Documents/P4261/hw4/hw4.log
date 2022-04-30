@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.1.13)  25 APR 2022 02:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.1.13)  29 APR 2022 16:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -342,41 +342,45 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 {/gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf
 -dist/fonts/map/pdftex/updmap/pdftex.map}]
-[2] (./hw4.aux) ) 
+Overfull \hbox (0.25894pt too wide) detected at line 107
+\OML/cmm/m/it/10  \OT1/cmr/m/n/10 = [][] = [][] = [] []
+ []
+
+[2] [3] (./hw4.aux) ) 
 Here is how much of TeX's memory you used:
- 5319 strings out of 478994
- 112905 string characters out of 5833534
- 392708 words of memory out of 5000000
- 22754 multiletter control sequences out of 15000+600000
+ 5322 strings out of 478994
+ 112936 string characters out of 5833534
+ 395708 words of memory out of 5000000
+ 22757 multiletter control sequences out of 15000+600000
  413499 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 71i,6n,75p,219b,197s stack positions out of 5000i,500n,10000p,200000b,80000s
-</gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-202
-10325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></gnu/store/28
-laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmex10.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-
-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.p
-fb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></gnu/store/28laqzks03piac14a
-j23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmmi7.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20
-210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></gnu/store/28
-laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr12.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-t
-exlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb
-></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></gnu/store/28laqzks03piac14aj23
-wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr7.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-202103
-25/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></gnu/store/28laq
-zks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmsy7.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texl
-ive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.p
-fb>
-Output written on hw4.pdf (2 pages, 118088 bytes).
+ 71i,12n,75p,219b,658s stack positions out of 5000i,500n,10000p,200000b,80000s
+</gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf
+-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></gnu/stor
+e/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/font
+s/type1/public/amsfonts/cm/cmex10.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg
+53h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
+10.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/shar
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></gnu/store/28laqzks03pia
+c14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmmi7.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texm
+f-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></gnu/stor
+e/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr12.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg5
+3h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17
+.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></gnu/store/28laqzks03piac14
+aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr7.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20
+210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></gnu/store/2
+8laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmsy7.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-
+texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msb
+m7.pfb>
+Output written on hw4.pdf (3 pages, 125771 bytes).
 PDF statistics:
- 63 PDF objects out of 1000 (max. 8388607)
- 45 compressed objects within 1 object stream
+ 66 PDF objects out of 1000 (max. 8388607)
+ 47 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

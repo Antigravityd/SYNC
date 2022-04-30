@@ -11,8 +11,6 @@
     "amsmath"
     "amssymb"
     "siunitx"
-    "graphicx")
-   (LaTeX-add-environments
-    '("gnuplot" LaTeX-env-args ["argument"] 0)))
+    "graphicx"))
  :latex)
 

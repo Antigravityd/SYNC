@@ -70,42 +70,25 @@ of $\SI{0.236}{nm}$.
 \section*{2a}
 The gradient in $\phi_{n}$ will vanish at the minimum, so
 \[
-  \nabla E=\nabla\left[\frac{\left( \sum_{m}\phi_{m}^{*}\langle m | \right)
-      H\left(\sum_{n}\phi_{n}|n\rangle \right)}
+  \nabla E=\nabla\left[\frac{\left( \sum_{n}\phi_{n}^{*}\langle n | \right)
+      H\left(\sum_{m}\phi_{m}|m\rangle \right)}
     {\sum_{n}\phi_{n}\phi_{n}^{*}}\right]
-  =\nabla\left[ \frac{\left( \sum_{m}\phi_{m}^{*}\langle m| \right)\left( \sum_{n}H\phi_{n}|n\rangle \right)}
-    {\sum_{n}\phi_{n}\phi_{n}^{*}} \right]
+  =\nabla\left[ \frac{\sum_{m,n}\phi_{n}^{*}\phi_{m}\langle n|H|m \rangle}{\sum_{n}\phi_{n}\phi_{n}^{*}} \right]
 \]
 \[
-  =\nabla\left[ \frac{\sum_{m,n}\phi_{m}^{*}\phi_{n}\langle m|H|n \rangle}{\sum_{n}\phi_{n}\phi_{n}^{*}} \right]
+  =\nabla\left[ \frac{\sum_{m,n}\phi_{n}^{*}\phi_{m}\mathcal{H}_{n,m}}{\sum_{n}\phi_{n}\phi_{n}^{*}} \right]
 \]
+Each component will have the form
 \[
-  =\sum_{n}\sum_{m}\left(  \frac{\left( \sum_{l}\phi_{l}\phi_{l}^{*} \right)\nabla(\phi_{m}^{*}\phi_{n}\langle m|H|n \rangle)
-      -\nabla(\sum_{l}\phi_{l}\phi_{l}^{*})\left( \phi_{m}^{*}\phi_{n}\langle m|H|n \rangle \right)}
-    {\left(  \sum_{l}\phi_{l}\phi_{l}^{*}\right)^{2}}\right)
+  0=\frac{\partial E}{\partial \phi_{i}}|i\rangle
+  \Rightarrow 0 = \frac{\sum_{m}\mathcal{H}_{n,m}\phi_{m}}{\sum_{n}|\phi_{n}|^{2}}
+  -\left(  \frac{\sum_{n,m}\phi_{n}^{*}\mathcal{H}_{n,m}\phi_{m}}{\sum_{n}|\phi_{n}|^{2}}\right)\frac{\phi_{n}}{\sum_{n}|\phi_{n}|^{2}}
 \]
-Noting that by the interchangeability  of complex conjugation and differentiation
-\[
-  \nabla(\phi_{m}\phi_{n}^{*})=\phi_{m}|m\rangle+\phi_{n}^{*})|n\rangle
-\]
-and if $m=n$
-\[
-  =2\Re (\phi_{n})|n\rangle
-\]
-we have
-\[
-  \nabla E=\sum_{m,n}\langle m|H|n \rangle\left(\frac{\left( \sum_{l}\phi_{l}\phi_{l}^{*} \right)(\phi_{m}^{*}|m\rangle+\phi_{n}|n\rangle)
-    -2(\sum_{l}\Re(\phi_{l})|l\rangle)(\phi_{m}^{*}\phi_{n})}{\left( \sum_{l}\phi_{l}\phi_{l}^{*}\right)^{2}} \right)
-\]
-Setting this equal to zero and eliminating the constants $(\sum_{l}\phi_{l}\phi_{l}^{*})^{2}$ and $\sum_{m,n}\langle m|H|n \rangle$,
-\[
-  0=\sum_{m,n}\left[ \left( \sum_{l}\phi_{l}\phi_{l}^{*} \right)(\phi_{m}^{*}|m\rangle+\phi_{n}|n\rangle)
-  -2\left(\sum_{l}\Re(\phi_{l})|l\rangle\right)\phi_{m}^{*}\phi_{n}\right]
-\]
-\[
-  \Leftrightarrow \left( \sum_{l}\phi_{l}\phi_{l}^{*} \right)\sum_{m,n}\phi_{m}^{*}|m\rangle+\phi_{n}|n\rangle
-  =\left( \sum_{l}2\Re(\phi_{l})|l\rangle \right)\sum_{m,n} \phi_{m}^{*}\phi_{n}\]
-%TODO: finish
+Multiplying by the denominator sum,
+\[\Rightarrow \sum_{m}\mathcal{H}_{n,m}\phi_{m}-E\phi_{n}=0\]
+where we have re-substituted the original supposition of the form of $E$.
+This is exactly the statement $\mathcal{H}\vec{\phi}=E\vec{\phi}$.
+
 \section*{2b}
 The two expressions for $V_{cross}$ and $t$ are equivalent because the atoms are indistinguishable, so one ought to be able to relabel
 one's description of the system with the indices swapped without changing the physics.

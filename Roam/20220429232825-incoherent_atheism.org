@@ -1,0 +1,38 @@
+:PROPERTIES:
+:ID:       d095dcdb-4924-46a6-bbb4-bb3431177a0e
+:END:
+#+title: Irreducible Antecedents
+#+filetags: Musing
+
+This is the schematic for a book. Add historical and mathematical examples, less condensed and more comprehensible exposition, and you've got a whole hell of a work.
+
+* Axiomatic Systems
+
+Rationality provides bulletproof arguments about implication. Statements of the sort of "if A, then B" are the entirety of logic, the bedrock of mathematics, and, in turn, the entire scientific endeavor. Chains of such statements are how we study abstractions themselves, which we then overlay onto perceptions of the natural world through measurement, assigning to collections of concepts the word "theories" from which we extract "predictions" that are compared with "experiments."
+
+These arguments are so bulletproof we can teach rocks to come to the same conclusions: automated theorem provers, like Coq and Isabelle, are programs containing only information relating to logical systems able to take take a collection of suppositions and produce a proof or disproof of some human-specified proposition that is in turn often able to be checked by a human reviewer. In the Archive of Formal Proofs, a project consisting of such machine-generated verifications of important mathematics, there doubtless are many whose associated disciplines didn't even exist when the software was written.
+
+However, any rational framework must draw from a set of fundamental "A"s, some fundamental truths from which all others are derived. This is a fundamental property of axiomatic systems, Gödel's second incompleteness theorem; no system can prove its own foundations, or more formally, any system that doesn't contradict itself, is complicated enough to describe elementary arithmetic, and has a (possibly infinite) set of axioms that can be procedurally listed can prove its own foundations. All systems that fail these three restrictions are toy examples.
+
+* Evolutionary Analysis of Axioms
+
+This leaves us with a problem: on what axioms ought we base our rational arguments? In mathematics and natural science, this is a question often answered: one judges a framework by the utility of its consequences. This pushes the question a level higher, as there are axioms implicit in the judgement of utility. However, when analyzing axioms' adoption, this is an incredibly useful heuristic: natural selection may introduce preferences for particular structures over others.
+
+In science and mathematics, those structures useful for describing most accurately and concisely the physical world and other abstractions, respectively, will be those that become the most popular: the ones that aren't by definition produce fewer consequent insights, leading to fewer papers published, fewer academics aware of them, fewer pedagogical materials, and fewer people aware of it. These axioms will naturally fade into obscurity, to be consumed only by moths and mildew in the remote reaches of academic libraries.
+
+In philosophy, a similar phenomenon occurs: ethics enabling antisocial behavior are eliminated by the unstable nature of violence, political philosophies incapable of organizing a society collapse into power struggle and until they stabilize, even aesthetic frameworks that produce unpopular art are doomed to eventually be replaced. These changes occur on the timescale of centuries, and many regrettably popular philosophies of our day may be cast as deviations away from these optimal states.
+
+This is fundamentally an economic/evolutionary argument, and so it may benefit to learn some economics and evolutionary biology to be able to informedly employ concepts like Pareto optimality, should they prove accurate descriptors.
+
+* Beliefs are Elevated Axioms
+
+It is natural, then, for people to be drawn to religion. A sensible definition of a religion is a collection of beliefs; a reasonable definition of belief is as a value judgment on an axiom.
+With endurance measurable in millennia, religions provide sets of axioms that are demonstrably effective for billions of people in every culture, in every time, in every place, in every circumstance. Adopting one of them pulls the individual out of the darkness he is stumbling through, building on the progress of millions of thinkers doubtless wiser, smarter, and deeper than himself.
+
+Note a fundamental difference between mathematical and scientific axioms and beliefs: a mathematician wouldn't say he "believes" the axioms of ZFC when he works under them because later the same day or in the same paper he may find it convenient to work under NBG,
+
+* Rationalists/Atheists Don't Understand Rationality
+
+Prominent athiest thinkers style themselves as rationalist, providing a path through the intransigent questions of morality and philosophy through purely deductive means. However, their grasp of those deductive means themselves, understanding of the actual mechanics of rational thinking, formal logic, proof, and reasoning, is clearly tenuous.
+
+The sneering distaste of religion characteristic of such thinkers and, more strongly, their followers illuminates their infantile understanding of both the concepts they opine on: rationality and religion. If they understood rationality, they would realize it doesn't inherently lead to positive political decisions, and if they understood religion, they would realize it's not something to be dismissed out of hand. Half of US scientists in 2022 say they believe in God; the proportion increases with purity of discipline. Those one would expect to be closer to actually understanding rationality and the most fundamental workings of the world have /higher/ rates of religious identification than those whose training is less fundamental. Mathematicians are more religious than physicists who are more religious than chemists and engineers who are more religious than biologists...you get the picture (eliding notable exceptions like agriculture).

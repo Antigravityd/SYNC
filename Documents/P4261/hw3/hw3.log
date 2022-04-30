@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.1.13)  24 APR 2022 03:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.1.13)  29 APR 2022 15:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -351,7 +351,7 @@ Overfull \hbox (29.00165pt too wide) detected at line 58
 Here is how much of TeX's memory you used:
  5322 strings out of 478994
  112936 string characters out of 5833534
- 394708 words of memory out of 5000000
+ 393708 words of memory out of 5000000
  22757 multiletter control sequences out of 15000+600000
  413499 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -373,7 +373,7 @@ pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></gnu/store/28laqzks03piac1
 4aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmsy7.pfb>
-Output written on hw3.pdf (3 pages, 112411 bytes).
+Output written on hw3.pdf (3 pages, 112442 bytes).
 PDF statistics:
  54 PDF objects out of 1000 (max. 8388607)
  38 compressed objects within 1 object stream

@@ -59,11 +59,21 @@ Applying the definition,
 \[
   \langle Af|g \rangle=\langle f|Ag \rangle
   \Leftrightarrow \int_{\Omega}[\partial_{i}a_{ij}(x)][\partial_{j}f(x)]g(x)dx+\int_{\Omega}a_{ij}(x)[\partial_{i}\partial_{j}f(x)]g(x)dx
-  =\int_{\Omega}f(x)\partial
+  =\int_{\Omega}f(x)\partial_{i}(a_{ij}x)\partial_jg(x)dx+\int_{\Omega}f(x)
 \]
 % TODO: get better at vector calc
 
 \section*{2a}
+Applying the definition of the infinitesimal generator,
+\[
+  Af(x)=-i\lim_{t\to 0}[f(x+vt)-f(x)]/t = -i\frac{\partial f}{\partial v}
+\]
+by the definition of the partial derivative.
+Since $V= C^1$, and the above implies $D(A)$ is $L^2$ functions differentiable along $v$, we have $V\subseteq D(A)$, with action given above.
+
+\section*{2b}
+We compute
+\[U^\dagger=\]
 
 \end{document}
 %%% Local Variables:

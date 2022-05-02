@@ -5,6 +5,7 @@
 #+filetags: Musing
 
 This is the schematic for a book. Add historical and mathematical examples, less condensed and more comprehensible exposition, and you've got a whole hell of a work.
+The TDWP - Dead Throne album art fits this rather well.
 
 * Axiomatic Systems
 

@@ -11,6 +11,7 @@
     "amsmath"
     "amssymb"
     "siunitx"
-    "graphicx"))
+    "graphicx"
+    "tikz"))
  :latex)
 

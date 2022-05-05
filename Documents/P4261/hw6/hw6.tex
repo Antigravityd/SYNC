@@ -5,6 +5,8 @@
 \usepackage{amssymb}
 \usepackage{siunitx}
 \usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
 
 \title{4261 HW 6}
 \author{Duncan Wilkie}
@@ -215,7 +217,96 @@ and in the extended zone scheme as
 \[
   \includegraphics[scale=.8]{plot5.png}
 \]
-% TODO: copy the rest from book
+A plane wave near the Brillouin zone boundary with $k=n\pi/a+\delta$ can scatter off the periodic potential to $k'=-n\pi/a+\delta$
+The energies corresponding to these waves are
+\[
+  \epsilon_{0}(n\pi/a+\delta)=\frac{\hbar^{2}}{2m}[(n\pi/a)^{2}+2n\pi\delta/a+\delta^{2}]
+\]
+\[
+  \epsilon_{0}(-n\pi/a+\delta)=\frac{\hbar^{2}}{2m}[(n\pi/a)^{2}-2n\pi\delta/a+\delta^{2}]
+\]
+Using the characteristic equation derived from degenerate perturbation theory,
+\[
+  \left( \epsilon_{0}(\vec{k})-E \right)\left( \epsilon_{0}(\vec{k}+\vec{G})-E \right)-|V_{\vec{G}}|^{2}=0
+\]
+\[
+  \Leftrightarrow\left(\frac{\hbar^{2}}{2m}[(n\pi/a)^{2}+2n\pi\delta/a+\delta^{2}] -E \right)
+  \left( \frac{\hbar^{2}}{2m}[(n\pi/a)^{2}-2n\pi\delta/a+\delta^{2}]-E \right)-|V_{\vec{G}}|^{2}=0
+\]
+\[
+  \Leftrightarrow E^{2}-E\frac{\hbar^{2}}{m}\left( (n\pi/a)^{2}+\delta^{2} \right)
+  +\frac{\hbar^{4}}{4m^{2}}\left( (n\pi/a)^{2}-2n\pi\delta/a +\delta^{2}\right)\left( (n\pi/a)^{2}+2n\pi\delta/a+\delta^{2}\right)
+  -|V_{G}|^{2}=0
+\]
+\[
+  \Rightarrow E=\frac{ \frac{\hbar^{2}}{m}((n\pi/a)^{2}+\delta)}{2}
+\]
+\[
+  \pm\frac{\sqrt{\frac{\hbar^{4}}{m^{2}}[(n\pi/a)^{2}+\delta^{2}]^{2}-\frac{\hbar^{4}}{m^{2}}\left( (n\pi/a)^{2}-2n\pi\delta/a
+      +\delta^{2}\right)\left( (n\pi/a)^{2}+2n\pi\delta/a+\delta^{2}\right)}-4|V_{G}|^{2}}{2}
+\]
+\[
+  \Leftrightarrow E=\frac{\hbar^{2}}{2m}[(n\pi/a)^{2}+\delta^{2}]
+  \pm\sqrt{\left( \frac{\hbar^{2}}{2m}2n\pi\delta/a \right)^{2}+|V_{G}|^{2}}
+\]
+Expanding $\sqrt{a+x}\approx\sqrt{a}+\frac{x}{2\sqrt{a}}$,
+\[
+  E\approx \frac{\hbar^{2}}{2m}(n\pi/a)^{2}\pm|V_{G}|+\frac{\hbar^{2}\delta^{2}}{2m}\left[ 1\pm\frac{\hbar^{2}}{m}(n\pi/a)^{2}\frac{1}{|V_{G}|} \right]
+\]
+Under this approximation, the effective mass is, taking the dispersion relation above evaluated at $\delta=k$ and dropping the additive
+constants,
+\[
+  \frac{\hbar^{2}k^{2}}{2m^{*}}=\frac{\hbar^{2}k^{2}}{2m}\left[ 1\pm\frac{\hbar^{2}}{m}(n\pi/a)^{2}\frac{1}{|V_{G}} \right]
+\]
+\[
+  \Leftrightarrow m^{*}=\frac{m}{1\pm\frac{\hbar^{2}}{m}(n\pi/a)^{2}\frac{1}{|V_{G}|}}
+\]
+As the potential increases, the Fermi sea is pulled closer to the Brillouin zone boundary.
+It is important to note we have divalent atoms, so the zone is actually filled.
+In the case of a weak potential, the Fermi sea is approximately circular:
+\begin{center}
+  \begin{tikzpicture}[square/.style={regular polygon,regular polygon sides=4}]
+    \node[scale=4] at (0,0) [square,draw] {};
+    \node[scale=4.5] at (0,0) [circle,draw,fill=gray] {};
+  \end{tikzpicture}
+\end{center}
+In the case of an intermediately strong potential, the Fermi sea gets pulled towards the zone boundary, but not so much that it fills the
+zone with no gaps:
+\begin{center}
+  \begin{tikzpicture}[square/.style={regular polygon,regular polygon sides=4}]
+
+    \node[scale=4] at (0,0) [square,fill=gray] {};
+
+    \node at (.65,.65) [circle,fill=white] {};
+    \node at (.65,-.65) [circle,fill=white] {};
+    \node at (-.65,.65) [circle,fill=white] {};
+    \node at (-.65,-.65) [circle,fill=white] {};
+
+    \node at (0,-.65) [circle,fill=gray] {};
+    \node at (-.65,0) [circle,fill=gray] {};
+    \node at (.65,0) [circle,fill=gray] {};
+    \node at (0,.65) [circle,fill=gray] {};
+
+    \node[scale=4] at (0,0) [square,draw] {};
+  \end{tikzpicture}
+\end{center}
+In the case of a very strong potential, the Fermi sea is pulled very strongly towards the zone boundary and fills it with no gaps:
+\begin{center}
+  \begin{tikzpicture}[square/.style={regular polygon,regular polygon sides=4}]
+    \node[scale=4] at (0,0) [square,draw,fill=gray] {};
+  \end{tikzpicture}
+\end{center}
+The system is no longer a metal when there are no available states in the first Brillouin zone for traveling electrons to occupy.
+This is characteristic only for strong potentials; exactly how strong this is may be estimated by noting the highest-energy
+point in the first Brillouin zone is in the corner of the lattice with energy $\epsilon_{corner}=2\hbar^{2}\pi^{2}/2ma^{2}$,
+and the lowest-energy state in the second zone is $\epsilon_{edga}=\hbar^{2}\pi^{2}/2ma^{2}$.
+For the system to be an insulator, all the states in the first Brillouin zone must be lower in energy than any state in the second, so
+that the zone is filled by the Fermi sea.
+The rough condition for this to occur is $2\hbar^{2}\pi^{2}/2ma^{2}\leq \hbar^{2}\pi^{2}/2ma^{2}+V$, or
+\[
+  V\geq \frac{\hbar^{2}\pi^{2}}{4ma^{2}}
+\]
+
 
 \end{document}
 %%% Local Variables:

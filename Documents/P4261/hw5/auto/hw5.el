@@ -12,6 +12,10 @@
     "amssymb"
     "siunitx"
     "graphicx"
-    "tikz"))
+    "tikz")
+   (TeX-add-symbols
+    '("Ox" 2)
+    '("Ti" 2)
+    '("Ba" 2)))
  :latex)
 

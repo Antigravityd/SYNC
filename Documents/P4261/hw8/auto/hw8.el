@@ -1,5 +1,5 @@
 (TeX-add-style-hook
- "hw1"
+ "hw8"
  (lambda ()
    (TeX-add-to-alist 'LaTeX-provided-package-options
                      '(("geometry" "letterpaper")))
@@ -9,10 +9,9 @@
     "art10"
     "geometry"
     "amsmath"
-    "amssymb")
+    "siunitx"
+    "graphicx")
    (TeX-add-symbols
-    "tr"
-    "im"
-    "erf"))
+    "sech"))
  :latex)
 

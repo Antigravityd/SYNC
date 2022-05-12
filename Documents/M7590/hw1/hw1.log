@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.1.13)  2 MAY 2022 16:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.1.13)  12 MAY 2022 08:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -7,11 +7,11 @@ entering extended mode
 (./hw1.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-02-18>
-(/gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf
+(/gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/base/article.cls
 Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
 
-(/gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf
+(/gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/base/size10.clo
 File: size10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
 )
@@ -27,20 +27,20 @@ File: size10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
 \belowcaptionskip=\skip48
 \bibindent=\dimen138
 )
-(/gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf
+(/gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
 
-(/gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf
+(/gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks15
 )
-(/gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf
+(/gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 
-(/gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf
+(/gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/iftex/iftex.sty
 Package: iftex 2020/03/06 v1.0d TeX engine tests
 ))
@@ -57,29 +57,29 @@ Package: iftex 2020/03/06 v1.0d TeX engine tests
 \Gm@layoutvoffset=\dimen146
 \Gm@dimlist=\toks16
 )
-(/gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf
+(/gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2020/09/23 v2.17i AMS math features
 \@mathmargin=\skip49
 
 For additional information on amsmath, use the `?' option.
 
-(/gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf
+(/gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01 AMS text
 
-(/gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf
+(/gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks17
 \ex@=\dimen147
 ))
-(/gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf
+(/gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen148
 )
-(/gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf
+(/gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
@@ -121,11 +121,11 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
 LaTeX Info: Redefining \[ on input line 2923.
 LaTeX Info: Redefining \] on input line 2924.
 )
-(/gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf
+(/gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
-(/gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf
+(/gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
@@ -134,7 +134,7 @@ LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
-(/gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf
+(/gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count268
@@ -142,20 +142,20 @@ File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 ) (./hw1.aux)
 \openout1 = `hw1.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -191,86 +191,113 @@ LaTeX Font Info:    ... okay on input line 11.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 13.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 16.
 
 
-(/gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf
+(/gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 13.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 16.
 
 
-(/gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf
+(/gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf
+{/gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325/share/texmf
 -dist/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (11.37479pt too wide) detected at line 71
-\OML/cmm/m/it/10 a[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )\OML/cm
-m/m/it/10 @[]f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )\OML/cmm/m/it
-/10 g\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )[][] \OMS/cmsy/m/n/10 
-^^@ [][] \OML/cmm/m/it/10 a[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10
- )[\OML/cmm/m/it/10 @[]@[]f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )
-]\OML/cmm/m/it/10 g\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )\OML/cmm
-/m/it/10 dx \OMS/cmsy/m/n/10 ^^@ [][] \OML/cmm/m/it/10 a[]\OT1/cmr/m/n/10 (\OML
-/cmm/m/it/10 x\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 @[]f\OT1/cmr/m/n/10 (\OML/cmm/m
-/it/10 x\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 @[]g\OT1/cmr/m/n/10 (\OML/cmm/m/it/10
- x\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 dx \OT1/cmr/m/n/10 + [][] \OML/cmm/m/it/10 
-a[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )[\OML/cmm/m/it/10 @[]@[]
-f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )]\OML/cmm/m/it/10 g\OT1/cm
-r/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 dx
+Overfull \hbox (16.06238pt too wide) detected at line 101
+\OMS/cmsy/m/n/10 , [] [] ^^T \OML/cmm/m/it/10 C [][] \OMS/cmsy/m/n/10 j\OML/cmm
+/m/it/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 
+j[]\OML/cmm/m/it/10 dx
+ []
+
+[2] [3] [4] [5] [6] [7] [8] [9]
+Overfull \hbox (52.27325pt too wide) detected at line 606
+\OT1/cmr/m/n/10 (^^A\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )[](^^A\OML/cmm/m/it/10 p
+\OT1/cmr/m/n/10 )[] = \OMS/cmsy/m/n/10 h\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 j[]j
+\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 ih\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 j[]j\OM
+L/cmm/m/it/10  \OMS/cmsy/m/n/10 i \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 h\OML/cmm/
+m/it/10  \OMS/cmsy/m/n/10 j[]\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 ih\OML/cmm/m/it
+/10  \OMS/cmsy/m/n/10 j[]\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 i \OT1/cmr/m/n/10 =
+ \OMS/cmsy/m/n/10 h[]\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 j[]\OML/cmm/m/it/10  \O
+MS/cmsy/m/n/10 ih[]\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 j[]\OML/cmm/m/it/10  \OMS
+/cmsy/m/n/10 i ^^U jh[]\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 j[]\OML/cmm/m/it/10  
+\OMS/cmsy/m/n/10 ij[] \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 jh\OML/cmm/m/it/10  \O
+MS/cmsy/m/n/10 j[][]\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 ij[] \OT1/cmr/m/n/10 = \
+OMS/cmsy/m/n/10 jh\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 j[][]j\OML/cmm/m/it/10  \O
+MS/cmsy/m/n/10 ij[]
  []
 
 
-Overfull \hbox (10.81915pt too wide) detected at line 75
-\OT1/cmr/m/n/10 = \OML/cmm/m/it/10 a[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/c
-mr/m/n/10 )\OML/cmm/m/it/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10
- )\OML/cmm/m/it/10 @[]g\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )[][]
- \OMS/cmsy/m/n/10 ^^@ [][] \OML/cmm/m/it/10 a[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/1
-0 x\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 @[]f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT
-1/cmr/m/n/10 )\OML/cmm/m/it/10 @[]g\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/
-m/n/10 )\OML/cmm/m/it/10 dx \OMS/cmsy/m/n/10 ^^@ [][] \OML/cmm/m/it/10 a[]\OT1/
-cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 f\OT1/cmr/m/n/1
-0 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 @[]@[]g\OT1/cmr/m/n/10 (
-\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 dx \OT1/cmr/m/n/10 + [][] \
-OML/cmm/m/it/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )\OML/cmm/m
-/it/10 a[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 
-@[]@[]g\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 dx
+Overfull \hbox (62.38803pt too wide) detected at line 613
+\OMS/cmsy/m/n/10 h\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 j[][]j\OML/cmm/m/it/10  \O
+MS/cmsy/m/n/10 i \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 h\OML/cmm/m/it/10  \OMS/cms
+y/m/n/10 j [] [] j\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 i \OT1/cmr/m/n/10 = \OMS/c
+msy/m/n/10 h\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 xp\OMS/cmsy/m/
+n/10 j\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 i ^^@ h\OML/cmm/m/it/10  \OMS/cmsy/m/n
+/10 j\OML/cmm/m/it/10 x\OMS/cmsy/m/n/10 h\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 j\O
+ML/cmm/m/it/10 p\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 ij\OML/cmm
+/m/it/10  \OMS/cmsy/m/n/10 i ^^@ h\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 j\OML/cmm/
+m/it/10 p\OMS/cmsy/m/n/10 h\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 j\OML/cmm/m/it/10
+ x\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 ij\OML/cmm/m/it/10  \OMS
+/cmsy/m/n/10 i \OT1/cmr/m/n/10 + \OMS/cmsy/m/n/10 h\OML/cmm/m/it/10  \OMS/cmsy/
+m/n/10 j\OML/cmm/m/it/10 x\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 
+ih\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 p\OMS/cmsy/m/n/10 j\OML/
+cmm/m/it/10  \OMS/cmsy/m/n/10 ih\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 j\OML/cmm/m/
+it/10  \OMS/cmsy/m/n/10 i
  []
 
-[2] [3] (./hw1.aux) ) 
+
+Overfull \hbox (29.04988pt too wide) detected at line 643
+\OMS/cmsy/m/n/10 h\OML/cmm/m/it/10  []\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 p\OMS/
+cmsy/m/n/10 j\OML/cmm/m/it/10  []\OMS/cmsy/m/n/10 i \OT1/cmr/m/n/10 = [] [][] \
+OML/cmm/m/it/10 e[] [] dx \OT1/cmr/m/n/10 = [] [][] \OML/cmm/m/it/10 e[] [] dx
+ []
+
+[10] [11] (./hw1.aux) ) 
 Here is how much of TeX's memory you used:
- 2103 strings out of 478994
- 29942 string characters out of 5833534
- 325555 words of memory out of 5000000
- 19607 multiletter control sequences out of 15000+600000
- 410678 words of font info for 56 fonts, out of 8000000 for 9000
+ 2115 strings out of 478994
+ 30019 string characters out of 5833534
+ 342597 words of memory out of 5000000
+ 19618 multiletter control sequences out of 15000+600000
+ 411024 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,6n,74p,219b,213s stack positions out of 5000i,500n,10000p,200000b,80000s
-</gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf
--20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></gnu/stor
-e/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/font
-s/type1/public/amsfonts/cm/cmex10.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg
-53h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
-10.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/shar
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></gnu/store/28laqzks03pia
-c14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr10.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texm
-f-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></gnu/stor
-e/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/font
-s/type1/public/amsfonts/cm/cmr17.pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg5
-3h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.
-pfb></gnu/store/28laqzks03piac14aj23wsvkvskkg53h-texlive-texmf-20210325/share/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></gnu/store/28laqzks03piac1
-4aj23wsvkvskkg53h-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsy7.pfb>
-Output written on hw1.pdf (3 pages, 101749 bytes).
+ 68i,8n,74p,232b,213s stack positions out of 5000i,500n,10000p,200000b,80000s
+</gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-tex
+mf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></gnu/st
+ore/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325/share/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmex10.pfb></gnu/store/000bj9cavfaz59mz9jz7v1h8ba3
+5dl7d-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cmext
+ra/cmex7.pfb></gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-2021032
+5/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></gnu/store/000bj9
+cavfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325/share/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmmi5.pfb></gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texli
+ve-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></g
+nu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325/share/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr10.pfb></gnu/store/000bj9cavfaz59mz9jz7v1h
+8ba35dl7d-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr12.pfb></gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325
+/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></gnu/store/000bj9ca
+vfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325/share/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr5.pfb></gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-
+texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></gnu/s
+tore/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325/share/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmsy10.pfb></gnu/store/000bj9cavfaz59mz9jz7v1h8ba
+35dl7d-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/c
+msy5.pfb></gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325/sh
+are/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></gnu/store/000bj9cavfa
+z59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325/share/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmti10.pfb></gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-t
+exmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><
+/gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325/share/texmf-
+dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
+Output written on hw1.pdf (11 pages, 199229 bytes).
 PDF statistics:
- 54 PDF objects out of 1000 (max. 8388607)
- 38 compressed objects within 1 object stream
+ 108 PDF objects out of 1000 (max. 8388607)
+ 77 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

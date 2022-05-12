@@ -4,6 +4,9 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\erf}{erf}
 \title{7590 HW 1}
 \author{Duncan Wilkie}
 \date{?}
@@ -12,25 +15,27 @@
 
 \maketitle
 
+I interchangeably use the $\overline{z}$ and $z^{*}$ notation for the complex conjugate.
+A thousand apologies.
 \section*{1a}
 By the definition of the $L^2$ inner product and $A$, for any functions $f,g\in D(A)$ we have
-\[\langle Af|g \rangle=\langle f|Ag \rangle\Leftrightarrow \int_0^1f''(x)g(x)dx=\int_0^1f(x)g''(x)dx \]
+\[\langle Af|g \rangle=\langle f|Ag \rangle\Leftrightarrow \int_0^1\overline{f''(x)}g(x)dx=\int_0^1\overline{f(x)}g''(x)dx \]
 Integrating by parts,
-\[f'g\bigg|_0^1-\int_0^1f'(x)g'(x)dx=\int_0^1f(x)g''(x)dx\]
-\[\Leftrightarrow f'g\bigg|_0^1-fg'\bigg|_0^1+\int_0^1f(x)g''(x)dx=\int_0^1f(x)g''(x)dx\]
+\[\overline{f'}g\bigg|_0^1-\int_0^1\overline{f'(x)}g'(x)dx=\int_0^1\overline{f(x)}g''(x)dx\]
+\[\Leftrightarrow \overline{f'}g\bigg|_0^1-\overline{f}g'\bigg|_0^1+\int_0^1\overline{f(x)}g''(x)dx=\int_0^1\overline{f(x)}g''(x)dx\]
 the evaluation terms  must both be zero at $0$ and $1$ since smooth compactly-supported functions on open sets vanish
 in the limit to the boundary of their domains. % TODO: proof?
 Therefore, this operator is symmetric.
 However, not all elements of $D(A^{\dagger})$ are elements of $D(A)$: $g\in H$ is an element of $D(A^{\dagger})$ iff there exists
 $h\in H$ such that $\forall f\in D(A)$
 \[
-  \int_{0}^{1}f''(x)g(x)dx=\int_{0}^{1}f(x)h(x)dx
+  \int_{0}^{1}\overline{f''(x)}g(x)dx=\int_{0}^{1}\overline{f(x)}h(x)dx
 \]
 Applying the same integration-by-parts argument as above, we may equivalently write this as
-\[\Leftrightarrow f'g\bigg|_0^1-fg'\bigg|_0^1+\int_0^1f(x)g''(x)dx=\int_0^1f(x)h(x)dx\]
+\[\Leftrightarrow \overline{f'}g\bigg|_0^1-\overline{f}g'\bigg|_0^1+\int_0^1\overline{f(x)}g''(x)dx=\int_0^1\overline{f(x)}h(x)dx\]
 Since $f$ is compactly supported, $f'$ is as well, so the evaluation terms are zero by the same argument given above.
 Letting $g=x^{2}$, we then have
-\[\int_{0}^{1}f(x)\cdot 2dx=\int_{0}^{1}f(x)h(x)dx\]
+\[\int_{0}^{1}\overline{f(x)}\cdot 2dx=\int_{0}^{1}\overline{f(x)}h(x)dx\]
 from which we can clearly see the $L^{2}([0,1])$ function $h=2$ is the element adjoint to $g$ with respect to $A$.
 $g$ is therefore in $D(A^{\dagger})$.
 It isn't in $D(A)$ though, since $x^{2}$ doesn't vanish at 1 and therefore isn't compactly supported on this interval.
@@ -54,43 +59,628 @@ which, choosing $h=2x\in L^{2}([0,1])$, clearly holds.
 $2x$ isn't compactly supported on $(0,1)$ since it doesn't vanish in the limit to 1, so $D(A^{\dagger})\neq D(A)$ and $A$ isn't self-adjoint.
 
 \section*{1c}
-One may write $\partial_{i}(a_{ij}(x)\partial_{j}f)=(\partial_{i}a_{ij})\partial_{j}f+a_{ij}\partial_{i}\partial_{j}f$.
-Applying the definition,
+The definition of a symmetric operator is that $\forall f,g\in D(A)$
 \[
-  \langle Af|g \rangle=\langle f|Ag \rangle
-  \Leftrightarrow \int_{\Omega}[\partial_{i}a_{ij}(x)][\partial_{j}f(x)]g(x)dx+\int_{\Omega}a_{ij}(x)[\partial_{i}\partial_{j}f(x)]g(x)dx
+  \langle Af|g \rangle= \langle f|Ag  \rangle
+\]
+which in this case is
+\[
+  \int_{\Omega}\overline{[\partial_{i}(a_{ij}(x)\partial_{j}f)(x)]}g(x)dx=\int_{\Omega}\overline{f(x)}\partial_{i}(a_{ij}(x)\partial_{j}g)(x)dx
 \]
 \[
-  =\int_{\Omega}f(x)\partial_{i}(a_{ij}(x))\partial_jg(x)dx+\int_{\Omega}f(x)a_{ij}(x)\partial_{i}\partial_{j}g(x)dx
-\]
-Integrating by parts,
-\[
-  a_{ij}(x)\partial_{j}f(x)g(x)\bigg|_{\partial \Omega}-\int_{\Omega}a_{ij}(x)[\partial_{i}\partial_{j}f(x)]g(x)dx
-  -\int_{\Omega}a_{ij}(x)\partial_{j}f(x)\partial_{i}g(x)dx
-  +\int_{\Omega}a_{ij}(x)[\partial_{i}\partial_{j}f(x)]g(x)dx
+  \Leftrightarrow g(x)\overline{a_{ij}(x)\partial_{j}f(x)}\bigg|_{\partial \Omega}
+  -\int_{\Omega}\overline{[a_{ij}(x)\partial_{j}f(x)]}\partial_{i}g(x)dx
+  =\int_{\Omega}\overline{f(x)}\partial_{i}(a_{ij}(x)\partial_{j}g)(x)dx
 \]
 \[
-  =a_{ij}(x)f(x)\partial_{j}g(x)\bigg|_{\partial\Omega}-\int_{\Omega}a_{ij}(x)\partial_{i}f(x)\partial_{j}g(x)dx
-  -\int_{\Omega}a_{ij}(x)f(x)\partial_{i}\partial_{j}g(x)dx + \int_{\Omega}f(x)a_{ij}(x)\partial_{i}\partial_{j}g(x)dx
+  \Leftrightarrow\overline{-a_{ij}(x)f(x)}\partial_{i}g(x)\bigg|_{\partial\Omega}
+  +\int_{\Omega}\overline{f(x)}\partial_{j}\left( \overline{a_{ij}(x)}\partial_{i}g(x) \right)dx
+  =\int_{\Omega}\overline{f(x)}\partial_{i}(a_{ij}(x)\partial_{j}g)(x)dx
 \]
-Since the functions are compactly supported, the evaluation at the boundary vanishes like above, so
 \[
-  \int_{\Omega}a_{ij}(x)\partial_{j}f(x)\partial_{i}g(x)dx
-  =\int_{\Omega}a_{ij}(x)\partial_{i}f(x)\partial_{j}g(x)dx
+  \Leftrightarrow
+  \int_{\Omega}\overline{f(x)}\partial_{i}(\overline{a_{ji}(x)}\partial_{j}g(x))dx
+  =\int_{\Omega}\overline{f(x)}\partial_{i}(a_{ij}(x)\partial_{j}g)(x)dx
 \]
-% TODO: finish
+where we have throughout used integration by parts and the same fact that functions of compact support vanish in the limit to their
+boundaries.
+Since $a_{ij}(x)$ is Hermitian, it is equal to $\overline{a_{ji}(x)}$, and so the two sides are equal and the operator is symmetric.
+Here, $A$ is a bounded operator:
+\[
+  ||Af||\leq C||f||
+  \Leftrightarrow \int_{\Omega}|\partial_{i}(a_{ij}(x)\partial_{j}f)(x)|^{2}dx\leq C \int_{\Omega}|f(x)|^{2}dx
+\]
+\[
+  \Leftrightarrow \int_{\Omega}\partial_{i}a_{ij}(x)\partial_{j}f(x)dx\int_{\Omega}\overline{\partial_{i}a_{ij}(x)\partial_{j}f(x)}dx
+  \leq C\int_{\Omega}|f(x)|^{2}dx
+\]
+\[
+  \Leftrightarrow \left( f(x)\partial_{i}a_{ij}(x)\bigg|_{\partial\Omega}-\int_{\Omega}f(x)\partial_{j}\partial_{i}a_{ij}(x) \right)
+  \left( \overline{f(x)\partial_{i}a_{ij}(x)}\bigg|_{\partial\Omega}-\int_{\Omega} \overline{f(x)\partial_{j}\partial_{i}a_{ij}(x)}dx \right)
+  \leq C\int_{\Omega}|f(x)|^{2}dx
+\]
+\[
+  \Leftrightarrow \int_{\Omega}\left(f(x)\overline{f(x)}\right)
+  \left( [\partial_{i}\partial_{j}a_{ij}(x)]\overline{[\partial_{i}\partial_{j}a_{ij}(x)]} \right)dx
+  \leq C\int_{\Omega}|f(x)|^{2}dx
+\]
+\[
+  \Leftrightarrow \left|\int_{\Omega}f(x)\partial_{i}\partial_{j}a_{ij}(x)dx\right|^{2}\leq C\int_{\Omega}|f(x)|^{2}dx
+\]
+From the Cauchy-Schwartz inequality, we have
+\[
+  \left|\int_{\Omega}f(x)\partial_{i}\partial_{j}a_{ij}(x)dx\right|^{2}\leq \int_{\Omega}|f(x)|^{2}dx
+  \int_{\Omega}|\overline{\partial_{i}\partial_{j}a_{ij}(x)}|^{2}dx
+  =C\int_{\Omega}|f(x)|^{2}dx
+\]
+This proves the operator is bounded.
+Therefore, $D(A^{\dagger})=H$, and there are certainly $L^{2}(\Omega)$ functions that aren't $C^{\infty}$, so $D(A^{\dagger})\not\subseteq D(A)$
+implying $A$ is not self-adjoint.
 
 \section*{2a}
 Applying the definition of the infinitesimal generator,
 \[
   Af(x)=-i\lim_{t\to 0}[f(x+vt)-f(x)]/t = -i\frac{\partial f}{\partial v}
 \]
-by the definition of the partial derivative.
-Since $V= C^1$, and the above implies $D(A)$ is $L^2$ functions differentiable along $v$, we have $V\subseteq D(A)$, with action given above.
+where the last equality is valid where the limit exists, using the definition of the partial derivative.
+Since $V\in C^1$, and the above implies $D(A)$ is $L^2$ functions differentiable along $v$, we have $V\subseteq D(A)$, with action given above.
 
 \section*{2b}
-We compute
+The adjoint of $U$ is defined by
+\[
+  \langle U(t)f(x) | g(x) \rangle = \langle f(x) | \left( U(t) \right)^{\dagger}g(x) \rangle
+\]
+The left hand side is, applying the definition of the $L^{2}$ inner product and $U$,
+\[
+  \langle U(t)f(x)|g(x) \rangle = \int_{\mathbb{R}^{3}} \overline{f(e^{-tB}x)}g(x)dx
+\]
+We can make the substitution $y=e^{-tB}x$, in which case $x=e^{tB}y$.
+The component functions of this change of variables take the form
+\[
+  h_{i}=\sum_{n=0}^{\infty}\frac{(-t)^{n}}{n!}\left[\left(B^{n}\right)_{i1}x_{1}+\left(B^{n}\right)_{i2}x_{2}+\left(B^{n}\right)_{i3}x_{3}\right]
+\]
+The Jacobian of this change of coordinates is then
+\[
+  J=
+  \begin{pmatrix}
+    \frac{\partial h_{1}}{\partial x_{1}} & \frac{\partial h_{1}}{\partial x_{2}} & \frac{\partial h_{1}}{\partial x_{3}} \\
+    \frac{\partial h_{2}}{\partial x_{1}} & \frac{\partial h_{2}}{\partial x_{2}} & \frac{\partial h_{2}}{\partial x_{3}} \\
+    \frac{\partial h_{3}}{\partial x_{1}} & \frac{\partial h_{3}}{\partial x_{2}} & \frac{\partial h_{3}}{\partial x_{3}}
+  \end{pmatrix}
+  =
+  \sum_{n=0}^{\infty}\frac{(-t)^{n}}{n!}
+  \begin{pmatrix}
+    (B^{n})_{11} & (B^{n})_{12} & (B^{n})_{13} \\
+    (B^{n})_{21} & (B^{n})_{22} & (B^{n})_{23} \\
+    (B^{n})_{31} & (B^{n})_{32} & (B^{n})_{33}
+  \end{pmatrix}
+  =e^{-tB}
+\]
+Using $\det e^{A}=e^{\tr A}$, the Jacobian determinant is
+\[
+  \det J = e^{-t\tr(B)}=1
+\]
+since the trace of skew-symmetric matrices is zero.
+We can now finally rewrite the integral as
+\[
+  \int_{\mathbb{R}^{3}}\overline{f(y)}g(e^{tB}y)|\det J|dy=  \int_{\mathbb{R}^{3}}\overline{f(y)}g(e^{tB}y)dy
+  =\langle f(x)|U^{\dagger}(t)g(x) \rangle
+\]
+which identifies $U^{\dagger}(t): g(x)\mapsto g(e^{tB}x)$.
+Clearly, this is unitary:
+\[
+  UU^{\dagger}f(x)=f(e^{-tB}e^{tB}x)=If(x)=f(e^{tB}e^{-tB}x)=UU^{\dagger}f(x)
+\]
+For $f\in C^{1}(\mathbb{R}^{3})$, the infinitesimal generator acts as
+\[
+  Af(x)=-i\lim_{t\to 0}[f(e^{-tB}x)-f(x)]/t
+\]
+The numerator limits to zero, since $e^{-at}\sim1$ as $t\to 0$.
+Applying L'H\^opital's rule,
+\[
+  =-i\lim_{t\to 0}\frac{\frac{d}{dt}f(e^{-tB}x)}{1}
+  =-i\lim_{t\to 0}\left( \frac{d}{dt}e^{-tB}x \right)\cdot\nabla f(e^{-tB}x)
+  =-i\lim_{t\to 0}\left(-Be^{-tB}x\right)\cdot\nabla f(e^{-tB}x)
+\]
+\[
+  =iBx\nabla f(x)
+\]
+This shows that the limit exists for every $f\in C^{1}(\mathbb{R})$ (so $V\subseteq D(A)$) and gives its action.
 
+\section*{2c} % This one's majorly sus
+Notice first that the definition of $n$ and $r$ give the number $s$ ``modulo'' $2\pi$ in the sense that if one divides the real number
+line into partitions by integer multiples of $2\pi$, $n(s)$ gives the multiple of $2\pi$ corresponding to the rightmost partition boundary
+which lies to the left of $s$ and $r(s)$ gives the rightward displacement of $s$ from the partition boundary.
+If $n$ were further left, adding $0\leq r(s)< 2\pi$ couldn't equal $s$, and if it were to the right of $s$, the same is true because $r(s)$
+is positive.
+% TODO: prove the properties of r I use.
+We prove first that $U_{\alpha}$ is a continuous symmetry.\newline
+\textit{Unitarity:}
+It preserves the inner product
+\[
+  \langle Uf|Ug \rangle
+  =\int_{0}^{2\pi}\overline{\alpha^{n(x+t)}f(r(x+t))}\alpha^{n(x+t)}g(r(x+t))dx
+  =\int_{0}^{2\pi}|\alpha^{n(x+t)}|^{2}\overline{f(r(x+t))}g(r(x+t))dx
+\]
+Since $|\alpha|=1$, we may write $\alpha=e^{i\theta}$ in which case it is immediately clear $|\alpha^{n(x+t)}|^{2}=1$.
+We now make the substitution $y=r(x+t)$, under which $dy=r'(x+t)dx\Leftrightarrow dx=\frac{dy}{r'(x+t)}$.
+Differentiating the definition of $n$ and $r$ with respect to $s$ yields $1=n'(s)2\pi+r'(s)=r'(s)$ since $n$ is a step function.
+Strictly speaking, it is possible there is one point in the integration interval where this derivative is not defined,
+but since this is a set of measure zero it won't contribute to the integral. % sus, but not that sus
+We therefore have, applying the substitution,
+\[
+  =\int_{r(t)}^{r(2\pi+t)}\overline{f(y)}g(y)dy=\int_{0}^{2\pi}\overline{f(y)}g(y)dy=\langle f |g\rangle
+\]
+where we have used for the penultimate equality the fact that $y$ (and therefore the entire integrand) has periodicity $2\pi$,
+so the integral over any two intervals of length $2\pi$ will be the same.
+It also is surjective, as if given a function $h\in L^{2}([0,2\pi])$, we may write since $\alpha=e^{i\theta}\Rightarrow f(x)\alpha^{g(x)}=f(x)e^{i\theta g(x)}$
+\[
+  h(x)=f(x)e^{ig'(x)}=f(x)\alpha^{g(x)}
+\]
+where $f:[0,2\pi]\to \mathbb{R}$ and $g:[0,2\pi]\to [0,2\pi]$.
+For any given $h$ (which we may rewrite in the form above), $\alpha$, and $t$, one may construct the function $k\in L^{2}([0,2\pi])$
+given by $k(x)=f(r(x-t))\alpha^{g(r(x-t))-n(r(x-t)+t)}$.
+Noting that for $x\in[0,2\pi)$
+\[r(r(x+t)-t)=r(x+t-2\pi n(x+t)-t)=r(x-2\pi n(x+t))=x\]
+since
+\[r(x+2k\pi)=x+2k\pi-n(x+2k\pi)=x+2k\pi-2k\pi=x\] 
+by the characterization of $n(s)$ above, we have
+\[
+  U_{\alpha}k=\alpha^{n(x+t)}f[r(r(x+t)-t)]\alpha^{g[r(r(x+t)-t)]-n[r(r(x+t)-t)+t]}=\alpha^{n(x+t)}f(x)\alpha^{g(x)-n(x+t)}=f(x)\alpha^{g(x)}
+\]
+Therefore, $U_{\alpha}$ is surjective for every $\alpha$ and $t$, and in conjunction with the above result this proves $U_{\alpha}$ is
+unitary.
+$U_{\alpha}(0)=I$, using $x\in[0,2\pi]$:
+\[
+  U_{\alpha}(0)f(x)=\alpha^{n(x)}f(r(x))=\alpha^{0}f(x)=f(x)
+\]
+The operator behaves properly under addition in $t$:
+\[
+  U_{\alpha}(t+s)f(x)=\alpha^{n(x+t+s)}f(r(x+t+s))=U_{\alpha}(s)\left( \alpha^{n+t}f(r(x+t)) \right)=U_{\alpha}(s)U_\alpha(t)f(x)
+\]
+Lastly, using $x\in[0,2\pi]$,
+\[
+  \lim_{t\to 0}U_{\alpha}(t)x=\lim_{t\to 0}\alpha^{n(x+t)}r(x+t)=\alpha^{n(x)}r(x)=\alpha^{0}x=x
+\]
+The infinitesimal generator of $U_{\alpha}$ is by definition
+\[
+  A_{\alpha}f=-i\lim_{t\to 0}[U_{\alpha}(t)f-f]/t=-i\lim_{t\to 0}[\alpha^{n(x+t)}f(r(x+t))-f(x)]/t
+\]
+\[
+  =-i\lim_{t\to 0}\frac{\frac{d}{dt}\alpha^{n(x+t)}f(r(x+t))}{1}=-i\lim_{t\to 0}\frac{d}{dt}{\alpha^{0}f(x+t)}=-if'(x)
+\]
+where we have used L'H\^opital's rule and $x\in(0,2\pi)$ (in which case the limit will become at some point exclusively through $t$ close enough to $x$ that $0\leq x+t<2\pi$, yielding $r(x+t)=x+t$ and $n(x+t)=0$).
+The special cases $x=0$ and $x=2\pi$ must be treated differently.
+In each case, the limit from the interior of $[0,2\pi]$ yields the above result, but the limit from outside will have
+has $n(x+t)=1$, $r(x+t)=x+t-2\pi=t$, yielding $A_{\alpha}f(2\pi)=-i\lim_{t\to 0}\frac{d}{dt}\alpha^{1} f(t)=-i\alpha f'(0)$
+Functions in the given $V_{\alpha}$ make this exist for all $x\in[0,2\pi]$, since they are $C^{1}$ so the derivative exists and the condition
+at $2\pi$ makes the two sides of the limit at $2\pi$ agree.
+Therefore, $V_{\alpha}\in D(A_{\alpha})$ and the action is as given above.
+% TODO: justify all the "obvious" facts about $r$ and $n$ that I've used.
+
+\section*{3a}
+The given $D(A)$ is a subset of the $V_{\alpha}$ given in problem 2c, since $C^{1}$ compactly-supported functions on $(0,2\pi)$ are a subset
+of $C^{1}([0,2\pi])$ functions that vanish in the limits to $0$ and $2\pi$, which are a subset of $C^{1}([0,2\pi])$ functions where
+$f(2\pi)=f(0)=0$, which are a subset of $C^{1}([0,2\pi])$ functions where $f(2\pi)=\alpha f(0)$.
+Since $V_{\alpha}\subseteq D(A_{\alpha})$ was proven in 2c, we have $D(A)\subseteq D(A_{\alpha})$.
+Further, $A=A_{\alpha}$ on $D(A)$, since the only difference in their action occurs when $x=2\pi$ for $A_{\alpha}$; this is outside $D(A)$.
+This proves $A\subset A_{\alpha}$.
+
+\section*{3b} % TODO: this is sus too; problem 2c on which it depends may have the answer.
+The theorem gives the result that $u(t)=U(t)u_{0}$ is the unique solution to $\dot{u}(t)=iAu(t)$ where $A$ is the infinitesimal generator of
+$U(t)$.
+Applying this, the result follows immediately:
+\[
+  u(t,x) = U(t)u_{0}(x) = U_{1}(t)u_{0}(x)=1^{n(x+t)}u_{0}(r(x+t))=u_{0}(x+t)
+\]
+where we have used the fact that $A=A_{\alpha}$ on $(\pi/2,\pi)$
+
+\section*{4a}
+First note that $\langle Ax,x \rangle=\sum_{i,j=1}^{n}A_{ij}x_{i}x_{j}$ where $x_{i}$ denotes the $i$th component of $x$.
+Since $A$ is positive-definite, there exists a basis with respect to which $A$ is diagonal with positive eigenvalues.
+The value of the inner product remains the same, since the length of an $\mathbb{R}^{n}$ vector is basis-independent;
+writing the eigenvalues as $\lambda_{i}$ and choosing our vector components to be in this basis,
+the inner product becomes $\sum_{i=1}^{n}\lambda_{i}x_{i}^{2}$.
+Substituting this in to the formula for the measure,
+\[
+  d\mu(x)=Z^{-1}e^{-\sum_{i=1}^{n}\lambda_{i}x_{i}^{2}/2}=Z^{-1}\prod_{i}e^{-\lambda_{i}x_{i}^{2}/2}
+\]
+\[
+  \Rightarrow 1=\mu(\mathbb{R}^{n})=\frac{1}{Z}\prod_{i=1}^{n}\int_{-\infty}^{\infty}e^{-\lambda_{i}x_{i}^{2}/2}dx_{i}
+\]
+\[
+  \Rightarrow Z=\prod_{i=1}^{n}\left( \sqrt{\frac{2\pi}{\lambda_{i}}} \right)=\sqrt{\frac{2\pi}{\det A}}
+\]
+
+\section*{4b}
+Since $G=A^{-1}$, the eigenvalues of $G$ are $\lambda_{i}^{-1}$, and $G$ is simultaneously diagonalizable with $A$, so noting
+\[
+  e^{\langle Gp,p \rangle/2}=e^{\sum_{i=1}^{n}p_{i}^{2}/2\lambda_{i}}=\prod_{i=1}^{n}e^{p_{i}^{2}/2\lambda_{i}}
+\]
+and
+\[
+  e^{\langle p,x \rangle-\langle Ax,x \rangle/2}=e^{\langle p-Ax/2,x \rangle}=\prod_{i=1}^{n}e^{p_{i}x_{i}-\lambda_{i}x_{i}^{2}/2}
+\]
+we show
+\[
+  e^{\langle Gp,p \rangle/2}=e^{\langle Gp,p \rangle/2}\int_{\mathbb{R}^{n}}Z^{-1}e^{-\langle Ax,x \rangle/2}dx
+  =\left(\prod_{i=1}^{n}e^{p_{{i}}^{2}/2\lambda_{i}}\right)
+  \left( \frac{1}{Z}\prod_{i=1}^{n}\int_{-\infty}^{\infty} e^{-\lambda_{i}x_{i}^{2}/2}dx_{i}\right)
+\]
+\[
+  =\frac{1}{Z}\prod_{i=1}^{n}\int_{-\infty}^{\infty}e^{p_{i}^{2}/2\lambda_{i}-\lambda_{i}x_{i}^{2}/2}dx_{i}
+  =\frac{1}{Z}\prod_{i=1}^{n}\int_{-\infty}^{\infty}e^{p_{i}^{2}/2\lambda-x_{i}p_{i}+p_{i}x_{i}-\lambda_{i}x_{i}^{2}/2}dx_{i}
+\]
+\[
+  =\frac{1}{Z}\int_{\mathbb{R}^{n}}\left(\prod_{i=1}^{n}e^{p_{i}^{2}/2\lambda_{i}-x_{i}p_{i}}\right)e^{\langle p,x \rangle-\langle Ax,x \rangle/2}dx
+  =\frac{1}{Z}\int_{\mathbb{R}^{n}}e^{\langle Gp,p \rangle-\langle x,p\rangle}e^{\langle p,x \rangle-\langle Ax,x \rangle/2}dx
+\]
+\[
+  =\int_{\mathbb{R}}e^{\langle Gp-x,0\rangle}e^{\langle p,x \rangle}\frac{1}{Z}e^{-\langle Ax,x \rangle/2}dx
+  =\int_{\mathbb{R}}e^{\langle p,x \rangle}d\mu(x)
+\]
+as desired.
+
+\section*{4c}
+$e^{i\langle p,x \rangle}=\prod_{k=1}^{n}e^{ip_{k}x_{k}}$
+Proceeding similarly, this time
+\[
+  e^{-\langle Gp,p \rangle/2}=e^{\sum_{i=1}^{n}-p_{i}^{2}/2\lambda_{i}}=\prod_{i=1}^{n}e^{-p_{i}^{2}/2\lambda_{i}}
+\]
+so
+\[
+  e^{-\langle Gp,p \rangle/2}=e^{-\langle Gp,p \rangle/2}\int_{\mathbb{R}^{n}}Z^{-1}e^{-\langle Ax,x \rangle/2}dx
+  =\left(\prod_{i=1}^{n}e^{-p_{{i}}^{2}/2\lambda_{i}}\right)
+  \left( \frac{1}{Z}\prod_{i=1}^{n}\int_{-\infty}^{\infty} e^{-\lambda_{i}x_{i}^{2}/2}dx_{i}\right)
+\]
+\[
+  =\frac{1}{Z}\prod_{i=1}^{n}\int_{-\infty}^{\infty}e^{-p_{i}^{2}/2\lambda_{i}-\lambda_{i}x_{i}^{2}/2}dx_{i}
+  =\frac{1}{Z}\prod_{i=1}^{n}\int_{-\infty}^{\infty}e^{-p_{i}^{2}/2\lambda-x_{i}p_{i}+p_{i}x_{i}-\lambda_{i}x_{i}^{2}/2}dx_{i}
+\]
+\[
+  =\frac{1}{Z}\int_{\mathbb{R}^{n}}\left(\prod_{i=1}^{n}e^{-p_{i}^{2}/2\lambda_{i}-x_{i}p_{i}}\right)e^{\langle p,x \rangle-\langle Ax,x \rangle/2}dx
+  =\frac{1}{Z}\int_{\mathbb{R}^{n}}e^{-\langle Gp,p \rangle-\langle x,p\rangle}e^{\langle p,x \rangle-\langle Ax,x \rangle/2}dx
+\]
+\[
+  =\int_{\mathbb{R}}e^{-\langle Gp+x,2p\rangle}e^{\langle p,x \rangle}\frac{1}{Z}e^{-\langle Ax,x \rangle/2}dx
+  =\int_{\mathbb{R}}e^{-\langle Gp+2x,3p \rangle}d\mu(x)
+\]
+We note $\langle Gp+2x,3p \rangle=\sum_{i}3p_{i}^{2}/\lambda_{i}+6x_{i}p_{i}$
+% TODO: figure out this nonsense
+
+\section*{11a}
+\[
+  \det \Lambda =
+  \begin{vmatrix}
+    \gamma & -\gamma\beta & 0 & 0 \\
+    -\gamma\beta & \gamma & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1
+  \end{vmatrix}
+  =
+  1\cdot
+  \begin{vmatrix}
+    \gamma & -\gamma\beta & 0 \\
+    -\gamma\beta & \gamma & 0 \\
+    0 & 0 & 1
+  \end{vmatrix}
+  =
+  \begin{vmatrix}
+    \gamma & -\gamma\beta \\
+    -\gamma\beta & \gamma
+  \end{vmatrix}
+  =\gamma^{2}-\gamma^{2}\beta^{2}
+\]
+\[
+  =\gamma^{2}(1-\beta^{2})=(1-\beta^{2})^{-1}(1-\beta^{2})=1
+\]
+so this is a proper Lorentz transformation.
+The proposed inverse satisfies
+\[
+  \Lambda^{-1}\Lambda=
+  \begin{pmatrix}
+    \gamma & \gamma\beta & 0 & 0 \\
+    \gamma\beta & \gamma & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1
+  \end{pmatrix}
+  \begin{pmatrix}
+    \gamma & -\gamma\beta & 0 & 0 \\
+    -\gamma\beta & \gamma & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \gamma^{2}-\gamma^{2}\beta^{2} & \gamma^{2}\beta-\gamma^{2}\beta & 0 & 0 \\
+    -\gamma^{2}\beta+\gamma^{2}\beta & -\gamma^{2}\beta^{2}+\gamma^{2} & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1
+  \end{pmatrix}
+\]
+\[
+  =
+  \begin{pmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1
+  \end{pmatrix}
+  =I
+\]
+and
+\[
+  \Lambda\Lambda^{-1}=
+  \begin{pmatrix}
+    \gamma & -\gamma\beta & 0 & 0 \\
+    -\gamma\beta & \gamma & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1
+  \end{pmatrix}
+  \begin{pmatrix}
+    \gamma & \gamma\beta & 0 & 0 \\
+    \gamma\beta & \gamma & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \gamma^{2}-\gamma^{2}\beta^{2} & \gamma^{2}\beta-\gamma^{2}\beta & 0 & 0 \\
+    -\gamma^{2}\beta+\gamma^{2}\beta & -\gamma^{2}\beta^{2}+\gamma^{2} & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1
+  \end{pmatrix}
+\]
+\[
+  =
+  \begin{pmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1
+  \end{pmatrix}
+  =I
+\]
+so it is, in fact, the inverse.
+The action of the Lorentz transformation on the unit vectors along coordinate axes yields
+\[\hat{x}'=\gamma \hat{x}\]
+\[\hat{y}'=\hat{y}\]
+\[\hat{z}'=\hat{z}\]
+and so the new axes are parallel to the old.
+The origin of the primed system is at $\vec{x'}=0$; this occurs at $y=0$ and $z=0$ trivially, but the $x$ variable has
+\[
+  -\gamma\beta t+\gamma x=0
+  \Leftrightarrow x = \beta t
+\]
+which is exactly the origin moving along the positive $x$ axis with velocity $\beta$.
+
+\section*{11b}
+Taking the events to happen at the origin of the primed system,
+\[
+  \Lambda^{-1} \vec{x'}_{2}-\Lambda^{-1} \vec{x'}_{1}
+  =
+  \begin{pmatrix}
+    \gamma t'_{2} \\
+    \gamma\beta t'_{2} \\
+    0 \\
+    0
+  \end{pmatrix}
+  -
+  \begin{pmatrix}
+    \gamma t_{1} \\
+    \gamma\beta t'_{1} \\
+    0 \\
+    0
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \gamma(t'_{2}-t'_{1}) \\
+    \gamma\beta(t'_{1}-t'_{2}) \\
+    0 \\
+    0
+  \end{pmatrix}
+\]
+The first component is $\gamma T$; since this is the computation of the difference between the two events in the unprimed frame,
+this proves the time dilation formula.
+
+\section*{11c}
+A similar computation to the above result applies:
+\[
+  \Lambda^{-1}\vec{x_{2}'}-\Lambda^{-1}\vec{x_{1}'}
+  =
+  \begin{pmatrix}
+    \gamma\beta x_{2}' \\
+    \gamma x_{2}' \\
+    0 \\
+    0
+  \end{pmatrix}
+  -
+  \begin{pmatrix}
+    \gamma\beta x_{1}' \\
+    \gamma x_{1}' \\
+    0 \\
+    0
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \gamma\beta L \\
+    \gamma L \\
+    0 \\
+    0
+  \end{pmatrix}
+\]
+Reading off the first component confirms the result.
+Whichever occurs first along the $x$ axis occurs first in time, since $L$ is a distance and therefore positive.
+For spacelike separated events,
+\[
+  \Lambda \vec{x_{2}}-\Lambda \vec{x_{1}}
+  =
+  \begin{pmatrix}
+    \gamma t_{2}-\gamma\beta x_{2} - (\gamma t_{1}-\gamma\beta x_{1}) \\
+    \gamma x_{2}-\gamma\beta t_{2} - (\gamma x_{1}-\gamma\beta t_{1}) \\
+    0 \\
+    0
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \gamma T-\gamma\beta L \\
+    \gamma L - \gamma\beta T \\
+    0 \\
+    0
+  \end{pmatrix}
+\]
+For the time component to be zero,
+\[
+  \gamma T=\gamma\beta L
+  \Leftrightarrow \beta = \frac{T}{L}
+\]
+The spacelike condition ensures conformance with $|\beta|<1$:
+\[
+  T^{2}-L^{2}<0
+  \Leftrightarrow T^{2}<L^{2}
+  \Leftrightarrow |T|<|L|
+  \Leftrightarrow \frac{|T|}{|L|}<1
+  \Rightarrow |\beta| < 1
+\]
+
+\section*{11d}
+Once again,
+\[
+  \Lambda^{-1}\vec{x_{2}'}-\Lambda^{-1}\vec{x_{1}'}
+  =
+  \begin{pmatrix}
+    \gamma t_{2}+\gamma\beta x_{2}-(\gamma t_{1}+\gamma\beta x_{1}) \\
+    \gamma\beta t_{2}+\gamma x_{2}-(\gamma\beta t_{1}+\gamma x_{1}) \\
+    0 \\
+    0
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \gamma T + \gamma\beta L \\
+    \gamma \beta T + \gamma L \\
+    0 \\
+    0
+  \end{pmatrix}
+\]
+The measurements are simultaneous in the unprimed frame, i.e. the first component of the above displacement is zero, yielding
+$T=-\beta L$.
+Plugging this in to the second component, one obtains
+\[
+  \gamma L-\gamma\beta^{2}L=L\gamma[1-\beta^{2}]=L\gamma(1/\gamma^{2})=L/\gamma
+\]
+as desired.
+
+\section*{12}
+For convenience of notation, define $f:SL(2,\mathbb{C})\to SO^{+}(1,3) :: A\mapsto (X\mapsto AXA^{\dagger})$ where $X$ is of the form
+given in the problem.
+This map is indeed a homomorphism: using $(AB)^{\dagger}=B^{\dagger}A^{\dagger}$,
+\[
+  f(A)f(B)=(X\mapsto AXA^{\dagger})\circ(X\mapsto BXB^{\dagger})=X\mapsto A(BXB^{\dagger})A^{\dagger}=(AB)x(B^{\dagger}A^{\dagger})
+  =f(AB)
+\]
+The kernel of $f$ are those elements $A\in SL(2,\mathbb{C})$ such that $X=AXA^{\dagger}\Leftrightarrow A^{-1}X=XA^{\dagger}$ for all $X$ of
+the given form.
+Since $A\in SL(2,\mathbb{C})\Rightarrow \det A=1$ , $A$ is unitary, i.e. $AA^{\dagger}=A^{\dagger}A=I$.
+We then can write
+\[
+  X=AXA^{\dagger}
+  \Leftrightarrow XA=AXA^{\dagger}A
+  \Leftrightarrow XA=AX
+\]
+Elements of the center of $GL(n,\mathbb{F})$ are $c^{*}I$ where $c^{*}$ is any unit of $\mathbb{F}$ and $I$ is the identity matrix, and
+since the units in $\mathbb{R}$ are $\pm 1$, the kernel of the homomorphism is $\pm I$.
+By the isomorphism theorem, $\im f\cong SL(2,\mathbb{C})/\ker f$, and $\ker f$ is discrete.
+Since $\im f$ is a subgroup of the Lorentz group, and the Lorentz group is connected, $\im f$ is isomorphic to the whole group,
+implying $f$ is surjective. % TODO: possible prove the center of GL(n,\mathbb{F}) and make sure my final argument is right
+
+\section*{13}
+Using the fact $\tilde{x}$ is the difference of two observables and therefore Hermitian,
+\[
+  (\Delta x)^{2}(\Delta p)^{2}
+  =\langle \psi|\tilde{x}^{2}|\psi \rangle\langle \psi|\tilde{p}^{2}|\psi \rangle
+  =\langle \psi|\tilde{x}^{2}\psi \rangle\langle \psi|\tilde{p}^{2}\psi \rangle
+  =\langle \tilde{x}\psi|\tilde{x}\psi \rangle\langle \tilde{p}\psi|\tilde{p}\psi \rangle
+  \geq |\langle \tilde{x}\psi|\tilde{p}\psi \rangle|^{2}
+  =|\langle \psi|\tilde{x}\tilde{p}\psi \rangle|^{2}
+  =|\langle \psi|\tilde{x}\tilde{p}|\psi \rangle|^{2}
+\]
+We write
+\[
+  \langle\psi| \tilde{x}\tilde{p}|\psi\rangle
+  =\langle\psi| \left( x-\langle \psi|x|\psi \rangle \right)\left( p-\langle \psi|p|\psi \rangle \right)|\psi\rangle
+  =\langle\psi|xp|\psi\rangle-\langle\psi|x\langle \psi|p|\psi \rangle|\psi\rangle-\langle\psi|p\langle \psi|x|\psi
+  \rangle|\psi\rangle+\langle \psi|x|\psi \rangle\langle \psi|p|\psi \rangle\langle \psi|\psi \rangle
+\]
+\[
+  =\langle \psi|xp|\psi \rangle+\langle \psi|x|\psi \rangle\langle \psi|p|\psi \rangle
+\]
+Complex numbers have the property
+\[
+  |z|^{2}=(\Re z)^{2}+(\Im z)^{2}\geq (\Im z)^{2} = \left( \frac{1}{2i}(z-z^{*}) \right)^{2}
+\]
+Applying this to $z=\langle \psi|\tilde{x}\tilde{p}|\psi \rangle$,
+\[
+  |\langle \psi|\tilde{x}\tilde{p}|\psi \rangle|^{2}
+  \geq \left( \frac{1}{2i}\left[ (\langle \psi|xp|\psi \rangle+\langle \psi|x|\psi \rangle\langle \psi|p|\psi \rangle)
+      -(\langle \psi|xp|\psi \rangle+\langle \psi|x|\psi \rangle\langle \psi|p|\psi \rangle)^{*} \right] \right)^{2}
+\]
+\[
+  =\left( \frac{1}{2i}\left[ \langle \psi|xp|\psi\rangle-\langle \psi|px|\psi \rangle \right] \right)^{2}
+  =\left( \frac{1}{2i}\langle \psi|[x,p]|\psi \rangle \right)^{2}
+  =\frac{1}{4}
+  =\frac{\hbar^{2}}{4}
+\]
+where in the last equality we have returned from natural units.
+The ground state of the simple harmonic oscillator is $\psi_{0}(x)=\left( \frac{m\omega}{\pi\hbar} \right)^{1/4}e^{-m\omega x^{2}/2\hbar}$,
+from which we can compute
+\[
+  \langle \psi_{0}|x|\psi_{0}\rangle =0\textrm{ (odd function, symmetric interval)}
+\]
+\[
+  \langle\psi_{0}|p|\psi_{0}  \rangle=\sqrt{\frac{m\omega}{\pi\hbar}}\int_{-\infty}^{\infty}e^{-m\omega x^{2}/2\hbar}
+  \left(-i\hbar\frac{\partial}{\partial x}e^{-m\omega x^{2}/2\hbar}  \right)dx
+  =\sqrt{\frac{m\omega}{\pi\hbar}}\int_{-\infty}^{\infty}e^{-m\omega x^{2}/2\hbar}\left( im\omega x e^{-m\omega x^{2}/2\hbar}\right)dx
+\]
+\[
+  =0 \textrm{ (odd function, symmetric interval)}
+\]
+\[
+  \Rightarrow \tilde{x}=x, \tilde{p}=p
+\]
+\[
+  \Rightarrow (\Delta x)^{2}=\langle \psi_{0}|\tilde{x}^{2}|\psi_{0} \rangle=\langle \psi_{0}|x^{2}|\psi_{0} \rangle
+  =\sqrt{\frac{m\omega}{\pi\hbar}}\int_{-\infty}^{\infty}e^{-m\omega x^{2}/2\hbar}x^{2}e^{-m\omega x^{2}/2\hbar}dx
+\]
+\[
+  =\sqrt{\frac{m\omega}{\pi\hbar}}\int_{-\infty}^{\infty}x^{2}e^{-m\omega x^{2}/\hbar}
+  =\sqrt{\frac{m\omega}{\pi\hbar}}\sqrt{\frac{\pi\hbar^{3}}{4m^{3}\omega^{3}}}
+  =\sqrt{\frac{\hbar^{2}}{4m^{2}\omega^{2}}}=\frac{\hbar}{2m\omega}
+\]
+\[
+  \Rightarrow (\Delta p)^{2}=\langle \psi_{0}|\tilde{p}^{2}|\psi_{0} \rangle=\langle \psi_{0}|p^{2}|\psi_{0} \rangle
+  =-\sqrt{\frac{m\omega}{\pi\hbar}}\int_{-\infty}^{\infty}e^{-m\omega x^{2}/2\hbar}\hbar^{2}\frac{\partial^{2}}{\partial x^{2}}
+  e^{-m\omega x^{2}/2\hbar}dx
+\]
+\[
+  =-\sqrt{\frac{m\omega}{\pi\hbar}}\int_{-\infty}^{\infty}e^{-m\omega x^{2}/2\hbar}
+  \hbar^{2}\left( \frac{1}{\hbar^{2}} m\omega e^{-m\omega x^{2}/2\hbar}(m\omega x^{2}-\hbar)\right)dx
+\]
+\[
+  =-\sqrt{\frac{m\omega}{\pi\hbar}}\left( m^{2}\omega^{2}\int_{-\infty}^{\infty}x^{2}e^{-m\omega x^{2}/\hbar}dx
+    -\hbar m\omega\int_{-\infty}^{\infty}e^{-m\omega x^{2}/\hbar}\right)
+\]
+\[
+  =-\sqrt{\frac{m\omega}{\pi\hbar}}\left( m^{2}\omega^{2}\sqrt{\frac{\pi \hbar^{3}}{4m^{3}\omega^{3}}}
+    -\hbar m\omega\sqrt{\frac{\pi\hbar}{m\omega}} \right)
+  =-(\hbar m\omega/2-\hbar m\omega)=m\omega\frac{\hbar}{2}
+\]
+where we have used a table for the nasty Gaussian-type integrals.
+Multiplying the results, we indeed confirm this is a minimum-uncertainty state:
+\[
+  (\Delta x)^{2}(\Delta p)^{2}=\frac{\hbar}{2m\omega}\left( m\omega\frac{\hbar}{2}\right)=\frac{\hbar^{2}}{4}
+\]
+
+\section*{14}
 
 \end{document}
 %%% Local Variables:

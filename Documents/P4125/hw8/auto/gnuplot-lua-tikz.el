@@ -1,0 +1,34 @@
+(TeX-add-style-hook
+ "gnuplot-lua-tikz"
+ (lambda ()
+   (TeX-run-style-hooks
+    "tikz")
+   (TeX-add-symbols
+    "gpvcharsize"
+    "gphcharsize"
+    "gpbasems"
+    "gpbaselw"
+    "gpchecktikzversion"
+    "gploadimage"
+    "gprawimage"
+    "gpsetvar"
+    "gpgetvar"
+    "gpfill"
+    "gpsetlinewidth"
+    "gpsetlinetype"
+    "gpsetdashtype"
+    "gpsetpointsize"
+    "gpcolor"
+    "gppoint"
+    "gp"
+    "gpcalccharsize"
+    "gpdefrectangularnode"
+    "southwest"
+    "northeast"
+    "gpsetbgcolor"
+    "gpbboxborder"
+    "gpdashlength"
+    "gpcoloredlines"
+    "gpmonochromelines"))
+ :latex)
+

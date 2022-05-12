@@ -1,0 +1,296 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{tikz}
+\usepackage{gnuplot-lua-tikz}
+\usepackage{minted}
+
+\usemintedstyle{autumn}
+
+\title{4125 HW 8}
+\author{Duncan Wilkie}
+\date{9 May 2022}
+
+\begin{document}
+
+\maketitle
+
+\section*{7.20}
+The quantum volume at this temperature is
+\[
+  v_{Q}=\left( \frac{h}{\sqrt{2\pi m_{e}kT}} \right)^{3}
+  =\left( \frac{\SI{6.67e-34}{J\cdot s}}{\sqrt{2\pi (\SI{9.11e-31}{kg})(\SI{1.38e-23}{J/K})(\SI{e7}{K})}} \right)^{3}
+  =\SI{1.34e-32}{m^{3}}
+\]
+Therefore, the volume per electron (the reciprocal of the density of the electrons) is on the order of the quantum volume,
+so neither the condition for Boltzmann statistics ($V/N\gg v_{Q}$) or that for a Fermi gas ($V/N\ll v_{Q}$) are satisfied.
+
+\section*{7.39}
+The change of variables $\epsilon=hc/\lambda$, $d\epsilon=-\frac{hc}{\lambda^{2}}d\lambda$ results in
+\[
+  \frac{U}{V}=\int_{\infty}^{0}\frac{8\pi(hc/\lambda)^{3}/(hc)^{3}}{e^{hc/\lambda kT}-1}\left( -\frac{hc}{\lambda^{2}}d\lambda \right)
+  =\int_{0}^{\infty}\frac{8\pi hc/\lambda^{5}}{e^{hc/\lambda kT}-1}d\lambda
+\]
+The spectrum is then
+\[
+  u(\lambda)=\frac{8\pi hc/\lambda^{5}}{e^{hc/\lambda kT}-1}
+\]
+which can be plotted as
+\begin{center}
+\input{plot2.tex}
+\end{center}
+The spectrum is a constant multiple of the function $\frac{1/x^{5}}{e^{1/x}-1}$ where $x=\lambda kT/hc$; we can minimize this numerically.
+For fun, we can implement the numerical algorithm in Scheme, as below:
+\begin{minted}{scheme}
+(define (u x)
+(/ (/ (expt x 5))
+   (- (exp (/ x))
+      1)))
+
+(define (cdiff f x h)
+  (/ (- (f (+ x (/ h 2)))
+	(f (- x (/ h 2))))
+     h))
+
+(define (sign x)
+  (if (negative? x)
+      -1
+      1))
+
+(define (bisect f interval tol)
+  (let*
+      ((mid (/ (+ (cadr interval) (car interval)) 2))
+       (fmid (f mid)))
+    (if (< (abs fmid) tol)
+	(list mid fmid)
+	(bisect f
+		(if
+		 (= (sign fmid) (sign (f (cadr interval))))
+		 (list (car interval) mid)
+		 (list mid (cadr interval)))
+		tol))))
+
+(bisect (lambda (x) (cdiff u x 0.001))
+	'(0.1 1)
+	0.00001)
+\end{minted}
+Evaluating this in the Guile REPL, \newline
+\verb|=> (0.20140608847141267 -7.53436424361098e-6)| \newline
+so the maximum occurs at
+\[
+  \lambda kT/hc=0.20141
+  \Leftrightarrow \lambda=\frac{hc}{(4.965)kT}
+\]
+This lower than the peak in the energy spectrum because lower wavelengths have disproportionately large amounts of associated energy
+due to the nonlinear dependence of the two quantities on each other; therefore, the wavelength distribution skews more leftward.
+
+\section*{7.44a}
+The Planck distribution is the occupancy for this system; the sum over all possible energy states is the total number of particles.
+Each mode has two possible photons corresponding to it, due to opposite polarizations.
+We then can write, using $n$ to denote the magnitude of the vector $(n_{x},n_{y},n_{z})$
+\[
+  N=2\sum_{n_{x}}\sum_{n_{y}}\sum_{n_{z}}\overline{n}_{Pl}(\epsilon)
+  =\sum_{n_{x},n_{y},n_{z}}\frac{2}{e^{hcn/2LkT}-1}
+\]
+Writing the sums as an integral in spherical coordinates over an $n$-space octant,
+\[
+  N=\int_{0}^{\infty}\int_{0}^{\pi/2}\int_{0}^{\pi/2}n^{2}\sin\theta\frac{2}{e^{hcn/2LkT}-1}dnd\phi d\theta
+\]
+The angular integrals evaluate to $\pi/2$, and we can make the change of variables to $x=hcn/2LkT$
+(in which case $n=2LkTx/hc$ and $dn=2LkTdx/hc$) to obtain
+\[
+  N=\frac{\pi}{2}\int_{\infty}^{0}\left( \frac{2LkT}{hc}x \right)^{2}\frac{2}{e^x-1}\left(  -\frac{2LkT}{hc}\right)dx
+  =\pi\left( \frac{2LkT}{hc}\right)^{3}\int_{0}^{\infty}\frac{x^{2}}{e^{x}-1}dx
+\]
+Identifying $L^{3}=V$,
+\[
+  N=8\pi V\left( \frac{kT}{hc} \right)^{3}\int_{0}^{\infty}\frac{x^{2}}{e^{x}-1}dx
+\]
+\newpage
+We can add to our growing Scheme numerical methods library:
+\begin{minted}{scheme}
+(use-modules (srfi srfi-1)
+	     (srfi srfi-8))
+
+(define (f x)
+  (/ (expt x 2)
+     (- (exp x) 1)))
+
+(define (simpstep f a b)
+  (* (/ (- b a) 6)
+     (+ (f a)
+	(f b)
+	(* 4 (f (/ (+ a b) 2))))))
+
+(define (simpson f a b n)
+  (let ((step (/ (- b a) n)))
+    (receive (as bs)
+	     (unzip2 (unfold (lambda (x) (>= x b))
+			     (lambda (x) (list x (+ x step)))
+			     (lambda (x) (+ x step))
+			     a))
+      (fold + 0 (map (lambda (x y) (simpstep f x y))
+		     as
+		     bs)))))
+
+(simpson f 1e-10 100 1200000)
+\end{minted}
+This evaluates (impressively quickly, for a single-threaded interpreted language) to \newline
+\verb|=> 2.404113806317145| \newline
+so we may write
+\[
+  N=8\pi V\left( \frac{kT}{hc} \right)^{3}(2.4041)
+\]
+
+\section*{7.44c}
+Plugging these values into our formula,
+\[
+  N=8\pi(\SI{1}{m})\left( \frac{(\SI{1.38e-23}{J/K})(\SI{300}{K})}{(\SI{6.67e-34}{J\cdot s})(\SI{3e8}{m/s})} \right)^{3}(2.4041)
+  =\SI{5.24e14}{photons}
+\]
+\[
+  N=8\pi(\SI{1}{m})\left( \frac{(\SI{1.38e-23}{J/K})(\SI{1500}{K})}{(\SI{6.67e-34}{J\cdot s})(\SI{3e8}{m/s})} \right)^{3}(2.4041)
+  =\SI{6.69e16}{photons}
+\]
+\[
+  N=8\pi(\SI{1}{m})\left( \frac{(\SI{1.38e-23}{J/K})(\SI{2.73}{K})}{(\SI{6.67e-34}{J\cdot s})(\SI{3e8}{m/s})} \right)^{3}(2.4041)
+  =\SI{4.03e8}{photons}
+\]
+
+\section*{7.53a}
+The peak of the blackbody wavelength spectrum was derived in problem 7.39 to be at
+\[
+  \lambda = \frac{hc}{(4.965)kT}=\frac{16\pi^{2}GM}{(4.965)c^{2}}=\frac{16\pi^{2}(\SI{6.67e-11}{Nm^{2}/kg^{2}})(\SI{2e30}{kg})}
+  {(4.965)(\SI{3e8})^{2}}
+\]
+\[
+  =\SI{47.1}{km}
+\]
+Equating the expression for the surface area to $4\pi R^{2}$, the radius is
+\[
+  R=\frac{2GM}{c^{2}}=\frac{2(\SI{6.67e-11}{Nm^{2}/kg^{2}})(\SI{2e30}{kg})}{(\SI{3e8}{m/s})^{2}}
+  =\SI{2.96}{km}
+\]
+The radiated wavelength is predicted to be significantly larger than the black hole itself.
+
+\section*{7.53b}
+Taking the black hole to be a perfect blackbody, the total power radiated is
+\[
+  P=\sigma AT^{4}=\frac{2\pi^{5}k^{4}}{15h^{3}c^{2}}\left( \frac{16\pi G^{2}M^{2}}{c^{4}} \right)
+  \left( \frac{hc^{3}}{16\pi^{2}kGM} \right)^{4}
+  =\frac{hc^{6}}{15\cdot 8\cdot16^{2}\pi^{6}G^{2}M^{2}}
+\]
+\[
+  \frac{(\SI{6.63e-34}{J\cdot s})(\SI{3e8}{m/s})^{6}}
+  {15\cdot 8\cdot16^{2}\pi^{6}(\SI{6.67e-11}{Nm^{2}/kg^{2}})^{2}(\SI{2e30}{kg})^{2}}
+  =\SI{9.20e-31}{W}
+\]
+
+\section*{7.53c}
+The rate of change of the energy of the black hole is the negative of the power expression above, i.e.
+\[
+  \frac{d}{dt}(Mc^{2})=-\frac{hc^{6}}{15\cdot 8\cdot 16^{2}\pi^{6}G^{2}M^{2}}
+\]
+Separating the variables,
+\[
+  M^{2}{dM}=-\frac{hc^{4}}{15\cdot 8\cdot 16^{2}\pi^{6}G^{2}}dt
+\]
+Integrating and applying the initial condition $M(0)=M_{0}$,
+\[
+  \frac{M^{3}}{3}=\frac{M_{0}^{3}}{3}-\frac{hc^{4}}{15\cdot 8\cdot 16^{2}\pi^{6}G^{2}}t
+\]
+\[
+  \Leftrightarrow M(t)=\sqrt[3]{M_{0}^{3}-\frac{hc^{4}}{40\cdot16^{2}\pi^{6}G^{2}}t}
+\]
+This is equal to zero when
+\[
+  \frac{hc^{4}}{40\cdot 16^{2}\pi^{6}G^{2}}t_{l}=M_{0}^{3}
+  \Leftrightarrow t_{l}=\frac{40\cdot 16^{2}\pi^{6}G^{2}M_{0}^{3}}{hc^{4}}
+\]
+
+\section*{7.53d}
+Evaluating the last equation above at $M_{0}$ equal to one solar mass,
+\[
+  t_{l}=\frac{40\cdot 16^{2}\pi^{6}(\SI{6.67e-11}{Nm^{2}/kg^{2}})^{2}(\SI{2e30}{kg})^{3}}{(\SI{6.63e-34}{J s})(\SI{3e8}{m/s})^{4}}
+  =\SI{6.51e76}{s}=\SI{2.07e69}{yr}
+\]
+\[
+  \approx\textrm{2 Morbillion years}
+\]
+This is longer than the age of the universe by 60 orders of magnitude.
+
+\section*{7.53e}
+This can be written
+\[
+  M_{0}=\sqrt[3]{\frac{hc^{4}}{40\cdot 16^{2}\pi^{6}G^{2}}t_{l}}
+  =\sqrt[3]{\frac{(\SI{6.63e-34}{Js})(\SI{3e8}{m/s})^{4}}{40\cdot 16^{2}\pi^{6}(\SI{6.67e-11}{Nm^{2}/kg^{2}})^{2}}(10^{10})}
+  =\SI{10.7e7}{kg}
+\]
+Doing the same peak wavelength calculation as before,
+\[
+  \lambda = \frac{16\pi^{2}GM}{(4.965)c^{2}}=\frac{16\pi^{2}(\SI{6.67e-11}{Nm^{2}/kg^{2}})(\SI{10.7e7}{kg})}{(4.965)(\SI{3e8})^{2}}
+  =\SI{2.5e-18}{m}
+\]
+which corresponds to extremely high-energy gamma radiation.
+
+\section{}
+The magnitude of the momentum of an electron in the gas is
+\[
+  p=\sqrt{p_{x}^{2}+p_{y}^{2}}=\sqrt{\frac{h^{2}n_{x}^{2}}{4L^{2}}+\frac{h^{2}n_{y}^{2}}{4L^{2}}}=\frac{h}{2L}\sqrt{n_{x}^{2}+n_{y}^{2}}
+  =\frac{hn}{2L}
+\]
+The total energy of the gas at $T=0$ is, proceeding similarly to the derivation for a nonrelativistic electron gas,
+\[
+  U=2\sum_{n_{x},n_{y}}\epsilon(\vec{n})=2\int_{0}^{n_{max}}\int_{0}^{\pi/2}\epsilon(n)n dnd\theta
+\]
+where the 2 accounts for the two distinct electronic spin states for each combination of $n_{x}$ and $n_{y}$,
+the passage to integrals is justified by presuming the number of electrons, and we convert to polar coordinates in $n$ space.
+We then apply the change of variables
+\[
+  \epsilon=\sqrt{p^{2}c^{2}+m^{2}c^{4}}=\sqrt{\frac{h^{2}n^{2}c^{2}}{4L^{2}}+m^{2}c^{4}}
+  \Leftrightarrow n=\sqrt{\frac{4L^{2}}{h^{2}c^{2}}(\epsilon^{2}-m^{2}c^{4})}
+\]
+\[
+  dn=\frac{4L^{2}\epsilon/h^{2}c^{2}}{\sqrt{\frac{4L^{2}}{h^{2}c^{2}}(\epsilon^{2}-m^{2}c^{4})}}d\epsilon
+\]
+to get
+\[
+  U={\pi}\int_{0}^{n_{max}}\epsilon(n)ndn=\int_{mc^{2}}^{\epsilon_{F}}\pi\epsilon\frac{4L^{2}\epsilon}{h^{2}c^{2}}d\epsilon
+\]
+implying the density of states (which is a probability distribution in the state energy variable whose expectation is the average energy of
+the system) is the integrand
+divided by $\epsilon$:
+\[
+  g(\epsilon) = \frac{4\pi L^{2}\epsilon}{h^{2}c^{2}}
+\]
+
+\section{}
+Much like the nonrelativistic case, $\epsilon_{F}$ is the energy of an electron just on the surface of the circle in $n$ space, so
+\[
+  \epsilon_{F}=\sqrt{\frac{h^{2}n_{max}^{2}c^{2}}{4L^{2}}+m^{2}c^{4}}
+\]
+The total number of occupied states at $T=0$ is twice (due to spin) the volume of a quarter-circle with radius $n_{max}$ in $n$ space, i.e.
+\[
+  N=2\cdot{\frac{1}{4}}\pi n_{max}^{2}=\frac{\pi n_{max}^{2}}{2}
+  \Leftrightarrow n_{max}=\sqrt{\frac{2N}{\pi}}
+\]
+Plugging this in to the formula for $\epsilon_{F}$,
+\[
+  \epsilon_{F}=\sqrt{\frac{Nh^{2}c^{2}}{2\pi L^{2}}+m^{2}c^{4}}
+\]
+In the nonrelativistic limit, the dominant contribution to the energy is the $m^{2}c^{4}$ term, i.e. $N/L^{2}$ is small in comparison.
+Expanding using $\sqrt{a+x}\approx \sqrt{a}+\frac{x}{2a}$ when $x\to 0$,
+\[
+  \epsilon_{F}\approx mc^{2}+\frac{Nh^{2}c^{2}}{2\pi mc^{2}L^{2}}=mc^{2}+\frac{Nh^{2}}{2\pi mL^{2}}
+\]
+The first term is the rest mass of the electron at the Fermi surface, and the second term is precisely the nonrelativistic Fermi energy.
+To see this, repeat the calculation above, but take $\epsilon_{F}=\frac{h^{2}n_{max}^{2}}{4mL^{2}}$ in accordance with the nonrelativistic
+result $\epsilon(n)=\frac{p^{2}}{2m}=\frac{h^{2}n^{2}}{8mL^{2}}$.
+\end{document}
+%%% Local Variables:
+%%% TeX-command-extra-options: "-shell-escape"
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

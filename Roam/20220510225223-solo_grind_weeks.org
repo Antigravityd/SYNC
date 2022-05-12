@@ -1,0 +1,50 @@
+:PROPERTIES:
+:ID:       85368793-f5d8-40f3-a252-aed10e74f18b
+:END:
+#+title: Solo Grind Weeks
+
+* The Situation
+
+I have two weeks of free time after the semester ends and before Jacob takes the MCAT and is available to work on the iOS detectors before the exposures in mid/late June. These are the things I want to occupy myself with as I go home through this time.
+
+* Projects
+
+** Health
+
+- Fix sleep schedule (Gorilla Dream?)
+- Work out 5x/wk
+- Eat 180g protien/day split over five evenly-spaced meals, <2500 total calories (with strict counting!)
+- Drink 120ml fluids/day
+- Cardio, probably :/
+
+** PHITS Improvements
+
+The Emacs major mode can probably be finished pretty easily. Adding OpenMP support to the wrapper script, as well as possibly user library importation support, would be nice too. The .inp→Python half of the bijection may be able to be completed too—I need to figure out the deal with tallies, and IIRC I had given up on the lattice-universe geometry.
+
+** Tiger Eye 1 UI Work
+
+Since this can progress asynchronously, I think there's a lot of work I can do essentially porting the Ergz UI to something nice-looking on MacOS.
+
+** Free-as-in-Freedom New Phone Situation
+
+Since my phone screen appears to be borked, I can try to get a Google Pixel 6 as a replacement and run CalyxOS or GrapheneOS for a fully open-source mobile setup.
+
+** Change to StumpWM+Polybar
+
+There should be a YT video in my Watch Later that demos really cool Stump-Emacs interoperation, allowing one to navigate between Emacs windows as if they were X windows. dwm is cool, but Greenspun's tenth rule very much holds for window managers. Lisp 4 Life!
+
+*** Lint Emacs/Guix Configs
+
+While I'm occupied with rice business, getting things set up with Guix Home and actually realizing the benefits of reproducible computing with a proper dotfiles repo would be nice. Changing everything to use the XDG home paths under =~/.config/= instead of right under =~= would be nice.
+
+** Finish Packaging latex-gnuplot-tikz
+
+The graphs are just soooo sexy. Having to copy around the .sty to every directory is annoying. Packaging it for CTAN and then using the TeXLive importer like I've done for minted may be the best approach.
+
+** Computational Differential Geometry—Physics-Focused
+
+Roadmapping this project and analyzing its feasibility is probably doable.
+
+*** HIGH PRIORITY: Message one of the QG people in the department about working this summer
+
+I've got 3/4 of an email written already.

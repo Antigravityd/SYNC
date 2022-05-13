@@ -7,6 +7,7 @@
 \DeclareMathOperator{\tr}{tr}
 \DeclareMathOperator{\im}{im}
 \DeclareMathOperator{\erf}{erf}
+
 \title{7590 HW 1}
 \author{Duncan Wilkie}
 \date{?}
@@ -187,13 +188,12 @@ Applying L'H\^opital's rule,
 \]
 This shows that the limit exists for every $f\in C^{1}(\mathbb{R})$ (so $V\subseteq D(A)$) and gives its action.
 
-\section*{2c} % This one's majorly sus
+\section*{2c} % Less sussy now :)
 Notice first that the definition of $n$ and $r$ give the number $s$ ``modulo'' $2\pi$ in the sense that if one divides the real number
 line into partitions by integer multiples of $2\pi$, $n(s)$ gives the multiple of $2\pi$ corresponding to the rightmost partition boundary
 which lies to the left of $s$ and $r(s)$ gives the rightward displacement of $s$ from the partition boundary.
 If $n$ were further left, adding $0\leq r(s)< 2\pi$ couldn't equal $s$, and if it were to the right of $s$, the same is true because $r(s)$
 is positive.
-% TODO: prove the properties of r I use.
 We prove first that $U_{\alpha}$ is a continuous symmetry.\newline
 \textit{Unitarity:}
 It preserves the inner product
@@ -238,10 +238,13 @@ The operator behaves properly under addition in $t$:
 \[
   U_{\alpha}(t+s)f(x)=\alpha^{n(x+t+s)}f(r(x+t+s))=U_{\alpha}(s)\left( \alpha^{n+t}f(r(x+t)) \right)=U_{\alpha}(s)U_\alpha(t)f(x)
 \]
-Lastly, using $x\in[0,2\pi]$,
+Lastly, using $x\in[0,2\pi)$,
 \[
   \lim_{t\to 0}U_{\alpha}(t)x=\lim_{t\to 0}\alpha^{n(x+t)}r(x+t)=\alpha^{n(x)}r(x)=\alpha^{0}x=x
 \]
+This argument becomes slightly more subtle at $x=2\pi$ due to the discontinuities in $n$ and $r(x)$,
+but since the limit must be taken from inside $[0,2\pi]$ one may use left-hand limits  $n(2\pi^{-})=0$ and $r(2\pi^{-})=2\pi$ to obtain
+the same result above.\newline
 The infinitesimal generator of $U_{\alpha}$ is by definition
 \[
   A_{\alpha}f=-i\lim_{t\to 0}[U_{\alpha}(t)f-f]/t=-i\lim_{t\to 0}[\alpha^{n(x+t)}f(r(x+t))-f(x)]/t
@@ -249,105 +252,262 @@ The infinitesimal generator of $U_{\alpha}$ is by definition
 \[
   =-i\lim_{t\to 0}\frac{\frac{d}{dt}\alpha^{n(x+t)}f(r(x+t))}{1}=-i\lim_{t\to 0}\frac{d}{dt}{\alpha^{0}f(x+t)}=-if'(x)
 \]
-where we have used L'H\^opital's rule and $x\in(0,2\pi)$ (in which case the limit will become at some point exclusively through $t$ close enough to $x$ that $0\leq x+t<2\pi$, yielding $r(x+t)=x+t$ and $n(x+t)=0$).
-The special cases $x=0$ and $x=2\pi$ must be treated differently.
-In each case, the limit from the interior of $[0,2\pi]$ yields the above result, but the limit from outside will have
-has $n(x+t)=1$, $r(x+t)=x+t-2\pi=t$, yielding $A_{\alpha}f(2\pi)=-i\lim_{t\to 0}\frac{d}{dt}\alpha^{1} f(t)=-i\alpha f'(0)$
-Functions in the given $V_{\alpha}$ make this exist for all $x\in[0,2\pi]$, since they are $C^{1}$ so the derivative exists and the condition
-at $2\pi$ makes the two sides of the limit at $2\pi$ agree.
+where we have used L'H\^opital's rule and $x\in[0,2\pi)$ (in which case the limit will become at some point exclusively through $t$ close enough to $x$ that $0\leq x+t<2\pi$, yielding $r(x+t)=x+t$ and $n(x+t)=0$).
+The special case $x=2\pi$ is much the same, only the limit is taken inside $[0,2\pi]$ so only the left-hand limit is taken,
+which coincides with the result above.
+Functions in the given $V_{\alpha}$ make the limit above exist since they are $C^{1}$, implying $f'(x)$ is well-defined.
 Therefore, $V_{\alpha}\in D(A_{\alpha})$ and the action is as given above.
-% TODO: justify all the "obvious" facts about $r$ and $n$ that I've used.
+
 
 \section*{3a}
 The given $D(A)$ is a subset of the $V_{\alpha}$ given in problem 2c, since $C^{1}$ compactly-supported functions on $(0,2\pi)$ are a subset
 of $C^{1}([0,2\pi])$ functions that vanish in the limits to $0$ and $2\pi$, which are a subset of $C^{1}([0,2\pi])$ functions where
 $f(2\pi)=f(0)=0$, which are a subset of $C^{1}([0,2\pi])$ functions where $f(2\pi)=\alpha f(0)$.
 Since $V_{\alpha}\subseteq D(A_{\alpha})$ was proven in 2c, we have $D(A)\subseteq D(A_{\alpha})$.
-Further, $A=A_{\alpha}$ on $D(A)$, since the only difference in their action occurs when $x=2\pi$ for $A_{\alpha}$; this is outside $D(A)$.
+Further, $A=A_{\alpha}$ on $D(A)$ is immediate from the symbolic expression of each being identical.
 This proves $A\subset A_{\alpha}$.
 
-\section*{3b} % TODO: this is sus too; problem 2c on which it depends may have the answer.
-The theorem gives the result that $u(t)=U(t)u_{0}$ is the unique solution to $\dot{u}(t)=iAu(t)$ where $A$ is the infinitesimal generator of
+\section*{3b}
+$A\subset A_{\alpha}$ implies that $e^{-itA_{\alpha}}=e^{-itA}$ on $D(A)$.
+The theorem gives the result that
+\[
+  u(x,t)=e^{-itA_{\alpha}}u_{0}=U_{\alpha}(t)u_{0}(x)
+\]
+is the unique solution to $\dot{u}(t)=iAu(t)$ where $A$ is the infinitesimal generator of
 $U(t)$.
 Applying this, the result follows immediately:
 \[
-  u(t,x) = U(t)u_{0}(x) = U_{1}(t)u_{0}(x)=1^{n(x+t)}u_{0}(r(x+t))=u_{0}(x+t)
+  u(x,t) = U(t)u_{0}(x) = U_{1}(t)u_{0}(x)=1^{n(x+t)}u_{0}(r(x+t))=u_{0}(x+t)
 \]
-where we have used the fact that $A=A_{\alpha}$ on $(\pi/2,\pi)$
 
 \section*{4a}
-First note that $\langle Ax,x \rangle=\sum_{i,j=1}^{n}A_{ij}x_{i}x_{j}$ where $x_{i}$ denotes the $i$th component of $x$.
-Since $A$ is positive-definite, there exists a basis with respect to which $A$ is diagonal with positive eigenvalues.
-The value of the inner product remains the same, since the length of an $\mathbb{R}^{n}$ vector is basis-independent;
-writing the eigenvalues as $\lambda_{i}$ and choosing our vector components to be in this basis,
-the inner product becomes $\sum_{i=1}^{n}\lambda_{i}x_{i}^{2}$.
-Substituting this in to the formula for the measure,
+% TODO: this got lost to the void somehow
+\section*{4b}
+Noting that since $A$ (and therefore $G$) are Hermitian,
 \[
-  d\mu(x)=Z^{-1}e^{-\sum_{i=1}^{n}\lambda_{i}x_{i}^{2}/2}=Z^{-1}\prod_{i}e^{-\lambda_{i}x_{i}^{2}/2}
+  \langle p,Gp \rangle/2-\langle x-Gp,A(x-Gp)/2 \rangle
+  =\langle p,Gp  \rangle/2-\langle x,Ax-p \rangle/2+\langle Gp,Ax-p \rangle/2
 \]
 \[
-  \Rightarrow 1=\mu(\mathbb{R}^{n})=\frac{1}{Z}\prod_{i=1}^{n}\int_{-\infty}^{\infty}e^{-\lambda_{i}x_{i}^{2}/2}dx_{i}
+  =\langle p,Gp \rangle/2 - \langle x,Ax \rangle/2+\langle x,p \rangle/2+\langle Gp,Ax \rangle/2-\langle Gp,p \rangle/2
 \]
 \[
-  \Rightarrow Z=\prod_{i=1}^{n}\left( \sqrt{\frac{2\pi}{\lambda_{i}}} \right)=\sqrt{\frac{2\pi}{\det A}}
+  =\langle p,Gp \rangle/2-\langle x,Ax\rangle/2+ \langle x,p \rangle - \langle Gp,p \rangle/2
+\]
+\[
+  =\langle p,x \rangle-\langle Ax,x \rangle/2
+\]
+We can then write
+\[
+  \int_{\mathbb{R}^{n}}e^{\langle p,x \rangle}d\mu(x)
+  =\int_{\mathbb{R}^{n}}e^{\langle p,x \rangle}\frac{1}{Z}e^{-\langle Ax,x \rangle/2}dx
+  =\frac{1}{Z}\int_{\mathbb{R}^{n}}e^{\langle p,x \rangle-\langle Ax,x \rangle/2}dx
+\]
+as
+\[
+  \frac{1}{Z}\int_{\mathbb{R}^{n}}e^{\langle p,Gp \rangle/2-\langle x-Gp,A(x-Gp)/2 \rangle}dx
+\]
+Making the substitution $y=x-Gp$, $dy=dx$ we have
+\[
+  =\frac{1}{Z}\int_{\mathbb{R}^{n}}e^{\langle Gp,p \rangle/2-\langle y,Ay \rangle/2}dy
+  =e^{\langle Gp,p \rangle/2}\int_{\mathbb{R}^{n}}\frac{1}{Z}e^{-\langle Ay,y \rangle/2}dy
+\]
+The integral is one by construction, proving the identity.
+
+\section*{4c}
+We find a similar identity:
+\[
+  -\langle p,Gp \rangle/2-\langle x-iGp,A(x-iGp)/2 \rangle
+  =-\langle p,Gp  \rangle/2-\langle x,Ax-ip \rangle/2+\langle iGp,Ax-ip \rangle/2
+\]
+\[
+  =-\langle p,Gp \rangle/2 - \langle x,Ax \rangle/2+\langle x,ip \rangle/2+\langle iGp,Ax \rangle/2-\langle iGp,ip \rangle/2
+\]
+\[
+  =-\langle p,Gp \rangle/2-\langle x,Ax\rangle/2+ i\langle x,p \rangle + \langle Gp,p \rangle/2
+\]
+\[
+  =-i\langle p,x \rangle-\langle Ax,x \rangle/2
+\]
+As before, this yields
+\[
+  \int_{\mathbb{R}^{n}}e^{i\langle p,x \rangle}d\mu(x)
+  =\int_{\mathbb{R}^{n}}\frac{1}{Z}e^{-\langle p,x \rangle-\langle Ax,x \rangle/2}dx
+  =\int_{\mathbb{R}^{n}}\frac{1}{Z}e^{-\langle p,Gp \rangle/2}e^{-\langle x-iGp,A(x-iGp) \rangle/2}dx
+\]
+\[
+  =e^{-\langle p,Gp \rangle}\int_{\mathbb{R}^{n}}\frac{1}{Z}e^{-\langle y,Ay \rangle/2}dx
+  =e^{-\langle p,Gp \rangle}
+\]
+\section*{4d}
+The notation $\partial^{\dagger}=-\partial_{v}+\langle  Av,\cdot\rangle$ makes no sense to me; I would read it as
+``substitute the argument of the operator as the second entry of the inner product'' but the inner product of a vector and a scalar
+(since $f:\mathbb{R}^{n}\to\mathbb{R}$) isn't a comprehensible notion.
+I will presume it means ``take the argument times the argument's argument as the second entry of the inner product,'' because this gives
+consistent results.
+We want to compute
+\[
+  \int_{\mathbb{R}^{n}}\langle v,\nabla f \rangle\frac{1}{Z}e^{-\langle Ax,x \rangle/2}dx
+\]
+There is an integration-by-parts rule that follows from the product rule for divergence the same as in one dimension:
+\[
+  \int_{\Omega}f(x) \nabla\cdot\vec{V}(x)dx=\int_{\partial \Omega}f(x)\vec{V}\cdot\hat{n}dx'-\int_{\Omega}\nabla f(x)\cdot\vec{V}dx
+\]
+We may take $\vec{V}=\frac{v}{Z}e^{-\langle Ax,x \rangle/2}$ and note our integral is the last term; if $f$ is ``nice'' enough so the
+limit of the boundary integral towards infinity vanishes, we have
+\[
+  \int_{\mathbb{R}^{n}}\langle v,\nabla f \rangle\frac{1}{Z}e^{-\langle Ax,x \rangle/2}dx
+  =\frac{1}{Z}\int_{\mathbb{R}^{n}}f(x)\nabla\cdot\left( e^{-\langle Ax,x \rangle/2} \right)dx
+\]
+Since we may write $e^{-\langle Ax,x \rangle/2}=ve^{-\sum_{i}\lambda_{i}x_{i}^{2}/2}$,
+\[
+  \nabla\cdot e^{-\langle Ax,x \rangle/2}=\sum_{i}-\lambda_{i}x_{i}v_{i}e^{-\sum_{i}\lambda_{i}x_{i}^{2}/2}=-\langle Ax,v \rangle
+  e^{-\langle Ax,x \rangle/2}
+\]
+yielding
+\[
+  \int_{\mathbb{R}^{n}}\langle v,\nabla f \rangle d\mu(x)=\int_{\mathbb{R}^{n}}f(x)\langle Ax,v\rangle d\mu(x)
+\]
+One can very quickly construct a counterexample to the stated theorem (the given right side is a sum of the product of one-dimensional
+integrals of odd functions, implying it is equal to zero for all $f$), so I will presume this is the intended result.
+Under the $L^{2}$ inner product,
+\[
+  \int_{\mathbb{R}^{n}}[\partial_{v}f(x)]g(x)d\mu(x)=\int_{\mathbb{R}^{n}}-f(x)\partial_{v}g(x)+f(x)\langle Av,g(x)x \rangle d\mu(x)
+\]
+\[
+  \Leftrightarrow\int_{\mathbb{R}^{n}}[\partial_{v}f(x)]g(x)d\mu(x)=-\int_{\mathbb{R}^{n}}f(x)\partial_{v}g(x)d\mu(x)
+  +\int_{\mathbb{R}^{n}}f(x)g(x)\langle Av,x\rangle d\mu(x)
+\]
+By the product rule for the gradient operator,
+\[
+  \Leftrightarrow\int_{\mathbb{R}^{n}}\partial_{v}(f(x)g(x))d\mu(x)=\int_{\mathbb{R}^{n}}f(x)g(x)\langle Av,x \rangle d\mu(x)
+\]
+By the first part of this problem, the two are equal.
+
+\section*{4e}
+\[
+  \int_{\mathbb{R}^{n}}\langle v,x \rangle\langle w,x \rangle d\mu(x)
+  =\int_{\mathbb{R}^{n}}\left( \sum_{i=1}^{n}v_{i}x_{i} \right)\left( \sum_{k=1}^{n}w_{k}x_{k} \right)
+  \frac{1}{Z}e^{\sum_{j=1}^{n}-\lambda_{j}x_{j}^{2}/2}dx
+  =\sum_{i=1}^{n}\sum_{k=1}^{n}\int_{\mathbb{R}^{n}}v_{i}w_{k}x_{i}x_{k}  \frac{1}{Z}e^{\sum_{j=1}^{n}-\lambda_{j}x_{j}^{2}/2}dx
+\]
+\[
+  =\sum_{i=1}^{n}\sum_{k=1}^{n}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}v_{i}w_{k}x_{k}x_{i}e^{-(\lambda_{i} x_{i}^{2}+\lambda_{k}x_k^2)/2}dx_{i}dx_{k}
+  \left( \int_{\mathbb{R}^{n-2}}\frac{1}{Z}e^{\sum_{j\neq i,k}\lambda_{j}x_{j}^{2}/2} \right)
+\]
+When $i\neq k$, the inner integrand is odd, implying the term will be zero.
+We may therefore write
+\[
+  =\sum_{i=1}^{n}\int_{\mathbb{R}^{n}}v_{i}w_{i}x_{i}^{2}\frac{1}{Z}e^{-\langle Ax,x \rangle/2}dx
+\]
+\[
+  =\sum_{i=1}^{n}\prod_{k=i}^{n}\int_{-\infty}^{\infty}v_{i}w_{i}x_{i}^{2}\frac{1}{Z}e^{-\lambda_{k}x_{k}^{2}/2}dx_{k}
+\]
+For $i\neq k$, the multiplicand is $v_{i}w_{i}x_{i}^{2}$; when $i=k$, it is equal to
+\[
+  v_{i}w_{i}\frac{1}{Z}\int_{-\infty}^{\infty}x_{i}^{2}e^{-\lambda_{i}x_{i}/2}dx_{i}
+  =v_{i}w_{i}\sqrt{\frac{\det A}{2\pi}}\sqrt{\frac{2\pi}{\lambda_{i}}}
+  =v_{i}w_{i}\sqrt{\prod_{k\neq i}\lambda_{k}}
+\]
+Thus, each term of the sum will be of the form
+\[
+  v_{i}^{n}w^{n}_{i}x_{i}^{2n-2}\sqrt{\frac{\det A}{\lambda_{i}}}
+\]
+$v_{i}w_{i}/\lambda_{i}$
+I'm unsure if there's a similar typographical error as I presumed above, but I don't think this is reducible to $\langle Gv,w \rangle$.
+
+\section*{7a}
+\[
+  [a(v), a^{\dagger}(w)]f=\partial_{Gv}\partial_{Gw}^{\dagger}f-\partial^{\dagger}_{Gw}\partial_{Gv}f
+\]
+\[
+  =\langle Gv, \nabla(\cdot) \rangle\circ\left( -\langle Gw,\nabla(\cdot) \rangle+\langle AGw,\cdot \rangle \right)f
+  -\left( -\langle Gw,\nabla(\cdot) \rangle+\langle AGw,\cdot \rangle \right)\circ\langle Gv,\nabla(\cdot) \rangle f
+\]
+\[
+  =\langle Gv,\nabla\left( -\langle Gw,\nabla f \rangle+\langle w,f \rangle \right) \rangle
+  -(-\langle Gw,\nabla\left( \langle Gv,\nabla f \rangle \right) \rangle+\langle w,\langle Gv,\nabla f \rangle \rangle)
+\]
+\[
+  =\langle Gv,\nabla(-\langle Gw,\nabla f \rangle) \rangle+\langle Gv,\langle w,f \rangle \rangle
+  +\langle Gw,\nabla(\langle Gv,\nabla f \rangle) \rangle
+  -\langle w,\langle Gv,\nabla f \rangle \rangle
+\]
+\[
+  =\sum_{i}\frac{v_{i}}{\lambda_{i}}\frac{\partial}{\partial x_{i}}\sum_{k}-\frac{w_{k}}{\lambda_{k}}\frac{\partial f}{\partial x_{k}}
+  +\sum_{i}\frac{v_{i}}{\lambda_{i}}\sum_{k}w_{k}f_{k}
+  +\sum_{i}\frac{w_{i}}{\lambda_{i}}\frac{\partial}{\partial x_{i}}\sum_{k}\frac{v_{k}}{\lambda_{k}}\frac{\partial f}{\partial x_{k}}
+  -\sum_{i}w_{i}\left( \sum_{k}\frac{v_{k}}{\lambda_{k}}\frac{\partial f}{\partial x_{k}}\right)_{i}
+\]
+\[
+  =-\sum_{i}\sum_{k}\frac{v_{i}w_{k}}{\lambda_{i}\lambda_{k}}\frac{\partial^{2} f}{\partial x_{i}\partial x_{k}}
+  +\sum_{i}\sum_{k}\frac{v_{i}w_{k}}{\lambda_{i}}f_{k}
+  +{\sum_{i}}\sum_{k}\frac{w_{i}v_{k}}{\lambda_{i}\lambda_{k}}\frac{\partial^{2}f}{\partial x_{i}\partial x_{k}}
+  -\sum_{i}\frac{w_{i}v_{i}}{\lambda_{i}}\frac{\partial f}{\partial x_{i}}
+\]
+\[
+  =\sum_{i}\sum_{k}\frac{v_{i}w_{k}}{\lambda_{i}}f_{k}-\sum_{i}\frac{w_{i}v_{i}}{\lambda_{i}}\frac{\partial f}{\partial x_{i}}
+\]
+\[
+  =\sum_{i}\frac{v_{i}w_{i}}{\lambda_{i}}f_{i}-\sum_{i}\frac{v_{i}}{\lambda_{i}}\sum_{k\neq i}{w_{k}}f_{k}
 \]
 
-\section*{4b}
-Since $G=A^{-1}$, the eigenvalues of $G$ are $\lambda_{i}^{-1}$, and $G$ is simultaneously diagonalizable with $A$, so noting
+\section*{7b}
+We can obtain a characterization of $[A^{n},B]$ as follows:
+presuming an induction hypothesis $[A^{n-1},B]=(n-1)A^{n-2}C$, the commutator formula $[AB,C]=A[B,C]+[A,C]B$ gives
 \[
-  e^{\langle Gp,p \rangle/2}=e^{\sum_{i=1}^{n}p_{i}^{2}/2\lambda_{i}}=\prod_{i=1}^{n}e^{p_{i}^{2}/2\lambda_{i}}
+  [A^{n},B]=A[A^{n-1},B]+ [A,B]A^{n-1}
+  =A(n-1)A^{n-2}C+CA^{n-1}
+  =(n-1)A^{n-1}C+A^{n-1}C
+  =nA^{n-1}C
+\]
+This implies
+\[
+  e^{\lambda A}B
+  =B+\lambda AB+\lambda^{2} A^{2}B/2+...
+  =B+\lambda\left( BA+[A,B] \right)+\lambda^{2}(BA^{2}+[A^{2},B])/2+...
+\]
+\[
+  =B+\lambda\left( BA+C \right)+\lambda^{2}\left( BA^{2} +2CA\right)/2+...
+\]
+\[
+  =Be^{\lambda A}+\left( \lambda C+ \lambda^{2}CA+\lambda^{3}CA^{2}/2+... \right)
+\]
+\[
+  =(Be^{\lambda A}+\lambda C e^{\lambda A})=(B+\lambda C)e^{\lambda A}
+\]
+We then compute the derivatives
+\[
+  \frac{d}{d\lambda}e^{\lambda (A+B)}=\frac{d}{d\lambda}\left(  1+\lambda(A+B)+\frac{\lambda^{2}}{2}(A+B)^{2}+...\right)
+  =(A+B)+\lambda (A+B)^{2}+\frac{\lambda^{2}}{2}(A+B)^{3}+...
+\]
+\[
+  =(A+B)e^{\lambda(A+B)}
 \]
 and
 \[
-  e^{\langle p,x \rangle-\langle Ax,x \rangle/2}=e^{\langle p-Ax/2,x \rangle}=\prod_{i=1}^{n}e^{p_{i}x_{i}-\lambda_{i}x_{i}^{2}/2}
-\]
-we show
-\[
-  e^{\langle Gp,p \rangle/2}=e^{\langle Gp,p \rangle/2}\int_{\mathbb{R}^{n}}Z^{-1}e^{-\langle Ax,x \rangle/2}dx
-  =\left(\prod_{i=1}^{n}e^{p_{{i}}^{2}/2\lambda_{i}}\right)
-  \left( \frac{1}{Z}\prod_{i=1}^{n}\int_{-\infty}^{\infty} e^{-\lambda_{i}x_{i}^{2}/2}dx_{i}\right)
+  \frac{d}{d\lambda}(e^{\lambda A}e^{\lambda B}e^{-\lambda^{2}C/2})
+  =Ae^{\lambda A}e^{\lambda B}e^{-\lambda^{2}C/2}+e^{\lambda A}Be^{\lambda B}e^{-\lambda^{2}C/2}
+  +e^{\lambda A}e^{\lambda B}\left( -\lambda Ce^{-\lambda^{2}C/2} \right)
 \]
 \[
-  =\frac{1}{Z}\prod_{i=1}^{n}\int_{-\infty}^{\infty}e^{p_{i}^{2}/2\lambda_{i}-\lambda_{i}x_{i}^{2}/2}dx_{i}
-  =\frac{1}{Z}\prod_{i=1}^{n}\int_{-\infty}^{\infty}e^{p_{i}^{2}/2\lambda-x_{i}p_{i}+p_{i}x_{i}-\lambda_{i}x_{i}^{2}/2}dx_{i}
+  =e^{\lambda A}e^{\lambda B}e^{-\lambda^{2}C/2}\left( A+B+\lambda C-\lambda C \right)
+  =(A+B)e^{\lambda A}e^{\lambda B}e^{-\lambda^{2}C/2}
 \]
-\[
-  =\frac{1}{Z}\int_{\mathbb{R}^{n}}\left(\prod_{i=1}^{n}e^{p_{i}^{2}/2\lambda_{i}-x_{i}p_{i}}\right)e^{\langle p,x \rangle-\langle Ax,x \rangle/2}dx
-  =\frac{1}{Z}\int_{\mathbb{R}^{n}}e^{\langle Gp,p \rangle-\langle x,p\rangle}e^{\langle p,x \rangle-\langle Ax,x \rangle/2}dx
-\]
-\[
-  =\int_{\mathbb{R}}e^{\langle Gp-x,0\rangle}e^{\langle p,x \rangle}\frac{1}{Z}e^{-\langle Ax,x \rangle/2}dx
-  =\int_{\mathbb{R}}e^{\langle p,x \rangle}d\mu(x)
-\]
-as desired.
+Since these two functions of $\lambda$ satisfy the same differential equation and have the same value at $\lambda=0$,
+they must be the same function, so for $\lambda=1$ we obtain the desired result.
 
-\section*{4c}
-$e^{i\langle p,x \rangle}=\prod_{k=1}^{n}e^{ip_{k}x_{k}}$
-Proceeding similarly, this time
+\section*{7c}
+Notice that
 \[
-  e^{-\langle Gp,p \rangle/2}=e^{\sum_{i=1}^{n}-p_{i}^{2}/2\lambda_{i}}=\prod_{i=1}^{n}e^{-p_{i}^{2}/2\lambda_{i}}
+  M_{f}=e^{\phi(v)}
+  \Rightarrow :e^{\phi(v)}:
+  =:e^{a(v)+a(v)^{\dagger}}:
+  =:e^{a(v)^{\dagger}+a(v)}
+  =:e^{a(v)^{\dagger}}e^{a(v)}e^{-[a(v),a(v)^{\dagger}]/2}:
+  =e^{-\langle Gv,v \rangle/2}e^{a(v)^{\dagger}}e^{a(v)}
 \]
-so
-\[
-  e^{-\langle Gp,p \rangle/2}=e^{-\langle Gp,p \rangle/2}\int_{\mathbb{R}^{n}}Z^{-1}e^{-\langle Ax,x \rangle/2}dx
-  =\left(\prod_{i=1}^{n}e^{-p_{{i}}^{2}/2\lambda_{i}}\right)
-  \left( \frac{1}{Z}\prod_{i=1}^{n}\int_{-\infty}^{\infty} e^{-\lambda_{i}x_{i}^{2}/2}dx_{i}\right)
-\]
-\[
-  =\frac{1}{Z}\prod_{i=1}^{n}\int_{-\infty}^{\infty}e^{-p_{i}^{2}/2\lambda_{i}-\lambda_{i}x_{i}^{2}/2}dx_{i}
-  =\frac{1}{Z}\prod_{i=1}^{n}\int_{-\infty}^{\infty}e^{-p_{i}^{2}/2\lambda-x_{i}p_{i}+p_{i}x_{i}-\lambda_{i}x_{i}^{2}/2}dx_{i}
-\]
-\[
-  =\frac{1}{Z}\int_{\mathbb{R}^{n}}\left(\prod_{i=1}^{n}e^{-p_{i}^{2}/2\lambda_{i}-x_{i}p_{i}}\right)e^{\langle p,x \rangle-\langle Ax,x \rangle/2}dx
-  =\frac{1}{Z}\int_{\mathbb{R}^{n}}e^{-\langle Gp,p \rangle-\langle x,p\rangle}e^{\langle p,x \rangle-\langle Ax,x \rangle/2}dx
-\]
-\[
-  =\int_{\mathbb{R}}e^{-\langle Gp+x,2p\rangle}e^{\langle p,x \rangle}\frac{1}{Z}e^{-\langle Ax,x \rangle/2}dx
-  =\int_{\mathbb{R}}e^{-\langle Gp+2x,3p \rangle}d\mu(x)
-\]
-We note $\langle Gp+2x,3p \rangle=\sum_{i}3p_{i}^{2}/\lambda_{i}+6x_{i}p_{i}$
-% TODO: figure out this nonsense
-
+by the result of part b.
 \section*{11a}
 \[
   \det \Lambda =
@@ -681,7 +841,14 @@ Multiplying the results, we indeed confirm this is a minimum-uncertainty state:
 \]
 
 \section*{14}
-
+We have
+\[
+  \langle 0|Tx(t)x(t')|0 \rangle=-\frac{\delta^{2}}{\delta J(t)\delta J(t')}Z(J)\bigg|_{J=0}
+\]
+where
+\[
+  Z(J)=\frac{\langle x't'|x,t \rangle^{J}}{\langle x'|0 \rangle\langle 0|x \rangle}
+\]
 \end{document}
 %%% Local Variables:
 %%% mode: latex

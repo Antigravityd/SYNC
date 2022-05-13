@@ -9,10 +9,6 @@
     "art10"
     "geometry"
     "amsmath"
-    "amssymb")
-   (TeX-add-symbols
-    "tr"
-    "im"
-    "erf"))
+    "amssymb"))
  :latex)
 

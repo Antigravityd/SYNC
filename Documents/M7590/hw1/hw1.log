@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.1.13)  13 MAY 2022 08:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.1.13)  13 MAY 2022 13:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -215,7 +215,7 @@ j[]\OML/cmm/m/it/10 dx
  []
 
 [2] [3] [4] [5] [6] [7]
-Overfull \hbox (59.41872pt too wide) detected at line 393
+Overfull \hbox (59.41872pt too wide) detected at line 404
 [][]\OMS/cmsy/m/n/10 h\OML/cmm/m/it/10 v; x\OMS/cmsy/m/n/10 ih\OML/cmm/m/it/10 
 w; x\OMS/cmsy/m/n/10 i\OML/cmm/m/it/10 d^^V\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\
 OT1/cmr/m/n/10 ) = [][] [] [] []\OML/cmm/m/it/10 e[]dx \OT1/cmr/m/n/10 = [] [] 
@@ -223,14 +223,14 @@ OT1/cmr/m/n/10 ) = [][] [] [] []\OML/cmm/m/it/10 e[]dx \OT1/cmr/m/n/10 = [] []
  []
 
 [8]
-Overfull \hbox (6.82016pt too wide) in paragraph at lines 454--456
+Overfull \hbox (6.82016pt too wide) in paragraph at lines 470--472
 \OT1/cmr/m/n/10 We can ob-tain a char-ac-ter-i-za-tion of $[\OML/cmm/m/it/10 A[
 ]; B\OT1/cmr/m/n/10 ]$ as fol-lows: pre-sum-ing an in-duc-tion hy-poth-e-sis $[
 \OML/cmm/m/it/10 A[]; B\OT1/cmr/m/n/10 ] =
  []
 
 
-Overfull \hbox (7.7071pt too wide) detected at line 507
+Overfull \hbox (7.7071pt too wide) detected at line 523
 \OML/cmm/m/it/10 M[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 e[] \OMS/cmsy/m/n/10 )\
 OT1/cmr/m/n/10 : \OML/cmm/m/it/10 e[] \OT1/cmr/m/n/10 :=: \OML/cmm/m/it/10 e[] 
 \OT1/cmr/m/n/10 :=: \OML/cmm/m/it/10 e[] \OT1/cmr/m/n/10 =: \OML/cmm/m/it/10 e[
@@ -238,7 +238,7 @@ OT1/cmr/m/n/10 : \OML/cmm/m/it/10 e[] \OT1/cmr/m/n/10 :=: \OML/cmm/m/it/10 e[]
  []
 
 [9] [10] [11]
-Overfull \hbox (52.27325pt too wide) detected at line 764
+Overfull \hbox (52.27325pt too wide) detected at line 780
 \OT1/cmr/m/n/10 (^^A\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )[](^^A\OML/cmm/m/it/10 p
 \OT1/cmr/m/n/10 )[] = \OMS/cmsy/m/n/10 h\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 j[]j
 \OML/cmm/m/it/10  \OMS/cmsy/m/n/10 ih\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 j[]j\OM
@@ -255,7 +255,7 @@ MS/cmsy/m/n/10 ij[]
  []
 
 
-Overfull \hbox (62.38803pt too wide) detected at line 771
+Overfull \hbox (62.38803pt too wide) detected at line 787
 \OMS/cmsy/m/n/10 h\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 j[][]j\OML/cmm/m/it/10  \O
 MS/cmsy/m/n/10 i \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 h\OML/cmm/m/it/10  \OMS/cms
 y/m/n/10 j [] [] j\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 i \OT1/cmr/m/n/10 = \OMS/c
@@ -274,7 +274,7 @@ it/10  \OMS/cmsy/m/n/10 i
  []
 
 
-Overfull \hbox (29.04988pt too wide) detected at line 801
+Overfull \hbox (29.04988pt too wide) detected at line 817
 \OMS/cmsy/m/n/10 h\OML/cmm/m/it/10  []\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 p\OMS/
 cmsy/m/n/10 j\OML/cmm/m/it/10  []\OMS/cmsy/m/n/10 i \OT1/cmr/m/n/10 = [] [][] \
 OML/cmm/m/it/10 e[] [] dx \OT1/cmr/m/n/10 = [] [][] \OML/cmm/m/it/10 e[] [] dx
@@ -317,7 +317,7 @@ c/amsfonts/cm/cmti10.pfb></gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-t
 exmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><
 /gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325/share/texmf-
 dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on hw1.pdf (13 pages, 210635 bytes).
+Output written on hw1.pdf (13 pages, 210924 bytes).
 PDF statistics:
  115 PDF objects out of 1000 (max. 8388607)
  82 compressed objects within 1 object stream

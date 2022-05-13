@@ -78,7 +78,7 @@ which in this case is
   +\int_{\Omega}\overline{f(x)}\partial_{j}\left( \overline{a_{ij}(x)}\partial_{i}g(x) \right)dx
   =\int_{\Omega}\overline{f(x)}\partial_{i}(a_{ij}(x)\partial_{j}g)(x)dx
 \]
-\[
+S\[
   \Leftrightarrow
   \int_{\Omega}\overline{f(x)}\partial_{i}(\overline{a_{ji}(x)}\partial_{j}g(x))dx
   =\int_{\Omega}\overline{f(x)}\partial_{i}(a_{ij}(x)\partial_{j}g)(x)dx
@@ -281,7 +281,16 @@ Applying this, the result follows immediately:
 \]
 
 \section*{4a}
-% TODO: this got lost to the void somehow
+We have, choosing a basis for which $A$ is diagonal (which exists by positive-definiteness)
+\[
+  Z=\int_{\mathbb{R}}e^{-\langle Ax,x  \rangle/2}dx
+  =\int_{\mathbb{R}}e^{-\sum_{i=1}^{n}\lambda_{i}x_{i}^{2}/2}dx
+  =\int_{\mathbb{R}}\prod_{i=1}^{n}e^{-\lambda_{i}x_{i}^{2}/2}dx
+  =\prod_{i=1}^{n}\int_{\mathbb{R}^{n}}e^{-\lambda_{i}x_{i}^{2}/2}dx_{i}
+\]
+\[
+  =\prod_{i=1}^{n}\sqrt{\frac{2\pi}{\lambda_{i}}}=\sqrt{\frac{2\pi}{\det A}}
+\]
 \section*{4b}
 Noting that since $A$ (and therefore $G$) are Hermitian,
 \[
@@ -339,118 +348,123 @@ As before, this yields
   =e^{-\langle p,Gp \rangle}\int_{\mathbb{R}^{n}}\frac{1}{Z}e^{-\langle y,Ay \rangle/2}dx
   =e^{-\langle p,Gp \rangle}
 \]
-\section*{4d}
-The notation $\partial^{\dagger}=-\partial_{v}+\langle  Av,\cdot\rangle$ makes no sense to me; I would read it as
-``substitute the argument of the operator as the second entry of the inner product'' but the inner product of a vector and a scalar
-(since $f:\mathbb{R}^{n}\to\mathbb{R}$) isn't a comprehensible notion.
-I will presume it means ``take the argument times the argument's argument as the second entry of the inner product,'' because this gives
-consistent results.
-We want to compute
-\[
-  \int_{\mathbb{R}^{n}}\langle v,\nabla f \rangle\frac{1}{Z}e^{-\langle Ax,x \rangle/2}dx
-\]
-There is an integration-by-parts rule that follows from the product rule for divergence the same as in one dimension:
-\[
-  \int_{\Omega}f(x) \nabla\cdot\vec{V}(x)dx=\int_{\partial \Omega}f(x)\vec{V}\cdot\hat{n}dx'-\int_{\Omega}\nabla f(x)\cdot\vec{V}dx
-\]
-We may take $\vec{V}=\frac{v}{Z}e^{-\langle Ax,x \rangle/2}$ and note our integral is the last term; if $f$ is ``nice'' enough so the
-limit of the boundary integral towards infinity vanishes, we have
-\[
-  \int_{\mathbb{R}^{n}}\langle v,\nabla f \rangle\frac{1}{Z}e^{-\langle Ax,x \rangle/2}dx
-  =\frac{1}{Z}\int_{\mathbb{R}^{n}}f(x)\nabla\cdot\left( e^{-\langle Ax,x \rangle/2} \right)dx
-\]
-Since we may write $e^{-\langle Ax,x \rangle/2}=ve^{-\sum_{i}\lambda_{i}x_{i}^{2}/2}$,
-\[
-  \nabla\cdot e^{-\langle Ax,x \rangle/2}=\sum_{i}-\lambda_{i}x_{i}v_{i}e^{-\sum_{i}\lambda_{i}x_{i}^{2}/2}=-\langle Ax,v \rangle
-  e^{-\langle Ax,x \rangle/2}
-\]
-yielding
-\[
-  \int_{\mathbb{R}^{n}}\langle v,\nabla f \rangle d\mu(x)=\int_{\mathbb{R}^{n}}f(x)\langle Ax,v\rangle d\mu(x)
-\]
-One can very quickly construct a counterexample to the stated theorem (the given right side is a sum of the product of one-dimensional
-integrals of odd functions, implying it is equal to zero for all $f$), so I will presume this is the intended result.
-Under the $L^{2}$ inner product,
-\[
-  \int_{\mathbb{R}^{n}}[\partial_{v}f(x)]g(x)d\mu(x)=\int_{\mathbb{R}^{n}}-f(x)\partial_{v}g(x)+f(x)\langle Av,g(x)x \rangle d\mu(x)
-\]
-\[
-  \Leftrightarrow\int_{\mathbb{R}^{n}}[\partial_{v}f(x)]g(x)d\mu(x)=-\int_{\mathbb{R}^{n}}f(x)\partial_{v}g(x)d\mu(x)
-  +\int_{\mathbb{R}^{n}}f(x)g(x)\langle Av,x\rangle d\mu(x)
-\]
-By the product rule for the gradient operator,
-\[
-  \Leftrightarrow\int_{\mathbb{R}^{n}}\partial_{v}(f(x)g(x))d\mu(x)=\int_{\mathbb{R}^{n}}f(x)g(x)\langle Av,x \rangle d\mu(x)
-\]
-By the first part of this problem, the two are equal.
+% \section*{4d}
+% The notation $\partial^{\dagger}=-\partial_{v}+\langle  Av,\cdot\rangle$ makes no sense to me; I would read it as
+% ``substitute the argument of the operator as the second entry of the inner product'' but the inner product of a vector and a scalar
+% (since $f:\mathbb{R}^{n}\to\mathbb{R}$) isn't a comprehensible notion.
+% I will presume it means ``take the argument times the argument's argument as the second entry of the inner product,'' because this gives
+% consistent results.
+% We want to compute
+% \[
+%   \int_{\mathbb{R}^{n}}\langle v,\nabla f \rangle\frac{1}{Z}e^{-\langle Ax,x \rangle/2}dx
+% \]
+% There is an integration-by-parts rule that follows from the product rule for divergence the same as in one dimension:
+% \[
+%   \int_{\Omega}f(x) \nabla\cdot\vec{V}(x)dx=\int_{\partial \Omega}f(x)\vec{V}\cdot\hat{n}dx'-\int_{\Omega}\nabla f(x)\cdot\vec{V}dx
+% \]
+% We may take $\vec{V}=\frac{v}{Z}e^{-\langle Ax,x \rangle/2}$ and note our integral is the last term; if $f$ is ``nice'' enough so the
+% limit of the boundary integral towards infinity vanishes, we have
+% \[
+%   \int_{\mathbb{R}^{n}}\langle v,\nabla f \rangle\frac{1}{Z}e^{-\langle Ax,x \rangle/2}dx
+%   =\frac{1}{Z}\int_{\mathbb{R}^{n}}f(x)\nabla\cdot\left( ve^{-\langle Ax,x \rangle/2} \right)dx
+% \]
+% Since we may write $e^{-\langle Ax,x \rangle/2}=ve^{-\sum_{i}\lambda_{i}x_{i}^{2}/2}$,
+% \[
+%   \nabla\cdot ve^{-\langle Ax,x \rangle/2}=\sum_{i}-\lambda_{i}x_{i}v_{i}e^{-\sum_{i}\lambda_{i}x_{i}^{2}/2}=-\langle Ax,v \rangle
+%   e^{-\langle Ax,x \rangle/2}
+% \]
+% yielding
+% \[
+%   \int_{\mathbb{R}^{n}}\langle v,\nabla f \rangle d\mu(x)=\int_{\mathbb{R}^{n}}f(x)\langle Ax,v\rangle d\mu(x)
+%   =\int_{\mathbb{R}^{n}}\langle A(f(x)x),v \rangle d\mu(x)
+% \]
+% Making the change of variables $y=f(x)x$, the Jacobian determinant has entries $J_{ij}=\frac{\partial }{\partial x_{i}}(f(x)x_{j})$.
+% For $i\neq j$, this is $J_{ij}=x_{j}\frac{\partial f}{\partial x_{i}}$
 
-\section*{4e}
-\[
-  \int_{\mathbb{R}^{n}}\langle v,x \rangle\langle w,x \rangle d\mu(x)
-  =\int_{\mathbb{R}^{n}}\left( \sum_{i=1}^{n}v_{i}x_{i} \right)\left( \sum_{k=1}^{n}w_{k}x_{k} \right)
-  \frac{1}{Z}e^{\sum_{j=1}^{n}-\lambda_{j}x_{j}^{2}/2}dx
-  =\sum_{i=1}^{n}\sum_{k=1}^{n}\int_{\mathbb{R}^{n}}v_{i}w_{k}x_{i}x_{k}  \frac{1}{Z}e^{\sum_{j=1}^{n}-\lambda_{j}x_{j}^{2}/2}dx
-\]
-\[
-  =\sum_{i=1}^{n}\sum_{k=1}^{n}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}v_{i}w_{k}x_{k}x_{i}e^{-(\lambda_{i} x_{i}^{2}+\lambda_{k}x_k^2)/2}dx_{i}dx_{k}
-  \left( \int_{\mathbb{R}^{n-2}}\frac{1}{Z}e^{\sum_{j\neq i,k}\lambda_{j}x_{j}^{2}/2} \right)
-\]
-When $i\neq k$, the inner integrand is odd, implying the term will be zero.
-We may therefore write
-\[
-  =\sum_{i=1}^{n}\int_{\mathbb{R}^{n}}v_{i}w_{i}x_{i}^{2}\frac{1}{Z}e^{-\langle Ax,x \rangle/2}dx
-\]
-\[
-  =\sum_{i=1}^{n}\prod_{k=i}^{n}\int_{-\infty}^{\infty}v_{i}w_{i}x_{i}^{2}\frac{1}{Z}e^{-\lambda_{k}x_{k}^{2}/2}dx_{k}
-\]
-For $i\neq k$, the multiplicand is $v_{i}w_{i}x_{i}^{2}$; when $i=k$, it is equal to
-\[
-  v_{i}w_{i}\frac{1}{Z}\int_{-\infty}^{\infty}x_{i}^{2}e^{-\lambda_{i}x_{i}/2}dx_{i}
-  =v_{i}w_{i}\sqrt{\frac{\det A}{2\pi}}\sqrt{\frac{2\pi}{\lambda_{i}}}
-  =v_{i}w_{i}\sqrt{\prod_{k\neq i}\lambda_{k}}
-\]
-Thus, each term of the sum will be of the form
-\[
-  v_{i}^{n}w^{n}_{i}x_{i}^{2n-2}\sqrt{\frac{\det A}{\lambda_{i}}}
-\]
-$v_{i}w_{i}/\lambda_{i}$
-I'm unsure if there's a similar typographical error as I presumed above, but I don't think this is reducible to $\langle Gv,w \rangle$.
+% Under the $L^{2}$ inner product,
+% \[
+%   \int_{\mathbb{R}^{n}}[\partial_{v}f(x)]g(x)d\mu(x)=\int_{\mathbb{R}^{n}}-f(x)\partial_{v}g(x)+f(x)\langle Av,g(x)x \rangle d\mu(x)
+% \]
+% \[
+%   \Leftrightarrow\int_{\mathbb{R}^{n}}[\partial_{v}f(x)]g(x)d\mu(x)=-\int_{\mathbb{R}^{n}}f(x)\partial_{v}g(x)d\mu(x)
+%   +\int_{\mathbb{R}^{n}}f(x)g(x)\langle Av,x\rangle d\mu(x)
+% \]
+% By the product rule for the gradient operator,
+% \[
+%   \Leftrightarrow\int_{\mathbb{R}^{n}}\partial_{v}(f(x)g(x))d\mu(x)=\int_{\mathbb{R}^{n}}f(x)g(x)\langle Av,x \rangle d\mu(x)
+% \]
+% By the first part of this problem, the two are equal.
 
-\section*{7a}
-\[
-  [a(v), a^{\dagger}(w)]f=\partial_{Gv}\partial_{Gw}^{\dagger}f-\partial^{\dagger}_{Gw}\partial_{Gv}f
-\]
-\[
-  =\langle Gv, \nabla(\cdot) \rangle\circ\left( -\langle Gw,\nabla(\cdot) \rangle+\langle AGw,\cdot \rangle \right)f
-  -\left( -\langle Gw,\nabla(\cdot) \rangle+\langle AGw,\cdot \rangle \right)\circ\langle Gv,\nabla(\cdot) \rangle f
-\]
-\[
-  =\langle Gv,\nabla\left( -\langle Gw,\nabla f \rangle+\langle w,f \rangle \right) \rangle
-  -(-\langle Gw,\nabla\left( \langle Gv,\nabla f \rangle \right) \rangle+\langle w,\langle Gv,\nabla f \rangle \rangle)
-\]
-\[
-  =\langle Gv,\nabla(-\langle Gw,\nabla f \rangle) \rangle+\langle Gv,\langle w,f \rangle \rangle
-  +\langle Gw,\nabla(\langle Gv,\nabla f \rangle) \rangle
-  -\langle w,\langle Gv,\nabla f \rangle \rangle
-\]
-\[
-  =\sum_{i}\frac{v_{i}}{\lambda_{i}}\frac{\partial}{\partial x_{i}}\sum_{k}-\frac{w_{k}}{\lambda_{k}}\frac{\partial f}{\partial x_{k}}
-  +\sum_{i}\frac{v_{i}}{\lambda_{i}}\sum_{k}w_{k}f_{k}
-  +\sum_{i}\frac{w_{i}}{\lambda_{i}}\frac{\partial}{\partial x_{i}}\sum_{k}\frac{v_{k}}{\lambda_{k}}\frac{\partial f}{\partial x_{k}}
-  -\sum_{i}w_{i}\left( \sum_{k}\frac{v_{k}}{\lambda_{k}}\frac{\partial f}{\partial x_{k}}\right)_{i}
-\]
-\[
-  =-\sum_{i}\sum_{k}\frac{v_{i}w_{k}}{\lambda_{i}\lambda_{k}}\frac{\partial^{2} f}{\partial x_{i}\partial x_{k}}
-  +\sum_{i}\sum_{k}\frac{v_{i}w_{k}}{\lambda_{i}}f_{k}
-  +{\sum_{i}}\sum_{k}\frac{w_{i}v_{k}}{\lambda_{i}\lambda_{k}}\frac{\partial^{2}f}{\partial x_{i}\partial x_{k}}
-  -\sum_{i}\frac{w_{i}v_{i}}{\lambda_{i}}\frac{\partial f}{\partial x_{i}}
-\]
-\[
-  =\sum_{i}\sum_{k}\frac{v_{i}w_{k}}{\lambda_{i}}f_{k}-\sum_{i}\frac{w_{i}v_{i}}{\lambda_{i}}\frac{\partial f}{\partial x_{i}}
-\]
-\[
-  =\sum_{i}\frac{v_{i}w_{i}}{\lambda_{i}}f_{i}-\sum_{i}\frac{v_{i}}{\lambda_{i}}\sum_{k\neq i}{w_{k}}f_{k}
-\]
+% \section*{4e}
+% \[
+%   \int_{\mathbb{R}^{n}}\langle v,x \rangle\langle w,x \rangle d\mu(x)
+%   =\int_{\mathbb{R}^{n}}\left( \sum_{i=1}^{n}v_{i}x_{i} \right)\left( \sum_{k=1}^{n}w_{k}x_{k} \right)
+%   \frac{1}{Z}e^{\sum_{j=1}^{n}-\lambda_{j}x_{j}^{2}/2}dx
+%   =\sum_{i=1}^{n}\sum_{k=1}^{n}\int_{\mathbb{R}^{n}}v_{i}w_{k}x_{i}x_{k}  \frac{1}{Z}e^{\sum_{j=1}^{n}-\lambda_{j}x_{j}^{2}/2}dx
+% \]
+% \[
+%   =\sum_{i=1}^{n}\sum_{k=1}^{n}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}v_{i}w_{k}x_{k}x_{i}e^{-(\lambda_{i} x_{i}^{2}+\lambda_{k}x_k^2)/2}dx_{i}dx_{k}
+%   \left( \int_{\mathbb{R}^{n-2}}\frac{1}{Z}e^{\sum_{j\neq i,k}\lambda_{j}x_{j}^{2}/2} \right)
+% \]
+% When $i\neq k$, the left integrand is odd, implying the term will be zero.
+% We may therefore write
+% \[
+%   =\sum_{i=1}^{n}\int_{\mathbb{R}^{n}}v_{i}w_{i}x_{i}^{2}\frac{1}{Z}e^{-\langle Ax,x \rangle/2}dx
+% \]
+% \[
+%   =\sum_{i=1}^{n}\prod_{k=i}^{n}\int_{-\infty}^{\infty}v_{i}w_{i}x_{i}^{2}\frac{1}{Z}e^{-\lambda_{k}x_{k}^{2}/2}dx_{k}
+% \]
+% For $i\neq k$, the multiplicand is $v_{i}w_{i}x_{i}^{2}$; when $i=k$, it is equal to
+% \[
+%   v_{i}w_{i}\frac{1}{Z}\int_{-\infty}^{\infty}x_{i}^{2}e^{-\lambda_{i}x_{i}/2}dx_{i}
+%   =v_{i}w_{i}\sqrt{\frac{\det A}{2\pi}}\sqrt{\frac{2\pi}{\lambda_{i}}}
+%   =v_{i}w_{i}\sqrt{\prod_{k\neq i}\lambda_{k}}
+% \]
+% Thus, each term of the sum will be of the form
+% \[
+%   v_{i}^{n}w^{n}_{i}x_{i}^{2n-2}\sqrt{\frac{\det A}{\lambda_{i}}}
+% \]
+% $v_{i}w_{i}/\lambda_{i}$
+% I'm unsure if there's a similar typographical error as I presumed above, but I don't think this is reducible to $\langle Gv,w \rangle$.
+
+\section*{4f}
+
+
+% \section*{7a}
+% \[
+%   [a(v), a^{\dagger}(w)]f=\partial_{Gv}\partial_{Gw}^{\dagger}f-\partial^{\dagger}_{Gw}\partial_{Gv}f
+% \]
+% \[
+%   =\langle Gv, \nabla(\cdot) \rangle\circ\left( -\langle Gw,\nabla(\cdot) \rangle+\langle AGw,\cdot \rangle \right)f
+%   -\left( -\langle Gw,\nabla(\cdot) \rangle+\langle AGw,\cdot \rangle \right)\circ\langle Gv,\nabla(\cdot) \rangle f
+% \]
+% \[
+%   =\langle Gv,\nabla\left( -\langle Gw,\nabla f \rangle+\langle w,f \rangle \right) \rangle
+%   -(-\langle Gw,\nabla\left( \langle Gv,\nabla f \rangle \right) \rangle+\langle w,\langle Gv,\nabla f \rangle \rangle)
+% \]
+% \[
+%   =\langle Gv,\nabla(-\langle Gw,\nabla f \rangle) \rangle+\langle Gv,\langle w,f \rangle \rangle
+%   +\langle Gw,\nabla(\langle Gv,\nabla f \rangle) \rangle
+%   -\langle w,\langle Gv,\nabla f \rangle \rangle
+% \]
+% \[
+%   =\sum_{i}\frac{v_{i}}{\lambda_{i}}\frac{\partial}{\partial x_{i}}\sum_{k}-\frac{w_{k}}{\lambda_{k}}\frac{\partial f}{\partial x_{k}}
+%   +\sum_{i}\frac{v_{i}}{\lambda_{i}}\sum_{k}w_{k}f_{k}
+%   +\sum_{i}\frac{w_{i}}{\lambda_{i}}\frac{\partial}{\partial x_{i}}\sum_{k}\frac{v_{k}}{\lambda_{k}}\frac{\partial f}{\partial x_{k}}
+%   -\sum_{i}w_{i}\left( \sum_{k}\frac{v_{k}}{\lambda_{k}}\frac{\partial f}{\partial x_{k}}\right)_{i}
+% \]
+% \[
+%   =-\sum_{i}\sum_{k}\frac{v_{i}w_{k}}{\lambda_{i}\lambda_{k}}\frac{\partial^{2} f}{\partial x_{i}\partial x_{k}}
+%   +\sum_{i}\sum_{k}\frac{v_{i}w_{k}}{\lambda_{i}}f_{k}
+%   +{\sum_{i}}\sum_{k}\frac{w_{i}v_{k}}{\lambda_{i}\lambda_{k}}\frac{\partial^{2}f}{\partial x_{i}\partial x_{k}}
+%   -\sum_{i}\frac{w_{i}v_{i}}{\lambda_{i}}\frac{\partial f}{\partial x_{i}}
+% \]
+% \[
+%   =\sum_{i}\sum_{k}\frac{v_{i}w_{k}}{\lambda_{i}}f_{k}-\sum_{i}\frac{w_{i}v_{i}}{\lambda_{i}}\frac{\partial f}{\partial x_{i}}
+% \]
+% \[
+%   =\sum_{i}\frac{v_{i}w_{i}}{\lambda_{i}}f_{i}-\sum_{i}\frac{v_{i}}{\lambda_{i}}\sum_{k\neq i}{w_{k}}f_{k}
+% \]
 
 \section*{7b}
 We can obtain a characterization of $[A^{n},B]$ as follows:
@@ -497,16 +511,16 @@ and
 Since these two functions of $\lambda$ satisfy the same differential equation and have the same value at $\lambda=0$,
 they must be the same function, so for $\lambda=1$ we obtain the desired result.
 
-\section*{7c}
-Notice that
-\[
-  M_{f}=e^{\phi(v)}
-  \Rightarrow :e^{\phi(v)}:
-  =:e^{a(v)+a(v)^{\dagger}}:
-  =:e^{a(v)^{\dagger}+a(v)}
-  =:e^{a(v)^{\dagger}}e^{a(v)}e^{-[a(v),a(v)^{\dagger}]/2}:
-  =e^{-\langle Gv,v \rangle/2}e^{a(v)^{\dagger}}e^{a(v)}
-\]
+% \section*{7c}
+% Notice that
+% \[
+%   M_{f}=e^{\phi(v)}
+%   \Rightarrow :e^{\phi(v)}:
+%   =:e^{a(v)+a(v)^{\dagger}}:
+%   =:e^{a(v)^{\dagger}+a(v)}
+%   =:e^{a(v)^{\dagger}}e^{a(v)}e^{-[a(v),a(v)^{\dagger}]/2}:
+%   =e^{-\langle Gv,v \rangle/2}e^{a(v)^{\dagger}}e^{a(v)}
+% \]
 by the result of part b.
 \section*{11a}
 \[
@@ -840,15 +854,15 @@ Multiplying the results, we indeed confirm this is a minimum-uncertainty state:
   (\Delta x)^{2}(\Delta p)^{2}=\frac{\hbar}{2m\omega}\left( m\omega\frac{\hbar}{2}\right)=\frac{\hbar^{2}}{4}
 \]
 
-\section*{14}
-We have
-\[
-  \langle 0|Tx(t)x(t')|0 \rangle=-\frac{\delta^{2}}{\delta J(t)\delta J(t')}Z(J)\bigg|_{J=0}
-\]
-where
-\[
-  Z(J)=\frac{\langle x't'|x,t \rangle^{J}}{\langle x'|0 \rangle\langle 0|x \rangle}
-\]
+%\section*{14}
+% We have
+% \[
+%   \langle 0|Tx(t)x(t')|0 \rangle=-\frac{\delta^{2}}{\delta J(t)\delta J(t')}Z(J)\bigg|_{J=0}
+% \]
+% where
+% \[
+%   Z(J)=\frac{\langle x't'|x,t \rangle^{J}}{\langle x'|0 \rangle\langle 0|x \rangle}
+% \]
 \end{document}
 %%% Local Variables:
 %%% mode: latex

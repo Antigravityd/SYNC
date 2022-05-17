@@ -7,9 +7,14 @@
 
 Searching "loop quantum gravity computation" on Web of Science yields zero results. This can't be because it's impossible; the first computational topology conference was when the subject was done in ALGOL, and differential geometry is just a fancy way of writing down PDEs, so there's no reason computational tools couldn't be developed.
 
+Quantum gravity theories tend to have a somewhat mechanistic flow that may lend itself to automation:
+
+- Define the action on a manifold
+
 * Similar Work
 
-?
+[[https://books.google.com/books?hl=en&lr=&id=Zc4RAYFXYEgC&oi=fnd&pg=PA5&dq=computational+methods+in+differential+geometry&ots=nTT_PaXGcy&sig=qapOaMw6k3Gwu0dBo-h6qTa8ql4#v=onepage&q=computational%20methods%20in%20differential%20geometry&f=false][A Computational Differential Geometry Approach to Grid Generation]] may have some foundational notions of the representation of manifolds in computable terms.
+
 
 * Feasibility
 

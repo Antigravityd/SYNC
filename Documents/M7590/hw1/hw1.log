@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.1.13)  13 MAY 2022 13:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.1.13)  17 MAY 2022 06:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -142,20 +142,20 @@ File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 ) (./hw1.aux)
 \openout1 = `hw1.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -191,14 +191,14 @@ LaTeX Font Info:    ... okay on input line 15.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 17.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 16.
 
 
 (/gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 17.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 16.
 
 
 (/gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325/share/texmf
@@ -208,37 +208,48 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 {/gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325/share/texmf
 -dist/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (16.06238pt too wide) detected at line 102
+[2]
+Overfull \hbox (16.06238pt too wide) detected at line 101
 \OMS/cmsy/m/n/10 , [] [] ^^T \OML/cmm/m/it/10 C [][] \OMS/cmsy/m/n/10 j\OML/cmm
 /m/it/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 
 j[]\OML/cmm/m/it/10 dx
  []
 
-[2] [3] [4] [5] [6] [7]
-Overfull \hbox (59.41872pt too wide) detected at line 404
+[3] [4] [5] [6]
+Overfull \hbox (37.37181pt too wide) detected at line 380
+\OMS/cmsy/m/n/10 h\OML/cmm/m/it/10 @[]f; g\OMS/cmsy/m/n/10 i \OT1/cmr/m/n/10 = 
+[][][\OML/cmm/m/it/10 @[]f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )]
+\OML/cmm/m/it/10 g\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )\OML/cmm/
+m/it/10 d^^V\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 ) = [][]\OMS/cms
+y/m/n/10 h\OML/cmm/m/it/10 v; g\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/
+10 )\OMS/cmsy/m/n/10 r\OML/cmm/m/it/10 f\OMS/cmsy/m/n/10 i\OML/cmm/m/it/10 d^^V
+\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 ) = [][]\OMS/cmsy/m/n/10 h\O
+ML/cmm/m/it/10 v; \OMS/cmsy/m/n/10 r\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 f\OT1/cmr
+/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 g\OT1/cmr/m/n/10 (
+\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )]\OMS/cmsy/m/n/10 i\OML/cmm/m/it/10 d^^V\OT1
+/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ [][]h\OML
+/cmm/m/it/10 v; f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )\OMS/cmsy/
+m/n/10 r\OML/cmm/m/it/10 g\OMS/cmsy/m/n/10 i\OML/cmm/m/it/10 d^^V\OT1/cmr/m/n/1
+0 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )
+ []
+
+[7]
+Overfull \hbox (59.41872pt too wide) detected at line 397
 [][]\OMS/cmsy/m/n/10 h\OML/cmm/m/it/10 v; x\OMS/cmsy/m/n/10 ih\OML/cmm/m/it/10 
 w; x\OMS/cmsy/m/n/10 i\OML/cmm/m/it/10 d^^V\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\
 OT1/cmr/m/n/10 ) = [][] [] [] []\OML/cmm/m/it/10 e[]dx \OT1/cmr/m/n/10 = [] [] 
 [][] \OML/cmm/m/it/10 v[]w[]x[]x[][]e[]dx
  []
 
-[8]
-Overfull \hbox (6.82016pt too wide) in paragraph at lines 470--472
+[8] [9] [10] [11] [12]
+Overfull \hbox (6.82016pt too wide) in paragraph at lines 730--732
 \OT1/cmr/m/n/10 We can ob-tain a char-ac-ter-i-za-tion of $[\OML/cmm/m/it/10 A[
 ]; B\OT1/cmr/m/n/10 ]$ as fol-lows: pre-sum-ing an in-duc-tion hy-poth-e-sis $[
 \OML/cmm/m/it/10 A[]; B\OT1/cmr/m/n/10 ] =
  []
 
-
-Overfull \hbox (7.7071pt too wide) detected at line 523
-\OML/cmm/m/it/10 M[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 e[] \OMS/cmsy/m/n/10 )\
-OT1/cmr/m/n/10 : \OML/cmm/m/it/10 e[] \OT1/cmr/m/n/10 :=: \OML/cmm/m/it/10 e[] 
-\OT1/cmr/m/n/10 :=: \OML/cmm/m/it/10 e[] \OT1/cmr/m/n/10 =: \OML/cmm/m/it/10 e[
-]e[]e[] \OT1/cmr/m/n/10 := \OML/cmm/m/it/10 e[]e[]e[]
- []
-
-[9] [10] [11]
-Overfull \hbox (52.27325pt too wide) detected at line 780
+[13] [14] [15] [16]
+Overfull \hbox (52.27325pt too wide) detected at line 1048
 \OT1/cmr/m/n/10 (^^A\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )[](^^A\OML/cmm/m/it/10 p
 \OT1/cmr/m/n/10 )[] = \OMS/cmsy/m/n/10 h\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 j[]j
 \OML/cmm/m/it/10  \OMS/cmsy/m/n/10 ih\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 j[]j\OM
@@ -255,7 +266,7 @@ MS/cmsy/m/n/10 ij[]
  []
 
 
-Overfull \hbox (62.38803pt too wide) detected at line 787
+Overfull \hbox (62.38803pt too wide) detected at line 1055
 \OMS/cmsy/m/n/10 h\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 j[][]j\OML/cmm/m/it/10  \O
 MS/cmsy/m/n/10 i \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 h\OML/cmm/m/it/10  \OMS/cms
 y/m/n/10 j [] [] j\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 i \OT1/cmr/m/n/10 = \OMS/c
@@ -274,18 +285,18 @@ it/10  \OMS/cmsy/m/n/10 i
  []
 
 
-Overfull \hbox (29.04988pt too wide) detected at line 817
+Overfull \hbox (29.04988pt too wide) detected at line 1085
 \OMS/cmsy/m/n/10 h\OML/cmm/m/it/10  []\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 p\OMS/
 cmsy/m/n/10 j\OML/cmm/m/it/10  []\OMS/cmsy/m/n/10 i \OT1/cmr/m/n/10 = [] [][] \
 OML/cmm/m/it/10 e[] [] dx \OT1/cmr/m/n/10 = [] [][] \OML/cmm/m/it/10 e[] [] dx
  []
 
-[12] [13] (./hw1.aux) ) 
+[17] [18] (./hw1.aux) ) 
 Here is how much of TeX's memory you used:
- 2115 strings out of 478994
- 30019 string characters out of 5833534
- 343597 words of memory out of 5000000
- 19618 multiletter control sequences out of 15000+600000
+ 2113 strings out of 478994
+ 30012 string characters out of 5833534
+ 342583 words of memory out of 5000000
+ 19616 multiletter control sequences out of 15000+600000
  411024 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  68i,8n,74p,232b,213s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -317,10 +328,10 @@ c/amsfonts/cm/cmti10.pfb></gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-t
 exmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><
 /gnu/store/000bj9cavfaz59mz9jz7v1h8ba35dl7d-texlive-texmf-20210325/share/texmf-
 dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on hw1.pdf (13 pages, 210924 bytes).
+Output written on hw1.pdf (18 pages, 229683 bytes).
 PDF statistics:
- 115 PDF objects out of 1000 (max. 8388607)
- 82 compressed objects within 1 object stream
+ 130 PDF objects out of 1000 (max. 8388607)
+ 92 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

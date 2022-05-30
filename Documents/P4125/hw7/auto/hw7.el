@@ -16,6 +16,10 @@
     "siunitx"
     "graphicx"
     "minted"
-    "tikz"))
+    "tikz"
+    "tikz-gnuplot")
+   (LaTeX-add-environments
+    '("gnuplot" LaTeX-env-args ["argument"] 0)
+    '("annotationimage" LaTeX-env-args ["argument"] 2)))
  :latex)
 

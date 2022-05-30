@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021 Gentoo Linux) (preloaded format=pdflatex 2022.1.18)  8 FEB 2022 22:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.1.13)  30 MAY 2022 01:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -7,9 +7,12 @@ entering extended mode
 (./hw3.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-02-18>
-(/usr/share/texmf-dist/tex/latex/base/article.cls
+(/gnu/store/pk483xfwxfixixcg4yf41737rc5cqfx9-texlive-texmf-20210325/share/texmf
+-dist/tex/latex/base/article.cls
 Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
-(/usr/share/texmf-dist/tex/latex/base/size10.clo
+
+(/gnu/store/pk483xfwxfixixcg4yf41737rc5cqfx9-texlive-texmf-20210325/share/texmf
+-dist/tex/latex/base/size10.clo
 File: size10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
 )
 \c@part=\count179
@@ -24,17 +27,21 @@ File: size10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
 \belowcaptionskip=\skip48
 \bibindent=\dimen138
 )
-(/usr/share/texmf-dist/tex/latex/geometry/geometry.sty
+(/gnu/store/pk483xfwxfixixcg4yf41737rc5cqfx9-texlive-texmf-20210325/share/texmf
+-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
 
-(/usr/share/texmf-dist/tex/latex/graphics/keyval.sty
+(/gnu/store/pk483xfwxfixixcg4yf41737rc5cqfx9-texlive-texmf-20210325/share/texmf
+-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks15
 )
-(/usr/share/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/gnu/store/pk483xfwxfixixcg4yf41737rc5cqfx9-texlive-texmf-20210325/share/texmf
+-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 
-(/usr/share/texmf-dist/tex/generic/iftex/iftex.sty
+(/gnu/store/pk483xfwxfixixcg4yf41737rc5cqfx9-texlive-texmf-20210325/share/texmf
+-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2020/03/06 v1.0d TeX engine tests
 ))
 \Gm@cnth=\count187
@@ -50,29 +57,38 @@ Package: iftex 2020/03/06 v1.0d TeX engine tests
 \Gm@layoutvoffset=\dimen146
 \Gm@dimlist=\toks16
 )
-(/usr/share/texmf-dist/tex/latex/siunitx/siunitx.sty
-(/usr/share/texmf-dist/tex/latex/l3kernel/expl3.sty
+(/gnu/store/pk483xfwxfixixcg4yf41737rc5cqfx9-texlive-texmf-20210325/share/texmf
+-dist/tex/latex/siunitx/siunitx.sty
+(/gnu/store/pk483xfwxfixixcg4yf41737rc5cqfx9-texlive-texmf-20210325/share/texmf
+-dist/tex/latex/l3kernel/expl3.sty
 Package: expl3 2021-02-18 L3 programming layer (loader) 
 
-(/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+(/gnu/store/pk483xfwxfixixcg4yf41737rc5cqfx9-texlive-texmf-20210325/share/texmf
+-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count190
 \l__pdf_internal_box=\box47
 ))
-(/usr/share/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
-(/usr/share/texmf-dist/tex/latex/l3packages/xparse/xparse-2020-10-01.sty
-(/usr/share/texmf-dist/tex/latex/l3packages/xparse/xparse-generic.tex)))
+(/gnu/store/pk483xfwxfixixcg4yf41737rc5cqfx9-texlive-texmf-20210325/share/texmf
+-dist/tex/latex/l3packages/xparse/xparse.sty
+(/gnu/store/pk483xfwxfixixcg4yf41737rc5cqfx9-texlive-texmf-20210325/share/texmf
+-dist/tex/latex/l3packages/xparse/xparse-2020-10-01.sty
+(/gnu/store/pk483xfwxfixixcg4yf41737rc5cqfx9-texlive-texmf-20210325/share/texmf
+-dist/tex/latex/l3packages/xparse/xparse-generic.tex)))
 Package: siunitx 2020/02/25 v2.8b A comprehensive (SI) units package
 
-(/usr/share/texmf-dist/tex/latex/amsmath/amstext.sty
+(/gnu/store/pk483xfwxfixixcg4yf41737rc5cqfx9-texlive-texmf-20210325/share/texmf
+-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01 AMS text
 
-(/usr/share/texmf-dist/tex/latex/amsmath/amsgen.sty
+(/gnu/store/pk483xfwxfixixcg4yf41737rc5cqfx9-texlive-texmf-20210325/share/texmf
+-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks17
 \ex@=\dimen147
 ))
-(/usr/share/texmf-dist/tex/latex/tools/array.sty
+(/gnu/store/pk483xfwxfixixcg4yf41737rc5cqfx9-texlive-texmf-20210325/share/texmf
+-dist/tex/latex/tools/array.sty
 Package: array 2020/10/01 v2.5c Tabular extension package (FMi)
 \col@sep=\dimen148
 \ar@mcellbox=\box48
@@ -82,7 +98,8 @@ Package: array 2020/10/01 v2.5c Tabular extension package (FMi)
 \backup@length=\skip50
 \ar@cellbox=\box49
 )
-(/usr/share/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+(/gnu/store/pk483xfwxfixixcg4yf41737rc5cqfx9-texlive-texmf-20210325/share/texmf
+-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
 Package: l3keys2e 2021-03-12 LaTeX2e option processing using LaTeX3 keys
 )
 \l__siunitx_tmp_box=\box50
@@ -126,19 +143,24 @@ Package: l3keys2e 2021-03-12 LaTeX2e option processing using LaTeX3 keys
 \l__siunitx_table_number_align_skip=\skip53
 \l__siunitx_table_text_align_skip=\skip54
 
-(/usr/share/texmf-dist/tex/latex/translator/translator.sty
+(/gnu/store/pk483xfwxfixixcg4yf41737rc5cqfx9-texlive-texmf-20210325/share/texmf
+-dist/tex/latex/translator/translator.sty
 Package: translator 2020-08-03 v1.12c Easy translation of strings in LaTeX
 ))
-(/usr/share/texmf-dist/tex/latex/amsmath/amsmath.sty
+(/gnu/store/pk483xfwxfixixcg4yf41737rc5cqfx9-texlive-texmf-20210325/share/texmf
+-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2020/09/23 v2.17i AMS math features
 \@mathmargin=\skip55
 
 For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-dist/tex/latex/amsmath/amsbsy.sty
+
+(/gnu/store/pk483xfwxfixixcg4yf41737rc5cqfx9-texlive-texmf-20210325/share/texmf
+-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen162
 )
-(/usr/share/texmf-dist/tex/latex/amsmath/amsopn.sty
+(/gnu/store/pk483xfwxfixixcg4yf41737rc5cqfx9-texlive-texmf-20210325/share/texmf
+-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
 \inf@bad=\count274
@@ -179,110 +201,40 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
 LaTeX Info: Redefining \[ on input line 2923.
 LaTeX Info: Redefining \] on input line 2924.
 )
-(/usr/share/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/gnu/store/pk483xfwxfixixcg4yf41737rc5cqfx9-texlive-texmf-20210325/share/texmf
+-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
-(/usr/share/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+(/gnu/store/pk483xfwxfixixcg4yf41737rc5cqfx9-texlive-texmf-20210325/share/texmf
+-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)) (./hw3.aux)
-\openout1 = `hw3.aux'.
+))
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
+! LaTeX Error: File `tikz-gnuplot.sty' not found.
 
-*geometry* driver: auto-detecting
-*geometry* detected driver: pdftex
-*geometry* verbose mode - [ preamble ] result:
-* driver: pdftex
-* paper: letterpaper
-* layout: <same size as paper>
-* layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: 
-* h-part:(L,W,R)=(92.14519pt, 430.00462pt, 92.14519pt)
-* v-part:(T,H,B)=(95.39737pt, 556.47656pt, 143.09605pt)
-* \paperwidth=614.295pt
-* \paperheight=794.96999pt
-* \textwidth=430.00462pt
-* \textheight=556.47656pt
-* \oddsidemargin=19.8752pt
-* \evensidemargin=19.8752pt
-* \topmargin=-13.87262pt
-* \headheight=12.0pt
-* \headsep=25.0pt
-* \topskip=10.0pt
-* \footskip=30.0pt
-* \marginparwidth=65.0pt
-* \marginparsep=11.0pt
-* \columnsep=10.0pt
-* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
-* \hoffset=0.0pt
-* \voffset=0.0pt
-* \mag=1000
-* \@twocolumnfalse
-* \@twosidefalse
-* \@mparswitchfalse
-* \@reversemarginfalse
-* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
 
-(/usr/share/texmf-dist/tex/latex/siunitx/siunitx-abbreviations.cfg
-File: siunitx-abbreviations.cfg 2017/11/26 v2.7k siunitx: Abbreviated units
-)
-(/usr/share/texmf-dist/tex/latex/translator/translator-basic-dictionary-English
-.dict
-Dictionary: translator-basic-dictionary, Language: English 
-)
-LaTeX Font Info:    Trying to load font information for U+msa on input line 12.
+Enter file name: 
+./hw3.tex:8: Emergency stop.
+<read *> 
+         
+l.8 \title
+          {4132 HW 3}^^M
+*** (cannot \read from terminal in nonstop modes)
 
- (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 12.
-
-
-(/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] (./hw3.aux) ) 
+ 
 Here is how much of TeX's memory you used:
- 4572 strings out of 480954
- 97355 string characters out of 5908242
- 376135 words of memory out of 5000000
- 21787 multiletter control sequences out of 15000+600000
- 413499 words of font info for 68 fonts, out of 8000000 for 9000
- 14 hyphenation exceptions out of 8191
- 71i,8n,75p,330b,601s stack positions out of 5000i,500n,10000p,200000b,80000s
-<
-/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
-0.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/sha
-re/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-sy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on hw3.pdf (4 pages, 122926 bytes).
-PDF statistics:
- 61 PDF objects out of 1000 (max. 8388607)
- 43 compressed objects within 1 object stream
- 0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+ 4097 strings out of 478994
+ 92371 string characters out of 5833534
+ 361363 words of memory out of 5000000
+ 21604 multiletter control sequences out of 15000+600000
+ 403430 words of font info for 27 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 71i,0n,75p,219b,36s stack positions out of 5000i,500n,10000p,200000b,80000s
+./hw3.tex:8:  ==> Fatal error occurred, no output PDF file produced!

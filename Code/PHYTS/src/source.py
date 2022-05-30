@@ -13,7 +13,7 @@ class Source:
         
         
 
-class Cylindrical:
+class Cylindrical(Source):
     def __init__(self, projectile, spin=(0, 0, 0), mask=(None, 1000), transform=idTransform,
                  different_charge=None, center=(0.0, 0.0), bounds=(0.0, 0.0), r_out=0.0, r_in=0.0,
                  elevation=0.0, azimuth=None, dispersion=0.0, projectile_energy):
@@ -32,7 +32,7 @@ class Cylindrical:
         self.dom = dispersion
 
 
-class Rectangular:
+class Rectangular(Source):
     def __init__(self, projectile, spin=(0, 0, 0), mask=(None, 1000), transform=idTransform,
                  different_charge=None, xbound=(0.0, 0.0), ybound=(0.0, 0.0), zbound=(0.0, 0,0)
                  elevation=0.0, azimuth=None, dispersion=0.0, projectile_energy):
@@ -53,7 +53,7 @@ class Rectangular:
 
         
 
-class Gaussian:
+class Gaussian(Source):
     def __init__(self, projectile, spin=(0, 0, 0), mask=(None, 1000), transform=idTransform,
                  different_charge=None, center=(0.0, 0.0, 0.0), fwhms=(0.0, 0.0, 0.0), elevation=0.0,
                  azimuth=None, dispersion=0.0, projectile_energy):
@@ -91,7 +91,7 @@ class Gaussian:
             self.e_type = projectile_energy
 
 
-class Parabolic:
+class Parabolic(Source):
     # Thanks to lazy typing, xyz or x-y is determined by dimension of center
     def __init__(self, projectile, spin=(0, 0, 0), mask=(None, 1000), transform=idTransform,
                  different_charge=None, center=(0.0, 0.0), width=(0.0, 0.0), zbound=(0.0, 0.0),
@@ -130,7 +130,7 @@ class Parabolic:
                 self.e_type = projectile_energy
 
         
-class Spherical:
+class Spherical(Source):
     def __init__(self, projectile, spin=(0, 0, 0), mask=(None, 1000), transform=idTransform,
                  different_charge=None, center=(0.0,0.0,0.0), r_out=0.0, r_in=0.0,
                  direction="outward", iso_options=None, projectile_energy):
@@ -153,11 +153,11 @@ class Spherical:
         else:
             self.e_type = projectile_energy      
 
-class Beam: # I don't understand what this is trying to do
+class Beam(Source): # I don't understand what this is trying to do
     def __init__(self, center=(0.0, 0.0), xbound=(0.0, 0.0), ybound=(0.0, 0.0), zbound=(0.0,0.0),
                  gradx=0.0, grady=0.0)
     
-class Conical:
+class Conical(Source):
     def __init__(self, projectile, spin=(0, 0, 0), mask=(None, 1000), transform=idTransform,
                  different_charge=None,  top=(0.0, 0.0, 0.0), altitude=(0.0, 0.0, 0.0),
                  trim_bottom=0.0, trim_top=0.0, slope=0.0, elevation=1.0, azimuth=None,
@@ -180,7 +180,7 @@ class Conical:
             self.e_type = projectile_energy
             
                 
-class Prism:
+class Prism(Source):
     def __init__(self, projectile, spin=(0, 0, 0), mask=(None, 1000), transform=idTransform,
                  different_charge=None, origin=(0.0, 0.0, 0.0), side1=(0.0, 0.0, 0.0),
                  side2=(0.0, 0.0, 0.0), extrusion=(0.0, 0.0, 0.0), attenuation=0.0,
@@ -209,11 +209,11 @@ class Prism:
 
     
     
-class Grid: # TODO: requires xyz-mesh from tallies
+class Grid(Source): # TODO: requires xyz-mesh from tallies
 
-class Tetrahedral: # TODO: requires tetrahedral geometry and universes
+class Tetrahedral(Source): # TODO: requires tetrahedral geometry and universes
 
-class SurfaceSource: # TODO: think about how this can interact with surface numbers, and how
+class SurfaceSource(Source): # TODO: think about how this can interact with surface numbers, and how
                      # cuts will work
      def __init__(self, projectile, spin=(0, 0, 0), mask=(None, 1000), transform=idTransform,
                   different_charge=None, surface, cuts, elevation, azimuth, dispersion,

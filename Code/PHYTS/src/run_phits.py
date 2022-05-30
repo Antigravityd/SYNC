@@ -1,6 +1,5 @@
 from datetime import datetime
 import subprocess as sp
-            
 
 # sources is list of tuples of a Source value and a numeric weight, cells is a list of Cell values,
 # and 
@@ -13,7 +12,7 @@ def make_input(sources, cells, tallies, title=str(datetime.now()), parameters=di
     for k, v in parameters.items:
         inp += f"{k} = {v}\n"
 
-    inp += "[Source]\n" # TODO: implement sources
+    inp += "[Source]\n" ## TODO: implement sources
     if isinstance(sources, list):
         for weight, source in sources:
             inp += f"<source> = {weight}\n"

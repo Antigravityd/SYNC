@@ -50,7 +50,7 @@ class Cell: # dictionary of properties and a frozenset of tuples with type (Surf
             else:
                 raise ValueError(f"Encountered incorrect entry {i[1]} among regions.")
 
-            new.append((i[0], other))
+           new.append((i[0], other))
 
         r = copy.deepcopy(self)
         setattr(r, "regions", new)  

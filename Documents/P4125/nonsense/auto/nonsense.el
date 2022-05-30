@@ -1,16 +1,14 @@
 (TeX-add-style-hook
- "hw3"
+ "nonsense"
  (lambda ()
+   (TeX-add-to-alist 'LaTeX-provided-class-options
+                     '(("article" "12pt")))
    (TeX-add-to-alist 'LaTeX-provided-package-options
                      '(("geometry" "letterpaper")))
    (TeX-run-style-hooks
     "latex2e"
     "article"
-    "art10"
-    "geometry"
-    "siunitx"
-    "amsmath"
-    "amssymb"
-    "tikz-gnuplot"))
+    "art12"
+    "geometry"))
  :latex)
 

@@ -1,9 +1,8 @@
 #!/bin/bash
 
-
-phits_MPI="/home/dnw/PHITS/phits326A/phits/bin/phits326_lin_mpi.exe"
-phits_OMP="/home/dnw/PHITS/phits326A/phits/bin/phits326_lin_openmp.exe"
-phits_single="/home/dnw/PHITS/phits326A/phits/bin/phits326_lin.exe"
+phits_MPI="/home/dnw/phits327A/phits/bin/phits326_lin_mpi.exe"
+phits_OMP="/home/dnw/phits327A/phits/bin/phits326_lin_openmp.exe"
+phits_single="/home/dnw//phits327A/phits/bin/phits326_lin.exe"
 
 while getopts ":MOh" option; do
     case $option in

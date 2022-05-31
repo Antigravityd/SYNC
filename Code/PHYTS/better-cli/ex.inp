@@ -66,8 +66,8 @@ MAT[ 2 ]  $ Air
 
 [ S u r f a c e ]
  1  pz     0
- 2  trc    0  0  0  0  0  50e2  50e2  5e2  $ soil
- 3  sz     15e2   5e2                      $ air inside object
+ 2  trc    0  0  0  0  0  50e2  50e2  5e2 $ soil
+ 3  sz     15e2   5e2                     $ air inside object
 99  so  100e2
 
 [ T - T r a c k ]

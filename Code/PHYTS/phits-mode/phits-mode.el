@@ -30,7 +30,7 @@
     st)
   "Syntax table used for .inp files.")
 
-;; Line continuation not handled at all
+;; Line continuation isn't handled at all
 
 (setq phits-comment-regexp "^ \\{,4\\}c.*$") ;; for the archaic fixed-format comments
 (setq phits-section-regexp "^ \\{,4\\}\\[.*\\] *$")
@@ -78,9 +78,21 @@
 			  t)
 	      "\\)\\>"))
 
+;; custom matchers required for selectively case-insensitive fontification
+(defun phits-match-archaic-comment (limit)
+  (let ((case-fold-search t))
+    (re-search-forward phits-comment-regexp limit t)))
+
+(defun phits-match-function (limit)
+  (let ((case-fold-search t))
+    (re-search-forward phits-function-regexp limit t)))
+
+(defun phits-match-special (limit)
+  (let ((case-fold-search t))
+    (re-search-forward phits-special-regexp limit t)))
 
 (defvar phits-archaic-comment-font-lock
-      (cons phits-comment-regexp  font-lock-comment-face))
+      (cons 'phits-match-archaic-comment  font-lock-comment-face))
 
 (defvar phits-section-font-lock
       (cons phits-section-regexp font-lock-warning-face))
@@ -95,11 +107,11 @@
       (list phits-particle-regexp 1 font-lock-function-name-face))
 
 (defvar phits-function-font-lock
-      (cons phits-function-regexp  font-lock-builtin-face))
+      (cons 'phits-match-function  font-lock-builtin-face))
 
 ;; TODO: solve collision of p, s, and u with the isotopes above
 (defvar phits-special-font-lock
-      (cons phits-special-regexp  font-lock-type-face))
+      (cons 'phits-match-special font-lock-type-face))
 
 
 (setq phits-font-lock
@@ -123,10 +135,13 @@
 		   (regexp  . "^\\(\\s-*\\)\\w+\\(\\s-*\\):\\(\\s-*\\)")
 		   (group   . (1 3))
 		   (spacing . (0 1)))
-		  (phits-material ;; Possibly collapse everything here too?
+		  (phits-material
 		   (regexp  . "^\\(\\s-*\\)\\w+\\s-*\\[.*\\]")
 		   (spacing . 0))
-		  ;; TODO (phits-grid)
+		  (phits-grid
+		   (regexp  . "\\(^\\|[[:alnum:]<>().*/+-]\\)\\([[:blank]]+\\)")
+		   (group   . 2)
+		   (repeat  . t))
 		  (phits-comment-normal
 		   (regexp  . "\\(\\s-*\\)[#!$%]")))
 		nil))
@@ -150,7 +165,7 @@
 (define-derived-mode phits-mode prog-mode "PHITS Input"
   "Testing mode I whipped up that's inspired in small part by https://github.com/kbat/mc-tools/blob/master/mctools/phits/phits-mode.el"
   :syntax-table phits-mode-syntax-table
-  (setq-local font-lock-defaults `(,phits-font-lock nil t)) ;; TODO: last arg in the quasiquote sets case-insensitivity; re-enabling it for the particles would be amazing so it doesn't flag the word "is" as a particle &c
+  (setq-local font-lock-defaults `(,phits-font-lock nil nil))
   (setq-local indent-line-function #'phits-indent-line))
 
 (provide 'phits-mode)

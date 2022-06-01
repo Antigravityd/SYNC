@@ -1,16 +1,59 @@
 from datetime import datetime
 import subprocess as sp
+import networkx as nx
+import itertools
+# This is complicated enough to sketch the algorithm before writing code (shocker!)
+# Given a list of cells, sources, and measurements (with some wacky options thrown in), we want to generate
+# all of the "background" data necessary to build those cells automatically, e.g. generate the surfaces necessary to build the cells.
+# To that end, we divide the options into "cell-like," "source-like," and "tally-like," and require their specification in the initialization of the
+# object of the corresponding type. This is natural: why should the surfaces I only think about in the context of one or two cells be specified separately?
+# There do exist options that don't satisfy this natural classification: transforms come to mind, as they may be used in surface, source, or
+# "backend" contexts.
 
+# The user specifies a list of sources, a list of cells, and a list of tallies
+# we reconstruct the input file by first going through every "PHITSable" property
+# and generating a digraph of the distinct values (up to the equivalence relation of each class's __eq__), with adjacency x → y denoting
+# "y needs x for its definition." This is necessary because we don't want to duplicate definitions, but we want to retain the connection
+# of parent-child; we need to define two parents with __eq__ children in terms of /one/ .inp line representing the child.
+# The set of values of each type are enumerated, and the graph updated to reflect each object's enumeration, representing the order in which the objects will appear in the input file.
+# We can now use the child's enumeration in the definition of the parent, which is what we're after.
+
+# In effect, we take the graph of Python object relationships, apply an algorithm that collapses __eq__ nodes into each other while retaining adjacency, (this seems like an extant problem, I just don't know its name)
+# map nodes → (idx, nodes) where idx is the result of enumerating all nodes that end up in the same PHITS section, and write it all out.
+
+# The first algorithm is, actually, best implemented by creating an explicit graph, as anything I can think of is formally equivalent to that. However, it may be space-inefficient, as the data is represented twice.
 # sources is list of tuples of a Source value and a numeric weight, cells is a list of Cell values,
-# and 
-def make_input(sources, cells, tallies, title=str(datetime.now()), parameters=dict(),
+# and
+
+def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=dict(),
                data_max=[], frag_data=[], multiplier=[], mat_time_change=[]):
+    objgraph = nx.DiGraph()
+
+    def add_to_graph(an_obj):  # Recursively add subtypes to graph if they're in the list of acceptable types; ignored values are retained because the nodes /are/ the objects
+        for child in map(lambda tup: tup[1] if type(tup[1]).__name__ in phits_types, an_obj.__dict__.items()): # TODO: write down phits_types
+            objgraph.add_edge(an_obj, child)
+            add_to_graph(child)
+
+    map(add_to_graph, cells)
+    map(add_to_graph, sources)
+    map(add_to_graph, tallies)
+
+    for
     inp = "[Title]\n"
     inp += title + '\n'
 
     inp += "[Parameters]\n"
-    for k, v in parameters.items:
-        inp += f"{k} = {v}\n"
+    for var, val in parameters.items:
+        inp += f"{var} = {val}\n"
+
+    for var, val in map(lambda tup: tup[0].implied_params if tup[0].implied_params is not None, cells): # implied_params must be a dict of variable: value in all three cases here
+        inp += f"{var} = {val}\n"
+    for var, val in map(lambda tup: tup[0].implied_params if tup[0].implied_params is not None, sources):
+        inp +=f"{var} = {val}\n"
+    for var, val in map(lambda tup: tup[0].implied_params if tup[0].implied_params is not None, tallies):
+        inp +=f"{var} = {val}\n"
+
+
 
     inp += "[Source]\n" ## TODO: implement sources
     if isinstance(sources, list):
@@ -31,7 +74,7 @@ def make_input(sources, cells, tallies, title=str(datetime.now()), parameters=di
     # Also, need to verify that order of material components doesn't affect the hash,
     # by making sure lists are sets by this point. 
     
-    # record all distinct values of every cellwise parameter
+    # record all distinct values of every  parameter
     distinct = {"material": {},
                 "surface": {},
                 "transform": {}

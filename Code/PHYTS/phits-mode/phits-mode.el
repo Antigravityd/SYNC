@@ -91,27 +91,40 @@
   (let ((case-fold-search t))
     (re-search-forward phits-special-regexp limit t)))
 
+(defun phits-line-matching (regexp)
+    (save-excursion
+       (beginning-of-line)
+       (if (re-search-forward regexp (line-end-position) t)
+	   t)))
+
+(defun phits-match-nongrid ()
+  (not (or
+       (phits-line-matching phits-section-regexp)
+       (phits-line-matching phits-parameter-regexp)
+       (phits-line-matching phits-label-regexp)
+       (phits-line-matching "^\\(\\s-*\\)\\w+\\s-*\\[.*\\]"))))
+
 (defvar phits-archaic-comment-font-lock
-      (cons 'phits-match-archaic-comment  font-lock-comment-face))
+  (cons 'phits-match-archaic-comment  font-lock-comment-face))
 
 (defvar phits-section-font-lock
-      (cons phits-section-regexp font-lock-warning-face))
+  (cons phits-section-regexp font-lock-warning-face))
 
 (defvar phits-parameter-font-lock
-      (list phits-parameter-regexp 1 font-lock-variable-name-face))
+  (list phits-parameter-regexp 1 font-lock-variable-name-face))
 
 (defvar phits-label-font-lock
-      (list phits-label-regexp 1 font-lock-keyword-face))
+  (list phits-label-regexp 1 font-lock-keyword-face))
 
 (defvar phits-particle-font-lock
-      (list phits-particle-regexp 1 font-lock-function-name-face))
+  (list phits-particle-regexp 1 font-lock-function-name-face))
 
 (defvar phits-function-font-lock
-      (cons 'phits-match-function  font-lock-builtin-face))
+  (cons 'phits-match-function  font-lock-builtin-face))
 
 ;; TODO: solve collision of p, s, and u with the isotopes above
 (defvar phits-special-font-lock
-      (cons 'phits-match-special font-lock-type-face))
+  (cons 'phits-match-special font-lock-type-face))
 
 
 (setq phits-font-lock
@@ -123,7 +136,7 @@
 	    phits-function-font-lock
 	    phits-special-font-lock))
 
-(defun phits-indent-line ()
+(defun phits-indent-line () ;; The only thing this fails on is gridlike sections within predominantly-parameter blocks. It's not /that/ ugly, but it isn't great...
   (align-region nil
 		nil
 		'group
@@ -139,12 +152,16 @@
 		   (regexp  . "^\\(\\s-*\\)\\w+\\s-*\\[.*\\]")
 		   (spacing . 0))
 		  (phits-grid
-		   (regexp  . "\\(^\\|[[:alnum:]<>().*/+-]\\)\\([[:blank]]+\\)")
-		   (group   . 2)
-		   (repeat  . t))
+		   (run-if  . phits-match-nongrid)
+		   (regexp  . "\\(\\s-*\\)[[:alnum:].-]+")
+		   (group   . 1)
+		   (repeat  . t)
+		   (valid   . phits-match-nongrid))
 		  (phits-comment-normal
 		   (regexp  . "\\(\\s-*\\)[#!$%]")))
-		nil))
+		'((phits-exclude-after-comment
+		   (regexp  . "\\([#!$%].*\\)")
+		   (group   . 1)))))
 
 ;;(defvar phits-source-dir "~/PHITS/phits326A/phits"
 ;;"The directory unpacked from the archive obtained from JAEA that contains the PHITS source files.")

@@ -58,11 +58,11 @@ MAT[ 2 ]  $ Air
            N  0.8  O  0.2
 
 [ C e l l ]
- 1   2 -1.2e-3    -99 1 2  $ air
- 2   1 -2.0       -2 3     $ object
- 3   2 -1.2e-3    -3       $ air inside object
- 98  -1           -99 -1   $ underground (outer void)
- 99  -1            99
+ 1  2  -1.2e-3 -99 1 2 $	air
+ 2  1  -2.0    -2  3   $		 object
+ 3  2  -1.2e-3 -3      $ air	 inside object
+ 98 -1 -99   -1	       $ underground (outer void)
+ 99 -1 99
 
 [ S u r f a c e ]
  1  pz     0

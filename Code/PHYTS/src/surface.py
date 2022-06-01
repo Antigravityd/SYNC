@@ -1,7 +1,7 @@
 import numpy as np
 import Transform
 
-class Surface: # all surfaces carry symbols and reflectiveness/whiteness
+class Surface: # all surfaces carry symbols, reflectiveness/whiteness, and coordinate transforms.
     def __init__(self, symb, reflective=False, white=False,
                  transform=idTransform):
         self.reflective = reflective

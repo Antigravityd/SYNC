@@ -25,6 +25,7 @@ while getopts ":MOh" option; do
 	    exit;;
 
 	O) ${phits_OMP} < ${@: -1}
+
 	   exit;;
 
 	h) echo "phits: nicer command-line interface to JAEA's Particle Heavy Ion Transport code System"

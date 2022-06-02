@@ -35,8 +35,7 @@ from base.py import *
 # sources is list of tuples of a Source value and a numeric weight, cells is a list of Cell values,
 # and
 
-def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=dict(),
-               data_max=[], frag_data=[], multiplier=[], mat_time_change=[]):
+def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=dict(), cross_sections=[], raw=""): # [Super Mirror] and [Elastic Option] aren't supported due to poor documentation.
     objgraph = nx.DiGraph()
 
     def add_to_graph(an_obj):  # Recursively add subtypes to graph if they represent an "entry" in one of the sections
@@ -53,6 +52,8 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
     map(add_to_graph, cells)
     map(lambda tup: add_to_graph(tup[1]), sources)
     map(add_to_graph, tallies)
+    if super_mirrors is not None:
+        map(add_to_graph, super_mirrors)
 
     def adjust_subobjects(an_obj): # Recursively replace redundant subtypes with the representative that's in the graph
         if isinstance(an_obj, col.Iterable):
@@ -73,38 +74,40 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
 
 
     # Now we break up the nodes by PHITS type
-    type_divided = {"parameters": {},
-                    "source": {},
-                    "material": {},
-                    "surface": {},
-                    "cell": {},
-                    "transform": {},
-                    "temperature": {},
-                    "mat_time_change": {},
-                    "magnetic_field": {},
-                    "electro_magnetic_field": {},
-                    "delta_ray": {},
-                    "track_structure": {},
-                    "super_mirror": {},
-                    "elastic_option": {},
-                    "importance": {},
-                    "weight_window": {},
-                    "ww_bias": {},
-                    "forced_collisions": {},
-                    "repeated_collisions": {},
-                    "volume": {},
-                    "multiplier": {},
-                    "mat_name_color": {},
-                    "reg_name": {},
-                    "counter": {},
-                    "timer": {}}
+    type_divided = {"parameters": [],
+                    "source": [],
+                    "material": [],
+                    "surface": [],
+                    "cell": [],
+                    "transform": [],
+                    "temperature": [],
+                    "mat_time_change": [],
+                    "magnetic_field": [],
+                    "neutron_magnetic_field": [],
+                    "mapped_magnetic_field": []
+                    "uniform_electromagnetic_field": [],
+                    "mapped_electromagnetic_field": [],
+                    "delta_ray": [],
+                    "track_structure": [],
+                    "importance": [],
+                    "weight_window": [],
+                    "ww_bias": [],
+                    "forced_collisions": [],
+                    "repeated_collisions": [],
+                    "volume": [],
+                    "multiplier": [],
+                    "mat_name_color": [],
+                    "reg_name": [],
+                    "counter": [],
+                    "timer": []}
 
     for node in objgraph:
-        type_divided[node.name].add(node)
+        type_divided[node.name].append(node)
 
     for section, entries in type_divided.items():
         for idx, value in enumerate(entries):
             value.index = idx # this allows us to access the position in which the value will appear if given value alone.
+
 
     inp = "[Title]\n"
     inp += title + '\n'
@@ -114,7 +117,7 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
     for var, val in parameters.items: # directly passed global parameters
         inp += f"{var} = {val}\n"
 
-    for dic in type_divided["parameters"]: # parameters from object declarations
+    for dic in type_divided["parameters"]: # parameters associated with object declarations
         for var, val in dic.dic.items():
             inp += f"{var} = {val}\n"
 
@@ -131,8 +134,33 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
 
     inp += "[Material]\n"
     for mat in type_divided["material"]:
-        inp += f"MAT[{mat.index}]"
-        for # TODO: finish after implementing Material class
+        inp += f"MAT[{mat.index}]\n"
+        for element, ratio in mat.composition:
+            inp += f"{element} {ratio}\n"
+
+        if not mat.condensed == "gas":
+            inp += "GAS = 1\n"
+
+        if mat.conductive:
+            inp += "COND = 1\n"
+        else:
+            inp += "COND = -1\n"
+
+        if mat.electron_step is not None:
+            inp += f"ESTEP = {mat.electron_step}\n"
+
+        if mat.neutron_lib is not None:
+            inp += f"NLIB = {mat.neutron_lib}\n"
+        if mat.proton_lib is not None:
+            inp += f"HLIB = {mat.proton_lib}\n"
+        if mat.electron_lib is not None:
+            inp += f"ELIB = {mat.electron_lib}\n"
+        if mat.photon_lib is not None:
+            inp += f"PLIB = {mat.photon_lib}\n"
+
+        if mat.thermal_lib is not None:
+            inp += f"MT{mat.index} {mat.thermal_lib}\n"
+
 
     inp += "[Surface]\n"
     for sur in type_divided["surface"]:
@@ -152,21 +180,122 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
             elif orient == ">":
                 inp += f"-{sur.index} "
             else:
-                raise ValueError(f"Encountered incorrect orientation {i[1]} among regions.")
+                raise ValueError(f"Invalid orientation {i[1]} among regions.")
         if cell.volume is not None:
             inp += f"VOL={cell.volume} "
         if cell.temperature is not None:
             inp += f"TMP={cell.temperature} "
         inp += "\n"
 
-    inp += "[Transform]\n"
-    for tr in type_divided["transform"]:
-        if tr.units == "radians":
-            inp += f"TR{tr.index} "
-        else if tr.units ==
+    if type_divided["transform"]:
+        inp += "[Transform]\n"
+        for tr in type_divided["transform"]:
+            if tr.units == "radians":
+                inp += f"TR{tr.index} "
+            else if tr.units == "degrees":
+                inp += f"*TR{tr.index} "
+            else:
+                raise ValueError(f"Encountered invalid angular unit {tr.units} among transforms.")
+            inp += f"{tr.trans[0]} {tr.trans[1]} {tr.trans[2]} {tr.rot[0]} {tr.rot[1]} {tr.rot[2]} {tr.rot[3]} {tr.rot[4]} {tr.rot[5]} {tr.rot[6]} {tr.rot[7]} {tr.rot[8]} {1 if tr.rotateFirst else -1}\n"
 
-            
-        
+    if type_divided["mat_time_change"]:
+        inp += "[Mat Time Change]\n"
+        inp += "mat time change\n"
+        for mtc in type_divided["mat_time_change"]:
+            inp += f"{mtc.old} {mtc.time} {mtc.new}\n"
+
+    if type_divided["magnetic_field"]:
+        inp += "[Magnetic Field]\n"
+        inp += "reg typ gap mgf trcl time\n"
+        for mf in type_divided["magnetic_field"]:
+            inp += f"{mf.cell.index} {mf.typ} {mf.gap} {mf.strength} {mf.transform if mf.transform is not None else 0} {mf.time if mf.time is not None else \"non\"}\n"
+
+    if type_divided["neutron_magnetic_field"]:
+        inp += "[Magnetic Field]\n"
+        inp += "reg typ gap mgf trcl polar time\n"
+        for mf in type_divided["neutron_magnetic_field"]:
+            inp += f"{mf.cell.index} {mf.typ} {mf.gap} {mf.strength} {mf.transform if mf.transform is not None else 0} {mf.polar if mf.polar is not None else \"non\"} {mf.time if mf.polar is not None else \"non\"}\n"
+
+    if type_divided["mapped_magnetic_field"]:
+        inp += "[Magnetic Field]\n"  # TODO: make sure defining multiple magnetic field sections is kosher...
+        inp += "reg typ gap mgf trcl file\n"
+        for mf in type_divided["mapped_magnetic_field"]:
+            inp += f"{mf.cell.index} {mf.typ} {mf.gap} {mf.strength} {mf.transform if mf.transform is not None else 0} {mf.m_file}\n"
+
+    if type_divided["uniform_electromagnetic_field"]:
+        inp += "[Electro Magnetic Field]\n"
+        inp += "reg elf mgf trcle trclm\n"
+        for emf in type_divided["uniform_electromagnetic_field"]:
+            inp += f"{emf.cell.index} {emf.e_strength} {emf.m_strength} {emf.e_transform if emf.e_transform is not None else 0} {emf.m_transform if emf.m_transform is not None else 0}\n"
+
+    if type_divided["mapped_electromagnetic_field"]:
+        inp += "[Electro Magnetic Field]\n"
+        inp += "reg type typm gap elf mlf trcle filee filem\n"
+        for emf in type_divided["mapped_electromagnetic_field"]:
+            inp += f"{emf.cell.index} {emf.typ_e} {emf.typ_m} {emf.gap} {emf.e_strength} {emf.m_strength} {emf.e_transform if emf.e_transform is not None else 0} {emf.m_transform if emf.m_transform is not None else 0} {emf.e_file} {emf.m_file}\n"
+
+
+    if type_divided["delta_ray"]:
+        inp += "[Delta Ray]\n"
+        inp += "reg del\n"
+        for dr in type_divided["delta_ray"]:
+            inp += f"{dr.cell.index} {dr.threshold}\n"
+
+    if type_divided["track_structure"]:
+        inp += "[Track Structure]\n"
+        inp += "reg mID\n"
+        for ts in type_divided["track_structure"]:
+            inp += f"{ts.cell.index} {ts.mID}\n"
+
+    if cross_sections:
+        inp += "[Frag Data]\n"
+        inp += "opt proj targ file\n"
+        for dic in cross_sections:
+            opt = "opt"
+            proj = "proj"
+            targ = "targ"
+            filename = "file"
+            inp += f"{dic[opt]} {dic[proj]} {dic[targ]} {dic[filename]}\n"
+
+    if type_divided["importance"]:
+        if len(type_divided["importance"]) > 6:
+            raise ValueError("More than 6 [Importance] sections.")
+        for imps in it.groupby(type_divided["importance"], lambda imp: imp.particles):
+            inp += "[Importance]\n"
+            inp += f"part = {imps[0].particles}\n"
+            inp += "reg imp\n"
+            for imp in imps:
+                inp += f"{imp.cell.index} {imp.importance}\n"
+
+  # if type_divided["weight_window"]:
+  # if type_divided["ww_bias"]:
+
+    if type_divided["forced_collisions"]:
+        if len(type_divided["forced_collisions"]) > 6:
+            raise ValueError("More than 6 [Forced Collision] sections.")
+        for fcls in it.groupby(type_divided["forced_collisions"], lambda fcl: fcl.particles):
+            inp += "[Forced Collisions]\n"
+            inp += f"part = {fcls[0].particles}\n"
+            inp += "reg imp\n"
+            for fcl in fcls:
+                inp += f"{fcl.cell.index} {fcl.fcl}\n"
+
+  # if type_divided["repeated_collisions"]:
+  # if type_divided["multiplier"]:
+
+    if type_divided["mat_name_color"]:
+        inp += "[Mat Name Color]\n"
+        inp += "mat name size color\n"
+        for mnc in type_divided["mat_name_color"]:
+            inp += f"{mnc.material.index} {mnc.name} {mnc.size} {mnc.color}\n"
+
+    if type_divided["reg_name"]:
+        inp += "[Reg Name]\n"
+        inp += "reg name size\n"
+        for rn in type_divided["reg_name"]:
+            inp += f"{rn.cell.index} {rn.name} {rn.size}"
+
+
     # TODO: "sanitize" all input so that hashing works correctly
     # for values that ought to parse equal, i.e. (1, "Pb") and "100% lead"
     # should be put into one form or the other (prefer former form in this case).

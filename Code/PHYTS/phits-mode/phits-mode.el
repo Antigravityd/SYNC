@@ -102,7 +102,7 @@
        (phits-line-matching phits-section-regexp)
        (phits-line-matching phits-parameter-regexp)
        (phits-line-matching phits-label-regexp)
-       (phits-line-matching "^\\(\\s-*\\)\\w+\\s-*\\[.*\\]"))))
+       (phits-line-matching "^\\(\\s-*\\)\\w+\\[.*\\]"))))
 
 (defvar phits-archaic-comment-font-lock
   (cons 'phits-match-archaic-comment  font-lock-comment-face))
@@ -149,7 +149,7 @@
 		   (group   . (1 3))
 		   (spacing . (0 1)))
 		  (phits-material
-		   (regexp  . "^\\(\\s-*\\)\\w+\\s-*\\[.*\\]")
+		   (regexp  . "^\\(\\s-*\\)\\w+\\[.*\\]")
 		   (spacing . 0))
 		  (phits-grid
 		   (run-if  . phits-match-nongrid)

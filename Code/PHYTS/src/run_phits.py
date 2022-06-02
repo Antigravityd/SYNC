@@ -1,7 +1,9 @@
 from datetime import datetime
 import subprocess as sp
 import networkx as nx
-import itertools
+import itertools as it
+import collections as col
+from base.py import *
 # This is complicated enough to sketch the algorithm before writing code (shocker!)
 # Given a list of cells, sources, and measurements (with some wacky options thrown in), we want to generate
 # all of the "background" data necessary to build those cells automatically, e.g. generate the surfaces necessary to build the cells.
@@ -21,7 +23,15 @@ import itertools
 # In effect, we take the graph of Python object relationships, apply an algorithm that collapses __eq__ nodes into each other while retaining adjacency, (this seems like an extant problem, I just don't know its name)
 # map nodes → (idx, nodes) where idx is the result of enumerating all nodes that end up in the same PHITS section, and write it all out.
 
-# The first algorithm is, actually, best implemented by creating an explicit graph, as anything I can think of is formally equivalent to that. However, it may be space-inefficient, as the data is represented twice.
+# The first algorithm is, actually, best implemented by creating an explicit graph, as anything I can think of is formally equivalent to that. However, it may be space-inefficient, as the adjacency data is represented twice.
+# The naïve algorithm is suboptimal: taking every node, and comparing it to every other node to construct the equivalence class explicitly is O(n^n), and doesn't use symmetry or transitivity to reduce the number of required comparisons.
+
+# Here's a better candidate algorithm: first, initialize an empty set (since we only need lookup and insertion we can get O(1) on average; the hash values are computed via the equivalence relation in question).
+# Iterate over the nodes of the graph; if the a node isn't in the set (i.e. is not equivalent to any in the set, since the hash bins are computed via __eq__), add it.
+# If a node is equivalent to one in the set, change all edges that end on the node to end instead on the one to which it is equivalent.
+# This is O(#nodes + connectivity)
+
+
 # sources is list of tuples of a Source value and a numeric weight, cells is a list of Cell values,
 # and
 
@@ -29,43 +39,132 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
                data_max=[], frag_data=[], multiplier=[], mat_time_change=[]):
     objgraph = nx.DiGraph()
 
-    def add_to_graph(an_obj):  # Recursively add subtypes to graph if they're in the list of acceptable types; ignored values are retained because the nodes /are/ the objects
-        for child in map(lambda tup: tup[1] if type(tup[1]).__name__ in phits_types, an_obj.__dict__.items()): # TODO: write down phits_types
-            objgraph.add_edge(an_obj, child)
-            add_to_graph(child)
+    def add_to_graph(an_obj):  # Recursively add subtypes to graph if they represent an "entry" in one of the sections
+        if isinstance(an_obj, col.Iterable):
+            map(add_to_graph, an_obj)
+        else:
+            if isinstance(an_obj, PhitsBase):
+                for name, child in an_obj.__dict__.items():
+                    if isinstance(child, PhitsBase):
+                        objgraph.add_edge(an_obj, child)
+                        add_to_graph(child)
+
 
     map(add_to_graph, cells)
-    map(add_to_graph, sources)
+    map(lambda tup: add_to_graph(tup[1]), sources)
     map(add_to_graph, tallies)
 
-    for
+    def adjust_subobjects(an_obj): # Recursively replace redundant subtypes with the representative that's in the graph
+        if isinstance(an_obj, col.Iterable):
+            map(adjust_subobjects, an_obj)
+        else:
+            if isinstance(an_obj, PhitsBase):
+                for name, child in an_obj.__dict__.items():
+                    if isinstance(child, PhitsBase):
+                        representative = filter(lambda node: node == child, objgraph.successors(an_obj))
+                        setattr(an_obj, child, representative)
+                        adjust_subobjects(child)
+
+    map(adjust_subobjects, cells)
+    map(lambda tup: adjust_subobjects(tup[1]), sources)
+    map(adjust_subobjets, tallies)
+
+    # We now have that if any two PHITS objects A and B had a property C and D such that C == D, C /is/ D
+
+
+    # Now we break up the nodes by PHITS type
+    type_divided = {"parameters": {},
+                    "source": {},
+                    "material": {},
+                    "surface": {},
+                    "cell": {},
+                    "transform": {},
+                    "temperature": {},
+                    "mat_time_change": {},
+                    "magnetic_field": {},
+                    "electro_magnetic_field": {},
+                    "delta_ray": {},
+                    "track_structure": {},
+                    "super_mirror": {},
+                    "elastic_option": {},
+                    "importance": {},
+                    "weight_window": {},
+                    "ww_bias": {},
+                    "forced_collisions": {},
+                    "repeated_collisions": {},
+                    "volume": {},
+                    "multiplier": {},
+                    "mat_name_color": {},
+                    "reg_name": {},
+                    "counter": {},
+                    "timer": {}}
+
+    for node in objgraph:
+        type_divided[node.name].add(node)
+
+    for section, entries in type_divided.items():
+        for idx, value in enumerate(entries):
+            value.index = idx # this allows us to access the position in which the value will appear if given value alone.
+
     inp = "[Title]\n"
     inp += title + '\n'
 
+
     inp += "[Parameters]\n"
-    for var, val in parameters.items:
+    for var, val in parameters.items: # directly passed global parameters
         inp += f"{var} = {val}\n"
 
-    for var, val in map(lambda tup: tup[0].implied_params if tup[0].implied_params is not None, cells): # implied_params must be a dict of variable: value in all three cases here
-        inp += f"{var} = {val}\n"
-    for var, val in map(lambda tup: tup[0].implied_params if tup[0].implied_params is not None, sources):
-        inp +=f"{var} = {val}\n"
-    for var, val in map(lambda tup: tup[0].implied_params if tup[0].implied_params is not None, tallies):
-        inp +=f"{var} = {val}\n"
-
+    for dic in type_divided["parameters"]: # parameters from object declarations
+        for var, val in dic.dic.items():
+            inp += f"{var} = {val}\n"
 
 
     inp += "[Source]\n" ## TODO: implement sources
-    if isinstance(sources, list):
-        for weight, source in sources:
-            inp += f"<source> = {weight}\n"
-            for k, v in source.__dict__.items():
-                if v is not None:
-                    inp += f"{k} = {v}\n"
-    else:
-        for k, v in sources.__dict__.items():
-            if v is not None:
-                inp += f"{k} = {v}\n"
+    for weight, source in sources:
+        inp += f"<source> = {weight}\n"
+        for var, val in source.__dict__.items():
+            if val is not None:
+                if isinstance(val, PhitsBase):
+                    inp += f"{var} = {val.index}\n"
+                else:
+                    inp += f"{var} = {val}\n"
+
+    inp += "[Material]\n"
+    for mat in type_divided["material"]:
+        inp += f"MAT[{mat.index}]"
+        for # TODO: finish after implementing Material class
+
+    inp += "[Surface]\n"
+    for sur in type_divided["surface"]:
+        boundary = "*" if sur.reflective else ("+" if sur.white else "")
+        inp += f"{boundary}{sur.index} {sur.transform.index} {sur.symbol} "
+        for attr, val in sur.__dict__.items():
+            if attr not in ["index", "name", "symb", "reflective", "white", "transform"]: # exclude "super" properties and those already handled
+                inp += f"{attr} "
+        inp += "\n"
+
+    inp += "[Cell]\n"
+    for cell in type_divided["cell"]:
+        inp += f"{cell.index} {cell.material.index} {cell.density} "
+        for sur, orient in cell.regions:
+            if orient == "<": # This may not be correct; the "sense" of surfaces is poorly documented.
+                inp += f"{sur.index} "
+            elif orient == ">":
+                inp += f"-{sur.index} "
+            else:
+                raise ValueError(f"Encountered incorrect orientation {i[1]} among regions.")
+        if cell.volume is not None:
+            inp += f"VOL={cell.volume} "
+        if cell.temperature is not None:
+            inp += f"TMP={cell.temperature} "
+        inp += "\n"
+
+    inp += "[Transform]\n"
+    for tr in type_divided["transform"]:
+        if tr.units == "radians":
+            inp += f"TR{tr.index} "
+        else if tr.units ==
+
             
         
     # TODO: "sanitize" all input so that hashing works correctly

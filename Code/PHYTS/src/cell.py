@@ -1,6 +1,7 @@
 import copy
+import base.py
 
-class Cell: # dictionary of properties and a frozenset of tuples with type (Surface, "<" | ">")
+class Cell(PhitsBase): # dictionary of properties and a frozenset of tuples with type (Surface, "<" | ">")
             # with the second entry being
             # what the equality in the surface function ought to be replaced with to get the orientation.
             # As a heuristic rule, consider r → ∞ and check the sign of the LHS; choose accordingly.
@@ -11,7 +12,9 @@ class Cell: # dictionary of properties and a frozenset of tuples with type (Surf
             # e.g. {material: "60% water, 40% lead 208"} ↔ {material: [(0.6, "H20"), (0.4, "Pb-206")]}
             # Every property that applies to a cell ought to be supported, like transform, tallies, etc.
     def __init__(self, regions, **kwargs):
+        super("cell")
         self.regions = regions
+        self.density = density
         
         allowed_keys = {"material",
                         "transform",
@@ -29,7 +32,7 @@ class Cell: # dictionary of properties and a frozenset of tuples with type (Surf
                         "reg_name",
                         "counter",
                         "timer",
-                        "required_params"}
+                        "parameters"}
         for k in allowed_keys:
             if k in kwargs:
                 setattr(self, k, frozenset(kwargs[k]) if isinstance(kwargs[k], list) else kwargs[k])
@@ -49,9 +52,9 @@ class Cell: # dictionary of properties and a frozenset of tuples with type (Surf
             elif i[1] == ">":
                 other = "<"
             else:
-                raise ValueError(f"Encountered incorrect entry {i[1]} among regions.")
+                raise ValueError(f"Encountered incorrect orientation {i[1]} among regions.")
 
-           new.append((i[0], other))
+            new.append((i[0], other))
 
         r = copy.deepcopy(self)
         setattr(r, "regions", new)  

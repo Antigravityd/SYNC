@@ -32,8 +32,8 @@
 
 ;; Line continuation isn't handled at all
 
-(setq phits-comment-regexp "^ \\{,4\\}c.*$") ;; for the archaic fixed-format comments
-(setq phits-section-regexp "^ \\{,4\\}\\[.*\\] *$")
+(setq phits-comment-regexp "^ \\{,4\\}c") ;; for the archaic fixed-format comments
+(setq phits-section-regexp "^ \\{,4\\}\\[.*\\]")
 (setq phits-parameter-regexp "\\s-*\\([[:alnum:]<>-]+\\)\\((.*)\\|\\[.*\\]\\)?\\s-*=")
 (setq phits-label-regexp "^\\s-*\\(\\w*\\):")
 

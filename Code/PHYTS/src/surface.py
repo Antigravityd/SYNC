@@ -1,7 +1,7 @@
 import numpy as np
 import Transform
-
-class Surface: # all surfaces carry symbols, reflectiveness/whiteness, and coordinate transforms.
+# TODO: get the PhitsBase initializer support
+class Surface(PhitsBase): # all surfaces carry symbols, reflectiveness/whiteness, and coordinate transforms.
     def __init__(self, symb, reflective=False, white=False,
                  transform=idTransform):
         self.reflective = reflective

@@ -293,7 +293,14 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
         inp += "[Reg Name]\n"
         inp += "reg name size\n"
         for rn in type_divided["reg_name"]:
-            inp += f"{rn.cell.index} {rn.name} {rn.size}"
+            inp += f"{rn.cell.index} {rn.name} {rn.size}\n"
+
+    if type_divided["timer"]:
+        inp += "[Timer]\n"
+        inp += " reg in out coll ref\n"
+        for tim in type_divided["timer"]:
+            inp += f"{tim.cell.index} {tim.in} {tim.out} {tim.coll} {tim.ref}\n"
+
 
 
     # TODO: "sanitize" all input so that hashing works correctly

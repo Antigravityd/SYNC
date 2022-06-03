@@ -1,4 +1,5 @@
-class Source:
+# TODO: get PhitsBase support
+class Source(PhitsBase):
     def __init__(self, s_type, projectile, spin=(0, 0, 0), mask=(None, 1000),
                  transform=None, different_charge=None):
         self.s_type = s_type
@@ -20,7 +21,7 @@ class Cylindrical(Source):
         # elevation is elevation angle in degrees if numeric, set to "all" for isotropic,
         # and an requires an a-type subsection if a function.
         # Similarly, projectile_energy corresponds to e0 if numeric or e-type if a function or it'ble.
-        super().__init__(1, projectile, spin, mask, transform, different_charge)
+        super(1, projectile, spin, mask, transform, different_charge)
         self.x0 = center[0]
         self.y0 = center[1]
         self.z0 = bounds[0]
@@ -36,7 +37,7 @@ class Rectangular(Source):
     def __init__(self, projectile, spin=(0, 0, 0), mask=(None, 1000), transform=idTransform,
                  different_charge=None, xbound=(0.0, 0.0), ybound=(0.0, 0.0), zbound=(0.0, 0,0)
                  elevation=0.0, azimuth=None, dispersion=0.0, projectile_energy):
-        super().__init__(2, projectile, spin, mask, transform, different_charge)
+        super(2, projectile, spin, mask, transform, different_charge)
         self.x0 = xbound[0]
         self.x1 = xbound[1]
         self.y0 = ybound[0]
@@ -57,7 +58,7 @@ class Gaussian(Source):
     def __init__(self, projectile, spin=(0, 0, 0), mask=(None, 1000), transform=idTransform,
                  different_charge=None, center=(0.0, 0.0, 0.0), fwhms=(0.0, 0.0, 0.0), elevation=0.0,
                  azimuth=None, dispersion=0.0, projectile_energy):
-        super().__init__(3, projectile, spin, mask, transform, different_charge)
+        super(3, projectile, spin, mask, transform, different_charge)
         self.x0 = center[0]
         self.y0 = center[1]
         self.z0 = center[2]
@@ -76,7 +77,7 @@ class Gaussian(Source):
     def __init__(self, projectile, spin=(0, 0, 0), mask=(None, 1000), transform=idTransform,
                  different_charge=None, center=(0.0, 0.0), fwhm=0.0, zbound=(0.0, 0.0), elevation=0.0,
                  azimuth=None, dispersion=0.0, projectile_energy):
-        super().__init__(13, projectile, spin, mask, transform, different_charge)
+        super(13, projectile, spin, mask, transform, different_charge)
         self.x0 = center[0]
         self.y0 = center[1]
         self.r1 = fwhm
@@ -97,7 +98,7 @@ class Parabolic(Source):
                  different_charge=None, center=(0.0, 0.0), width=(0.0, 0.0), zbound=(0.0, 0.0),
                  order=2, elevation=0.0, azimuth=None, dispersion=0.0, projectile_energy):
         if len(width) == 2:
-            super().__init__(7, projectile, spin, mask, transform, different_charge)
+            super(7, projectile, spin, mask, transform, different_charge)
             self.x0 = center[0]
             self.y0 = center[1]
             self.x1 = width[0]
@@ -114,7 +115,7 @@ class Parabolic(Source):
                 self.e_type = projectile_energy
 
         else:
-            super().__init__(15, projectile, spin, mask, transform, different_charge)
+            super(15, projectile, spin, mask, transform, different_charge)
             self.x0 = center[0]
             self.y0 = center[1]
             self.r1 = width
@@ -134,7 +135,7 @@ class Spherical(Source):
     def __init__(self, projectile, spin=(0, 0, 0), mask=(None, 1000), transform=idTransform,
                  different_charge=None, center=(0.0,0.0,0.0), r_out=0.0, r_in=0.0,
                  direction="outward", iso_options=None, projectile_energy):
-        super().__init__(9, projectile, spin, mask, transform, different_charge)
+        super(9, projectile, spin, mask, transform, different_charge)
         self.x0 = center[0]
         self.y0 = center[1]
         self.z0 = center[2]
@@ -162,7 +163,7 @@ class Conical(Source):
                  different_charge=None,  top=(0.0, 0.0, 0.0), altitude=(0.0, 0.0, 0.0),
                  trim_bottom=0.0, trim_top=0.0, slope=0.0, elevation=1.0, azimuth=None,
                  dispersion=0.0, projectile_energy):
-        super().__init__(18, projectile, spin, mask, transform, different_charge)
+        super(18, projectile, spin, mask, transform, different_charge)
         self.x0 = top[0]
         self.y0 = top[1]
         self.z0 = top[2]
@@ -185,7 +186,7 @@ class Prism(Source):
                  different_charge=None, origin=(0.0, 0.0, 0.0), side1=(0.0, 0.0, 0.0),
                  side2=(0.0, 0.0, 0.0), extrusion=(0.0, 0.0, 0.0), attenuation=0.0,
                  elevation=1.0, azimuth=None, dispersion=0.0, projectile_energy):
-        super().__init__(20, projectile, spin, mask, transform, different_charge)
+        super(20, projectile, spin, mask, transform, different_charge)
         self.x0 = origin[0]
         self.y0 = origin[1]
         self.z0 = origin[2]
@@ -215,10 +216,10 @@ class Tetrahedral(Source): # TODO: requires tetrahedral geometry and universes
 
 class SurfaceSource(Source): # TODO: think about how this can interact with surface numbers, and how
                      # cuts will work
-     def __init__(self, projectile, spin=(0, 0, 0), mask=(None, 1000), transform=idTransform,
-                  different_charge=None, surface, cuts, elevation, azimuth, dispersion,
-                  projectile_energy):
-         super().__init__(26, projectile, spin, mask, transform, different_charge)
+    def __init__(self, projectile, spin=(0, 0, 0), mask=(None, 1000), transform=idTransform,
+                 different_charge=None, surface, cuts, elevation, azimuth, dispersion,
+                 projectile_energy):
+        super(26, projectile, spin, mask, transform, different_charge)
          
     
 

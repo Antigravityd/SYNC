@@ -35,7 +35,8 @@ class Cell(PhitsBase): # dictionary of properties and a frozenset of tuples with
                         "volume",
                         "reg_name",
                         "counter",
-                        "timer"}
+                        "timer",
+                        "tally"}
 
 
         parameters = dict()

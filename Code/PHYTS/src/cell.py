@@ -1,7 +1,7 @@
 import copy
 import base.py
 
-class Cell(PhitsBase): # dictionary of properties and a frozenset of tuples with type (Surface, "<" | ">")
+class Cell(PhitsObject): # dictionary of properties and a frozenset of tuples with type (Surface, "<" | ">")
             # with the second entry being
             # what the equality in the surface function ought to be replaced with to get the orientation.
             # As a heuristic rule, consider r → ∞ and check the sign of the LHS; choose accordingly.

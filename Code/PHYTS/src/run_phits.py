@@ -42,9 +42,9 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
         if isinstance(an_obj, col.Iterable):
             map(add_to_graph, an_obj)
         else:
-            if isinstance(an_obj, PhitsBase):
+            if isinstance(an_obj, PhitsObject):
                 for name, child in an_obj.__dict__.items():
-                    if isinstance(child, PhitsBase):
+                    if isinstance(child, PhitsObject):
                         objgraph.add_edge(an_obj, child)
                         add_to_graph(child)
 
@@ -57,9 +57,9 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
         if isinstance(an_obj, col.Iterable):
             map(adjust_subobjects, an_obj)
         else:
-            if isinstance(an_obj, PhitsBase):
+            if isinstance(an_obj, PhitsObject):
                 for name, child in an_obj.__dict__.items():
-                    if isinstance(child, PhitsBase):
+                    if isinstance(child, PhitsObject):
                         representative = filter(lambda node: node == child, objgraph.successors(an_obj))[0]
                         setattr(an_obj, name, representative)
                         adjust_subobjects(child)
@@ -98,7 +98,28 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
                     "mat_name_color": [],
                     "reg_name": [],
                     "counter": [],
-                    "timer": []}
+                    "timer": [],
+                    "t-track": [],
+                    "t-cross": [],
+                    "t-point": [],
+                    "t-adjoint": [],
+                    "t-deposit": [],
+                    "t-deposit2": [],
+                    "t-heat": [],
+                    "t-yield": [],
+                    "t-product": [],
+                    "t-dpa": [],
+                    "t-let": [],
+                    "t-sed": [],
+                    "t-time": [],
+                    "t-interact": [],
+                    "t-dchain": [],
+                    "t-wwg": [],
+                    "t-wwbg": [],
+                    "t-volume": [],
+                    "t-gshow": [],
+                    "t-rshow": [],
+                    "t-3dshow"}
 
     for node in objgraph:
         type_divided[node.name].append(node)
@@ -194,6 +215,10 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
 
     add_defs("timer", header_line="reg in out coll ref")
 
+    add_defs("t-track")
+    add_defs("t-cross")
+    add_defs("t-point")
+    # ...
 
     return inp
 

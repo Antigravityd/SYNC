@@ -1,9 +1,10 @@
 import numpy as np
 import Transform
-# TODO: get the PhitsBase initializer support
-class Surface(PhitsBase): # all surfaces carry symbols, reflectiveness/whiteness, and coordinate transforms.
+# TODO: get the PhitsObject initializer support
+class Surface(PhitsObject): # all surfaces carry symbols, reflectiveness/whiteness, and coordinate transforms.
     def __init__(self, symb, reflective=False, white=False,
-                 transform=idTransform):
+                 transform=idTransform, **kwargs):
+        super("surface", **kwargs)
         self.reflective = reflective
         self.white = white
         self.symb = symb
@@ -20,37 +21,37 @@ class Surface(PhitsBase): # all surfaces carry symbols, reflectiveness/whiteness
 
 
 class Plane(Surface): # Planar surface stored as Ax+By+Cz-D = 0.
-    def __init__(self, A, B, C, D, reflective=False, white=False):
-        super("P", reflective, white)
+    def __init__(self, A, B, C, D, reflective=False, white=False, **kwargs):
+        super("P", reflective, white, **kwargs)
         self.A = A
         self.B = B
         self.C = C
         self.D = D
 
-    def __init__(self, parallel, D, reflective=False, white=False):
+    def __init__(self, parallel, D, reflective=False, white=False, **kwargs):
         self.D = D
         if parallel == "x":
-            super("PX", reflective, white)
+            super("PX", reflective, white, **kwargs)
             self.A = 1.0
             self.B = 0.0
             self.C = 0.0
         elif parallel == "y":
-            super("PY", reflective, white)
+            super("PY", reflective, white, **kwargs)
             self.A = 0.0
             self.B = 1.0
             self.C = 0.0
         elif parallel == "z":
-            super("PZ", reflective, white)
+            super("PZ", reflective, white, **kwargs)
             self.A = 0.0
             self.B = 0.0
             self.C = 1.0
         else:
             raise ValueError("First argument to Plane(parallel, D) must be one of \"x\", \"y\", \"z\".")
 
-    def __init__(self, p1, p2, p3, reflective=False, white=False):
-        super("P", reflective, white)
+    def __init__(self, p1, p2, p3, reflective=False, white=False, **kwargs):
+        super("P", reflective, white, **kwargs)
         assert len(p1) == len(p2) == len(p3) == 3, \
-            "All arguments to Point(p1,p2,p3) must be of length 3"
+            "All arguments to Plane(p1,p2,p3) must be of length 3"
         r1 = np.array(p1)
         r2 = np.array(p2)
         r3 = np.array(p3)
@@ -64,31 +65,31 @@ class Plane(Surface): # Planar surface stored as Ax+By+Cz-D = 0.
 
 
 class Sphere(Surface): # Spherical surface stored as (x-x0)^2+(y-y0)^2+(z-z0)^2-R^2=0
-    def __init__(self, R, reflective=False, white=False):
-        super("SO", reflective, white)
+    def __init__(self, R, reflective=False, white=False, **kwargs):
+        super("SO", reflective, white, **kwargs)
         self.x0 = self.y0 = self.z0 = 0.0
         self.R = R
 
-    def __init__(self, on, coordinate, R, reflective=False, white=False):
+    def __init__(self, on, coordinate, R, reflective=False, white=False, **kwargs):
         self.R = R
         if on == "x":
-            super("SX", reflective, white)
+            super("SX", reflective, white, **kwargs)
             self.symb = "SX"
             self.x0 = coordinate
             self.y0 = self.z0 = 0.0
         elif on == "y":
-            super("SY", reflective, white)
+            super("SY", reflective, white, **kwargs)
             self.y0 = coordinate
             self.x0 = self.z0 = 0.0
         elif on == "z":
-            super("SZ", reflective, white)
+            super("SZ", reflective, white, **kwargs)
             self.z0 = coordinate
             self.x0 = self.y0 = 0.0
         else:
             raise ValueError("First argument to Sphere(on, coordinate, R) must be one of \"x\", \"y\", \"z\".")
 
-    def __init__(self, x0, y0, z0, R, reflective=False, white=False):
-        super("S", reflective, white)
+    def __init__(self, x0, y0, z0, R, reflective=False, white=False, **kwargs):
+        super("S", reflective, white, **kwargs)
         self.x0 = x0
         self.y0 = y0
         self.z0 = z0
@@ -96,30 +97,30 @@ class Sphere(Surface): # Spherical surface stored as (x-x0)^2+(y-y0)^2+(z-z0)^2-
 
 
 class Cylinder(Surface):
-    def __init__(self, on, R, reflective=False, white=False):
+    def __init__(self, on, R, reflective=False, white=False, **kwargs):
         self.R = R
         if on == "x":
-            super("CX", reflective, white)
+            super("CX", reflective, white, **kwargs)
         elif on == "y":
-            super("CY", reflective, white)
+            super("CY", reflective, white, **kwargs)
         elif on == "z":
-            super("CZ", reflective, white)
+            super("CZ", reflective, white, **kwargs)
         else:
             raise ValueError("First argument to Cylinder(on, R) must be one of \"x\", \"y\", \"z\".")
 
-    def __init__(self, parallel, other1, other2, R, reflective=False, white=False):
+    def __init__(self, parallel, other1, other2, R, reflective=False, white=False, **kwargs):
 
         self.R = R
         if parallel == "x":
-            super("C/X", reflective, white)
+            super("C/X", reflective, white, **kwargs)
             self.y0 = other1
             self.z0 = other2
         elif parallel == "y":
-            super("C/Y", reflective, white)
+            super("C/Y", reflective, white, **kwargs)
             self.x0 = other1
             self.z0 = other2
         elif parallel == "z":
-            super("C/Z", reflective, white)
+            super("C/Z", reflective, white, **kwargs)
             self.x0 = other1
             self.y0 = other2
         else:
@@ -127,7 +128,7 @@ class Cylinder(Surface):
 
 
 class Cone(Surface):
-    def __init__(self, on, coordinate, t, sheet, reflective=False, white=False):
+    def __init__(self, on, coordinate, t, sheet, reflective=False, white=False, **kwargs):
 
         self.modsqt = abs(t) ** 2
 
@@ -139,29 +140,29 @@ class Cone(Surface):
             raise ValueError("Last argument to Cone(on, coordinate, t, sheet) must be one of \"upper\", \"lower\"")
 
         if on == "x":
-            super("KX", reflective, white)
+            super("KX", reflective, white, **kwargs)
             self.x0 = coordinate
         elif on == "y":
-            super("KY", reflective, white)
+            super("KY", reflective, white, **kwargs)
             self.y0 = coordinate
         elif on == "z":
-            super("KZ", reflective, white)
+            super("KZ", reflective, white, **kwargs)
             self.z0 = coordinate
         else:
             raise ValueError("First argument to Cone(on, coordinate, t, sheet) must be one of \"x\", \"y\", \"z\".")
 
-    def __init__(self, parallel, other1, other2, R, reflective=False, white=False):
+    def __init__(self, parallel, other1, other2, R, reflective=False, white=False, **kwargs):
         self.R = R
         if parallel == "x":
-            super("C\X", reflective, white)
+            super("C\X", reflective, white, **kwargs)
             self.y0 = other1
             self.z0 = other2
         elif parallel == "y":
-            super("C\Y", reflective, white)
+            super("C\Y", reflective, white, **kwargs)
             self.x0 = other1
             self.z0 = other2
         elif parallel == "z":
-            super("C\Z", reflective, white)
+            super("C\Z", reflective, white, **kwargs)
             self.x0 = other1
             self.y0 = other2
         else:
@@ -170,8 +171,8 @@ class Cone(Surface):
 
 class SimpleConic(Surface): # ellipsoid, hyperboloid, or paraboloid parallel to an axis of the form
                    # A(x-x0)^2+B(y-y0)^2+C(z-z0)^2+2D(x-x0)+2E(y-y0)+2F(z-z0)+G = 0
-    def __init__(self, A, B, C, D, E, F, G, x0, y0, z0, reflective=False, white=False):
-        super("SQ", reflective, white)
+    def __init__(self, A, B, C, D, E, F, G, x0, y0, z0, reflective=False, white=False, **kwargs):
+        super("SQ", reflective, white, **kwargs)
         self.A = A
         self.B = B
         self.C = C
@@ -186,8 +187,8 @@ class SimpleConic(Surface): # ellipsoid, hyperboloid, or paraboloid parallel to 
 
 class GeneralConic(Surface): # ellipsoid, hyperboloid, or paraboloid of the form
                     # A(x-x0)^2+B(y-y0)^2+C(z-z0)^2+Dxy+Eyz+Fzx+Gx+Hy+Jz+K = 0
-    def __init__(self, A, B, C, D, E, F, G, H, J, K, reflective=False, white=False):
-        super("GQ", reflective, white)
+    def __init__(self, A, B, C, D, E, F, G, H, J, K, reflective=False, white=False, **kwargs):
+        super("GQ", reflective, white, **kwargs)
         self.A = A
         self.B = B
         self.C = C
@@ -201,13 +202,13 @@ class GeneralConic(Surface): # ellipsoid, hyperboloid, or paraboloid of the form
 
 class Torus(Surface): # torus parallel to an axis of the form
              # (axisvar - axis0)^2/B^2 + (quadrature(<non-axis displacements>) - A)^2 - 1 = 0
-    def __init__(self, parallel x0, y0, z0, A, B, C, reflective=False, white=False):
+    def __init__(self, parallel, x0, y0, z0, A, B, C, reflective=False, white=False, **kwargs):
         if self.parallel == "x":
-            super("TX", reflective, white)
+            super("TX", reflective, white, **kwargs)
         elif self.parallel == "y":
-            super("TY", reflective, white)
+            super("TY", reflective, white, **kwargs)
         elif self.parallel == "z":
-            super("TZ", reflective, white)
+            super("TZ", reflective, white, **kwargs)
         else:
             raise ValueError("First argument to Torus(parallel, ...) must be one of \"x\", \"y\", \"z\".")
 
@@ -221,8 +222,8 @@ class Torus(Surface): # torus parallel to an axis of the form
 
 class Box(Surface): # box formed by three vectors with tails at a given base point, or cross product of 3 intervals,
            # stored in the form x0 y0 z0 Ax Ay Az Bx By Bz Cx Cy Cz
-    def __init__(self, base, s1, s2, s3, reflective=False, white=False):
-        super("BOX", reflective, white)
+    def __init__(self, base, s1, s2, s3, reflective=False, white=False, **kwargs):
+        super("BOX", reflective, white, **kwargs)
 
         assert len(base) == len(s1) == len(s2) == len(s3) == 3, \
             "All arguments to Box(base,s1,s2,s3) must be of length 3"
@@ -243,8 +244,8 @@ class Box(Surface): # box formed by three vectors with tails at a given base poi
         self.Cy = s3[1]
         self.Cz = s3[2]
 
-    def __init__(self, xbounds, ybounds, zbounds, reflective=False, white=False):
-        super("BOX", reflective, white)
+    def __init__(self, xbounds, ybounds, zbounds, reflective=False, white=False, **kwargs):
+        super("BOX", reflective, white, **kwargs)
         assert len(xbounds) == len(ybounds) == len(zbounds) == 2, \
             "All arguments to Box(xbounds,ybounds,zbounds) must be of length 3"
 

@@ -11,7 +11,16 @@ class Source(PhitsBase):
         self.ntmax = mask[1]
         self.trcl = transform
         self.izst = different_charge
-        
+
+    def definition(self):
+        inp = ""
+        for var, val in self.__dict__.items():
+            if val is not None:
+                if isinstance(val, PhitsBase):
+                    inp += f"{var} = {val.index}\n"
+                else:
+                    inp += f"{var} = {val}\n"
+
         
 
 class Cylindrical(Source):

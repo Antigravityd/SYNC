@@ -1,7 +1,6 @@
 import copy
 import base.py
 
-
 class Cell(PhitsBase): # dictionary of properties and a frozenset of tuples with type (Surface, "<" | ">")
             # with the second entry being
             # what the equality in the surface function ought to be replaced with to get the orientation.
@@ -39,15 +38,14 @@ class Cell(PhitsBase): # dictionary of properties and a frozenset of tuples with
                         "tally"}
 
 
-        parameters = dict()
         for k, v in allowed_keys.items():
             if k in kwargs:
                 setattr(self, k, frozenset(kwargs[k]) if isinstance(kwargs[k], list) else kwargs[k])
                 kwargs[k].cell = self
-            else: # assume it's a parameter you want to set
+            else:
                 setattr(self, k, None)
 
-        super("cell", self.parameters)
+        super("cell", {k: v if k in kwargs and k not in allowed_keys})
 
     # TODO: fix these dunder methods given new required options. They probably ought to set the material to void and density to zero, but I'm not sure those are handled right as materials.
     def __or__(self, other): # Union of cells; drops properties
@@ -82,3 +80,19 @@ class Cell(PhitsBase): # dictionary of properties and a frozenset of tuples with
         r = copy.deepcopy(other)
         setattr(r, "regions", self.regions)
         return r
+
+    def definition(self):
+        inp = f"{self.index} {self.material.index} {self.density} "
+        for sur, orient in self.regions:
+            if orient == "<": # This may not be correct; the "sense" of surfaces is poorly documented.
+                inp += f"{sur.index} "
+            elif orient == ">":
+                inp += f"-{sur.index} "
+            else:
+                raise ValueError(f"Invalid orientation {i[1]} among regions.")
+        if self.volume is not None:
+            inp += f"VOL={self.volume} "
+        if self.temperature is not None:
+            inp += f"TMP={self.temperature} "
+        inp += "\n"
+        return inp

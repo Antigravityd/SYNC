@@ -178,6 +178,12 @@
 (defun phits-view-results ()
   "Open summary of tally results in external image viewer.")
 
+(defun phits-check-geometry ()
+  "Copies all geometry definitions to a test .inp file with inctl=8 and a proper tally with gshow set.")
+
+(defun phits-abort-run ()
+  "Kills current run-phits process, if any.")
+
 ;;;###autoload
 (define-derived-mode phits-mode prog-mode "PHITS Input"
   "Testing mode I whipped up that's inspired in small part by https://github.com/kbat/mc-tools/blob/master/mctools/phits/phits-mode.el"

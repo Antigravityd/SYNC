@@ -1,43 +1,43 @@
 from base.py import *
 from cell.py import *
 
+
 class Mesh(PhitsBase):
-    def __init__(self, axis, points=None, bounds=None, bins=None, width=None, log_scale=False, **kwargs):
+    def __init__(self, axis, bins=None, **kwargs): # All bin generation is easily done in Python via list comprehensions
         super("mesh", **kwargs)
         assert axis in ["energy", "time", "x", "y", "z", "radius", "angle", "LET"], f"Unrecognized axis {axis} in mesh definition."
         self.axis = axis
-        self.points = points
-        self.bounds = bounds
         self.bins = bins
-        self.log_scale = log_scale
         if axis != angle:
-            if points is not None:
-                self.type = 1
-            elif bins is not None:
-                self.type = 3 if log_scale else 2
-            elif width is not None:
-                self.type = 5 if log_scale else 4
-            else:
-                raise ValueError("Insufficient information to define mesh.")
+            self.type = 2
         else:
             # TODO: figure out angle mesh
 
-class Tally(PhitsBase):
-    def __init__(self, meshes, where=None, particles="all", **kwargs):
+    def definition(self):
+        return
+
+    class Tally(PhitsBase): # out-mesh is the mesh for the output; in-mesh is a list consisting of an optional origin coordinate in the first entry and a list of meshes for
+    def __init__(self, out_mesh, unit, in_meshes=None, dependent_var="reg", particles="all", angel="", sangel="", title="", output_type="", 2d_type=5
+                 factor=None, detailed_output=False, region_show=0, gshow=0, axis_titles=[], epsout=0, resolution=1, transform=None, dump=None, **kwargs):
         super("tally", **kwargs)
-        self.where = where
         self.meshes = meshes
 
         self.mesh_type = None
-        if where is None:
+        if in_meshes is None:
             self.mesh_type = "reg"
-        if isinstance(where, list):
+            self.axis="reg"
+        if isinstance(in_meshes, list):
             if isinstance(where[0], Cell):
                 self.mesh_type = "reg"
             else:
                 raise ValueError(f"Invalid tally location {where}.")
-        if isinstance(where, String):
-            if where.contains("r"):
-                self.mesh = "r-z"
-            if where.contains("x"):
-                self.mesh = "xyz"
+        elif next(filter(lambda mesh: mesh.axis in {"x", "y", "z"}, in_meshes), False):
+            self.mesh_type = "xyz"
+        elif next(filter(lambda mesh: mesh.axis in {"r", "z"}, in_meshes), False):
+            self.mesh_type = "r-z"
+
+
+
+class TrackLengthFluence(Tally):
+    def __init__(self, out_mesh, unit, in_meshes=None, dependent_var="reg", where=None, particles="all", angel="", sangel="", title="", output_type="", 2d_type=5
+                 factor=None, detailed_output=False, region_show=0, gshow=0, axis_titles=[], epsout=0, resolution=1, transform=None, dump=None, **kwargs)

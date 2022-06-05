@@ -35,8 +35,8 @@ from base.py import *
 # sources is list of tuples of a Source value and a numeric weight, cells is a list of Cell values,
 # and
 
-def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=dict(), cross_sections=[], raw=""): # [Super Mirror] and [Elastic Option] aren't supported due to poor documentation.
-    objgraph = nx.DiGraph()
+def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=dict(), cross_sections=[], raw="") -> {Tally: String}: # [Super Mirror], [Elastic Option], [Weight Window], and [WW Bias]aren't supported due to poor documentation.
+    objgraph = nx.DiGraph()                                                                                                          # Returns a dict associating the tallies with the filename containing their results.
 
     def add_to_graph(an_obj):  # Recursively add subtypes to graph if they represent an "entry" in one of the sections
         if isinstance(an_obj, col.Iterable):
@@ -52,8 +52,6 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
     map(add_to_graph, cells)
     map(lambda tup: add_to_graph(tup[1]), sources)
     map(add_to_graph, tallies)
-    if super_mirrors is not None:
-        map(add_to_graph, super_mirrors)
 
     def adjust_subobjects(an_obj): # Recursively replace redundant subtypes with the representative that's in the graph
         if isinstance(an_obj, col.Iterable):
@@ -62,18 +60,19 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
             if isinstance(an_obj, PhitsBase):
                 for name, child in an_obj.__dict__.items():
                     if isinstance(child, PhitsBase):
-                        representative = filter(lambda node: node == child, objgraph.successors(an_obj))
-                        setattr(an_obj, child, representative)
+                        representative = filter(lambda node: node == child, objgraph.successors(an_obj))[0]
+                        setattr(an_obj, name, representative)
                         adjust_subobjects(child)
 
     map(adjust_subobjects, cells)
     map(lambda tup: adjust_subobjects(tup[1]), sources)
     map(adjust_subobjets, tallies)
 
-    # We now have that if any two PHITS objects A and B had a property C and D such that C == D, C /is/ D
+    # We now have that if any two PHITS objects A and B have a property C and D (respectively) such that C == D, C /is/ D.
 
 
-    # Now we break up the nodes by PHITS type
+    # Now we break up the nodes by PHITS type; these objects will be translated into the .inp file directly in this order.
+    # TODO: give each PHITS object a method to do this translation.
     type_divided = {"parameters": [],
                     "source": [],
                     "material": [],
@@ -108,6 +107,19 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
         for idx, value in enumerate(entries):
             value.index = idx # this allows us to access the position in which the value will appear if given value alone.
 
+    def add_defs(obj_type, title=None, header_line=None):
+        if type_divided[obj_type]:
+            if title is None:
+                sec_name = obj_type.replace("_", " ").title()
+                inp += f"[{sec_name}]\n"
+            else:
+                inp += title + "\n"
+                if header_line is not None:
+                    inp += header_line + "\n"
+                    for obj in type_divided[obj_type]:
+                        inp += obj.definition()
+
+
 
     inp = "[Title]\n"
     inp += title + '\n'
@@ -117,135 +129,27 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
     for var, val in parameters.items: # directly passed global parameters
         inp += f"{var} = {val}\n"
 
-    for dic in type_divided["parameters"]: # parameters associated with object declarations
-        for var, val in dic.dic.items():
-            inp += f"{var} = {val}\n"
+    add_defs("parameters", title="") # parameters associated with object declarations, but that need to be in this global context
 
 
-    inp += "[Source]\n" ## TODO: implement sources
+    inp += "[Source]\n"
     for weight, source in sources:
         inp += f"<source> = {weight}\n"
-        for var, val in source.__dict__.items():
-            if val is not None:
-                if isinstance(val, PhitsBase):
-                    inp += f"{var} = {val.index}\n"
-                else:
-                    inp += f"{var} = {val}\n"
-
-    inp += "[Material]\n"
-    for mat in type_divided["material"]:
-        inp += f"MAT[{mat.index}]\n"
-        for element, ratio in mat.composition:
-            inp += f"{element} {ratio}\n"
-
-        if not mat.condensed == "gas":
-            inp += "GAS = 1\n"
-
-        if mat.conductive:
-            inp += "COND = 1\n"
-        else:
-            inp += "COND = -1\n"
-
-        if mat.electron_step is not None:
-            inp += f"ESTEP = {mat.electron_step}\n"
-
-        if mat.neutron_lib is not None:
-            inp += f"NLIB = {mat.neutron_lib}\n"
-        if mat.proton_lib is not None:
-            inp += f"HLIB = {mat.proton_lib}\n"
-        if mat.electron_lib is not None:
-            inp += f"ELIB = {mat.electron_lib}\n"
-        if mat.photon_lib is not None:
-            inp += f"PLIB = {mat.photon_lib}\n"
-
-        if mat.thermal_lib is not None:
-            inp += f"MT{mat.index} {mat.thermal_lib}\n"
+        inp += source.definition()
 
 
-    inp += "[Surface]\n"
-    for sur in type_divided["surface"]:
-        boundary = "*" if sur.reflective else ("+" if sur.white else "")
-        inp += f"{boundary}{sur.index} {sur.transform.index} {sur.symbol} "
-        for attr, val in sur.__dict__.items():
-            if attr not in ["index", "name", "symb", "reflective", "white", "transform"]: # exclude "super" properties and those already handled
-                inp += f"{attr} "
-        inp += "\n"
-
-    inp += "[Cell]\n"
-    for cell in type_divided["cell"]:
-        inp += f"{cell.index} {cell.material.index} {cell.density} "
-        for sur, orient in cell.regions:
-            if orient == "<": # This may not be correct; the "sense" of surfaces is poorly documented.
-                inp += f"{sur.index} "
-            elif orient == ">":
-                inp += f"-{sur.index} "
-            else:
-                raise ValueError(f"Invalid orientation {i[1]} among regions.")
-        if cell.volume is not None:
-            inp += f"VOL={cell.volume} "
-        if cell.temperature is not None:
-            inp += f"TMP={cell.temperature} "
-        inp += "\n"
-
-    if type_divided["transform"]:
-        inp += "[Transform]\n"
-        for tr in type_divided["transform"]:
-            if tr.units == "radians":
-                inp += f"TR{tr.index} "
-            else if tr.units == "degrees":
-                inp += f"*TR{tr.index} "
-            else:
-                raise ValueError(f"Encountered invalid angular unit {tr.units} among transforms.")
-            inp += f"{tr.trans[0]} {tr.trans[1]} {tr.trans[2]} {tr.rot[0]} {tr.rot[1]} {tr.rot[2]} {tr.rot[3]} {tr.rot[4]} {tr.rot[5]} {tr.rot[6]} {tr.rot[7]} {tr.rot[8]} {1 if tr.rotateFirst else -1}\n"
-
-    if type_divided["mat_time_change"]:
-        inp += "[Mat Time Change]\n"
-        inp += "mat time change\n"
-        for mtc in type_divided["mat_time_change"]:
-            inp += f"{mtc.old} {mtc.time} {mtc.new}\n"
-
-    if type_divided["magnetic_field"]:
-        inp += "[Magnetic Field]\n"
-        inp += "reg typ gap mgf trcl time\n"
-        for mf in type_divided["magnetic_field"]:
-            inp += f"{mf.cell.index} {mf.typ} {mf.gap} {mf.strength} {mf.transform if mf.transform is not None else 0} {mf.time if mf.time is not None else \"non\"}\n"
-
-    if type_divided["neutron_magnetic_field"]:
-        inp += "[Magnetic Field]\n"
-        inp += "reg typ gap mgf trcl polar time\n"
-        for mf in type_divided["neutron_magnetic_field"]:
-            inp += f"{mf.cell.index} {mf.typ} {mf.gap} {mf.strength} {mf.transform if mf.transform is not None else 0} {mf.polar if mf.polar is not None else \"non\"} {mf.time if mf.polar is not None else \"non\"}\n"
-
-    if type_divided["mapped_magnetic_field"]:
-        inp += "[Magnetic Field]\n"  # TODO: make sure defining multiple magnetic field sections is kosher...
-        inp += "reg typ gap mgf trcl file\n"
-        for mf in type_divided["mapped_magnetic_field"]:
-            inp += f"{mf.cell.index} {mf.typ} {mf.gap} {mf.strength} {mf.transform if mf.transform is not None else 0} {mf.m_file}\n"
-
-    if type_divided["uniform_electromagnetic_field"]:
-        inp += "[Electro Magnetic Field]\n"
-        inp += "reg elf mgf trcle trclm\n"
-        for emf in type_divided["uniform_electromagnetic_field"]:
-            inp += f"{emf.cell.index} {emf.e_strength} {emf.m_strength} {emf.e_transform if emf.e_transform is not None else 0} {emf.m_transform if emf.m_transform is not None else 0}\n"
-
-    if type_divided["mapped_electromagnetic_field"]:
-        inp += "[Electro Magnetic Field]\n"
-        inp += "reg type typm gap elf mlf trcle filee filem\n"
-        for emf in type_divided["mapped_electromagnetic_field"]:
-            inp += f"{emf.cell.index} {emf.typ_e} {emf.typ_m} {emf.gap} {emf.e_strength} {emf.m_strength} {emf.e_transform if emf.e_transform is not None else 0} {emf.m_transform if emf.m_transform is not None else 0} {emf.e_file} {emf.m_file}\n"
-
-
-    if type_divided["delta_ray"]:
-        inp += "[Delta Ray]\n"
-        inp += "reg del\n"
-        for dr in type_divided["delta_ray"]:
-            inp += f"{dr.cell.index} {dr.threshold}\n"
-
-    if type_divided["track_structure"]:
-        inp += "[Track Structure]\n"
-        inp += "reg mID\n"
-        for ts in type_divided["track_structure"]:
-            inp += f"{ts.cell.index} {ts.mID}\n"
+    add_defs("material")
+    add_defs("surface")
+    add_defs("cell")
+    add_defs("transform")
+    add_defs("mat_time_change", header_line="mat time change")
+    add_defs("magnetic_field", header_line="reg typ gap mgf trcl time")
+    add_defs("neutron_magnetic_field", header_line="reg typ gap mgf trcl polar time", title="[Magnetic Field]")
+    add_defs("mapped_magnetic_field", header_line="reg typ gap mgf trcl file", title="[Magnetic Field]")
+    add_defs("uniform_electromagnetic_field", header_line="reg elf mgf trcle trclm", title="[Electro Magnetic Field]")
+    add_defs("mapped_electromagnetic_field", header_line="reg type typm gap elf mlf trcle trclm filee filem", title="[Electro Magnetic Field]")
+    add_defs("delta_ray", header_line="reg del")
+    add_defs("track_structure", header_line="reg mID")
 
     if cross_sections:
         inp += "[Frag Data]\n"
@@ -283,201 +187,22 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
   # if type_divided["repeated_collisions"]:
   # if type_divided["multiplier"]:
 
-    if type_divided["mat_name_color"]:
-        inp += "[Mat Name Color]\n"
-        inp += "mat name size color\n"
-        for mnc in type_divided["mat_name_color"]:
-            inp += f"{mnc.material.index} {mnc.name} {mnc.size} {mnc.color}\n"
+    add_defs("mat_name_color", header_line="mat name size color")
+    add_defs("reg_name", header_line="reg name size")
 
-    if type_divided["reg_name"]:
-        inp += "[Reg Name]\n"
-        inp += "reg name size\n"
-        for rn in type_divided["reg_name"]:
-            inp += f"{rn.cell.index} {rn.name} {rn.size}\n"
+  # if type_divided["counter"]
 
-    if type_divided["timer"]:
-        inp += "[Timer]\n"
-        inp += " reg in out coll ref\n"
-        for tim in type_divided["timer"]:
-            inp += f"{tim.cell.index} {tim.in} {tim.out} {tim.coll} {tim.ref}\n"
-
-
-
-    # TODO: "sanitize" all input so that hashing works correctly
-    # for values that ought to parse equal, i.e. (1, "Pb") and "100% lead"
-    # should be put into one form or the other (prefer former form in this case).
-    # Also, need to verify that order of material components doesn't affect the hash,
-    # by making sure lists are sets by this point. 
-    
-    # record all distinct values of every  parameter
-    distinct = {"material": {},
-                "surface": {},
-                "transform": {}
-                "temperature": {},
-                "mag_field": {},
-                "em_field": {},
-                "delta_ray": {},
-                "track_structure": {},
-                "super_mirror": {},
-                "elastic_option": {},
-                "importance": {},
-                "weight_window": {},
-                "ww_bias": {},
-                "forced_collisions": {},
-                "repeated_collisions": {},
-                "volume": {},
-                "mat_name_color": {},
-                "reg_name": {},
-                "counter": {},
-                "timer": {}}
-    for cell in cells:
-        for k, v in cell.__dict__.items():
-            if k == "regions":
-                for surface, orient in v:
-                    distinct["surface"].add(surface)
-            else:
-                distinct[k].add(v)
-                # TODO: if custom surface is passed, add any transforms to transform list
-                # as well as transforms from tallies & source
-
-    # give the distinct values a fixed order
-    properties = {k: enumerate(v) for k, v in distinct}
-
-    # associate with each distinct value the index in cells of all cells it corresponds to
-    # or, given a property class and a value of that class, output the cell numbers
-    cell_lookup = dict()
-    for k, v in properties.items():
-        cell_lookup[k] = {i: [j for j, e in enumerate(cells) if e.__dict__[k] == i] for i in v}
-
-    # given a property class and a cell number, output the corresponding property number(s).
-    # this should only be nonsingleton for surface.
-    proplookup = dict()
-    for k, v in properties.items():
-        flat = [i[1] for i in properties]
-        proplookup[k] = dict()
-        for cellnum, cell in enumerate(cells):
-            if k == "surface":
-                surfaces = frozenset({i[0] for i in cell.__dict__["region"]})
-                proplookup[k][cellnum] = {i[0] if i[1] == surfaces for i in properties}
-            else:
-                proplookup[k][cellnum] = {i[0] if i[1] = cell.__dict__[k] for i in properties}
-
-    def tablify(propname):
-        res = ""
-        for i, prop in properties[propname]:
-            val = cell_lookup[propname][prop]
-            if len(val) > 1:
-                res += f"{condense_set(val)} "
-            elif len(val) == 1:
-                res += f"{val[0]} "
-            res += f"{prop}\n"
-        return res
-
-
-    inp += "[Material]\n"
-    for i, mat in properties["material"]:
-        inp += f"MAT[{i}] "
-        for component in mat:
-            inp += f"{component[0]} {component[1]} "
-            inp += '\n'
-
-    inp += "[Surface]\n"
-    for i, sur in properties["surface"]:
-        flat = [i[1] for i in properties["transform"]]
-        trid = flat.index(sur.transform) if sur.transform != idTrasform else 0
-        
-        inp += f"{i} {trid} {sur.symb} {sur.def}\n"
-        # TODO: implement the .def property in each surface class
-        # Also, add (magic?) methods for transforming surfaces.
-
-    inp += "[Cell]\n"
-    for i, cell in enumerate(cells):
-        matid = proplookup["material"][i]
-        inp += f"{i} {matid} {0} " # TODO: add density cell parameter
-
-        for region in cell.regions:
-            regID = properties["surface"].index(region[0])
-            regID *= 1 if region[1] == ">" else -1
-            inp += f"{regID} "
-            trID = proplookup["transform"][i]
-            inp += f"TRCL={trID}\n"
-            # TODO: Lattices & Universes... I'm not looking forward to it          
-    
-
-    inp += "[Transform]\n"
-    for i, transform in properties["transform"]: # should we have degree support?
-        trans = transform.trans
-        rot = transform.rot
-        inp += f"TR{i} {trans[0]} {trans[1]} {trans[2]} {rot[0]} {rot[1]} {rot[2]}"
-        if transform.M == 2 or transform.M == -2:
-            for i in range(6):
-                inp += "0 "
-        else:
-           for i in range(6):
-               inp += f"{rot[i+3]} "
-               inp += f"{transform.M}\n"
-
-    inp += "[Temperature]\n"
-    inp += "reg tmp\n"
-    inp += tablify("temperature")
-
-
-    inp += "[Magnetic Field]\n"
-    # TODO: the documentation is horrible
-
-    inp += "[Electro Magnetic Field]\n"
-    # TODO: same as above
-
-    inp += "[Delta Ray]\n"
-    inp += tablify("delta_ray")
-
-
-
-    inp += "[Track Structure]"
-    # Track structure seems poorly supported in PHITS at the moment, so I skip.
-
-    inp += "[Super Mirror]\n"
-    # TODO: Documentation is awful again
-
-    inp += "[Elastic Option]\n"
-    # More bad documentation...
-
-    inp += "[Data Max]\n"
-    # I don't understand what this is used for
-
-    inp += "[Frag Data]\n"
-    inp += "opt proj targ file\n"
-    for i in frag_data:
-        for j in i:
-            inp += "{j} "
-            inp += '\n'
-
-    inp += "[Importance]\n" # TODO: figure out how to config part= and lattice/universe
-    inp += "reg imp\n"
-    inp += tablify("importance")
-
-
-    # TODO: forestalling weight-window sections untill I do tallies
-
-    inp += "[Forced Collisions]\n" # TODO: same as Importance
-    inp += "reg fcl\n"
-    inp += tablify("forced_collision")
-
-
-    inp += "[Repeated Collisions]\n" # TODO: finish
-
-    inp += "[Volume]\n"
-    inp += "reg vol"
-    inp += tablify("volume")
+    add_defs("timer", header_line="reg in out coll ref")
 
 
     return inp
 
-    
+def capture_output():
+
 def run_phits(sources, cells, tallies, command="phits", throws=False, title=str(datetime.now()), **kwargs):
     # TODO: consider how to read stdout/output files into returnable formats
     # WARNING: setting the command variable opens up shell injection attacks, as sp.run() with
-    # shell=True is done unfiltered. Should see about using shlex.quote() to sanitize. 
+    # shell=True is done unfiltered. Should see about using shlex.quote() to sanitize, since title may be specified by the user
     inp = make_input(sources, cells, tallies, title=title, **kwargs)
     with open(f"{title}.inp", "r+") as inp_file:
         inp_file.write(inp)
@@ -487,16 +212,4 @@ def run_phits(sources, cells, tallies, command="phits", throws=False, title=str(
     # TODO: parse STDOUT and STDERR of the CompletedProcess object above for the results of the tallies,
     # and return them, alongside any other useful information.
 
-    
-        
-            
-        
-        
-        
-            
-
-        
-
 def parse_input(file_handle) -> :#< tuple of all arguments of run_phits function>
-
-

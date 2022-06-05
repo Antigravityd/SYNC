@@ -9,6 +9,15 @@ class Surface(PhitsBase): # all surfaces carry symbols, reflectiveness/whiteness
         self.symb = symb
         self.transform = transform
 
+    def definition(self):
+        boundary = "*" if self.reflective else ("+" if self.white else "")
+        inp = f"{boundary}{self.index} {self.transform.index} {self.symbol} "
+        for attr, val in self.__dict__.items():
+            if attr not in ["index", "name", "symb", "reflective", "white", "transform"]: # exclude "super" properties and those already handled
+                inp += f"{attr} "
+        inp += "\n"
+        return inp
+
 
 class Plane(Surface): # Planar surface stored as Ax+By+Cz-D = 0.
     def __init__(self, A, B, C, D, reflective=False, white=False):

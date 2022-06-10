@@ -11,6 +11,7 @@ Sample input for muon transport
   ipnint = 1		   # (D=0) 0: no, 1: consider photo-nuclear reaction
   maxbnk = 100000
 
+ 
 [ S o u r c e ]
   totfact = -pi*c1**2 # (D=1.0) global factor
  <source> = 1.0

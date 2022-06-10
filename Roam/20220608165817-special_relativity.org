@@ -1,0 +1,37 @@
+:PROPERTIES:
+:ID:       7e3a766d-285f-4887-ac8c-79acc1f0f6ff
+:END:
+#+title: Special Relativity
+* Foundations
+
+Einstein derived the mathematical formalism of SR from two axioms:
+
+- The laws of physics are the same in any coordinate system with the origin moving at constant velocity (i.e. /there is no absolute rest/)
+- The speed of light in the vacuum is constant
+
+** Motivation
+
+Why these axioms? Two reasons, as he explains in his paper /Zur Elektrodynamik bewegter Körper/ (/On the Electrodynamics of Moving Bodies/; eminently readable):
+
+#+begin_quote
+It is known that the application of Maxwell's electrodynamics, as ordinarily conceived at the present time, to moving bodies, leads to asymmetries which don't seem to be connected with the phenomena. Let us, for example, think of the mutual action between a magnet and a conductor. The observed phenomenon in this case depends only on the relative motion of the conductor and the magnet, while according to the usual conception, a strict distinction must be made between the cases where the one or the other of the bodies is in motion. If, for example, the magnet moves and the conductor is at rest, then an electric field of certain energy-value is produced in the neighbourhood of the magnet, which excites a current in those parts of the field where a conductor exists. But if the magnet be at rest and the conductor be set in motion, no electric field is produced in the neighbourhood of the magnet, but an electromotive force is produced in the conductor which corresponds to no energy per se; however, this causes – equality of the relative motion in both considered cases is assumed – an electric current of the same magnitude and the same course, as the electric force in the first case.
+
+Examples of a similar kind, as well as the unsuccessful attempts to substantiate the motion of the earth relative to the "light-medium", lead us to the supposition that not only in mechanics, but also in electrodynamics, no properties of the phenomena correspond to the concept of absolute rest, but rather that for all coordinate systems for which the mechanical equations hold, the equivalent electrodynamical and optical equations hold also, as has already been shown for magnitudes of the first order. In the following we will elevate this guess to a presupposition (whose content we shall subsequently call the "Principle of Relativity") and introduce the further assumption, — an assumption which is only apparently irreconcilable with the former one — that light in empty space always propagates with a velocity V which is independent of the state of motion of the emitting body. These two assumptions are quite sufficient to give us a simple and consistent theory of electrodynamics of moving bodies on the basis of the Maxwellian theory for bodies at rest. The introduction of a "luminiferous æther" will be proved to be superfluous in so far, as according to the conceptions which will be developed, we shall introduce neither a "space absolutely at rest" endowed with special properties, nor shall we associate a velocity-vector with a point in which electro-magnetic processes take place.
+#+end_quote
+
+Paraphrased:
+
+- The observable characteristics of first mechanics and now electrodynamics just so happen to depend only on the relative motion of bodies.
+- Despite a careful search, the velocity of light appears to be isotropic, suggesting there is no medium through which it moves.
+
+* Electrodynamics
+
+To illustrate what Einstein is talking about in his first paragraph, one needs a crash-course in electromagnetism.
+As you likely are aware, the two objects of study are two vector fields: $\vec{E}$, the electric field produced by charged particles, and $\vec{B}$, the magnetic field produced by moving charges. These fields affect the dynamics of charges by Coulomb's law \[\vec{F}= q(\vec{E}+\vec{v}\times\vec{B})\].
+
+Before Faraday, the subject consisted only of what we now call "electrostatics:" the study of the forces produced by unchanging electromagnetic fields.
+The known physical laws were:   \[\begin{cases}
+    \nabla\cdot\vec{E} = \frac{1}{\epsilon_{0}}\rho & \textrm{Gauss's law} \\
+    \nabla \cdot \vec{B} = 0 & \textrm{No magnetic monopoles} \\
+    \nabla \times \vec{B} = \mu_{0}\vec{J} & \textrm{Amp\`ere's law} \\
+  \end{cases}\]

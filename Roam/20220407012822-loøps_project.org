@@ -1,7 +1,7 @@
 :PROPERTIES:
 :ID:       627cc0e9-b179-447d-bef5-c505b011eb07
 :END:
-#+title: Löøps Project
+#+title: Action Hero
 #+filetags: Idea
 * Motivation
 
@@ -23,3 +23,10 @@ I've got enough of the math to make it somewhat possible. I'd be reading a lot o
 * Implementation
 
 I'll need to talk to Agullo or one of the other LQG people about it, get their approval & reading recommendations, and have them loosely supervise progress. This would be ideal to supplement work with Chancellor over the summer.
+
+** Specifics
+
+The field of geometric analysis seeks to analyze geometric problems using methods from PDEs. Applying this formalism, we can study geometric problems numerically:
+one of the ideas I had, inspired by the Atiyah-Singer index theorem's absurdly complicated invariants, is the proceedural generation of manifolds on which various invariants may be computed, in order to find candidate invariants or counterexamples for conjectured invariants.
+
+This led me to the idea of developing a general computational differential geometry package (with something of an emphasis on the structures of mathematical physics).

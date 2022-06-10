@@ -32,7 +32,7 @@
 
 ;; Line continuation isn't handled at all
 
-(setq phits-comment-regexp "^ \\{,4\\}c") ;; for the archaic fixed-format comments
+(setq phits-comment-regexp "^ \\{,4\\}c.*") ;; for the archaic fixed-format comments
 (setq phits-section-regexp "^ \\{,4\\}\\[.*\\]")
 (setq phits-parameter-regexp "\\s-*\\([[:alnum:]<>-]+\\)\\((.*)\\|\\[.*\\]\\)?\\s-*=")
 (setq phits-label-regexp "^\\s-*\\(\\w*\\):")
@@ -74,7 +74,7 @@
       (concat "\\<\\(mat\\[.*\\]\\|mt?[0-9]+\\|tr[0-9]+\\|"
 	      (regexp-opt '("like" "but" "p" "px" "py" "pz" "so" "s" "sx" "sy" "sz" "c/x" "c/y" "c/z" "cx" "cy" "cz"
 			    "k/x" "k/y" "k/z" "kx" "ky" "kz" "sq" "gq" "tx" "ty" "tz" "box" "rpp" "sph" "rcc" "rhp"
-			    "hex" "rec" "trc" "ell" "wed" "vol" "tmp" "trcl" "u" "lat" "fill" "mat" "rho")
+			    "hex" "rec" "trc" "ell" "wed")
 			  t)
 	      "\\)\\>"))
 
@@ -104,7 +104,7 @@
        (phits-line-matching phits-label-regexp)
        (phits-line-matching "^\\(\\s-*\\)\\w+\\[.*\\]"))))
 
-(defvar phits-archaic-comment-font-lock
+(defvar phits-archaic-comment-font-lock ;; disabled by default; add this to phits-font-lock if you don't mind it turning your lines starting with Co in [Material] the wrong color
   (cons 'phits-match-archaic-comment  font-lock-comment-face))
 
 (defvar phits-section-font-lock
@@ -128,68 +128,95 @@
 
 
 (setq phits-font-lock
-      (list phits-archaic-comment-font-lock
-	    phits-section-font-lock
+      (list phits-section-font-lock
 	    phits-parameter-font-lock
 	    phits-label-font-lock
 	    phits-particle-font-lock
 	    phits-function-font-lock
 	    phits-special-font-lock))
 
-(defun phits-indent-line () ;; The only thing this fails on is gridlike sections within predominantly-parameter blocks. It's not /that/ ugly, but it isn't great...
+(defun phits-indent-line () ;; The only thing this fails on is gridlike sections inside a block of parameters,
   (align-region nil
 		nil
 		'group
 		'((phits-parameter
-		   (regexp  . "^\\(\\s-*[[:alnum:]<>()-]+\\(?:(.*)\\|\\[.*\\]\\)?\\)\\(\\s-*\\)=\\(\\s-*\\)")
-		   (group   . (1 2 3))
-		   (justify . t))
+		   (regexp   . "^\\(\\s-*[[:alnum:]<>()-]+\\(?:(.*)\\|\\[.*\\]\\)?\\)\\(\\s-*\\)=\\(\\s-*\\)")
+		   (group    . (1 2 3))
+		   (justify  . t)
+		   (separate . "^\\s-*\\[.*\\]"))
 		  (phits-label
-		   (regexp  . "^\\(\\s-*\\)\\w+\\(\\s-*\\):\\(\\s-*\\)")
-		   (group   . (1 3))
-		   (spacing . (0 1)))
+		   (regexp   . "^\\(\\s-*\\)\\w+\\(\\s-*\\):\\(\\s-*\\)")
+		   (group    . (1 3))
+		   (spacing  . (0 1)))
 		  (phits-material
-		   (regexp  . "^\\(\\s-*\\)\\w+\\[.*\\]")
-		   (spacing . 0))
+		   (regexp   . "^\\(\\s-*\\)\\w+\\[.*\\]")
+		   (spacing  . 0))
 		  (phits-grid
-		   (run-if  . phits-match-nongrid)
-		   (regexp  . "\\(\\s-*\\)[[:alnum:].-]+")
-		   (group   . 1)
-		   (repeat  . t)
-		   (valid   . phits-match-nongrid))
-		  (phits-comment-normal
-		   (regexp  . "\\(\\s-*\\)[#!$%]")))
+		   (run-if   . phits-match-nongrid)
+		   (regexp   . "\\(\\s-*\\)[[:alnum:]()*/+.-]+")
+		   (group    . 1)
+		   (repeat   . t)
+		   (valid    . phits-match-nongrid))
+		  (phits-comment
+		   (regexp   . "\\S-\\(\\s-*\\)[#!$%]")))
 		'((phits-exclude-after-comment
-		   (regexp  . "\\([#!$%].*\\)")
-		   (group   . 1)))))
+		   (regexp   . "\\([#!$%].*\\)")))))
 
-;;(defvar phits-source-dir "~/PHITS/phits326A/phits"
-;;"The directory unpacked from the archive obtained from JAEA that contains the PHITS source files.")
 
-(defvar phits-command "phits "
-  "The shell command through which PHITS is to be run.  Should be everything but the filename (which will be placed at the end), and contain a trailing space.")
+(defvar phits-command "phits"
+  "The shell command through which PHITS is to be run.  Should be everything but the filename (which will be placed at the end).")
+
+(defvar phits-eps-viewer "gv"
+  "The shell command for launching the viewer for any .eps files produced by the simulation.")
+
+(defvar phits-eps-options "--orientation='landscape' --presentation"
+  "String of options passed to the .eps viewer.")
 
 (defun run-phits ()
   "Run phits-command on the current buffer asynchronously, displaying output in a new buffer and placing output files in the same directory as the current buffer's file."
   (interactive)
-  (let ((default-directory (file-name-directory buffer-file-name)))
-    (async-shell-command (concat phits-command buffer-file-name))))
+  (let ((default-directory (file-name-directory buffer-file-name))
+	(file (buffer-file-name)))
+    (switch-to-buffer-other-window (get-buffer-create "PHITS Output"))
+    (end-of-buffer)
+    (insert (concat (current-time-string) "\n"))
+    (start-process-shell-command "run-phits" "PHITS Output" (concat phits-command " " file))))
+
+(defun async-shell-command-no-window (command)
+  "Calls command, but doesn't make a buffer containing its output."
+  (interactive (list (read-shell-command "$ ")))
+  (start-process-shell-command command nil command))
 
 (defun phits-view-results ()
-  "Open summary of tally results in external image viewer.")
+  "Open summary of tally results in external image viewer."
+  (interactive)
+  (let* ((default-directory (file-name-directory buffer-file-name))
+	 (choices (directory-files default-directory nil "\\.eps"))
+	 (file (completing-read "View results of tally: " choices))
+	 (async-shell-command-display-buffer nil))
+    (async-shell-command-no-window (concat phits-eps-viewer " " phits-eps-options " " file))))
 
 (defun phits-check-geometry ()
   "Copies all geometry definitions to a test .inp file with inctl=8 and a proper tally with gshow set.")
 
 (defun phits-abort-run ()
-  "Kills current run-phits process, if any.")
+  "Kills current run-phits process, if any."
+  (interactive)
+  (if (get-process "run-phits")
+      (kill-process "run-phits")))
 
 ;;;###autoload
 (define-derived-mode phits-mode prog-mode "PHITS Input"
   "Testing mode I whipped up that's inspired in small part by https://github.com/kbat/mc-tools/blob/master/mctools/phits/phits-mode.el"
   :syntax-table phits-mode-syntax-table
   (setq-local font-lock-defaults `(,phits-font-lock nil nil))
-  (setq-local indent-line-function #'phits-indent-line))
+  (setq-local indent-line-function #'phits-indent-line)
+  (add-hook 'phits-mode-hook
+	    (lambda ()
+	      (local-set-key (kbd "C-c C-c") #'run-phits)
+	      (local-set-key (kbd "C-c C-v") #'phits-view-results)
+	      (local-set-key (kbd "C-c C-k") #'phits-abort-run)
+	      (local-set-key (kbd "C-c C-i") #'phits-check-geometry))))
 
 (provide 'phits-mode)
 

@@ -107,6 +107,24 @@
 \end{frame}
 
 \begin{frame}
+  \frametitle{Motivation: Electrodynamics}
+  The primitive sources of electric and magnetic forces are point charges and line currents, respectively.
+  These produce electric and magnetic fields (expressed in the natural cylindrical coordinates)
+  \[
+    \vec{E}=\frac{1}{4\pi\epsilon_{0}}\frac{q}{r^{2}}\hat{r}
+  \]
+  and
+  \[
+    \vec{B}=\frac{\mu_{0}I}{2\pi r}\hat{\theta}
+  \]
+  Each law depends on a phenomenological parameter: $\epsilon_{0}$, the permittivity of free space, and $\mu_{0}$, the permeability of free space.
+  Qualitatively, these determine ``how easily'' electric and magnetic fields can travel through the vacuum: if $\epsilon_{0}$ is lower or $\mu_{0}$ higher, the fields fall off quicker in the limit $r\to\infty$.
+
+  One can derive that for electromagnetic waves $\mu_{0}\epsilon_{0}=\frac{1}{c^{2}}$; it wouldn't make sense for either $\mu_{0}$ or $\epsilon_{0}$ to vary with speed (they're about propagation through the vacuum, after all!), so perhaps $c$ is fixed too.
+\end{frame}
+
+
+\begin{frame}
   \frametitle{Motivation: Michelson-Morley}
   In 1887, Michelson and Morley performed an experiment to try and find the speed of the Earth through ``the \ae ther,'' the conjectured medium through which electromagnetic waves propagate.
   Presumably, as with any other wave, the observed speed of light waves moving ``downstream'' from Earth in this medium would be the fastest.
@@ -115,6 +133,7 @@
     \includegraphics[scale=0.4]{mich-mor.png}
   \end{center}
   Thus Einstein conjectured that the speed of light in the vacuum is a universal constant.
+  Modern measurements have gotten the estimate down to $\SI{e-7}{km/s}$, and introduced the universal frame candidate of the CMB, with respect to which we move around 10x faster.
 \end{frame}
 
 \begin{frame}
@@ -123,7 +142,7 @@
   If one is moving at the speed of light, the light one shines forward moves not at $2c$ but $c$.
   Speed is in units of \si{m/s}, and so we have two quantities to play with: we can change what ``meter'' means, i.e. lengths change, or what ``seconds'' means, i.e. time changes.
   It'll turn out to require both.
-  In classical mechanics, an event located by coordinates $(t,x,y,z)$ has coordinates $(t',x',y',z')$ given by
+  In classical mechanics, an event located by coordinates $(t,x,y,z)$ has coordinates $(t',x',y',z')$ with respect to an origin moving with speed $v$ along the $x$-axis given by
   \[
     x'=x-vt
   \]
@@ -136,7 +155,7 @@
   \[
     t'=t
   \]
-  in a parallel coordinate system moving with speed $v$ along the original $x$-axis.
+
 \end{frame}
 
 \begin{frame}
@@ -196,6 +215,7 @@
   In principle, this is ``all'' of special relativity.
   In analogy to the Galilean transformations, we can write
   \[
+    \Lambda = \Lambda_{\mu}^{\nu}
     \begin{array}{l}
       t' = \gamma\left( t-\frac{v}{c^{2}}x \right) \\
       x' = \gamma (x - vt) \\
@@ -212,6 +232,30 @@
   \]
   The $x'$ equation follows from length-contracting \textit{and} time-dilating the argument leading to the Galilean formula,
   and the $t'$ equation may be deduced by plugging the formula for transforming $x$ \textit{from} the primed frame \textit{to} the unprimed frame into that for $x'$.
+  The matrix can be made Hermitian by taking the first component of the vectors it acts on be $ct$ instead of $t$.
+\end{frame}
+
+\begin{frame}
+  \frametitle{4-Vectors and the Minkowski Metric}
+  The Lorentz transformation acts on vectors with \textit{four} components.
+  We distinguish between these \textit{spacetime} vectors (by convention with time as the first component) and ordinary space vectors by calling them 4-vectors, and using Greek indices when they're written in expressions.
+  The analog of the dot product on 4-vectors is the same as $\mathbb{R}^{4}$, but with a negative first component:
+  \[
+    {a^{\mu}}\cdot{b^{\mu}}=-a^{0}b^{0}+a^{1}b^{1}+a^{2}b^{2}+a^{3}b^{3}
+  \]
+  Note the use of superscript indices; this is a critical point, as $a^{\mu}\neq a_{\mu}$, differing by the negation of the time component.
+  As we'll see later, this is a metric tensor (the Minkowski metric) on the spacetime manifold.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Light Cones}
+  Just as how $a\cdot a = |a|^{2}$ on $\mathbb{R}^{4}$, we can define the ``distance'' between two intervals in spacetime by the magnitude of their vector difference.
+  An important distinction is that this ``distance'' can be negative; we can classify separations by the sign of this value.
+  If it's positive, the separation is spacelike, if it's negative, timelike; zero, lightlike.
+  These terms are motivated by inspecting so-called \textbf{light cones}: the points in the interior of the cone are spacelike, those on its boundary are lightlike, and the exterior is timelike.
+  \begin{center}
+    \includegraphics[scale=0.35]{lightcone.png}
+  \end{center}
 \end{frame}
 
 \begin{frame}
@@ -231,9 +275,56 @@
   \item Twin paradox
   \item Ladder paradox
   \item Shadows move faster than light
-  \item Derive relativistic mechanics
   \end{itemize}
 \end{frame}
+
+\begin{frame}
+  \frametitle{Relativistic Mechanics}
+  This is all well and good, but how do we describe the motion of particles now?
+  We define a notion of \textbf{proper quantities} (from a mistranslation of the French \textit{propre}) associated with a moving object, analogous to the Newtonian quantities but playing nice with Lorentz transformations ($q' = \Lambda q$).
+  The fundamental proper quantity is proper time $\tau$: the time elapsed from the perspective of the moving object.
+  The proper velocity $\eta$ is the distance \textit{in the observer frame} per unit time \textit{in the object frame}
+  \[
+    \vec{\eta} = \frac{d\vec{x}}{d\tau}
+  \]
+  Proper analogues of all other kinematic and dynamic quantities (momentum, energy, force, etc.) are defined identically.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Relativistic Mechanics: Definition Dump}
+  Proper quantities are Greek; classical, Roman.
+  Quantities that are Roman but are defined in terms of proper quantities are usually referred to as ``relativistic'' rather than ``proper.''
+  \[
+    \Delta\tau = \Delta t/\gamma
+  \]
+  \[
+    \vec{\eta} = \frac{d\vec{x}}{d\tau} = \gamma \vec{v}
+  \]
+  \[
+    \vec{p} = m\eta = \gamma m\vec{v}
+  \]
+  \[
+    E = p^{0}c = \gamma mc^{2} \Rightarrow E^{2}= p^{2}c^{2}+m^{2}c^{4}
+  \]
+  \[
+    \vec{F} = \frac{d\vec{p}}{dt}
+  \]
+  \[
+    \vec{\alpha} = \frac{d^{2}\vec{x}}{d\tau^{2}}
+  \]
+  \[
+    \vec{K} = \frac{d\vec{\rho}}{d\tau} = m\vec{\alpha}
+  \]
+  The convention was abrogated in the last equation to align with the convention for the Minkowski force (which is often called ``proper'').
+\end{frame}
+
+\begin{frame}
+  \frametitle{Relativistic Mechanics: Problems}
+  \begin{center}
+    \includegraphics[scale=0.3]{scattering.png}
+  \end{center}
+\end{frame}
+
 \begin{frame}
   \frametitle{Magnetism is Literally Just Relativity}
   \begin{center}
@@ -252,7 +343,7 @@
 
 \begin{frame}
   \frametitle{Magnetism is Literally Just Relativistic Electric Fields in Disguise}
-  Moreover, one can prove using the relativistic mechanics we omitted that the magnitude of the electric force in the particle's frame is \textit{identical to the classical expression of the magnetic field on a moving line charge}.
+  Moreover, one can prove using the relativistic dynamics that the magnitude of the electric force in the particle's frame is \textit{identical to the classical expression of the magnetic field on a moving line charge}.
   The ``primitive object'' of the usual theory of magnetism are these line currents, so \textit{all} magnetism is attributable to this relativistic effect.
   This is so deeply profound it bears explicit statement: \textbf{\textit{magnetic forces are nothing more than electric forces in the moving frame of the charge they affect}}.
   \footnote{An introductory text that describes magnetism from this perspective \textit{ab initio} (and more carefully) is Purcell's \textit{Electricity and Magnetism}.}
@@ -267,7 +358,7 @@
   \[
     \vec{F}=\int_{\partial V}T_{ij}\cdot d\vec{a}-\epsilon_{0}\mu_{0}\frac{d}{dt}\int_{V}\vec{S}d\tau
   \]
-  $T_{ij}$ is the so-called ``Maxwell stress tensor'', a type of object we'll soon define leading to the final, power-level-9000 form of the laws governing classical electromagnetism.
+  $T_{ij}$ is the so-called ``Maxwell stress tensor'', an object of a type we'll soon define leading to the final, power-level-9000 form of the laws governing classical electromagnetism.
 \end{frame}
 
 \begin{frame}
@@ -275,19 +366,18 @@
   Physicists and mathematicians disagree on what tensors are.
   Unfortunately, physicists' definition is objectively worse by orders of magnitude.
   \begin{mydef}
-    \textit{A tensor is a multilinear functional on copies of a vector space (or its dual), i.e. for our purposes a map} $f:\mathbb{R}^n\times\cdots\times \mathbb{R}^n\to \mathbb{R}$ \textit{satisfying}
-    $f(v_{1}...,av_{i}+u,...,v_{k})=af(v_{1},...,v_{i},...,v_{k})+f(v_{1},...,u,...,v_{k})$ \textit{in each of its arguments.}
+    \textit{A tensor is a multilinear functional on arbitrary copies of a vector space or its dual  (the vector space of 1-forms), i.e. a map, linear in each argument, of the form} $f:V\times\cdots\times V\times V^{*}\times\cdots V^{*}\to \mathbb{F}$
   \end{mydef}
-  Physicists get confused because many of their tensors don't ultimately produce scalars.
-  The aforementioned Maxwell stress tensor has two indices, and so is a 3-by-3 matrix.
-  However, it isn't a matrix representing a multilinear map, but one representing a tensor that acts by $T_{ij}(u,v)\mapsto u\cdot T_{ij}v$.
-  Physicists often only \textit{need} $T_{ij}$ and similar objects to produce a vector: $T_{ij}\cdot d\vec{a}$ in this case, interpreted as being a vector itself.
-  This still works in our definition, because $g(v)=u\cdot (v)$ is a mapping $\mathbb{R}^{n}\to \mathbb{R}$, which, under canonical isomorphism, is a vector.
+  Physicists get confused because many of their tensors don't look like they produce scalars.
+  The aforementioned Maxwell stress tensor seems to produce a vector, the traction, but we can always say the tensor also takes as an argument a 1-form over which the output vector is integrated to produce a scalar,
+  or another vector with which the output vector is dotted (canonical isomorphism between $V$ and $V^{*}$).
+  In other words, functions that act on vectors to produce a vector are just partial applications of a tensor.
 \end{frame}
 
 \begin{frame}
   \frametitle{Elegant Closure: The Four-Potential and Field Tensor}
-  Using this tensor formalism, one can obtain a so-called field tensor that has all the information about the fields that allows one to write equations whose form doesn't change under Lorentz transformations:
+  The field tensor takes as input a particle's velocity vector and outputs the Minkowski force on the particle due to the magnetic fields, generalizing the electric and magnetic fields into a single object
+  that takes in a 4-velocity and outputs the 4-force:
   \[
     F^{\mu\nu}=
     \begin{bmatrix}
@@ -319,7 +409,20 @@
 
 \begin{frame}
   \frametitle{Looking Forward}
-  Special relativity's application to electromagnetism provides hints towards
+  Relativistic electrodynamics lays the groundwork for general relativity by casting problems in this covariant, coordinate-independent light.
+  This language is readily generalized to that of Hodge operators and differential forms:
+  \[
+    d\star dA = \mu_{0}J
+  \]
+  similarly contains all the information of Maxwell's equations.
+
+  Hints of quantum mechanics pervade it as well: we know photons to be massless and move at the speed of light.
+  The relativistic energy and momentum are \textit{indeterminate} in this case---0/0.
+  Therefore, the existence of lightspeed, massless particles that carry momentum and energy is consistent with relativity, but requires \textit{new physics} to explain it.
+  That physics came courtesy Planck, who kicked off quantum mechanics by establishing $E=h\nu$ for photons.
+
+  Conclusion: special relativity is unbelievably goated.
+
 \end{frame}
 
 \end{document}

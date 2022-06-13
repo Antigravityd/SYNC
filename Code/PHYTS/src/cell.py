@@ -1,5 +1,5 @@
 import copy
-import base.py
+from base import *
 
 class Cell(PhitsObject): # dictionary of properties and a frozenset of tuples with type (Surface, "<" | ">")
             # with the second entry being
@@ -11,7 +11,7 @@ class Cell(PhitsObject): # dictionary of properties and a frozenset of tuples wi
             # The property dictionary has equivalent natural language and array syntaxes (hopefully!),
             # e.g. {material: "60% water, 40% lead 208"} ↔ {material: [(0.6, "H20"), (0.4, "Pb-208")]}
             # Every property that applies to a cell ought to be supported, like transform, tallies, etc.
-    def __init__(self, regions, material, density, transform=None **kwargs):
+    def __init__(self, regions, material, density, transform=None, **kwargs):
         self.regions = regions
         self.material = material
         self.density = density
@@ -38,14 +38,14 @@ class Cell(PhitsObject): # dictionary of properties and a frozenset of tuples wi
                         "tally"}
 
 
-        for k, v in allowed_keys.items():
+        for k in allowed_keys:
             if k in kwargs:
                 setattr(self, k, frozenset(kwargs[k]) if isinstance(kwargs[k], list) else kwargs[k])
                 kwargs[k].cell = self
             else:
                 setattr(self, k, None)
 
-        super("cell", {k: v if k in kwargs and k not in allowed_keys})
+        super().__init__("cell", {k: v for k, v in kwargs.items() if k not in allowed_keys})
 
     # TODO: fix these dunder methods given new required options. They probably ought to set the material to void and density to zero, but I'm not sure those are handled right as materials.
     def __or__(self, other): # Union of cells; drops properties

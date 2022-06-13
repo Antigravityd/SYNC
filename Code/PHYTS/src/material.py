@@ -1,9 +1,9 @@
-from base.py import *
+from base import *
 
 
 class MatTimeChange(PhitsObject):
     def __init__(self, time, new, **kwargs):
-        super("mat_time_change", **kwargs)
+        super().__init__("mat_time_change", **kwargs)
         self.old = None
         self.time = time
         self.new = new
@@ -15,14 +15,14 @@ class MatTimeChange(PhitsObject):
 
 class DataMax(PhitsObject):
     def __init__(self, particles, threshold, **kwargs):
-        super("data_max", **kwargs)
+        super().__init__("data_max", **kwargs)
         self.particles = particles
         self.material = None
         self.threshold = threshold
 
 class MatNameColor(PhitsObject):
     def __init__(self, name, size, color, **kwargs):
-        super("mat_name_color", **kwargs)
+        super().__init__("mat_name_color", **kwargs)
         self.material = None
         self.name = name
         self.size = size
@@ -35,10 +35,11 @@ class MatNameColor(PhitsObject):
 class Material(PhitsObject): # Composition is a list of pairs of (<element name string>, <ratio>) e.g. ("8Li", 0.5)
     def __init__(self, composition, time_change=None, data_max=None, mat_name_color=None, condensed=True, conductive=False,
                  electron_step=None, neutron_lib=None, proton_lib=None, electron_lib=None, photon_lib=None, thermal_lib=None, **kwargs):
-        super("material", **kwargs)
+        super().__init__("material", **kwargs)
         self.composition = composition
         self.time_change = time_change
         self.data_max = data_max
+        self.mat_name_color = mat_name_color
         self.condensed = condensed
         self.conductive = conductive
         self.electron_step = electron_step

@@ -1,6 +1,7 @@
+from base import *
 class Transform(PhitsObject): # a translation vector and a (flattened) rotation matrix representing an R^3 isometry
     def __init__(self, trans, rot, rotateFirst=False, units="radians", **kwargs):
-        super("transform", **kwargs)
+        super().__init__("transform", **kwargs)
         assert len(trans) == 3, f"First argument to Transform(trans, rot,...) must be of length 3; recieved {trans}"
         if len(rot) == 9:
             self.M = 1 if rotateFirst else -1
@@ -19,7 +20,7 @@ class Transform(PhitsObject): # a translation vector and a (flattened) rotation 
         inp = ""
         if self.units == "radians":
             inp += f"TR{self.index} "
-        else if tr.units == "degrees":
+        elif tr.units == "degrees":
             inp += f"*TR{self.index} "
         else:
             raise ValueError(f"Encountered invalid angular unit {self.units} among transforms.")

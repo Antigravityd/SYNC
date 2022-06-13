@@ -1,5 +1,12 @@
 from math import *
 import numpy as np
+from run_phits import *
+from material import *
+from cell import *
+from surface import *
+from tally import *
+from source import *
+
 
 # A dead whale, modelled by concentric spherical annuli of an increasingly less-concentrated carbon-water mixture,
 # has swallowed an orphaned 241Am RTG source and is sinking into the ocean.
@@ -25,4 +32,5 @@ source = Cylindrical("241Am", fission="neutrons", bounds=(-0.25,0.25), r_out=0.3
 
 # Capture input for further analysis in Python as your choice of many common data formats,
 # or render and return the .eps
-table = run_phits(cells, [source], [], return_a="dataframe", raw="# This could be e.g. an [Elastic Option] section.\n") # Pass raw input data in case of an error or unimplemented feature
+# Pass raw input data in case of an error or unimplemented feature
+table = run_phits(cells, [source], [], return_a="dataframe", raw="# This could be e.g. an [Elastic Option] section.\n")

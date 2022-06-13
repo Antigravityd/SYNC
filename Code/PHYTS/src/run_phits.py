@@ -1,9 +1,25 @@
 from datetime import datetime
 import subprocess as sp
+import os
+import shutil as sh
 import networkx as nx
 import itertools as it
 import collections as col
-from base.py import *
+
+import re
+import numpy as np
+import pandas as pd
+
+from base import *
+from cell import *
+from material import *
+from misc import *
+from source import *
+from surface import *
+from tally import *
+from transform import *
+
+
 # This is complicated enough to sketch the algorithm before writing code (shocker!)
 # Given a list of cells, sources, and measurements (with some wacky options thrown in), we want to generate
 # all of the "background" data necessary to build those cells automatically, e.g. generate the surfaces necessary to build the cells.
@@ -35,7 +51,7 @@ from base.py import *
 # sources is list of tuples of a Source value and a numeric weight, cells is a list of Cell values,
 # and
 
-def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=dict(), cross_sections=[], raw="") -> {Tally: String}: # [Super Mirror], [Elastic Option], [Weight Window], and [WW Bias]aren't supported due to poor documentation.
+def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=dict(), cross_sections=[], raw=""): # [Super Mirror], [Elastic Option], [Weight Window], and [WW Bias]aren't supported due to poor documentation.
     objgraph = nx.DiGraph()                                                                                                          # Returns a dict associating the tallies with the filename containing their results.
 
     def add_to_graph(an_obj):  # Recursively add subtypes to graph if they represent an "entry" in one of the sections
@@ -83,7 +99,7 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
                     "mat_time_change": [],
                     "magnetic_field": [],
                     "neutron_magnetic_field": [],
-                    "mapped_magnetic_field": []
+                    "mapped_magnetic_field": [],
                     "uniform_electromagnetic_field": [],
                     "mapped_electromagnetic_field": [],
                     "delta_ray": [],
@@ -119,7 +135,7 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
                     "t-volume": [],
                     "t-gshow": [],
                     "t-rshow": [],
-                    "t-3dshow"}
+                    "t-3dshow": []}
 
     for node in objgraph:
         type_divided[node.name].append(node)
@@ -148,15 +164,26 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
 
     inp += "[Parameters]\n"
     for var, val in parameters.items: # directly passed global parameters
-        inp += f"{var} = {val}\n"
+        if var not in {"totfact", "iscorr"}:
+            inp += f"{var} = {val}\n"
 
     add_defs("parameters", title="") # parameters associated with object declarations, but that need to be in this global context
 
 
     inp += "[Source]\n"
-    for weight, source in sources:
-        inp += f"<source> = {weight}\n"
-        inp += source.definition()
+    if parameters["totfact"]:
+        val = parameters["totfact"]
+        inp += f"totfact = {val}"
+    if parameters["iscorr"]:
+        val = parameters["iscorr"]
+        inp += f"iscorr = {val}"
+
+    if isinstance(sources, iter):
+        for weight, source in sources:
+            inp += f"<source> = {weight}\n"
+            inp += source.definition()
+    else:
+        inp += sources.definition()
 
 
     add_defs("material")
@@ -222,19 +249,70 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
 
     return inp
 
-def capture_output():
 
-def run_phits(sources, cells, tallies, command="phits", throws=False, title=str(datetime.now()), **kwargs):
+def capture_result(return_type): # -> pandas.DataFrame | numpy.array | dict
+    files = []
+    for name in os.listdir():
+        if re.search(".out", name) != "":
+            files += name
+
+    output = []
+    for fil in files:
+        with open(fil, "r") as f:
+            schema = []
+            data = dict()
+            in_data = False
+            for line in f:
+                if in_data:
+                    for idx, datum in enumerate(line.split()):
+                        data[idx] += float(datum)
+                else:
+                    if re.search("^H.?:", line) != "":
+                        in_data = True
+                        line = re.sub("^H.?:", "", line)
+                        sep  = line.split()
+                        for idx, col in enumerate(sep):
+                            schema += col
+                            data[idx] = []
+
+            for idx, colname in enumerate(schema):
+                data[colname] = data[idx]
+                del data[idx]
+
+            if return_type == "dict":
+                output += data
+            elif return_type == "pandas":
+                output += pd.DataFrame(data)
+            elif return_type == "numpy":
+                array = []
+                for col, lst in data.items():
+                    array += lst
+                output += np.array(array)
+
+    return output
+
+
+
+def run_phits(sources, cells, tallies, command="phits", throws=False, filename=str(datetime.now()), return_type="dict", **kwargs):
     # TODO: consider how to read stdout/output files into returnable formats
     # WARNING: setting the command variable opens up shell injection attacks, as sp.run() with
     # shell=True is done unfiltered. Should see about using shlex.quote() to sanitize, since title may be specified by the user
-    inp = make_input(sources, cells, tallies, title=title, **kwargs)
-    with open(f"{title}.inp", "r+") as inp_file:
+    os.mkdir("temp_PHITS")
+    os.chdir("temp_PHITS")
+    inp = make_input(sources, cells, tallies, **kwargs)
+    with open(f"{filename}.inp", "r+") as inp_file:
         inp_file.write(inp)
 
-    result = sp.run(f"phits {title}.inp", shell=True, capture_output=True, text=True, check=throws)
+    output = sp.run(f"phits {title}.inp", shell=True, capture_output=True, text=True, check=throws)
 
-    # TODO: parse STDOUT and STDERR of the CompletedProcess object above for the results of the tallies,
-    # and return them, alongside any other useful information.
+    result = capture_result(return_type)
 
-def parse_input(file_handle) -> :#< tuple of all arguments of run_phits function>
+    os.chdir("..")
+    sh.rmtree("temp_PHITS")
+
+    return result
+
+
+
+
+# def parse_input(file_handle) -> :#< tuple of all arguments of run_phits function>

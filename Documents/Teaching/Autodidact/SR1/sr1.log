@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.1.13)  9 JUN 2022 08:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.1.13)  13 JUN 2022 10:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1383,91 +1383,126 @@ Package pdftex.def Info: train.png  used on input line 107.
  [8
 
  <./train.png>]
-<mich-mor.png, id=71, 219.219pt x 143.69685pt>
-File: mich-mor.png Graphic file (type png)
-<use mich-mor.png>
-Package pdftex.def Info: mich-mor.png  used on input line 118.
-(pdftex.def)             Requested size: 87.68604pt x 57.4777pt.
+Overfull \vbox (2.06363pt too high) detected at line 124
+ []
 
 [9
 
- <./mich-mor.png>] [10
-
-] [11
-
 ]
-<time-dilation.png, id=89, 610.28pt x 307.1475pt>
-File: time-dilation.png Graphic file (type png)
-<use time-dilation.png>
-Package pdftex.def Info: time-dilation.png  used on input line 172.
-(pdftex.def)             Requested size: 122.05383pt x 61.4284pt.
- [12
+<mich-mor.png, id=76, 219.219pt x 143.69685pt>
+File: mich-mor.png Graphic file (type png)
+<use mich-mor.png>
+Package pdftex.def Info: mich-mor.png  used on input line 137.
+(pdftex.def)             Requested size: 87.68604pt x 57.4777pt.
 
- <./time-dilation.png>]
-<length-contraction.png, id=96, 610.28pt x 307.1475pt>
-File: length-contraction.png Graphic file (type png)
-<use length-contraction.png>
-Package pdftex.def Info: length-contraction.png  used on input line 190.
-(pdftex.def)             Requested size: 122.05383pt x 61.4284pt.
-
-Overfull \vbox (16.41763pt too high) detected at line 190
+Overfull \vbox (14.55725pt too high) detected at line 137
  []
 
-[13
+[10
 
- <./length-contraction.png>] [14
+ <./mich-mor.png>] [11
 
-]
-<ex1.png, id=110, 739.76375pt x 307.1475pt>
-File: ex1.png Graphic file (type png)
-<use ex1.png>
-Package pdftex.def Info: ex1.png  used on input line 225.
-(pdftex.def)             Requested size: 147.95012pt x 61.4284pt.
-<ex2.png, id=111, 714.67pt x 953.5625pt>
-File: ex2.png Graphic file (type png)
-<use ex2.png>
-Package pdftex.def Info: ex2.png  used on input line 225.
-(pdftex.def)             Requested size: 142.93146pt x 190.70912pt.
- [15
-
- <./ex1.png> <./ex2.png>] [16
+] [12
 
 ]
-<charge.png, id=124, 387.849pt x 104.7915pt>
-File: charge.png Graphic file (type png)
-<use charge.png>
-Package pdftex.def Info: charge.png  used on input line 251.
-(pdftex.def)             Requested size: 193.92401pt x 52.39561pt.
+<time-dilation.png, id=94, 610.28pt x 307.1475pt>
+File: time-dilation.png Graphic file (type png)
+<use time-dilation.png>
+Package pdftex.def Info: time-dilation.png  used on input line 191.
+(pdftex.def)             Requested size: 122.05383pt x 61.4284pt.
+ [13
 
-Overfull \vbox (15.27766pt too high) detected at line 251
+ <./time-dilation.png>]
+<length-contraction.png, id=102, 610.28pt x 307.1475pt>
+File: length-contraction.png Graphic file (type png)
+<use length-contraction.png>
+Package pdftex.def Info: length-contraction.png  used on input line 209.
+(pdftex.def)             Requested size: 122.05383pt x 61.4284pt.
+
+Overfull \vbox (16.41763pt too high) detected at line 209
+ []
+
+[14
+
+ <./length-contraction.png>] [15
+
+] [16
+
+]
+<lightcone.png, id=120, 739.76375pt x 307.1475pt>
+File: lightcone.png Graphic file (type png)
+<use lightcone.png>
+Package pdftex.def Info: lightcone.png  used on input line 259.
+(pdftex.def)             Requested size: 258.92119pt x 107.50323pt.
+
+Overfull \vbox (13.73856pt too high) detected at line 259
  []
 
 [17
 
- <./charge.png>]
+ <./lightcone.png>]
+<ex1.png, id=127, 739.76375pt x 307.1475pt>
+File: ex1.png Graphic file (type png)
+<use ex1.png>
+Package pdftex.def Info: ex1.png  used on input line 269.
+(pdftex.def)             Requested size: 147.95012pt x 61.4284pt.
+<ex2.png, id=128, 714.67pt x 953.5625pt>
+File: ex2.png Graphic file (type png)
+<use ex2.png>
+Package pdftex.def Info: ex2.png  used on input line 269.
+(pdftex.def)             Requested size: 142.93146pt x 190.70912pt.
+ [18
 
-LaTeX Font Warning: Font shape `OT1/cmss/bx/it' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 259.
+ <./ex1.png> <./ex2.png>] [19
 
-[18
-
-] [19
+] [20
 
 ]
-Overfull \vbox (10.66812pt too high) detected at line 286
- []
-
-[20
-
-]
-Overfull \vbox (7.54291pt too high) detected at line 309
+Overfull \vbox (4.23984pt too high) detected at line 319
  []
 
 [21
 
-] [22
+]
+<scattering.png, id=152, 739.76375pt x 307.1475pt>
+File: scattering.png Graphic file (type png)
+<use scattering.png>
+Package pdftex.def Info: scattering.png  used on input line 326.
+(pdftex.def)             Requested size: 221.93083pt x 92.14496pt.
+ [22
 
-] [23
+ <./scattering.png>]
+<charge.png, id=159, 387.849pt x 104.7915pt>
+File: charge.png Graphic file (type png)
+<use charge.png>
+Package pdftex.def Info: charge.png  used on input line 342.
+(pdftex.def)             Requested size: 193.92401pt x 52.39561pt.
+
+Overfull \vbox (15.27766pt too high) detected at line 342
+ []
+
+[23
+
+ <./charge.png>]
+
+LaTeX Font Warning: Font shape `OT1/cmss/bx/it' undefined
+(Font)              using `OT1/cmss/bx/n' instead on input line 350.
+
+[24
+
+] [25
+
+] [26
+
+]
+Overfull \vbox (21.34283pt too high) detected at line 399
+ []
+
+[27
+
+] [28
+
+] [29
 
 ]
 \tf@nav=\write6
@@ -1487,10 +1522,10 @@ Package rerunfilecheck Info: File `sr1.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 27670 strings out of 478994
- 581925 string characters out of 5833534
- 818779 words of memory out of 5000000
- 44535 multiletter control sequences out of 15000+600000
+ 27706 strings out of 478994
+ 582335 string characters out of 5833534
+ 819779 words of memory out of 5000000
+ 44557 multiletter control sequences out of 15000+600000
  415104 words of font info for 70 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  131i,13n,132p,1802b,724s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1522,10 +1557,10 @@ s/msam10.pfb></gnu/store/0dq9223zvzk8gjwvrvaf11yq1m8jngg3-texlive-texmf-2021032
 5/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></gnu/store/0
 dq9223zvzk8gjwvrvaf11yq1m8jngg3-texlive-texmf-20210325/share/texmf-dist/fonts/t
 ype1/public/cm-super/sfss1000.pfb>
-Output written on sr1.pdf (23 pages, 727006 bytes).
+Output written on sr1.pdf (29 pages, 814550 bytes).
 PDF statistics:
- 231 PDF objects out of 1000 (max. 8388607)
- 169 compressed objects within 2 object streams
- 47 named destinations out of 1000 (max. 500000)
- 78 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 268 PDF objects out of 1000 (max. 8388607)
+ 196 compressed objects within 2 object streams
+ 59 named destinations out of 1000 (max. 500000)
+ 88 words of extra memory for PDF output out of 10000 (max. 10000000)
 

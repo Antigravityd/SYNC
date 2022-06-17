@@ -6,7 +6,7 @@ from transform import *
 
 class Surface(PhitsObject): # all surfaces carry symbols, reflectiveness/whiteness, and coordinate transforms.
     def __init__(self, symb, reflective=False, white=False,
-                 transform=idTransform, **kwargs):
+                 transform=None, **kwargs):
         super().__init__("surface", **kwargs)
         self.reflective = reflective
         self.white = white
@@ -14,8 +14,9 @@ class Surface(PhitsObject): # all surfaces carry symbols, reflectiveness/whitene
         self.transform = transform
 
     def definition(self):
+        idx = self.transform.index if self.transform is not None else ""
         boundary = "*" if self.reflective else ("+" if self.white else "")
-        inp = f"{boundary}{self.index} {self.transform.index} {self.symbol} "
+        inp = f"{boundary}{self.index} {idx} {self.symb} "
         return inp
 
 

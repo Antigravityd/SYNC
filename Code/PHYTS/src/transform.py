@@ -8,13 +8,9 @@ class Transform(PhitsObject): # a translation vector and a (flattened) rotation 
         elif len(rot) == 3:
             self.M = 2 if rotateFirst else -2
 
-        self.trans = trans
-        self.rot = rot
+        self.trans = tuple(trans)
+        self.rot = tuple(rot)
         self.units = units
-
-    def __eq__(self, other):
-        return self.trans == other.trans and self.rot == other.rot \
-            and self.rotateFirst == other.rotateFirst
 
     def definition(self):
         inp = ""
@@ -24,7 +20,7 @@ class Transform(PhitsObject): # a translation vector and a (flattened) rotation 
             inp += f"*TR{self.index} "
         else:
             raise ValueError(f"Encountered invalid angular unit {self.units} among transforms.")
-        inp += f"{self.trans[0]} {self.trans[1]} {self.trans[2]} {self.rot[0]} {self.rot[1]} {self.rot[2]} {self.rot[3]} {self.rot[4]} {self.rot[5]} {self.rot[6]} {self.rot[7]} {self.rot[8]} {1 if self.rotateFirst else -1}\n"
+        inp += f"{self.trans[0]} {self.trans[1]} {self.trans[2]} {self.rot[0]} {self.rot[1]} {self.rot[2]} {self.rot[3]} {self.rot[4]} {self.rot[5]} {self.rot[6]} {self.rot[7]} {self.rot[8]} {self.M}\n"
         return inp
 
 idTransform = Transform([0.0, 0.0, 0.0], [0.0 for i in range(9)])

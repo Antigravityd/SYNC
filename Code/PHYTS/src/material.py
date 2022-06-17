@@ -33,10 +33,10 @@ class MatNameColor(PhitsObject):
 
 # TODO: implement the molecular structures as in 5.4.7
 class Material(PhitsObject): # Composition is a list of pairs of (<element name string>, <ratio>) e.g. ("8Li", 0.5)
-    def __init__(self, composition, time_change=None, data_max=None, mat_name_color=None, condensed=True, conductive=False,
+    def __init__(self, composition, time_change=None, data_max=None, mat_name_color=None, condensed=True, conductive=None,
                  electron_step=None, neutron_lib=None, proton_lib=None, electron_lib=None, photon_lib=None, thermal_lib=None, **kwargs):
         super().__init__("material", **kwargs)
-        self.composition = composition
+        self.composition = frozenset(composition)
         self.time_change = time_change
         self.data_max = data_max
         self.mat_name_color = mat_name_color
@@ -47,6 +47,7 @@ class Material(PhitsObject): # Composition is a list of pairs of (<element name 
         self.proton_lib = proton_lib
         self.electron_lib = electron_lib
         self.photon_lib = photon_lib
+        self.thermal_lib = thermal_lib
 
         if self.time_change is not None:
             self.time_change.old = self
@@ -63,13 +64,16 @@ class Material(PhitsObject): # Composition is a list of pairs of (<element name 
         for element, ratio in self.composition:
             inp += f"{element} {ratio}\n"
 
-        if not self.condensed == "gas":
+        if not self.condensed:
             inp += "GAS = 1\n"
 
-        if self.conductive:
-            inp += "COND = 1\n"
-        else:
-            inp += "COND = -1\n"
+        if self.conductive is not None:
+            if self.conductive:
+                inp += "COND = 1\n"
+            else:
+                inp += "COND = -1\n"
+
+
 
         if self.electron_step is not None:
             inp += f"ESTEP = {self.electron_step}\n"

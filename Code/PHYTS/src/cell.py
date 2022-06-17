@@ -1,10 +1,7 @@
 import copy
 from base import *
 
-class Cell(PhitsObject): # dictionary of properties and a frozenset of tuples with type (Surface, "<" | ">")
-            # with the second entry being
-            # what the equality in the surface function ought to be replaced with to get the orientation.
-            # As a heuristic rule, consider r → ∞ and check the sign of the LHS; choose accordingly.
+class Cell(PhitsObject): # dictionary of properties and a frozenset of Surface() objects
 
             # Operations &, |, >>, <<, and ~ are the set operations on the regions. & and | clear properties,
             # inversion preserves them, and << and >> copy properties of one cell onto another.
@@ -12,12 +9,14 @@ class Cell(PhitsObject): # dictionary of properties and a frozenset of tuples wi
             # e.g. {material: "60% water, 40% lead 208"} ↔ {material: [(0.6, "H20"), (0.4, "Pb-208")]}
             # Every property that applies to a cell ought to be supported, like transform, tallies, etc.
     def __init__(self, regions, material, density, transform=None, **kwargs):
-        self.regions = regions
+        self.regions = tuple(regions)
         self.material = material
         self.density = density
         self.transform = transform
 
-        allowed_keys = {"magnetic_field",   # Values one wants to associate with a cell, and that require setting the value's .cell attribute because it can't be set at initialization
+        allowed_keys = {"transform", # Values one wants to associate with a cell, and that require setting the value's .cell attribute because it can't be set at initialization
+                        "temperature",
+                        "magnetic_field",
                         "neutron_magnetic_field",
                         "mapped_magnetic_field",
                         "uniform_electromagnetic_field",
@@ -40,12 +39,12 @@ class Cell(PhitsObject): # dictionary of properties and a frozenset of tuples wi
 
         for k in allowed_keys:
             if k in kwargs:
-                setattr(self, k, frozenset(kwargs[k]) if isinstance(kwargs[k], list) else kwargs[k])
+                setattr(self, k, tuple(kwargs[k]) if isinstance(kwargs[k], list) else kwargs[k])
                 kwargs[k].cell = self
             else:
                 setattr(self, k, None)
 
-        super().__init__("cell", {k: v for k, v in kwargs.items() if k not in allowed_keys})
+        super().__init__("cell", **{k: v for k, v in kwargs.items() if k not in allowed_keys})
 
     # TODO: fix these dunder methods given new required options. They probably ought to set the material to void and density to zero, but I'm not sure those are handled right as materials.
     def __or__(self, other): # Union of cells; drops properties
@@ -83,6 +82,7 @@ class Cell(PhitsObject): # dictionary of properties and a frozenset of tuples wi
 
     def definition(self):
         inp = f"{self.index} {self.material.index} {self.density} "
+#        breakpoint()
         for sur, orient in self.regions:
             if orient == "<": # This may not be correct; the "sense" of surfaces is poorly documented.
                 inp += f"{sur.index} "

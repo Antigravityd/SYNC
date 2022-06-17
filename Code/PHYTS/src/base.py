@@ -61,7 +61,7 @@ class PhitsObject:
         else:
             raise ValueError(f"Unrecognized PHITS type {name} in ")
 
-        if kwargs is not None:
+        if kwargs:
             self.parameters = Parameters(**kwargs)
 
     def __eq__(self, other):
@@ -70,19 +70,23 @@ class PhitsObject:
         else:
             return self.__dict__ == other.__dict__
     def __hash__(self):
-        return hash(self.__key())
+        return hash(tuple(v for k, v in sorted(self.__dict__.items()) \
+                          if (self not in v.__dict__.values() if hasattr(v, "__dict__") else True)))
 
 
 class Parameters(PhitsObject): # A simple dictionary of variable-value pairs; necessary so we catch it in the base class
     def __init__(self, **kwargs):
         self.name = "parameters"
-        self.dic = kwargs
+        for k,v in kwargs.items():
+            setattr(self, k, v)
     def __getitem__(self, key):
-        return self.dic[key]
-
+        return self.__dict__[key]
+    def empty(self):
+        return True if self.__dict__ == {"name": "parameters"} else False
     def definition(self):
         inp = ""
-        for var, val in self.dic.items():
-            inp += f"{var} = {val}\n"
+        for var, val in  self.__dict__.items():
+            if var != "name":
+                inp += f"{var} = {val}\n"
 
         return inp

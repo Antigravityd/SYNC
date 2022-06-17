@@ -27,7 +27,3 @@ def condense_set(ints): # takes an iterable of numbers and returns PHITS-optimiz
     result += ')'
 
     return result
-    
-    
-    
-    

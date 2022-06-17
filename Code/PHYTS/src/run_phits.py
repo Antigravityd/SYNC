@@ -1,6 +1,7 @@
 from datetime import datetime
 import subprocess as sp
 import os
+import sys
 import shutil as sh
 import networkx as nx
 import itertools as it
@@ -18,6 +19,7 @@ from source import *
 from surface import *
 from tally import *
 from transform import *
+from tco import *
 
 
 # This is complicated enough to sketch the algorithm before writing code (shocker!)
@@ -51,44 +53,41 @@ from transform import *
 # sources is list of tuples of a Source value and a numeric weight, cells is a list of Cell values,
 # and
 
-def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=dict(), cross_sections=[], raw=""): # [Super Mirror], [Elastic Option], [Weight Window], and [WW Bias]aren't supported due to poor documentation.
-    objgraph = nx.DiGraph()                                                                                                          # Returns a dict associating the tallies with the filename containing their results.
+def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=dict(), cross_sections=[], raw=""): # [Super Mirror], [Elastic Option], [Weight Window], and [WW Bias] aren't supported due to poor documentation.
+    objgraph = nx.DiGraph()
 
-    def add_to_graph(an_obj):  # Recursively add subtypes to graph if they represent an "entry" in one of the sections
+    def add_to_graph(an_obj, graph, prev=None):  # Recursively add subtypes to graph if they represent an "entry" in one of the sections
+        print(an_obj)
         if isinstance(an_obj, col.Iterable):
-            map(add_to_graph, an_obj)
-        else:
-            if isinstance(an_obj, PhitsObject):
-                for name, child in an_obj.__dict__.items():
-                    if isinstance(child, PhitsObject):
-                        objgraph.add_edge(an_obj, child)
-                        add_to_graph(child)
+            for ob in an_obj:
+                add_to_graph(ob, graph)
+        if isinstance(an_obj, PhitsObject):
+            graph.add_node(an_obj)
+            for name, child in an_obj.__dict__.items():
+                if isinstance(child, PhitsObject):
+                    graph.add_edge(an_obj, child)
+                    if child is not prev:
+                        add_to_graph(child, graph, an_obj)
 
 
-    map(add_to_graph, cells)
-    map(lambda tup: add_to_graph(tup[1]), sources)
-    map(add_to_graph, tallies)
 
-    def adjust_subobjects(an_obj): # Recursively replace redundant subtypes with the representative that's in the graph
-        if isinstance(an_obj, col.Iterable):
-            map(adjust_subobjects, an_obj)
-        else:
-            if isinstance(an_obj, PhitsObject):
-                for name, child in an_obj.__dict__.items():
-                    if isinstance(child, PhitsObject):
-                        representative = filter(lambda node: node == child, objgraph.successors(an_obj))[0]
-                        setattr(an_obj, name, representative)
-                        adjust_subobjects(child)
 
-    map(adjust_subobjects, cells)
-    map(lambda tup: adjust_subobjects(tup[1]), sources)
-    map(adjust_subobjets, tallies)
+
+    add_to_graph(cells, objgraph)
+    for cell in cells:
+        for sur, orient in cell.regions:
+            add_to_graph(sur, objgraph)
+    add_to_graph(sources, objgraph)
+    add_to_graph(tallies, objgraph)
+
+
+
+
 
     # We now have that if any two PHITS objects A and B have a property C and D (respectively) such that C == D, C /is/ D.
 
 
     # Now we break up the nodes by PHITS type; these objects will be translated into the .inp file directly in this order.
-    # TODO: give each PHITS object a method to do this translation.
     type_divided = {"parameters": [],
                     "source": [],
                     "material": [],
@@ -140,46 +139,72 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
     for node in objgraph:
         type_divided[node.name].append(node)
 
+
     for section, entries in type_divided.items():
         for idx, value in enumerate(entries):
             value.index = idx # this allows us to access the position in which the value will appear if given value alone.
 
-    def add_defs(obj_type, title=None, header_line=None):
-        if type_divided[obj_type]:
-            if title is None:
-                sec_name = obj_type.replace("_", " ").title()
-                inp += f"[{sec_name}]\n"
-            else:
-                inp += title + "\n"
+    representatives = {n: n for n in objgraph}
+    def adjust_subobjects(an_obj, dic, prev=None): # Recursively replace redundant subtypes with the representative in the dict
+        if isinstance(an_obj, col.Iterable):
+            for ob in an_obj:
+                adjust_subobjects(ob, dic)
+        elif isinstance(an_obj, PhitsObject):
+            for name, child in an_obj.__dict__.items():
+                if isinstance(child, PhitsObject):
+                    representative = representatives[child]
+                    setattr(an_obj, name, representative)
+                    if child is not prev:
+                        adjust_subobjects(child, dic, an_obj)
+
+    adjust_subobjects(cells, type_divided)
+    for cell in cells:
+        for sur, orient in cell.regions:
+            adjust_subobjects(sur, type_divided)
+    adjust_subobjects(sources, type_divided)
+    adjust_subobjects(tallies, type_divided)
+
+    # currently, the index isn't updated for copies of objects.
+    breakpoint()
+    inp = ""
+    def add_defs(obj_type, title=None, no_title=True, header_line=None):
+        nonlocal inp
+        if len(type_divided[obj_type]) > 0:
+            if obj_type in type_divided:
+                if title is None:
+                    sec_name = obj_type.replace("_", " ").title()
+                    inp += f"[{sec_name}]\n"
+                else:
+                    inp += title + "\n"
                 if header_line is not None:
                     inp += header_line + "\n"
-                    for obj in type_divided[obj_type]:
-                        inp += obj.definition()
+                for obj in type_divided[obj_type]:
+                    inp += obj.definition()
 
 
 
-    inp = "[Title]\n"
+    inp += "[Title]\n"
     inp += title + '\n'
 
+    if parameters or any(param.empty() for param in type_divided["parameters"]):
+        inp += "[Parameters]\n"
+        for var, val in parameters.items(): # directly passed global parameters
+            if var not in {"totfact", "iscorr"}:
+                inp += f"{var} = {val}\n"
 
-    inp += "[Parameters]\n"
-    for var, val in parameters.items: # directly passed global parameters
-        if var not in {"totfact", "iscorr"}:
-            inp += f"{var} = {val}\n"
-
-    add_defs("parameters", title="") # parameters associated with object declarations, but that need to be in this global context
+        add_defs("parameters", title="") # parameters associated with object declarations, but that need to be in this global context
 
 
     inp += "[Source]\n"
-    if parameters["totfact"]:
+    if "totfact" in parameters:
         val = parameters["totfact"]
         inp += f"totfact = {val}"
-    if parameters["iscorr"]:
+    if "iscorr" in parameters:
         val = parameters["iscorr"]
         inp += f"iscorr = {val}"
 
-    if isinstance(sources, iter):
-        for weight, source in sources:
+    if isinstance(sources, col.Iterable):
+        for source, weight in sources:
             inp += f"<source> = {weight}\n"
             inp += source.definition()
     else:
@@ -187,6 +212,7 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
 
 
     add_defs("material")
+    breakpoint()
     add_defs("surface")
     add_defs("cell")
     add_defs("transform")

@@ -1,37 +1,50 @@
 from base import *
 from cell import *
-
+import collections as col
 
 
 class Mesh():
     def __init__(self, axis, bins=None): # All bin generation is easily done in Python via list comprehensions
         assert axis in ["energy", "time", "x", "y", "z", "radius", "angle", "let"], f"Unrecognized axis {axis} in mesh definition."
         self.axis = axis
-        self.bins = bins
+        self.bins = tuple(bins)
         if axis != "angle":
             self.type = 2
         else:
             pass  # TODO: figure out angle mesh
 
     def definition(self):
-        inp = f"{axis[0]}-type = 1\n"
-        inp += f"n{axis[0]} = {len(bins)-1}\n"
-        for i in bins:
+        inp = f"{self.axis[0]}-type = 1\n"
+        inp += f"n{self.axis[0]} = {len(self.bins)-1}\n"
+        for i in self.bins:
             inp += f"{i} "
 
         inp += "\n"
         return inp
 
+    def __eq__(self, other):
+        if type(self) != type(other):
+            return False
+
+        else:
+            return {k: v for k, v in self.__dict__.items() if v is not other} \
+                == {k: v for k, v in other.__dict__.items() if v is not self}
+
+    def __hash__(self):
+        return hash(tuple(v for k, v in sorted(self.__dict__.items()) \
+                          if (self not in v.__dict__.values() if hasattr(v, "__dict__") else True)))
+
 
 
 
 class Tally(PhitsObject): # out-mesh is the mesh for the output; in-mesh is a list consisting of an optional origin coordinate in the first entry and a list of meshes for the dependent variables
-    def __init__(self, section_title, out_mesh, in_meshes=None, dependent_var="reg", particles="all", angel="", sangel="", title="", outfile="", output_type="", type_2d=5,
-                 factor=None, detailed_output=False, region_show=0, gshow=0, axis_titles=[], epsout=0, resolution=1, transform=None, dump=None, **kwargs): # dump not supported
+    def __init__(self, section_title, out_mesh, in_meshes=None, dependent_var="reg", particles="all", angel="", sangel="",
+                 title="", outfile="", output_type="", type_2d=5, factor=None, detailed_output=False, region_show=0,
+                 gshow=0, axis_titles=[], epsout=0, resolution=1, transform=None, dump=None, **kwargs): # dump not supported
         super().__init__(section_title, **kwargs)
         self.out_mesh = out_mesh
 #        self.unit = unit TODO: set this in children
-        self.in_meshes = in_meshes
+        self.in_meshes = tuple(in_meshes) if in_meshes is not None else None
         self.dependend_var = dependent_var
         self.particles = particles
         self.angel = angel
@@ -43,7 +56,7 @@ class Tally(PhitsObject): # out-mesh is the mesh for the output; in-mesh is a li
         self.detailed_output = detailed_output
         self.region_show = region_show
         self.gshow = gshow
-        self.axis_titles = axis_titles
+        self.axis_titles = tuple(axis_titles) if axis_titles is not None else None
         self.epsout = epsout
         self.resolution = resolution
         self.transform = transform
@@ -55,15 +68,16 @@ class Tally(PhitsObject): # out-mesh is the mesh for the output; in-mesh is a li
         if in_meshes is None:
             self.mesh_type = "reg"
             self.axis="reg"
-        if isinstance(in_meshes, list):
-            if isinstance(where[0], Cell):
+        if isinstance(in_meshes, col.Iterable):
+            if isinstance(in_meshes[0], Cell):
                 self.mesh_type = "reg"
+            elif next(filter(lambda mesh: mesh.axis in {"x", "y", "z"}, in_meshes), False):
+                self.mesh_type = "xyz"
+            elif next(filter(lambda mesh: mesh.axis in {"r", "z"}, in_meshes), False):
+                self.mesh_type = "r-z"
             else:
-                raise ValueError(f"Invalid tally location {where}.")
-        elif next(filter(lambda mesh: mesh.axis in {"x", "y", "z"}, in_meshes), False):
-            self.mesh_type = "xyz"
-        elif next(filter(lambda mesh: mesh.axis in {"r", "z"}, in_meshes), False):
-            self.mesh_type = "r-z"
+                raise ValueError(f"Invalid tally location {in_meshes}.")
+
 
     def definition(self): # only for use in defining other definition()s; the child must set units, transform (since id is available only at runtime),
         inp = f"mesh = {self.mesh_type}\n"
@@ -85,12 +99,8 @@ class Tally(PhitsObject): # out-mesh is the mesh for the output; in-mesh is a li
             inp += f"{param} = {val}\n"
 
 class TrackLengthFluence(Tally):
-    def __init__(self, out_mesh, units, in_meshes=None, dependent_var="reg", where=None, particles="all", angel="", sangel="", title="", output_type="", type_2d=3,
-                 factor=1.0, detailed_output=False, region_show=0, gshow=0, axis_titles=[], epsout=0, resolution=1, transform=None, dump=None, **kwargs):
-
-        super().__init__("t-track", out_mesh, in_meshes=in_meshes, dependend_var=dependent_var, particles=particles, angel=angel, sangel=sangel, title=title, output_type=output_type,
-                         type_2d=type_2d, factor=factor, detailed_output=detailed_output, region_show=region_show, gshow=gshow, axis_titles=axis_titles, epsout=epsout,
-                         resolution=resolution, transform=transform, dump=dump, **kwargs)
+    def __init__(self, out_mesh, units, **kwargs):
+        super().__init__("t-track", out_mesh,  **kwargs)
         if units == "1/cm^2/source":
             self.units = 1
         elif units == "1/cm^2/MeV/source":
@@ -114,12 +124,8 @@ class TrackLengthFluence(Tally):
         inp += f"trcl = {self.transform.index}\n"
 
 class SurfaceFluence(Tally):
-    def __init__(self, out_mesh, units, output, iangform="normal", in_meshes=None, dependent_var="reg", where=None, particles="all", angel="", sangel="", title="", output_type="", type_2d=3,
-                 factor=1.0, detailed_output=False, region_show=0, gshow=0, axis_titles=[], epsout=0, resolution=1, transform=None, dump=None, **kwargs):
-
-        super().__init__("t-cross", out_mesh, in_meshes=in_meshes, dependend_var=dependent_var, particles=particles, angel=angel, sangel=sangel, title=title, output_type=output_type,
-                         type_2d=type_2d, factor=factor, detailed_output=detailed_output, region_show=region_show, gshow=gshow, axis_titles=axis_titles, epsout=epsout,
-                         resolution=resolution, transform=transform, dump=dump, **kwargs)
+    def __init__(self, out_mesh, units, output, iangform="normal",  **kwargs):
+        super().__init__("t-cross", out_mesh,  **kwargs)
         self.output = output
         if units == "1/cm^2/source":
             self.units = 1
@@ -160,15 +166,11 @@ class SurfaceFluence(Tally):
         inp += f"units = {self.units}\n"
         inp += f"trcl = {self.transform.index}\n"
         inp += f"iangform = {self.iangform}\n"
-        inp += f"output = {self.output}"
+        inp += f"output = {self.output}\n"
 
 class PointFluence(Tally):
-    def __init__(self, out_mesh, units, in_meshes=None, dependent_var="eng", where=None, particles="all", angel="", sangel="", title="", output_type="", type_2d=3,
-                 factor=1.0, detailed_output=False, region_show=0, gshow=0, axis_titles=[], epsout=0, resolution=1, transform=None, dump=None, **kwargs):
-
-        super().__init__("t-point", out_mesh, in_meshes=in_meshes, dependend_var=dependent_var, particles=particles, angel=angel, sangel=sangel, title=title, output_type=output_type,
-                         type_2d=type_2d, factor=factor, detailed_output=detailed_output, region_show=region_show, gshow=gshow, axis_titles=axis_titles, epsout=epsout,
-                         resolution=resolution, transform=transform, dump=dump, **kwargs)
+    def __init__(self, out_mesh, units,  **kwargs):
+        super().__init__("t-point", out_mesh, **kwargs)
         if units == "1/cm^2/source":
             self.units = 1
         elif units == "1/cm^2/MeV/source":
@@ -187,10 +189,42 @@ class PointFluence(Tally):
         inp += f"units = {self.units}\n"
         inp += f"trcl = {self.transform.index}\n"
 
-class Deposition(Tally):
-    def __init__(self, out_mesh, units, in_meshes=None, dependent_var="eng", where=None, particles="all", angel="", sangel="", title="", output_type="", type_2d=3,
-                 factor=1.0, detailed_output=False, region_show=0, gshow=0, axis_titles=[], epsout=0, resolution=1, transform=None, dump=None, **kwargs):
+class Deposition(Tally): # output parameter is ("dose" | "deposit" | "deposit/particle")
+    def __init__(self, out_mesh, output, units, material=None, let_material=None, **kwargs):
+        super().__init__("t-deposit", out_mesh, **kwargs)
+        self.output = "deposit" if "deposit" in output else "dose"
+        if "particle" in output:
+            self.deposit = 1
 
-        super().__init__("t-deposit", out_mesh, in_meshes=in_meshes, dependend_var=dependent_var, particles=particles, angel=angel, sangel=sangel, title=title, output_type=output_type,
-                         type_2d=type_2d, factor=factor, detailed_output=detailed_output, region_show=region_show, gshow=gshow, axis_titles=axis_titles, epsout=epsout,
-                         resolution=resolution, transform=transform, dump=dump, **kwargs)
+        if material is not None:
+            self.material = material
+
+        if let_material is not None:
+            self.let_material = let_material
+
+        if units == "MeV/cm^3/source":
+            self.units = 1
+        if units == "MeV/source":
+            self.units = 2
+        if output == "dose":
+            if units == "Gy/source":
+                self.units = 0
+            if units == "J/m^3/source":
+                self.units = 5
+        if output == "deposit":
+            if units == "1/source":
+                self.units = 3
+            if units == "1/nsec/source":
+                self.units = 4
+
+    def definition(self):
+        inp = super().definition()
+        if hasattr(self, "material"):
+            inp += "material =\n"
+            for mat in self.material:
+                inp += f"{mat.index} "
+            inp += "\n"
+        if hasattr(self, "let_material"):
+            inp += f"letmat = {self.let_material.index}\n"
+        if hasattr(self, "deposit"):
+            inp += f"deposit = 1\n"

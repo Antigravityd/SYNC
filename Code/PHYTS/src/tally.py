@@ -8,6 +8,7 @@ class Mesh():
         assert axis in ["energy", "time", "x", "y", "z", "radius", "angle", "let"], f"Unrecognized axis {axis} in mesh definition."
         self.axis = axis
         self.bins = tuple(bins)
+        print(self.bins)
         if axis != "angle":
             self.type = 2
         else:
@@ -38,14 +39,15 @@ class Mesh():
 
 
 class Tally(PhitsObject): # out-mesh is the mesh for the output; in-mesh is a list consisting of an optional origin coordinate in the first entry and a list of meshes for the dependent variables
-    def __init__(self, section_title, out_mesh, in_meshes=None, dependent_var="reg", particles="all", angel="", sangel="",
-                 title="", outfile="", output_type="", type_2d=5, factor=None, detailed_output=False, region_show=0,
-                 gshow=0, axis_titles=[], epsout=0, resolution=1, transform=None, dump=None, **kwargs): # dump not supported
+    def __init__(self, section_title, out_mesh, outfile,  in_meshes=None, dependent_var="reg", particles="all",
+                 angel=None, sangel=None,
+                 title=None, output_type=None, type_2d=5, factor=None, detailed_output=False, region_show=None,
+                 gshow=None, axis_titles=None, epsout=None, resolution=None, transform=None, dump=None, **kwargs): # dump not supported
         super().__init__(section_title, **kwargs)
         self.out_mesh = out_mesh
 #        self.unit = unit TODO: set this in children
         self.in_meshes = tuple(in_meshes) if in_meshes is not None else None
-        self.dependend_var = dependent_var
+        self.dependent_var = dependent_var
         self.particles = particles
         self.angel = angel
         self.sangel = sangel
@@ -62,6 +64,8 @@ class Tally(PhitsObject): # out-mesh is the mesh for the output; in-mesh is a li
         self.transform = transform
         self.dump = dump
         self.outfile = outfile
+
+        self.cell = None
 
 
         self.mesh_type = None
@@ -81,22 +85,33 @@ class Tally(PhitsObject): # out-mesh is the mesh for the output; in-mesh is a li
 
     def definition(self): # only for use in defining other definition()s; the child must set units, transform (since id is available only at runtime),
         inp = f"mesh = {self.mesh_type}\n"
-        for mesh in self.in_meshes: # if mesh_type == "reg" the list is none anyway; no need to check
-            inp += mesh.definition() # this one happens to not need data only available in make_input()
-        inp += out_mesh.definition()
+        if self.mesh_type == "reg" and self.cell is not None:
+            inp += f"reg = {self.cell.index}\n"
+        if self.in_meshes is not None:
+            for mesh in self.in_meshes:
+                inp += mesh.definition() # this one happens to not need data only available in make_input()
+        inp += self.out_mesh.definition()
 
         inp += f"part = {self.particles}\n"
         inp += f"axis = {self.dependent_var}\n"
-        inp += f"file = {self.outfile}\n"
-        inp += f"2d-type = {self.type_2d}\n"
-        inp += f"info = {self.detailed_output}\n"
-        inp += f"rshow = {self.region_show}\n"
-        inp += f"x-txt = {self.axis_titles[0]}\n"
-        inp += f"y-txt = {self.axis_titles[1]}\n"
-        inp += f"z-txt = {self.axis_titles[2]}\n"
-        inp += f"resol = {self.resolution}\n"
-        for param, val in {k: v for k, v in self.__dict__ if k in {"angel", "sangel", "title", "output_type", "factor", "gshow", "epsout"}}:
+        if self.outfile is not None:
+            inp += f"file = {self.outfile}\n"
+        if self.type_2d is not None:
+            inp += f"2d-type = {self.type_2d}\n"
+        # if self.info:
+        #     inp += "info = 1\n"
+        if self.region_show is not None:
+            inp += f"rshow = {self.region_show}\n"
+        if self.axis_titles is not None:
+            inp += f"x-txt = {self.axis_titles[0]}\n"
+            inp += f"y-txt = {self.axis_titles[1]}\n"
+            inp += f"z-txt = {self.axis_titles[2]}\n"
+        if self.resolution is not None:
+            inp += f"resol = {self.resolution}\n"
+        for param, val in {k: v for k, v in self.__dict__.items() if k in {"angel", "sangel", "title", "output_type", "factor", "gshow", "epsout"} and v is not None}.items():
             inp += f"{param} = {val}\n"
+
+        return inp
 
 class TrackLengthFluence(Tally):
     def __init__(self, out_mesh, units, **kwargs):
@@ -190,8 +205,7 @@ class PointFluence(Tally):
         inp += f"trcl = {self.transform.index}\n"
 
 class Deposition(Tally): # output parameter is ("dose" | "deposit" | "deposit/particle")
-    def __init__(self, out_mesh, output, units, material=None, let_material=None, **kwargs):
-        super().__init__("t-deposit", out_mesh, **kwargs)
+    def __init__(self, out_mesh, output, units, outfile="deposit.out", material=None, let_material=None, **kwargs):
         self.output = "deposit" if "deposit" in output else "dose"
         if "particle" in output:
             self.deposit = 1
@@ -219,6 +233,7 @@ class Deposition(Tally): # output parameter is ("dose" | "deposit" | "deposit/pa
 
     def definition(self):
         inp = super().definition()
+        print(inp)
         if hasattr(self, "material"):
             inp += "material =\n"
             for mat in self.material:
@@ -227,4 +242,7 @@ class Deposition(Tally): # output parameter is ("dose" | "deposit" | "deposit/pa
         if hasattr(self, "let_material"):
             inp += f"letmat = {self.let_material.index}\n"
         if hasattr(self, "deposit"):
-            inp += f"deposit = 1\n"
+            inp += "deposit = 1\n"
+        inp += f"unit = {self.units}\n"
+
+        return inp

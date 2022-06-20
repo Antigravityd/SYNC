@@ -57,7 +57,7 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
     objgraph = nx.DiGraph()
 
     def add_to_graph(an_obj, graph, prev=None):  # Recursively add subtypes to graph if they represent an "entry" in one of the sections
-        print(an_obj)
+
         if isinstance(an_obj, col.Iterable):
             for ob in an_obj:
                 add_to_graph(ob, graph)
@@ -142,9 +142,10 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
 
     for section, entries in type_divided.items():
         for idx, value in enumerate(entries):
-            value.index = idx # this allows us to access the position in which the value will appear if given value alone.
+            value.index = idx+1 # this allows us to access the position in which the value will appear if given value alone.
 
-    representatives = {n: n for n in objgraph}
+    representatives = {n: n for n in it.chain.from_iterable(type_divided.values())}
+
     def adjust_subobjects(an_obj, dic, prev=None): # Recursively replace redundant subtypes with the representative in the dict
         if isinstance(an_obj, col.Iterable):
             for ob in an_obj:
@@ -157,15 +158,18 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
                     if child is not prev:
                         adjust_subobjects(child, dic, an_obj)
 
-    adjust_subobjects(cells, type_divided)
+    adjust_subobjects(cells, representatives)
     for cell in cells:
-        for sur, orient in cell.regions:
-            adjust_subobjects(sur, type_divided)
-    adjust_subobjects(sources, type_divided)
-    adjust_subobjects(tallies, type_divided)
+        for i, (sur, orient) in enumerate(cell.regions):
+            adjust_subobjects(sur, representatives)
+            cell.regions = tuple(map(lambda tup: (representatives[tup[0]], tup[1]), cell.regions))
+    adjust_subobjects(sources, representatives)
+    adjust_subobjects(tallies, representatives)
+
+
+
 
     # currently, the index isn't updated for copies of objects.
-    breakpoint()
     inp = ""
     def add_defs(obj_type, title=None, no_title=True, header_line=None):
         nonlocal inp
@@ -212,7 +216,6 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
 
 
     add_defs("material")
-    breakpoint()
     add_defs("surface")
     add_defs("cell")
     add_defs("transform")
@@ -271,7 +274,10 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
     add_defs("t-track")
     add_defs("t-cross")
     add_defs("t-point")
+    add_defs("t-deposit")
     # ...
+
+    inp += raw
 
     return inp
 
@@ -323,13 +329,21 @@ def run_phits(sources, cells, tallies, command="phits", throws=False, filename=s
     # TODO: consider how to read stdout/output files into returnable formats
     # WARNING: setting the command variable opens up shell injection attacks, as sp.run() with
     # shell=True is done unfiltered. Should see about using shlex.quote() to sanitize, since title may be specified by the user
+
+    # TODO: consider how to wrap this in a context manager so the directories can be removed in case of error
     os.mkdir("temp_PHITS")
     os.chdir("temp_PHITS")
     inp = make_input(sources, cells, tallies, **kwargs)
-    with open(f"{filename}.inp", "r+") as inp_file:
+    print(inp)
+    with open(f"{filename}.inp", "w") as inp_file:
         inp_file.write(inp)
 
-    output = sp.run(f"phits {title}.inp", shell=True, capture_output=True, text=True, check=throws)
+    env = dict(os.environ)
+    env["PHITSPATH"] = "/home/dnw/phits327A/phits"
+
+    output = sp.run(f"phits '{filename}.inp'", shell=True, capture_output=True, text=True, check=throws, env=env)
+    print(output)
+    breakpoint()
 
     result = capture_result(return_type)
 

@@ -6,10 +6,10 @@ import shutil as sh
 import networkx as nx
 import itertools as it
 import collections as col
-
 import re
 import numpy as np
 import pandas as pd
+import tempfile as tf
 
 from base import *
 from cell import *
@@ -56,6 +56,7 @@ from tco import *
 def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=dict(), cross_sections=[], raw=""): # [Super Mirror], [Elastic Option], [Weight Window], and [WW Bias] aren't supported due to poor documentation.
     objgraph = nx.DiGraph()
 
+    # TODO: we never actually use the graph, so it should just be a set
     def add_to_graph(an_obj, graph, prev=None):  # Recursively add subtypes to graph if they represent an "entry" in one of the sections
 
         if isinstance(an_obj, col.Iterable):
@@ -143,7 +144,7 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
     for section, entries in type_divided.items():
         for idx, value in enumerate(entries):
             value.index = idx+1 # this allows us to access the position in which the value will appear if given value alone.
-
+    breakpoint()
     representatives = {n: n for n in it.chain.from_iterable(type_divided.values())}
 
     def adjust_subobjects(an_obj, dic, prev=None): # Recursively replace redundant subtypes with the representative in the dict
@@ -325,32 +326,34 @@ def capture_result(return_type): # -> pandas.DataFrame | numpy.array | dict
 
 
 
-def run_phits(sources, cells, tallies, command="phits", throws=False, filename=str(datetime.now()), return_type="dict", **kwargs):
+class TempWorkingDir(): # this is probably all kinds of racy and unsafe, but eh
+    def __init__(self, name):
+        self.name = name
+    def __enter__(self):
+        self.directory = os.mkdir(self.name)
+        os.chdir(self.name)
+    def __exit__(self, a, b, c):
+        os.chdir("..")
+        sh.rmtree(self.name)
+
+def run_phits(sources, cells, tallies, command="phits", throws=False, filename="phits", return_type="dict", **kwargs):
     # TODO: consider how to read stdout/output files into returnable formats
     # WARNING: setting the command variable opens up shell injection attacks, as sp.run() with
     # shell=True is done unfiltered. Should see about using shlex.quote() to sanitize, since title may be specified by the user
 
-    # TODO: consider how to wrap this in a context manager so the directories can be removed in case of error
-    os.mkdir("temp_PHITS")
-    os.chdir("temp_PHITS")
-    inp = make_input(sources, cells, tallies, **kwargs)
-    print(inp)
-    with open(f"{filename}.inp", "w") as inp_file:
-        inp_file.write(inp)
+    with TempWorkingDir("temp_PHITS") as newdir:
+        inp = make_input(sources, cells, tallies, **kwargs)
+        print(inp)
+        with open(f"{filename}.inp", "w") as inp_file:
+            inp_file.write(inp)
 
-    env = dict(os.environ)
-    env["PHITSPATH"] = "/home/dnw/phits327A/phits"
+        output = sp.run(f"phits '{filename}.inp'", shell=True, capture_output=True, text=True, check=throws)
+        print(output)
+        breakpoint()
 
-    output = sp.run(f"phits '{filename}.inp'", shell=True, capture_output=True, text=True, check=throws, env=env)
-    print(output)
-    breakpoint()
+        result = capture_result(return_type)
 
-    result = capture_result(return_type)
-
-    os.chdir("..")
-    sh.rmtree("temp_PHITS")
-
-    return result
+        return result
 
 
 

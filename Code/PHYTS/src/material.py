@@ -2,92 +2,39 @@ from base import *
 
 
 class MatTimeChange(PhitsObject):
-    def __init__(self, time, new, **kwargs):
-        super().__init__("mat_time_change", **kwargs)
-        self.old = None
-        self.time = time
-        self.new = new
-
-    def definition(self):
-        return f"{self.old.index} {self.time} {self.new.index}\n"
+    def __init__(self, *args, **kwargs):                              # old can get set by passing this to Material
+        super().__init__("mat_time_change", required=["time", "new"], positional=["time, new"], optional=["old"],
+                         shape=(("old", "time", "new")), *args, **kwargs)
 
 
 
-class DataMax(PhitsObject):
-    def __init__(self, particles, threshold, **kwargs):
-        super().__init__("data_max", **kwargs)
-        self.particles = particles
-        self.material = None
-        self.threshold = threshold
+class DataMax(PhitsObject): # requires special handling in make_input
+    def __init__(self, *args, **kwargs):
+        super().__init__("data_max", required=["particles", "nucleus", "threshold"],
+                         positional=["particles", "nucleus", "threshold"],
+                         optional=["material"], shape=(("material", "nucleus", "threshold")), *args, **kwargs)
+
 
 class MatNameColor(PhitsObject):
-    def __init__(self, name, size, color, **kwargs):
-        super().__init__("mat_name_color", **kwargs)
-        self.material = None
-        self.name = name
-        self.size = size
-        self.color = color
+    def __init__(self, *args, **kwargs):
+        super().__init__("mat_name_color", required=["name", "size", "color"], positional=["name", "size", "color"],
+                         optional=["material"], shape=(("material", "name", "size", "color")), *args, **kwargs)
 
-    def definition(self):
-        return f"{self.material.index} {self.name} {self.size} {self.color}\n"
 
 # TODO: implement the molecular structures as in 5.4.7
+# TODO: how the libraries work isn't well-documented. Is there a single library set for the whole material, or
+# does one set a library after each element of the compositon? Can the thermal neutron library be set anywhere?
 class Material(PhitsObject): # Composition is a list of pairs of (<element name string>, <ratio>) e.g. ("8Li", 0.5)
-    def __init__(self, composition, time_change=None, data_max=None, mat_name_color=None, condensed=True, conductive=None,
-                 electron_step=None, neutron_lib=None, proton_lib=None, electron_lib=None, photon_lib=None, thermal_lib=None, **kwargs):
-        super().__init__("material", **kwargs)
-        self.composition = frozenset(composition)
-        self.time_change = time_change
-        self.data_max = data_max
-        self.mat_name_color = mat_name_color
-        self.condensed = condensed
-        self.conductive = conductive
-        self.electron_step = electron_step
-        self.neutron_lib = neutron_lib
-        self.proton_lib = proton_lib
-        self.electron_lib = electron_lib
-        self.photon_lib = photon_lib
-        self.thermal_lib = thermal_lib
-
-        if self.time_change is not None:
-            self.time_change.old = self
-
-        if self.data_max is not None:
-            self.data_max.material = self
-
-        if self.mat_name_color is not None:
-            self.mat_name_color.material = self
-
-
-    def definition(self):
-        inp = f"MAT[{self.index}]\n"
-        for element, ratio in self.composition:
-            inp += f"{element} {ratio}\n"
-
-        if not self.condensed:
-            inp += "GAS = 1\n"
-
-        if self.conductive is not None:
-            if self.conductive:
-                inp += "COND = 1\n"
-            else:
-                inp += "COND = -1\n"
-
-
-
-        if self.electron_step is not None:
-            inp += f"ESTEP = {self.electron_step}\n"
-
-        if self.neutron_lib is not None:
-            inp += f"NLIB = {self.neutron_lib}\n"
-        if self.proton_lib is not None:
-            inp += f"HLIB = {self.proton_lib}\n"
-        if self.electron_lib is not None:
-            inp += f"ELIB = {self.electron_lib}\n"
-        if self.photon_lib is not None:
-            inp += f"PLIB = {self.photon_lib}\n"
-
-        if self.thermal_lib is not None:
-            inp += f"MT{self.index} {self.thermal_lib}\n"
-
-        return inp
+    def __init__(self, *args, **kwargs):
+        super().__init__("material",
+                         required=["composition"],
+                         positional=["composition"],
+                         optional=["time_change", "data_max", "mat_name_color", "condensed", "conductive", "electron_step",
+                                   "neutron_lib", "proton_lib", "electron_lib", "photon_lib", "thermal_lib"],
+                         shape=(lambda: f"MAT[{self.index}]",
+                                (lambda: "".join(map(lambda tup: f"{tup[0]} {tup[1]} ", self.composition))), "condensed",
+                                "conductive", "electron_step", "neutron_lib", "proton_lib","electron_lib", "photon_lib",
+                                lambda: f"MT{self.index} {self.thermal_lib}" if self.thermal_lib is not None else ""),
+                         subobjects=["time_change", "data_max", "mat_name_color"],
+                         ident_map={"condensed": "GAS", "conductive": "COND", "electron_step": "ESTEP", "neutron_lib": "NLIB",
+                                    "proton_lib": "HLIB", "electron_lib": "HLIB", "photon_lib": "PLIB"}, *args, **kwargs)

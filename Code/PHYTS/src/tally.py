@@ -3,37 +3,6 @@ from cell import *
 import collections as col
 
 
-class Mesh():
-    def __init__(self, axis, bins=None): # All bin generation is easily done in Python via list comprehensions
-        assert axis in ["energy", "time", "x", "y", "z", "radius", "angle", "let"], f"Unrecognized axis {axis} in mesh definition."
-        self.axis = axis
-        self.bins = tuple(bins)
-        print(self.bins)
-        if axis != "angle":
-            self.type = 2
-        else:
-            pass  # TODO: figure out angle mesh
-
-    def definition(self):
-        inp = f"{self.axis[0]}-type = 1\n"
-        inp += f"n{self.axis[0]} = {len(self.bins)-1}\n"
-        for i in self.bins:
-            inp += f"{i} "
-
-        inp += "\n"
-        return inp
-
-    def __eq__(self, other):
-        if type(self) != type(other):
-            return False
-
-        else:
-            return {k: v for k, v in self.__dict__.items() if v is not other} \
-                == {k: v for k, v in other.__dict__.items() if v is not self}
-
-    def __hash__(self):
-        return hash(tuple(v for k, v in sorted(self.__dict__.items()) \
-                          if (self not in v.__dict__.values() if hasattr(v, "__dict__") else True)))
 
 
 
@@ -113,78 +82,73 @@ class Tally(PhitsObject): # out-mesh is the mesh for the output; in-mesh is a li
 
         return inp
 
-class TrackLengthFluence(Tally):
-    def __init__(self, out_mesh, units, **kwargs):
-        super().__init__("t-track", out_mesh,  **kwargs)
-        if units == "1/cm^2/source":
-            self.units = 1
-        elif units == "1/cm^2/MeV/source":
-            self.units = 2
-        elif units == "1/cm^2/Lethargy/source":
-            self.units = 3
-        elif units == "cm/source":
-            self.units = 4
-        elif units == "1/cm^2/nsec/source":
-            self.units = 11
-        elif units == "1/cm^2/MeV/nsec/source":
-            self.units = 12
-        elif units == "1/cm^2/Lethargy/nsec/source":
-            self.units = 13
-        elif units == "cm/nsec/source":
-            self.units = 14
+class TrackLengthFluence(PhitsObject):
+    def __init__(self, *args, **kwargs):
+        self.mesh_type = None
+        if in_meshes not in kwargs:
+            self.mesh_type = "reg"
+            self.axis="reg"
+        if isinstance(in_meshes, col.Iterable):
+            if isinstance(in_meshes[0], Cell):
+                self.mesh_type = "reg"
+            elif next(filter(lambda mesh: mesh.axis in {"x", "y", "z"}, in_meshes), False):
+                self.mesh_type = "xyz"
+            elif next(filter(lambda mesh: mesh.axis in {"r", "z"}, in_meshes), False):
+                self.mesh_type = "r-z"
 
-    def definition(self):
-        inp = super().definition()
-        inp += f"unit = {self.units}\n"
-        inp += f"trcl = {self.transform.index}\n"
+        super().__init__("t-track", required=["out_mesh", "units"], positional=["out_mesh", "units"],
+                         optional=["mesh_type", "outfile", "in_meshes", "dependent_var", "particles", "angel", "sangel", "title",
+                                   "output_type", "type_2d", "factor", "detailed_output", "region_show", "geometry_show",
+                                   "axis_titles", "epesout", "resolution", "transform", "dump", "width"],
+                         shape=("mesh_type", "out_meshes", "in_meshes", "particles", "outfile", "units", "factor", "title",
+                                "angel", "sangel", "type_2d", "gshow", "rshow", "axis_titles",  "resolution", "width",
+                                "transform", "epsout"),
+                         ident_map={"type_2d": "2d-type", "region_show": "rshow", "geometry_show": "gshow",
+                                    "dependent_var": "axis", "outfile": "file", "particles": "part", "units": "unit",
+                                    "axis_titles": ("x-txt", "y-txt", "z-txt"), "transform": "trcl", "resolution": "resol",
+                                    "mesh_type": "mesh", "output_type": "output"},
+                         value_map={"1/cm^2/source": 1, "1/cm^2/MeV/source": 2, "1/cm^2/Lethargy/source": 3,
+                                    "cm/source": 4, "1/cm^2/nsec/source": 11, "1/cm^2/MeV/nsec/source": 12,
+                                    "1/cm^2/Lethargy/nsec/source": 13, "cm/nsec/source": 14})
 
-class SurfaceFluence(Tally):
-    def __init__(self, out_mesh, units, output, iangform="normal",  **kwargs):
-        super().__init__("t-cross", out_mesh,  **kwargs)
-        self.output = output
-        if units == "1/cm^2/source":
-            self.units = 1
-        elif units == "1/cm^2/MeV/source":
-            self.units = 2
-        elif units == "1/cm^2/Lethargy/source":
-            self.units = 3
-        elif units == "1/cm^2/sr/source":
-            self.units = 4
-        elif units == "1/cm^2/MeV/sr/source":
-            self.units = 5
-        elif units == "1/cm^2/Lethargy/sr/source":
-            self.units = 6
-        elif units == "1/cm^2/nsec/source":
-            self.units = 11
-        elif units == "1/cm^2/MeV/nsec/source":
-            self.units = 12
-        elif units == "1/cm^2/Lethargy/nsec/source":
-            self.units = 13
-        elif units == "1/cm^2/sr/nsec/source":
-            self.units = 14
-        elif units == "1/cm^2/MeV/sr/nsec/source":
-            self.units = 15
-        elif units == "1/cm^2/Lethargy/sr/nsec/source":
-            self.units = 16
 
-        if iangform == "normal":
-            self.iangform = 0
-        if iangform == "x":
-            self.iangform = 1
-        if iangform == "y":
-            self.iangform = 2
-        if iangfomr == "z":
-            self.iangform = 3
+class SurfaceFluence(PhitsObject):
+    def __init__(self, *args,  **kwargs):
+        super().__init__("t-cross", required=["out_mesh", "units"], positional=["out_mesh", "units"],
+                         optional=["mesh_type", "outfile", "in_meshes", "dependent_var", "particles", "angel", "sangel", "title",
+                                   "output_type", "type_2d", "factor", "detailed_output", "region_show", "geometry_show",
+                                   "axis_titles", "epesout", "resolution", "transform", "dump", "width"],
+                         shape=("mesh_type", "out_meshes", "in_meshes", "particles", "outfile", "units", "factor", "title",
+                                "angel", "sangel", "type_2d", "gshow", "rshow", "axis_titles",  "resolution", "width",
+                                "transform", "epsout"),
+                         ident_map={"type_2d": "2d-type", "region_show": "rshow", "geometry_show": "gshow",
+                                    "dependent_var": "axis", "outfile": "file", "particles": "part", "units": "unit",
+                                    "axis_titles": ("x-txt", "y-txt", "z-txt"), "transform": "trcl", "resolution": "resol",
+                                    "mesh_type": "mesh", "output_type": "output"},
+                         value_map={"1/cm^2/source": 1, "1/cm^2/MeV/source": 2, "1/cm^2/Lethargy/source": 3,
+                                    "1/cm^2/sr/source": 4, "1/cm/MeV/sr/source": 5, "1/cm^2/Lethargy/sr/source": 6,
+                                    "1/cm^2/nsec/source": 11, "1/cm^2/MeV/nsec/source": 12, "1/cm^2/Lethargy/nsec/source": 13,
+                                    "1/cm^2/sr/nsec/source": 14, "1/cm^2/MeV/sr/nsec/source": 15,
+                                    "1/cm^2/Lethargy/sr/nsec/source": 16, "normal": 0, "x": 1, "y": 2, "z": 3})
 
-    def definition(self):
-        inp = super().definition()
-        inp += f"units = {self.units}\n"
-        inp += f"trcl = {self.transform.index}\n"
-        inp += f"iangform = {self.iangform}\n"
-        inp += f"output = {self.output}\n"
-
-class PointFluence(Tally):
+class PointFluence(PhitsObject):
     def __init__(self, out_mesh, units,  **kwargs):
+        super().__init__("t-cross", required=["out_mesh", "units"], positional=["out_mesh", "units"],
+                         optional=["mesh_type", "outfile", "in_meshes", "dependent_var", "particles", "angel", "sangel", "title",
+                                   "output_type", "type_2d", "factor", "detailed_output", "region_show", "geometry_show",
+                                   "axis_titles", "epesout", "resolution", "transform", "dump", "width"],
+                         shape=("mesh_type", "out_meshes", "in_meshes", "particles", "outfile", "units", "factor", "title",
+                                "angel", "sangel", "type_2d", "gshow", "rshow", "axis_titles",  "resolution", "width",
+                                "transform", "epsout"),
+                         ident_map={"type_2d": "2d-type", "region_show": "rshow", "geometry_show": "gshow",
+                                    "dependent_var": "axis", "outfile": "file", "particles": "part", "units": "unit",
+                                    "axis_titles": ("x-txt", "y-txt", "z-txt"), "transform": "trcl", "resolution": "resol",
+                                    "mesh_type": "mesh", "output_type": "output"},
+                         value_map={"1/cm^2/source": 1, "1/cm^2/MeV/source": 2, "1/cm^2/Lethargy/source": 3,
+                                    "1/cm^2/sr/source": 4, "1/cm/MeV/sr/source": 5, "1/cm^2/Lethargy/sr/source": 6,
+                                    "1/cm^2/nsec/source": 11, "1/cm^2/MeV/nsec/source": 12, "1/cm^2/Lethargy/nsec/source": 13,
+                                    "1/cm^2/sr/nsec/source": 14, "1/cm^2/MeV/sr/nsec/source": 15,
+                                    "1/cm^2/Lethargy/sr/nsec/source": 16, "normal": 0, "x": 1, "y": 2, "z": 3})
         super().__init__("t-point", out_mesh, **kwargs)
         if units == "1/cm^2/source":
             self.units = 1
@@ -204,45 +168,25 @@ class PointFluence(Tally):
         inp += f"units = {self.units}\n"
         inp += f"trcl = {self.transform.index}\n"
 
-class Deposition(Tally): # output parameter is ("dose" | "deposit" | "deposit/particle")
-    def __init__(self, out_mesh, output, units, outfile="deposit.out", material=None, let_material=None, **kwargs):
-        self.output = "deposit" if "deposit" in output else "dose"
-        if "particle" in output:
-            self.deposit = 1
-
-        if material is not None:
-            self.material = material
-
-        if let_material is not None:
-            self.let_material = let_material
-
-        if units == "MeV/cm^3/source":
-            self.units = 1
-        if units == "MeV/source":
-            self.units = 2
-        if output == "dose":
-            if units == "Gy/source":
-                self.units = 0
-            if units == "J/m^3/source":
-                self.units = 5
-        if output == "deposit":
-            if units == "1/source":
-                self.units = 3
-            if units == "1/nsec/source":
-                self.units = 4
-
-    def definition(self):
-        inp = super().definition()
-        print(inp)
-        if hasattr(self, "material"):
-            inp += "material =\n"
-            for mat in self.material:
-                inp += f"{mat.index} "
-            inp += "\n"
-        if hasattr(self, "let_material"):
-            inp += f"letmat = {self.let_material.index}\n"
-        if hasattr(self, "deposit"):
-            inp += "deposit = 1\n"
-        inp += f"unit = {self.units}\n"
-
-        return inp
+class Deposition(PhitsObject):
+    def __init__(self, *args, **kwargs):
+        super().__init__("t-deposit", required=["out_mesh", "output_type", "units", "dependent_var"],
+                         positional=["out_mesh", "output_type", "units", "dependent_var"],
+                         optional=["mesh_type", "outfile", "in_meshes", "particles", "material", "let_material",
+                                   "angel", "sangel", "title", "deposit", "type_2d",
+                                   "factor", "detailed_output", "region_show", "geometry_show","axis_titles", "epsout",
+                                   "resolution", "transform", "dump", "width", "gshow", "rshow", "cell"],
+                         shape=(lambda: "mesh = reg" if self.mesh_type is None else f"mesh = {self.mesh_type}",
+                                lambda: f"reg = {self.cell.index}" if self.mesh_type is None else "",
+                                ("out_mesh",), ("in_meshes",), "particles", "output_type", "dependent_var",
+                                lambda: f"material = {len(self.material)}" if self.material is not None else "",
+                                "material", "let_material", "outfile", "units", "factor", "title",
+                                "angel", "sangel", "type_2d", "gshow", "rshow", "axis_titles",  "resolution", "width",
+                                "transform", "epsout"),
+                         ident_map={"type_2d": "2d-type", "region_show": "rshow", "geometry_show": "gshow",
+                                    "dependent_var": "axis", "outfile": "file", "particles": "part", "units": "unit",
+                                    "axis_titles": ("x-txt", "y-txt", "z-txt"), "transform": "trcl", "resolution": "resol",
+                                    "mesh_type": "mesh", "output_type": "output", "let_material": "letmat"},
+                         value_map={"Gy/source": 0, "MeV/cm^3/source": 1, "MeV/source": 2, "1/source": 3,
+                                    "1/nsec/source": 4, "J/m^3/source": 5, "total": 0, "per-particle": 1},
+                         nones={"outfile": "deposit.out"}, *args, **kwargs)

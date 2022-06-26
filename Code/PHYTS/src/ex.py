@@ -21,20 +21,19 @@ for i in range(1,11):
     new = Cell([(Sphere(i+1), "<") , (Sphere(i), ">")], mats[i], -1)
     cells.append(new)
 
-ocean = Cell([(Sphere(11), ">")],
-             Material([("H", 2), ("O", 1)]),
-             -1,                             # Assign objects associated with a cell /to/ the cell
-             tally=Deposition(Mesh("energy",  [float(i) for i in np.arange(0, 10, 0.25)]), "dose", "MeV/source"))
+ocean = Void([(Sphere(11), ">")],                             # Assign objects associated with a cell /to/ the cell
+             tally=Deposition(Mesh("energy",  [float(i) for i in np.arange(0, 10, 0.25)]), "deposit", "1/source", "reg"))
 
 
 cells.append(ocean)
 
-source = Cylindrical("241Am", 2.2, fission="neutrons", bounds=(-0.25,0.25), r_out=0.3)
+source = Cylindrical("241Am", 2.2, fissile="neutrons", bounds=(-0.25,0.25), r_out=0.3)
 
 
 # Capture input for further analysis in Python as your choice of many common data formats,
 # or render and return the .eps
 # Pass raw input data in case of an error or unimplemented feature
-inp = make_input(cells, source, [], raw="$ This could be e.g. an [Elastic Option] section text.\n")
+inp = make_input(cells, source, [], raw="$ This could be e.g. an [Elastic Option] section text.\n",
+                 parameters={"negs": 1, "e-mode": 2})
 print(inp)
-run_phits(cells, source, [])
+run_phits(cells, source, [], parameters={"negs": 1, "e-mode": 2})

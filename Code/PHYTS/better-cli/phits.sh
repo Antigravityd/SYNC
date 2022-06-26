@@ -5,7 +5,6 @@ phits_OMP="/home/dnw/phits327A/phits/bin2/phits_LinGfort_OMP"
 phits_single="/home/dnw/phits327A/phits/bin2/phits_LinGfort"
 mpi_command="mpirun"
 
-echo $PHITSPATH
 
 while getopts "M:Ohs:" option; do
     case "${option}" in

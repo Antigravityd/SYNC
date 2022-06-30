@@ -25,103 +25,67 @@ from collections import namedtuple
 # The override parameter, if set, calls the object's override() method and appends the resulting string at the point
 # in the shape array corresponding to the numeric value of the parameter.
 # Any attribute that's a tuple or frozenset
-types = {"parameters",
-         "source",
-         "material",
-         "surface",
-         "cell",
-         "transform",
-         "temperature",
-         "mat_time_change"
-         "magnetic_field",
-         "neutron_magnetic_field",
-         "mapped_magnetic_field",
-         "uniform_electromagnetic_field",
-         "mapped_electromagnetic_field",
-         "delta_ray",
-         "track_structure",
-         "super_mirror",
-         "elastic_option",
-         "importance",
-         "weight_window",
-         "ww_bias",
-         "forced_collisions",
-         "repeated_collisions",
-         "volume",
-         "multiplier",
-         "mat_name_color",
-         "reg_name",
-         "counter",
-         "timer",
-         "t-track",
-         "t-cross",
-         "t-point",
-         "t-adjoint",
-         "t-deposit",
-         "t-deposit2",
-         "t-heat",
-         "t-yield",
-         "t-product",
-         "t-dpa",
-         "t-let",
-         "t-sed",
-         "t-time",
-         "t-interact",
-         "t-dchain",
-         "t-wwg",
-         "t-wwbg",
-         "t-volume",
-         "t-gshow",
-         "t-rshow",
-         "t-3dshow"}
+
 
 # args and kwargs here are pulled directly from the arguments to the __init__ of the subclass
+# Subclasses must have class parameters name, required, positional, optional, shape, ident_map, value_map, subobjects, and nones
 class PhitsObject:
-    def __init__(self, name, *args, required=[], positional=[], optional=[], shape=[],
-                 ident_map=dict(), value_map=dict(), subobjects=[], nones=dict(), index=None, **kwargs):
-        if name in types:
-            self.name = name
-        else:
-            raise ValueError(f"Unrecognized PHITS type {name} in PhitsObject initialization.")
+    required = []
+    positional = []
+    optional = []
+    ident_map = dict()
+    value_map = dict()
+    subobjects = []
+    nones = dict()
+    index = None
+    no_hash = {"index", "value_map", "ident_map", "nones", "shape", "subobjects", "required", "positional", "optional"}
+    names = {"parameters", "source", "material", "surface", "cell", "transform", "temperature","mat_time_change","magnetic_field",
+             "neutron_magnetic_field", "mapped_magnetic_field", "uniform_electromagnetic_field", "mapped_electromagnetic_field",
+             "delta_ray", "track_structure", "super_mirror", "elastic_option", "importance", "weight_window", "ww_bias",
+             "forced_collisions", "repeated_collisions", "volume", "multiplier", "mat_name_color", "reg_name", "counter", "timer",
+             "t-track", "t-cross", "t-point", "t-adjoint", "t-deposit", "t-deposit2", "t-heat", "t-yield", "t-product", "t-dpa",
+             "t-let", "t-sed", "t-time", "t-interact", "t-dchain", "t-wwg", "t-wwbg", "t-volume", "t-gshow", "t-rshow","t-3dshow"}
 
-        if len(args) == len(positional):
+    def __init__(self, *args,  **kwargs):
+        assert self.name in self.names, f"Unrecognized PHITS type {self.name} in PhitsObject initialization."
+
+        if len(args) == len(self.positional):
             for idx, arg in enumerate(args):
-                setattr(self, positional[idx], arg if not isinstance(arg, list) else tuple(arg))
+                setattr(self, self.positional[idx], arg if not isinstance(arg, list) else tuple(arg))
         else:
             raise TypeError(f"Wrong number of positional arguments specified in the definition of {self.name} object.")
 
-        for arg in required:
-            if arg not in positional:
+        for arg in self.required:
+            if arg not in self.positional:
                 if arg in kwargs:
                     setattr(self, arg, kwargs[arg] if not isinstance(kwargs[arg], list) else tuple(kwargs[arg]))
                 else:
                     raise TypeError(f"Missing required argument in the definition of {self.name} object.")
 
-        for arg in optional:
+        for arg in self.optional:
             if arg in kwargs:
                 setattr(self, arg, kwargs[arg] if not isinstance(kwargs[arg], list) else tuple(kwargs[arg]))
             else:
-                if arg in nones:
-                    setattr(self, arg, nones[arg])
+                if arg in self.nones:
+                    setattr(self, arg, self.nones[arg])
                 else:
                     setattr(self, arg, None)
 
-        self.shape = shape
-        self.ident_map = ident_map
-        self.value_map = value_map
 
-        for attr in subobjects:
+        for attr in self.subobjects:
             child = getattr(self, attr)
             if hasattr(child, self.name):
                 val = getattr(child, self.name)
                 if val is None:
                     setattr(child, self.name, self)
 
-        self.index = index
 
-        remaining = {k: v for k, v in kwargs.items() if k not in required and k not in optional}
+
+        remaining = {k: v for k, v in kwargs.items() if k not in self.required and k not in self.optional}
         if remaining:
             self.parameters = Parameters(**remaining)
+
+        print({k: v for k, v in vars(self).items() if k not in self.no_hash})
 
 
 
@@ -152,19 +116,6 @@ class PhitsObject:
             else:
                 return ob
 
-        def linecont(string, maxlen): # Recursively insert a backslash+newline whenever a line in string is longer than maxlen
-            r = ""
-            length = 0
-            for char in string:
-                if length < maxlen - 1:
-                    r += char
-                    length += 1
-                else:
-                    r += char + "\\\n"
-                    length = 0
-
-            return r
-
 
 
         def append(tup, app, assignments=True): # Recursion in the case of grid-like lines
@@ -178,7 +129,7 @@ class PhitsObject:
                     attr = attr[:-1]
 
                 if callable(attr):
-                    app += attr()
+                    app += attr(self)
                     app += endstr
                 elif isinstance(attr, tuple):
                     append(attr, app, assignments=False)
@@ -210,9 +161,8 @@ class PhitsObject:
 
         inp = "".join(inp)
 
+
         # Continue lines that are too long
-
-
         r = ""
         length = 0
         last_whitespace = 0
@@ -238,16 +188,13 @@ class PhitsObject:
         if type(self) != type(other):
             return False
         elif hasattr(self, "__dict__") and hasattr(other, "__dict__"):
-            d1 = {k: v for k, v in self.__dict__.items() if k not in \
-                          {"index", "value_map", "ident_map", "nones", "shape", "subobjects"}}
-            d2 = {k: v for k, v in other.__dict__.items() if k not in \
-                  {"index", "value_map", "ident_map", "nones", "shape", "subobjects"}}
+            d1 = {k: v for k, v in self.__dict__.items() if k not in self.no_hash}
+            d2 = {k: v for k, v in other.__dict__.items() if k not in self.no_hash}
             return d1 == d2
 
     def __hash__(self):
         return hash(tuple(v for k, v in sorted(self.__dict__.items()) \
-                          if (self not in v.__dict__.values() if hasattr(v, "__dict__") else True) and k not in \
-                          {"index", "value_map", "ident_map", "nones", "shape", "subobjects"}))
+                          if (self not in v.__dict__.values() if hasattr(v, "__dict__") else True) and k not in self.no_hash))
 
 
 class Parameters(PhitsObject): # A simple dictionary of variable-value pairs; necessary so we catch it in the base class

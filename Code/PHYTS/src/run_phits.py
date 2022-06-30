@@ -144,7 +144,7 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
     for section, entries in type_divided.items():
         for idx, value in enumerate(entries):
             value.index = idx+1 # this allows us to access the position in which the value will appear if given value alone.
-    breakpoint()
+
     representatives = {n: n for n in it.chain.from_iterable(type_divided.values())}
 
     def adjust_subobjects(an_obj, dic, prev=None): # Recursively replace redundant subtypes with the representative in the dict
@@ -283,12 +283,16 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
     return inp
 
 
+
+
 def capture_result(return_type): # -> pandas.DataFrame | numpy.array | dict
     files = []
     for name in os.listdir():
-        if re.search(".out", name) != "":
-            files += name
+        if re.search("\.out$", name) is not None:
+            files.append(name)
 
+
+    breakpoint()
     output = []
     for fil in files:
         with open(fil, "r") as f:
@@ -296,31 +300,37 @@ def capture_result(return_type): # -> pandas.DataFrame | numpy.array | dict
             data = dict()
             in_data = False
             for line in f:
+                if line[0] == "#":
+                    continue
                 if in_data:
-                    for idx, datum in enumerate(line.split()):
-                        data[idx] += float(datum)
+                    if line in ['\n', '\r\n']:
+                        in_data = False
+                    else:
+                        for idx, datum in enumerate(line.split()):
+                            data[idx].append(float(datum))
                 else:
-                    if re.search("^H.?:", line) != "":
+                    if re.search("^H.?:", line, flags=re.IGNORECASE) is not None:
                         in_data = True
-                        line = re.sub("^H.?:", "", line)
+                        line = re.sub("^H.?:", "", line, flags=re.IGNORECASE)
                         sep  = line.split()
                         for idx, col in enumerate(sep):
-                            schema += col
+                            schema.append(col)
                             data[idx] = []
 
+            breakpoint()
             for idx, colname in enumerate(schema):
                 data[colname] = data[idx]
                 del data[idx]
 
             if return_type == "dict":
-                output += data
+                output.append(data)
             elif return_type == "pandas":
-                output += pd.DataFrame(data)
+                output.append(pd.DataFrame(data))
             elif return_type == "numpy":
                 array = []
                 for col, lst in data.items():
-                    array += lst
-                output += np.array(array)
+                    array.append(lst)
+                output.append(np.array(array))
 
     return output
 
@@ -349,7 +359,7 @@ def run_phits(sources, cells, tallies, command="phits", throws=False, filename="
 
         output = sp.run(f"phits '{filename}.inp'", shell=True, capture_output=True, text=True, check=throws)
         print(output)
-        breakpoint()
+
 
         result = capture_result(return_type)
 

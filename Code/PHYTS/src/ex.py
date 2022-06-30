@@ -13,7 +13,7 @@ from source import *
 # Find how much the water will heat, to guide recovery efforts.
 
 # Construct objects via list comprehensions
-mats = [Material([("C", i), ("H", (2/3)*(100-i)/100), ("O", (1/3)*(100-i)/100)]) for i in range(55,100)]
+mats = [Material([("C", i/100), ("H", (2/3)*(100-i)/100), ("O", (1/3)*(100-i)/100)]) for i in range(55,100)]
 
 # Or loops
 cells = [Cell([(Sphere(1), "<")], mats[0], -1)]

@@ -1,0 +1,95 @@
+\message{ !name(hw5.tex)}\documentclass{article}
+
+\usepackage{siunitx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[letterpaper]{geometry}
+
+\title{4125 HW 5}
+\author{Duncan Wilkie}
+\date{2 March 2022}
+
+\begin{document}
+
+\message{ !name(hw5.tex) !offset(-3) }
+
+
+\section*{4.4a}
+The efficiency of a Carnot cycle between reservoirs of these temperatures is
+\[e=1-\frac{T_{c}}{T_{h}}=1-\frac{\SI{277}{K}}{\SI{295}{K}}=0.061\]
+
+\section*{4.4b}
+The heat that must be absorbed is
+\[Q_{h}=\frac{W}{e}=\frac{\SI{1}{GW}}{0.061}=\SI{16.29}{GW}\]
+Presuming one processes the water until it drops by one degree (so the Carnot cycle efficiency isn't a terrible approximation), the specific heat of water implies
+\[Q_{h}=mc\Delta T\Leftrightarrow m=\frac{Q_{h}}{c\Delta T}=\frac{\SI{16.29}{GW}}{(\SI{4200}{J/kg K})(\SI{1}{K})}=\SI{3.88e9}{kg}\]
+which is a cubic kilometer or two each second.
+
+\section*{4.6a}
+Using
+\[\Delta S=\frac{Q}{T}\]
+and the fact that the only change in entropy occurs during the isothermal process,
+\[\frac{Q_{h}}{T_{hw}}=\frac{Q_{c}}{T_{cw}}\]
+since the cyclical nature of the engine implies the engine itself doesn't change in entropy; what it gains in the expansion it must transfer to the environment on the compression.
+From the conduction relations, we have
+\[\frac{Q_{h}}{Q_{c}}=\frac{T_{h}-T_{hw}}{T_{cw}-T_{c}}\]
+so
+\[\frac{T_{hw}}{T_{cw}}=\frac{T_{h}-T_{hw}}{T_{cw}-T_{c}}\]
+\section*{4.6b}
+The time it takes for the first expansion, half the total time, is
+\[\Delta t=\frac{Q_{h}}{K(T_{h}-T_{hw})}\]
+The total power is then
+\[P=\frac{W}{2\Delta t}=\frac{Q_{h}-Q_{c}}{2}\frac{K(T_{h}-T_{hw})}{Q_{h}}\]
+Rewriting this using the fact that the overall efficiency is the efficiency of the Carnot cycle between the extremal temperatures of the working substance, which is equal to $1-\frac{T_{cw}}{T_{hw}}$
+\[P=\frac{K}{2}\left( 1-\frac{T_{cw}}{T_{hw}} \right)(T_{h}-T_{hw})\]
+The equation derived in part (a) may be solved for $T_{cw}$:
+\[\frac{T_{hw}}{T_{cw}}=\frac{T_{h}-T_{hw}}{T_{cw}-T_{c}}\Leftrightarrow T_{hw}-\frac{T_{hw}T_{c}}{T_{cw}}=T_{h}-T_{hw}\Leftrightarrow \frac{1}{T_{cw}}=\frac{2T_{hw}-T_{h}}{T_{hw}T_{c}}\Leftrightarrow T_{cw}=\frac{T_{hw}T_{c}}{2T_{hw}-T_{h}}\]
+Plugging this in the the above power equation,
+\[P=\frac{K}{2}\left( 1-\frac{T_{c}}{2T_{hw}-T_{h}} \right)(T_{h}-T_{hw})\]
+
+\section*{4.6c}
+Differentiating the above with respect to $T_{hw}$,
+\[P'=\frac{K}{2}\left[ (T_{h}-T_{hw})\left(  \frac{2T_{c}}{(2T_{hw}-T_{h})^{2}}\right)-\left( 1-\frac{T_{c}}{2T_{hw}-T_{h}} \right)\right]\]
+Setting that equal to zero,
+\[(T_{h}-T_{hw})\left( \frac{2T_{c}}{(2T_{hw}-T_{h})^{2}} \right)=1-\frac{T_{c}}{2T_{hw}-T_{h}}\]\[\Leftrightarrow 2T_{c}(T_{h}-T_{hw})=(2T_{hw}-T_{h})^{2}-T_{c}(2T_{hw}-T_{h})\]
+\[\Leftrightarrow 4T_{hw}^{2}-4T_{hw}T_{h}+T_{h}^{2}-T_{c}T_{h}\]
+\[\Rightarrow T_{hw}=\frac{4T_{h}\pm\sqrt{16T_{h}^{2}-16(T_{h}^{2}-T_{c}T_{h})}}{8}=\frac{1}{2}\left( T_{h}\pm\sqrt{T_{c}_T_{h}} \right)\]
+
+\section*{4.6d}
+
+\section*{4.11}
+The coefficient of performance of a refrigerator is bounded above by
+\[\frac{T_{c}}{T_{h}-T_{c}}=\frac{\SI{0.01}{K}}{\SI{1}{K}-\SI{0.01}{K}}=0.01\]
+
+\section*{4.13}
+The air conditioning will be required to expell all the heat entering the building in a unit of time in the same unit of time if the temperature of the interior air is to remain constant. In that case, the amount of work required to cool the building in, say, one second is
+\[W=\frac{Q_{c}}{\textrm{COP}}=\frac{Q_{c}(T_{h}-T_{c})}{T_{c}}=\frac{K(T_{h}-T_{c})(T_{h}-T_{c})}{T_{c}}\propto (T_{h}-T_{c})^{2}\]
+This means cooling an apartment in 90 degree (F) heat to 70 degrees requires nearly double the energy of cooling it to 75 degrees: it's a factor of 1.89
+
+\section*{4.25}
+If the turbine stage has a slight increase in entropy, this suggests the conversion from steam to water is less than perfect, so the internal energy of the final system is higher than it would otherwise be, i.e. $H_{4}$ increases. This results in lower efficiency, as the number subtracting from one in the formula increases.
+
+\section*{4.35a}
+The magnetic field strengh of one dipole at a nanometer's distance is
+\[\vec{B}=\frac{\mu_{0}}{4\pi}\frac{\mu}{r^{3}}=\frac{\SI{4\pi e-7}{F/m}}{4\pi}\frac{\SI{9e-24}{J/T}}{(\SI{1}{nm})^{3}}=\SI{0.9}{mT}\]
+The effect on one atom from several neighbors in a lattice or gas is likely to be several times this number, but is unlikely to be more than a factor of 10 larger (most neighbor-rich crystalline lattice I know of is FCC, with 8 neighbors per atom). Random orientation will decrease this more.
+
+\section*{4.35b}
+The magnetic field decreases by a factor of $\frac{\SI{9e-4}{T}}{\SI{1}{T}}=\SI{9e-4}{}$, and the temperature must also increase by that factor.
+
+\section*{4.35c}
+The the equation for the entropy of an ideal paramagnet in terms of temperature, from problem 3.23, is
+\[S=Nk[\ln(2\cosh  x)-x\tanh x]\]
+where $x=\frac{\mu B}{kT}$. Plotting this with garbage values of $Nk$, it appears the maximum occurs at $x=1$, i.e. at $\mu B=kT$. Computing $T$,
+\[T=\frac{\mu B}{k}=\frac{(\SI{4\pi e-7}{F/m})(\SI{9e-4}{T})}{\SI{1.38e-23}{J/K}}=\SI{0.59}{mK}\]
+
+\section*{4.35d}
+When the heat capacity is small, any residual heat leaks greatly heat up the material, and so one's efforts to decrease the temperature further become increasingly laborious as an ever-greater level of energy removal is necessary to reduce the temperature by the same amounts.
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\message{ !name(hw5.tex) !offset(-95) }

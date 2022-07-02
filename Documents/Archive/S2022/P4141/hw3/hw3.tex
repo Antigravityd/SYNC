@@ -1,0 +1,83 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{siunitx}
+
+\title{4141 HW 3}
+\author{Duncan Wilkie}
+\date{11 February 2022}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+The ground state of the initial system, given the infinite-square-well wavefunction solution
+\[\psi_{n}(x)=\sqrt{\frac{1}{a}}\sin\left(\frac{n\pi}{2a}x \right)\]
+is
+\[\psi_{1}=\sqrt{\frac{1}{a}}\sin\left( \frac{\pi x}{2a} \right)\]
+The ground state of the final system is
+\[\psi'_{1}=\sqrt{\frac{1}{b}}\sin\left( \frac{\pi x}{2b} \right)\]
+Representing this as a linear combination $\psi'_{1}=c_{n}\psi^{n}$ will allow us to compute the corresponding probability. Using Fourier's trick,
+\[c_{n}=\int\psi_{n}(x)^{*}\psi'_{1}=\sqrt{\frac{1}{ab}}\int_{-a}^{a} \sin\left( \frac{n\pi}{2a}x \right)\sin\left( \frac{\pi}{2b}x \right)\]
+\[=\sqrt{\frac{1}{4ab}}\int_{-a}^{a}\cos\left( \left[ \frac{n\pi}{2a}-\frac{\pi}{2b}\right]x\right) -\cos\left( \left[ \frac{n\pi}{2a}+\frac{\pi}{2b}\right] x\right)\]
+\[=\sqrt{\frac{1}{ab}}\left( \frac{\sin\left( \left[ \frac{n\pi}{2a}-\frac{\pi}{2b}\right]x \right)}{\frac{n\pi}{2a}-\frac{\pi}{2b}}\bigg|_{0}^{a}-\frac{\sin\left( \left[ \frac{n\pi}{2a}+\frac{\pi}{2b} \right]x \right)}{\frac{n\pi}{2a}+\frac{\pi}{2b}}\bigg|_{0}^{a} \right)\]
+Noting that $\sin\left( \frac{\pi}{2}\left[ n-\frac{a}{b} \right] \right)$ and $\sin\left( \frac{\pi}{2}\left[ n+\frac{a}{b} \right] \right)$ are for $n=1$ equal to $-\cos\left( \frac{a}{b} \right)$ and $\cos\left( \frac{a}{b} \right)$, we obtain
+\[c_{1}=\sqrt{\frac{1}{ab}}\left( -\cos\left( \frac{a}{b} \right) \left[ \frac{\pi/a}{\left( \frac{\pi}{2a} \right)^{2}-\left( \frac{\pi}{2b} \right)^{2}} \right]\right)\]
+implying the probability the particle will stay in the original ground state is
+\[|c_{1}|^{2}=\frac{1}{ab}\cos^{2}\left( \frac{a}{b} \right)\left( \frac{\pi/a}{\left( \frac{\pi}{2a} \right)^{2}-\left( \frac{\pi}{2b} \right)^{2}} \right)^{2}\]
+Similarly for $c_{2}$,  $\sin\left( \frac{\pi}{2}\left[ n-\frac{a}{b} \right] \right)$ and $\sin\left( \frac{\pi}{2}\left[ n+\frac{a}{b} \right] \right)$ are both  $-\sin\left( \frac{a}{b} \right)$, so
+\[c_{2}=\sqrt{\frac{1}{ab}}\left( -\sin\left( \frac{a}{b} \right) \left[ \frac{-\pi/b}{\left( \frac{\pi}{a} \right)^{2}-\left( \frac{\pi}{2b} \right)^{2}} \right]\right)\]
+\[\Rightarrow |c_{2}|^{2}=\frac{1}{ab}\sin^{2}\left( \frac{a}{b} \right)\left[ \frac{\pi/b}{\left( \frac{\pi}{a} \right)^{2}-\left( \frac{\pi}{2b} \right)^{2}} \right]^{2}\]
+
+\section*{2a}
+The momentum is Fourier-conjugate to position, so the wave function in momentum-space is
+\[\phi(p)=\frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}\psi(x)e^{-ipx/\hbar}dx=\frac{(\alpha/\pi)^{1/4}}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}e^{-\alpha x^{2}/2-ipx/\hbar}dx\]
+\[=\frac{(\alpha/\pi)^{1/4}}{\sqrt{2\pi\hbar}}e^{-\alpha /2}\int_{\infty}^{\infty}e^{x^{2}+2ipx/\hbar\alpha - p^{2}/\hbar^{2}\alpha^{2}+p^{2}/\hbar^{2}\alpha^{2}}dx\]\[=\frac{(\alpha/\pi)^{1/4}}{\sqrt{2\pi\hbar}}e^{-\alpha/2}\int_{-\infty}^{\infty}e^{(x+ip/\hbar\alpha)^{2}}e^{p^{2}/\hbar^{2}\alpha^{2}}dx=\frac{(\alpha/\pi)^{1/4}}{\sqrt{2\pi\hbar}}e^{p^{2}/2\alpha\hbar^{2}}\int_{-\infty}^{\infty}e^{-(x+ip/\hbar\alpha)^{2}}dx\]
+This final integral may be calculated by first substituting $u=x+ip/\hbar\alpha$ and noting the result is the standard Gaussian integral $\sqrt{\pi}$; writing it out,
+\[\phi(p)=\left( \frac{\alpha}{4\pi\hbar^{2}} \right)^{1/4}\exp\left( \frac{p^{2}}{2\alpha\hbar^{2}}\right)\]
+The probability density corresponding to this wavefunction is
+\[\phi^{*}(p)\phi(p)=\phi(p)^{2}=\sqrt{\frac{\alpha}{4\pi\hbar^{2}}}\exp\left( \frac{p^{2}}{\alpha\hbar^{2}} \right)\]
+
+\section*{2b}
+The energy operator is $\hat{E}=\frac{\hat{p}^{2}}{2m}=-\frac{\hbar^{2}}{2m}\frac{\partial^{2}}{\partial x^{2}}$, so the expectation value of energy is
+\[\langle E \rangle=\int \psi^{*}(x)\hat{E}\psi(x) dx=-\frac{\hbar^{2}}{2m}\int_{-\infty}^{\infty}\psi^{*}(x)\frac{\partial^{2}\psi}{\partial x^{2}}dx=-\frac{\hbar^{2}}{2m}\sqrt{\frac{\alpha}{\pi}}\int_{-\infty}^{\infty}\alpha^{2}x^{2}e^{-\alpha x^{2}}-\alpha e^{-\alpha x^{2}}dx\]
+\[=-\frac{\alpha^{2}\hbar^{2}}{2m}\left( x\left[ -\frac{1}{2\alpha}e^{-\alpha x^{2}} \right]\bigg|_{-\infty}^{\infty}+\frac{1}{2\alpha}\int_{-\infty}^{\infty} e^{-\alpha x^{2}}dx-\alpha\sqrt{\frac{\pi}{\alpha}}\right)=\frac{\alpha^{2}\hbar^{2}}{2m}\sqrt{\frac{\alpha}{\pi}}\left( \alpha\sqrt{\frac{\pi}{\alpha}} -\frac{1}{2\alpha}\sqrt{\frac{\pi}{\alpha}}\right)\]
+\[=\frac{\hbar^{2}}{2m}\left( \alpha^{3}-\frac{\alpha}{2} \right)\]
+\section*{3}
+All that changes in this problem are the domain of the PDE and its boundary conditions, so the solution to this problem are the solutions to the full harmonic oscillator problem that satisfy the boundary conditions.
+In order to have continuity of the wavefunction at $x=0$, we must have $\psi(0)=0$. In the power series solution to the full harmonic oscillator, this is satisfied for the solutions with odd Hermite polynomials (i.e. odd $n$) only. The wave function must remain normalized, and half of the area of the probability distribution is now gone. So it stands to reason that the new solution wave functions must be double the permissible old ones to retain normalization, i.e.
+\[\psi_{k}(x)=2\left( \frac{m\omega}{\pi\hbar} \right)^{1/4}\frac{1}{\sqrt{2^{2k+1}(2k+1)!}}H_{2k+1}(\xi)e^{-\xi^{2}/2}\]
+where $\xi =x\sqrt{\frac{m\omega}{\hbar}}$
+
+The resulting allowed energies are by $\hat{H}\psi=E\psi$ and linearity of $\hat{H}$ not affected by the change of normalization constant, but are affected by the restriction of $n$. The allowed energies are therefore
+\[E_{k}=\hbar\omega\left( 2k+\frac{3}{2} \right)\]
+
+\section*{4a}
+When an energy measurement of the particle is made, it collapses into one of the allowed eigenstates.
+The probability of each eigenstate is the norm squared of the coefficient multiplying it, i.e.
+\[P(\psi_{0})=\left|\frac{1}{4}\right|^{2}=\frac{1}{16}\]
+\[P(\psi_{1})=\left|\frac{i}{2}\right|^{2}=\frac{1}{4}\]
+\[P(\psi_{2})=\left|\frac{i\sqrt{11}}{4}\right|^{2}=\frac{11}{16}\]
+
+\section*{4b}
+The expectation value of such a discrete random variable is
+\[\langle E \rangle=\sum_{x\in A}xp(x)=\hbar\omega(0+\frac{1}{2})\frac{1}{16}+\hbar\omega(1+\frac{1}{2})\frac{1}{4}+\hbar\omega(2+\frac{1}{2})\frac{11}{16}=\frac{17}{8}\hbar\omega\]
+where $A$ is the set of possible values of $E$ and $p(x)$ is the probability of value $x$.
+
+\section*{4c}
+The time-evolution of a wavefunction expressed in terms of time-independent solutions is
+\[\Psi(x,t)=\sum c_{n}\psi_{n}(x)e^{-iE_{n}t/\hbar}\]
+which for this problem is
+\[\Psi(x,t)=\frac{1}{4}\psi_{0}e^{-i\omega t/2}+\frac{i}{2}\psi_{1}e^{-3i\omega t/2}+\frac{i\sqrt{11}}{4}\psi_{2}e^{-5i\omega t/2}\]
+
+
+
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

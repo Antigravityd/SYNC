@@ -1,0 +1,442 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\usepackage{graphicx}
+
+\title{4141 HW 9}
+\author{Duncan Wilkie}
+\date{29 April 2022}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+Presuming an induction hypothesis $[A^{n-1},C]=(n-1)A^{n-2}C$,
+\[
+  [A^{n},B]=A[A^{n-1},B]+ [A,B]A^{n-1}
+  =A(n-1)A^{n-2}C+CA^{n-1}
+  =(n-1)A^{n-1}C+A^{n-1}C
+  =nA^{n-1}C
+\]
+\[
+  \frac{d}{d\lambda}e^{\lambda (A+B)}=\frac{d}{d\lambda}\left(  1+\lambda(A+B)+\frac{\lambda^{2}}{2}(A+B)^{2}+...\right)
+  =(A+B)+\lambda (A+B)^{2}+\frac{\lambda^{2}}{2}(A+B)^{3}+...
+\]
+\[
+  =(A+B)e^{\lambda(A+B)}
+\]
+Also,
+\[
+  \frac{d}{d\lambda}(e^{\lambda A}e^{\lambda B}e^{-\lambda^{2}C/2})
+  =Ae^{\lambda A}e^{\lambda B}e^{-\lambda^{2}C/2}+e^{\lambda A}Be^{\lambda B}e^{-\lambda^{2}C/2}
+  +e^{\lambda A}e^{\lambda B}\left( -\lambda Ce^{-\lambda^{2}C/2} \right)
+\]
+\[
+  =e^{\lambda A}e^{\lambda B}e^{-\lambda^{2}C/2}\left( A+B+\lambda C-\lambda C \right)
+  =(A+B)e^{\lambda A}e^{\lambda B}e^{-\lambda^{2}C/2}
+\]
+Since these functions satisfy the same differential equation and have the same value at $\lambda=0$, they must be the same function,
+so in particular for $\lambda=1$ we obtain the desired result.
+
+\section*{2a}
+The system is in state $\psi_{1}$ immediately after the measurement due to wave function collapse.
+\section*{2b}
+Prior to the measurement, the wave function in $\phi$ space may be written
+\[
+  \psi_{1}=\frac{3}{5}\phi_{1}+\frac{4}{5}\phi_{2}
+\]
+The two possible results are then $b_{1}$ and $b_{2}$, with probabilities $|3/5|^{2}=\frac{9}{25}$ and $|4/5|^{2}=\frac{16}{25}$
+respectively.
+
+\section*{2c}
+We can solve for $\phi_{1}$ and $\phi_{2}$ in the eigenstate relation:
+\[
+  \begin{cases}
+    5\psi_{1}=3\phi_{1}+4\phi_{2} \\
+    5\psi_{2}=4\phi_{1}-3\phi_{2}
+  \end{cases}
+  \Leftrightarrow
+  \begin{cases}
+    20\psi_{1}=12\phi_{1}+16\phi_{2} \\
+    15\psi_{2}=12\phi_{1}-9\phi_{2}
+  \end{cases}
+  \Rightarrow
+  5(4\psi_{1}-3\psi_{2})=25\phi_{2}
+  \Leftrightarrow
+  \phi_{2}=(4\psi_{1}-3\psi_{2})/5
+\]
+\[
+  \Rightarrow
+  3\phi_{1}=5\psi_{1}-\frac{4}{5}(4\psi_{1}-3\psi_{2})
+  \Leftrightarrow
+  \phi_{1}=({3}\psi_{1}+{4}\psi_{2})/5
+\]
+There are two possibilities after the measurement of $B$: the particle is in state $\phi_{1}$, or it is in state $\phi_{2}$.
+If it's in state $\phi_{1}$, its probability of being in state $\psi_{1}$ on a subsequent measurement is $|3/5|^{2}=9/25$;
+if it's in state $\phi_{2}$, this probability is $|4/5|^{2}=16/25$.
+Weighting these values by the probabilities of being in $\phi_{1}$ and $\phi_{2}$ and adding (by the law of total probability),
+\[P(a_{1})=\frac{9}{25}\frac{9}{25}+\frac{16}{25}\frac{16}{25}=\frac{337}{625}=0.5392\]
+
+\section*{3}
+By definition,
+\[\langle x \rangle=\int_{\mathbb{R}}\left( \sum_{n}c_{n}\psi_{n}(x)e^{-iE_{n} t/\hbar} \right)^{*}x
+  \left( \sum_{n}c_{n}\psi_{n}(x)e^{-iE_{n} t/\hbar} \right)dx\]
+\[
+  =\int_{\mathbb{R}}x\sum_{m}\sum_{n}c_{n}^{*}c_{m}\psi_{n}(x)\psi_{m}(x)e^{-it(E_{n}-E_{m})/\hbar}dx
+  =\sum_{m}\sum_{n}c_{n}^{*}c_{m}e^{-it(E_{n}-E_{m})/\hbar}\int_{\mathbb{R}}x\psi_{n}(x)\psi_{m}(x)dx
+\]
+Using the hint for problem 3.39 in the book,
+\[
+  =\sum_{m}\sum_{n}c_{n}^{*}c_{m}e^{-it(E_n-E_{m})/\hbar}\left( \sqrt{\frac{\hbar}{2m\omega}}
+    \left[  \sqrt{m}\delta_{n,m-1}+\sqrt{n}\delta_{m,n-1} \right] \right)
+\]
+\[
+  =\sqrt{\frac{\hbar}{2m\omega}}\left(  \sum_{n}c_{n}^{*}c_{n+1}e^{-it(E_{n}-E_{n+1})/\hbar}\sqrt{n+1}
+    +\sum_{n}c_{n}^{*}c_{n-1}e^{-it(E_{n}-E_{n-1})/\hbar}\sqrt{n}\right)
+\]
+The energy eigenvalues for the simple harmonic oscillator are $E_{n}=\hbar\omega(n+\frac{1}{2})$, so the difference between successive
+terms is $E_{n}-E_{n-1}=-(E_{n}-E_{n+1})=\hbar\omega$. Substituting this,
+\[
+  =\sqrt{\frac{\hbar}{2m\omega}}\left( e^{-it\omega}\left[  \sum_{n}c_{n}^{*}c_{n+1}\sqrt{n+1} \right]
+  +e^{it\omega}\left[ \sum_{n}c_{n}^{*}c_{n-1} \sqrt{n}\right]\right)
+\]
+To get this in the desired form, notice that in the second term the $n=0$ term is zero, so relabeling $n$ to $n+1$ yields
+\[
+  =\sqrt{\frac{\hbar}{2m\omega}}\left( e^{-it\omega}\left[  \sum_{n}c_{n}^{*}c_{n+1}\sqrt{n+1} \right]
+  +e^{it\omega}\left[ \sum_{n}c_{n+1}^{*}c_{n} \sqrt{n+1}\right]\right)
+\]
+Since $(a^{*}b)^{*}=ab^{*}$, the two sum factors are merely some complex numbers which are conjugate to each other, which
+implies one may distribute the initial constant and write it times the sums as $Ce^{i\phi}$ and $Ce^{-i\phi}$. Multiplying and dividing by a factor of two,
+\[
+  =\frac{1}{2}\left( e^{-it\omega}Ce^{i\phi}+e^{it\omega}Ce^{-i\phi}\right)
+  =C\cos(\omega t-\phi)
+\]
+with constants of the given form.
+% Integrating by parts, we may write the integral as
+% \[
+%   x\bigg|_{-\infty}^{\infty}\int_{\mathbb{R}}\psi_{n}(x)\psi_{m}(x)\
+%   -\int_{\mathbb{R}}\psi_{n}(x)\psi_{m}(x)dx
+% \]
+% By orthonormality of eigenstates, this implies that the integral is zero for $n\neq m$
+% (it says nothing about when $n=m$, since the evaluation of $x$ would diverge).
+% Therefore,
+% \[
+%   \langle x \rangle=\sum_{n}|c_{n}|^{2}\int_{\mathbb{R}}x\psi_{n}(x)^{2}dx
+% \]
+% Substituting the analytic solution for $\psi_{n}(x)$,
+% \[
+%   =\sum_{n}|c_{n}|^{2}\int_{\mathbb{R}}x\frac{1}{2^{n}n!}H_{n}^{2}\left(x\sqrt{\frac{m\omega}{\hbar}}\right)
+%   e^{-m\omega x^{2}/\hbar}\sqrt{\frac{m\omega}{\pi\hbar}} dx
+% \]
+% This is the integral of an odd function times two even functions, and so is zero.
+
+%TODO: finish
+\section*{4a}
+The eigenvalues may be found via $\det(M-\lambda I)=0$.
+We can ignore the leading coefficients for now and multiply the resulting eigenvalue by them due to homogeneity of the determinant
+(i.e. $\det(aM-\lambda I)=0\Leftrightarrow a\det(M-\frac{\lambda}{a}I)=0$).
+For $H$,
+\[
+  \begin{vmatrix}
+    1-\lambda & 0 & 0 \\
+    0 & 2-\lambda & 0 \\
+    0 & 0 & 2-\lambda
+  \end{vmatrix}
+  =(1-\lambda)(2-\lambda)^{2}
+  =0
+\]
+clearly has solutions $1$ and $2$ (with multiplicity 2 for the latter), corresponding to eigenvalues $\hbar\omega$ and $2\hbar\omega$.
+For $A$,
+\[
+  \begin{vmatrix}
+    -\lambda & 1 & 0 \\
+    1 & -\lambda & 0 \\
+    0 & 0 & 2-\lambda
+  \end{vmatrix}
+  =\lambda^{2}(2-\lambda)+\lambda-2
+  =(2-\lambda)(\lambda^{2}-1)=(2-\lambda)(\lambda-1)(\lambda+1)
+\]
+so the eigenvalues are $2\lambda$, $\lambda$, and $-\lambda$.
+For $B$,
+\[
+  \begin{vmatrix}
+    2-\lambda & 0 & 0 \\
+    0 & -\lambda & 1 \\
+    0 & 1 & -\lambda \\
+  \end{vmatrix}
+  =(2-\lambda)\lambda^{2}-(2-\lambda)
+  =(2-\lambda)(\lambda^{2}-1)
+  =(2-\lambda)(\lambda+1)(\lambda-1)
+\]
+which is the same equation as for $A$, yielding eigenvalues $2\mu$, $\mu$, and $-\mu$.
+The corresponding eigenvectors are the basis vectors in the case of $H$, since it's already diagonalized.
+For $A$, we have
+\[
+  \lambda
+  \begin{pmatrix}
+    0 & 1 & 0 \\
+    1 & 0 & 0 \\
+    0 & 0 & 2
+  \end{pmatrix}
+  \begin{pmatrix}
+    a \\
+    b \\
+    c
+  \end{pmatrix}
+  =2\lambda
+  \begin{pmatrix}
+    a \\
+    b \\
+    c
+  \end{pmatrix}
+  \Leftrightarrow
+  \begin{pmatrix}
+     b \\
+     a \\
+    2 c
+
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    2a \\
+    2b \\
+    2c
+  \end{pmatrix}
+  \Rightarrow a=0, b=0, c=1
+\]
+\[
+    \lambda
+  \begin{pmatrix}
+    0 & 1 & 0 \\
+    1 & 0 & 0 \\
+    0 & 0 & 2
+  \end{pmatrix}
+  \begin{pmatrix}
+    a \\
+    b \\
+    c
+  \end{pmatrix}
+  =\lambda
+  \begin{pmatrix}
+    a \\
+    b \\
+    c
+  \end{pmatrix}
+  \Leftrightarrow
+  \begin{pmatrix}
+     b \\
+     a \\
+    2 c
+
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    a \\
+    b \\
+    c
+  \end{pmatrix}
+  \Rightarrow a=1/\sqrt{2}, b=1/\sqrt{2}, c=0
+\]
+\[
+    \lambda
+  \begin{pmatrix}
+    0 & 1 & 0 \\
+    1 & 0 & 0 \\
+    0 & 0 & 2
+  \end{pmatrix}
+  \begin{pmatrix}
+    a \\
+    b \\
+    c
+  \end{pmatrix}
+  =-\lambda
+  \begin{pmatrix}
+    a \\
+    b \\
+    c
+  \end{pmatrix}
+  \Leftrightarrow
+  \begin{pmatrix}
+     b \\
+     a \\
+    2 c
+
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    -a \\
+    -b \\
+    -c
+  \end{pmatrix}
+  \Rightarrow a=1/\sqrt{2}, b=-1/\sqrt{2}, c=0
+\]
+where we have chosen normalized results.
+For $B$, we similarly have
+\[
+    \mu
+  \begin{pmatrix}
+    2 & 0 & 0 \\
+    0 & 0 & 1 \\
+    0 & 1 & 0
+  \end{pmatrix}
+  \begin{pmatrix}
+    a \\
+    b \\
+    c
+  \end{pmatrix}
+  =2\mu
+  \begin{pmatrix}
+    a \\
+    b \\
+    c
+  \end{pmatrix}
+  \Leftrightarrow
+  \begin{pmatrix}
+     2a \\
+     c \\
+     b
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    2a \\
+    2b \\
+    2c
+  \end{pmatrix}
+  \Rightarrow a=1, b=0, c=0
+\]
+\[
+      \mu
+  \begin{pmatrix}
+    2 & 0 & 0 \\
+    0 & 0 & 1 \\
+    0 & 1 & 0
+  \end{pmatrix}
+  \begin{pmatrix}
+    a \\
+    b \\
+    c
+  \end{pmatrix}
+  =\mu
+  \begin{pmatrix}
+    a \\
+    b \\
+    c
+  \end{pmatrix}
+  \Leftrightarrow
+  \begin{pmatrix}
+     2a \\
+     c \\
+     b
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    a \\
+    b \\
+    c
+  \end{pmatrix}
+  \Rightarrow a=0, b=1/\sqrt{2}, c=1/\sqrt{2}
+\]
+\[
+      \mu
+  \begin{pmatrix}
+    2 & 0 & 0 \\
+    0 & 0 & 1 \\
+    0 & 1 & 0
+  \end{pmatrix}
+  \begin{pmatrix}
+    a \\
+    b \\
+    c
+  \end{pmatrix}
+  =-\mu
+  \begin{pmatrix}
+    a \\
+    b \\
+    c
+  \end{pmatrix}
+  \Leftrightarrow
+  \begin{pmatrix}
+     2a \\
+     c \\
+     b
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    -a \\
+    -b \\
+    -c
+  \end{pmatrix}
+  \Rightarrow a=0, b=-1/\sqrt{2}, c=1/\sqrt{2}
+\]
+
+\section*{4b}
+We have
+\[
+  \langle H \rangle=\sum_{n}E_{n}|c_{n}|^{2}
+  =\hbar\omega\left(|c_{1}|^{2}+ 2|c_{2}|^{2}+3|c_{3}|^{2}\right)
+  =\hbar\omega(2-|c_{1}|^{2}),
+\]
+\[
+  \langle A \rangle=\langle S(0)|A|S(0) \rangle
+  =\lambda
+  \begin{pmatrix}
+    c_{1}^{*} & c_{2}^{*} & c_{3}^{*}
+  \end{pmatrix}
+  \begin{pmatrix}
+    0 & 1 & 0 \\
+    1 & 0 & 0 \\
+    0 & 0 & 2
+  \end{pmatrix}
+  \begin{pmatrix}
+    c_{1} \\
+    c_{2} \\
+    c_{3}
+  \end{pmatrix}
+  = \lambda\left(c_{1}^{*}c_{2}+c_{2}^{*}c_{1}+2|c_{3}|^{2}\right)
+\]
+\[
+    \langle B \rangle=\langle S(0)|A|S(0) \rangle
+  =\mu
+  \begin{pmatrix}
+    c_{1}^{*} & c_{2}^{*} & c_{3}^{*}
+  \end{pmatrix}
+  \begin{pmatrix}
+    2 & 0 & 0 \\
+    0 & 0 & 1 \\
+    0 & 1 & 0
+  \end{pmatrix}
+  \begin{pmatrix}
+    c_{1} \\
+    c_{2} \\
+    c_{3}
+  \end{pmatrix}
+  = \mu\left( 2|c_{1}|^{2}+c_{2}^{*}c_{3}+c_{3}^{*}c_{2} \right)
+\]
+
+\section*{4c}
+We write
+\[
+  |S(t)\rangle=
+  \begin{pmatrix}
+    c_{1}e^{-itE_{1}/\hbar} \\
+    c_{2}e^{-itE_{2}/\hbar} \\
+    c_{3}e^{-itE_{3}/\hbar}
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    c_{1}e^{-it\omega} \\
+    c_{2}e^{-2it\omega} \\
+    c_{3}e^{-2it\omega} \\
+  \end{pmatrix}
+\]
+A measurement of the energy would yield $\hbar\omega$ with probability $|c_{1}e^{-it\omega}|^{2}=|c_{1}|^{2}$,
+and $2\hbar\omega$ with probability $|c_{2}e^{-2it\omega}|^{2}+|c_{3}e^{-2it\omega}|^{2}=|c_{2}|^{2}+|c_{3}|^{2}$
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

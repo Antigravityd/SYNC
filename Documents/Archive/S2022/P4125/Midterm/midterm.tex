@@ -1,0 +1,165 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{siunitx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\title{4125 Midterm}
+\author{Duncan Wilkie}
+\date{7 April 2022}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+Since the change in temperature is relatively small with respect to the absolute magnitude of the temperature, the latent heat of boiling may be taken to be a constant, and since the phase transition is from liquid to gas, the initial volume of the liquid to be converted may be taken to be negligible in comparison to the volume of the resulting gas.
+Therefore, we may solve the differential equation given by the Clausius-Clapeyron relation
+\[\frac{dP}{dT}=\frac{L}{T\Delta V}=\frac{L}{T(NkT/P)}\Leftrightarrow \frac{dP}{P}=\frac{LdT}{NkT^{2}}\Leftrightarrow \ln P=-\frac{L}{NkT}+c\]
+\[\Leftrightarrow P=Ce^{-L/NkT}=Ce^{-\tilde{L}/RT}\]
+where $\tilde{L}$ is the latent heat of one mole of water (since $L$ is an extensive quantity, i.e. a function of $N$).
+Since the constant $C$ is, well, constant, we have a way to express the relative change in the pressure:
+\[\frac{P'}{P}=e^{-\frac{\tilde{L}}{R}\left( \frac{1}{T'}-\frac{1}{T} \right)}\]
+From the table of water's vapor pressure in the book, the vapor pressure of water at $\SI{100}{^{\circ} C}$ is $\SI{1.013}{bar}=\SI{1.013e5}{Pa}$.
+The final vapor pressure is then
+\[P'=(\SI{1.013e5}{Pa})\exp\left( -\frac{(\SI{539}{cal/g})(\SI{4.18}{J/cal})(\SI{18}{g/mol})}{\SI{8.31}{J/mol\cdot K}}\left( \frac{1}{\SI{374}{K}}-\frac{1}{\SI{373}{K}} \right)\right)=\SI{1.049e5}{Pa}\]
+Subtracting two instances of the ideal gas law, re-using the assumption that the volume of liquid and therefore gas doesn't appreciably change, we have
+\[\Delta N=\frac{V}{k}\left( \frac{P_{f}}{T_{f}}-\frac{P_{i}}{T_{i}}\right)\]
+The volume taken up by the water is, taking the density of water to be $\rho=\SI{1}{g/cm^{3}}=\SI{1000}{kg/m^{3}}$,
+\[V_{l}=\frac{m_{l}}{\rho}=\frac{\SI{1}{kg}}{\SI{1000}{kg/m^{3}}}=\SI{1e-3}{m^{3}}=\SI{1}{L}\]
+The volume of the water vapor is therefore $\SI{4}{L}$.
+The change in the number of water vapor particles is then
+\[\Delta N=\frac{\SI{4e-3}{m ^{3}}}{\SI{1.38e-23}{J/k}}\left( \frac{\SI{1.049e5}{Pa}}{\SI{374}{K}}-\frac{\SI{1.013e5}{Pa}}{\SI{373}{K}} \right)=\SI{2.58e21}{particles}\]
+Dividing by Avogadro's number, this is
+\[\frac{\Delta N}{N_{A}}=\frac{\SI{2.58e21}{particles}}{\SI{6.02e23}{particles / mol}}=\SI{4.28e-3}{mol}\]
+Multiplying by the molar mass of water,
+\[\Delta m=(\SI{4.28e-3}{mol})(\SI{18}{g/mol})=\SI{77}{mg}\]
+
+\section*{2a}
+A is a constant, and so it's intensive, since it doesn't vary with an increase in the amount of matter. $U$, $N$, and $V$ are each extensive, since each will change if the amount of matter is changed with per-particle quantities fixed.
+Formally, the definition of an extensive quantity computed from $i$ intensive quantities and $k$ extensive quantities may be realized as multiplicative linearity of a function of arity $i+k$ in the extensive variables:
+\[F(I_{1},...I_{i};\lambda E_{1},...\lambda E_{k})=\lambda F(I_{1},...I_{i};E_{1},...E_{k})\]
+Intensive quantities are defined the same, but without the $\lambda$ multiplying the right side.
+In this case, we have
+\[S(A;\lambda U,\lambda N,\lambda V)=A[\lambda U\lambda N \lambda V]^{1/3}=\lambda A[UNV]^{1/3}=\lambda S(A;U,N,V)\]
+so entropy is indeed extensive here.
+Entropy has units of $\si{J/K}$, internal energy has units of $\si{J}$, the number of particles is unitless, and volume has units of $\si{m^{3}}$. The units of the inside of the cube root are then $\si{J\cdot m^{3}}=\si{kg \cdot m^{5}/s^{2}}$ (no nice coalescence into powers divisible by 3), so $A$ must have units $\si{J^{2/3}/m\cdot K}$.
+
+\section*{2b}
+The definition of temperature is
+\[\frac{1}{T}=\left( \frac{\partial S}{\partial U} \right)_{N,V}=A[NV]^{1/3}U^{-2/3}/3\Leftrightarrow U=\left( \sqrt{\frac{AT[NV]^{1/3}}{3}}\right)^{3}=\sqrt{NVA^{3}T^{3}/27}\]
+
+\section*{2c}
+The relationship between entropy and pressure is
+\[P=T\left( \frac{\partial S}{\partial V} \right)_{U,N}=TA[UN]^{1/3}V^{-2/3}/3\]
+Rearranging for $U$,
+\[U=\left( {\frac{3PV^{2/3}}{ATN^{1/3}}}\right)^{3}=\frac{27P^{3}V^{2}}{A^{3}T^{3}N}\]
+Equating these two formulae for the internal energy,
+\[\frac{27P^{3}V^{2}}{A^{3}T^{3}N}=\sqrt{NVA^{3}T^{3}/27}\Leftrightarrow \frac{729P^{6}V^{4}}{A^{6}T^{6}N^{2}}=NVA^{3}T^{3}/27\]
+\[\Leftrightarrow P^{6}V^{3}=\frac{A^{9}}{19683}N^{3}T^{9}\]
+\[\Leftrightarrow P^{2}V=\frac{A^{3}}{27}NT^{3}\]
+The expression for pressure is then
+\[P=\sqrt{\frac{A^{3}}{27V}NT^{3}}\]
+The two extensive quantities on the right side are $V$ and $N$; if one inserts a multiplier of both of them it cancels, so pressure is indeed intensive.
+
+\section*{2d}
+By definition,
+\[C_{V}=\left( \frac{\partial U}{\partial T}\right)_{N,V}\]
+Using the expression for the internal energy derived from the definition of temperature,
+\[C_{V}=\sqrt{\frac{NVA^{3}}{27}}\frac{3}{2}\sqrt{T}=\sqrt{\frac{NVTA^{3}}{12}}\]
+
+\section*{2e}
+By definition,
+\[\mu=-T\left(  \frac{\partial S}{\partial N}\right)_{U,V}=-TA[UV]^{1/3}N^{-2/3}/3\]
+Using the expression for $U^{1/3}$ found when deriving the equation of state,
+\[\mu=-TAV^{1/3}N ^{-2/3}/3\frac{3PV^{2/3}}{ATN^{1/3}}=-\frac{PV}{N}\]
+Using the equation of state to eliminate $V$,
+\[\mu=-\frac{P}{N}\frac{A^{3}NT^{3}}{27P^{2}}=-\frac{A^{3}T^{3}}{27P}\]
+
+\section*{3a}
+Throughout this problem, we presume the number of particles to be fixed.
+The first law of thermodynamics states
+\[dU=TdS-PdV\]
+Dividing by $dV$, and presuming $T$ to be constant,
+\[\left( \frac{\partial U}{\partial V}\right)_{T}=T\left( \frac{\partial S}{\partial V}\right)_{T}-P\]
+There is a Maxwell relation that
+\[\left( \frac{\partial S}{\partial V} \right)_{T}=\left( \frac{\partial P}{\partial T} \right)_{V}\]
+which one may prove from thermodynamic relation for the Helmholtz free energy
+\[dF=-SdT-PdV\]
+Taking $V$ to be constant, $S=-\left(\frac{\partial F}{\partial T} \right)_{V}$;
+taking $T$ to be constant, $P=-\left( \frac{\partial F}{\partial V} \right)_{T}$.
+Differentiating $S$ with respect to $V$ at constant $T$ and $P$ with respect to $T$ at constant $V$,
+\[\left( \frac{\partial S}{\partial V}\right)_{T}=-\frac{\partial}{\partial V}\left( \frac{\partial F}{\partial T} \right)_{V}\]
+\[\left( \frac{\partial P}{\partial T}\right)_{V}=-\frac{\partial}{\partial T}\left( \frac{\partial F}{\partial V} \right)_{T}\]
+Noting that these two are the same except for the order of differentiation, we have
+\[\left( \frac{\partial S}{\partial V} \right)_{T}=\left( \frac{\partial P}{\partial T} \right)_{V}\]
+proving the Maxwell relation.
+We therefore have the desired result, that
+\[\left( \frac{\partial U}{\partial V} \right)_{T}=T\left( \frac{\partial P}{\partial T} \right)_{V}-P\]
+
+\section*{3b}
+Rearranging the van der Waals equation for pressure,
+\[P=\frac{RT}{V-b}-\frac{a}{V^{2}}\]
+Differentiating,
+\[\left( \frac{\partial P}{\partial T} \right)_{V}=\frac{R}{V-b}\]
+Multiplying by $T$, we get
+\[T\left( \frac{\partial P}{\partial T} \right)_{V}=\frac{RT}{V-b}\]
+Subtracting the same equation for pressure, we make use of the result in (3a) to write
+\[\left( \frac{\partial U}{\partial V} \right)_{T}=\frac{a}{V^{2}}\]
+Integrating this with respect to volume,
+\[U=-\frac{a}{V}+f(T)\]
+since the differentiation of the function of $T$ would yield the same result.
+The definition of the heat capacity at constant pressure is
+\[C_{V}=\left( \frac{\partial U}{\partial T} \right)_{N,V}\]
+Integrating with respect to $T$ (presuming $C_{V}$ to be constant with temperature, as stated in the problem),
+\[U=C_{V}T+f(V)\]
+These two equations together imply
+\[U=-\frac{a}{V}+C_{V}T+c\]
+where $c$ is a pure constant, but in the limit $T\to 0$ and $V\to \infty$ (so also $P \to 0$), there is no particle velocity and there are no particle interactions (the particles are infinitely far apart in equilibrium, and the non-kinetic potential terms in the van der Waals equation only prevent infinite compressibility, i.e. are short-range), so it doesn't make much sense for the internal energy of the system to be nonzero in this limit.
+Therefore, we take $c=0$.
+
+\section*{3c}
+The rapid expansion implies no heat is exchanged with any reservoir, and if the gas is expanding into vacuum there is no work being done, so the change in the internal energy is zero.
+We then have
+\[C_{V}T_{f}-\frac{a}{V_{f}}-\left( C_{V}T_{i}-\frac{a}{V_{i}} \right)=0\Leftrightarrow C_{V}\Delta T=\frac{a}{V_{f}}-\frac{a}{V_{i}}\]
+The specific heat capacity of nitrogen at constant volume is, from a table I found online, $\SI{0.743}{kJ/kg\cdot K}$. The molar mass of nitrogen is $\SI{14}{g/mol}$, so the heat capacity of one mole of nitrogen is \newline $(\SI{0.743}{J/g\cdot K})(\SI{14}{g/mol})(\SI{1}{mol})=\SI{10.4}{J/K}$. We may then immediately compute
+\[\Delta T=\frac{a}{C_{V}}\left( \frac{1}{V_{f}}-\frac{1}{V_{i}} \right)=\frac{\SI{0.135}{Pa\cdot m^{6}/mol^{2}}}{\SI{10.4}{J/K}}\left( \frac{1}{\SI{1e-2}{m^{3}}}-\frac{1}{\SI{1e-3}{m^{3}}} \right)\]
+\[\SI{-11.7}{K}\]
+
+\section*{4a}
+The work is extracted during the isothermal expansion, during which some heat $Q_{h1}$ is transferred to it to keep the gas at $T_{1}$.
+During the isobaric compression, some heat $Q_{c}$ is transferred to the cold reservoir and work is done on the gas, and during the isochoric heating, some heat $Q_{h2}$ is transferred to the gas from the hot reservoir.
+We now need to write these heats in terms of temperature.
+
+By the definition of heat capacity at constant pressure,
+\[Q_{c}=C_{P}(T_{1}-T_{2})\]
+The heat consumed from the hot reservoir has two parts: the part from the constant-volume process, and the part from the isothermal process. The isothermal process has no change in internal energy since the temperature is constant. The heat absorbed during it is therefore the negative of the work done by the gas:
+\[Q_{h1}=-W=\int_{V_{3}}^{V_{1}}\frac{NkT_{1}}{V}dV=NkT_{1}\ln\frac{V_{1}}{V_{3}}\]
+The heat from the isochoric process may be computed by the definition of the heat capacity at constant volume to obtain
+\[Q_{h}=Q_{h2}+Q_{h1}=C_{V}(T_{1}-T_{2})+NkT_{1}\ln\frac{V_{1}}{V_{3}}\]
+Digging around for a way to put the volume ratio in terms of temperature,
+\[\frac{T_{1}}{T_{2}}=\frac{P_{1}V_{1}/Nk}{P_{2}V_{2}/Nk}=\frac{P_{2}V_{1}}{P_{2}V_{3}}=\frac{V_{1}}{V_{3}}\]
+by the ideal gas law alongside $V_{2}=V_{3}$ and $P_{1}=P_{2}$.
+We then have
+\[ e=1-\frac{C_{P}(T_{1}-T_{2})}{C_{V}(T_{1}-T_{2})+NkT_{1}\ln\frac{T_{1}}{T_{2}}}\]
+\[e=1-\frac{Q_{c}}{Q_{h}}=1-\frac{C_{P}(T_{1}-T_{2})}{C_{V}(T_{1}-T_{2})+NkT_{1}\ln\frac{T_{1}}{T_{2}}}\]
+For an ideal gas, $C_{P}=C_{V}+Nk=\frac{fNk}{2}+Nk$, so
+\[ e=1-\frac{\frac{(f+2)Nk}{2}(T_{1}-T_{2})}{\frac{fNk}{2}(T_{1}-T_{2})+NkT_{1}\ln\frac{T_{1}}{T_{2}}}=1-\frac{f+2}{f+\frac{2T_{1}}{T_{1}-T_{2}}\ln\frac{T_{1}}{T_{2}}}\]
+\[=1-\frac{f+2}{f+\frac{1}{1-T_{2}/T_{1}}\ln\frac{T_{1}^{2}}{T_{2}^{2}}}\]
+
+\section*{4b}
+For a monatomic gas, $f=3$, so with $\frac{T_{1}}{T_{2}}=2$ this is
+\[e=1-\frac{5}{3+\frac{1}{1-1/2}\ln 4}=\SI{0.134}{}=\SI{13.4}{\% }\]
+For a diatomic gas (presuming vibrational modes are frozen out, i.e. we're at a reasonable temperature), $f=5$, so
+\[e=1-\frac{7}{5+\frac{1}{1-1/2}\ln 4}=\SI{0.099}{=\SI{9.9}{\%}}\]
+Evidently, for this cycle fewer degrees of freedom are desirable.
+
+\end{document}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

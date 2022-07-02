@@ -1,0 +1,110 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{siunitx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\DeclareMathOperator{\Res}{Res}
+\title{4141 HW 2}
+\author{Duncan Wilkie}
+\date{4 February 2022}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+The total probability of such a wave function is
+\[1=\int_\mathbb{R}\psi\psi^*=\int_\mathbb{R}|\psi|^2=C^2\int_{-\infty}^\infty\frac{1}{(a^2+x^2)^2}dx\]
+Using the substitution $x=a\tan u$, $dx=a\sec^2u du$ this is
+\[=C^2\int\frac{a\sec^2u}{(a^2+a^2\tan^2u)^2}du=C^2\int\frac{a\sec^2u}{a^4\sec^4u}du\]
+\[=\frac{C^2}{a^3}\int \cos^2(u)du=\frac{C^2}{a^3}\left( \int \frac{1}{2}-\frac{1}{2}\cos(2u) du\right)=\frac{C^2}{2a^3}\left(u-\frac{1}{2}\sin(2u)  \right)\]\[=\frac{C^2}{2a^3}\left( \tan^{-1}\left( \frac{x}{a} \right)\bigg|_{-\infty}^\infty-\frac{1}{2}\sin\left[ 2\tan^{-1}\left(  \frac{x}{a}\right)\right]\bigg|_{-\infty}^\infty \right)=\frac{C^2}{2a^3}\left( \pi-\frac{1}{2}\left[ \sin\left( c \right) -\sin\left( {-\pi} \right)\right] \right)\]
+\[=\frac{\pi C^2}{2a^3}\Leftrightarrow C=\sqrt{\frac{2a^3}{\pi}}\]
+The wave function therefore must be
+\[\psi(x)=\frac{\sqrt{2a^3/\pi}}{a^2+x^2}\]
+which is valid for any fixed $a$.
+The expectation values are:
+\[\langle x \rangle=\int_\mathbb{R}x|\psi(x)|^2dx=\frac{2a^3}{\pi}\int_{-\infty}^\infty\frac{x}{(a^2+x^2)}dx=\frac{a^3}{\pi}\int_{-\infty}^\infty\frac{1}{u^2}du=\frac{a^3}{\pi}\left( -\frac{1}{a^2+x^2}\bigg|_{-\infty}^\infty \right)=0\]
+\[\langle x^2 \rangle=\int_\mathbb{R}x^2|\psi(x)|^2dx=\frac{2a^3}{\pi}\int_{-\infty}^\infty\frac{x^2}{(a^2+x^2)^2}dx=\frac{2a^3}{\pi}\int_{-\infty}^\infty\frac{x^2+a^2-a^2}{(a^2+x^2)^2}dx\]
+\[=\frac{2a^3}{\pi}\int_{-\infty}^\infty\frac{1}{x^2+a^2}-\frac{a^2}{(a^2+x^2)^2}dx=\frac{2a^3}{\pi}\left( \frac{1}{a}\tan^{-1}\left( \frac{x}{a} \right)\bigg|_{-\infty}^\infty-a^2\frac{1}{C^2}\right)=2a^2-a^2=a^2\]
+The Fourier transform is
+\[\mathcal{F}(\psi)=\frac{\sqrt{2a^3/\pi}}{2\pi \hbar}\int_{-\infty}^\infty\frac{\exp\left( i\frac{px}{\hbar} \right)}{a^2+x^2}dx=\frac{\sqrt{2a^3/\pi}}{2\pi\hbar}\int_{-\infty}^\infty\frac{\cos\left(\frac{p}{\hbar}x \right)+i\sin\left( \frac{p}{\hbar}x \right)}{a^2+x^2}dx\]
+\[=\frac{\sqrt{2a^3/\pi}}{2\pi\hbar}\left( \int_{-\infty}^\infty\frac{\cos\left( \frac{p}{\hbar}x \right)}{a^2+x^2}dx +i\int_{-\infty}^\infty\frac{\sin\left( \frac{p}{\hbar}x \right)}{a^2+x^2}dx\right)\]
+The imaginary part is the integral of the product of an even and odd function that is therefore odd, and so is equal to zero. The problem is therefore to calculate an integral of the form
+\[I=\int_{-\infty}^\infty f(x)\cos(cx)dx\]
+This is a standard task in Fourier analysis, one so common the Brown-Churchill complex variables text includes a section on solving improper integrals of this form.
+
+In this case, we introduce the complex function $f(z)=\frac{1}{z^2+a^2}$. Its singularities are $z=\pm ia$, so for any sufficiently large $R$ forming the radius of a semicircle centered on the origin in the upper half-plane, the integration around the boundary of the semicircle is
+\[\int_C\frac{\exp\left( i\frac{pz}{\hbar} \right)}{z^2+a^2}dz+\int_{-R}^R\frac{\exp\left( i\frac{px}{\hbar} \right)}{x^2+a^2}dx=2\pi i\underset{z=ia}{\Res} \left[ \frac{\exp\left( i\frac{pz}{\hbar} \right)}{z^2+a^2}\right]\]
+where $C$ denotes the arc of the semicircle and Cauchy's residue theorem has been used. We may write the function in the argument of the residue operator as
+\[\frac{\exp\left( i\frac{pz}{\hbar} \right)/(z+ia)}{z-ia}\]
+This implies that the value of the residue is the numerator evaluated at the pole, so the total contour integral is equal to
+\[2\pi i\left( \frac{\exp\left( i\frac{p}{\hbar}(ia) \right)}{ia+ia} \right)=\frac{\pi}{a}e^{-pa/\hbar}\]
+Now we show that the real part of the integral over $C$ goes to zero as $R\to\infty$, so the number above is the result.
+\[\left| \Re\int_C\frac{\exp\left( i\frac{pz}{\hbar} \right)}{z^2+a^2} \right|\leq \left| \int_C\frac{\exp\left( i\frac{pz}{\hbar} \right)}{z^2+a^2} \right|\leq \int_C\frac{1}{|z^2+a^2|}\to 0\]
+where the last inequality is a consequence of the triangle inequality: the magnitude of a sum is less than the sum of magnitudes.
+
+The final result is then given by the limit as $R$ goes to infinity of the real part of the total contour integral equation:
+\[\mathcal{F}(\psi)=\frac{\sqrt{2a^3/\pi}}{2\pi\hbar}\lim_{R\to\infty}\int_{-R}^R\frac{\cos\left( \frac{p}{\hbar}x \right)}{x^2+a^2}dx=\frac{\sqrt{2a^3/\pi}}{2\pi\hbar}\frac{\pi}{a}e^{-pa/\hbar}=\exp\left( -\frac{pa}{\hbar} \right)\sqrt{\frac{a}{2\pi\hbar^2}}\]
+
+\section{}
+The normalization condition is
+\[1=\int_{-\infty}^\infty|\psi\psi^*|^2dx=\int_{-\infty}^\infty A^2e^{-2\lambda|x|}e^{-i\omega t}e^{i\omega t}dx=2A^2\int_0^\infty e^{-2\lambda x}dx=2A^2\left( -\frac{1}{2\lambda}e^{2\lambda x}\bigg|_0^\infty \right)=\frac{A^2}{\lambda}\]
+\[\Leftrightarrow A=\sqrt{\lambda}\]
+The expectation values are then
+\[\langle x \rangle=\int_{-\infty}^\infty x|\psi\psi^*|^2dx=\int_{-\infty}^\infty\lambda xe^{-2\lambda |x|}dx=0\]
+\[\langle x^2 \rangle=\int_{-\infty}^\infty x^2|\psi\psi^*|^2dx=\lambda\int_{0}^\infty  x^2e^{-2\lambda x}dx=2\lambda\left( -\frac{x^2}{2\lambda}e^{-2\lambda x}\bigg|_0^\infty+\int_0^\infty \frac{x}{\lambda}e^{-2\lambda x}dx\right)\]
+\[=2\lambda\left(0-\frac{x}{2\lambda^2}e^{-2\lambda x}\bigg|_0^\infty+\int_0^\infty\frac{1}{2\lambda^2}e^{-2\lambda x}dx \right)=\frac{1}{\lambda}\left( -\frac{e^{-2\lambda x}}{2\lambda}\bigg|_0^\infty \right)=\frac{1}{2\lambda^2}\]
+where in the first line it is noted that the integrand is odd.
+
+\section{}
+The Schr\"odinger equation for such a potential is
+\[\frac{\partial \psi}{\partial t}=\frac{i\hbar}{2m}\frac{\partial^2\psi}{\partial x^2}-\frac{i}{\hbar}(V_0-i\Gamma)\psi\]
+Taking the complex conjugate, we also have
+\[\frac{\partial \psi^*}{\partial t}=-\frac{i\hbar}{2m}\frac{\partial^2\psi^*}{\partial x^2}+\frac{i}{\hbar}(V_0+i\Gamma)\psi^*\]
+Therefore,
+\[\frac{\partial |\psi|^2}{\partial t}=\frac{\partial}{\partial t}\psi\psi^*=\psi\frac{\partial \psi^*}{\partial t}+\frac{\partial \psi}{\partial t}\psi^*\]
+\[=\psi\left( -\frac{i\hbar}{2m}\frac{\partial^2\psi^*}{\partial x^2}+\frac{i}{\hbar}(V_0+i\Gamma)\psi^* \right)+\psi^*\left(\frac{i\hbar}{2m}\frac{\partial^2 \psi}{\partial x^2}-\frac{i}{\hbar}(V_0-i\Gamma)\psi  \right)\]
+\[=\frac{i\hbar}{2m}\left( \psi^*\frac{\partial^2\psi}{\partial x^2}-\frac{\partial^2\psi^*}{\partial x^2}\psi \right)-2\frac{\psi\psi^*}{\hbar}\Gamma\]
+The integral of this over the whole line is the overall probability current, i.e.
+\[\frac{dP}{dt}=\frac{i\hbar}{2m}\int_{-\infty}^\infty\frac{\partial^2\psi}{\partial x^2}\psi^*dx-\frac{i\hbar}{2m}\int_{-\infty}^\infty\frac{\partial^2\psi^*}{\partial x^2}\psi dx-\frac{2\Gamma}{\hbar}\int_{-\infty}^{\infty}\psi\psi^*\]
+\[=\frac{i\hbar}{2m}\left( \psi^*\frac{\partial \psi}{\partial x}-\frac{\partial \psi^*}{\partial x}\psi \right)\bigg|_{-\infty}^\infty-\frac{2\Gamma}{\hbar}P(t)\]
+The first term must go to zero because physical quantum systems satisfy radiation conditions, i.e. the wavefunction (and therefore its conjugate) must go to zero at infinity. We then have the desired outcome, that
+\[\frac{dP}{dt}=-\frac{2\Gamma}{\hbar}P(t)\]
+Integrating this differential equation by separation of variables,
+\[P(t)=e^{-2\Gamma t/\hbar}\]
+which gives the relation between $\Gamma$ and $\tau$ as
+\[\tau=\frac{\hbar}{2\Gamma}\]
+
+\section{}
+This energy range, which corresponds to an uncertainty of about $\SI{10}{eV}=\SI{1.6e-12}{J}$, corresponds to an uncertainty of  momentum by
+\[\Delta E=\frac{\Delta p^2}{2m}\Leftrightarrow \Delta p=\sqrt{2m\Delta E}=\sqrt{2(\SI{9.11e-31}{kg})(\SI{1.6e-12}{J})}=\SI{1.71e-21}{kg\cdot m/s}\]
+By the Heisenberg uncertainty principle, the associated uncertainty in the average position value is
+\[\Delta x\geq\frac{\hbar}{2\Delta p}=\frac{\SI{1.05e-34}{J\cdot s}}{2(\SI{1.71e-21}{kg\cdot m/s})}=\SI{3.07e-14}{m}=\SI{3.07e-12}{cm}\]
+Since this is roughly three times greater than the size of a nucleus, an electron of this energy could not have been constrained inside the nucleus, as that would violate the uncertainty principle.
+
+\section{}
+These each may be computed by
+\[\Delta E\Delta t\geq \frac{\hbar}{2}\Leftrightarrow \Delta E\geq\frac{\hbar}{2\Delta t}\]
+to be linewidths
+\[\Delta E=\frac{\SI{6.6e-16}{eV\cdot s}}{2(\SI{2.6e-10}{s})}=\SI{1.3e-6}{eV}\]
+\[\Delta E=\frac{\SI{6.6e-16}{eV\cdot s}}{2(\SI{e-23}{s})}=\SI{33}{MeV}\]
+\[\Delta E=\frac{\SI{6.6e-16}{eV\cdot s}}{2(\SI{720}{s})}=\SI{4.6e-19}{eV}\]
+
+\section{}
+The time it takes for the marble to fall is
+\[t=\sqrt{\frac{2H}{g}}\]
+The energy right before it hits the ground is $mgH$, presuming that there is no lateral movement; there is associated with this number a minimum uncertainty
+\[\Delta E=\frac{\hbar}{2\sqrt{2H/g}}\]
+Writing this energy uncertainty as a momentum using
+\[\Delta E=\frac{\Delta p^2}{2m}\Leftrightarrow \Delta p=\sqrt{2m\Delta E}=\sqrt{\frac{m\hbar}{\sqrt{2H/g}}}\]
+we find a minimum uncertainty of position
+\[\Delta x=\frac{\hbar}{2\sqrt{\frac{m\hbar}{\sqrt{2H/g}}}}\]
+
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

@@ -1,0 +1,195 @@
+\documentclass[10pt]{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\usepackage{graphicx}
+
+
+\begin{document}
+%\begin{tiny}
+
+
+\section*{Crystal Structure}
+A \textbf{lattice} is a vector space but with scalars in a ring instead of a field.
+In our case, the ring is $\mathbb{Z}$. A \textbf{unit cell} is any subset of a lattice which may be tiled to recover the whole lattice.
+A \textbf{primitive unit cell} is a unit cell that contains exactly one lattice point,
+where lattice points are counted according to the angles the incoming and outgoing lattice vectors make.
+The set of $\mathbb{R}^n$ points closest to a given lattice point is its \textbf{Wigner-Seitz cell},
+constructed by drawing lines from one point to all its neighbors and forming a polygon from the perpendicular bisectors halfway along these lines.
+Bases for lattices are constructed by choosing a reference point in the unit cell and labeling every lattice point in the unit cell as a linear combination of lattice vectors over $\mathbb{R}$.
+The \textbf{primitive lattice vectors}, the basis for the primitive unit cell, for the elementary lattices considered in this class appear below.
+\begin{center}
+  \begin{tabular}{ |c|c|c|c| }
+    \hline
+    Lattice Type & $a_{1}$ & $a_{2}$ & $a_{3}$ \\
+    \hline
+    \hline
+    simple cubic & [1,0,0] & [0,1,0] & [0,0,1] \\
+    \hline
+    bcc & [1,0,0] & [0,1,0] & $[\frac{1}{2},\frac{1}{2},\frac{1}{2}]$ \\
+    \hline
+    fcc & $[\frac{1}{2},\frac{1}{2},0]$ & $[\frac{1}{2},0,\frac{1}{2}]$ & $[0,\frac{1}{2},\frac{1}{2}]$ \\
+    \hline
+  \end{tabular}
+\end{center}
+The \textbf{reciprocal lattice points} $\vec{G}$ to a direct lattice $\vec{R}$ are defined by
+$e^{i\vec{G}\cdot\vec{R}}$, and in one dimension if $\vec{R}$ has periodicity $a$ are spaced by $2\pi/a$.
+The primitive lattice vectors of the reciprocal lattice are defined by $\vec{a}_{i}\cdot\vec{b}_{j}=2\pi\delta_{ij}$
+and may be constructed as
+$\vec{b}_{i}=\frac{2\pi \vec{a}_{i+1}\times\vec{a}_{i+2}}{\vec{a}_{1}\cdot(\vec{a}_{2}\times\vec{a}_{3})}$
+where $a_{i}$ are the primitive lattice vectors of the direct lattice and the addition in the subscripts is modulo 3.
+One may consider the reciprocal lattice to be Fourier-conjugate to the direct lattice by writing the lattice as a delta function
+of the lattice points by $\rho(r)=\sum_{n}\delta(r-an)$ in one dimension,
+easily generalizable to more by identification of $r$ with $\vec{k}$ and $an$ with $\vec{G}$.
+The Fourier convention for this class is
+$\mathcal{F}(f(x))(k)=\int_{\mathbb{R}^{n}}f(x)e^{ik\cdot x}dx$;
+the inverse transform is correspondingly
+$\mathcal{F}^{-1}(g(k))(x)=\frac{1}{(2\pi)^{n}}\int_{\mathbb{R}^{n}}g(k)e^{-ik\cdot x}$.
+A \textbf{lattice plane} is a plane containing 3 non-collinear points of a lattice.
+A \textbf{family of lattice planes} is an infinite set of equally-spaced parallel lattice planes which together contain
+every lattice point.
+Families of lattice planes bijectively correspond to directions of reciprocal lattice vectors,
+so that the separation between planes is $d=2\pi/|\vec{G}_{min}|$ where $\vec{G}_{min}$ is the shortest reciprocal lattice vector
+in that direction.
+The \textbf{Miller indices} are simply an expression of the reciprocal lattice points inside any unit cell in terms of the reciprocal
+space vectors conjugate to edge vectors chosen for the unit cell in direct space;
+they can be negative, in which case they are conventionally denoted with an overline.
+To construct them, one takes the definition of the reciprocal lattice vectors from above and extends it to non-primitive-lattice
+vectors.
+The Miller indices do not necessarily represent reciprocal lattice vectors unless the unit cell is primitive.
+A \textbf{Brillouin zone} is a primitive unit cell of the reciprocal lattice.
+The $n$th Brillouin zone may be constructed by taking the perpendicular bisector halfway between the origin and each of the
+reciprocal lattice vectors in the unit cell.
+The $n$th Brillouin zone is the region where it takes at least $n-1$ crossings of perpendicular bisectors to reach the origin,
+where crossing at intersections of bisectors is disallowed.
+The \textbf{Fermi surface} is a surface in $k$-space that divides filled from unfilled states at zero temperature.
+It is halfway between the most energetic occupied and least energetic unoccupied states.
+The \textbf{Fermi energy} is the chemical potential at zero temperature, and corresponds to the energy of states on the Fermi surface.
+The \textbf{Fermi sea} is the collection of filled states at $T=0$.
+
+\section*{Scattering}
+Fermi's golden rule states the probability of transitioning from a state $|\vec{k}\rangle$ to $|\vec{k'}\rangle$ per unit time
+under a small perturbation of the potential $V$ is
+$\Gamma(\vec{k'},\vec{k})=\frac{2\pi}{\hbar}|\langle \vec{k'}|V|\vec{k} \rangle|^{2}\delta(E_{k'}-E_{k})$ where $E_{k'},E_{k}$
+are the energies of the associated states and $|k\rangle,|k'\rangle$ are the free-particle wave functions of that which is scattering.
+The matrix term may be written, by assuming everything to be periodic and integrating over the unit cell,
+\[
+  \langle \vec{k'}|V|\vec{k}\rangle=\left[ \frac{1}{L^{3}}\sum_{\vec{R}}e^{-i(\vec{k'}-\vec{k})\cdot\vec{R}} \right]
+  \left[ \int_{\textrm{unit cell}}e^{-i(\vec{k'}-\vec{k})\cdot \vec{x}}V(\vec{x})d\vec{x} \right]
+\]
+The first term, and therefore the overall matrix term, is zero except for those vectors for which the \textbf{Laue condition}
+$\vec{k'}-\vec{k}=\vec{G}$ holds.
+Equivalent to the Laue condition is the \textbf{Bragg condition}, that $n\lambda = 2d\sin\theta$ where $\lambda$ is the wavelength
+of incoming particles, $d$ is the spacing between layers of atoms in the crystal, $\theta$ is the angle of incidence,
+and $n$ is any integer, corresponding to the $n$th diffraction level.
+Returning to the equation for the matrix in Fermi's golden rule, the first term is a constant, nonzero only when the Laue condition
+is satisfied. The second term is the \textbf{structure factor}, which one may write as a function of $\vec{G}$ alone via the Laue
+condition: $S(\vec{G})=\int_{\textrm{unit cell}}e^{i\vec{G}\cdot\vec{k}}V(\vec{x})d\vec{x}$.
+In terms of Miller indices, one may explicitly write $S_{(hkl)}=\sum_{\textrm{atom }j}f_{j}e^{2\pi i(hx_{j}+ky_{j}+lz_{j})}$ where
+$[x_{j},y_{j},z_{j}]$ are the coordinates of the atom in the unit cell.
+One may usually take the total potential to be a sum over the atoms in the unit cell of each of the atom's scattering potential,
+as inter-atomic interactions are unlikely to have that large of an effect on the interaction between an incoming particle
+and the atoms of the crystal.
+In neutron scattering, these scattering potentials are nuclear and so approximately delta functions, and we may write
+$V(\vec{x})=\sum_{\textrm{atoms} j}f_{j}\delta(x-x_{j})$ where $f_{j}$ is the atomic form factor, a number particular to the atom.
+It is proportional to the nuclear scattering-length $b_{j}$ by a factor of $\frac{2\pi\hbar^{2}}{m}$.
+X-rays scatter from electrons.
+We may write the scattering potential as $V_{j}(\vec{x}-\vec{x}_{j})=Z_{j}g_{j}(\vec{x}-\vec{x}_{j})$ where $Z_{j}$ is the atomic
+number of the atom and $g_{j}$ is a short-ranged function on the scale of Angstroms.
+The form factor for X-rays is then $f_{j}(\vec{G})=Z_{j}g_{j}(\vec{x}-\vec{x}_{j})$, where the dependence on $\vec{G}$ is in the
+functional form of $g_{j}$.
+The $\vec{G}$ dependence may be approximated away if necessary.
+The intensity of the scattered wave is written for a specific Miller index as $I_{(hkl)}\propto |S_{(hkl)}|^{2}$.
+A significant implication of this is systematic absences of scattered particles for certain Miller indices;
+in a simple cubic all indices are allowed, for bcc materials $h+k+l \equiv 0\mod 2$, and for fcc $h,k,$ and $l$ must have identical
+parity.
+
+Scattering experiments come in three common forms: Laue scattering, where the wavelength incident on a single crystal is varied
+at constant angle, the rotating crystal method, where a constant wavelength is scattered off a single crystal at varying angle,
+and powder diffraction, where multiple crystals with random orientations undergo scattering at constant wavelength and varying angle,
+and the spacing of lattice planes is deduced from Bragg's law and the observed scattering intensity.
+In powder diffraction, the scattering intensity is multiplied by a multiplicity factor corresponding to the fact that several
+equivalent orientations of the crystal will scatter and constructively interfere at a given angle.
+
+\section*{Electrons in Solids}
+In the nearly free electron model, one considers a free particle Hamiltonian perturbed by a weak, periodic potential.
+The matrix elements of this potential are the same as the scattering potential matrix sans the sum term inside the first bracket.
+Far from Brillouin zone boundaries, the second-order perturbation series
+$E(\vec{k})=E_{0}(\vec{k})+\sum_{\vec{k'}=\vec{k}+\vec{G}}\frac{|\langle \vec{k'}|V|\vec{k} \rangle|^{2}}{E_{0}(\vec{k})-E_{0}(\vec{k'})}$
+where $\vec{k'}\neq \vec{k}$ works reasonably well.
+However, near the Brillouin zone boundaries, the term in the denominator diverges, as at the zone boundary ${k'}=-k=\frac{n\pi}{a}$.
+It's then necessary to apply degenerate perturbation theory near the boundary.
+The effective Schr\"odinger equation is in this case
+\[
+  \begin{pmatrix}
+    E_{0}(\vec{K}) & V_{\vec{G}}^{*} \\
+    V_{\vec{G}} & E_{0}(\vec{k}+\vec{G})
+  \end{pmatrix}
+  \begin{pmatrix}
+    a \\
+    b
+  \end{pmatrix}
+  = E
+  \begin{pmatrix}
+    a \\
+    b
+  \end{pmatrix}
+\]
+where $V_{\vec{G}}=V_{k'-k}$ is the scattering potential.
+When $k\equiv 0 \pmod{\vec{G}}$, the diagonal terms are equal, and the characteristic equation yields
+$E_{\pm}=E_{0}(\vec{k})\pm |V_{\vec{G}}|$.
+This is the band gap at the zone boundary.
+If one is not quite on the zone boundary, a bunch of algebraic waterboarding will yield in one dimension
+\[
+  E_{\pm}=\frac{\hbar^{2}(n\pi/a)^{2}}{2m}\pm|V_{G}|+\frac{\hbar^{2}\delta^{2}}{2m}\left[  1\pm\frac{\hbar^{2}(n\pi/a)^{2}}{m}\frac{1}{|V_{G}|}\right]
+\]
+where $\delta$ is the perturbation away from the zone boundary.
+This implies quadratic behavior of the energy near the zone boundary.
+\textbf{Bloch's theorem} states that an electron in a periodic potential has \textbf{modified plane wave} eigenstates
+$\Psi_{\vec{k}}^{\alpha}(\vec{r})=e^{i\vec{k}\cdot\vec{r}}u_{\vec{k}}^{\alpha}(\vec{r})$
+where the \textbf{Bloch function} $u_{\vec{k}}^{\alpha}$ is periodic and $\vec{k}$ can be taken to be in the first Brillouin zone.
+It follows from the Laue condition, as may be seen by decomposing the Bloch function over the reciprocal lattice vectors as
+$u_{\vec{k}}^{\alpha}(\vec{r})=\sum_{\vec{G}}\tilde{u}_{\vec{G},\vec{k}}^{\alpha}e^{i\vec{G}\cdot\vec{r}}$.
+This theorem is interpreted as stating that electrons traveling through a crystal behave almost as if they were propagating through
+free space.
+The number of $k$ states in one Brillouin zone is equal to the number of primitive unit cells in the system.
+If each primitive unit cell has exactly one free electron, it appears that electron would fill the band.
+However, this actually applies to spin-pairs of electrons, and so in such a case the band is only half full.
+In such a case, when the band isn't full, an applied electric field will cause electrons from one band to move over to fill
+the band in their neighbors, i.e. materials with partially filled bands are \textbf{metals}.
+When there are two electrons per unit cell, it is possible to fill the band.
+When this happens, the filled, low-energy band is called the valence band, and the high-energy band is called the
+\textbf{conduction band}.
+The energy difference between the two bands is called the \textbf{band gap}.
+Such materials are called \textbf{band insulators}.
+If the band gap is below about $\SI{4}{eV}$, thermal excitations are sufficient to move electrons into the conduction band.
+These materials are \textbf{semiconductors}.
+Some materials half-fill both the valence and conduction bands, despite having two electrons per unit cell.
+These materials are metals.
+The Fermi surface for a monovalent atom in the absence of a periodic potential is perfectly spherical, with volume exactly half
+that of the Brillouin zone.
+Including a periodic potential lowers the energy of the electron in regions close to the Brillouin zone boundary, pulling
+the Fermi surface towards the zone boundary while keeping its area constant (so the number of electrons is fixed).
+If, due to a very strong potential, the Fermi surface intersects the zone boundary, it must to so perpendicularly because
+the energy is quadratic in small displacements from the zone boundary.
+For bivalent atoms, the area of the Fermi surface equals that of the Brillouin zone.
+For weak and intermediate potentials, the Fermi surface pokes out of the first Brillouin zone and spills over into the second.
+In this case, some states are empty in the first zone and some states are filled in the second, so the material is a metal.
+For sufficiently strong potentials, the Fermi surface is identical to the first Brillouin zone, and the whole band is filled.
+Due to the band gap, these are insulators.
+Insulators can't absorb photons with energies less than their band gap, because for that to happen the photon must excite the
+electron from the valence to the conduction band.
+If an insulator has a band gap greater than $\SI{3.6}{eV}$, it will be transparent, because all wavelengths of visible light are
+lower-energy.
+A \textbf{direct} band gap is one for which the value of $\vec{k}$ at the valence band maximum and the conduction band minimum are
+the same.
+Otherwise, it is called an \textbf{indirect} band gap.
+
+%\end{tiny}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

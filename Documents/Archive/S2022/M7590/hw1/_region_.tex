@@ -1,0 +1,269 @@
+\message{ !name(hw1.tex)}\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\DeclareMathOperator{\tr}{tr}
+
+\title{7590 HW 1}
+\author{Duncan Wilkie}
+\date{?}
+
+\begin{document}
+
+\message{ !name(hw1.tex) !offset(-3) }
+
+
+\maketitle
+
+I interchangeably use the $\overline{z}$ and $z^{*}$ notation for the complex conjugate.
+A thousand apologies.
+\section*{1a}
+By the definition of the $L^2$ inner product and $A$, for any functions $f,g\in D(A)$ we have
+\[\langle Af|g \rangle=\langle f|Ag \rangle\Leftrightarrow \int_0^1\overline{f''(x)}g(x)dx=\int_0^1\overline{f(x)}g''(x)dx \]
+Integrating by parts,
+\[\overline{f'}g\bigg|_0^1-\int_0^1\overline{f'(x)}g'(x)dx=\int_0^1\overline{f(x)}g''(x)dx\]
+\[\Leftrightarrow \overline{f'}g\bigg|_0^1-\overline{f}g'\bigg|_0^1+\int_0^1\overline{f(x)}g''(x)dx=\int_0^1\overline{f(x)}g''(x)dx\]
+the evaluation terms  must both be zero at $0$ and $1$ since smooth compactly-supported functions on open sets vanish
+in the limit to the boundary of their domains. % TODO: proof?
+Therefore, this operator is symmetric.
+However, not all elements of $D(A^{\dagger})$ are elements of $D(A)$: $g\in H$ is an element of $D(A^{\dagger})$ iff there exists
+$h\in H$ such that $\forall f\in D(A)$
+\[
+  \int_{0}^{1}\overline{f''(x)}g(x)dx=\int_{0}^{1}\overline{f(x)}h(x)dx
+\]
+Applying the same integration-by-parts argument as above, we may equivalently write this as
+\[\Leftrightarrow \overline{f'}g\bigg|_0^1-\overline{f}g'\bigg|_0^1+\int_0^1\overline{f(x)}g''(x)dx=\int_0^1\overline{f(x)}h(x)dx\]
+Since $f$ is compactly supported, $f'$ is as well, so the evaluation terms are zero by the same argument given above.
+Letting $g=x^{2}$, we then have
+\[\int_{0}^{1}\overline{f(x)}\cdot 2dx=\int_{0}^{1}\overline{f(x)}h(x)dx\]
+from which we can clearly see the $L^{2}([0,1])$ function $h=2$ is the element adjoint to $g$ with respect to $A$.
+$g$ is therefore in $D(A^{\dagger})$.
+It isn't in $D(A)$ though, since $x^{2}$ doesn't vanish at 1 and therefore isn't compactly supported on this interval.
+This implies $D(A^{\dagger})\neq D(A)$, so $A\neq A^{\dagger}$, i.e. $A$ isn't self-adjoint.
+
+\section*{1b}
+Proceeding similarly,
+\[
+  \langle Af|g \rangle=\langle f|Ag \rangle
+  \Leftrightarrow \int_{0}^{1}(if'(x))^{*}g(x)dx=\int_{0}^{1}(f(x))^{*}ig'(x)dx
+\]
+\[
+  \Leftrightarrow -if^{*}g\bigg|_{0}^{1}+\int_{0}^{1}i(f(x))^{*}g'(x)dx=\int_{0}^{1}(f(x))^{*}ig'(x)dx
+\]
+By the same argument as above, the evaluation term is zero, in which case the equality follows immediately.
+This operator is symmetric.
+Once again, $x^{2}$ is in $D^{\dagger}(A)$ but not $D(A)$: from the formula derived for $\langle Af|g \rangle$ in the proof $A$ is symmetric,
+the definition of membership in $D^{\dagger}(A)$ is
+\[\int_{0}^{1}(f(x))^{*}2xdx=\int_{0}^{1}(f(x))^{*}h(x)dx\]
+which, choosing $h=2x\in L^{2}([0,1])$, clearly holds.
+$2x$ isn't compactly supported on $(0,1)$ since it doesn't vanish in the limit to 1, so $D(A^{\dagger})\neq D(A)$ and $A$ isn't self-adjoint.
+
+\section*{1c}
+The definition of a symmetric operator is that $\forall f,g\in D(A)$
+\[
+  \langle Af|g \rangle= \langle f|Ag  \rangle
+\]
+which in this case is
+\[
+  \int_{\Omega}\overline{[\partial_{i}(a_{ij}(x)\partial_{j}f)(x)]}g(x)dx=\int_{\Omega}\overline{f(x)}\partial_{i}(a_{ij}(x)\partial_{j}g)(x)dx
+\]
+\[
+  \Leftrightarrow g(x)\overline{a_{ij}(x)\partial_{j}f(x)}\bigg|_{\partial \Omega}
+  -\int_{\Omega}\overline{[a_{ij}(x)\partial_{j}f(x)]}\partial_{i}g(x)dx
+  =\int_{\Omega}\overline{f(x)}\partial_{i}(a_{ij}(x)\partial_{j}g)(x)dx
+\]
+\[
+  \Leftrightarrow\overline{-a_{ij}(x)f(x)}\partial_{i}g(x)\bigg|_{\partial\Omega}
+  +\int_{\Omega}\overline{f(x)}\partial_{j}\left( \overline{a_{ij}(x)}\partial_{i}g(x) \right)dx
+  =\int_{\Omega}\overline{f(x)}\partial_{i}(a_{ij}(x)\partial_{j}g)(x)dx
+\]
+\[
+  \Leftrightarrow
+  \int_{\Omega}\overline{f(x)}\partial_{i}(\overline{a_{ji}(x)}\partial_{j}g(x))dx
+  =\int_{\Omega}\overline{f(x)}\partial_{i}(a_{ij}(x)\partial_{j}g)(x)dx
+\]
+where we have throughout used integration by parts and the same fact that functions of compact support vanish in the limit to their
+boundaries.
+Since $a_{ij}(x)$ is Hermitian, it is equal to $\overline{a_{ji}(x)}$, and so the two sides are equal and the operator is symmetric.
+Here, $A$ is a bounded operator:
+\[
+  ||Af||\leq C||f||
+  \Leftrightarrow \int_{\Omega}|\partial_{i}(a_{ij}(x)\partial_{j}f)(x)|^{2}dx\leq C \int_{\Omega}|f(x)|^{2}dx
+\]
+\[
+  \Leftrightarrow \int_{\Omega}\partial_{i}a_{ij}(x)\partial_{j}f(x)dx\int_{\Omega}\overline{\partial_{i}a_{ij}(x)\partial_{j}f(x)}dx
+  \leq C\int_{\Omega}|f(x)|^{2}dx
+\]
+\[
+  \Leftrightarrow \left( f(x)\partial_{i}a_{ij}(x)\bigg|_{\partial\Omega}-\int_{\Omega}f(x)\partial_{j}\partial_{i}a_{ij}(x) \right)
+  \left( \overline{f(x)\partial_{i}a_{ij}(x)}\bigg|_{\partial\Omega}-\int_{\Omega} \overline{f(x)\partial_{j}\partial_{i}a_{ij}(x)}dx \right)
+  \leq C\int_{\Omega}|f(x)|^{2}dx
+\]
+\[
+  \Leftrightarrow \int_{\Omega}\left(f(x)\overline{f(x)}\right)
+  \left( [\partial_{i}\partial_{j}a_{ij}(x)]\overline{[\partial_{i}\partial_{j}a_{ij}(x)]} \right)dx
+  \leq C\int_{\Omega}|f(x)|^{2}dx
+\]
+\[
+  \Leftrightarrow \left|\int_{\Omega}f(x)\partial_{i}\partial_{j}a_{ij}(x)dx\right|^{2}\leq C\int_{\Omega}|f(x)|^{2}dx
+\]
+From the Cauchy-Schwartz inequality, we have
+\[
+  \left|\int_{\Omega}f(x)\partial_{i}\partial_{j}a_{ij}(x)dx\right|^{2}\leq \int_{\Omega}|f(x)|^{2}dx
+  \int_{\Omega}|\overline{\partial_{i}\partial_{j}a_{ij}(x)}|^{2}dx
+  =C\int_{\Omega}|f(x)|^{2}dx
+\]
+This proves the operator is bounded.
+Therefore, $D(A^{\dagger})=H$, and there are certainly $L^{2}(\Omega)$ functions that aren't $C^{\infty}$, so $D(A^{\dagger})\not\subseteq D(A)$
+implying $A$ is not self-adjoint.
+
+\section*{2a}
+Applying the definition of the infinitesimal generator,
+\[
+  Af(x)=-i\lim_{t\to 0}[f(x+vt)-f(x)]/t = -i\frac{\partial f}{\partial v}
+\]
+where the last equality is valid where the limit exists, using the definition of the partial derivative.
+Since $V\in C^1$, and the above implies $D(A)$ is $L^2$ functions differentiable along $v$, we have $V\subseteq D(A)$, with action given above.
+
+\section*{2b}
+The adjoint of $U$ is defined by
+\[
+  \langle U(t)f(x) | g(x) \rangle = \langle f(x) | \left( U(t) \right)^{\dagger}g(x) \rangle
+\]
+The left hand side is, applying the definition of the $L^{2}$ inner product and $U$,
+\[
+  \langle U(t)f(x)|g(x) \rangle = \int_{\mathbb{R}^{3}} \overline{f(e^{-tB}x)}g(x)dx
+\]
+We can make the substitution $y=e^{-tB}x$, in which case $x=e^{tB}y$.
+The component functions of this change of variables take the form
+\[
+  h_{i}=\sum_{n=0}^{\infty}\frac{(-t)^{n}}{n!}\left[\left(B^{n}\right)_{i1}x_{1}+\left(B^{n}\right)_{i2}x_{2}+\left(B^{n}\right)_{i3}x_{3}\right]
+\]
+The Jacobian of this change of coordinates is then
+\[
+  J=
+  \begin{pmatrix}
+    \frac{\partial h_{1}}{\partial x_{1}} & \frac{\partial h_{1}}{\partial x_{2}} & \frac{\partial h_{1}}{\partial x_{3}} \\
+    \frac{\partial h_{2}}{\partial x_{1}} & \frac{\partial h_{2}}{\partial x_{2}} & \frac{\partial h_{2}}{\partial x_{3}} \\
+    \frac{\partial h_{3}}{\partial x_{1}} & \frac{\partial h_{3}}{\partial x_{2}} & \frac{\partial h_{3}}{\partial x_{3}}
+  \end{pmatrix}
+  =
+  \sum_{n=0}^{\infty}\frac{(-t)^{n}}{n!}
+  \begin{pmatrix}
+    (B^{n})_{11} & (B^{n})_{12} & (B^{n})_{13} \\
+    (B^{n})_{21} & (B^{n})_{22} & (B^{n})_{23} \\
+    (B^{n})_{31} & (B^{n})_{32} & (B^{n})_{33}
+  \end{pmatrix}
+  =e^{-tB}
+\]
+Using $\det e^{A}=e^{\tr A}$, the Jacobian determinant is
+\[
+  \det J = e^{-t\tr(B)}=1
+\]
+since the trace of skew-symmetric matrices is zero.
+We can now finally rewrite the integral as
+\[
+  \int_{\mathbb{R}^{3}}\overline{f(y)}g(e^{tB}y)|\det J|dy=  \int_{\mathbb{R}^{3}}\overline{f(y)}g(e^{tB}y)dy
+  =\langle f(x)|U^{\dagger}(t)g(x) \rangle
+\]
+which identifies $U^{\dagger}(t): g(x)\mapsto g(e^{tB}x)$.
+Clearly, this is unitary:
+\[
+  UU^{\dagger}f(x)=f(e^{-tB}e^{tB}x)=If(x)=f(e^{tB}e^{-tB}x)=UU^{\dagger}f(x)
+\]
+For $f\in C^{1}(\mathbb{R}^{3})$, the infinitesimal generator acts as
+\[
+  Af(x)=-i\lim_{t\to 0}[f(e^{-tB}x)-f(x)]/t
+\]
+The numerator limits to zero, since $e^{-at}\sim1$ as $t\to 0$.
+Applying L'H\^opital's rule,
+\[
+  =-i\lim_{t\to 0}\frac{\frac{d}{dt}f(e^{-tB}x)}{1}
+  =-i\lim_{t\to 0}\left( \frac{d}{dt}e^{-tB}x \right)\cdot\nabla f(e^{-tB}x)
+  =-i\lim_{t\to 0}\left(-Be^{-tB}x\right)\cdot\nabla f(e^{-tB}x)
+\]
+\[
+  =iBx\nabla f(x)
+\]
+This shows that the limit exists for every $f\in C^{1}(\mathbb{R})$ (so $V\subseteq D(A)$) and gives its action.
+
+\section*{2c} % This one's majorly sus
+Notice first that the definition of $n$ and $r$ give the number $s$ ``modulo'' $2\pi$ in the sense that if one divides the real number
+line into partitions by integer multiples of $2\pi$, $n(s)$ gives the multiple of $2\pi$ corresponding to the rightmost partition boundary
+which lies to the left of $s$ and $r(s)$ gives the rightward displacement of $s$ from the partition boundary.
+% TODO: prove the properties of r I use.
+We prove first that $U_{\alpha}$ is a continuous symmetry.\newline
+\textit{Unitarity:}
+It preserves the inner product
+\[
+  \langle Uf|Ug \rangle
+  =\int_{0}^{2\pi}\overline{\alpha^{n(x+t)}f(r(x+t))}\alpha^{n(x+t)}g(r(x+t))dx
+  =\int_{0}^{2\pi}|\alpha^{n(x+t)}|^{2}\overline{f(r(x+t))}g(r(x+t))dx
+\]
+Since $|\alpha|=1$, we may write $\alpha=e^{i\theta}$ in which case it is immediately clear $|\alpha^{n(x+t)}|^{2}=1$.
+We now make the substitution $y=r(x+t)$, under which $dy=r'(x+t)dx\Leftrightarrow dx=\frac{dy}{r'(x+t)}$.
+From the characterization of $n$ and $r$, differentiating the definition with respect to $s$ yields $1=n'(s)2\pi+r'(s)=r'(s)$
+since $n$ is a step function.
+Strictly speaking, it is possible there is one point in the integration interval where this derivative is not defined,
+but since this is a set of measure zero it won't contribute to the integral.
+We therefore have, applying the substitution,
+\[
+  =\int_{r(t)}^{r(2\pi+t)}\overline{f(y)}g(y)dy=\int_{0}^{2\pi}\overline{f(y)}g(y)dy=\langle f |g\rangle
+\]
+where we have used for the last equality the fact that $y$ (and therefore the entire integrand) has periodicity $2\pi$,
+so the integral over any two intervals of length $2\pi$ will be the same.
+Given a function $h\in L^{2}([0,2\pi])$, we may write since $\alpha=e^{i\theta}\Rightarrow f(x)\alpha^{g(x)}=f(x)e^{i\theta g(x)}$
+\[
+  h(x)=f(x)e^{ig'(x)}=f(x)\alpha^{g(x)}
+\]
+where $f:[0,2\pi]\to \mathbb{R}$ and $g:[0,2\pi]\to [0,2\pi]$.
+For any given $h$ (in the form above), $\alpha$, and $t$, one may construct the function $k\in L^{2}([0,2\pi])$ given by $k(x)=f(r(x-t))\alpha^{g(r(x-t))-n(r(x-t)+t)}$.
+Noting that $r(r(x+t)-t)=r(x)=x$, since the displacement from a partition boundary remains the same if one translates left by some amount and then right by the same amount (and $x\in [0,2\pi]$), we have
+\[
+  U_{\alpha}k=\alpha^{n(x+t)}f[r(r(x+t)-t)]\alpha^{g[r(r(x+t)-t)]-n[r(r(x+t)-t)+t]}=\alpha^{n(x+t)}f(x)\alpha^{g(x)-n(x+t)}=f(x)\alpha^{g(x)}
+\]
+Therefore, $U_{\alpha}$ is surjective for every $\alpha$ and $t$, and in conjunction with the above result this proves $U_{\alpha}$ is
+unitary.
+$U_{\alpha}(0)=I$, using $x\in[0,2\pi]$:
+\[
+  U_{\alpha}(0)f(x)=\alpha^{n(x)}f(r(x))=\alpha^{0}f(x)=f(x)
+\]
+The operator behaves properly under addition in $t$:
+\[
+  U_{\alpha}(t+s)f(x)=\alpha^{n(x+t+s)}f(r(x+t+s))=U_{\alpha}(s)\left( \alpha^{n+t}f(r(x+t)) \right)=U_{\alpha}(s)U_\alpha(t)f(x)
+\]
+Lastly, using $x\in[0,2\pi]$,
+\[
+  \lim_{t\to 0}U_{\alpha}(t)x=\lim_{t\to 0}\alpha^{n(x+t)}r(x+t)=\alpha^{n(x)}r(x)=\alpha^{0}x=x
+\]
+The infinitesimal generator of $U_{\alpha}$ is by definition
+\[
+  A_{\alpha}f=-i\lim_{t\to 0}[U_{\alpha}(t)f-f]/t=-i\lim_{t\to 0}[\alpha^{n(x+t)}f(r(x+t))-f(x)]/t
+\]
+\[
+  =-i\lim_{t\to 0}\frac{\frac{d}{dt}\alpha^{n(x+t)}f(r(x+t))}{1}=-i\lim_{t\to 0}\frac{d}{dt}{\alpha^{0}f(x+t)}=-if'(x)
+\]
+where we have used L'H\^opital's rule and $x\in[0,2\pi)$ (in which case the limit will become at some point exclusively through $t$ close enough to $x$ that $0\leq x+t<2\pi$, yielding $r(x+t)=x+t$ and $n(x+t)=0$).
+The special case when $x=2\pi$ must be treated differently; the limit from below yields the above result, but the limit from above
+has $n(x+t)=1$, $r(x+t)=x+t-2\pi=t$, yielding $A_{\alpha}f(2\pi)=-i\lim_{t\to 0}\frac{d}{dt}\alpha^{1} f(t)=-i\alpha f'(0)$
+Functions in the given $V_{\alpha}$ make this exist for all $x\in[0,2\pi]$, since they are $C^{1}$ so the derivative exists and the condition
+at $2\pi$ makes the two sides of the limit at $2\pi$ agree.
+Therefore, $V_{\alpha}\in D(A_{\alpha})$ and the action is as given above.
+% TODO: justify all the "obvious" facts about $r$ and $n$ that I've used.
+
+\section*{3a}
+The given $D(A)$ is a subset of the $V_{\alpha}$ given in problem 2c, since $C^{1}$ compactly-supported functions on $(0,2\pi)$ are a subset
+of $C^{1}([0,2\pi])$ functions that vanish in the limits to $0$ and $2\pi$, which are a subset of $C^{1}([0,2\pi])$ functions where
+$f(2\pi)=f(0)=0$, which are a subset of $C^{1}([0,2\pi])$ functions where $f(2\pi)=\alpha f(0)$.
+Since $V_{\alpha}\subseteq D(A_{\alpha})$ was proven in 2c, we have $D(A)\subseteq D(A_{\alpha})$.
+Further, $A=A_{\alpha}$ on $D(A)$, since the only difference in their action occurs when $x=2\pi$ for $A_{\alpha}$; this is outside $D(A)$.
+This proves $A\subset A_{\alpha}$.
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\message{ !name(hw1.tex) !offset(-269) }

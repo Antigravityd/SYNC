@@ -1,0 +1,33 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{k}{define }\PYG{p}{(}\PYG{n+nf}{u} \PYG{n+nv}{x}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nb}{/ }\PYG{p}{(}\PYG{n+nb}{/ }\PYG{p}{(}\PYG{n+nb}{expt }\PYG{n+nv}{x} \PYG{l+m+mi}{5}\PYG{p}{))}
+   \PYG{p}{(}\PYG{n+nb}{\PYGZhy{} }\PYG{p}{(}\PYG{n+nb}{exp }\PYG{p}{(}\PYG{n+nb}{/ }\PYG{n+nv}{x}\PYG{p}{))}
+      \PYG{l+m+mi}{1}\PYG{p}{)))}
+
+\PYG{p}{(}\PYG{k}{define }\PYG{p}{(}\PYG{n+nf}{cdiff} \PYG{n+nv}{f} \PYG{n+nv}{x} \PYG{n+nv}{h}\PYG{p}{)}
+  \PYG{p}{(}\PYG{n+nb}{/ }\PYG{p}{(}\PYG{n+nb}{\PYGZhy{} }\PYG{p}{(}\PYG{n+nf}{f} \PYG{p}{(}\PYG{n+nb}{+ }\PYG{n+nv}{x} \PYG{p}{(}\PYG{n+nb}{/ }\PYG{n+nv}{h} \PYG{l+m+mi}{2}\PYG{p}{)))}
+	\PYG{p}{(}\PYG{n+nf}{f} \PYG{p}{(}\PYG{n+nb}{\PYGZhy{} }\PYG{n+nv}{x} \PYG{p}{(}\PYG{n+nb}{/ }\PYG{n+nv}{h} \PYG{l+m+mi}{2}\PYG{p}{))))}
+     \PYG{n+nv}{h}\PYG{p}{))}
+
+\PYG{p}{(}\PYG{k}{define }\PYG{p}{(}\PYG{n+nf}{sign} \PYG{n+nv}{x}\PYG{p}{)}
+  \PYG{p}{(}\PYG{k}{if }\PYG{p}{(}\PYG{n+nb}{negative? }\PYG{n+nv}{x}\PYG{p}{)}
+      \PYG{l+m+mi}{\PYGZhy{}1}
+      \PYG{l+m+mi}{1}\PYG{p}{))}
+
+\PYG{p}{(}\PYG{k}{define }\PYG{p}{(}\PYG{n+nf}{bisect} \PYG{n+nv}{f} \PYG{n+nv}{interval} \PYG{n+nv}{tol}\PYG{p}{)}
+  \PYG{p}{(}\PYG{n+nf}{let*}
+      \PYG{p}{((}\PYG{n+nf}{mid} \PYG{p}{(}\PYG{n+nb}{/ }\PYG{p}{(}\PYG{n+nb}{+ }\PYG{p}{(}\PYG{n+nb}{cadr }\PYG{n+nv}{interval}\PYG{p}{)} \PYG{p}{(}\PYG{n+nb}{car }\PYG{n+nv}{interval}\PYG{p}{))} \PYG{l+m+mi}{2}\PYG{p}{))}
+       \PYG{p}{(}\PYG{n+nf}{fmid} \PYG{p}{(}\PYG{n+nf}{f} \PYG{n+nv}{mid}\PYG{p}{)))}
+    \PYG{p}{(}\PYG{k}{if }\PYG{p}{(}\PYG{n+nb}{\PYGZlt{} }\PYG{p}{(}\PYG{n+nb}{abs }\PYG{n+nv}{fmid}\PYG{p}{)} \PYG{n+nv}{tol}\PYG{p}{)}
+	\PYG{p}{(}\PYG{n+nb}{list }\PYG{n+nv}{mid} \PYG{n+nv}{fmid}\PYG{p}{)}
+	\PYG{p}{(}\PYG{n+nf}{bisect} \PYG{n+nv}{f}
+		\PYG{p}{(}\PYG{n+nf}{if}
+		 \PYG{p}{(}\PYG{n+nb}{= }\PYG{p}{(}\PYG{n+nf}{sign} \PYG{n+nv}{fmid}\PYG{p}{)} \PYG{p}{(}\PYG{n+nf}{sign} \PYG{p}{(}\PYG{n+nf}{f} \PYG{p}{(}\PYG{n+nb}{cadr }\PYG{n+nv}{interval}\PYG{p}{))))}
+		 \PYG{p}{(}\PYG{n+nb}{list }\PYG{p}{(}\PYG{n+nb}{car }\PYG{n+nv}{interval}\PYG{p}{)} \PYG{n+nv}{mid}\PYG{p}{)}
+		 \PYG{p}{(}\PYG{n+nb}{list }\PYG{n+nv}{mid} \PYG{p}{(}\PYG{n+nb}{cadr }\PYG{n+nv}{interval}\PYG{p}{)))}
+		\PYG{n+nv}{tol}\PYG{p}{))))}
+
+\PYG{p}{(}\PYG{n+nf}{bisect} \PYG{p}{(}\PYG{k}{lambda }\PYG{p}{(}\PYG{n+nf}{x}\PYG{p}{)} \PYG{p}{(}\PYG{n+nf}{cdiff} \PYG{n+nv}{u} \PYG{n+nv}{x} \PYG{l+m+mf}{0.001}\PYG{p}{))}
+	\PYG{o}{\PYGZsq{}}\PYG{p}{(}\PYG{l+m+mf}{0.1} \PYG{l+m+mi}{1}\PYG{p}{)}
+	\PYG{l+m+mf}{0.00001}\PYG{p}{)}
+\end{Verbatim}

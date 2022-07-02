@@ -141,39 +141,41 @@ class Parabolic(PhitsObject):
         
 class Spherical(PhitsObject):
     name = "source"
-    required=["projectile", "energy"]
-    positional=["projectile", "energy"]
-    optional=["spin", "mask", "transform", "weight", "factor", "charge_override", "fissile",
+    required = ["projectile", "energy"]
+    positional = ["projectile", "energy"]
+    optional = ["spin", "mask", "transform", "weight", "factor", "charge_override", "fissile",
               "center", "r_in", "r_out", "direction", "elevation_bounds", "azimuth_bounds",
               "cutoff_behavior"]
-    ident_map={"spin": ("sx", "sy", "sz"), "mask": ("reg", "ntmax"), "transform": "trcl",
+    ident_map = {"spin": ("sx", "sy", "sz"), "mask": ("reg", "ntmax"), "transform": "trcl",
                "weight": "wgt", "charge_override": "izst", "fissile": "ispfs",
                "center": ("x0", "y0", "z0"), "r_in": "r1", "r_out": "r2", "direction": "dir",
                "elevation_bounds": ("ag1", "ag2"), "azimuth_bounds": ("pg1", "pg2"),
                "cutoff_behavior": "isbias", "energy": "e0"}
-    value_map={"neutrons": 2, True: 1, "ignore": 0, "resample": 1, "outward": 1.0, "inward": -1.0,
+    value_map = {"neutrons": 2, True: 1, "ignore": 0, "resample": 1, "outward": 1.0, "inward": -1.0,
                "isotropic": "all", "iso": "all", "cosine": "-all"}
-    shape=("s_type = 9", "projectile", "spin", "mask", "transform", "weight", "factor",
+    shape = ("s_type = 9", "projectile", "spin", "mask", "transform", "weight", "factor",
            "charge_override", "fissile", "center", "r_in", "r_out", "direction", "elevation_bounds",
            "azimuth_bound", "cutoff_behavior", "energy")
 
 
 class Beam(PhitsObject): # I don't understand what this is trying to do
-    def __init__(self, center=(0.0, 0.0), xbound=(0.0, 0.0), ybound=(0.0, 0.0), zbound=(0.0,0.0),
-                 gradx=0.0, grady=0.0):
-        super().__init__("source", required=["projectile", "energy"], positional=["projectile", "energy"],
-                         optional=["spin", "mask", "transform", "weight", "factor", "charge_override", "fissile",
-                                   "center", "zbounds", "gradients", "sampling" "width", "azimuth", "dispersion"],
-                         ident_map={"spin": ("sx", "sy", "sz"), "mask": ("reg", "ntmax"), "transform": "trcl",
-                                    "weight": "wgt", "charge_override": "izst", "fissile": "ispfs",
-                                    "center": ("x0", "y0", "z0"), "width": ("x1", "y1", "z1"), "order": "rn",
-                                    "elevation": "dir", "azimuth": "phi", "dispersion": "dom", "energy": "e0"},
-                         value_map={"neutrons": 2, True: 1},
-                         shape=("s_type = 7", "projectile", "spin", "mask", "transform", "weight", "factor",
-                                "charge_override", "fissile", "center", "width", "zbounds", "order", "elevation", "azimuth",
-                                "dispersion", "energy"), *args, **kwargs)
-        pass
-    
+    name = "source"
+    required = ["projectile", "energy"]
+    positional = ["projectile", "energy"]
+    optional = ["spin", "mask", "transform", "weight", "factor", "charge_override", "fissile",
+              "center", "zbounds", "gradients", "emittance", "widths", "stdevs",
+              "phase_center", "phase_angle_center", "sign"]
+    ident_map = {"spin": ("sx", "sy", "sz"), "mask": ("reg", "ntmax"), "transform": "trcl",
+               "weight": "wgt", "charge_override": "izst", "fissile": "ispfs",
+               "center": ("x0", "y0"), "zbounds": ("z0", "z1"), "gradients": ("rx", "ry"),
+               "emittance": "wem", "widths": ("x1", "y1"), "stdevs": ("xmrad1", "ymrad1"),
+               "phase_center": ("x2", "y2"), "phase_angle_maxes": ("xmrad2", "ymrad2"), "sign": "dir", "energy": "e0"}
+    value_map = {"neutrons": 2, True: 1}
+    shape = ("s_type = 11", "projectile", "spin", "mask", "transform", "weight", "factor",
+           "charge_override", "fissile", "center", "zbounds", "gradients", "emittance", "widths",
+           "stdevs", "phase_center", "phase_angle_center", "sign")
+
+
 class Conical(PhitsObject):
     name = "source"
     required = ["projectile", "energy"]
@@ -185,7 +187,7 @@ class Conical(PhitsObject):
                  "top": ("x0", "y0", "z0"), "altitude": ("x1", "y1", "z1"), "trim": ("r0", "r1"),
                  "elevation": "dir", "azimuth": "phi", "dispersion": "dom", "energy": "e0"}
     value_map = {"neutrons": 2, True: 1}
-    shape=("s_type = 18", "projectile", "spin", "mask", "transform", "weight", "factor",
+    shape = ("s_type = 18", "projectile", "spin", "mask", "transform", "weight", "factor",
            "charge_override", "fissile", "top", "altitude", "trim", "elevation", "azimuth",
            "dispersion", "energy")
 
@@ -204,41 +206,56 @@ class Prism(PhitsObject):
                  "elevation": "dir", "azimuth": "phi", "dispersion": "dom", "energy": "e0"}
     value_map = {"neutrons": 2, True: 1}
     shape = ("s_type = 20", "projectile", "spin", "mask", "transform", "weight", "factor",
-             "charge_override", "fissile", "origin", "side1", "side2", "extrusion", "attenuation", "azimuth",
+             "charge_override", "fissile", "origin", "side1", "side2", "extrusion", "attenuation", "elevation", "azimuth",
              "dispersion", "energy")
 
 
 
-class Grid(PhitsObject): # I'm not sure how the intensity is supposed to work
-    def __init__(self, mesh, projectile, energy, spin=(0, 0, 0), mask=(None, 1000),
-                 transform=None, weight=1.0, factor=1.0, charge_override=None, fissile=False):
-        pass
-
-class Tetrahedral(PhitsObject): # TODO: tetrahedral geometry
-    def __init__(self, projectile, energy, region,
-                 elevation=1.0, azimuth=None, dispersion=0.0, **kwargs):
-        super().__init__(24, projectile, **kwargs)
-        self.tetreg = region
-        self.dir = elevation
-        self.phi = azimuth
-        self.dom = dispersion
-        self.e0 = energy
+class Grid(PhitsObject):
+    name = "source"
+    required = ["projectile", "energy", "mesh"]
+    positional = ["projectile", "energy", "mesh"]
+    optional = ["spin", "mask", "transform", "weight", "factor", "charge_override", "fissile",
+                "elevation", "azimuth", "dispersion", "e0", "cutoff_behavior"]
+    ident_map = {"spin": ("sx", "sy", "sz"), "mask": ("reg", "ntmax"), "transform": "trcl",
+                 "weight": "wgt", "charge_override": "izst", "fissile": "ispfs",
+                 "elevation": "dir", "azimuth": "phi", "dispersion": "dom", "energy": "e0"}
+    value_map = {"neutrons": 2, True: 1}
+    shape = ("s_type = 22", "projectile", "spin", "mask", "transform", "weight", "factor",
+             "charge_override", "fissile", "mesh", "elevation", "azimuth", "dispersion", "energy")
 
 
-# class SurfaceSource(PhitsObject): # TODO: think about how this can interact with surface numbers, and how
-#                      # cuts will work
-#     def __init__(self, projectile, spin=(0, 0, 0), mask=(None, 1000), transform=idTransform,
-#                  different_charge=None, surface, cuts, elevation, azimuth, dispersion,
-#                  projectile_energy, **kwargs):
-#         super().__init__(20, projectile, spin=spin, mask=mask, transform=transform, charge_override=charge_override, fissile=fissile, **kwargs)
-         
-    
 
-# class Energy: This is actually about the e-type subsection. Need a class perhaps?
+class TetrahedralSource(PhitsObject): # TODO: tetrahedral geometry
+    name = "source"
+    required = ["projectile", "energy"]
+    positional = ["projectile", "energy"]
+    optional = ["spin", "mask", "transform", "weight", "factor", "charge_override", "fissile",
+                "cell", "elevation", "azimuth", "dispersion"]
+    ident_map = {"spin": ("sx", "sy", "sz"), "mask": ("reg", "ntmax"), "transform": "trcl",
+                 "weight": "wgt", "charge_override": "izst", "fissile": "ispfs",
+                 "elevation": "dir", "azimuth": "phi", "dispersion": "dom", "energy": "e0"}
+    value_map = {"neutrons": 2, True: 1}
+    shape = ("s_type = 24", "projectile", "spin", "mask", "transform", "weight", "factor",
+             "charge_override", "fissile", "mesh", "elevation", "azimuth", "dispersion", "energy")
 
-# class Angular: part of a-type subsection defined for each source. Should overload
-# elevation parameter to support a list of a-type options. 
+class SurfaceSource(PhitsObject):
+    name = "source"
+    required = ["projectile", "energy", "surface", "cut"]
+    positional = ["projectile", "energy", "surface", "cut"]
+    optional = ["spin", "mask", "transform", "weight", "factor", "charge_override", "fissile",
+                "elevation", "azimuth", "dispersion"]
+    ident_map = {"spin": ("sx", "sy", "sz"), "mask": ("reg", "ntmax"), "transform": "trcl",
+                 "weight": "wgt", "charge_override": "izst", "fissile": "ispfs",
+                 "surface": "suf"
+                 "elevation": "dir", "azimuth": "phi", "dispersion": "dom", "energy": "e0"}
+    value_map = {"neutrons": 2, True: 1}
+    shape = ("s_type = 26", "projectile", "spin", "mask", "transform", "weight", "factor",
+             "charge_override", "fissile", "surface", "cut", "elevation", "azimuth", "dispersion", "energy")
 
-# class TimeDependent: part of t-type subsections defined for each 
-
-# class Fissile: part of e-type
+class Duct(PhitsObject):
+    name = "source"
+    required = ["wall", "dl0", "dl1", "dl2", "dpf", "drd"]
+    positional = ["wall", "dl0", "dl1", "dl2", "dpf", "drd"]
+    optional = ["dxw", "dyw"]
+    def __init__(self, *args, **kwargs):

@@ -29,6 +29,28 @@ from collections import namedtuple
 
 # args and kwargs here are pulled directly from the arguments to the __init__ of the subclass
 # Subclasses must have class parameters name, required, positional, optional, shape, ident_map, value_map, subobjects, and nones
+
+
+def continue_lines(inp):        # Continue lines that are too long
+    r = ""
+    length = 0
+    last_whitespace = 0
+    for i, char in enumerate(inp):
+        if char.isspace():
+            last_whitespace = i
+        if length < 195:
+            if char == "\n":
+                length = 0
+            r += char
+            length += 1
+        else:
+            r = r[:last_whitespace] + " \\\n     " + r[last_whitespace:i] + char + r[i:]
+            length = 0
+
+    return r
+
+
+
 class PhitsObject:
     required = []
     positional = []
@@ -38,7 +60,8 @@ class PhitsObject:
     subobjects = []
     nones = dict()
     index = None
-    no_hash = {"index", "value_map", "ident_map", "nones", "shape", "subobjects", "required", "positional", "optional"}
+    no_hash = {"index", "value_map", "ident_map", "nones", "shape", "subobjects", "required", "positional", "optional",
+               "group_by", "separator", "prelude", "max_groups"}
     names = {"parameters", "source", "material", "surface", "cell", "transform", "temperature","mat_time_change","magnetic_field",
              "neutron_magnetic_field", "mapped_magnetic_field", "uniform_electromagnetic_field", "mapped_electromagnetic_field",
              "delta_ray", "track_structure", "super_mirror", "elastic_option", "importance", "weight_window", "ww_bias",
@@ -89,37 +112,37 @@ class PhitsObject:
 
 
 
-    def definition(self):
-        def idx(ob):
-            if isinstance(ob, PhitsObject):
-                return str(ob.index)
-            else:
-                return ob
-        def attr_map(ob):
-            if ob in self.ident_map:
-                return self.ident_map[ob]
-            else:
-                return ob
 
-        def val_map(ob):
-            if ob in self.value_map:
-                return self.value_map[ob]
-            elif isinstance(ob, tuple):
-                return " ".join(map(val_map, ob))
-            elif isinstance(ob, Mesh):
-                inp = f"{ob.axis[0]}-type = 1\n"
-                inp += f"n{ob.axis[0]} = {len(ob.bins)-1}\n"
-                for i in ob.bins:
-                    inp += f"{i} "
-                inp += "\n"
-                return inp
-            else:
-                return ob
+        def append(self, tup, app, assignments=True): # Recursion in the case of grid-like lines
+            def idx(ob):
+                if isinstance(ob, PhitsObject):
+                    return str(ob.index)
+                else:
+                    return ob
+            def attr_map(ob):
+                if ob in self.ident_map:
+                    return self.ident_map[ob]
+                else:
+                    return ob
 
+            def val_map(ob):
+                if ob in self.value_map:
+                    return self.value_map[ob]
+                elif isinstance(ob, tuple):
+                    return " ".join(map(val_map, ob))
+                elif isinstance(ob, Mesh):
+                    inp = f"{ob.axis[0]}-type = 1\n"
+                    inp += f"n{ob.axis[0]} = {len(ob.bins)-1}\n"
+                    for i in ob.bins:
+                        inp += f"{i} "
+                        inp += "\n"
+                    return inp
+                else:
+                    return ob
 
-
-        def append(tup, app, assignments=True): # Recursion in the case of grid-like lines
             for attr in tup:
+                if attr[0] == "\\":
+                    app += attr[1:]
                 assign = ""
                 endstr = "\n" if assignments else " "
                 spacing = " "
@@ -155,31 +178,23 @@ class PhitsObject:
                         app += attr
                         app += endstr
 
-
+    def prelude(self):
         inp = []
-        append(self.shape, inp)
-
+        self.append(self.prelude, inp)
         inp = "".join(inp)
 
+        return continue_lines(inp)
 
-        # Continue lines that are too long
-        r = ""
-        length = 0
-        last_whitespace = 0
-        for i, char in enumerate(inp):
-            if char.isspace():
-                last_whitespace = i
-            if length < 195:
-                if char == "\n":
-                    length = 0
-                r += char
-                length += 1
-            else:
-                r = r[:last_whitespace] + " \\\n     " + r[last_whitespace:i] + char + r[i:]
-                length = 0
-
+    def definition(self):
+        inp = []
+        self.append(self.shape, inp)
+        inp = "".join(inp)
         
-        return r
+        return continue_lines(inp)
+
+    def section_title(self):
+        sec_name = self.name.replace("_", " ").title()
+        return f"[{sec_name}]\n"
 
 
 

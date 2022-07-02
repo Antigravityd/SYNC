@@ -7,6 +7,8 @@ class MatTimeChange(PhitsObject):
     positional = ["time", "new"]
     optional = ["old"]
     shape = (("old", "time", "new"))
+    prelude = (("mat", "\\time", "change"))
+    nones = {"time": "non", "change": "non"}
 
 
 
@@ -16,6 +18,11 @@ class DataMax(PhitsObject): # requires special handling in make_input
     positional = ["particles", "nucleus", "threshold"]
     optional = ["material"]
     shape = (("material", "nucleus", "threshold"))
+    prelude = ("particles", (("mat", "\\nucleus", "dmax")))
+    group_by = lambda self: self.particles
+    max_groups = 6
+    separator = lambda self: self.section_title()
+    ident_map = {"particles": "part"}
 
 
 class MatNameColor(PhitsObject):
@@ -24,6 +31,7 @@ class MatNameColor(PhitsObject):
     positional =  ["name", "size", "color"]
     optional = ["material"]
     shape = (("material", "name", "size", "color"))
+    prelude = (("mat", "\\name", "\\size", "\\color"))
 
 
 # TODO: implement the molecular structures as in 5.4.7
@@ -33,12 +41,12 @@ class Material(PhitsObject): # Composition is a list of pairs of (<element name 
     name = "material"
     required = ["composition"]
     positional = ["composition"]
-    optional = ["time_change", "data_max", "mat_name_color", "condensed", "conductive", "electron_step",
+    optional = ["chemical", "time_change", "data_max", "mat_name_color", "condensed", "conductive", "electron_step",
                 "neutron_lib", "proton_lib", "electron_lib", "photon_lib", "thermal_lib"]
     shape = (lambda self: f"MAT[{self.index}]",
-             (lambda self: "".join(map(lambda tup: f"{tup[0]} {tup[1]} ", self.composition))), "condensed",
+             (lambda self: "".join(map(lambda tup: f"{tup[0]} {tup[1]} ", self.composition))), "chemical", "condensed",
              "conductive", "electron_step", "neutron_lib", "proton_lib","electron_lib", "photon_lib",
              lambda self: f"MT{self.index} {self.thermal_lib}" if self.thermal_lib is not None else "")
     subobjects = ["time_change", "data_max", "mat_name_color"]
     ident_map = {"condensed": "GAS", "conductive": "COND", "electron_step": "ESTEP", "neutron_lib": "NLIB",
-                 "proton_lib": "HLIB", "electron_lib": "HLIB", "photon_lib": "PLIB"}
+                 "proton_lib": "HLIB", "electron_lib": "HLIB", "photon_lib": "PLIB", "chemical", "chem"}

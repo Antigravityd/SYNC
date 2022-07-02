@@ -2,25 +2,42 @@ import copy
 from base import *
 
 
+
 def tup_to_def(tup):
-    if tup[1] == "<":
-        return f"{tup[0].index}"
-    elif tup[1] == ">":
-        return f"-{tup[0].index}"
+    r = ""
+    for el in tup:
+        if isinstance(el, PhitsObject):
+            sense = "-" if el.inside is not None else ""
+            r += f"{sense}{el.index} "
+        elif isinstance(el, tuple):
+            r += "(" + tup_to_def(tup) + ") "
+        elif el == "~":
+            r += "#"
+        elif el == "|":
+            r += ": "
+        else:
+            raise ValueError(f"Unrecognized token {el} in cell region definition.")
+
+    return r
 
 
 class Void(PhitsObject):
     name = "cell"
     required = ["regions"]
     positional = ["regions"]
-    optional=["transform", "temperature", "magnetic_field", "neutron_magnetic_field",
-              "mapped_magnetic_field", "uniform_electromagnetic_field", "mapped_electromagnetic_field",
-              "delta_ray", "track_structure", "super_mirror", "elastic_option", "importance",
-              "weight_window", "ww_bias", "forced_collisions", "repeated_collisions", "volume",
-              "reg_name", "counter", "timer", "tally"]
-    shape = (("self", "-1\\"), lambda self: " ".join(map(tup_to_def, self.regions)),
-             "volume\\", "temperature\\", "transform\\")
-    ident_map = {"volume": "VOL", "temperature": "TMP", "transform": "TRCL"}
+    optional = ["transform", "temperature", "magnetic_field", "neutron_magnetic_field",
+                "mapped_magnetic_field", "uniform_electromagnetic_field", "mapped_electromagnetic_field",
+                "delta_ray", "track_structure", "super_mirror", "elastic_option", "importance",
+                "weight_window", "ww_bias", "forced_collisions", "repeated_collisions", "volume",
+                "reg_name", "counter", "timer", "tally", "containing_universe", "lattice", "universe_contents",
+                "tet_format", "tet_file", "tet_scale"]
+    shape = (("self", "-1\\"), lambda self: tup_to_def(self.regions),
+             "volume\\", "temperature\\", "transform\\", "containing_universe\\", "lattice\\",
+             lambda self: "LAT=3 " + (f"tfile={self.tet_file}" if self.tet_format == "tetgen" else f"nfile={self.tet_file}"),
+             "tet_scale\\", lambda self: f"FILL={self.index}" if self.universe_contents else "")
+    ident_map = {"volume": "VOL", "temperature": "TMP", "transform": "TRCL", "containing_universe": "U", "lattice": "LAT",
+                 "tet_scale": "TSFAC"},
+    value_map = {"rectangular": 1, "hexagonal": 2}
     subobjects = ["transform", "temperature", "magnetic_field", "neutron_magnetic_field",
                   "mapped_magnetic_field", "uniform_electromagnetic_field", "mapped_electromagnetic_field",
                   "delta_ray", "track_structure", "super_mirror", "elastic_option", "importance",
@@ -28,64 +45,61 @@ class Void(PhitsObject):
                   "reg_name", "counter", "timer", "tally"]
 
 
-class Cell(PhitsObject): # dictionary of properties and a frozenset of Surface() objects
 
-            # Operations &, |, >>, <<, and ~ are the set operations on the regions. & and | clear properties,
-            # inversion preserves them, and << and >> copy properties of one cell onto another.
-            # The property dictionary has equivalent natural language and array syntaxes (hopefully!),
-            # e.g. {material: "60% water, 40% lead 208"} ↔ {material: [(0.6, "H20"), (0.4, "Pb-208")]}
-            # Every property that applies to a cell ought to be supported, like transform, tallies, etc.
+
+# the regions should be a tuple of surfaces with the logical operators interspersed as strings. Sub-tuples indicate parentheses,
+# and the surfaces are interpreted in the "positive" sense just like in PHITS
+class Cell(PhitsObject):
     name = "cell"
     required = ["regions", "material", "density"]
     positional = ["regions", "material", "density"]
     optional = ["transform", "temperature", "magnetic_field", "neutron_magnetic_field",
-                                   "mapped_magnetic_field", "uniform_electromagnetic_field", "mapped_electromagnetic_field",
-                                   "delta_ray", "track_structure", "super_mirror", "elastic_option", "importance",
-                                   "weight_window", "ww_bias", "forced_collisions", "repeated_collisions", "volume",
-                                   "reg_name", "counter", "timer", "tally"]
-    shape = (("self", "material", "density\\"), lambda self: " ".join(map(tup_to_def, self.regions)),
-                                "volume\\", "temperature\\", "transform\\")
-    ident_map={"volume": "VOL", "temperature": "TMP", "transform": "TRCL"},
-    subobjects=["transform", "temperature", "magnetic_field", "neutron_magnetic_field",
                 "mapped_magnetic_field", "uniform_electromagnetic_field", "mapped_electromagnetic_field",
                 "delta_ray", "track_structure", "super_mirror", "elastic_option", "importance",
                 "weight_window", "ww_bias", "forced_collisions", "repeated_collisions", "volume",
-                "reg_name", "counter", "timer", "tally"]
+                "reg_name", "counter", "timer", "tally", "containing_universe", "lattice", "universe_contents",
+                "tet_format", "tet_file", "tet_scale"]
+    shape = (("self", "material", "density\\"), lambda self: tup_to_def(self.regions),
+             "volume\\", "temperature\\", "transform\\", "containing_universe\\", "lattice\\",
+             lambda self: "LAT=3 " + (f"tfile={self.tet_file}" if self.tet_format == "tetgen" else f"nfile={self.tet_file}"),
+             "tet_scale\\", lambda self: f"FILL={self.index}" if self.universe_contents else "")
+    ident_map = {"volume": "VOL", "temperature": "TMP", "transform": "TRCL", "containing_universe": "U", "lattice": "LAT",
+                 "tet_scale": "TSFAC"},
+    value_map = {"rectangular": 1, "hexagonal": 2}
+    subobjects = ["transform", "temperature", "magnetic_field", "neutron_magnetic_field",
+                  "mapped_magnetic_field", "uniform_electromagnetic_field", "mapped_electromagnetic_field",
+                  "delta_ray", "track_structure", "super_mirror", "elastic_option", "importance",
+                  "weight_window", "ww_bias", "forced_collisions", "repeated_collisions", "volume",
+                  "reg_name", "counter", "timer", "tally"]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.universe_contents:
+            for cell in self.fill:
+                cell.containing_universe = self
 
 
-
-
-
-    # TODO: fix these dunder methods given new required options. They probably ought to set the material to void and density to zero, but I'm not sure those are handled right as materials.
-    def __or__(self, other): # Union of cells; drops properties
-        return Cell(self.regions | other.regions)
+    def __or__(self, other): # Union of cells; adopts leftmost's properties
+        r = copy.deepcopy(self)
+        setattr(r, "regions", self.regions + ("|",) + other.regions)
+        return r
 
     def __inv__(self): # Set complement of cell; new cell has old properties
-        new = []
-        for i in self.regions:
-            assert len(i) == 2, f"Encountered incorrectly-sized entry {i} among regions."
-            if i[1] == "<":
-                other = ">"
-            elif i[1] == ">":
-                other = "<"
-            else:
-                raise ValueError(f"Encountered incorrect orientation {i[1]} among regions.")
-
-            new.append((i[0], other))
-
         r = copy.deepcopy(self)
-        setattr(r, "regions", new)  
+        r.regions = ("~", self.regions)
         return r
 
     def __and__(self, other): # Intersection of cells; drops properties
-        return Cell(self.regions & other.regions)
+        r = copy.deepcopy(self)
+        r.regions = self.regions + other.regions
+        return r
 
     def __rshift__(self, other): # returns other's regions with self's properties
         r = copy.deepcopy(self)
-        setattr(r, "regions", other.regions)
+        r.regions = other.regions
         return r
 
     def __lshift__(self, other): # returns self's region with other's properties
         r = copy.deepcopy(other)
-        setattr(r, "regions", self.regions)
+        r.regions = self.regions
         return r

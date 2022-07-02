@@ -54,32 +54,33 @@ from tco import *
 # and
 
 def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=dict(), cross_sections=[], raw=""): # [Super Mirror], [Elastic Option], [Weight Window], and [WW Bias] aren't supported due to poor documentation.
-    objgraph = nx.DiGraph()
 
-    # TODO: we never actually use the graph, so it should just be a set
-    def add_to_graph(an_obj, graph, prev=None):  # Recursively add subtypes to graph if they represent an "entry" in one of the sections
+    unique = set()
 
-        if isinstance(an_obj, col.Iterable):
+
+    def add_to_set(an_obj, the_set, prev=None):  # Recursively add subtypes to set if they represent an "entry" in one of the sections
+
+        if isinstance(an_obj, tuple):
             for ob in an_obj:
-                add_to_graph(ob, graph)
+                add_to_set(ob, the_set)
         if isinstance(an_obj, PhitsObject):
-            graph.add_node(an_obj)
+            the_set.add(an_obj)
             for name, child in an_obj.__dict__.items():
                 if isinstance(child, PhitsObject):
-                    graph.add_edge(an_obj, child)
+                    the_set.add(child)
                     if child is not prev:
-                        add_to_graph(child, graph, an_obj)
+                        add_to_set(child, the_set, an_obj)
 
 
 
 
 
-    add_to_graph(cells, objgraph)
-    for cell in cells:
+    add_to_set(cells, unique)
+    for cell in cells: # TODO: this ideally should "just work." Every language should have ADTs
         for sur, orient in cell.regions:
-            add_to_graph(sur, objgraph)
-    add_to_graph(sources, objgraph)
-    add_to_graph(tallies, objgraph)
+            add_to_set(sur, unique)
+    add_to_set(sources, unique)
+    add_to_set(tallies, unique)
 
 
 
@@ -137,7 +138,7 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
                     "t-rshow": [],
                     "t-3dshow": []}
 
-    for node in objgraph:
+    for node in unique:
         type_divided[node.name].append(node)
 
 
@@ -148,7 +149,7 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
     representatives = {n: n for n in it.chain.from_iterable(type_divided.values())}
 
     def adjust_subobjects(an_obj, dic, prev=None): # Recursively replace redundant subtypes with the representative in the dict
-        if isinstance(an_obj, col.Iterable):
+        if isinstance(an_obj, tuple):
             for ob in an_obj:
                 adjust_subobjects(ob, dic)
         elif isinstance(an_obj, PhitsObject):
@@ -170,21 +171,37 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
 
 
 
-    # currently, the index isn't updated for copies of objects.
     inp = ""
-    def add_defs(obj_type, title=None, no_title=True, header_line=None):
+    def add_defs(obj_type):
         nonlocal inp
-        if len(type_divided[obj_type]) > 0:
-            if obj_type in type_divided:
-                if title is None:
-                    sec_name = obj_type.replace("_", " ").title()
-                    inp += f"[{sec_name}]\n"
+        if obj_type in type_divided:
+            if type_divided[obj_type]:
+                objs = type_divided[obj_type]
+                if hasattr(objs[0], "group_by"):
+                    grouped = it.groupby(objs, objs[0].group_by)
+                    assert len(grouped) <= objs[0].max_groups, ValueError(f"Too many {obj_type} groups.")
+                    for group in grouped:
+                        rep = group[0]
+                        inp += rep.separator(rep)
+                        if hasattr(rep, "prelude"):
+                            inp += rep.prelude()
+                        for obj in group:
+                            inp += obj.definition()
                 else:
-                    inp += title + "\n"
-                if header_line is not None:
-                    inp += header_line + "\n"
-                for obj in type_divided[obj_type]:
-                    inp += obj.definition()
+                    inp += objs[0].section_title()
+                    if hasattr(objs[0], "prelude"):
+                        inp += objs[0].prelude()
+                    for obj in objs:
+                        inp += obj.definition()
+
+
+
+
+
+
+
+
+
 
 
 

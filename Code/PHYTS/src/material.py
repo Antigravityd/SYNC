@@ -34,7 +34,7 @@ class MatNameColor(PhitsObject):
     prelude = (("mat", "\\name", "\\size", "\\color"))
 
 
-# TODO: implement the molecular structures as in 5.4.7
+
 # TODO: how the libraries work isn't well-documented. Is there a single library set for the whole material, or
 # does one set a library after each element of the compositon? Can the thermal neutron library be set anywhere?
 class Material(PhitsObject): # Composition is a list of pairs of (<element name string>, <ratio>) e.g. ("8Li", 0.5)

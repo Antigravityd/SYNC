@@ -197,14 +197,6 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
 
 
 
-
-
-
-
-
-
-
-
     inp += "[Title]\n"
     inp += title + '\n'
 

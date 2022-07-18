@@ -1,0 +1,185 @@
+:PROPERTIES:
+:ID:       7f9d691e-c784-4f5c-a17b-62ff059c1945
+:END:
+#+title: Epistemology
+#+filetags: Musing
+
+* Reality
+
+Reality is (the graph of) a relation $E: A\to S$ where $A$ is some subset of the class of abstractions and $S$ is the class of sensations (liberally interpreted, e.g. "the reading of a pressure sensor" $\in S$ ).
+
+The relation is called "explains" or "describes" and it cannot be a function: "running over a skunk" can explain both the parietal sensation of a bump and a correlated olfactory sensation.
+
+Such a definition accurately captures the fact that sensations are primitive (acknowledging the contentions of Berkelian immaterialism), while simultaneously recognizing that sensations require interpretation.
+
+Reality is individual, but transmissible.
+
+* Scholarship
+
+/Scholarship/ or /philosophy/ is the collective process for the development of /the/ reality: it facilitates the synchronization of reality between individuals and provisions the modification of the relation to encompass more sensations and better-fitting abstractions.
+
+For efficiency's sake, a degree of specialization for those engaged in scholarship is necessary. Scholars (people engaged in scholarship) have naturally sorted into a system of fuzzily-bounded "fields," "disciplines," or "subjects" according to the
+
+Acts of scholarship are divided primarily along three dimensions: which of the three components of the relation it studies, whether its abstractions involve the /Ego/, and the diffuseness of the marginal utility it provides.
+
+Acts of scholarship concerned primarily with the domain of reality, abstractions themselves, are /formal/, /a priori/ or /abstract/; those concerned with the codomain, generation of sensation information, are /empirical/, /experiential/, or /experimental/; those concerned with the mapping itself (but not developing either directly) are /theoretical/. Most fields engage in activities of all three types.
+
+Scholarship involving the /Ego/ is /human/ or /social/; that not involving the /Ego/ is /scientific/ or /natural/.
+
+Scholarship with more concentrated marginal utility (that is useful for a comparatively smaller number of people or purposes) is /applied/, contrasted with /pure/ scholarship. It is important to note that applied scholarship is the basis for the utility of pure scholarship: it is application that transforms an academic enterprise into a humanitarian one.
+
+There are general principles that
+
+
+* Science
+
+/Science/, or /natural science/, or, in the more distant past, /natural philosophy/, is the study of the non-human aspects of reality.
+
+Engineering is the application of science to the development of technology (objects constructed to serve purposes); engineering is omitted below.
+
+Science is further divided into two categories:
+
+** Life Sciences
+
+The science of life, often defined as "open systems that maintain homeostasis, are composed of cells, have a life cycle, undergo metabolism, can grow, adapt to their environment, respond to stimuli, reproduce and evolve:"
+
+*** Biology
+
+The study of life in general
+
+**** Natural History
+
+The study of organisms across time
+
+**** Botany
+
+The study of plants
+
+**** Zoology
+
+The study of animals
+
+**** Anatomy
+
+The study of the human body's structure and form
+
+**** Physiology
+
+The study of the normal function of living things
+
+**** Microbiology
+
+The study of organisms consisting of a small number of cells
+
+**** Medicine
+
+The applied study of healing
+
+**** Agriculture
+
+The applied study of cultivation
+
+
+** Physical Sciences
+
+Those sciences not directly concerning life:
+
+*** Physics
+
+The study of motion
+
+*** Chemistry
+
+The study of matter in general
+
+*** Geology
+
+The study of rocks and things made of rocks.
+("Rock" is any non-synthesized inorganic, solid substance)
+
+*** Astronomy
+
+The study of objects outside the Earth's atmosphere
+
+*** Mathematics
+
+The study of nonhuman abstractions (including computer science and statistics).
+
+
+* Humanities
+
+The humanities study the human aspects of reality: those for which an /Ego/ is an indispensable abstraction.
+
+A common descriptor of these fields is a "social science;" this appears to indicate a comparatively greater emphasis on empirical methods than other subjects in the domain.
+
+** Logic
+
+The formal study of the foundations of reason and argument as implicit in human thought and speech.
+
+I classify logic as a humanitarian enterprise because it's concerned primarily with the rationality of the human experience, and performs only enough mathematical extension of the abstractions in order to study them. More complicated logic, i.e. Gödel incompleteness or computability theory, is what I would classify as "mathematical logic," since after the extraction of axioms and establishment of basic formal conventions the abstraction of an /Ego/ is no longer necessary to develop formal results.
+
+** Linguistics
+
+The study of language in general.
+
+** Literature
+
+The study of language in particular: the emphasis is on particular "works" (uses of language to a particular end), especially on their comparison and interpretation.
+
+** Religion
+
+The study of human belief.
+
+** History
+
+The study of mankind (the collection of all /Egos)/ across time; alternatively, the study of specific human actions.
+
+** Geography
+
+The study of mankind across space
+
+** Economics/Praxeology
+
+The study of purposeful human action in general.
+
+** Sociology
+
+The study of human collectives.
+
+** Political Science
+
+The general study of government.
+
+** Law
+
+The specific study of government.
+
+** Aesthetics
+
+The general study of creative expression.
+
+** Music & Fine Art
+
+The applied study of creative expression.
+
+** Education
+
+The applied study of the transfer of knowledge between humans.
+
+** Military Science
+
+The study of human conflict.
+
+** Ethics
+
+The study of purposeful human action in particular, especially in relation to morality.
+
+** Epistemology
+
+The study of human knowledge itself (what this is!).
+
+** Metaphysics
+
+The study of the general structure of reality.
+
+Modern physics is trying its damn best to settle questions here.

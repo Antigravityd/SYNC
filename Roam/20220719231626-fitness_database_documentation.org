@@ -1,0 +1,22 @@
+:PROPERTIES:
+:ID:       187af45f-0c0c-43ce-b7d6-79d3366c807d
+:END:
+#+title: Fitness Database Documentation
+* Fitness Databases
+
+We've got longitudinal health data we'd like to collect. Important:
+
+- Sleeping habits
+- Eating habits
+- Lifting habits
+- Any biological measurements (weight, TDEE, BF%, etc.)
+
+These are all individual tables.
+
+In =SLEEP=, each row has three columns: the start of the sleep period (DATETIME), the end of the sleep period (DATETIME), and a wakefulness rating (1 to 5) on how I feel immediately after waking up.
+
+In =DIET=, each row represents an ingredient (any component for which detailed nutrition information is available) by its name, the date and time of ingestion, the nutritional quantities (with statistical information), the number of servings consumed (with statistical information), and a notes section to explain any potential anomalies (Christmas with family, road trip, &c).
+
+In =LIFTS=, each row represents an excercise by its name, the date and time it was performed, which day (push, pull, or legs [or different for another routine]) it was performed during, its order in the routine,  the number of sets, the number of sets per rep, the starting weight, the rep at which the lift was failed (null if successful; e.g. failure at rep 5 of set 2 in a 3x10 lift would be a failure rep of 15), a quality rating (1 to 5), and any additional notes for reference the next week or later review.
+
+In =MEASUREMENTS=, each row represents a measurement by its type (e.g. "body weight"), its value, the date and time it was performed, and an estimate of the absolute uncertainty.

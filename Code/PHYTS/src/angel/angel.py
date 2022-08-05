@@ -83,6 +83,7 @@ class Arrow():
     thickness: int
     line: bool
 
+@dataclass
 class HollowArrow():
     start_x: float
     start_y: float
@@ -148,6 +149,7 @@ class Ribbon():
     line_color: str
     inside_color: str
     shadow_color: str
+    rotate: float
     thickness: int
 
 @dataclass
@@ -214,7 +216,7 @@ class ContourPlot():
     ymin: float
     ymax: float
     ywidth: float
-    data: dict # maps (x, y) → height
+    data: dict
 
 @dataclass
 class ClusterPlot():
@@ -224,7 +226,7 @@ class ClusterPlot():
     ymin: float
     ymax: float
     ywidth: float
-    data: dict # maps (x, y) → height
+    data: dict
 
 @dataclass
 class ColorClusterPlot():
@@ -234,7 +236,7 @@ class ColorClusterPlot():
     ymin: float
     ymax: float
     ywidth: float
-    data: dict # maps (x, y) → height
+    data: dict
 
 @dataclass
 class Bitmap():
@@ -246,17 +248,16 @@ class Bitmap():
     bitmap_color: str
     path_color: str
     width: float
-    height:float
+    height: float
     clip: list[tuple[float, float]]
     path: list[tuple[float, float]]
     bitmap: list[tuple[float, float, int, int, int]] # x, y, color_component1, color_component2, color_component3
 
 
+
 blanks = many(one_of(" \t"))
 EOL = optional(regex("\n"))
 
-def control(name):
-    return regex(f"^\\s*{name}:.*$", flags=re.IGNORECASE)
 
 comment = EOL >> string("#") >> many(none_of("\n")) < EOL
 
@@ -356,18 +357,68 @@ def transform():
 
 
 @generate
+def hsb():
+    yield one_of("Cc") +  string("[")
+    hue = yield blanks + one_of("Hh") + string("(") >> number << string(")")
+    sat = yield optional(blanks + one_of("Ss") + string("(") >> number << string(")"))
+    bright = yield optional(blanks + one_of("Bb") + string("(") >> number << string(")"))
+    yield blanks + string("]")
+
+    return {"hue": hue, "sat": sat, "bright": bright}
+
+@generate
+def color():
+
+    color_names = ["darkred", "red", "pink", "pastelpink", "orange", "brown", "darkbrown", "pastelbrown", "orangeyellow", "camel",
+                   "pastelyellow", "yellow", "pastelgreen", "yellowgreen", "green", "darkgreen", "mossgreen", "bluegreen", "pastelcyan",
+                   "pastelblue", "cyan", "cyanblue", "blue", "violet", "purple", "magenta", "winered", "pastelmagenta", "pastelpurple",
+                   "pastelviolet"]
+
+    namedcolor = regex("|".join(color_names), re.IGNORECASE)
+
+    name = one_of("Cc") + string("[") + blanks >> namedcolor << blanks + string("]")
+
+    color =  yield regex("[WOKJFE]", re.IGNORECASE) | name ^ hsb | regex("[RYGCB]{1,3}", re.IGNORECASE)
+
+    return color
+
+def mod_color(prefix):
+    @generate
+    def int_color():
+        color_names = ["darkred", "red", "pink", "pastelpink", "orange", "brown", "darkbrown", "pastelbrown", "orangeyellow", "camel",
+                       "pastelyellow", "yellow", "pastelgreen", "yellowgreen", "green", "darkgreen", "mossgreen", "bluegreen", "pastelcyan",
+                       "pastelblue", "cyan", "cyanblue", "blue", "violet", "purple", "magenta", "winered", "pastelmagenta", "pastelpurple",
+                       "pastelviolet"]
+
+        namedcolor = regex("|".join(color_names), re.IGNORECASE)
+
+        name = regex(prefix, re.IGNORECASE) + string("(") + blanks >> namedcolor << blanks + string(")")
+
+        color =  yield regex("[WOKJFE]", re.IGNORECASE) | name ^ hsb | regex("[RYGCB]{1,3}", re.IGNORECASE)
+
+        return color
+    return int_color
+
+
+@generate
 def line_params():
     yield string(",")
-    # These may be freely orderable, which means parsing doesn't work. You'd just check if a substring is in line_params
-    line_type = yield optional(one_of("NLMDUPQVInlmdupqvi") | string("II") | string("ii"))
-    line_thickness = yield regex("Z{,3}", re.IGNORECASE) | regex("T{,3}", re.IGNORECASE)
-    symbol = yield optional(many(digit()))
-    symbol_size = yield regex("X{,3}", re.IGNORECASE) | regex("A{,3}", re.IGNORECASE)
-    spline = yield optional(one_of("Ss") + optional(string("[") >> many(digit()) << string("]")))
-    # symbol_inside_color = yield optional(string("(") >> many(letter()) << string(")"))
-    histogram = yield regex("H{,3}", re.IGNORECASE)
-    color = yield regex("[WOKJFE]", re.IGNORECASE) | regex("[RGB]{,3}", re.IGNORECASE) \
-        | one_of("Cc") + string("[") + one_of("Hh")
+    line_type = one_of("NLMDUPQVInlmdupqvi") | string("II") | string("ii")
+    line_thickness =  regex("Z{1,3}", re.IGNORECASE) | regex("T{1,3}", re.IGNORECASE)
+
+
+
+    symbol = many1(digit()) + optional(string("[") >> color << string("]"))
+    symbol_size = regex("X{1,3}", re.IGNORECASE) | regex("A{1,3}", re.IGNORECASE)
+    spline = one_of("Ss") + optional(string("[") >> many(digit()) << string("]"))
+    histogram = regex("H{1,3}", re.IGNORECASE)
+
+
+    params = yield many(line_type | line_thickness | color | symbol | symbol_size | spline | histogram)
+            
+
+    return params
+
 
 @generate
 def legend_title():
@@ -397,25 +448,24 @@ def normal_h():
     deperr = regex("D", re.IGNORECASE) + optional(digit()) + optional(one_of("+-")) + optional(col_function | transform)
     skip = regex("N", re.IGNORECASE) + optional(indvar | depvar | inderr | deperr)
     column = indvar | depvar | inderr | deperr | skip
-    schema = yield sepBy(column, blanks)
+    schema = yield sepBy(column, many1(one_of(" \t")))
     schema = list(map(lambda tup: list(collapse(tup)), schema))
     dat = yield data
     values = list(zip(*(dat))) # list of column lists
 
 
     contents = []
-    idx = 0
     xidx = match_index(schema, lambda it: re.match(it[0], "X", re.IGNORECASE))
 
-    for col in schema:
+    for idx, col in enumerate(schema):
         if col[0] == "Y":
             contents.append(Series(name="".join([i for i in col[0:3] if i]),
                                    skipped=False,
                                    transform=col[3],
                                    fit=col[4],
-                                   line_params=col[5],
-                                   legend_entry=col[6],
-                                   data=zip(values[xidx], values[idx])))
+                                   line_params=col[6:],
+                                   legend_entry=col[5],
+                                   data=list(zip(values[xidx], values[idx]))))
         elif col[0] == "D":
             contents.append(Series(name="".join([i for i in col[0:3] if i]),
                                    skipped=False,
@@ -423,9 +473,9 @@ def normal_h():
                                    fit=None,
                                    line_params=None,
                                    legend_entry=None,
-                                   data=zip(values[xidx], values[idx])))
+                                   data=list(zip(values[xidx], values[idx]))))
 
-        idx += 1
+
 
 
     return Histogram(title="".join(graph_title), xtitle=xtitle, ytitle=ytitle, contents=contents)
@@ -443,7 +493,8 @@ def self_running_h():
 
 @generate
 def header():
-    which = yield regex("Y", re.IGNORECASE) | regex("X", re.IGNORECASE)
+    yield blanks
+    which = yield one_of("Xx") | one_of("Yy")
     start = yield blanks + string("=") + blanks >> number
     end = yield blanks + regex("TO", re.IGNORECASE) + blanks >> number
     sep = yield blanks + regex("BY", re.IGNORECASE) + blanks >> number << blanks + string(";") + many(EOL)
@@ -451,6 +502,10 @@ def header():
 
 @generate
 def contour():
+    graph_title = yield optional(title)
+    xtitle = yield optional(x)
+    ytitle = yield optional(y)
+
     yield EOL + blanks + regex("H2:", re.IGNORECASE) + blanks
 
 
@@ -464,10 +519,14 @@ def contour():
                            data=the_data)
     elif first[0] in "Yy":
         return ContourPlot(xmin=second[1], xmax=second[2], xwidth=second[3], ymin=first[1], ymax=first[2], ywidth=first[3],
-                           data=data)
+                           data=the_data)
 
 @generate
 def cluster():
+    graph_title = yield optional(title)
+    xtitle = yield optional(x)
+    ytitle = yield optional(y)
+
     yield EOL + blanks + regex("HD:", re.IGNORECASE) + blanks
 
     first = yield header
@@ -484,6 +543,10 @@ def cluster():
 
 @generate
 def color_cluster():
+    graph_title = yield optional(title)
+    xtitle = yield optional(x)
+    ytitle = yield optional(y)
+
     yield EOL + blanks + regex("HC:", re.IGNORECASE) + blanks
 
     first = yield header
@@ -504,79 +567,81 @@ def bitmap():
 @generate
 def comment():
     text = yield EOL + blanks + regex("W:", re.IGNORECASE) >> many(none_of("/")) << string("/")
-    x = yield blanks + regex("X(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    y = yield blanks + regex("Y(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    x_justify = yield blanks + regex("IX(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    y_justify = yield blanks + regex("IY(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    factor = yield blanks + regex("S(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    color = yield blanks + regex("C(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    rotate = yield blanks + regex("A(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    font = yield blanks + regex("F(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    x = yield blanks + regex("X\(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    y = yield blanks + regex("Y\(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    x_justify = yield optional(blanks + regex("IX\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    y_justify = yield optional(blanks + regex("IY\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    factor = yield optional(blanks + regex("S\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    col = yield optional(blanks >> mod_color("C"))
+    rotate = yield optional(blanks + regex("A\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    font = yield optional(blanks + regex("F\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
 
-    return Comment(comment=text, x=x, y=y, x_justify=x_justify, y_justify=y_justify, scale=factor, color=color, rotate=rotate, font=font)
+    return Comment(comment="".join(text), x=x, y=y, x_justify=x_justify, y_justify=y_justify, scale=factor, color=col, rotate=rotate,
+                   font=font)
 
 @generate
 def multiline_comment():
     yield EOL + blanks + regex("WT:", re.IGNORECASE)
-    x = yield blanks + regex("X(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    y = yield blanks + regex("Y(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    x_justify = yield blanks + regex("IX(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    y_justify = yield blanks + regex("IY(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    factor = yield blanks + regex("S(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    color = yield blanks + regex("C(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")")
-    rotate = yield blanks + regex("A(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    font = yield blanks + regex("F(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")")
-    line_spacing = yield blanks + regex("B(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    boxname = yield blanks + regex("BOX(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")")
-    box_background = yield blanks + regex("CB(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")")
-    box_frame = yield blanks + regex("CL(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")")
-    box_shadow = yield blanks + regex("CS(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")")
+    x = yield blanks + regex("X\(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    y = yield blanks + regex("Y\(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    x_justify = yield optional(blanks + regex("IX\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    y_justify = yield optional(blanks + regex("IY\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    factor = yield optional(blanks + regex("S\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    col = yield optional(blanks >> mod_color("C"))
+    rotate = yield optional(blanks + regex("A\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    font = yield optional(blanks + regex("F\(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")"))
+    line_spacing = yield optional(blanks + regex("B\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    boxname = yield optional(blanks + regex("BOX\(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")"))
+    box_background = yield optional(blanks + regex("CB\(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")"))
+    box_frame = yield optional(blanks + regex("CL\(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")"))
+    box_shadow = yield optional(blanks + regex("CS\(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")"))
 
-    not_end = EOL + regex("(?!E:\n)", re.IGNORECASE)
-    text = yield many(not_end) << regex("E:", re.IGNORECASE)
+    not_end = EOL >> regex("(?s).+?(?=E:\n)", re.IGNORECASE)
+    text = yield not_end << regex("E:", re.IGNORECASE)
 
-    return MultilineComment(comment=text, x=x, y=y, x_justify=x_justify, y_justify=y_justify, scale=factor, color=color,
+    return MultilineComment(comment="".join(text), x=x, y=y, x_justify=x_justify, y_justify=y_justify, scale=factor, color=col,
                             rotate=rotate, font=font, line_spacing=line_spacing, boxname=boxname,
                             box_bgd_color=box_background, box_frame_color=box_frame, box_shadow_color=box_shadow)
 
 @generate
 def tabular_comment():
     yield EOL + blanks + regex("WTAB:", re.IGNORECASE)
-    tab = yield blanks + regex("TAB{", re.IGNORECASE) + blanks >> number << blanks + string("}")
-    x = yield blanks + regex("X(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    y = yield blanks + regex("Y(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    x_justify = yield blanks + regex("IX(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    y_justify = yield blanks + regex("IY(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    factor = yield blanks + regex("S(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    color = yield blanks + regex("C(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")")
-    rotate = yield blanks + regex("A(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    font = yield blanks + regex("F(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")")
-    box_background = yield blanks + regex("CB(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")")
-    box_frame = yield blanks + regex("CL(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")")
+    tab = yield blanks + regex("TAB\{", re.IGNORECASE) + blanks >> number << blanks + string("}")
+    x = yield blanks + regex("X\(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    y = yield blanks + regex("Y\(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    x_justify = yield optional(blanks + regex("IX\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    y_justify = yield optional(blanks + regex("IY\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    factor = yield optional(blanks + regex("S\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    col = yield optional(blanks >> mod_color("C"))
+    rotate = yield optional(blanks + regex("A\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    font = yield optional(blanks + regex("F\(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")"))
+    box_background = yield optional(blanks + regex("CB\(", re.IGNORECASE) + blanks >> color << blanks + string(")"))
+    box_frame = yield optional(blanks + regex("CL\(", re.IGNORECASE) + blanks >> color << blanks + string(")"))
 
-    not_end = EOL + regex("(?!E:\n)", re.IGNORECASE)
-    text = yield many(not_end) << regex("E:", re.IGNORECASE)
+    not_end = EOL >> regex("(?s).+?(?=E:\n)", re.IGNORECASE)
+    text = yield many(not_end) << optional(regex("E:", re.IGNORECASE))
 
     return TabularComment(comment=text, column_count=tab, x=x, y=y, x_justify=x_justify, y_justify=y_justify,
-                          scale=factor, color=color, rotate=rotate, font=font, bgd_color=box_background,
+                          scale=factor, color=col, rotate=rotate, font=font, bgd_color=box_background,
                           frame_color=box_frame)
 
 @generate
 def comment_arrow():
-    text = yield EOL + blanks + regex("AW:", re.IGNORECASE) >> many(none_of("/")) << string("/")
-    x = yield blanks + regex("X(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    y = yield blanks + regex("Y(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    end_x = yield blanks + regex("AX(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    end_y = yield blanks + regex("AY(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    position = yield blanks >> regex("IR", re.IGNORECASE) | regex("IL", re.IGNORECASE)
-    factor = yield blanks + regex("S(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    color = yield blanks + regex("C(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")")
-    rotate = yield blanks + regex("A(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    thickness = yield blanks >> many1(regex("T", re.IGNORECASE) | regex("Z", re.IGNORECASE)) << blanks
 
-    return CommentArrow(comment=text, start_x=x, start_y=y, end_x=end_x, end_y=end_y, justify=position,
-                        scale=float(factor), color=color, open_angle=rotate,
-                        thickness=len(thickness)*(-1 if thickness[0] in "Zz" else 1))
+    text = yield EOL + blanks + regex("AW:", re.IGNORECASE) >> many(none_of("/")) << string("/")
+    x = yield blanks + regex("X\(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    y = yield blanks + regex("Y\(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    end_x = yield blanks + regex("AX\(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    end_y = yield blanks + regex("AY\(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    position = yield optional(blanks >> regex("IR", re.IGNORECASE) | regex("IL", re.IGNORECASE))
+    factor = yield optional(blanks + regex("S\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    col = yield optional(blanks >> mod_color("C"))
+    rotate = yield optional(blanks + regex("A\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    thickness = yield optional(blanks >> regex("T{1,3}", re.IGNORECASE) | regex("Z{1,3}", re.IGNORECASE) << blanks)
+
+    return CommentArrow(comment="".join(text), start_x=x, start_y=y, end_x=end_x, end_y=end_y, justify=position,
+                        scale=factor, color=col, open_angle=rotate,
+                        thickness=thickness)
 
 @generate
 def message():
@@ -588,148 +653,150 @@ def message():
 @generate
 def arrow():
     yield EOL + blanks + regex("A:", re.IGNORECASE)
-    x = yield blanks + regex("X(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    y = yield blanks + regex("Y(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    end_x = yield blanks + regex("AX(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    end_y = yield blanks + regex("AY(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    color = yield blanks + regex("C(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")")
-    rotate = yield blanks + regex("A(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    x = yield blanks + regex("X\(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    y = yield blanks + regex("Y\(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    end_x = yield blanks + regex("AX\(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    end_y = yield blanks + regex("AY\(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    col = yield optional(blanks >> mod_color("C"))
+    rotate = yield optional(blanks + regex("A\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
     draw = blanks >> optional(one_of("Nn"))
-    thickness = yield blanks >> many(regex("T", re.IGNORECASE) | regex("Z", re.IGNORECASE)) << blanks
+    thickness = yield optional(blanks >> regex("T{1,3}", re.IGNORECASE) | regex("Z{1,3}", re.IGNORECASE) << blanks)
 
-    return Arrow(start_x=x, start_y=y, end_x=end_x, end_y=end_y, color=color, open_angle=rotate,
-                 thickness=len(thickness)*(-1 if thickness[0] in "Zz" else 1), line=bool(draw))
+    return Arrow(start_x=x, start_y=y, end_x=end_x, end_y=end_y, color=col, open_angle=rotate,
+                 thickness=thickness, line=bool(draw))
 
 @generate
 def hollow_arrow():
     yield EOL + blanks + regex("AB:", re.IGNORECASE)
-    x = yield blanks + regex("X(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    y = yield blanks + regex("Y(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    end_x = yield blanks + regex("AX(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    end_y = yield blanks + regex("AY(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    color = yield blanks + regex("C(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")")
-    inside_color = yield blanks + regex("CB(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")")
-    rotate = yield blanks + regex("A(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    x = yield blanks + regex("X\(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    y = yield blanks + regex("Y\(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    end_x = yield blanks + regex("AX\(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    end_y = yield blanks + regex("AY\(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    col = yield optional(blanks >> mod_color("C"))
+    inside_color = yield optional(blanks + regex("CB\(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")"))
+    rotate = yield optional(blanks + regex("A\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
     draw = blanks >> optional(one_of("Nn"))
-    thickness = yield blanks >> many(regex("T", re.IGNORECASE) | regex("Z", re.IGNORECASE)) << blanks
+    thickness = yield optional(blanks >> many(regex("T", re.IGNORECASE) | regex("Z", re.IGNORECASE)) << blanks)
 
-    return HollowArrow(start_x=x, start_y=y, end_x=end_x, end_y=end_y, line_color=color, inside_color=inside_color,
-                       open_angle=rotate, thickness=len(thickness)*(-1 if thickness[0] in "Zz" else 1), line=bool(draw))
+    return HollowArrow(start_x=x, start_y=y, end_x=end_x, end_y=end_y, line_color=col, inside_color=inside_color,
+                       open_angle=rotate, thickness=thickness, line=bool(draw))
 
 @generate
 def polygon():
     yield EOL + blanks + regex("POLG:", re.IGNORECASE)
-    x = yield blanks + regex("X(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    y = yield blanks + regex("Y(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    factor = yield blanks + regex("S(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    x_factor = yield blanks + regex("SX(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    y_factor = yield blanks + regex("SY(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    line_color = yield blanks + regex("CL(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")")
-    inside_color = yield blanks + regex("CB(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")")
-    rotate = yield blanks + regex("A(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    sides = yield blanks + regex("PL(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    x = yield blanks + regex("X\(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    y = yield blanks + regex("Y\(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    factor = yield optional(blanks + regex("S\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    x_factor = yield optional(blanks + regex("SX\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    y_factor = yield optional(blanks + regex("SY\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    line_color = yield optional(blanks >> mod_color("CL") )
+    inside_color = yield optional(blanks >> mod_color("CB") )
+    rotate = yield optional(blanks + regex("A\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    sides = yield optional(blanks + regex("PL\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
 
     if factor:
         x_factor = y_factor = factor
-    return Polygon(center_x=float(x), center_y=float(y), x_scale=float(x_factor), y_scale=float(y_factor),
-                   line_color=line_color, inside_color=inside_color, rotate=float(rotate), side_count=int(sides))
+    return Polygon(center_x=x, center_y=y, x_scale=(x_factor), y_scale=(y_factor),
+                   line_color=line_color, inside_color=inside_color, rotate=(rotate), side_count=(sides))
 
 @generate
 def box():
     yield EOL + blanks + regex("BOX:", re.IGNORECASE)
-    x = yield blanks + regex("X(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    y = yield blanks + regex("Y(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    factor = yield blanks + regex("S(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    x_factor = yield blanks + regex("SX(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    y_factor = yield blanks + regex("SY(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    line_color = yield blanks + regex("CL(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")")
-    inside_color = yield blanks + regex("CB(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")")
-    shadow_color = yield blanks + regex("CS(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")")
-    rotate = yield blanks + regex("A(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    typ = yield blanks + regex("BOX(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")")
+    x = yield blanks + regex("X\(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    y = yield blanks + regex("Y\(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    factor = yield optional(blanks + regex("S\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    x_factor = yield optional(blanks + regex("SX\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    y_factor = yield optional(blanks + regex("SY\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    line_color = yield optional(blanks >> mod_color("CL"))
+    inside_color = yield optional(blanks >> mod_color("CB"))
+    shadow_color = yield optional(blanks >> mod_color("CS"))
+    rotate = yield optional(blanks + regex("A\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    typ = yield optional(blanks + regex("BOX\(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")"))
 
     if factor:
         x_factor = y_factor = factor
-    return Box(center_x=float(x), center_y=float(y), x_scale=float(x_factor), y_scale=float(y_factor),line_color=line_color,
-               inside_color=inside_color, shadow_color=shadow_color, rotate=float(rotate), box_type=typ)
+    return Box(center_x=(x), center_y=(y), x_scale=(x_factor), y_scale=(y_factor), line_color=line_color,
+               inside_color=inside_color, shadow_color=shadow_color, rotate=(rotate), box_type=typ)
 
 
 @generate
 def ribbon():
     yield EOL + blanks + regex("RIBN:", re.IGNORECASE)
-    x = yield blanks + regex("X(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    y = yield blanks + regex("Y(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    factor = yield blanks + regex("S(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    x_factor = yield blanks + regex("SX(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    y_factor = yield blanks + regex("SY(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    line_color = yield blanks + regex("CL(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")")
-    inside_color = yield blanks + regex("CB(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")")
-    shadow_color = yield blanks + regex("CS(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")")
-    rotate = yield blanks + regex("A(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    thickness = yield blanks >> many(regex("T", re.IGNORECASE) | regex("Z", re.IGNORECASE)) << blanks
+    x = yield blanks + regex("X\(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    y = yield blanks + regex("Y\(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    factor = yield optional(blanks + regex("S\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    x_factor = yield optional(blanks + regex("SX\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    y_factor = yield optional(blanks + regex("SY\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    line_color = yield optional(blanks >> mod_color("CL"))
+    inside_color = yield optional(blanks >> mod_color("CB"))
+    shadow_color = yield optional(blanks >> mod_color("CS"))
+    rotate = yield optional(blanks + regex("A\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    thickness = yield optional(blanks >> many(regex("T", re.IGNORECASE) | regex("Z", re.IGNORECASE)) << blanks)
 
     if factor:
         x_factor = y_factor = factor
-    return Ribbon(center_x=float(x), center_y=float(y), x_scale=float(x_factor), y_scale=float(y_factor),
-                  line_color=line_color, inside_color=inside_color, shadow_color=shadow_color, rotate=float(rotate),
-                  thickness=len(thickness)*(-1 if thickness[0] in "Zz" else 1))
+    return Ribbon(center_x=(x), center_y=(y), x_scale=(x_factor), y_scale=(y_factor),
+                  line_color=line_color, inside_color=inside_color, shadow_color=shadow_color, rotate=(rotate),
+                  thickness=thickness)
 
 
 @generate
 def star():
     yield EOL + blanks + regex("STAR:", re.IGNORECASE)
-    x = yield blanks + regex("X(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    y = yield blanks + regex("Y(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    factor = yield blanks + regex("S(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    x_factor = yield blanks + regex("SX(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    y_factor = yield blanks + regex("SY(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    line_color = yield blanks + regex("CL(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")")
-    inside_color = yield blanks + regex("CB(", re.IGNORECASE) + blanks >> many(none_of(")")) << blanks + string(")")
-    rotate = yield blanks + regex("A(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    thickness = yield blanks >> many(regex("T", re.IGNORECASE) | regex("Z", re.IGNORECASE)) << blanks
-    sides = yield blanks + regex("PL(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    unevenness = yield blanks + regex("V(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    x = yield blanks + regex("X\(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    y = yield blanks + regex("Y\(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    factor = yield optional(blanks + regex("S\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    x_factor = yield optional(blanks + regex("SX\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    y_factor = yield optional(blanks + regex("SY\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    line_color = yield optional(blanks >> mod_color("CL"))
+    inside_color = yield optional(blanks >> mod_color("CB"))
+    rotate = yield optional(blanks + regex("A\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    thickness = yield optional(blanks >> many(regex("T", re.IGNORECASE) | regex("Z", re.IGNORECASE)) << blanks)
+    sides = yield optional(blanks + regex("PL\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
+    unevenness = yield optional(blanks + regex("V\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
 
 
     if factor:
         x_factor = y_factor = factor
-    return Star(center_x=float(x), center_y=float(y), x_scale=float(x_factor), y_scale=float(y_factor),
-                line_color=line_color, inside_color=inside_color, rotate=float(rotate),
-                thickness=len(thickness)*(-1 if thickness[0] in "Zz" else 1), point_count=int(sides),
-                unevenness=int(unevenness))
+    return Star(center_x=(x), center_y=(y), x_scale=(x_factor), y_scale=(y_factor),
+                line_color=line_color, inside_color=inside_color, rotate=(rotate),
+                thickness=thickness, point_count=(sides),
+                unevenness=(unevenness))
 
 
 @generate
 def variable():
     var = yield times(letter(), 4, 4)
     val = yield string("(") + blanks >> many(none_of(")")) << string(")")
-    return (var, val)
-
-parameters = EOL + blanks + regex("P:", re.IGNORECASE) >> many(blanks >> variable)
-
-
-
-
-
-
+    return ("".join(var), "".join(val))
 
 
 @generate
-def page():
-    pass
+def parameter():
+    parameter = yield EOL + blanks + regex("P:", re.IGNORECASE) >> many(blanks >> variable)
+    return {k: v for k, v in parameter}
 
 
+section = set_stmt | title | x | y | normal_h | self_running_h | contour | cluster | color_cluster | bitmap | comment \
+    | multiline_comment | tabular_comment | comment_arrow | message | arrow | hollow_arrow | polygon | box | ribbon | star \
+    | parameter
 
 @generate
 def multigraph():
-    pass
+    yield regex("Z:", re.IGNORECASE)
+    x = yield blanks + regex("XORG\(", re.IGNORECASE) + blanks >> number << blanks + string(")")
+    y = yield blanks + regex("YORG\(", re.IGNORECASE) + blanks >> number << blanks + string(")") + EOL
+    contents = yield section
+    return contents
+
+page = regex("NEWPAGE:", re.IGNORECASE) >> many(section | multigraph) << optional(regex("QP:", re.IGNORECASE) \
+                                                                                  | regex("SKIPPAGE:", re.IGNORECASE))
+
 
 
 # The input definitely needs line-continuations reversed and INFL: declarations expanded, and possibly comments and blank
 # lines stripped, and input after QP: trimmed.
 def parse_angel_input(fd): # I very much wish this was Haskell, as making parsers for the above ADTs would be trivial...
-
-
     blanks = many(one_of(" \t"))
     EOL = regex("\n")
 

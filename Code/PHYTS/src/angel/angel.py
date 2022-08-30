@@ -200,12 +200,7 @@ class Series():
 
 @dataclass
 class Histogram():
-    title: str
-    xtitle: str
-    ytitle: str
     contents: list[Series]
-
-
 
 
 @dataclass
@@ -254,6 +249,15 @@ class Bitmap():
     bitmap: list[tuple[float, float, int, int, int]] # x, y, color_component1, color_component2, color_component3
 
 
+@dataclass
+class Page():
+    title: dict
+    parameters: dict
+    constants: dict
+    x_title: dict
+    y_title: dict
+    contents: list
+
 
 blanks = many(one_of(" \t"))
 EOL = optional(regex("\n"))
@@ -273,14 +277,17 @@ def number():
 
 data = many1(EOL >> many1(blanks >> number << blanks) < EOL)
 
-skipped = control("C") | control("N") | comment
-newpage_control = control("NEWPAGE") | control("QP") | control("SKIPPAGE")
-end_control = control("Q") | eof()
+def case_free(pattern):
+    return regex(pattern, re.IGNORECASE)
 
-title = EOL + blanks + string("'") >> many(none_of("'")) << string("'")
 
 @generate
-def inps():
+def title():
+    lis = yield EOL + blanks + string("'") >> many(none_of("'")) << string("'")
+    return {"title": "".join(lis)}
+
+@generate
+ def inps():
     yield EOL + blanks + regex("INPS:", re.IGNORECASE)
     filename = yield blanks + string("{") + blanks >> many1(letter() | digit() | one_of("-_.")) << blanks + string("}")
     x = yield optional(blanks + regex("X\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
@@ -309,20 +316,20 @@ def set_stmt():
     yield EOL + blanks >> regex("SET:", re.IGNORECASE) << blanks
     consts = yield sepBy(constant, blanks)
     yield blanks
-    return {k: v for k, v in consts}
+    return {"constants": {k: v for k, v in consts}}
 
 @generate
 def x():
     yield EOL + blanks >> regex("X:", re.IGNORECASE) << blanks
     title = yield many1(none_of("\n"))
 
-    return "".join(title).rstrip()
+    return {"xtitle": "".join(title).rstrip()}
 
 @generate
 def y():
     yield EOL + blanks >> regex("Y:", re.IGNORECASE) << blanks
     title = yield many1(none_of("\n"))
-    return "".join(title).rstrip()
+    return {"ytitle": "".join(title).rstrip()}
 
 @generate
 def col_function():
@@ -368,7 +375,6 @@ def hsb():
 
 @generate
 def color():
-
     color_names = ["darkred", "red", "pink", "pastelpink", "orange", "brown", "darkbrown", "pastelbrown", "orangeyellow", "camel",
                    "pastelyellow", "yellow", "pastelgreen", "yellowgreen", "green", "darkgreen", "mossgreen", "bluegreen", "pastelcyan",
                    "pastelblue", "cyan", "cyanblue", "blue", "violet", "purple", "magenta", "winered", "pastelmagenta", "pastelpurple",
@@ -435,9 +441,6 @@ def fit():
 
 @generate
 def normal_h():
-    graph_title = yield optional(title)
-    xtitle = yield optional(x)
-    ytitle = yield optional(y)
 
     yield EOL + blanks >> regex("H:", re.IGNORECASE) << blanks
     indvar = regex("X", re.IGNORECASE) + optional(col_function)
@@ -478,7 +481,7 @@ def normal_h():
 
 
 
-    return Histogram(title="".join(graph_title), xtitle=xtitle, ytitle=ytitle, contents=contents)
+    return Histogram(contents=contents)
 
 @generate
 def self_running_h():
@@ -575,7 +578,6 @@ def comment():
     col = yield optional(blanks >> mod_color("C"))
     rotate = yield optional(blanks + regex("A\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
     font = yield optional(blanks + regex("F\(", re.IGNORECASE) + blanks >> number << blanks + string(")"))
-
     return Comment(comment="".join(text), x=x, y=y, x_justify=x_justify, y_justify=y_justify, scale=factor, color=col, rotate=rotate,
                    font=font)
 
@@ -774,29 +776,63 @@ def variable():
 @generate
 def parameter():
     parameter = yield EOL + blanks + regex("P:", re.IGNORECASE) >> many(blanks >> variable)
-    return {k: v for k, v in parameter}
+    return {"parameters": {k: v for k, v in parameter}}
 
 
-section = set_stmt | title | x | y | normal_h | self_running_h | contour | cluster | color_cluster | bitmap | comment \
-    | multiline_comment | tabular_comment | comment_arrow | message | arrow | hollow_arrow | polygon | box | ribbon | star \
-    | parameter
+section = set_stmt ^ title ^ x ^ y ^ normal_h ^ self_running_h ^ contour ^ cluster ^ color_cluster ^ bitmap ^ comment \
+    ^ multiline_comment ^ tabular_comment ^ comment_arrow ^ message ^ arrow ^ hollow_arrow ^ polygon ^ box ^ ribbon ^ star \
+    ^ parameter
 
 @generate
-def multigraph():
+def multigraph_entry():
     yield regex("Z:", re.IGNORECASE)
     x = yield blanks + regex("XORG\(", re.IGNORECASE) + blanks >> number << blanks + string(")")
-    y = yield blanks + regex("YORG\(", re.IGNORECASE) + blanks >> number << blanks + string(")") + EOL
+    y = yield blanks + regex("YORG\(", re.IGNORECASE) + blanks >> number << blanks + string(")")
     contents = yield section
     return contents
 
-page = regex("NEWPAGE:", re.IGNORECASE) >> many(section | multigraph) << optional(regex("QP:", re.IGNORECASE) \
-                                                                                  | regex("SKIPPAGE:", re.IGNORECASE))
+@generate
+def page():
+
+    pages = yield sepBy(many(section | multigraph_entry) << optional(regex("QP:", re.IGNORECASE) \
+                                                                     | regex("SKIPPAGE:", re.IGNORECASE)), case_free("NEWPAGE:"))
+
+    breakpoint()
+    page_objs = []
+    for pg in pages:
+        building = Page(title=None, parameters=None, constants=None, x_title=None, y_title=None, contents=[])
+        for sec in pg:
+            if isinstance(sec, dict):
+                name = list(sec.keys())[0]
+                setattr(building, name, sec[name])
+            else:
+                contents.append(sec)
+        page_objs.append(building)
+
+
+
+
+
+
 
 
 
 # The input definitely needs line-continuations reversed and INFL: declarations expanded, and possibly comments and blank
 # lines stripped, and input after QP: trimmed.
 def parse_angel_input(fd): # I very much wish this was Haskell, as making parsers for the above ADTs would be trivial...
+    trimmed = ""
+    for line in fd:
+        if not (line[0] == "#" or re.match(r"^\s*$", line)):
+            trimmed += line
+
+    trimmed = re.sub(r"\\\n", " ", trimmed)
+
+    parsed = many(page).parse(trimmed)
+
+
+
+
+
     blanks = many(one_of(" \t"))
     EOL = regex("\n")
 

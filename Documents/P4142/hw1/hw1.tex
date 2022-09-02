@@ -1,0 +1,147 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{siunitx}
+
+\newtheorem{prob}{Problem}
+
+\title{4142 HW 1}
+\author{Duncan Wilkie}
+\date{2 September 2022}
+
+\begin{document}
+
+\maketitle
+
+\begin{prob}
+  Using only the basic commutator of $x_{i}$ and $p_{j}$, evaluate the commutators $[L_{i}, x_{j}]$ and $[L_{i}, p_{j}]$
+  where $L_{i}$ is the angular momentum operator.
+\end{prob}
+
+We have, taking addition in the subscripts modulo 3 and considering $x_{2}=y$, $L_{2}=L_{y}$ etc.,
+\[
+  [L_{i}, x_{j}] = [x_{i+1}p_{i+2}-x_{i+2}p_{i+1}, x_{j}] = [x_{i+1}p_{i+2}, x_{j}] - [x_{i+2}p_{i+1}, x_{j}]
+\]
+\[
+  = x_{i+1}[p_{i+2}, x_{j}] + [x_{i+1}, x_{j}]p_{i+2} - x_{i+1}[p_{i+1}, x_{j}] - [x_{i+2}, x_{j}]p_{i+1}
+\]
+The basic commutation relations give us that any two space variables commute, so the second and fourth terms are zero.
+Further, they give us that a momentum and a position only don't commute when they're along the same axis,
+so the first term is only nonzero when $i+2\pmod 3 = j$ and the second is only nonzero when $i+1\pmod 3 = j$.
+These never occur simultaneously, but in both cases the commutator evaluates to $-i\hbar$.
+
+So, if $i+2\pmod 3 = j$ (e.g. $i=x$, $j=z$; $i=y$, $j=x$, etc.) the commutator evaluates to $-i\hbar x_{i+1}$,
+if $i+1\pmod 3 = j$ (e.g. $i=x$, $j=y$; $i=z$, $j=x$, etc.) the commutator evaluates to $i\hbar x_{i+1}$,
+and otherwise it is zero.
+
+\begin{prob}
+  Prove, using only basic commutators, that in an eigenstate of $L_{z}$, the expectation values of $L_{x}$ and $L_{y}$ must be zero.
+\end{prob}
+
+By definition,
+\[
+  [L_{z}, L_{x}] = [xp_{y}-yp_{x}, yp_{z}-p_{y}z] = [xp_{y}, yp_{z}]-[xp_{y}, p_{y}z]-[yp_{x}, yp_{z}] + [yp_{x}, p_{y}z]
+\]
+Each of the middle terms is zero, since $xp_{y}p_{y}z = zp_{y}p_{y}x$ and $yp_{x}yp_{z} = p_{z}yp_{x}y$ follow from the canonical commutators, so
+\[
+  = [xp_{y}, yp_{z}] + [yp_{x}, p_{y}z]
+  = x[p_{y}, yp_{z}] + [x, p_{y}z]p_{y} + y[p_{x}, p_{y}z] + [y, p_{y}z]p_{x}
+\]
+\[
+  = x\left( y[p_{y}, p_{z}] + [p_{y}, y]p_{z} \right) + \left( p_{y}[x, z] + [x, p_{y}]z \right)p_{y}
+  + y\left( p_{y}[p_{x}, z] + [p_{x}, p_{y}]z \right) + \left( p_{y}[y, z] + [y, p_{y}]z \right)p_{x}
+\]
+Identifying the basic commutators,
+\[
+  = x[p_{y}, y]p_{z} + [y, p_{y}]zp_{x}
+  = i\hbar(zp_{x}- xp_{x})
+  = i\hbar L_{y}
+\]
+An identical argument shows $[L_{z}, L_{y}] = -i\hbar L_{x}$.
+Letting $|\ell\rangle$ be an eigenstate of $L_{z}$,
+\[
+  \langle L_{x} \rangle = \langle \ell | \frac{i}{\hbar}[L_{y}, L_{z}] | \ell \rangle = \frac{i}{\hbar}\langle \ell | L_{y}L_{z}-L_{z}L_{y}| \ell  \rangle
+  = \frac{i}{\hbar}\left( \langle \ell | L_{y}L_{z} |\ell\rangle -\langle \ell | L_{z}L_{y}|\ell \rangle\right)
+\]
+Since $L_{z}|\ell\rangle = \ell|\ell\rangle$, and $L_{z}$ is Hermitian,
+\[
+  = \frac{i}{\hbar}\left( \langle \ell|L_{y}L_{z}|\ell \rangle -\langle L_{z}\ell | L_{y}\ell \rangle\right)
+  = \frac{i}{\hbar}\left( \ell\langle  \ell | L_{y}|\ell\rangle -\ell\langle\ell| L_{y}|\ell \rangle\right)
+  = 0
+\]
+An identical argument holds for $L_{y}$.
+
+\begin{prob}
+  A D$_{2}$ molecule is known to be in the state $\psi(\theta,\phi)=(3Y_{1}^{1}+4Y_{7}^{3}+Y_{7}^{1})/\sqrt{26}$.
+  What values of $L^{2}$ and $L_{z}$ can be found on measurement, and with what probabilities?
+  If a measurement of $L_{z}$ yields $3\hbar$, what is the expectation of $L_{y}$ on a subsequent measurement?
+\end{prob}
+
+Spherical harmonics are simultaneous eigenstates of $L_{z}$ and $L^{2}$:
+\[L_{z}Y_{\ell}^{m}=\hbar m Y_{\ell}^{m}, L^{2}Y_{\ell}^{m}=\hbar^{2}\ell(\ell+1)Y_{\ell}^{m}\]
+Evaluating the eigenvalues for the components of the given wave function, the possible values of these operators are
+\[
+  L_{z} = \hbar,\, 3\hbar;\; L^{2}= 2\hbar^{2},\, 56\hbar^{2}
+\]
+The corresponding probabilities are the sum of the squares of the coefficients of every term with a given eigenvalue:
+\[
+  P(\hbar) = \frac{9}{26} + \frac{1}{26} = \frac{10}{26} = \frac{5}{13}
+\]
+\[
+  P(3\hbar) = \frac{16}{26} = \frac{8}{13}
+\]
+\[
+  P(2\hbar^{2}) = \frac{9}{26}
+\]
+\[
+  P(56\hbar^{2}) = \frac{16}{26} + \frac{1}{26} = \frac{17}{26}
+\]
+Once $L_{z}$ is measured, the wave function snaps to the measured eigenstate, and the expectation of $L_{y}$ for any eigenstate of $L_{z}$ 0,
+by the result of the previous problem.
+\begin{prob}
+  A rigid rotor is in a state described by the wave function
+  \[
+    f(\theta, \phi) = \sqrt{15 / 2\pi} \left(\frac{1}{4}\sin^{2}\theta\cos2\phi-\frac{1}{2}\sin\theta\cos\theta\sin\phi\right)
+  \]
+  What values of $L^{2}$ and $L_{z}$ will be found, and with what probabilities, if the measurements were to be made?
+\end{prob}
+
+Looking at a table of the first few spherical harmonics, the two terms have forms closest to
+\[
+  Y_{2}^{ 2} = \sqrt{\frac{15}{32\pi}}\sin^{2}\theta e^{2i\phi}
+\]
+and
+\[
+  Y_{2}^{ 1} = \sqrt{\frac{15}{8\pi}}\sin\theta\cos\theta e^{i\phi}
+\]
+respectively.
+Using Euler's formula,
+\[
+  Y_{2}^{ 2} = \sqrt{\frac{15}{32\pi}}\sin^{2}\theta(\cos 2\phi + i\sin 2\phi)
+\]
+and
+\[
+  Y_{2}^{ 1} = \sqrt{\frac{15}{8\pi}}\sin\theta\cos\theta(\cos\phi + i\sin\phi)
+\]
+so we can write
+\[
+  f(\theta,\phi) = \Re{Y_{2}^{2}} - \Im{Y_{2}^{1}} = \frac{1}{2}\left(Y_{2}^{2} + \overline{Y_{2}^{2}}\right)
+  - \frac{1}{2i}\left( Y_{2}^{1}-\overline{Y_{2}^{1}} \right)
+\]
+Using the fact that $\overline{Y_{2}^{2}} = Y_{2}^{-2}$ and $\overline{Y_{2}^{1}} = Y_{2}^{-1}$, we can write
+\[
+  f(\theta,\phi) = \frac{1}{2}Y_{2}^{2}+\frac{1}{2}Y_{2}^{-2}-\frac{1}{2i}Y_{2}^{1}+\frac{1}{2i}Y_{2}^{-1}
+\]
+From this, we can directly read out the possible values of $L^{2}$ and $L_{z}$ from the eigenvalue equation written in the previous solution:
+\[
+  L_{z} = 2\hbar,\, -2\hbar,\, \hbar,\, -\hbar \;
+\]
+\[
+  L^{2} = 6\hbar^{2}
+\]
+These have corresponding probabilities of $\frac{1}{4}$ for each of the cases for $L_{z}$ and probability 1 for $L^{2}$.
+
+\end{document}

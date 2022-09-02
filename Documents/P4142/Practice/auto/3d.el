@@ -1,5 +1,5 @@
 (TeX-add-style-hook
- "hw1"
+ "3d"
  (lambda ()
    (TeX-add-to-alist 'LaTeX-provided-package-options
                      '(("geometry" "letterpaper")))
@@ -9,9 +9,6 @@
     "art10"
     "geometry"
     "amsmath"
-    "amsthm"
-    "siunitx")
-   (LaTeX-add-environments
-    "prob"))
+    "siunitx"))
  :latex)
 

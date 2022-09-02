@@ -10,8 +10,9 @@
     "geometry"
     "amsmath"
     "amsthm"
+    "amssymb"
     "siunitx")
-   (LaTeX-add-environments
+   (LaTeX-add-amsthm-newtheorems
     "prob"))
  :latex)
 

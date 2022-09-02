@@ -37,6 +37,17 @@ So, if $i+2\pmod 3 = j$ (e.g. $i=x$, $j=z$; $i=y$, $j=x$, etc.) the commutator e
 if $i+1\pmod 3 = j$ (e.g. $i=x$, $j=y$; $i=z$, $j=x$, etc.) the commutator evaluates to $i\hbar x_{i+1}$,
 and otherwise it is zero.
 
+For the momenta,
+\[
+  [L_{i},p_{j}] = [x_{i+1}p_{i+2} - x_{i+2}p_{i+1}, p_{j}] = [x_{i+1}p_{i+2}, p_{j}] - [x_{i+2}p_{i+1}, p_{j}]
+\]
+\[
+  = x_{i+1}[p_{i+1}, p_{j}] + [x_{i+1}, p_{j}]p_{i+2} - x_{i+2}[p_{i+1}, p_{j}] - [x_{i+2}, p_{j}]p_{i+1}
+\]
+Using similar reasoning as above, the first and third terms are zero, and the second and fourth are only nonzero when $i+1\equiv j\pmod 3$
+and $i+2 \equiv j \pmod 3$, which never happens simultaneously.
+When the first holds, the commutator equals $i\hbar p_{i+2}$, and when the second holds, the commutator equals $-i\hbar p_{i+1}$
+
 \begin{prob}
   Prove, using only basic commutators, that in an eigenstate of $L_{z}$, the expectation values of $L_{x}$ and $L_{y}$ must be zero.
 \end{prob}

@@ -1,0 +1,133 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{tgpagella}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{siunitx}
+
+\title{4142 HW 2}
+\author{Duncan Wilkie}
+\date{9 September 2022}
+
+\newtheorem{prob}{Problem}
+
+\begin{document}
+
+\maketitle
+
+\begin{prob}
+  Given $Y_{2}^{1}(\theta, \phi) = -\sqrt{\frac{15}{8\pi}} \sin\theta\cos\theta e^{i\phi}$, use the raising operator $L_{+}$ to find $Y_{2}^{2}(\theta, \phi)$.
+  What happens if $L_{+}$ is applied again?
+\end{prob}
+
+The raising operator has the form
+\[
+  L_{+} = \hbar e^{i\phi}\left( \frac{\partial}{\partial\theta} + i\cot\theta\frac{\partial}{\partial\phi} \right)
+\]
+Applying this to the given spherical harmonic,
+\[
+  L_{+}Y_{2}^{1} = \hbar e^{i\phi}\left( \frac{\partial}{\partial\theta} + i\cot\theta\frac{\partial}{\partial\phi} \right)
+  \left( -\sqrt{\frac{15}{8\pi}} \sin\theta\cos\theta e^{i\phi} \right)
+\]
+\[
+  = -\hbar e^{i\phi}\sqrt{\frac{15}{8\pi}}\left[ e^{i\phi}\frac{\partial}{\partial\theta}\frac{1}{2}\sin 2\theta
+    +i\cot\theta\sin\theta\cos\theta\frac{\partial}{\partial\phi}e^{i\phi}\right]
+\]
+\[
+  = -\hbar e^{2i\phi}\sqrt{\frac{15}{8\pi}}\left( \cos 2\theta - \cos^{2}\theta \right)
+\]
+\[
+  = \hbar\sqrt{\frac{15}{8\pi}} \sin^{2}\theta e^{2i\phi}
+\]
+The raising operator satisfies $L_{+}f_{\ell}^{m} = \hbar\sqrt{(\ell-m)(\ell+m+1)}f_{\ell}^{m+1}$; dividing by $\hbar\sqrt{(2 - 1)(2 + 1 + 1)} = 2\hbar$,
+\[
+  Y_{2}^{2} = \sqrt{\frac{15}{32\pi}} \sin^{2}\theta e^{2i\phi}
+\]
+Since $m = \ell$, there are no more states with larger $m$, since $-\ell \leq m \leq \ell$.
+$L_{+}$ then maps $Y_{2}^{2}$ to zero.
+
+\begin{prob}
+  A particle is in an angular momentum state of $\ell = 2$, $m = 1$.
+  What is the probability of finding it at the position $\theta = \pi / 4,\ \phi = \pi / 4$ to within $d\theta = d\phi = \SI{0.01}{rad}$?
+\end{prob}
+
+We integrate the probability amplitude over this region:
+\[
+  P = \int_{\pi / 4 - 0.005}^{\pi / 4 + 0.005}\int_{\pi / 4 - 0.005}^{\pi / 4 + 0.005}Y_{2}^{1}Y_{2}^{1*}d\phi d\theta
+  = \int_{\pi / 4 - 0.005}^{\pi / 4 + 0.005}\int_{\pi / 4 - 0.005}^{\pi / 4 + 0.005}\frac{15}{8\pi} \frac{1}{4}\sin^{2}2\theta e^{i\phi-i\phi}d\phi d\theta
+\]
+\[
+  = 0.01\frac{15}{32\pi}\int_{\pi / 4 - 0.005}^{\pi / 4 + 0.005} \sin^{2}2\theta d\theta
+  = 0.01\frac{15}{32\pi}\int_{\pi / 4 - 0.005}^{\pi / 4 + 0.005} \frac{1}{2}\left( 1 - \cos 4\theta \right) d\theta
+\]
+\[
+  = 0.01\frac{15}{64\pi}\left( \theta\bigg|_{\pi / 4 - 0.005}^{\pi / 4 + 0.005} - \frac{1}{4}\sin 4\theta\bigg|_{\pi / 4 - 0.005}^{\pi / 4 + 0.005}\right)
+\]
+\[
+  = 0.01\frac{15}{64\pi}\left(  0.01 - \frac{1}{4}\sin(\pi + 0.02) + \frac{1}{4}\sin(\pi - 0.02)\right)
+  = \SI{7.33e-6}{}
+\]
+
+\begin{prob}
+  A particle moving in a potential is described by the wave function
+  \[
+    \psi(x,y,z) = (xy+yz+zx)e^{-\alpha(x^{2}+y^{2}+z^{2})}.
+  \]
+  What is the probability that a measurement of $L^{2}$ and $L_{z}$ gives $6\hbar^{2}$ and $h$, respectively?
+\end{prob}
+
+In spherical coordinates, the wave function is
+\[
+  \psi(r, \phi, \theta) = r^{2}(\cos\phi\sin\phi + \sin\phi\cos\theta + \cos\theta\cos\phi)e^{-\alpha r^{2}}
+\]
+
+The coefficients in the expansion of $\psi$ in terms of the simultaneous eigenstates of $L^{2}$ and $L_{z}$ are given by,
+denoting the angular part of $\psi$ by  $\psi_{ang} = \cos\phi\sin\phi + \sin\phi\cos\theta + \cos\theta\cos\phi$,
+\[
+  c_{\ell m} = \langle Y_{\ell}^{m} |  \psi_{ang} \rangle = \int_{0}^{\pi}\int_{0}^{2\pi} Y_{l}^{m*} \psi_{ang} d\phi d\theta
+\]
+\[
+  = \int_{0}^{\pi}\int_{0}^{2\pi}\sqrt{\frac{(2\ell + 1)}{4\pi}\frac{(\ell-m)!}{(\ell+m)}} e^{-im\phi}P_{\ell}^{m}(\cos\theta)
+  (\cos\phi\sin\phi + \sin\phi\cos\theta + \cos\theta\cos\phi)d\phi d\theta
+\]
+\[
+  = \sqrt{\frac{(2\ell + 1)}{4\pi}\frac{(\ell-m)!}{(\ell+m)}} \bigg(
+  \int_{0}^{\pi}\cos\phi\sin\phi e^{-im\phi}d\phi\int_{0}^{2\pi}P_{\ell}^{m}(\cos\theta)d\theta
+\]
+\[
+  + \int_{0}^{\pi}\sin\phi e^{-im\phi}d\phi\int_{0}^{2\pi}\cos\theta P_{\ell}^{m}(\cos\theta)d\theta
+\]
+\[
+  + \int_{0}^{\pi}\cos\phi e^{-im\phi}d\phi\int_{0}^{2\pi}\cos\theta P_{\ell}^{m}(\cos\theta)d\theta \bigg)
+\]
+$6\hbar^{2}$ corresponds to $\ell = 2$; $\hbar$ corresponds to $m = 1$, so we're looking for the coefficient of the $Y_{2}^{1}$ component.
+The associated Legendre function $P_{2}^{1}(\cos\theta) = -3\sin\theta\cos\theta$ is odd, and it's multiplied by an even function in the second factor
+in the last two terms, so each of the second factors is the integral of an odd periodic function over its period, which is zero in general
+(any two integrals of a periodic function over two period-long intervals are equal, so use the interval centered on 0).
+
+The coefficient is therefore zero, i.e. the probability of getting $6\hbar^{2}$ and $\hbar$ is zero.
+
+\begin{prob}
+  An asymmetric rotor with two moments of inertia is described by the Hamiltonian $H = (L_{x}^{2} + L_{y}^{2}) / 2I_{1} + L_{z}^{2}/2I_{2}$ with $I_{1}>I_{2}$.
+  By identifying two suitable commuting operators, describe the energy eigenstates and their eigenvalues.
+\end{prob}
+
+For this problem alone, denote $L_{x}^{2} + L_{y}^{2} = L^{2}$.
+This observable is compatible with $L_{z}$:
+\[
+  [L^{2}, L_{z}] = [L_{x}^{2}, L_{z}] + [L_{y}^{2}, L_{z}]
+  = L_{x}[L_{x}, L_{z}] + [L_{x}, L_{z}]L_{x} + L_{y}[L_{y}, L_{z}] + [L_{y}, L_{z}]L_{y}
+\]
+\[
+  = -i\hbar L_{x}L_{y} - i\hbar L_{y}L_{x} + i\hbar L_{y}L_{x} + i\hbar L_{x}L_{y}
+  = 0
+\]
+Since these commute, they are simultaneously diagonalizable.
+The same $L_{\pm}$ commutes with $L^{2}$:
+\[
+  [L_{x}\pm iL_{y}, L^{2}] = [L_{x}, L^{2}] \pm i[L_{y}, L^{2}] = 0 \pm 0i = 0
+\]
+since the argument above shows also that $L^{2}$ commutes with $L_{x}$ and $L_{y}$.
+\end{document}

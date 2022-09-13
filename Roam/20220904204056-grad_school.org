@@ -1,0 +1,147 @@
+:PROPERTIES:
+:ID:       8a2e8ffc-9004-4437-9fb8-770f0f12c872
+:END:
+#+title: Grad School
+* Grad Schools
+
+** MIT
+
+Deadline: Dec 15
+
+Requirements:
+- Unofficial transcript
+- 3-6 letters
+- GRE Optional
+- Research, Teaching, and Community Engagement essay
+- Publications, Talks, and Merit Based Recognition
+- "Optional" Personal Statement
+
+** Penn State
+
+Deadline: Jan 15
+
+Requirements:
+- Official transcript
+- 3 letters
+- GRE Optional
+- Statement of purpose
+- 3 faculty of interest and 3 subfields of interest
+
+
+** UT Austin
+
+Deadline: Dec 1
+
+Requirements:
+- Official transcript
+- 3 letters
+- GRE discouraged (must provide reason for relevance in SoP)
+- Statement of Purpose
+
+** Washington
+
+Deadline: Jan 5
+
+Requirements:
+- Unofficial transcript
+- 3 letters
+- GRE optional
+- Statement of purpose (1pg)
+- Optional personal history statement (2pg)
+- Resume/C.V.
+
+** Wisconsin
+
+Deadline: Dec 15
+
+Requirements:
+- Official transcript
+- 3 letters
+- GRE ignored
+- Resume/C.V.
+- Personal statement
+
+** Michigan
+
+Deadline: Dec. 15
+
+Requirements:
+- No transcript information?
+- 3 letters
+- Gre?
+- Statement of purpose
+- Personal statement
+
+** Chicago
+
+Deadline: Dec. 15
+
+Requirements:
+- Areas of research interest
+- ?????
+
+ Requirements are viewed through the application portal, which is only open after "mid-late September.
+
+** LSU
+
+Deadline: Jan 1
+
+Requirements:
+- Official transcript (but unofficial works initially)
+- 3 letters
+- GRE recommended
+- Application form?
+
+** A&M?
+
+Deadline: Jan 10
+
+Requirements:
+- Unofficial transcript
+- 3 letters
+- Gre?
+- Resume/C.V.
+- Personal statement
+- List of publications or statements of research experience
+
+** AZ?
+
+Deadline: Jan 1
+
+Requirements:
+- Grades in upper-level physics courses
+- 3 letters
+- GRE ignored
+- Resume/C.V.
+- Statement of purpose
+
+** CU Boulder?
+
+Deadline: Dec 15
+
+Requirements:
+- Unofficial transcript
+- 3-4 letters
+- GRE recommended
+- Personal statement (hard)
+- Resume/C.V.
+
+** UIUC?
+
+Deadline: Dec 15
+
+Requirements:
+- Unofficial transcript
+- 3 letters
+- GRE optional
+- Statement of purpose
+- List of publications, honors, awards, etc.
+
+
+* Essay Ideas
+
+Personal statement: poor rural schools, leaving SSSD for Haas, correlated economic hardship, finding physics, math, and comp sci, etc.
+
+Statement of purpose: computational manifolds for nuclear and particle theory.
+
+Letters: Chancellor (obviously), Rau, and possibly Agullo? Failing the last, I can get Neubrander.

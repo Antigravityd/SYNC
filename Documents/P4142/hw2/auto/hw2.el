@@ -13,7 +13,7 @@
     "amssymb"
     "amsthm"
     "siunitx")
-   (LaTeX-add-environments
+   (LaTeX-add-amsthm-newtheorems
     "prob"))
  :latex)
 

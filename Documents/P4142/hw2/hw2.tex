@@ -114,12 +114,7 @@ The coefficient is therefore zero, i.e. the probability of getting $6\hbar^{2}$ 
   By identifying two suitable commuting operators, describe the energy eigenstates and their eigenvalues.
 \end{prob}
 
-\[
-  H =
-\]
-
-
-For this problem alone, denote $L_{x}^{2} + L_{y}^{2} + L_{z}^{2} = L^{2}$.
+For this problem alone, denote $L_{x}^{2} + L_{y}^{2} = L^{2}$.
 This observable is compatible with $L_{z}$:
 \[
   [L^{2}, L_{z}] = [L_{x}^{2}, L_{z}] + [L_{y}^{2}, L_{z}]
@@ -130,16 +125,10 @@ This observable is compatible with $L_{z}$:
   = 0
 \]
 Since these commute, they are simultaneously diagonalizable.
-The same $L_{\pm}$ commutes with $L^{2}$:
+Consider $H$ acting on a simultaneous eigenstate $f$ of $L^{2}$ and $L_{z}$, with eigenvalues $a$ and $b$, respectively:
 \[
-  [L_{x}\pm iL_{y}, L^{2}] = [L_{x}, L^{2}] \pm i[L_{y}, L^{2}] = 0 \pm 0i = 0
+  \hat{H}f = (L^{2}f) / 2I_{1} + L_{z}^{2}f / 2I_{2} = \left( \frac{a}{2I_{1}} + \frac{b^{2}}{2I_{2}} \right)f
 \]
-Take a simultaneous eigenstate of $L^{2}$ and $L_{z}$:
-\[
-  L^{2}f = \lambda f
-\]
-\[
-  L_{z}f = \mu f
-\]
-
+so the energy eigenstates are precisely the simultaneous eigenstates of $L^{2}$ and $L_{z}$.
+The corresponding eigenvalues depend on the eigenvalues of $L^{2}$ and $L_{z}$ as above.
 \end{document}

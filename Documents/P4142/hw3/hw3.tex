@@ -1,0 +1,196 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{tgpagella}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\usepackage{physics}
+\usepackage{chemmacros}
+
+\title{4142 HW 3}
+\author{Duncan Wilkie}
+\date{24 September 2022}
+
+\newtheorem{prob}{Problem}
+\newtheorem{lem}{Lemma}
+\renewcommand*{\proofname}{Solution}
+
+\begin{document}
+
+\maketitle
+
+\begin{prob}
+  A particle of mass m is placed in a finite spherical well, $V (r) = -V_{0}$ for $r < a, = 0$ for $r > a$.
+  Find the ground state by solving the radial equation for $\ell$ = 0.
+  Show that there is a minimum value of $V_{0}a^{2}$ for a bound state to exist.
+\end{prob}
+\begin{proof}
+  The radial equation is, employing the Heaviside step function $\Theta$,
+  \[
+    -\frac{\hbar^{2}}{2m}\dv[2]{u}{r} + \left[ -V_{0}\Theta(r - a) + \frac{\hbar^{2}}{2m}\frac{\ell(\ell + 1)}{r^{2}}\right]u = Eu
+  \]
+  Evaluating at $\ell = 0$,
+  \[
+    -\frac{\hbar^{2}}{2m}\dv[2]{u}{r} + \left[ -V_{0}\Theta(r - a)\right]u = Eu
+  \]
+  We can solve this as two different ODEs on different domains with boundary conditions set accordingly:
+  \begin{align*}
+    -\frac{\hbar^{2}}{2m}\dv[2]{u}{r} &= Eu   \Leftrightarrow  \dv[2]{u}{r} = -\frac{2mE}{\hbar^{2}}u & r &> a, \\
+    -\frac{\hbar^{2}}{2m}\dv[2]{u}{r} &= (E+V_{0})u  \Leftrightarrow  \dv[2]{u}{r} = -\frac{2m(E+V_{0})}{\hbar^{2}}u & r &\leq a.
+  \end{align*}
+  These are second-order constant-coefficient ODEs which can be solved via the ansatz $e^{mr}$, leading to auxiliary equations of the form $m^{2}+c = 0$.
+  Inside the well, $E+V_{0} > 0$,  so the analytic solutions are of the form $u = A\sin(kr + \delta)$,
+  where $k$ is the coefficient of $u$ in the above.
+  $u$ is related to the radial part of the wave function by $R(r) = u(r) / r$; $R(r)$ must be continuous at every point,
+  and since $f(r) / r \to \infty$ if $f(r) \not\to 0$ as $r\to 0$, $\delta = 0$.
+  For a bound state, $E < 0$, so outside the well has solutions of the form $u(r) = Be^{-k'r}+Ce^{k'r}$.
+  The latter fails to be normalizable, so take $u(r) = Be^{-k'r}$.
+  The ground state is then
+  \[
+    R(r) =
+    \begin{cases}
+      \frac{A}{r}\sin(kr) & r \leq a \\
+      \frac{B}{r}e^{-k'r}  & r > a
+    \end{cases}
+  \]
+  where $A$ and $B$ are constants determined by normalization and the fact that $R(r)\in C^{1}[0,\infty)$.
+
+  The amplitude of a bound state is some continuous function of $V_{0}a^{2}$; the amplitude is bounded below by 0,
+  corresponding to $a = 0$ which is indistinguishable from the free particle, where there's no bound state.
+  Continuous functions that have a lower bound have global minima.
+  The preimage of the global minima of this function is a set of values of $V_{0}a^{2}$ for which the amplitude is zero.
+  Since there are some values for which the amplitude is nonzero, this set is bounded above; since $V_{0}a^{2}\geq 0$, it's bounded, period.
+  Accordingly, it has a largest element.
+  This largest element is the minimum value of $V_{0}a^{2}$ for a bound state to exist.
+
+\end{proof}
+
+\begin{prob}
+  Verify that the radial wave functions of the $n = 1$, $\ell = 0$; $n = 2$, $\ell = 0$; and $n = 2$, $\ell = 1$ are normalized,
+  and that the first two are mutually orthogonal. Use Griffiths Table 4.7 or equivalent.
+\end{prob}
+
+\begin{lem}
+  The generalization of the gamma function $\int_{0}^{\infty}x^{n}e^{-ax}dx$ has value $\frac{n!}{a^{n+1}}$.
+\end{lem}
+
+\begin{proof}[Proof]
+  Induct on $n$.
+  The property clearly holds for $n = 0$.
+  Suppose it holds for $n = m - 1$.
+  Then
+  \[
+    \int_{0}^{\infty}x^{m}e^{-ax}dx = \eval{-\frac{x^{m}}{a}e^{-ax}}_{0}^{\infty} + \frac{m}{a}\int_{0}^{\infty}x^{m-1}e^{-ax}dx
+    = \frac{m(m-1)!}{aa^{m}}
+    = \frac{m!}{a^{m+1}},
+  \]
+  so the property holds for all $n$.
+\end{proof}
+\renewcommand*{\proofname}{Solution}
+\begin{proof}
+  $n = 1, \ell = 0$ corresponds to a radial wave function of $2a^{-3/2}e^{-r/a}$.
+  Substituting into the norm,
+  \[
+    \braket{R_{10}}{R_{10}} = 4a^{-3}\int_{0}^{\infty}e^{-2r/a}r^{2}dr = 4a^{-3}\frac{2!}{(2 / a)^{3}} = 1
+  \]
+  Proceeding similarly, $n = 2, l = 0 \Rightarrow R(r) = \frac{1}{\sqrt{2a^{3}}}\qty(1-\frac{r}{2a})e^{-r/2a}$
+  \[
+    \Rightarrow \braket{R_{20}}{R_{20}} = \frac{1}{2a^{3}}\int_{0}^{\infty}\qty(1 - \frac{r}{2a})^{2}e^{-r/a}r^{2}dr
+  \]
+  \[
+    = \frac{1}{2a^{3}}\qty(\int_{0}^{\infty}e^{-r/a}r^{2}dr - \frac{1}{a}\int_{0}^{\infty}e^{-r/a}r^{3}dr + \frac{1}{4a^{2}}\int_{0}^{\infty}e^{-r/a}r^{4}dr)
+  \]
+  \[
+    = \frac{1}{2a^{3}}\qty(\frac{2!}{(1 / a)^{3}} - \frac{1}{a}\frac{3!}{(1 / a)^{4}} + \frac{1}{4a^{2}}\frac{4!}{(1 / a)^{5}})
+  \]
+  \[
+    = \frac{1}{2a^{3}}\qty(2a^{3} - 6a^{3} + 6a^{3}) = 1
+  \]
+  Finally, $n=2, l = 1\Rightarrow R(r) = \frac{1}{2\sqrt{6a^{3}}}\qty(\frac{r}{a})e^{-r/2a}$
+  \[
+    \Rightarrow \braket{R_{21}}{R_{21}} = \frac{1}{24a^{3}}\int_{0}^{\infty}\frac{r^{2}}{a^{2}}e^{-r/a}r^{2}dr
+  \]
+  \[
+    = \frac{1}{24a^{3}}\frac{1}{a^{2}}\frac{4!}{(1 / a)^{5}} = 1
+  \]
+\end{proof}
+
+\begin{prob}
+  Calculate the expectation values $\expval{r}$ and $\expval{r^{2}}$ for the ground state of the hydrogen atom.
+  Use the Bohr radius to express your results.
+  What is the expectation value of $\expval{x^{2}}$?
+\end{prob}
+
+\begin{proof}
+  The ground state of the hydrogen atom has wave function
+  \[
+    \psi_{100}(r,\theta,\phi) = \frac{1}{\sqrt{\pi a^{3}}}e^{-r / a}
+  \]
+  We can then compute, using the lemma from above,
+  \[
+    \expval{r}{\psi_{100}} = \frac{1}{\pi a^{3}}\int_{0}^{\infty}re^{-2r/a}r^{2}dr\int_{0}^{\pi}\int_{0}^{2\pi}d\Omega = \frac{4}{a^{3}}\frac{3!}{(2 / a)^{4}}
+    = \frac{3}{2}a
+  \]
+  \[
+    \expval{r^{2}}{\psi_{100}} = \frac{1}{\pi a^{3}}\int_{0}^{\infty}r^{2}e^{-2r/a}r^{2}dr\int_{0}^{\pi}\int_{0}^{2\pi}d\Omega
+    =\frac{4}{a^{3}}\frac{4!}{(2/a)^{5}} = \frac{3}{2}a^{2}
+  \]
+  \[
+    \expval{x^{2}}{\psi_{100}} = \expval{r^{2}\cos^{2}\phi}{\psi_{100}} =\frac{1}{\pi a^{3}}\int_{0}^{\infty}r^{2}e^{-2r/a}r^{2}dr\int_{0}^{\pi}\sin\theta d\theta
+    \int_{0}^{2\pi}\cos^{2}\phi d\phi
+  \]
+  \[
+    = \frac{1}{\pi a^{3}}\frac{4!}{(2/a)^{5}}\cdot 2\cdot \pi = \frac{3}{2}a^{2}
+  \]
+  where for the last integral we've applied $\cos^{2}\phi = \frac{1}{2} + \frac{1}{2}\cos2\phi$.
+\end{proof}
+
+\begin{prob}
+  A hydrogenic atom is also one with a single electron but nuclear charge $Ze$, e.g. \ch{_{92}^{238}U^{91+}}, the Uranium ion has Z = 92.
+  Calculate the ground state (Bohr) radius and energy of such a system.
+  Note no elaborate calculation is needed but inspection of how the result for hydrogen scales with Z
+\end{prob}
+
+\begin{proof}
+  With a heavier nucleus, one must replace the charge term in the Coulomb potential according to $e^{2}\mapsto Ze^{2}$, which in this case is $92e^{2}$.
+  In the calculation of the Bohr radius, this charge constant is quickly absorbed into constants to simplify expressions,
+  so we can skip to the end of the calculation when these constants are unwrapped.
+  The charge constant appears once and doesn't cancel with anything, so we can substitute in the result, obtaining
+  \[
+    a = \frac{4\pi\epsilon_{0}\hbar^{2}}{m_{e}Ze^{2}} = \frac{4\pi\epsilon_{0}\hbar^{2}}{m_{e}92e^{2}} = \SI{0.575e-12}{m}
+  \]
+  The ground state energy is, following similar reasoning,
+  \[
+    E_{1} = -\qty[\frac{m_{e}}{2\hbar^{2}}\qty(\frac{92e^{2}}{4\pi\epsilon_{0}})^{2}] = 92^{2}(-\SI{13.6}{eV}) = \SI{115}{keV}
+  \]
+\end{proof}
+
+\begin{prob}
+  Consider the Sun-Earth system as a quantum analog of the hydrogen atom but with gravitational instead of electromagnetic interaction.
+  Estimate the Bohr radius of such a system.
+  Taking the Earth’s orbit as circular, estimate the $n$ quantum number that would apply.
+  Do so by equating the classical energy to the Bohr-Rydberg expression.
+\end{prob}
+
+\begin{proof}
+  Once again, all that changes is the constant multiple of the Coulomb interaction term;
+  $\frac{e^{2}}{4\pi\epsilon_{0}} \mapsto {GM_{\odot}M_{\oplus}}$.
+  The preimage can be directly recognized in the formula for the Bohr radius.
+  Substituting yields
+  \[
+    a = \frac{\hbar^{2}}{GM_{\odot}M^{2}_{\oplus}} = \SI{2.3e-138}{m}
+  \]
+  Equating the Bohr energy to the classical energy,
+  \[
+    -\qty[\frac{M_{\oplus}}{2\hbar^{2}}\qty({GM_{\odot}M_{\oplus}})^{2}]\frac{1}{n^{2}} = -\frac{GM_{\odot}M_{\oplus}}{r}
+    \Leftrightarrow n = \sqrt{\frac{GM_{\odot}M^{2}_{\oplus}r}{2\hbar^{2}}}
+  \]
+  Evaluating at the measured values,
+  \[
+    = \sqrt{\frac{(\SI{6.67e-11}{N m^{2}/kg^{2}})(\SI{2e30}{kg})(\SI{6e24}{kg})^{2}(\SI{150e9}{m})}{2(\SI{1.05e-34}{J\cdot s})^{2}}}
+    = \SI{1.8e74}{}
+  \]
+\end{proof}
+\end{document}

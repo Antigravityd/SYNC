@@ -26,60 +26,50 @@
 \end{prob}
 
 \begin{proof}
-  Far away from the source, one may choose the transverse-traceless gauge,
-  in which case the Einstein field equations reduce to a simple computation for the first-order perturbation to the Minkowski metric due to some mass:
+  Far away, we may choose the transverse-traceless gauge.
+  The corresponding $h_{ij}$ matrix differs from the perpendicular case due to the different axis; it is
   \[
-    \bar{h}^{TT}_{ij} = \frac{2G}{rc^{4}}\ddot{Q}_{ij}^{TT}(t - r/c),
+    h_{ij}^{TT} =
+    \begin{pmatrix}
+      0 & 0 & 0 \\
+      0 & h_{+} & h_{x} \\
+      0 & h_{x} & -h_{+}
+    \end{pmatrix}
   \]
-  where $Q_{ij}^{TT}$ is the quadrupole moment of the mass distribution
+  Following the argument in the perpendicular case, this yields
   \[
-    Q_{ij}^{TT}(t - r/c) = \int_{\mathbb{R}^{3}}\rho(\vb{x}, t - r/c)\qty(x_{i}x_{j} -\frac{r^{2}}{3}\delta_{ij})d\vb{x},
-  \]
-  where $r$ denotes the (constant, for the sake of the integral) distance from the source to the point where the waves are measured.
-  I have switched the expression to covariant indices, because contravariant ones are needlessly confused with exponents when the distinction is moot.
-  If the mass is two identical point masses orbiting with angular frequency $\omega$ a distance $r_{0}$ from their mutual center,
-  which we place at the origin,
-  \[
-    \rho(\vb{x}, t) = \delta(z)\qty[m\delta(x - r_{0}\cos(\omega t))\delta(y - r_{0}\sin(\omega t)) +
-    m\delta(x + r_{0}\cos(\omega t))\delta(x + r_{0}\sin(\omega t))].
-  \]
-  Denoting the retarded time by $t_{r}$ (also independent of the integral variables) and substituting into the integral,
-  \[
-    Q_{ij}^{TT}(t_{r}) = m\bigg[\int_{\mathbb{R}^{3}}\delta(z)\delta\qty(x- r_{0}\cos\qty(\omega t_{r}))
-    \delta\qty(y - r_{0}\sin(\omega t_{r}))
-    \qty[x_{i}x_{j}-\frac{r^{2}}{3}\delta_{ij}]dxdydz
+    h_{+} = \frac{1}{r}\frac{G}{c^{4}}(\ddot{Q}_{yy} - \ddot{Q}_{zz})\bigg|_{t - r/c}
   \]
   \[
-     + \int_{\mathbb{R}^{3}}\delta(z)\delta\qty(x + r_{0}\cos\qty(\omega t_{r}))\delta\qty(y + r_{0}\sin(\omega t_{r}))
-     \qty[x_{i}x_{j}-\frac{r^{2}}{3}\delta_{ij}]dxdydz\bigg]
-   \]
-
-  One can't go much further without computing specific components, but thankfully it's pretty routine via \textit{a priori} properties of $Q_{ij}$:
+    h_{\times} = \frac{2}{r}\frac{G}{c^{4}}\ddot{Q}_{yz}\bigg|_{t - r/c}
+  \]
+  Calculating the components,
   \[
-    Q_{xx} = m\qty[\int_{\mathbb{R}}x^{2}\delta(x - r_{0}\cos(\omega t_{r}))dx\int_{\mathbb{R}}\delta(y - r_{0}\sin(\omega t_{r}))dy
-    - \frac{r^{2}}{3}\int_{\mathbb{R}^{2}}\delta(x - r_{0}\cos\omega t_{r})\delta(y - r_{0}\sin\omega t_{r})dxdy]
+    Q_{yy} = \int_{\mathbb{R}^{3}}\delta(z)\delta(x - R\cos\omega t)\delta(y - R\sin\omega t)(y^{2}-\frac{r^{2}}{3})d\vb{x}
+    = R^{2}\sin^{2}\omega t - \frac{r^{2}}{3}
   \]
   \[
-    + m\qty[\int_{\mathbb{R}}x^{2}\delta(x + r_{0}\cos(\omega t_{r}))dx\int_{\mathbb{R}}\delta(y + r_{0}\cos(\omega t_{r}))dy
-    - \frac{r^{2}}{3}\int_{\mathbb{R}^{2}}\delta(x + r_{0}\cos\omega t_{r})\delta(y + r_{0}\cos\omega t_{r})dxdy]
+    Q_{zz} = \int_{\mathbb{R}^{3}}\delta(z)\delta(x - R\cos\omega t)\delta(y - R\sin\omega t)(z^{2}-\frac{r^{2}}{3})d\vb{x}
+    = -\frac{r^{2}}{3}
   \]
   \[
-    = m\qty[r_{0}^{2}\cos^{2}(\omega t_{r}) - \frac{r^{2}}{3} + r_{0}^{2}\cos^{2}(\omega t_{r}) - \frac{r^{2}}{3}]
-    = 2m\qty[r_{0}^{2}\cos^{2}(\omega t_{r}) - \frac{r^{2}}{3}]
+    Q_{zz} = \int_{\mathbb{R}^{3}}\delta(z)\delta(x - R\cos\omega t)\delta(y - R\sin\omega t)(yz)d\vb{x}
+    = 0
   \]
-  $Q_{yy}$ will proceed identically, except the $y^{2}$ will pair with the delta distribution containing $y$, leaving
+  Accordingly,
   \[
-    Q_{yy} = 2m\qty[r_{0}^{2}\sin^{2}(\omega t_{r}) - \frac{r^{2}}{3}]
+    h_{+} = \frac{2}{r}\frac{G}{c^{4}}R^{2}\cos 2\omega t
   \]
-  Last for the diagonal entries, $Q_{zz} = -\frac{2mr^{2}}{3}$, since the $x_{i}x_{j}$ term pairs with $\delta(z)$, and the integral evaluates to $0^{2}$.
-
-  Things are more interesting for the off-diagonal terms; symmetry of the tensor means we need not calculate reflected components, but
-
+  \[
+    h_{\times} = 0
+  \]
+  This is smaller than the perpendicular amplitude.
 \end{proof}
 
 \begin{prob}
   Consider a binary black hole system, with black hole mass \SI{30}{M_{\odot}} when their centers are 2.5 Schwarzschild radii away (that is, about to merge).
-  If the system is 400 Mpc away, what is the amplitude of the wave on Earth?
+  If the system is 400 Mpc away, what is the approximate amplitude of the wave on Earth?
+  Compare with Phys. Rev. Lett. 116, 061102 (2016).
   How close would this system would have to be if the strain on Earth is 1 ppm?
 \end{prob}
 
@@ -98,6 +88,7 @@
   \[
     h \approx \frac{(\SI{89}{km})^{2}}{(2.5\cdot\SI{89}{km})(\SI{400}{Mpc} \cdot \SI{3.1e22}{m / Mpc})} = \SI{2.9e-21}{}
   \]
+  This is 3 times the strain detected in the corresponding paper.
   We can rearrange the approximate formula for $h$ for $r$:
   \[
     r = \frac{r_{s}^{2}}{Rh}

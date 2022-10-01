@@ -1,0 +1,268 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Classicthesis-Styled CV
+% LaTeX Template
+% Version 1.0 (22/2/13)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Alessandro Plasmati
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+% ----------------------------------------------------------------------------------------
+
+\documentclass{scrartcl}
+
+\usepackage{tgpagella}
+
+\reversemarginpar % Move the margin to the left of the page 
+
+\newcommand{\MarginText}[1]{\marginpar{\raggedleft\itshape\small#1}} % New command defining the margin text style
+
+\usepackage[nochapters]{classicthesis} % Use the classicthesis style for the style of the document
+\usepackage[LabelsAligned]{currvita} % Use the currvita style for the layout of the document
+
+\renewcommand{\cvheadingfont}{\LARGE\color{Maroon}} % Font color of your name at the top
+
+\usepackage{hyperref} % Required for adding links	and customizing them
+\hypersetup{colorlinks, breaklinks, urlcolor=Maroon, linkcolor=Maroon} % Set link colors
+
+\newlength{\datebox}\settowidth{\datebox}{Spring 2011} % Set the width of the date box in each block
+
+\newcommand{\NewEntry}[3]{\noindent\hangindent=2em\hangafter=0 \parbox{\datebox}{\small \textit{#1}}\hspace{1.5em} #2 #3 % Define a command for each new block - change spacing and font sizes here: #1 is the left margin, #2 is the italic date field and #3 is the position/employer/location field
+  \vspace{0.5em}} % Add some white space after each new entry
+
+\newcommand{\Description}[1]{\hangindent=2em\hangafter=0\noindent\raggedright\footnotesize{#1}\par\normalsize\vspace{1em}} % Define a command for descriptions of each entry - change spacing and font sizes here
+
+% ----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\thispagestyle{empty} % Stop the page count at the bottom of the first page
+
+% ----------------------------------------------------------------------------------------
+%	NAME AND CONTACT INFORMATION SECTION
+% ----------------------------------------------------------------------------------------
+
+\begin{cv}{\spacedallcaps{Duncan Wilkie}}\vspace{1.5em} % Your name
+
+  \noindent\spacedlowsmallcaps{Personal Information}\vspace{0.5em} % Personal information heading
+
+  \NewEntry{}{\textit{Born Arkansas,}}{3 July 2002} % Birthplace and date
+
+  \NewEntry{email}{\href{mailto:dwilk14@lsu.edu}{dwilk14@lsu.edu}} % Email address
+
+  % \NewEntry{website}{\href{http://www.johnsmith.com}{http://www.johnsmith.com}} % Personal website
+
+  % \NewEntry{phone}{(H) +1 (479) 427 1795\ \ $\cdotp$\ \ (M) +1 (000) 111 1112} % Phone number(s)
+
+  \vspace{1em} % Extra white space between the personal information section and goal
+
+  \noindent\spacedlowsmallcaps{}\vspace{1em} % Goal heading, could be used for a quotation or short profile instead
+
+  \Description{"The aim of theory really is, to a great extent,
+    that of systematically organizing past experience in
+    such a way that the next generation, our students and their students and so on,
+    will be able to absorb the essential aspects in as painless a way as possible..."
+    --- Michael Attiyah}\vspace{2em} % Goal text
+
+  \noindent\spacedlowsmallcaps{Education}\vspace{1em}
+
+  \NewEntry{2019---}{Bachelor of Science in Physics \ \ $\cdotp$ \ \ 3.87 GPA}
+
+  \Description{\MarginText{Louisiana State University}
+    As it's my primary discipline, I've taken a generalist's undergraduate curriculum,
+    with classes from instrumentation electronics to solid state theory to gravitational wave astronomy.}
+
+  \NewEntry{2019---}{Bachelor of Science in Math \ \ $\cdotp$ \ \ 3.70 GPA}
+
+  \Description{\MarginText{Louisiana State University}
+    Having attempted (at my grades' expense) to exhaust the undergraduate curriculum in pure mathematics as fast as possible,
+    I've been taking graduate classes since sophomore year, with an eye towards the differential, (pseudo-)Riemannian,
+    and algebraic geometry essential for advanced theoretical physics.}
+  \vspace{1em}
+  % ----------------------------------------------------------------------------------------
+  %	WORK EXPERIENCE
+  % ----------------------------------------------------------------------------------------
+
+  \noindent\spacedlowsmallcaps{Research Projects}\vspace{1em}
+
+  \NewEntry{Oct 2022---}{Mission Control Software for Lunar Payloads}
+
+  \Description{\MarginText{Atlantis Industries}
+    I was hired as a senior software engineer by Dr. Chancellor's startup, formed to commercialize technologies the lab and I
+    had developed in an academic setting, initially funded through a US Space Command phase-II small business research grant.
+    A flagship project of the company is Tiger Eye, a small, light, and low-power radiation detector developed for spaceflight applications.
+    In partnership with Intuitive Machines, this detector is to be flown on a 5-year cislunar orbital mission,
+    gathering data for space weather modeling.
+    Transplanting much of the interface work done in summer '21, I've begun writing MacOS software for interacting with the payload,
+    fetching and displaying its data whenever available. \\
+    Advisor: Jeffery \textsc{Chancellor}\ \ $\cdotp$\  \ \href{mailto:jeff@spartanphysics.com}{jeff@spartanphysics.com}}
+
+
+  \NewEntry{Nov 2021---}{A PHITS Python Porcelain}
+
+  \Description{\MarginText{SpaRTAN Physics}
+    Many modern computational physics programs present Python interfaces.
+    I noticed at our group meetings that graduate students were struggling with the Particle and Heavy Ion Transport code System's
+    card-based interface, so I offered to write a new, object-oriented one in Python that writes the analogous input file for an object tree,
+    runs the transport code on it, and parses the output file to return for the user's further computational needs.
+    This is tantamount to required tooling if one wants to run machine learning computations; for instance,
+    a graduate project for automated design of spacecraft shielding requires kludgy, ad-hoc workarounds that slow the project tremendously.
+    So far, the ``forward-mode'' part is completely written but not completely tested, while the output parsing
+    can't be called complete in any sense, despite extensive labor. \\ % TODO: github
+    Advisor: Jeffery \textsc{Chancellor}\ \ $\cdotp$\  \ \href{mailto:jeff@spartanphysics.com}{jeff@spartanphysics.com}}
+
+  \NewEntry{Nov 2021---}{An Emacs Major Mode and Invocation Script for PHITS}
+
+  \Description{\MarginText{SpaRTAN Physics}
+    Learning to use PHITS for the above project, I wanted better editor support and a POSIX-compliant shell interface, so I wrote it.
+    The former involves theme-aware syntax highlighting, automatic indentation and alignment, and keystroke execution
+    and viewing of calculation results.
+    The latter lets one select which parallelization scheme to use and handles otherwise tedious quirks of the MPI binary.}
+  % ------------------------------------------------
+
+  \NewEntry{Summer 2021}{Spaceflight Radiation Detector Development}
+
+  \Description{\MarginText{SpaRTAN Physics}
+    I was the primary software developer of an iOS-based interface for ADVACAM's MiniPIX detectors,
+    doing 100\% of the Swift app development and much of the embedded C implementation of Apple's proprietary iAP2 protocol.
+    The work was intended to fly on SpaceX's Inspiration 4 mission, and we hope it'll become useful for medical physics researchers.
+    A preprint is available, and it has been submitted to NIM-A. \\ % TODO: preprint
+    Advisor: Jeffery \textsc{Chancellor}\ \ $\cdotp$\  \ \href{mailto:jeff@spartanphysics.com}{jeff@spartanphysics.com}}
+
+  % ------------------------------------------------
+
+  \NewEntry{AY 2020}{Independent Reading in Quantum Information}
+
+  \Description{\MarginText{}
+    COVID left few traditional research opportunities, so I self-directed some quantum information reading.
+    I began with the Chuang-Nielsen text, and later started to pick up papers in categorical quantum mechanics when I learned of its
+    namesake mathematical field via classes touching on algebraic topology.
+    Specifically, that of Abramsky and Coecke outlining the field and Selinger and Valiron's entailing
+    application of linear logic's lambda calculi to quantum computation piqued my interest, as I had been playing with Lisps,
+    which are a nearly direct implementation of Church's classical construction as a programming language.}
+
+  % -----------------------------------------------
+
+
+  \NewEntry{Summer 2020}{Data Science Intern}
+
+  \Description{\MarginText{J. B. Hunt Transport Services}
+    With the pandemic parking me back home and making academic development difficult,
+    I found a remote position in which I could learn computer science skills likely to be useful in physics projects.
+    I trained a machine learning model that estimates the repair time of tractors from basic data (e.g. mileage, repair location)
+    based on Yandex's CatBoost that, to my knowledge, remains deployed.
+    My work was twofold: port the massive, old IBM DB2 query over to Azure MySQL, and to produce a better model of the resulting data.
+    The hybrid categorical-continuous nature of the data led to best performance by a CatBoost model among dozens tested within a
+    hyperparameter optimization framework, beating the existing SPSS model by a difference in mean absolute percent error of 10\%.}
+
+  % -----------------------------------------------
+
+  \NewEntry{AY 2019}{Selected Readings in Functional Analysis}
+
+  \Description{\MarginText{}
+    I was directed to read about some of the basics of Lesbegue integration, function spaces, semigroup theory, divergent series,
+    and asymptotic analysis.
+    Specifically, Hardy's "Divergent Series," Yosida's "Operational Calculus: A Theory of Hyperfunctions,"
+    and Estrada's "A Distributional Approach to Asymptotics" were major points of focus,
+    alongside smaller passages from other works and non-published, one-on-one instruction.
+    This work was to result in a poster on weak ODE solutions, but plans were called off due to COVID-induced cancellation
+    of the poster session (and in-person meetings). \\
+    Advisor: Frank \textsc{Neubrander}\ \ $\cdotp$\  \ \href{mailto:neubrand@math.lsu.edu}{neubrand@math.lsu.edu}}
+
+  % ------------------------------------------------
+
+  \vspace{1em} % Extra space between major sections
+
+  % ----------------------------------------------------------------------------------------
+  %	PUBLICATIONS
+  % ----------------------------------------------------------------------------------------
+
+  \spacedlowsmallcaps{Presentations}\vspace{1em}
+
+  \NewEntry{October 2021}{Embedded Development for Spaceflight Radiation Detectors}
+
+  \Description{\MarginText{LaSPACE Council Meeting}
+    Showcase of the summer 2021 research described above at a statewide poster session for undergraduate
+    and graduate students funded through NASA EPSCoR. \\
+    Authors: Duncan Wilkie, Jacob Miller, Jared Taylor, Jeffery Chancellor}
+
+  \vspace{1em} % Extra space between major sections
+
+  \spacedlowsmallcaps{Computer Experience}\vspace{1em}
+  \Description{
+    \begin{itemize}
+    \item Extensive
+      \begin{itemize}
+      \item Python and its EDSLs
+      \item GNU/Linux, in theory and practice
+      \item GNU Emacs and Emacs Lisp
+      \item Embedded C (Texas Instruments' ARM CPUs)
+      \item Swift and SwiftUI
+      \item Scheme Lisp
+      \item Parser combinators
+      \item Java
+      \item Numerical C++
+      \item Gnuplot
+      \item LaTeX and TikZ
+      \item SageMath
+      \end{itemize}
+    \item Moderate
+      \begin{itemize}
+      \item Haskell
+      \item Fortran 77 and 90
+      \item Parser generators and EBNF
+      \item GNU Octave/MATLAB
+      \item Z80 and ARM Assembly
+      \item GDB
+      \item Profiling and optimization
+      \end{itemize}
+    \item Cursory
+      \begin{itemize}
+      \item Clash, SystemVerilog, and electronic design automation
+      \item Compiler architecture and intermediate representations
+      \item RISC-V
+      \item CERN ROOT
+      \item Rust
+      \item Lua
+      \item R
+      \end{itemize}
+  \end{itemize}}
+
+  \spacedlowsmallcaps{Teaching}\vspace{1em}
+
+  \Description{AY 2018 \ \ $\cdotp$ \ \ High/elementary school math and ACT prep tutoring job.}
+  \Description{Aug 2019--- \ \ $\cdotp$ \ \ Informal homework help for other physics majors.}
+  \Description{Fall 2020 \ \ $\cdotp$ \ \ Engineering physics recitation leader.}
+  \Description{Apr 2022--- \ \ $\cdotp$ \ \ Presentations on relativity and differential geometry, discussions, and homework help in a math
+  Discord server.}
+  % ----------------------------------------------------------------------------------------
+  %	OTHER INFORMATION
+  % ----------------------------------------------------------------------------------------
+
+  \spacedlowsmallcaps{Awards}\vspace{1em}
+
+  \Description{2019- \ \ $\cdotp$ \ \ LSU Ann and Clarence P. Cazalot Jr College of Science Honors Scholar}
+
+  \vspace{-0.5em}
+
+  \Description{AY 2021\ \ $\cdotp$ \ \ Louisiana Space Grant Consortium Undergraduate Research Assistantship}
+
+  \vspace{-0.5em} % Negative vertical space to counteract the vertical space between every \Description command
+
+  \Description{2022\ \ $\cdotp$ \ \ LSU Goldwater Fellowship Nominee}
+
+  % ------------------------------------------------
+
+
+\end{cv}
+
+\end{document}

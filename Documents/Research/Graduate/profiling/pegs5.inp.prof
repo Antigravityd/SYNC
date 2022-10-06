@@ -1,0 +1,22 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+ no time accumulated
+
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  Ts/call  Ts/call  name    
+  0.00      0.00     0.00       25     0.00     0.00  chlngt_ (utl03.f:1324)
+  0.00      0.00     0.00        2     0.00     0.00  chnumb_ (utlnmtc.f:69)
+  0.00      0.00     0.00        1     0.00     0.00  MAIN__ (main.f:2)
+  0.00      0.00     0.00        1     0.00     0.00  __talmod_MOD_init_talmod (talmod.f:18)
+  0.00      0.00     0.00        1     0.00     0.00  chcaps_ (utl03.f:1155)
+  0.00      0.00     0.00        1     0.00     0.00  chcomp_ (utl03.f:1113)
+  0.00      0.00     0.00        1     0.00     0.00  cput_a_ (mdp-uni90.f:38)
+  0.00      0.00     0.00        1     0.00     0.00  cputime_ (utl01.f:3)
+  0.00      0.00     0.00        1     0.00     0.00  date_a_time_ (mdp-uni90.f:82)
+  0.00      0.00     0.00        1     0.00     0.00  init_anatal_ (anatally.f:3)
+  0.00      0.00     0.00        1     0.00     0.00  init_sumtal_ (sumtally.f:3)
+  0.00      0.00     0.00        1     0.00     0.00  paraint_ (mpi-non.f:8)
+  0.00      0.00     0.00        1     0.00     0.00  read00_ (read00.f:3)
+  0.00      0.00     0.00        1     0.00     0.00  read01_ (read01.f:3)
+  0.00      0.00     0.00        1     0.00     0.00  sect_a_ (mdp-uni90.f:3)

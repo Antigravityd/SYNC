@@ -1,0 +1,41 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+ no time accumulated
+
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  Ts/call  Ts/call  name    
+  0.00      0.00     0.00       12     0.00     0.00  chcomp_ (utl03.f:1113)
+  0.00      0.00     0.00       10     0.00     0.00  chlngt_ (utl03.f:1324)
+  0.00      0.00     0.00        9     0.00     0.00  chcaps_ (utl03.f:1155)
+  0.00      0.00     0.00        9     0.00     0.00  deqn0_ (a-utl00.f:693)
+  0.00      0.00     0.00        8     0.00     0.00  readl_ (utl03.f:3)
+  0.00      0.00     0.00        8     0.00     0.00  zspcreplace_ (errcheck.f:180)
+  0.00      0.00     0.00        6     0.00     0.00  inumc_ (utl03.f:1263)
+  0.00      0.00     0.00        3     0.00     0.00  func01_ (a-func.f:3)
+  0.00      0.00     0.00        3     0.00     0.00  func02_ (a-func.f:860)
+  0.00      0.00     0.00        3     0.00     0.00  func03_ (a-func.f:1215)
+  0.00      0.00     0.00        3     0.00     0.00  func05_ (a-func.f:1882)
+  0.00      0.00     0.00        3     0.00     0.00  func10_ (a-func.f:3071)
+  0.00      0.00     0.00        3     0.00     0.00  func12_ (a-func.f:3254)
+  0.00      0.00     0.00        3     0.00     0.00  jnumc_ (utl03.f:1290)
+  0.00      0.00     0.00        3     0.00     0.00  onum_ (utl03.f:928)
+  0.00      0.00     0.00        3     0.00     0.00  pnum_ (a-utl00.f:328)
+  0.00      0.00     0.00        3     0.00     0.00  rnum_ (a-utl00.f:464)
+  0.00      0.00     0.00        2     0.00     0.00  date_a_time_ (mdp-uni90.f:82)
+  0.00      0.00     0.00        1     0.00     0.00  MAIN__ (main.f:2)
+  0.00      0.00     0.00        1     0.00     0.00  __talmod_MOD_init_talmod (talmod.f:18)
+  0.00      0.00     0.00        1     0.00     0.00  cput_a_ (mdp-uni90.f:38)
+  0.00      0.00     0.00        1     0.00     0.00  cputime_ (utl01.f:3)
+  0.00      0.00     0.00        1     0.00     0.00  errwrite_ (errcheck.f:13)
+  0.00      0.00     0.00        1     0.00     0.00  inclf_ (a-utl00.f:86)
+  0.00      0.00     0.00        1     0.00     0.00  init_anatal_ (anatally.f:3)
+  0.00      0.00     0.00        1     0.00     0.00  init_sumtal_ (sumtally.f:3)
+  0.00      0.00     0.00        1     0.00     0.00  mpi_dumpfilecheck_ (errcheck.f:127)
+  0.00      0.00     0.00        1     0.00     0.00  parabcsti_ (mpi-non.f:72)
+  0.00      0.00     0.00        1     0.00     0.00  parafin_ (mpi-non.f:31)
+  0.00      0.00     0.00        1     0.00     0.00  paraint_ (mpi-non.f:8)
+  0.00      0.00     0.00        1     0.00     0.00  param_ (read02.f:22689)
+  0.00      0.00     0.00        1     0.00     0.00  read00_ (read00.f:3)
+  0.00      0.00     0.00        1     0.00     0.00  sect_a_ (mdp-uni90.f:3)
+  0.00      0.00     0.00        1     0.00     0.00  sumcput_ (analyz.f:9075)

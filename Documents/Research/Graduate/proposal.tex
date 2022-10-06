@@ -4,14 +4,59 @@
 \usepackage{tgpagella}
 \usepackage{amsmath}
 \usepackage{siunitx}
+\usepackage[fontsize=12pt]{fontsize}
+\usepackage{tikz}
+\usepackage{gnuplot-lua-tikz}
 
-\title{NSTGRO23 Proposal}
+\title{NSTGRO23 Proposal: Model-Agnostic Monte Carlo Radiation Transport}
 \author{Duncan Wilkie}
 \date{31 September 2022}
 
 \begin{document}
 
 \maketitle
+
+\section{Project Narrative}
+\label{sec:project-narrative}
+
+Current Monte Carlo radiation transport simulation technology is showing its age.
+ The user asks: ``I've got some radiation and some matter it's going to hit. Can you tell me what will happen?'' % TODO: possibly reword
+Existing software, mostly agglomerations of purpose-specific FORTRAN codes that have asymptotically approached generality over the past half-century,
+can answer this question reasonably well; well enough to design accelerators, reactors, and hardened silicon,
+and roughly predict risks associated with living things' exposure to radiation.
+The user interfaces can be recalcitrant, with many programs recently restructured or wrapped to admit friendlier interaction than an input card format,
+now accessible from Python or a graphical window.
+Their physical models' coverage of the radiation spectrum was often partial, their supported matter types limited,
+and admissible shapes of both target and source quite specific.
+These have been rectified as their market expanded, simulating ever-wider ranges of energies, elements, and geometries.
+
+However, only the latter brought very general user control, with tetrahedral, general, and combinatorial geometry description.
+As underlying models of the radiation-matter interaction grew, each code system became increasingly tied to its chosen models,
+only modifiable through user-defined Fortran routines for specific edge cases where input cards were deemed insufficient.
+For most purposes, this is adequate, as they are the purposes for which the models were designed.
+
+Space medical physics, by contrast, sees such large discrepancy between prediction and observation that model-level innovation is likely to be necessary.
+Current research uses Monte Carlo tools widely, to probe observed discrepancy between animal and human resilience to exposure,
+for automated design of optimal spacecraft shielding, and to create phantom models for beamline measurements. % TODO: better/refined examples
+At the same time, current research attempts to improve mathematical modeling of the radiation interactions, e.g. for thick targets like spacecraft shielding.
+The former science would benefit from swift integration of the latter's advancements,
+but as-is there are few possibilities to do so outside correspondence with the developers.
+
+I propose the development of a model-agnostic transport program core, capable of interfacing with current model code and new model code as the user sees fit.
+The user will provide programmatic description of the desired geometry and radiation sources, and a selection of models to use under different conditions.
+The program will mediate between this representation and the representation expected by the underlying models, switching between them as instructed,
+and returning aggregate results to the user.
+It should provide a scheme for parallel and distributed computation as well, enabling the use of standard high-performance computing resources.
+The user ought to be able to use the program as a module in a common, general-purpose programming language in which extensive tooling for data analysis
+and further computation is available.
+
+Setup and marshaling of user input is a minimal proportion of CPU and developer time in existing codes.
+% TODO: estimate line counts
+As this software
+\begin{center}
+  \input{profiling/hist.tex}
+\end{center}
+
 
 
 

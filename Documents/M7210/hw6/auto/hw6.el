@@ -1,5 +1,5 @@
 (TeX-add-style-hook
- "hw4"
+ "hw6"
  (lambda ()
    (TeX-add-to-alist 'LaTeX-provided-package-options
                      '(("geometry" "letterpaper")))
@@ -11,10 +11,11 @@
     "tgpagella"
     "amsmath"
     "amssymb"
-    "amsthm")
+    "amsthm"
+    "physics")
    (TeX-add-symbols
     "nsub")
-   (LaTeX-add-amsthm-newtheorems
-    "lem"))
+   (LaTeX-add-environments
+    "problem"))
  :latex)
 

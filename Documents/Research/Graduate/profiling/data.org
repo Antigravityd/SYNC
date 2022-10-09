@@ -4,6 +4,8 @@
 Recorded files include functions accounting for more than 1% of the program execution time.
 Run =prof.sh= and paste the contents of the files here, and run =org-table-create-or-convert-from-region= (~C-c |~).
 
+** Tables
+
 #+NAME: BCNT
 |  time | seconds | seconds |      calls | ms/call | ms/call | name                                 | filename               |
 | 21.43 |    0.21 |    0.21 |     767953 |    0.00 |    0.00 | xstneu_                              | (ggm04.f:3)            |
@@ -1171,436 +1173,636 @@ Run =prof.sh= and paste the contents of the files here, and run =org-table-creat
 |  0.05 |   11.02 |    0.01 |            |         |         | pdepstrz_                            | (talls06.f:18668)      |
 |  0.05 |   11.02 |    0.01 |            |         |         | terrang_                             | (tallsm3.f:16386)      |
 
-TODO: deliberate on anal-i files
-| filename            | model? | reasoning |
-|---------------------+--------+-----------|
-| a-alone.f           |      0 | angel     |
-| aama.f              |      1 |           |
-| a-angel.f           |      0 | angel     |
-| a-angel-winopenmp.f |      0 | angel     |
-| a-func.f            |      0 | angel     |
-| a-hsect.f           |      0 | angel     |
-| a-line.f            |      0 | angel     |
-| a-main0.f           |      0 | angel     |
-| a-main1.f           |      0 | angel     |
-| anainp.f            |      0 |           |
-| anal-001.f          |      1 |           |
-| anal-002.f          |      1 |           |
-| anal-003.f          |      1 |           |
-| anal-004.f          |      1 |           |
-| anal-005.f          |      1 |           |
-| anal-006.f          |      1 |           |
-| anal-007.f          |      1 |           |
-| anal-008.f          |      1 |           |
-| anal-009.f          |      1 |           |
-| anal-010.f          |      1 |           |
-| anal-011.f          |      1 |           |
-| anal-han.f          |      1 |           |
-| analyz.f            |      0 |           |
-| anatalcross.f       |      0 |           |
-| anataldeposit.f     |      0 |           |
-| anataldpa.f         |      0 |           |
-| anatallet.f         |      0 |           |
-| anatally.f          |      0 |           |
-| anatallymod.f       |      0 |           |
-| anatalpoint.f       |      0 |           |
-| anatalproduct.f     |      0 |           |
-| anatal_rearrange.f  |      0 |           |
-| anatalsed.f         |      0 |           |
-| anatalstar.f        |      0 |           |
-| anataltime.f        |      0 |           |
-| anataltrack.f       |      0 |           |
-| anatalyield.f       |      0 |           |
-| atima01.f           |        |           |
-| atima02.f           |        |           |
-| atima03.f           |        |           |
-| a-utl00.f           |        |           |
-| a-wtext.f           |        |           |
-| bert-bl0.f          |        |           |
-| bert-bl1.f          |        |           |
-| bert-bl2.f          |        |           |
-| bert.f              |        |           |
-| bertin.f            |        |           |
-| bitmap_a_angel.f    |        |           |
-| bitmap_a-main0.f    |        |           |
-| bitmap_main.f       |        |           |
-| bitmap_util.f       |        |           |
-| celimp.f            |        |           |
-| checkermod.f        |        |           |
-| cosmicmod.f         |        |           |
-| dataup.f            |        |           |
-| dedx_file.f         |        |           |
-| dklos.f             |        |           |
-| dpa.f               |        |           |
-| dump-a.f            |        |           |
-| dwbaD.f             |        |           |
-| dwbaE.f             |        |           |
-| dwbain.f            |        |           |
-| egs2phits.f         |        |           |
-| egs5annih.f         |        |           |
-| egs5ecoll.f         |        |           |
-| egs5ededx.f         |        |           |
-| egs5ede.f           |        |           |
-| egs5edxde.f         |        |           |
-| egs5efpl.f          |        |           |
-| egs5elast.f         |        |           |
-| egs5esteps0.f       |        |           |
-| egs5.f              |        |           |
-| egs5init2.f         |        |           |
-| egs5init.f          |        |           |
-| egs5mod.f           |        |           |
-| egs5pcoll.f         |        |           |
-| egs5pfpl.f          |        |           |
-| egs_elmgfd.f        |        |           |
-| elcmod.f            |        |           |
-| elemdatamod.f       |        |           |
-| energy.f            |        |           |
-| errcheck.f          |        |           |
-| erup.f              |        |           |
-| erupin.f            |        |           |
-| etsmode.f           |        |           |
-| eventtalmod.f       |        |           |
-| fismul.f            |        |           |
-| fissionmod.f        |        |           |
-| fissn.f             |        |           |
-| fragdatamod.f       |        |           |
-| gamlib.f            |        |           |
-| gamma1.f            |        |           |
-| gamma2mumu.f        |        |           |
-| gammod.f            |        |           |
-| gem.f               |        |           |
-| gemset.f            |        |           |
-| geocntl.f           |        |           |
-| getflt.f            |        |           |
-| ggbankmod.f         |        |           |
-| ggm01.f             |        |           |
-| ggm02.f             |        |           |
-| ggm03.f             |        |           |
-| ggm04.f             |        |           |
-| ggm05.f             |        |           |
-| ggm05mod.f          |        |           |
-| ggm06.f             |        |           |
-| ggm07.f             |        |           |
-| ggm08.f             |        |           |
-| ggm09.f             |        |           |
-| ggmarraymod.f       |        |           |
-| ggmbankmod.f        |        |           |
-| ggs00.f             |        |           |
-| ggs01.f             |        |           |
-| ggs02.f             |        |           |
-| ggs03.f             |        |           |
-| ggs04.f             |        |           |
-| incelf.f            |        |           |
-| incelfin.f          |        |           |
-| inclin.f            |        |           |
-| inclp.f             |        |           |
-| isobert.f           |        |           |
-| isodat.f            |        |           |
-| itrminmax.f         |        |           |
-| itsmode.f           |        |           |
-| jamana.f            |        |           |
-| jambuu.f            |        |           |
-| jamcoll.f           |        |           |
-| jamcross.f          |        |           |
-| jamdat.f            |        |           |
-| jamdec.f            |        |           |
-| jam.f               |        |           |
-| jamhard.f           |        |           |
-| jamhij.f            |        |           |
-| jamin.f             |        |           |
-| jampdf.f            |        |           |
-| jamsoft.f           |        |           |
-| jbook.f             |        |           |
-| kurbuc.f            |        |           |
-| kurotama0.f         |        |           |
-| lafdatamod.f        |        |           |
-| latdatamod.f        |        |           |
-| levdenmod.f         |        |           |
-| magmod.f            |        |           |
-| magtrs.f            |        |           |
-| main.f              |        |           |
-| mars00.f            |        |           |
-| mars01.f            |        |           |
-| mars02.f            |        |           |
-| mars03.f            |        |           |
-| mars04.f            |        |           |
-| marscg.f            |        |           |
-| masdis.f            |        |           |
-| mdp-uni90.f         |        |           |
-| mdp-uni.f           |        |           |
-| mdp-win.f           |        |           |
-| membankmod.f        |        |           |
-| mmbankmod.f         |        |           |
-| mod_counter.f       |        |           |
-| mod_ompparallel.f   |        |           |
-| mod_rsouin.f        |        |           |
-| mpi-lin.f           |        |           |
-| mpi-non.f           |        |           |
-| mpi-win.f           |        |           |
-| muoncap.f           |        |           |
-| muonint.f           |        |           |
-| ncasc.f             |        |           |
-| ndata01.f           |        |           |
-| ndata2mod.f         |        |           |
-| ndatamod.f          |        |           |
-| nelst.f             |        |           |
-| neutrinomod.f       |        |           |
-| nevap.f             |        |           |
-| ngsdatamod.f        |        |           |
-| nreac.f             |        |           |
-| ompdump.f           |        |           |
-| ovly12.f            |        |           |
-| ovly13.f            |        |           |
-| ovly14.f            |        |           |
-| ovly15.f            |        |           |
-| partmod.f           |        |           |
-| partrs.f            |        |           |
-| photnucl.f          |        |           |
-| pyjet.f             |        |           |
-| pysigh.f            |        |           |
-| pythia.f            |        |           |
-| qmd00.f             |        |           |
-| qmd00_qmd-nr.f      |        |           |
-| qmdcoll.f           |        |           |
-| qmdcoll_qmd-nr.f    |        |           |
-| qmd_cood2_mod.f     |        |           |
-| qmddflt.f           |        |           |
-| qmdgrnd.f           |        |           |
-| qmdgrnd_qmd-nr.f    |        |           |
-| qmdinit.f           |        |           |
-| qmdmfld.f           |        |           |
-| qmdmfld_qmd-nr.f    |        |           |
-| qmdscm_qmd-nr.f     |        |           |
-| randmc.f            |        |           |
-| range.f             |        |           |
-| rdyild.f            |        |           |
-| read00.f            |        |           |
-| read01.f            |        |           |
-| read02-Edu.f        |        |           |
-| read02.f            |        |           |
-| read03.f            |        |           |
-| restadjnt.f         |        |           |
-| restalmod.f         |        |           |
-| restart.f           |        |           |
-| restcross.f         |        |           |
-| restdeposit2.f      |        |           |
-| restdeposit.f       |        |           |
-| restdpa.f           |        |           |
-| restheat.f          |        |           |
-| restlet.f           |        |           |
-| restpoint.f         |        |           |
-| restproduct.f       |        |           |
-| restsed.f           |        |           |
-| reststar.f          |        |           |
-| resttime.f          |        |           |
-| resttrack.f         |        |           |
-| restvlm.f           |        |           |
-| restwwg.f           |        |           |
-| restyield.f         |        |           |
-| resutl.f            |        |           |
-| risource.f          |        |           |
-| sangel.f            |        |           |
-| sangelmod.f         |        |           |
-| scinucl.f           |        |           |
-| sdml.f              |        |           |
-| smm.f               |        |           |
-| sors.f              |        |           |
-| statistic.f         |        |           |
-| sumtaladjnt.f       |        |           |
-| sumtalcross.f       |        |           |
-| sumtaldeposit2.f    |        |           |
-| sumtaldeposit.f     |        |           |
-| sumtaldpa.f         |        |           |
-| sumtalheat.f        |        |           |
-| sumtallet.f         |        |           |
-| sumtally.f          |        |           |
-| sumtallymod.f       |        |           |
-| sumtalpoint.f       |        |           |
-| sumtalproduct.f     |        |           |
-| sumtalsed.f         |        |           |
-| sumtalstar.f        |        |           |
-| sumtaltime.f        |        |           |
-| sumtaltrack.f       |        |           |
-| sumtalvlm.f         |        |           |
-| sumtalwwg.f         |        |           |
-| sumtalyield.f       |        |           |
-| talls00.f           |        |           |
-| talls01.f           |        |           |
-| talls02.f           |        |           |
-| talls03.f           |        |           |
-| talls04.f           |        |           |
-| talls05.f           |        |           |
-| talls06.f           |        |           |
-| talls07.f           |        |           |
-| talls08.f           |        |           |
-| talls09.f           |        |           |
-| tallsm1.f           |        |           |
-| tallsm2.f           |        |           |
-| tallsm3.f           |        |           |
-| tallsm4.f           |        |           |
-| talmod.f            |        |           |
-| tetramod.f          |        |           |
-| unix90.f            |        |           |
-| unix.f              |        |           |
-| update.f            |        |           |
-| usranatal.f         |        |           |
-| usrdfn1.f           |        |           |
-| usrdfn2.f           |        |           |
-| usrdfn3.f           |        |           |
-| usrelst1.f          |        |           |
-| usrelst2.f          |        |           |
-| usrmgf1.f           |        |           |
-| usrmgf3.f           |        |           |
-| usrmgt1.f           |        |           |
-| usrmgt2.f           |        |           |
-| usrresol.f          |        |           |
-| usrsors.f           |        |           |
-| usrtally.f          |        |           |
-| usrtalmod.f         |        |           |
-| utl01.f             |        |           |
-| utl02.f             |        |           |
-| utl03.f             |        |           |
-| utlnmtc.f           |        |           |
-| vtk_gshow.f         |        |           |
-| vtk_main.f          |        |           |
-| vtk_util.f          |        |           |
-| wrnt10.f            |        |           |
-| wrnt12.f            |        |           |
-| wrnt13.f            |        |           |
-| counters.f          |        |           |
-| egs5_bounds.f       |        |           |
-| egs5_brempr.f       |        |           |
-| egs5_cdcsep.f       |        |           |
-| egs5_cdcspl.f       |        |           |
-| egs5_coefgs.f       |        |           |
-| egs5_csplcf.f       |        |           |
-| egs5_edge.f         |        |           |
-| egs5_eiicom.f       |        |           |
-| egs5_elecin.f       |        |           |
-| egs5_epcont.f       |        |           |
-| egs5_h.f            |        |           |
-| egs5_media.f        |        |           |
-| egs5_misc.f         |        |           |
-| egs5_mscon.f        |        |           |
-| egs5_mults.f        |        |           |
-| egs5_photin.f       |        |           |
-| egs5_scpw.f         |        |           |
-| egs5_stack.f        |        |           |
-| egs5_thresh.f       |        |           |
-| egs5_uphiin.f       |        |           |
-| egs5_uphiot.f       |        |           |
-| egs5_useful.f       |        |           |
-| egs5_userpr.f       |        |           |
-| egs5_usersc.f       |        |           |
-| egs5_uservr.f       |        |           |
-| egs5_userxt.f       |        |           |
-| randomm.f           |        |           |
-| bcom.f              |        |           |
-| bremp2.f            |        |           |
-| cohcom.f            |        |           |
-| cpcom.f             |        |           |
-| dbrpr.f             |        |           |
-| dcsstr.f            |        |           |
-| dercon.f            |        |           |
-| eimpact.f           |        |           |
-| elemtb.f            |        |           |
-| elmtbc.f            |        |           |
-| epstar.f            |        |           |
-| funcsc.f            |        |           |
-| funcs.f             |        |           |
-| k1spl.f             |        |           |
-| lamolm.f            |        |           |
-| lanihm.f            |        |           |
-| lbhabm.f            |        |           |
-| lbremr.f            |        |           |
-| lbremz.f            |        |           |
-| lcompm.f            |        |           |
-| legacy.f            |        |           |
-| lpairr.f            |        |           |
-| lpairz.f            |        |           |
-| lspion.f            |        |           |
-| mimsd.f             |        |           |
-| mixdat.f            |        |           |
-| molvar.f            |        |           |
-| mscom.f             |        |           |
-| mxdatc.f            |        |           |
-| phpair.f            |        |           |
-| pmcons.f            |        |           |
-| pwlfin.f            |        |           |
-| radlen.f            |        |           |
-| rngspl.f            |        |           |
-| rslts.f             |        |           |
-| scpspl.f            |        |           |
-| sfcom.f             |        |           |
-| spcomc.f            |        |           |
-| spcomm.f            |        |           |
-| thres2.f            |        |           |
+
+* File Classes
+#+NAME: fc
+| filename            | model? | reasoning                       |
+|---------------------+--------+---------------------------------|
+| a-alone.f           |      0 | angel                           |
+| aama.f              |      1 | muonic atom cascade             |
+| a-angel.f           |      0 | angel                           |
+| a-angel-winopenmp.f |      0 | angel                           |
+| a-func.f            |      0 | angel                           |
+| a-hsect.f           |      0 | angel                           |
+| a-line.f            |      0 | angel                           |
+| a-main0.f           |      0 | angel                           |
+| a-main1.f           |      0 | angel                           |
+| anainp.f            |      0 | tally                           |
+| anal-001.f          |      1 | physics fns for tallies         |
+| anal-002.f          |      1 | physics fns for tallies         |
+| anal-003.f          |      1 | physics fns for tallies         |
+| anal-004.f          |      1 | physics fns for tallies         |
+| anal-005.f          |      1 | physics fns for tallies         |
+| anal-006.f          |      1 | physics fns for tallies         |
+| anal-007.f          |      1 | physics fns for tallies         |
+| anal-008.f          |      1 | physics fns for tallies         |
+| anal-009.f          |      1 | physics fns for tallies         |
+| anal-010.f          |      1 | physics fns for tallies         |
+| anal-011.f          |      1 | physics fns for tallies         |
+| anal-han.f          |      1 | p+Al 180MeV reaction            |
+| analyz.f            |      0 | analysis control                |
+| anatalcross.f       |      0 | main tally code                 |
+| anataldeposit.f     |      0 | main tally code                 |
+| anataldpa.f         |      0 | main tally code                 |
+| anatallet.f         |      0 | main tally code                 |
+| anatally.f          |      0 | main tally code                 |
+| anatallymod.f       |      0 | main tally code                 |
+| anatalpoint.f       |      0 | main tally code                 |
+| anatalproduct.f     |      0 | main tally code                 |
+| anatal_rearrange.f  |      0 | main tally code                 |
+| anatalsed.f         |      0 | main tally code                 |
+| anatalstar.f        |      0 | main tally code                 |
+| anataltime.f        |      0 | main tally code                 |
+| anataltrack.f       |      0 | main tally code                 |
+| anatalyield.f       |      0 | main tally code                 |
+| atima01.f           |      1 | stopping pwr model              |
+| atima02.f           |      1 | stopping pwr model              |
+| atima03.f           |      1 | stopping pwr model              |
+| a-utl00.f           |      0 | angel                           |
+| a-wtext.f           |      0 | angel                           |
+| bert-bl0.f          |      1 | Bertini model data              |
+| bert-bl1.f          |      1 | Bertini model data              |
+| bert-bl2.f          |      1 | Bertini model data              |
+| bert.f              |      1 | Bertini model                   |
+| bertin.f            |      1 | Bertini model                   |
+| bitmap_a_angel.f    |      0 | angel                           |
+| bitmap_a-main0.f    |      0 | angel                           |
+| bitmap_main.f       |      0 | angel                           |
+| bitmap_util.f       |      0 | angel                           |
+| celimp.f            |      0 | cell importances                |
+| checkermod.f        |      0 | token module                    |
+| cosmicmod.f         |      1 | cosmic ray model                |
+| cosmicray.f90       |      1 | cosmic ray model                |
+| dataup.f            |      0 | recording particle              |
+| dedx_file.f         |      1 | reading LET file                |
+| dklos.f             |      1 | decay model                     |
+| dpa.f               |      1 | calculate cross-sections        |
+| dump-a.f            |      0 | dump processing                 |
+| dwbaD.f             |      1 | dwba data                       |
+| dwbaE.f             |      1 | dwba event generation           |
+| dwbain.f            |      1 | dwba main                       |
+| egs2phits.f         |      1 | egs = model                     |
+| egs5annih.f         |      1 | egs = model                     |
+| egs5ecoll.f         |      1 | egs = model                     |
+| egs5ededx.f         |      1 | egs = model                     |
+| egs5ede.f           |      1 | egs = model                     |
+| egs5edxde.f         |      1 | egs = model                     |
+| egs5efpl.f          |      1 | egs = model                     |
+| egs5elast.f         |      1 | egs = model                     |
+| egs5esteps0.f       |      1 | egs = model                     |
+| egs5.f              |      1 | egs = model                     |
+| egs5init2.f         |      1 | egs = model                     |
+| egs5init.f          |      1 | egs = model                     |
+| egs5mod.f           |      1 | egs = model                     |
+| egs5pcoll.f         |      1 | egs = model                     |
+| egs5pfpl.f          |      1 | egs = model                     |
+| egs_elmgfd.f        |      1 | egs = model                     |
+| elcmod.f            |      1 | electric field model            |
+| elemdatamod.f       |      1 | chemical model                  |
+| energy.f            |      1 | energy calculation              |
+| errcheck.f          |      0 | error handling                  |
+| erup.f              |      1 | evaporation model               |
+| erupin.f            |      1 | evaporation model               |
+| etsmode.f           |      1 | track-structure model           |
+| eventtalmod.f       |      0 | tally preperation               |
+| fismul.f            |      1 | fission model                   |
+| fissionmod.f        |      1 | fission model                   |
+| fissn.f             |      1 | fission model                   |
+| fragdatamod.f       |      1 | fission model                   |
+| gamlib.f            |      1 | gamma emission model            |
+| gamma1.f            |      1 | gamma emission model            |
+| gamma2mumu.f        |      1 | gamma emission model            |
+| gammod.f            |      1 | gamma emission model            |
+| gem.f               |      1 | GEM particle decay model        |
+| gemset.f            |      1 | GEM particle decay model        |
+| geocntl.f           |      0 | geometry                        |
+| getflt.f            |      1 | flight-length model             |
+| ggbankmod.f         |      0 | counting stuff                  |
+| ggm01.f             |      0 | data setup                      |
+| ggm02.f             |      0 | mostly setup; some phys         |
+| ggm03.f             |      0 | parsing                         |
+| ggm04.f             |      1 | cross-section calc, &c.         |
+| ggm05.f             |      1 | mostly calc and sample          |
+| ggm05mod.f          |      1 | mostly calc and sample          |
+| ggm06.f             |      1 | mostly calc and sample          |
+| ggm07.f             |      1 | mostly calc and sample          |
+| ggm08.f             |      1 | mostly calc and sample          |
+| ggm09.f             |      1 | mostly calc and sample          |
+| ggmarraymod.f       |      0 | memory management fns           |
+| ggmbankmod.f        |      0 | memory management fns           |
+| ggs00.f             |      0 | geometry                        |
+| ggs01.f             |      0 | geometry                        |
+| ggs02.f             |      0 | geometry                        |
+| ggs03.f             |      0 | geometry                        |
+| ggs04.f             |      0 | geometry                        |
+| incelf.f            |      1 | Iwamoto model                   |
+| incelfin.f          |      1 | Iwamoto model                   |
+| inclin.f            |      1 | Coulomb barrier model           |
+| inclp.f             |      1 | Coulomb barrier model           |
+| isobert.f           |      1 | isobert model                   |
+| isodat.f            |      1 | isobert model                   |
+| itrminmax.f         |      0 | no documentation                |
+| itsmode.f           |      1 | track structure model           |
+| jamana.f            |      1 | JAM model; hadronic jet cascade |
+| jambuu.f            |      1 | JAM model; hadronic jet cascade |
+| jamcoll.f           |      1 | JAM model; hadronic jet cascade |
+| jamcross.f          |      1 | JAM model; hadronic jet cascade |
+| jamdat.f            |      1 | JAM model; hadronic jet cascade |
+| jamdec.f            |      1 | JAM model; hadronic jet cascade |
+| jam.f               |      1 | JAM model; hadronic jet cascade |
+| jamhard.f           |      1 | JAM model; hadronic jet cascade |
+| jamhij.f            |      1 | JAM model; hadronic jet cascade |
+| jamin.f             |      1 | JAM model; hadronic jet cascade |
+| jampdf.f            |      1 | JAM model; hadronic jet cascade |
+| jamsoft.f           |      1 | JAM model; hadronic jet cascade |
+| jbook.f             |      0 | some histogram thing            |
+| kurbuc.f            |      0 | dummy subroutines               |
+| kurotama0.f         |      1 | hybrid Kurotama model           |
+| lafdatamod.f        |      0 | memory management               |
+| latdatamod.f        |      0 | memory management               |
+| levdenmod.f         |      1 | Leven density calculation       |
+| magmod.f            |      0 | memory management               |
+| magtrs.f            |      1 | EM field model                  |
+| main.f              |      0 | main subroutine; mostly IO      |
+| mars00.f            |      0 | mostly housekeeping routines    |
+| mars01.f            |      0 | mostly housekeeping routines    |
+| mars02.f            |      0 | mostly housekeeping routines    |
+| mars03.f            |      0 | mostly housekeeping routines    |
+| mars04.f            |      0 | mostly housekeeping routines    |
+| marscg.f            |      0 | mostly housekeeping routines    |
+| masdis.f            |      0 | output                          |
+| mdp-uni90.f         |      0 | OS-specific prototypes          |
+| mdp-uni.f           |      0 | OS-specific prototypes          |
+| mdp-win.f           |      0 | OS-specific prototypes          |
+| membankmod.f        |      0 | memory management               |
+| mmbankmod.f         |      0 | memory management               |
+| mod_counter.f       |      0 | memory management               |
+| mod_ompparallel.f   |      0 | memory management               |
+| mod_rsouin.f        |      0 | memory management               |
+| mpi-lin.f           |      0 | memory management               |
+| mpi-non.f           |      0 | memory management               |
+| mpi-win.f           |      0 | memory management               |
+| muoncap.f           |      1 | muon capture                    |
+| muonint.f           |      1 | muon interaction                |
+| ncasc.f             |      1 | nuclear cascade                 |
+| ndata01.f           |      1 | nuclear data                    |
+| ndata2mod.f         |      0 | memory management               |
+| ndatamod.f          |      1 | nuclear data                    |
+| nelst.f             |      1 | elastic collision               |
+| neutrinomod.f       |      1 | neutrino cross-section          |
+| nevap.f             |      1 | nuclear evaporation             |
+| ngsdatamod.f        |      1 | nuclear data                    |
+| nreac.f             |      1 | nuclear reactoin                |
+| ompdump.f           |      1 | memory management               |
+| ovly12.f            |      0 | main control routine            |
+| ovly13.f            |      1 | thin target calculation         |
+| ovly14.f            |      1 | charged particle spectra        |
+| ovly15.f            |      0 | dump control                    |
+| partmod.f           |      0 | memory management               |
+| partrs.f            |      0 | transport control               |
+| photnucl.f          |      1 | photon-nucleus interaction      |
+| pyjet.f             |      1 | PYTHIA model                    |
+| pysigh.f            |      1 | PYTHIA model                    |
+| pythia.f            |      1 | PYTHIA model                    |
+| qmd00.f             |      1 | quantum molecular dynamics      |
+| qmd00_qmd-nr.f      |      1 | quantum molecular dynamics      |
+| qmdcoll.f           |      1 | quantum molecular dynamics      |
+| qmdcoll_qmd-nr.f    |      1 | quantum molecular dynamics      |
+| qmd_cood2_mod.f     |      1 | quantum molecular dynamics      |
+| qmddflt.f           |      1 | quantum molecular dynamics      |
+| qmdgrnd.f           |      1 | quantum molecular dynamics      |
+| qmdgrnd_qmd-nr.f    |      1 | quantum molecular dynamics      |
+| qmdinit.f           |      1 | quantum molecular dynamics      |
+| qmdmfld.f           |      1 | quantum molecular dynamics      |
+| qmdmfld_qmd-nr.f    |      1 | quantum molecular dynamics      |
+| qmdscm_qmd-nr.f     |      1 | quantum molecular dynamics      |
+| randmc.f            |      0 | random nuumber marshalling      |
+| range.f             |      0 | control and bookkeeping         |
+| rdyild.f            |      0 | data reading                    |
+| read00.f            |      0 | data reading                    |
+| read01.f            |      0 | data reading                    |
+| read02-Edu.f        |      0 | data reading                    |
+| read02.f            |      0 | data reading                    |
+| read03.f            |      0 | data reading                    |
+| restadjnt.f         |      0 | restart stuff                   |
+| restalmod.f         |      0 | restart stuff                   |
+| restart.f           |      0 | restart stuff                   |
+| restcross.f         |      0 | restart stuff                   |
+| restdeposit2.f      |      0 | restart stuff                   |
+| restdeposit.f       |      0 | restart stuff                   |
+| restdpa.f           |      0 | restart stuff                   |
+| restheat.f          |      0 | restart stuff                   |
+| restlet.f           |      0 | restart stuff                   |
+| restpoint.f         |      0 | restart stuff                   |
+| restproduct.f       |      0 | restart stuff                   |
+| restsed.f           |      0 | restart stuff                   |
+| reststar.f          |      0 | restart stuff                   |
+| resttime.f          |      0 | restart stuff                   |
+| resttrack.f         |      0 | restart stuff                   |
+| restvlm.f           |      0 | restart stuff                   |
+| restwwg.f           |      0 | restart stuff                   |
+| restyield.f         |      0 | restart stuff                   |
+| resutl.f            |      0 | restart stuff                   |
+| risource.f          |      0 | data reading                    |
+| sangel.f            |      0 | angel                           |
+| sangelmod.f         |      0 | angel                           |
+| scinucl.f           |      1 | nuclear calculations            |
+| sdml.f              |      1 | statistical decay               |
+| smm.f               |      1 | statistical multifragmentation  |
+| sors.f              |      1 | particle generation             |
+| statistic.f         |      1 | statistical helper functions    |
+| sumtaladjnt.f       |      0 | tally things                    |
+| sumtalcross.f       |      0 | tally things                    |
+| sumtaldeposit2.f    |      0 | tally things                    |
+| sumtaldeposit.f     |      0 | tally things                    |
+| sumtaldpa.f         |      0 | tally things                    |
+| sumtalheat.f        |      0 | tally things                    |
+| sumtallet.f         |      0 | tally things                    |
+| sumtally.f          |      0 | tally things                    |
+| sumtallymod.f       |      0 | tally things                    |
+| sumtalpoint.f       |      0 | tally things                    |
+| sumtalproduct.f     |      0 | tally things                    |
+| sumtalsed.f         |      0 | tally things                    |
+| sumtalstar.f        |      0 | tally things                    |
+| sumtaltime.f        |      0 | tally things                    |
+| sumtaltrack.f       |      0 | tally things                    |
+| sumtalvlm.f         |      0 | tally things                    |
+| sumtalwwg.f         |      0 | tally things                    |
+| sumtalyield.f       |      0 | tally things                    |
+| talls00.f           |      0 | tally things                    |
+| talls01.f           |      0 | tally things                    |
+| talls02.f           |      0 | tally things                    |
+| talls03.f           |      0 | tally things                    |
+| talls04.f           |      0 | tally things                    |
+| talls05.f           |      0 | tally things                    |
+| talls06.f           |      0 | tally things                    |
+| talls07.f           |      0 | tally things                    |
+| talls08.f           |      0 | tally things                    |
+| talls09.f           |      0 | tally things                    |
+| tallsm1.f           |      0 | tally things                    |
+| tallsm2.f           |      0 | tally things                    |
+| tallsm3.f           |      0 | tally things                    |
+| tallsm4.f           |      0 | tally things                    |
+| talmod.f            |      0 | tally things                    |
+| tetramod.f          |      0 | tetrahedral geometry            |
+| unix90.f            |      0 | OS-dependent things             |
+| unix.f              |      0 | OS-dependent things             |
+| update.f            |        | bookkeeping                     |
+| usranatal.f         |      0 | user-defined                    |
+| usrdfn1.f           |      0 | user-defined                    |
+| usrdfn2.f           |      0 | user-defined                    |
+| usrdfn3.f           |      0 | user-defined                    |
+| usrelst1.f          |      0 | user-defined                    |
+| usrelst2.f          |      0 | user-defined                    |
+| usrmgf1.f           |      0 | user-defined                    |
+| usrmgf3.f           |      0 | user-defined                    |
+| usrmgt1.f           |      0 | user-defined                    |
+| usrmgt2.f           |      0 | user-defined                    |
+| usrresol.f          |      0 | user-defined                    |
+| usrsors.f           |      0 | user-defined                    |
+| usrtally.f          |      0 | user-defined                    |
+| usrtalmod.f         |      0 | user-defined                    |
+| utl01.f             |      0 | helper routines                 |
+| utl02.f             |      0 | helper routines                 |
+| utl03.f             |      0 | helper routines                 |
+| utlnmtc.f           |      0 | helper routines                 |
+| vtk_gshow.f         |      0 | visualization toolkit           |
+| vtk_main.f          |      0 | visualization toolkit           |
+| vtk_util.f          |      0 | visualization toolkit           |
+| wrnt10.f            |      0 | write to cutoff file            |
+| wrnt12.f            |      0 | write to cutoff file            |
+| wrnt13.f            |      0 | write to cutoff file            |
+| counters.f          |      0 | common data                     |
+| egs5_bounds.f       |      1 | egs5 = model                    |
+| egs5_brempr.f       |      1 | egs5 = model                    |
+| egs5_cdcsep.f       |      1 | egs5 = model                    |
+| egs5_cdcspl.f       |      1 | egs5 = model                    |
+| egs5_coefgs.f       |      1 | egs5 = model                    |
+| egs5_csplcf.f       |      1 | egs5 = model                    |
+| egs5_edge.f         |      1 | egs5 = model                    |
+| egs5_eiicom.f       |      1 | egs5 = model                    |
+| egs5_elecin.f       |      1 | egs5 = model                    |
+| egs5_epcont.f       |      1 | egs5 = model                    |
+| egs5_h.f            |      1 | egs5 = model                    |
+| egs5_media.f        |      1 | egs5 = model                    |
+| egs5_misc.f         |      1 | egs5 = model                    |
+| egs5_mscon.f        |      1 | egs5 = model                    |
+| egs5_mults.f        |      1 | egs5 = model                    |
+| egs5_photin.f       |      1 | egs5 = model                    |
+| egs5_scpw.f         |      1 | egs5 = model                    |
+| egs5_stack.f        |      1 | egs5 = model                    |
+| egs5_thresh.f       |      1 | egs5 = model                    |
+| egs5_uphiin.f       |      1 | egs5 = model                    |
+| egs5_uphiot.f       |      1 | egs5 = model                    |
+| egs5_useful.f       |      1 | egs5 = model                    |
+| egs5_userpr.f       |      1 | egs5 = model                    |
+| egs5_usersc.f       |      1 | egs5 = model                    |
+| egs5_uservr.f       |      1 | egs5 = model                    |
+| egs5_userxt.f       |      1 | egs5 = model                    |
+| randomm.f           |      0 | random seed commons             |
+| bcom.f              |      1 | pegs = egs5  = model            |
+| bremp2.f            |      1 | pegs = egs5  = model            |
+| cohcom.f            |      1 | pegs = egs5  = model            |
+| cpcom.f             |      1 | pegs = egs5  = model            |
+| dbrpr.f             |      1 | pegs = egs5  = model            |
+| dcsstr.f            |      1 | pegs = egs5  = model            |
+| dercon.f            |      1 | pegs = egs5  = model            |
+| eimpact.f           |      1 | pegs = egs5  = model            |
+| elemtb.f            |      1 | pegs = egs5  = model            |
+| elmtbc.f            |      1 | pegs = egs5  = model            |
+| epstar.f            |      1 | pegs = egs5  = model            |
+| funcsc.f            |      1 | pegs = egs5  = model            |
+| funcs.f             |      1 | pegs = egs5  = model            |
+| k1spl.f             |      1 | pegs = egs5  = model            |
+| lamolm.f            |      1 | pegs = egs5  = model            |
+| lanihm.f            |      1 | pegs = egs5  = model            |
+| lbhabm.f            |      1 | pegs = egs5  = model            |
+| lbremr.f            |      1 | pegs = egs5  = model            |
+| lbremz.f            |      1 | pegs = egs5  = model            |
+| lcompm.f            |      1 | pegs = egs5  = model            |
+| legacy.f            |      1 | pegs = egs5  = model            |
+| lpairr.f            |      1 | pegs = egs5  = model            |
+| lpairz.f            |      1 | pegs = egs5  = model            |
+| lspion.f            |      1 | pegs = egs5  = model            |
+| mimsd.f             |      1 | pegs = egs5  = model            |
+| mixdat.f            |      1 | pegs = egs5  = model            |
+| molvar.f            |      1 | pegs = egs5  = model            |
+| mscom.f             |      1 | pegs = egs5  = model            |
+| mxdatc.f            |      1 | pegs = egs5  = model            |
+| phpair.f            |      1 | pegs = egs5  = model            |
+| pmcons.f            |      1 | pegs = egs5  = model            |
+| pwlfin.f            |      1 | pegs = egs5  = model            |
+| radlen.f            |      1 | pegs = egs5  = model            |
+| rngspl.f            |      1 | pegs = egs5  = model            |
+| rslts.f             |      1 | pegs = egs5  = model            |
+| scpspl.f            |      1 | pegs = egs5  = model            |
+| sfcom.f             |      1 | pegs = egs5  = model            |
+| spcomc.f            |      1 | pegs = egs5  = model            |
+| spcomm.f            |      1 | pegs = egs5  = model            |
+| thres2.f            |      1 | pegs = egs5  = model            |
 
 
+* Analysis
 
+#+name: aggregate
 #+header: :db ":memory:"
-#+header: :colnames no
-#+header: :var bcnt=BCNT cosr=CosmicRay ctr=Counter dch=Dchain drsp=DetectorResponse fus=Fusion mu=Muon ns=NeutronSource
+#+header: :colnames yes
+#+header: :var bcnt=BCNT cosr=CosmicRay ctr=Counter dch=Dchain drsp=DetectorResponse fus=Fusion mu=Muon ns=NeutronSource fc=fc
 #+header: :var nreac=NuclearReaction parth=ParticleTherapy phth=PhotonTherapy sicon=Semiconductor ts=TrackStructure xr=XRay
 #+header: :mode csv
 #+header: :header on
 #+begin_src sqlite
-  .import bcnt bcnt
-  .import cosr cosr
-  .import ctr ctr
-  .import dch dch
-  .import drsp drsp
-  .import fus fus
-  .import mu mu
-  .import ns ns
-  .import nreac nreac
-  .import parth parth
-  .import phth phth
-  .import sicon sicon
-  .import ts ts
-  .import xr xr
 
+  drop table if exists bcnt;
+  create table bcnt(perc_t real, cumulative_t real, self_t real, calls int, self_tcall real, total_tcall real, fnc text primary key, file text);
+  .mode csv bcnt
+
+  drop table if exists cosr;
+  create table cosr(perc_t real, cumulative_t real, self_t real, calls int, self_tcall real, total_tcall real, fnc text primary key, file text);
+  .mode csv cosr
+
+  drop table if exists ctr;
+  create table ctr(perc_t real, cumulative_t real, self_t real, calls int, self_tcall real, total_tcall real, fnc text primary key, file text);
+  .mode csv ctr
+
+  drop table if exists dch;
+  create table dch(perc_t real, cumulative_t real, self_t real, calls int, self_tcall real, total_tcall real, fnc text primary key, file text);
+  .mode csv dch
+
+  drop table if exists drsp;
+  create table drsp(perc_t real, cumulative_t real, self_t real, calls int, self_tcall real, total_tcall real, fnc text primary key, file text);
+  .mode csv drsp
+
+  drop table if exists fus;
+  create table fus(perc_t real, cumulative_t real, self_t real, calls int, self_tcall real, total_tcall real, fnc text primary key, file text);
+  .mode csv fus
+
+  drop table if exists mu;
+  create table mu(perc_t real, cumulative_t real, self_t real, calls int, self_tcall real, total_tcall real, fnc text primary key, file text);
+  .mode csv mu
+
+  drop table if exists ns;
+  create table ns(perc_t real, cumulative_t real, self_t real, calls int, self_tcall real, total_tcall real, fnc text primary key, file text);
+  .mode csv mu
+
+  drop table if exists nreac;
+  create table nreac(perc_t real, cumulative_t real, self_t real, calls int, self_tcall real, total_tcall real, fnc text primary key, file text);
+  .mode csv nreac
+
+  drop table if exists parth;
+  create table parth(perc_t real, cumulative_t real, self_t real, calls int, self_tcall real, total_tcall real, fnc text primary key, file text);
+  .mode csv parth
+
+  drop table if exists phth;
+  create table phth(perc_t real, cumulative_t real, self_t real, calls int, self_tcall real, total_tcall real, fnc text primary key, file text);
+  .mode csv phth
+
+  drop table if exists sicon;
+  create table sicon(perc_t real, cumulative_t real, self_t real, calls int, self_tcall real, total_tcall real, fnc text primary key, file text);
+  .mode csv sicon
+
+  drop table if exists ts;
+  create table ts(perc_t real, cumulative_t real, self_t real, calls int, self_tcall real, total_tcall real, fnc text primary key, file text);
+  .mode csv ts
+
+  drop table if exists xr;
+  create table xr(perc_t real, cumulative_t real, self_t real, calls int, self_tcall real, total_tcall real, fnc text primary key, file text);
+  .mode csv xr
+
+  drop table if exists fc;
+  create table fc(file text primary key, model int, reasoning text);
+  .mode csv fc
+
+
+
+
+  .import $bcnt bcnt
+  .import $cosr cosr
+  .import $ctr ctr
+  .import $dch dch
+  .import $drsp drsp
+  .import $fus fus
+  .import $mu mu
+  .import $ns ns
+  .import $nreac nreac
+  .import $parth parth
+  .import $phth phth
+  .import $sicon sicon
+  .import $ts ts
+  .import $xr xr
+  .import $fc fc
+
+
+  drop table if exists aggregates;
+
+  create table aggregates(Example text, model real, non_model real, total real);
+
+  insert into aggregates
+  select 'BCNT', sum(case when fc.model then bcnt.perc_t else 0 end) as model,
+  sum(case when not fc.model then bcnt.perc_t else 0 end) as non_model,
+  sum(bcnt.self_t)
+  from bcnt
+  inner join fc
+  on substr(bcnt.file, 2, instr(bcnt.file, ":") - 2) = fc.file;
+
+  insert into aggregates
+  select 'Cosmic Ray', sum(case when fc.model then cosr.perc_t else 0 end) as model,
+  sum(case when not fc.model then cosr.perc_t else 0 end) as non_model,
+  sum(cosr.self_t)
+  from cosr
+  inner join fc
+  on substr(cosr.file, 2, instr(cosr.file, ":") - 2) = fc.file;
+
+
+  insert into aggregates
+  select 'Counter', sum(case when fc.model then ctr.perc_t else 0 end) as model,
+  sum(case when not fc.model then ctr.perc_t else 0 end) as non_model,
+  sum(ctr.self_t)
+  from ctr
+  inner join fc
+  on substr(ctr.file, 2, instr(ctr.file, ":") - 2) = fc.file;
+
+
+  insert into aggregates
+  select 'DChain', sum(case when fc.model then dch.perc_t else 0 end) as model,
+  sum(case when not fc.model then dch.perc_t else 0 end) as non_model,
+  sum(dch.self_t)
+  from dch
+  inner join fc
+  on substr(dch.file, 2, instr(dch.file, ":") - 2) = fc.file;
+
+
+  insert into aggregates
+  select 'Detector Response', sum(case when fc.model then drsp.perc_t else 0 end) as model,
+  sum(case when not fc.model then drsp.perc_t else 0 end) as non_model,
+  sum(drsp.self_t)
+  from drsp
+  inner join fc
+  on substr(drsp.file, 2, instr(drsp.file, ":") - 2) = fc.file;
+
+
+  insert into aggregates
+  select 'Fusion', sum(case when fc.model then fus.perc_t else 0 end) as model,
+  sum(case when not fc.model then fus.perc_t else 0 end) as non_model,
+  sum(fus.self_t)
+  from fus
+  inner join fc
+  on substr(fus.file, 2, instr(fus.file, ":") - 2) = fc.file;
+
+
+
+  insert into aggregates
+  select 'Muon', sum(case when fc.model then mu.perc_t else 0 end) as model,
+  sum(case when not fc.model then mu.perc_t else 0 end) as non_model,
+  sum(mu.self_t)
+  from mu
+  inner join fc
+  on substr(mu.file, 2, instr(mu.file, ":") - 2) = fc.file;
+
+
+  insert into aggregates
+  select 'Neutron Source', sum(case when fc.model then ns.perc_t else 0 end) as model,
+  sum(case when not fc.model then ns.perc_t else 0 end) as non_model,
+  sum(ns.self_t)
+  from ns
+  inner join fc
+  on substr(ns.file, 2, instr(ns.file, ":") - 2) = fc.file;
+
+
+
+  insert into aggregates
+  select 'Nuclear Reaction', sum(case when fc.model then nreac.perc_t else 0 end) as model,
+  sum(case when not fc.model then nreac.perc_t else 0 end) as non_model,
+  sum(nreac.self_t)
+  from nreac
+  inner join fc
+  on substr(nreac.file, 2, instr(nreac.file, ":") - 2) = fc.file;
+
+
+
+  insert into aggregates
+  select 'Particle Therapy', sum(case when fc.model then parth.perc_t else 0 end) as model,
+  sum(case when not fc.model then parth.perc_t else 0 end) as non_model,
+  sum(parth.self_t)
+  from parth
+  inner join fc
+  on substr(parth.file, 2, instr(parth.file, ":") - 2) = fc.file;
+
+
+  insert into aggregates
+  select 'Photon Therapy', sum(case when fc.model then phth.perc_t else 0 end) as model,
+  sum(case when not fc.model then phth.perc_t else 0 end) as non_model,
+  sum(phth.self_t)
+  from phth
+  inner join fc
+  on substr(phth.file, 2, instr(phth.file, ":") - 2) = fc.file;
+
+
+  insert into aggregates
+  select 'Semiconductor', sum(case when fc.model then sicon.perc_t else 0 end) as model,
+  sum(case when not fc.model then sicon.perc_t else 0 end) as non_model,
+  sum(sicon.self_t)
+  from sicon
+  inner join fc
+  on substr(sicon.file, 2, instr(sicon.file, ":") - 2) = fc.file;
+
+
+  insert into aggregates
+  select 'Track Structure', sum(case when fc.model then ts.perc_t else 0 end) as model,
+  sum(case when not fc.model then ts.perc_t else 0 end) as non_model,
+  sum(ts.self_t)
+  from ts
+  inner join fc
+  on substr(ts.file, 2, instr(ts.file, ":") - 2) = fc.file;
+
+  insert into aggregates
+  select 'X-Ray', sum(case when fc.model then xr.perc_t else 0 end) as model,
+  sum(case when not fc.model then xr.perc_t else 0 end) as non_model,
+  sum(xr.self_t)
+  from xr
+  inner join fc
+  on substr(xr.file, 2, instr(xr.file, ":") - 2) = fc.file;
+
+  select * from aggregates order by total;
 
 #+end_src
 
-#+tblname: aggregates
-| name                      | total time | total model | total non-model | uncounted |
-|---------------------------+------------+-------------+-----------------+-----------|
-| Neutron Source (0.27s)    |       0.27 |       33.33 |            7.41 |     59.26 |
-| BCNT (0.91s)              |       0.91 |       31.86 |           23.07 |     45.07 |
-| Counter (3.01s)           |       3.01 |       50.67 |            5.30 |     44.03 |
-| Detector Response (4.64s) |       4.64 |       11.96 |           88.04 |        0. |
-| Dchain (6.16s)            |       6.16 |           0 |           57.46 |     42.54 |
-| Fusion (7.27s)            |       7.27 |       49.31 |            7.15 |     43.54 |
-| Proton Therapy (7.80s)    |        7.8 |        9.23 |           26.79 |     63.98 |
-| X-Ray Diagnostic (11.30s) |      11.30 |        29.2 |           45.13 |     25.67 |
-| Nuclear Reaction (13.25s) |      13.25 |       26.48 |              12 |     61.52 |
-| Particle Therapy (18.98s) |      18.98 |       42.84 |           18.65 |     38.51 |
-| Semiconductor (25.51s)    |      25.51 |       37.64 |           10.41 |     51.95 |
-| Cosmic Ray (24.47s)       |      24.47 |       70.25 |               0 |     29.75 |
-| Muon (28.39s)             |      28.39 |       64.88 |               0 |     35.12 |
-| Track Structure (123.14s) |     123.14 |       72.46 |            5.71 |     21.83 |
-#+TBLFM: $5=100-$3-$4
+#+RESULTS: aggregate
+| Example           |            model |        non_model |            total |
+|-------------------+------------------+------------------+------------------|
+| Neutron Source    |            42.34 |            57.73 |             0.26 |
+| BCNT              |            45.91 |            54.07 |             0.98 |
+| Counter           |            87.25 |            12.68 | 2.90999999999999 |
+| Detector Response | 82.6900000000001 |            17.36 | 4.62999999999998 |
+| DChain            |            26.85 | 72.9799999999999 | 6.09999999999999 |
+| Fusion            |            66.29 |             33.7 | 7.32999999999999 |
+| Photon Therapy    |             36.6 | 63.4900000000001 | 7.75999999999999 |
+| X-Ray             |             7.25 | 92.7500000000001 |            11.06 |
+| Nuclear Reaction  |            59.61 |            40.39 |            13.78 |
+| Particle Therapy  |            50.19 | 49.6099999999999 | 18.2100000000001 |
+| Cosmic Ray        | 98.1400000000002 |             1.77 | 24.5900000000001 |
+| Semiconductor     |            28.74 | 71.3000000000001 |            25.17 |
+| Muon              | 92.5800000000001 |             7.61 |            28.26 |
+| Track Structure   |            85.15 |            14.88 |           121.64 |
 
 
 
-#+begin_src gnuplot :var data=aggregates :file hist.tex
+#+begin_src gnuplot :var data=aggregate :file hist.tex
 
   set title "Model-Level Code Dominates Monte-Carlo Runtime"
 
   set terminal tikz font ",10"
   set ylabel "Share of Runtime (\\%)"
 
-  set key outside
+  set key outside samplen 1
   set style data histograms
   set style histogram rowstacked
   set boxwidth 1 relative
   set style fill solid 1.0 border -1
   set yrange [0:100]
-  set xtics rotate by -45
+  set xtics rotate by -60
 
-p  plot data using 3 t "Model Code", '' using 4:xticlabels(1) t "Non-Model Code", \
-       '' using 5 t "Uncounted functions"
+  plot data using 2 t "Model", '' using 3:xticlabels(1) t "Non-Model"
 
 #+end_src
 

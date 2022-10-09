@@ -14,8 +14,10 @@
     "siunitx"
     "fontsize"
     "tikz"
-    "gnuplot-lua-tikz")
+    "gnuplot-lua-tikz"
+    "wrapfig")
    (LaTeX-add-labels
-    "sec:project-narrative"))
+    "sec:project-narrative"
+    "fig:mcruntime"))
  :latex)
 

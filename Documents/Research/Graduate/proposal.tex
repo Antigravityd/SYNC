@@ -7,6 +7,7 @@
 \usepackage[fontsize=12pt]{fontsize}
 \usepackage{tikz}
 \usepackage{gnuplot-lua-tikz}
+\usepackage{wrapfig}
 
 \title{NSTGRO23 Proposal: Model-Agnostic Monte Carlo Radiation Transport}
 \author{Duncan Wilkie}
@@ -35,6 +36,14 @@ As underlying models of the radiation-matter interaction grew, each code system 
 only modifiable through user-defined Fortran routines for specific edge cases where input cards were deemed insufficient.
 For most purposes, this is adequate, as they are the purposes for which the models were designed.
 
+\begin{wrapfigure}{R}{0.5\textwidth}
+  \centering
+  \label{fig:mcruntime}
+  \scalebox{0.8}{\input{profiling/hist.tex}}
+  \caption{Self-sourced investigation; these are PHITS-provided examples that are all relatively short ($<$2min runtime).
+  The slight correlation seen (the $x$-axis is ordered by total runtime) can be expected to shrink, as most non-model code is one-time.}
+\end{wrapfigure}
+
 Space medical physics, by contrast, sees such large discrepancy between prediction and observation that model-level innovation is likely to be necessary.
 Current research uses Monte Carlo tools widely, to probe observed discrepancy between animal and human resilience to exposure,
 for automated design of optimal spacecraft shielding, and to create phantom models for beamline measurements. % TODO: better/refined examples
@@ -53,9 +62,7 @@ and further computation is available.
 Setup and marshaling of user input is a minimal proportion of CPU and developer time in existing codes.
 % TODO: estimate line counts
 As this software
-\begin{center}
-  \input{profiling/hist.tex}
-\end{center}
+
 
 
 

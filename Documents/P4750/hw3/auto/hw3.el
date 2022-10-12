@@ -14,6 +14,7 @@
     "amssymb"
     "amsthm"
     "tikz"
+    "graphicx"
     "minted"
     "physics"
     "siunitx")

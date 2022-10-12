@@ -6,15 +6,19 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{tikz}
+\usepackage{graphicx}
 \usepackage{minted}
 \usepackage{physics}
 \usepackage{siunitx}
 
 \usemintedstyle{emacs}
+\setminted{linenos=true}
+
 \sisetup{detect-all}
 \newtheorem{plm}{Problem}
 \newtheorem{lem}{Lemma}
 \renewcommand*{\proofname}{Solution}
+
 \DeclareMathOperator{\sgn}{sgn}
 
 \title{4750 HW 3}
@@ -94,6 +98,8 @@
   but I'm satisfied knowing my formula above is very likely well-defined.
 \end{proof}
 
+\newpage
+
 \begin{plm}
   Find the paper from the first detection of gravitational waves, GW150914\_065416,
   and download 4096 seconds of data sampled at 4kHz for LIGO Livingston and Hanford detectors L1 and H1 (files are ~170 MB each).
@@ -103,12 +109,38 @@
 \end{plm}
 
 \begin{proof}
-
+  I implemented the power spectral density estimate in Haskell for fun.
+  \inputminted[mathescape]{haskell}{GW150914.hs}
+  \newpage
+  The output can be fed into gnuplot.
+  For the Livingston data, a very high-power low-frequency data point was skewing the observation, so it was suppressed to generate a readable plot.
+  \inputminted{gnuplot}{p2.plt}
+  Resulting in
+  \begin{center}
+    \includegraphics{h1s2.png}
+  \end{center}
+  \begin{center}
+    \includegraphics{h1s8.png}
+  \end{center}
+  \begin{center}
+    \includegraphics{h1s32.png}
+  \end{center}
+  \begin{center}
+    \includegraphics{l1s2.png}
+  \end{center}
+  \begin{center}
+    \includegraphics{l1s8.png}
+  \end{center}
+  \begin{center}
+    \includegraphics{l1s32.png}
+  \end{center}
+  The Livingston data appears to have a much lower actual spectral density for a given frequency, but the contour is the same;
+  fewer averages appears to ``smear out'' the spectrum, consistent with the uncertainty principle for Fourier series.
 \end{proof}
 
 \begin{plm}
   Using the Fluctuation-dissipation theorem, we proved that the power spectral density of
-  thermal fluctuations of a harmonic oscillator with viscous damping coefficient $g$ is given by
+  thermal fluctuations of a harmonic oscillator with viscous damping coefficient $\gamma$ is given by
   \[
     x^{2}(\omega) = \frac{4k_{B}T\gamma}{k}\frac{1}{\qty(1 - (\omega / \omega_{0})^{2})^{2} + \gamma^{2}\omega^{2}}
   \]
@@ -156,8 +188,12 @@
     - \frac{\pi\sgn(r_{2})}{2\sqrt{r_{2}}} - \frac{\pi\sgn(r_{2})}{2\sqrt{r_{2}}})
   \]
   \[
-    = \frac{4\pi k_{B}T\gamma\omega_{0}^{4}}{k\omega_{0}^{3}\sqrt{\gamma^{2}\omega_{0}^{2}-4\gamma}}
+    = \frac{4\pi k_{B}T\gamma\omega_{0}}{k\sqrt{\gamma^{2}\omega_{0}^{2}-4\gamma}}
     (\sgn(r_{1}) - \sgn(r_{2}))
+  \]
+  In any case of the signs, the magnitude of the integral is either zero or
+  \[
+    = \frac{4\pi k_{B}T\gamma\omega_{0}}{k\sqrt{\gamma^{2}\omega_{0}^{2}-4\gamma}}
   \]
 \end{proof}
 
@@ -168,6 +204,20 @@
   available in Moodle for this homework.
   Using Matlab or your favorite program, plot the amplitude spectral density of the pendulum displacement,
   and calculate (numerically) the the rms motion between \SI{0.01}{Hz} and \SI{100}{Hz}
-\end{plm}
+end{plm}
 
+\begin{proof}
+  The amplitude spectral density, the square root of the power spectral density, is a proxy for the Fourier transform.
+  Accordingly, the amplitude spectral density of displacement, the inverse FT of the product of the FTs of the forcing signal and response signal,
+  can be computed as
+  \inputminted[mathescape]{haskell}{seismic.hs}
+  \newpage
+  Graphing this with gnuplot,
+  \inputminted{gnuplot}{p4.plt}
+  results in
+  \begin{center}
+    \includegraphics{seismic.png}
+  \end{center}
+
+\end{proof}
 \end{document}

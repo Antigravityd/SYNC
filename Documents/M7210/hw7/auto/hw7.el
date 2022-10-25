@@ -16,7 +16,10 @@
     "minted"
     "physics"
     "siunitx")
+   (TeX-add-symbols
+    "lcm")
    (LaTeX-add-environments
-    "plm"))
+    "plm"
+    "lem"))
  :latex)
 

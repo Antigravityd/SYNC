@@ -116,11 +116,11 @@
     runs the transport code on it, and parses the output file to return for the user's further computational needs.
     This is tantamount to required tooling if one wants to run machine learning computations; for instance,
     a graduate project for automated design of spacecraft shielding requires kludgy, ad-hoc workarounds that slow the project tremendously.
-    So far, the ``forward-mode'' part is completely written but not completely tested, while the output parsing
+    So far, the ``forward-mode'' part is completely written but not completely tested, while the output parsing (using a port of Haskell's Parsec library)
     can't be called complete in any sense, despite extensive labor. \\ % TODO: github
     Advisor: Jeffery \textsc{Chancellor}\ \ $\cdotp$\  \ \href{mailto:jeff@spartanphysics.com}{jeff@spartanphysics.com}}
 
-  \NewEntry{Nov 2021---}{An Emacs Major Mode and Invocation Script for PHITS}
+  \NewEntry{Nov 2021---}{An Emacs Mode and Invocation Script for PHITS}
 
   \Description{\MarginText{SpaRTAN Physics}
     Learning to use PHITS for the above project, I wanted better editor support and a POSIX-compliant shell interface, so I wrote it.
@@ -134,8 +134,9 @@
   \Description{\MarginText{SpaRTAN Physics}
     I was the primary software developer of an iOS-based interface for ADVACAM's MiniPIX detectors,
     doing 100\% of the Swift app development and much of the embedded C implementation of Apple's proprietary iAP2 protocol.
+    Each was my first program in its respective language.
     The work was intended to fly on SpaceX's Inspiration 4 mission, and we hope it'll become useful for medical physics researchers.
-    A preprint is available, and it has been submitted to NIM-A. \\ % TODO: preprint
+    %A preprint is available, and it has been submitted to NIM-A. \\ % TODO: preprint
     Advisor: Jeffery \textsc{Chancellor}\ \ $\cdotp$\  \ \href{mailto:jeff@spartanphysics.com}{jeff@spartanphysics.com}}
 
   % ------------------------------------------------
@@ -148,7 +149,7 @@
     namesake mathematical field via classes touching on algebraic topology.
     Specifically, that of Abramsky and Coecke outlining the field and Selinger and Valiron's entailing
     application of linear logic's lambda calculi to quantum computation piqued my interest, as I had been playing with Lisps,
-    which are a nearly direct implementation of Church's classical construction as a programming language.}
+    which, philosophically, are a direct implementation of Church's classical construction as a programming language.}
 
   % -----------------------------------------------
 
@@ -207,7 +208,7 @@
       \item GNU Emacs and Emacs Lisp
       \item Embedded C (Texas Instruments' ARM CPUs)
       \item Swift and SwiftUI
-      \item Scheme Lisp
+      \item Scheme Lisp, GNU Guix, and reproducible computation
       \item Parser combinators
       \item Java
       \item Numerical C++

@@ -15,7 +15,7 @@
     "physics")
    (TeX-add-symbols
     "nsub")
-   (LaTeX-add-environments
+   (LaTeX-add-amsthm-newtheorems
     "problem"))
  :latex)
 

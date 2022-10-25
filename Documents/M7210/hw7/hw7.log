@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.5.9)  18 OCT 2022 19:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.5.9)  25 OCT 2022 09:09
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -774,28 +774,29 @@ Package: l3keys2e 2021-03-12 LaTeX2e option processing using LaTeX3 keys
 Package: translator 2020-08-03 v1.12c Easy translation of strings in LaTeX
 ))
 \c@plm=\count338
+\c@lem=\count339
 runsystem(which pygmentize && touch hw7.aex)...executed.
 
 runsystem(rm hw7.aex)...executed.
 
-
-No file hw7.aux.
+ (./hw7.aux)
 \openout1 = `hw7.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -834,16 +835,16 @@ LaTeX Font Info:    ... okay on input line 20.
 (/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
 -dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count339
+\scratchcounter=\count340
 \scratchdimen=\dimen295
 \scratchbox=\box79
-\nofMPsegments=\count340
-\nofMParguments=\count341
+\nofMPsegments=\count341
+\nofMParguments=\count342
 \everyMPshowfont=\toks45
-\MPscratchCnt=\count342
+\MPscratchCnt=\count343
 \MPscratchDim=\dimen296
-\MPnumerator=\count343
-\makeMPintoPDFobject=\count344
+\MPnumerator=\count344
+\makeMPintoPDFobject=\count345
 \everyMPtoPDFconversion=\toks46
 )
 (/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
@@ -865,106 +866,67 @@ File: siunitx-abbreviations.cfg 2017/11/26 v2.7k siunitx: Abbreviated units
 -dist/tex/latex/translator/translator-basic-dictionary-English.dict
 Dictionary: translator-basic-dictionary, Language: English 
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 20.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 23.
 
 
 (/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 20.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 23.
 
 
 (/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-
-./hw7.tex:31: LaTeX Error: Command \end{enumerate} invalid in math mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.31   \end{enumerate}
-                      
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-./hw7.tex:31: LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.31   \end{enumerate}
-                      
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-./hw7.tex:31: LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.31   \end{enumerate}
-                      
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-./hw7.tex:31: Missing $ inserted.
-<inserted text> 
-                $
-l.31   \end{enumerate}
-                      
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-./hw7.tex:31: Display math should end with $$.
-<to be read again> 
-                   \endgroup 
-l.31   \end{enumerate}
-                      
-The `$' that I just saw supposedly matches a previous `$$'.
-So I shall assume that you typed `$$' both times.
-
-[1
+) [1
 
 {/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
--dist/fonts/map/pdftex/updmap/pdftex.map}] (./hw7.aux) ) 
+-dist/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (9.07697pt too wide) in paragraph at lines 103--108
+[]\OT1/qpl/m/n/10 Suppose $\OML/cmm/m/it/10 a[]$ \OT1/qpl/m/n/10 is a unit and 
+$\OML/cmm/m/it/10 a[]; a[]; [] ; a[]$ \OT1/qpl/m/n/10 are nilpo-tent with nilpo
+-tency ex-po-nents $\OML/cmm/m/it/10 k[]; k[]; [] ; k[]$\OT1/qpl/m/n/10 .
+ []
+
+[2] [3] [4] (./hw7.aux) ) 
 Here is how much of TeX's memory you used:
- 19710 strings out of 478994
- 420597 string characters out of 5833535
- 710007 words of memory out of 5000000
- 36829 multiletter control sequences out of 15000+600000
- 427078 words of font info for 70 fonts, out of 8000000 for 9000
+ 19724 strings out of 478994
+ 420705 string characters out of 5833535
+ 724046 words of memory out of 5000000
+ 36841 multiletter control sequences out of 15000+600000
+ 438724 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  113i,6n,116p,403b,198s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/gnu/store/c2k1qcg04ii
-dbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf-dist/fonts/enc/dvips/t
-ex-gyre/q-rm.enc}</gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-202
-10325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></gnu/store/c2
+{/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-t
+exmf-20210325/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-rm.enc}</gnu/store/c2
 k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr10.pfb></gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-t
-exlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb>
+pe1/public/amsfonts/cm/cmex10.pfb></gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-
+texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.p
+fb></gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></gnu/store/c2k1qcg04iidbsp24
+cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmmi7.pfb></gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20
+210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></gnu/store/c2
+k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr5.pfb></gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-te
+xlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><
+/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></gnu/store/c2k1qcg04iidbsp24cwn
+6hvy79724xlk-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmsy5.pfb></gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210
+325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></gnu/store/c2k1q
+cg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf-dist/fonts/type1
+/public/amsfonts/symbols/msbm10.pfb></gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xl
+k-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/tex-gyre/qplb.pfb>
 </gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
--dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></gnu/store/c2k1qcg04iidbsp24cw
-n6hvy79724xlk-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfon
-ts/symbols/msbm10.pfb></gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texm
-f-20210325/share/texmf-dist/fonts/type1/public/tex-gyre/qplb.pfb></gnu/store/c2
-k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf-dist/fonts/ty
-pe1/public/tex-gyre/qplr.pfb></gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texli
-ve-texmf-20210325/share/texmf-dist/fonts/type1/public/tex-gyre/qplri.pfb>
-Output written on hw7.pdf (1 page, 168811 bytes).
+-dist/fonts/type1/public/tex-gyre/qplr.pfb></gnu/store/c2k1qcg04iidbsp24cwn6hvy
+79724xlk-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/tex-gyre/qp
+lri.pfb>
+Output written on hw7.pdf (4 pages, 256991 bytes).
 PDF statistics:
- 44 PDF objects out of 1000 (max. 8388607)
- 32 compressed objects within 1 object stream
+ 77 PDF objects out of 1000 (max. 8388607)
+ 56 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

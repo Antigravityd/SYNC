@@ -1,0 +1,146 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{tgpagella}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{minted}
+\usepackage{physics}
+\usepackage{siunitx}
+
+\usepackage{tikz-cd}
+
+\sisetup{detect-all}
+\newtheorem{thm}{Theorem}
+\newtheorem*{define}{Definition}
+
+\title{A Based Derivative for Arbitrary Topological Spaces}
+\author{Duncan Wilkie}
+\date{24 October 2022}
+
+\begin{document}
+
+\maketitle
+
+\section{Abstract}
+There are many contexts throughout mathematics where a notion of a derivative is used.
+We present a universal characterization of the derivative that depends only on a notion of continuity,
+prove analogs of the usual derivative theorems in the general formalism, and recover myriad examples of the construction in mathematical practice.
+We also explore the question of the integral cognate to this derivative through the fundamental theorem of calculus.
+
+\section{Motivation}
+Ordinarily, a function $f: \mathbb{R} \to \mathbb{R}$ is called \textit{differentiable at} $c$ if the two-sided limit
+\[
+  L = \lim_{h \to 0}\frac{f(c + h) - f(c)}{h}
+\]
+exists.
+The number $L$ is then called the \textit{derivative} of $f$ at $c$, denoted $f'(c)$.
+
+This work is motivated by alternative definition that has been used for pedagogical purposes but, to our knowledge, has never appeared in the literature:
+a function $f: \mathbb{R} \to \mathbb{R}$ is called differentiable at $c$ if there exists a function $u_{c}(x)$ continuous at $c$ such that, for all $x$,
+\[
+  f(x) = f(c) + u_{c}(x)[x - c]
+\]
+The derivative of $f$ at $c$ is then defined to be $f'(c) = u_{c}(c)$.
+
+We now prove two illuminating theorems about this new derivative that provide schemas for similar results to come.
+
+\begin{thm}
+  If the function $u_{c}(x)$ exists in the sense of the second definition, it is unique.
+\end{thm}
+
+\begin{proof}
+  Suppose there were $u_{c}(x)$ and $u_{c}'(x)$ satisfying the conditions of the second definition.
+  Then
+  \[
+    f(x) = f(c) + u_{c}(x)[x - c] = f(c) + u_{c}'(x)[x - c]
+  \]
+  The last equality is algebraically equivalent to $u_{c}(x) = u_{c}'(x)$.
+\end{proof}
+
+\begin{thm}
+  The above two notions of the derivative agree, i.e. if a function is differentiable somewhere in one sense, it is differentiable there in the other,
+  and the values of the derivatives are equal.
+\end{thm}
+
+\begin{proof}
+  Consider the substitution into the limit definition $h = x - c$, yielding
+  \[
+    L = \lim_{x \to c}\frac{f(x) - f(c)}{x - c}.
+  \]
+  The function $u_{c}(x) = \frac{f(x) - f(c)}{x - c}$ is continuous at $c$ iff $L$ exists and equals $u_{c}(c)$ by the limit definition of continuity
+  and satisfies the form of $u_{c}(x)$ in the definition.
+\end{proof}
+
+Intuitively, the function $u_{c}(x)$ is the slope of the secant line between $f(x)$ and $f(c)$.
+This is quite similar to the geometric derivative that Leibniz knew. % TODO: plot for intuition.
+However, a critical feature of this definition is that it's almost purely \textit{topological}: the key is the existence of a continuous map.
+
+The remainder of the paper defines this derivative in a (demonstrably maximally) general context, derives some basic properties,
+and investigates applications.
+
+\section{The Based Derivative}
+Our task is now to inspect the above notion and strip away anything field-theoretic until only topology remains.
+One might say that a better view of $u_{c}(x)$ is as \textit{scaling} a change in the domain to a corresponding change in the codomain under the function;
+left-multiplying by $u_{c}(x)$ can be viewed as a \textit{function} that maps $x - c$ to $f(x) - f(c)$.
+The notion of ``change'' and ``distance'' provided by subtraction can also be lifted into an abstract topological space.
+The expression $x - c$ represents an \textit{element} of $\mathbb{R}$; it also represents a \textit{continuous function} $\mathbb{R} \to \mathbb{R}$.
+Such a function has a nice property that it's a homeomorphism; we want our definition to work for codomains nonhomeomorphic to domains,
+so we'll relax this slightly to an embedding.
+% TODO: additional properties if naturality isn't enough for this to play nice with the topology
+
+
+Summarizing,
+
+\begin{define}
+  A map $f: X\to Y$ between topological spaces is called \textbf{based $g$-differentiable} at $c$ relative to a continuous map $g: X \to Y$
+  containing $f(c)$ in its image if there exists a function $u_{c}: X \to (Y \to Y)$, continuous at $c$ in its first argument,
+  such that for all $x$ the diagram
+  % TODO: is this too weak? with $f(c) \in h(X)$?
+  \begin{center}
+    \begin{tikzcd}
+      X \arrow[r, "g"] \arrow[rd, "f"]  & Y \arrow[d, "u_c(x)"]\\
+        & Y
+    \end{tikzcd}
+  \end{center}
+  commutes.
+  The corresponding map $u_{c}(c): X \to Y$ is called the \textbf{based $g$-derivative} of $f$ at $c$.
+\end{define}
+
+Intuitively, function $u_c(x)$ maps the point $g(x)$, which is \textit{estimated value} of $f(x)$ according to the template $g$, to the actual point $f(x)$.
+There is some freedom in the choice of topology on the set of continuous functions between spaces; a common choice is the compact-open topology.
+
+\begin{thm}
+  If a based derivative exists, it is unique.
+\end{thm}
+
+\begin{proof}
+  Suppose $f: X \to Y$ admits two based derivatives $u_{c}, u_{c}'$ at $c$.
+  The diagram says that for all continuous $g$ that $f = u_{c}(x) \circ g = u_{c}'(x) \circ g$ wherever the expression makes sense;
+  since $g$ can be non-injective, the equality ought to be interpreted as between functions $g(X) \to f(g(X))$,
+  in which case uniqueness of $u_{c}(x)$ (i.e. the mapping from a point to the transformation between estimates) is immediate.
+
+  If $u_{c}(x)$ is continuous at $c$, then $u_{c}(c)$ exists and is uniquely determined by (the unique) $u_{c}(c)$.
+\end{proof}
+
+
+\begin{define}
+  The $id_{X}$-derivative on endomorphisms $f: X \to X$ in the compact-open topology is simply the \textbf{based derivative} of $f$.
+\end{define}
+
+
+\begin{thm}
+  The ordinary derivative and the based derivative on real functions are equivalent.
+\end{thm}
+
+\begin{proof}
+  Continuity of the function $u_{c}(x) = f(c) + \frac{f(x) - f(c)}{x - c}(x - c)$ at $c$ is equivalent to the existence of
+  $\lim_{x \to c}\frac{f(x) - f(c)}{x - c}$ by basic limit linearity theorems and equivalence of topological and limit-point continuity on $\mathbb{R}$.
+\end{proof}
+
+\begin{thm}
+  The compact-open topology is the unique topology on functions $\mathbb{R} \to \mathbb{R}$ that agrees with
+\end{thm}
+\end{document}

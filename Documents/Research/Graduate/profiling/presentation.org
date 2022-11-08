@@ -1,0 +1,33 @@
+* Org Mode for Data Analysis
+
+Built-in to Emacs is a markup language. Like all markup languages, it has code blocks:
+
+#+name: fact
+#+begin_src python :python python3
+
+  def factorial(n):
+      if n in {0, 1}:
+          return 1
+      else:
+          return n * factorial(n - 1)
+
+  return factorial(7)
+
+#+end_src
+
+However, they're executable. =C-c C-c= yields
+
+#+RESULTS: fact
+: 5040
+
+Since we named the block, we can pass the result to other blocks, even ones in different languages:
+
+#+begin_src lua :var fact=fact :lua lua
+
+  -- now available in Lua
+  return fact
+
+#+end_src
+
+#+RESULTS:
+: 5040

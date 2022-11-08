@@ -1,0 +1,91 @@
+\documentclass[12pt]{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{tgpagella}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{minted}
+\usepackage{physics}
+\usepackage{siunitx}
+
+\sisetup{detect-all}
+\newtheorem{plm}{Problem}
+\renewcommand*{\proofname}{Solution}
+\bibliographystyle{IEEEtran}
+
+\begin{document}
+
+\section*{Personal Statement}
+I've wanted to be a physicist since I was 5.
+PBS programs like \textit{NOVA} and \textit{The Elegant Universe} directed my interest to the largest and smallest frontiers of human knowledge,
+and, correspondingly, to the subject advancing in both directions simultaneously.
+As I oriented more and more of my time towards pursuit of this goal, I found it harder and harder to specialize,
+my interests if anything broadening as I wrapped up high school and moved into college.
+I landed initially in mathematical research, as I had completed about 2 years of a math degree before my freshman year.
+COVID cut this off, and I quickly had to recalibrate my plans; through a data science internship with a large freight company,
+I got a crash-course in modern methods of data analysis from elementary statistics to machine learning.
+Returning to school that fall, the pandemic still raged, and, presuming that professors would prefer to not do in-person research,
+I decided to ramp up the difficulty of my courses, registering for a graduate course in topology alongside upper-division analysis and algebra.
+Throughout this semester, I continued to find interesting problems external to my classes, browsing monographs in the QA section of the university library.
+In the spring, a poor grade in the topology course was a good indication I was riding near my limits, and, as the pandemic waned,
+I sparked up conversations with a quantum information researcher, continuing a concerning trend of project-hopping.
+I was determined to stick with it this time, and planned out in detail the topics I would study under this new advisor.
+
+All those plans went down the drain in short order.
+The associate department chair interrupted my electronics lab final, asking if anyone knew how to write iOS apps and wanted to work on a space mission.
+I, having wanted to do everything from astrophysics to aerospace engineering as a kid, volunteered, despite only fairly general programming experience.
+He referred me to Dr. Chancellor, who summarily introduced me to the TRISH-funded project
+to develop an iPhone interface to ADVACAM's Timepix3-based MiniPIX pixel detectors to fly on SpaceX's Inspiration 4 crewed mission.
+
+I spent the next couple weeks frenetically trying to find summer housing while learning as much as possible about the detectors and developing iOS apps.
+While two undergraduate salaries were budgeted for the latter task, no other volunteers could be found, for whatever reason.
+I was solely responsible for the actual interface---the only other person doing direct design work
+on the 5-person team was an electrical engineering undergrad.
+
+Five people, only two of them doing direct design work, is an \textit{absurdly} small team for detector development.
+And we had three months to do it.
+Fortunately for me, the initial hang-up was on the electrical engineering side of things.
+We were required to have a \textit{wired} interface between the detector and the device;
+Apple seems to guard the means to accomplish that closer than 3-letter agencies do national secrets.
+Development of the interface, however, could freely proceed in parallel, and over the two months it took for those strings to get pulled in the right places,
+I put my nose to the SwiftUI grindstone and had almost fully developed the interface.
+Operating on a testing database, it was capable of displaying extremely detailed information about received dose over time in different formats,
+visualizing incoming frames, controlling the detector state, and importing calibrations files for different detectors.
+
+It was early July when we finally obtained necessary technical documents to begin designing the embedded interface.
+At roughly the same time, we were notified that the expected date of delivery was at the start, not the middle, of August;
+with a $1/3$ cut to the remaining time, I was recast into an embedded development role.
+In addition to my first Swift work, the entire project now was going to depended on my only C program.
+
+Waiting for some specialized hardware, our electrical engineer selected a microcontroller and designed the physical layer.
+I dove into the massive technical specification, trying to identify the path of least resistance to piping bytes from the detector into my app process.
+When I finally began hitting keys in an IDE, another week had passed.
+The rest of the month, we worked 12+ hour days, desperately trying to implement two convoluted protocol stacks with no further help than a
+couple silicon vendor libraries for the link- and physical-layer protocols.
+
+We had many setbacks induced by poor code architecture and infantile understanding of the embedded debugging process,
+but at the end of it all, we had something that half-worked.
+The app could talk to the detector!
+Insufficient time remained to decode the detector's messages, feed information to my UI, and validate its correctness,
+but we could save the binary to the file system for post-mission analysis.
+So, we shipped a bare-bones system for detector control to Vandenberg.
+
+The
+\newpage
+\section*{Project Narrative: Software for Estimating the Space Radiation Spectrum from Pixel Detector Track Structure}
+
+According to the current understanding of space radiation and its biological effects,
+far too few astronauts have exhibited serious exposure symptoms \cite{dummies}.
+This is likely attributable to inadequate animal analogs (and otherwise suboptimal methodologies to boot), % TODO: cite this stuff
+poor understanding of precise mechanisms of cellular damage, and coarse estimates of the so-called general cosmic radiation (GCR) spectrum,
+the aggregate term for the energy and particle distributions of dangerous radiation in the space operational environment.
+Were the prior two defects corrected, it would not improve outcomes without progress in the latter;
+precision in the biological \textit{effects} of an exposure is anterior to precision in the exposure itself.
+
+A substantial obstacle to better understanding the GCR spectrum is the inability to fly a fleet of detectors up there to check it out---we have detectors,
+sure, but the semiconductor pixel detectors meeting the light-weight, low-power, low-maintenance requirements for spaceflight are generally capable
+neither in hardware or software of presenting researchers with estimates of
+\bibliography{proposal}
+\end{document}

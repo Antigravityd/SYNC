@@ -1,0 +1,417 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{tgpagella}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{minted}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{fitch}
+
+\sisetup{detect-all}
+\newtheorem{plm}{Problem}
+
+\title{7210 HW 9}
+\author{Duncan Wilkie}
+\date{8 November 2022}
+
+\begin{document}
+
+\maketitle
+
+\begin{plm}[D\&F 8.3.1]
+  Let $G = \mathbb{Q}^{\times}$ be the multiplicative group of nonzero rational numbers.
+  If $\alpha = p/q \in G$, where $p$ and $q$ are relatively prime integers, let $\varphi: G \to G$ be the map which interchanges the primes 2 and 3
+  in the prime power factorizations of $p$ and $q$ (so, for example, $\varphi(2^{4}3^{11}5^{1}13^{2}) = 3^{4}2^{11}5^{1}13^{2}$,
+  $\varphi(3/16) = \varphi(3/2^{4}) = 2/3^{4} = 2/81$, and $\varphi$ is the identity on all rational numbers with numerators and denominators
+  relatively prime to 2 and 3).
+  \begin{enumerate}
+  \item Prove that $\varphi$ is a group isomorphism.
+  \item Prove that there are infinitely many isomorphisms of the group $G$ to itself.
+  \item Prove that none of the isomorphisms above can be extended to an isomorphism of the \textbf{ring} $\mathbb{Q}$ to itself.
+    In fact, prove that the identity map is the only ring isomorphism of $\mathbb{Q}$.
+  \end{enumerate}
+\end{plm}
+
+\begin{proof}
+  First, $\varphi$ is a homomorphism:
+  \[
+    \varphi(ab) = \varphi\qty(\frac{2^{\epsilon_{1}}3^{\epsilon_{2}}p_{3}^{\epsilon_{3}} \cdots p_{n}^{\epsilon_{n}}
+      2^{\varepsilon_{1}}3^{\varepsilon_{2}}r_{3}^{\varepsilon_{3}} \cdots r_{m}^{\varepsilon_{m}}}
+    {2^{\sigma_{1}}3^{\sigma_{2}}q_{3}^{\sigma_{3}} \cdots q_{j}^{\sigma_{j}} 2^{\varsigma_{1}}3^{\varsigma_{2}}s_{3}^{\varsigma_{3}} \cdots s_{k}^{\varsigma_{k}}})
+  \]
+  \[
+    = \frac{3^{\epsilon_{1}}2^{\epsilon_{2}}p_{3}^{\epsilon_{3}} \cdots p_{n}^{\epsilon_{n}}
+      3^{\varepsilon_{1}}2^{\varepsilon_{2}}r_{3}^{\varepsilon_{3}} \cdots r_{m}^{\varepsilon_{m}}}
+    {3^{\sigma_{1}}2^{\sigma_{2}}q_{3}^{\sigma_{3}} \cdots q_{j}^{\sigma_{j}} 3^{\varsigma_{1}}2^{\varsigma_{2}}s_{3}^{\varsigma_{3}} \cdots s_{k}^{\varsigma_{k}}}
+  \]
+  \[
+    = \varphi\qty(\frac{2^{\epsilon_{1}}3^{\epsilon_{2}}p_{3}^{\epsilon_{3}} \cdots p_{n}^{\epsilon_{n}}}
+    {2^{\sigma_{1}}3^{\sigma_{2}}q_{3}^{\sigma_{3}} \cdots q_{j}^{\sigma_{j}}})
+    \varphi\qty(\frac{2^{\varepsilon_{1}}3^{\varepsilon_{2}}r_{3}^{\varepsilon_{3}} \cdots r_{m}^{\varepsilon_{m}}}
+    {2^{\varsigma_{1}}3^{\varsigma_{2}}s_{3}^{\varsigma_{3}} \cdots s_{k}^{\varsigma_{k}}})
+    = \varphi(a)\varphi(b)
+  \]
+  It is also bijective: it's self-inverse, as swapping 2 and 3 and then swapping them again yields the same prime factorization, so
+  $\varphi(\varphi(a)) = a$; this implies $\varphi$ is bijective.
+
+  The choice of interchanging 2 and 3 was arbitrary; the proof holds for a function interchanging \textit{any} two primes $p, p'$
+  by replacing the symbols 2 and 3 (when not appearing in a subscript or superscript) by $p$ and $p'$.
+  Since there are infinitely many primes, there are infinitely many pairs of primes, and so this exhibits infinitely many automorphisms of $G$.
+
+  Suppose $\phi: \mathbb{Q} \to \mathbb{Q}$ is a ring isomorphism.
+  Then, in particular, $1 \mapsto 1$; since for all integers $n = \underbrace{1 + \cdots + 1,}_{n \text{ times}}$
+  $\phi(n) = \underbrace{\phi(1) + \cdots + \phi(1)}_{n \text{ times}} = n$.
+  Additionally, $\phi\qty(\frac{n}{m}) = \phi\qty(n \cdot \frac{1}{m}) = \phi(n)\phi(m)^{-1} = nm^{-1} = \frac{n}{m}$,
+  so $\phi = id_{\mathbb{Q}}$.
+\end{proof}
+
+\begin{plm}[D\&F 8.3.5]
+  Let $R = \mathbb{Z}[\sqrt{-n}]$ where $n$ is a squarefree integer greater than 3.
+  \begin{enumerate}
+  \item Prove that 2, $\sqrt{-n}$, and $1 + \sqrt{-n}$ are irreducible in $R$.
+  \item Prove that $R$ is not a U.F.D.
+    Conclude that the quadratic integer ring $\mathcal{O}$ is not a U.F.D. for $D \equiv 2, 3 \pmod 4$, $D < -3$
+    (so also not Euclidean and not a P.I.D.).
+  \item Give an explicit ideal in $R$ that is not principal.
+  \end{enumerate}
+\end{plm}
+
+\begin{proof}
+  Restricting the complex absolute value to $\mathbb{Z}[\sqrt{-n}]$, the norm of $a + b\sqrt{-n}$ is $a^{2} + nb^{2}$.
+  First, note that this norm is positive-definite, and there do not exist elements of $R$ of norm 2: if $N(a + b\sqrt{-n}) = a^{2} + nb^{2} = 2$,
+  one must have $b = 0$, since $a^{2},b^{2}$ being positive and $n > 3$ implies that even $b = 1$
+  yields $a^{2} + nb^{2} > 3 > 2$.
+  But, neither 0 nor 1 squares to 2, and if $a \geq 2$ then $a^{2} \geq 4$.
+  So, there do not exist elements of $\mathbb{Z}[\sqrt{-n}]$ that have norm $2$.
+  Similarly, if $N(a + b \sqrt{-n}) = a^{2} + nb^{2} = 1$, then $a = 1$ and $b = 0$, as if $b \geq 1$ then $n > 3$ makes it too big already.
+  Since the norm is multiplicative on $\mathbb{C}$, it is multiplicative on $\mathbb{Z}[\sqrt{-n}]$.
+  Suppose $2 = (a + b\sqrt{-n})(c + d\sqrt{-n})$; then $N(2) = 4 = N(a + b\sqrt{-n})N(c + d\sqrt{-n})$.
+  The only way to factor 4 as a product of nonnegative integers (which is what the norm will output) is as $1 \cdot 4$, $4 \cdot 1$, or $2\cdot 2$.
+  In either of the first two cases, the argument about norm-1 elements implies one factor is 1 and therefore a unit,
+  and the last is prohibited by the argument about norm-2 elements; accordingly, 2 is irreducible.
+
+  Suppose $\sqrt{-n}$ is reducible.
+  Then, as the norm is multiplicative, there must exist some element whose norm divides that of $n$; its norm is less than or equal than $n$.
+  Elements with norm at most $n$ have $a^{2} + nb^{2} \leq n$; if $b > 1$, then things are already too big, and since $n$ is squarefree, $b \neq 0$,
+  (as otherwise $a^{2} \mid n$) so we can only have $b = 1$.
+  In such a case, one rearrange to get $a = 0$ as the only solution; accordingly, $\sqrt{-n}$ is the only element whose norm divides $n$,
+  and it is on those grounds irreducible.
+
+  Suppose $1 + \sqrt{-n}$ is reducible.
+  Then, as the norm is multiplicative, there must exist some element whose norm divides $1 + n$; its norm is less than or equal to $1 + n$.
+  If it's of the form $a + b\sqrt{-n}$, $a^{2} + nb^{2} \leq n + 1$; if $b > 1$, then the norm is $\geq 4n$---too big already.
+  If $b = 0$, then the factor is a mere integer; if any other element of $R$ is to exist such that $a(c + d\sqrt{-n}) = 1 + \sqrt{-n}$,
+  then $ad = 1$, so $a = d = 1$ or $a = d = -1$.
+  Therefore, $b = 1$ is the only possible choice.
+  Solving the inequality, one gets $a^{2} \leq 1 \Rightarrow a = 1$, so the only elements whose norm divides that of $1 + \sqrt{-n}$
+  are either $1 + \sqrt{-n}$ itself, or have no $\sqrt{-n}$ part and so can't divide $1 + \sqrt{-n}$.
+  This implies $1 + \sqrt{-n}$ is irreducible.
+
+  Were $R$ a U.F.D., it would have the property that being irreducible is equivalent to being prime.
+  We've shown that 2 is irreducible, but it is never prime.
+  If $n$ is even, then $2 \mid \sqrt{-n}\sqrt{-n} = -n$, but $\sqrt{-n}$ is irreducible, so $2 \nmid \sqrt{-n}$, so 2 isn't prime.
+  If $n$ is odd, then $2 \mid (1 + \sqrt{-n})(1 + \sqrt{-n}) = (1 - n) + 2\sqrt{-n}$, since it divides each summand,
+  but $1 + \sqrt{-n}$ is irreducible, so $2 \nmid 1 + \sqrt{-n}$, meaning $2$ isn't prime.
+  Therefore, $R$ isn't a U.F.D.
+
+  If $n$ is even, then
+  the ideal $(2, \sqrt{-n})$ is not principal: presuming it had generator $d$, then for all $x, y \in R$ $2x + y\sqrt{-n} = dz$ for some $z \in R$;
+  in particular, for $x = 1, y = 0$ one has $2 = dz$.
+  Since 2 is irreducible, then exactly one of $d, z$ is a unit.
+  If it's $d$, then the ideal is the whole ring, so there exist $x, y$ such that $1 = 2x + y\sqrt{-n}$; multiplying by $\sqrt{-n}$, this implies
+  $\sqrt{-n} = 2x\sqrt{-n} + y \sqrt{-n}^{2}$, and since we showed above that $2 \mid \sqrt{-n}^{2} = -n$,
+  the right-hand side is divisible by 2, which would imply $2 \mid \sqrt{-n}$, which is false since $\sqrt{-n}$ is  irreducible.
+  If $z$ is a unit, then $d$ is irreducible, and $d = 2z^{-1}$.
+  One can instead choose $x = 0, y = 1$ do deduce that $d \mid \sqrt{-n}$; since $2 \mid d$ by the above, this would also imply $2 \mid \sqrt{-n}$,
+  which is false since $\sqrt{-n}$ is irreducible.
+
+  For $n$ odd, merely textually substitute $(1 + \sqrt{-n})$ for $\sqrt{-n}$ in the preceding paragraph.
+\end{proof}
+
+\newpage
+
+\begin{plm}[D\&F 8.3.10a]
+  Let $R$ be an integral domain and let $N: R \to \mathbb{Z}^{+} \cup \{0\}$ be a norm on $R$.
+  The ring $R$ is Euclidean with respect to $N$ if for any $a, b \in R$ with $b \neq 0$,
+  there exist elements $q$ and $r$ in $R$ with
+  \[
+    a = qb + r \textrm{ with } r = 0 \textrm{ or } N(r) < N(b).
+  \]
+  Suppose now that this condition is weakened, namely that for any $a, b \in R$ with $b \neq 0$,
+  there exist elements $q, q'$ and $r, r'$ in $R$ with
+  \[
+    a = qb + r, b = q'r + r' \textrm{ with } r' = 0 \textrm{ or } N(r') < N(b),
+  \]
+  i.e., the remainder after two divisions is smaller.
+  Call such a domain a \textbf{2-stage Euclidean domain.}
+  Prove that iterating the divisions in a 2-stage Euclidean domain produces a greatest common divisor
+  of $a$ and $b$ which is a linear combination of $a$ and $b$.
+  Conclude that every finitely generated ideal of a 2-stage Euclidean domain is principal.
+\end{plm}
+
+\begin{proof}
+  The division algorithm tells us that for any $a, b \in R$ there's a finite
+  (since the norm is decreasing and bounded below) sequence of equations
+  \[
+    r_{-1} = a = q_{0}b + r_{0}, \; r'_{-1} = b = q'_{0}r_{0} + r'_{0}
+  \]
+  \[
+    r_{0} = q_{1}r_{0}' + r_{1}, \; r_{0}' = q'_{1}r_{1} + r'_{1}
+  \]
+  \[
+    \vdots
+  \]
+  \[
+    r_{n-2} = q_{n-1}r_{n-2}' + r_{n-1}, \; r_{n-2}' = q_{n-1}'r_{n-1} + r_{n-1}'
+  \]
+  \[
+    r_{n-1} = q_{n}r_{n-1}' + r_{n}, \; r_{n-1}' = q_{n}'r_{n} + 0.
+  \]
+  By induction on $0 \leq k \leq n$ indexing the $n + 1 - k$th statement, with the hypothesis $r_{n} \mid r_{n - k - 1}$ and $r_{n} \mid r_{n - k -1}$,
+  one has that $r_{n}$ divides both $a$ and $b$.
+  For $k = 0$, $r_{n-1}' = q_{n}'r_{n} \Rightarrow r_{n} \mid r_{n-1}'$;
+  accordingly, $r_{n} \mid q_{n}r_{n-1}'$, and certainly $r_{n} \mid r_{n}$, so $r_{n} \mid r_{n-1} = q_{n}r_{n-1}' + r_{n}$.
+  Suppose it holds that $r_{n} \mid r_{n - k}$ and $r_{n} \mid r_{n} \mid r'_{n - k}$.
+  Then, one has
+  \[
+    r_{n - (k + 1)} = q_{n - k}r_{n - k - 1}' + r_{n - k}, \; r_{n - k - 1}' = q'_{n - k}r_{n - k} + r'_{n - k}
+  \]
+  In the last equation, one has by the induction hypothesis that $r_{n} \mid r_{n - k - 1}$, since it divides each summand;
+  accordingly, $r_{n}$ divides each summand in the former equation, and so divides $r_{n - (k + 1)}$, proving the statement for any $k$.
+  Taking $k = n$, one gets the property for the first statement, namely
+  \[
+    r_{n} \mid r_{-1} = a, \; r_{n} \mid r'_{-1} = b.
+  \]
+  Since $r_{n}$ is a common divisor of $a$ and $b$, one has $(a, b) \subseteq (r_{n})$.
+
+  We next prove that $r_{n} = ax + by$ for some $x, y \in R$, so that $r_{n} \in (a, b) \Rightarrow (d) \subseteq (a, b)$.
+  This is done by inducting in the other direction: let $1 \leq k \leq n + 2$ be the $k$th statement,
+  with the hypothesis that $r_{k - 2} = ax + by$ and $r'_{k - 2} = ax' + by'$.
+  If $k = 1$, then $r_{0} = a - q_{0}b$ and $r'_{0} = b - q_{0}'r_{0} = b - q_{0}'(a - q_{0}b) = -q_{0}'a + (1 + q_{0}q_{0}')b$, forming a base case.
+  Suppose that the statement holds for some arbitrary $k$.
+  Then
+  \[
+    r_{k} = q_{k + 1}r'_{k} - r_{k + 1} \Leftrightarrow r_{k + 1} = q_{k + 1}r'_{k} - r_{k} = q_{k + 1}(ax' + by') - (ax + by)
+  \]
+  \[
+    = a\qty[q_{k + 1}x' - x] + b\qty[q_{k + 1}y' - y]
+  \]
+  and
+  \[
+    r_{k}' = q'_{k + 1}r_{k + 1} + r'_{k + 1} \Leftrightarrow r'_{k + 1} = q'_{k + 1}r_{k + 1} - r_{k}' = q'_{k + 1}[a(q_{k + 1}x' - x) + b(q_{k + 1}y' - y)]
+    - (ax' + by')
+  \]
+  \[
+    = a\qty[q'_{k + 1}(q_{k + 1}x' - x) - x'] + b\qty[q'_{k + 1}(q_{k + 1}y' - y) - y'].
+  \]
+  So, the statement holds for arbitrary $k$; consider in particular the last statement $k = n + 1$:
+  \[
+    r_{n - 1} = q_{n}r'_{n - 1} + r_{n} = ax + by, \; r'_{n - 1} = q'_{n}r_{n} = ax' + by'
+  \]
+  \[
+    \Rightarrow r_{n} = ax + by  - q_{n}r'_{n - 1} = ax + by - q_{n}(ax' + by') = a(x + q_{n}x') + b(y + q_{n}y').
+  \]
+  This proves that $r_{n}$ is an $R$-linear combination of $a$ and $b$; as elements of $(a, b)$ are precisely such combinations,
+  this implies that $r_{n} \in (a, b)$ and accordingly $(r_{n}) \subseteq (a, b)$,
+  because multiples of $r_{n} = ax + by$ remain $R$-linear combinations of $a$ and $b$.
+
+  The above shows that all ideals generated by two elements are principal.
+  Suppose for induction that all ideals generated by $n$ elements are principal.
+  Any ideal $I$ generated by $a_{1}, a_{2}, \ldots, a_{n}, a_{n + 1}$ has elements of the form
+  $a_{1}x_{1} + a_{2}x_{2} + \cdots + a_{n}x_{n} + a_{n+1} x_{n+1}$, where all $x_{i} \in R$.
+  The induction hypothesis says that the ideal $I_{0}$ generated by $a_{1}, a_{2}, \ldots, a_{n}$ is principal,
+  i.e. our $a_{1}x_{1} + a_{2}x_{2} + \cdots a_{n}x_{n}$ can be written $dy$ for some $d \in I_{0}$ and some $y \in R$.
+  Accordingly, the above arbitrary element of $I$ can be written $dy + a_{n+1}x_{n+1}$, so $I = (d, a_{n+1})$.
+  Once again, such ideals are principal by the main argument, so the arbitrary finitely-generated ideal $I$ is principal.
+\end{proof}
+
+
+
+\begin{plm}[D\&F 8.3.11]
+  Prove that $R$ is a P.I.D iff $R$ is a U.F.D. that is also a Bezout domain, that is,
+  a domain in which every ideal generated by two elements is principal.
+\end{plm}
+
+\begin{proof}
+  If $R$ is a P.I.D., then it is immediately a U.F.D., and ideals generated by two elements are principal because all ideals are principal.
+
+  Conversely, suppose $R$ is a U.F.D. and a Bezout domain, and consider an arbitrary ideal $I$ of $R$.
+  Order elements of $I$ according to their number of irreducible factors (a well-defined quantity, by the definition of a U.F.D).
+  This is bounded below by zero, so it must have a least element; call it $a$.
+  If any element $b \in I$ is not in $(a)$, then $a \nmid b$.
+  Since $R$ is a Bezout domain, $(a, b) = (d)$ for some $d \in I$, and in particular for all $x, y \in R$, $ax + by = zd$ for some $z \in R$.
+  Choosing $x = 1, y = 0$ shows that $d \mid a$, but $a$ has the least number of irreducible factors in $I$;
+  writing out the prime factorizations in $a = ud$ as $va_{1}a_{2} \cdots a_{n} = v'u_{1}u_{2} \cdots u_{j}d_{1}d_{2} \cdots d_{k}$ where $j + k = n$,
+  $v, v'$ are units, and $a_{i}, u_{i}, d_{i}$ are irreducible, one can see if $k < n$, then $d$ has fewer irreducible factors than $a$,
+  so $u$ must be a unit.
+
+  However, choosing $x = 0, y = 1$ shows that $d \mid b$, but $d = u^{-1}a$, so $cu^{-1}a = b$, a contradiction with $a \nmid b$.
+  So, all elements of $I$ must be elements of $(a)$, proving that $I$ is principal; since $I$ was arbitrary, $R$ is a P.I.D.
+\end{proof}
+
+
+
+\begin{plm}[D\&F 9.3.3]
+  Let $F$ be a field.
+  Prove that the set $R$ of polynomials in $F[x]$  whose coefficient of $x$ is equal to 0 is a subring of $F[x]$ and that $R$ is not a U.F.D.
+\end{plm}
+
+\begin{proof}
+  Let $a = p_{0} + p_{1}x + p_{2}x^{2} + \cdots + p_{n}x^{n}, b = q_{0} + q_{1}x + q_{2}x^{2} + \cdots + q_{n}x^{n} \in R$,
+  $n$ is the greatest of the two polynomials degrees, $p_{1} = q_{1} = 0$, and where (even leading) coefficients are allowed to be zero.
+  Then $a - b = (p_{0} - q_{0}) + (p_{2} - q_{2})x^{2} + \cdots + (p_{n} - q_{n})x^{n} \in R$; the $i$th coefficient of $ab$ is
+  $\sum_{k = 0}^{i}p_{k}q_{i - k}$, and in particular, the 1st coefficient is $\sum_{k = 0}^{1}p_{k}q_{1 - k} = p_{0}q_{1} + p_{1}q_{0}
+  = p_{0} \cdot 0 + 0 \cdot q_{0} = 0$, so $ab \in R$.
+
+  The polynomials $x^{2}$ and $x^{3}$ are irreducible in $R$, intuitively, because one can't factor out an $x$.
+  If $x^{2} = p(x)q(x)$, then $\deg p(x), \deg q(x) \leq 2$; if either equals 2, then the other must have degree zero,
+  so the only factorization where one of the terms has degree 2 and the other 0 is as $x^{2} = (ux^{2})(v)$ where $u, v \in F$ are units in $R$.
+  It can't happen that both are of degree 1, since polynomials of such degree aren't in $R$,
+  and if one is of degree zero, the other is of degree 2, which is reduces to the first case by commutativity.
+  Thus, $x^{2}$ is irreducible.
+  If $x^{3} = p(x)q(x)$, then $\deg p(x), \deg q(x) \leq 3$; if either equals 3, then the other must have degree zero,
+  so the only factorization where one of the terms has degree 3 and the other 0 is as $x^{3} = (ux^{3})(v)$ where $u, v \in F$ are units in $R$.
+  It can't happen that one of the degrees is two, since then the degree of the other must be 1,
+  and polynomials of such degree aren't in $R$, which also prohibits the case any of the degrees is zero;
+  again, the case when one of the degrees is 0 reduces to the first case.
+  Then $x^{3}$ is also irreducible.
+
+  However, this implies that $x^{6} = x^{3}x^{3} = x^{2}x^{2}x^2$ are two distinct factorizations of an element of $R$ as a product of irreducibles,
+  so $R$ is not a U.F.D.
+\end{proof}
+
+
+
+\begin{plm}[D\&F 9.3.4]
+  Let $R = \mathbb{Z} + x\mathbb{Q}[x] \subseteq \mathbb{Q}[x]$ be the set of polynomials in $x$ with rational coefficients
+  whose constant term is an integer.
+  \begin{enumerate}
+  \item Prove that $R$ is an integral domain and its units are $\pm 1$.
+  \item Show that the irreducibles in $R$ are $\pm p$ where $p$ is a prime in $\mathbb{Z}$ and the polynomials $f(x)$
+    that are irreducible in $\mathbb{Q}[x]$ and have constant term $\pm 1$.
+    Prove that these irreducibles are prime in $R$.
+  \item Show that $x$ cannot be written as the product of irreducibles in $R$ (in particular, $x$ is not irreducible)
+    and conclude that $R$ is not a U.F.D.
+  \item Show $x$ is not prime in $R$ and describe the quotient ring $R / (x)$.
+  \end{enumerate}
+\end{plm}
+
+\begin{proof}
+  Since any subring of an integral domain containing 1 is an integral domain, the ring of polynomials over a field is an integral domain,
+  and $R$ contains the 1 of $\mathbb{Q}[x]$, $R$ is an integral domain.
+  An element of a subring can only be a unit if it is also a unit in the parent ring, as its inverse is necessarily in the parent;
+  the units of $\mathbb{Q}[x]$ are exactly $\mathbb{Q}$, so the only possible units are the constant polynomials in $\mathbb{Q}[x]$,
+  which include the constant polynomials in $R$.
+  Those constant polynomials form a further subring, $\mathbb{Z}$, in which the only units are $\pm 1$, so these are the only units of $R$.
+
+  Suppose $f(x)$ is irreducible in $R$, meaning for all $p(x), q(x) \in R$ such that if $f(x) = p(x)q(x)$, one of $p(x), q(x)$ is a unit,
+  i.e. equal to $\pm 1$.
+  Break into cases based on degree: if $f$ has degree zero, $f = pq$ for $f, p, q \in \mathbb{Z}$ implying $p, q = \pm 1$
+  is precisely the definition of irreducibility in $\mathbb{Z}$, so $f$ is a prime integer $\pm p$ for a positive prime $p$.
+  If $f$ has degree greater than zero, then it must have constant term equal to $\pm 1$, as otherwise a prime (in $\mathbb{Z}$) divides
+  the constant term; continuing to divide this prime through to the other terms with rational coefficients yields a
+  (non-unit, since it has a non-constant term by the degree assumption) polynomial whose product with
+  the prime divided by (which is also non-unit by definition of prime) equals the supposedly irreducible polynomial one started with.
+  If a polynomial with constant coefficient $\pm1$ is reducible in $\mathbb{Q}[x]$, then the product of the factors' constant terms must be $\pm1$;
+  the product formula gives the 0th coefficient of a product as the product of the constant terms of the factors alone.
+  The product of two rational numbers being $\pm 1$ implies that one is $\pm$ the inverse of the other,
+  and since for the integers, the only units are $\pm 1$, if an element of $R$ is reducible in $\mathbb{Q}[x]$ then it must reduce into factors
+  with constant coefficient $\pm 1$, which are again an element of $R$.
+  Accordingly, we've shown ``in $R$, possibly irreducible constant coefficient, and reducible in $\mathbb{Q}[x] \Rightarrow$ reducible in $R$,''
+  so if an element is not reducible in $\mathbb{Q}[x]$, then it's either not in $R$, doesn't have a possibly irreducible constant coefficient,
+  or is irreducible in $\mathbb{Q}[x]$; the first two cannot hold, so irreducible elements of $R$ with degree larger than 0 are irreducible
+  in $\mathbb{Q}[x]$ with constant coefficient $\pm 1$.
+  Since $\mathbb{Q}[x]$ is a polynomial ring over a field, it is a Euclidean domain, and so irreducible and prime are equivalent.
+  Accordingly, these elements are also prime in the subring $R$, as if $a \mid bc \Rightarrow a \mid b \lor a \mid c$ for all $b, c$
+  in a parent ring, then certainly the same holds when $b, c$ are restricted to $R$.
+
+  If $x = p_{1}(x)p_{2}(x) \cdots p_{n}(x)$ for $p_{i}$ irreducible, then the above implies that each $p_{i}$ either is a prime integer
+  or a non-constant polynomial with constant coefficient $\pm 1$; the degrees must match, so that of the right must be 1,
+  but then the only non-constant factor is a single degree-1 polynomial, as adding anything more would make this degree too big.
+  Since all irreducible, degree-1 polynomials must have a constant term $\pm 1$, and, consequently,
+  the product must have a product of the primes making up the rest of the factors as its constant term,
+  it is impossible for $x$ to be factored into irreducibles.
+  This implies $R$ is not a U.F.D.
+
+  Since $x$ is also not irreducible, it cannot be prime, as prime implies irreducible in a general integral domain.
+  Accordingly, since $R / I$ is an integral domain iff $I$ is a prime ideal, and $(x)$ is not a prime ideal by definition of a prime element,
+  the quotient ring $R / (x)$ is not an integral domain.
+\end{proof}
+
+\begin{plm}[D\&F 9.4.1]
+  Determine whether the following polynomials are irreducible in the rings indicated.
+  For those that are reducible, determine their factorization into irreducibles.
+  The notation $\mathbb{F}_{p}$ denotes the finite field $\mathbb{Z} / p\mathbb{Z}$, $p$ a prime
+  \begin{enumerate}
+  \item $x^{2} + x + 1$ in $\mathbb{F}_{2}[x]$.
+  \item $x^{3} + x + 1$ in $\mathbb{F}_{3}[x]$.
+  \item $x^{4} + 1$ in $\mathbb{F}_{5}[x]$.
+  \item $x^{4} + 10x^{2} + 1$ in $\mathbb{Z}[x]$.
+  \end{enumerate}
+\end{plm}
+
+\begin{proof}
+  $x^{2} + x + 1$ has no root in $\mathbb{F}_{2}$ ($1 + 1 + 1 \equiv 0 + 0 + 1 = 1 \pmod 2$), so it is irreducible.
+  $x^{3} + x + 1$ has root $x = 1$ in $\mathbb{F}_{3}$ ($1 + 1 + 1 \equiv 0 \pmod 3$), so it is reducible; the linear factor with root 1 divides it,
+  so $x^{3} + x + 1 = (x - 1)(x^{2} + x + 2)$ (using $-2 \equiv 1 \pmod 3$); the latter has no roots ($0 + 0 + 2 \equiv 2 \pmod 3,
+  1 + 1 + 2 \equiv 1 \pmod 3, 1 + 2 + 2 \equiv 2 \pmod 3$), and so this is a factorization into irreducibles.
+  We have $(x^{2} + 2)(x^{2} - 2) = x^{4} - 4 = x^{4} + 1$ (since $-4 \equiv 1 \pmod 5$); $x^{2} + 2$ has no root in $\mathbb{F}_{5}$
+  ($2 \equiv 2 \pmod 5, 3 \equiv 3 \pmod 5, 6 \equiv 1 \pmod 5, 11 \equiv 1 \pmod 5, 16 \equiv 1 \pmod 5$)
+  and so is irreducible, and likewise for $x^{2} - 2$
+  ($-2 \equiv 3 \pmod 5, -1 \equiv 4 \pmod 5, 2 \equiv 2 \pmod 5, 7 \equiv 2 \pmod 5, 14 \equiv 4 \pmod 5$).
+
+  Taking the quotient ring $\mathbb{Z} / 5 \mathbb{Z}$, the polynomial reduces to $x^{4} + 1$ over $\mathbb{F}_{5}$,
+  which is irreducible by the above; accordingly, it is also irreducible in $\mathbb{Z}[x]$.
+\end{proof}
+
+\newpage
+
+\section*{Appendix}
+This is entirely for my own records and interest.
+I attempted to argue in problem 8.3.5 that 2 was prime, which required a lot of bookkeeping to handle a bunch of cases.
+As such, I used notation inspired by Fitch notation for natural deduction to keep track of what's been refuted.
+\begin{center}
+  \begin{fitch}
+    \fj 2 \mid (a + b\sqrt{-n})(c + d\sqrt{-n}) \\
+    \fa 2 \mid (ac - bdn) + (ad + bc)\sqrt{-n} & Distributing \\
+    \fa (2 \mid ac) & $a \mid (b + c) \Leftrightarrow a \mid b \land a \mid c$ (2) \\
+    \fa (2 \mid bdn) & $a \mid (b + c) \Leftrightarrow a \mid b \land a \mid c$ (2) \\
+    \fa (2 \mid ad) & $a \mid (b + c) \Leftrightarrow a \mid b \land a \mid c$ (2) \\
+    \fa (2 \mid bc) & $a \mid (b + c) \Leftrightarrow a \mid b \land a \mid c$ (2) \\
+    \fa 2 \mid a \lor 2 \mid c & 2 is prime in $\mathbb{Z}$ (3) \\
+    \fa 2 \mid b \lor 2 \mid d \lor 2 \mid n & 2 is prime in $\mathbb{Z}$ (4) \\
+    \fa 2 \mid a \lor 2 \mid d & 2 is prime in $\mathbb{Z}$ (5)\\
+    \fa 2 \mid b \lor 2 \mid c & 2 is prime in $\mathbb{Z}$ (6)\\
+    \fa \fh 2 \nmid a \\
+    \fa \fa 2 \mid c & $\lor$-Elim (7) \\
+    \fa \fa 2 \mid d & $\lor$-Elim (9) \\
+    \fa \fa 2 \mid (c + d\sqrt{-n}) & $a \mid (b + c) \Leftrightarrow a \mid b \land a \mid c$ (12, 13) \\
+    \fa \fh 2 \mid a \\
+    \fa \fa \fh 2 \nmid c \\
+    \fa \fa \fa 2 \mid b & $\lor$-Elim (10) \\
+    \fa \fa \fa 2 \mid (a + b\sqrt{-n}) & $a \mid (b + c) \Leftrightarrow a \mid b \land a \mid c$ (15, 17) \\
+    \fa \fa \fh 2 \mid c \\
+    \fa \fa \fa \fh 2 \mid b \\
+    \fa \fa \fa \fa 2 \mid (a + b\sqrt{-n}) & $a \mid (b + c) \Leftrightarrow a \mid b \land a \mid c$ (15, 20) \\
+    \fa \fa \fa \fh 2 \nmid b \\
+    \fa \fa \fa \fa 2 \mid d \lor 2 \mid n & $\lor$-Elim (8) \\
+    \fa \fa \fa \fa \fh 2 \mid d \\
+    \fa \fa \fa \fa \fa 2 \mid (c + d\sqrt{-n}) & $a \mid (b + c) \Leftrightarrow a \mid b \land a \mid c$ (19, 24) \\
+    \fa \fa \fa \fa \fh 2 \nmid d \\
+    \fa \fa \fa \fa \fa 2 \mid n & $\lor$-Elim (23) \\
+    \fa \fa \fa \fa \fa 4 \mid ad & Product of two multiples of 2 (15, 19) \\
+    \fa \fa \fa \fa \fa 4 \mid bdn & $ac - bdn = 2 \Rightarrow ac \pmod 4 = 2 + bdn \pmod 4 = 0$
+  \end{fitch}
+\end{center}
+At this point, one is stuck; one might hope to find a modular or linear algebraic argument that leads to contradiction in this last case,
+but it's to no avail.
+However, the logical elimination of all of these cases provides a significant computational simplification.
+An even more na\"ive algorithm wouldn't be impossible to run, because the first example is pretty small,
+but this suggests seeking an algorithmic solution may be productive.
+I did the following, in GNU Guile:
+\inputminted[mathescape]{scheme}{squarefree.scm}
+\end{document}

@@ -1,0 +1,15 @@
+:PROPERTIES:
+:ID:       9794fa8b-585d-426f-8dac-de49a25496ec
+:END:
+#+title: Higher-Dimensional Files
+#+filetags: Idea
+* Motivation
+
+A lot of work, like [[id:e57b70f1-780c-422f-bf1c-eafdbb5c3834][Emacs Binary Inspection Mode]] or an Emacs Biblical commentary reading and writing mode I've contemplated, not to mention the general software applications (compilation, etc.), seems to have multiple files that are all representing the same content in different forms.
+
+The bulk of the work of programs that operate on them may be in the transformation between those forms, so what if there was a format that could give you a two-dimensional file object, with one index in the file bytes, and one index in the "stack" of files?
+* Similar Work
+
+* Feasibility
+
+* Implementation

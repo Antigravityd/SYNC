@@ -1,0 +1,5 @@
+* Questions to Bug Stoffle and Chancellor About
+
+- Did the original CERN Timepix- and Timepix3-based detectors not do track structure analysis? It seems a rather fundamental functionality for elementary particle physics. Did they do /everything/ on the basis of array correlation alone?
+
+-

@@ -42,9 +42,15 @@
     \[
       h_{rp}(f) = \frac{1}{mf^{2}L}\sqrt{\frac{hP_{in}}{\pi^{2}c\lambda}}.
     \]
-  \item (Optional) Plot the quadrature sum of the shot noise and radiation pressure noise $h = \sqrt{h_{shot}^{2} + h_{rp}^{2}}$ for \SI{40}{kg} mirrors,
-    $\lambda = \SI{1064}{nm}$, and $L = \SI{4}{km}$ for three different input powers: \SI{40}{W}, \SI{40}{kW}, and \SI{40}{MW},
-    for frequencies between \SI{0.1}{Hz} and \SI{1}{kHz} (assuming the pendulums are very, very long, with resonance frequencies below \SI{0.1}{Hz}).
+  \item (Optional) In a Fabry-Perot Michelson, the shot noise is not frequency-independent because the cavity response is not frequency independent;
+    it is instead
+    \[
+      h_{shot}(f)  = \frac{1}{L}\sqrt{\frac{hc\lambda}{P_{in}}}\sqrt{1 + (f / f_{cp})^{2}}
+    \]
+    with $f_{cp}$ being the ``cavity pole'' of the cavity, $f_{cp} = \pi c / (2\mathcal{F}L)$, and $\mathcal{F} = 450$ is the finesse of the arm cavity.
+    Plot the quadrature sum of the shot noise and radiation pressure noise $h = \sqrt{h_{shot}^{2} + h_{rp}^{2}}$ for \SI{40}{kg} mirrors,
+    $\lambda = \SI{1064}{nm}$, $L = \SI{4}{km}$, for three different input powers: \SI{40}{W}, \SI{40}{kW}, \SI{40}{MW},
+    for frequencies between \SI{0.1}{Hz} and $\SI{1}{kHz}$ (assume the pendulums are very, very long, with resonance frequencies below \SI{0.1}{Hz}).
     At what frequencies do each of the sums have their minimum value, and what is the minimum value?
   \item Using the expressions in previous parts, prove that the minimum value of the total quantum noise $h = \sqrt{h_{shot}^{2} + h_{rp}^{2}}$
     for any given input power (this is the ``standard quantum limit'') is independent of the input power or the operating point, and is given by
@@ -60,19 +66,19 @@
     \dv{P_{out}}{h} = \dv{P_{out}}{\delta L}\dv{\delta L}{dh} = \dv{\delta L}\qty[P_{in}\sin^{2}(k\delta L)]\dv{h}\qty[hL]
     = kP_{in}L\sin(2k\delta L).
   \]
-  Skipping the second, we assume the number of photons arriving at the end mirrors also has $\bar{n} \gg 1$, and so is Gaussian.
-  A Gaussian distribution with mean $(P_{in} / 2) / (\hbar\omega)$
-  Shot-type noise has variance equal to the average number of arriving photons, so the error in the momentum is
-  \[
-    \sqrt{\frac{P_{in}}{2\hbar\omega}}.
-  \]
-  Each photon carries linear momentum $h\lambda$; this translates to an error in the average force (as it has units momentum over time) of
-  \[
-    h\lambda\sqrt{\frac{P_{in}}{2\hbar\omega}}.
-  \]
-  At frequencies well above the suspended pendulum frequency, the system is well-modeled by a driven simple pendulum
+  % Skipping the second, we assume the number of photons arriving at the end mirrors also has $\bar{n} \gg 1$, and so is Gaussian.
+  % A Gaussian distribution with mean $(P_{in} / 2) / (\hbar\omega)$
+  % Shot-type noise has variance equal to the average number of arriving photons, so the error in this variable is
+  % \[
+  %   \sqrt{\frac{P_{in}}{2\hbar\omega}}.
+  % \]
+  % Each photon carries linear momentum $h\lambda$; this translates to an error in the average force (as the variable has units momentum over time) of
+  % \[
+  %   h\lambda\sqrt{\frac{P_{in}}{2\hbar\omega}} = h\lambda\sqrt{P_{in}}{2h / (2\pi)(2\pi c/\lambda)}.
+  % \]
+  % At frequencies well above the suspended pendulum frequency, the system is well-modeled by a driven simple pendulum
 
-  We can plot the expressions with gnuplot:
+  We can plot the total noise with gnuplot:
   \inputminted{gnuplot}{p1.gp}
   This produces the following:
   \begin{center}
@@ -82,10 +88,29 @@
   I wrote function optimization via bisection and central difference in Scheme for an old statistical mechanics assignment;
   I played around with that to see if there was variation in the flat parts,
   but the derivative appears to be \textit{zero} there to up to IEEE double-precision.
-  I indicated the values of the functions at $\SI{1000}{Hz}$ on the graph; as the function appears otherwise monotonic,
-  that is likely the minimum.
 
- % TODO: minimize
+  Writing out the total quantum noise as a function of frequency,
+  \[
+    h = \sqrt{\frac{hc\lambda}{P_{in}L^{2}} + \frac{hP_{in}}{m^{2}f^{4}L^{2}\pi^{2}c\lambda}}
+  \]
+  Optimizing in $P_{in}$,
+  \[
+    \dv{h}{P_{in}} = \frac{1}{2}\frac{1}{\sqrt{\frac{hc\lambda}{P_{in}L^{2}} + \frac{hP_{in}}{m^{2}f^{4}L^{2}\pi^{2}c\lambda}}}
+    \qty(\frac{h}{m^{2}f^{4}L^{2}\pi^{2}c\lambda}-\frac{hc\lambda}{P_{in}^{2}L^{2}}) = 0
+  \]
+  \[
+    \Rightarrow \frac{1}{m^{2}f^{4}L^{2}\pi^{2}c\lambda} =  \frac{c\lambda}{P_{in}^{2}L^{2}}
+    \Leftrightarrow P_{in} = mf^{2}\pi c\lambda
+  \]
+  Evaluating,
+  \[
+    h_{SQL} = \sqrt{\frac{hc\lambda}{mf^{2}\pi c\lambda L^{2}} + \frac{hmf^{2}\pi c\lambda}{m^{2}f^{4}L^{2}\pi^{2}c\lambda}}
+    = \sqrt{\frac{h}{mf^{2}\pi L^{2}} + \frac{h}{mf^{2}L^{2}\pi}}
+    = \frac{1}{fL}\sqrt{\frac{2h}{m\pi}}
+    = \frac{1}{fL}\sqrt{\frac{4\pi\hbar}{m\pi}}
+    = \frac{2}{fL}\sqrt{\frac{\hbar}{m}}
+  \]
+
 \end{proof}
 
 \newpage
@@ -157,6 +182,13 @@
   \begin{center}
     \input{p2.tex}
   \end{center}
+
+  The loop gives
+  \[
+    e_{D} = C(f)(\Delta L_{ext} - DA(f))
+    \Leftrightarrow \Delta L_{ext} = hL = \frac{e_{D}}{C(f)} + DA(f)
+    \Rightarrow h = \qty(\frac{e_{D}}{C(f)} + DA(f)) / L.
+  \]
 \end{proof}
 
 \begin{plm}
@@ -187,21 +219,73 @@
 \end{plm}
 
 \begin{proof}
-  Using $P = |E|^{2}$,
-  \[
-    P = E_{0}^{2}\left| \sum_{n = -\infty}^{\infty}J_{n}(\Gamma)e^{in\Omega t} \right|^{2}
-  \]
   Asymptotically, $J_{n}(\Gamma) \to \frac{1}{(n + 1)!}\qty(\frac{\Gamma}{2})^{n}$ as $\Gamma \to 0$,
   so for larger $|n|$ the contribution of the term is smaller.
   Accordingly, we take only the carrier and the first sidebands.
   \[
-    P = E_{0}^{2}\qty|J_{0}(\Gamma) + J_{1}(\Gamma)e^{i\Omega t} - J_{1}(\Gamma)e^{-i\Omega t}|^{2}
-    = E_{0}^{2}\qty|J_{0}(\Gamma) + 2J_{1}(\Gamma)\cos(\Omega t)|^{2}
+    E = E_{0}e^{i\omega t}\qty(J_{0}(\Gamma) + J_{1}(\Gamma)e^{i\Omega t} - J_{1}(\Gamma)e^{-i\Omega t})
+    = E_{0}e^{i\omega t}\qty(J_{0}(\Gamma) + 2J_{1}(\Gamma)\cos(\Omega t)).
+  \]
+  We have that
+  \[
+    E_{out}^{0} = J_{0}E_{0}e^{i\omega t}e^{-2ikL}\sin(k \Delta l),
   \]
   \[
-    = E_{0}^{2}\qty(J_{0}(\Gamma)^{2} + 4J_{0}(\Gamma)J_{1}(\Gamma)\cos(\Omega t) + 4J_{1}(\Gamma)^{2}\cos^{2}(\Omega t))
+    E_{out}^{\pm} = \pm i J_{1}E_{0}e^{i\omega t}e^{\pm i\Omega t}e^{-2ikL}e^{\mp 2i\Omega L/c}\sin([\omega \pm \Omega]\Delta L / c)
   \]
-  Writing
+  Near the dark fringe, to first order in $\delta L$,
+  $\sin(k \Delta l) \approx k\delta L$ and $\sin([\omega \pm \Omega]\Delta L / c) \approx (\omega \pm \Omega)\delta L /  c$.
+  The total output power is
+  \[
+    P_{out} = |E_{out}|^{2} = |E_{out}^{0}|^{2} + |E_{out}^{+}|^{2} + |E_{out}^{-}|
+    + \Re(E_{out}^{0}(E_{out}^{+} + E_{out}^{-})^{*})
+    + \Re(E_{out}^{+}E_{out}^{-})
+  \]
+  The magnitude-squared of $E_{out}^{0}$ is just the DC operating power; using the above expressions,
+  \[
+    P_{out} = P_{DC} + J_{0}J_{1}\qty(\frac{k\delta L}{c})\sin(\Omega \Delta L / c)\cos(\Omega t + \phi)
+    + J_{1}^{2}\sin^{2}(\Omega\Delta L / c)\cos(2\Omega t + \phi')
+  \]
+  If a low-pass filter is introduced, it prunes out the last term of the output power:
+  \[
+    P_{out}' = P_{DC} + J_{0}J_{1}\qty(\frac{k\delta L}{c})\sin(\Omega\Delta L / c)\cos(\Omega t + \phi)
+  \]
+  Using the sum-to-product identity for cosine,
+  \[
+    = P_{DC} + J_{0}J_{1}\qty(\frac{k\delta L}{c})\sin(\Omega\Delta L / c)(\cos(\Omega t)\cos(\phi) + \sin(\Omega t)\sin\phi)
+  \]
+  \[
+    = P_{DC} + \qty[J_{0}J_{1}\qty(\frac{k\delta L}{c})\sin(\Omega\Delta L / c)\cos(\phi)]\cos(\Omega t)
+    + \qty[J_{0}J_{1}\qty(\frac{k\delta L}{c})\sin(\Omega\Delta L / c)\sin\phi]\sin(\Omega t)
+  \]
+  Accordingly, in the photodiode readout we have
+  \[
+    V_{out} = \eta Z\qty(P_{DC} + \qty[J_{0}J_{1}\qty(\frac{k\delta L}{c})\sin(\Omega\Delta L / c)]
+    \qty[\cos(\phi)\cos(\Omega t) + \sin\phi\sin(\Omega t)])
+  \]
+  The corresponding demodulated signals are merely this times
+  $\sin(\Omega t + \phi) = \sin(\Omega t)\cos\phi + \cos(\Omega t)\sin\phi$
+  and $\cos(\Omega t + \phi) = \cos(\Omega t)\cos\phi + \sin(\Omega t)\sin\phi$.
+  In each case, there is some simplification via the Pythagorean and sine double-angle identities to
+  \[
+    V_{Q} = \eta Z\left(P_{DC}\sin(\Omega t + \phi) + \qty[J_{0}J_{1}\qty(\frac{k\delta L}{c})\sin(\Omega\Delta L / c)]
+      \qty[\frac{1}{2}\sin(2\Omega t) + \frac{1}{2}\sin(2\phi)]\right)
+  \]
+  and
+  \[
+    V_{I} = \eta Z\left(P_{DC}\cos(\Omega t + \phi) + \qty[J_{0}J_{1}\qty(\frac{k\delta L}{c})\sin(\Omega\Delta L / c)]
+      \qty[1 + \frac{1}{2}\sin(2\Omega t)\sin(2\phi)]\right)
+  \]
+  The filtering out terms oscillating at $\Omega$ or above,
+  \[
+    V_{Q} = \frac{1}{2}\eta ZJ_{0}J_{1}\qty(\frac{k\delta L}{c})\sin(\Omega \Delta L / c)\sin(2\phi)
+  \]
+  and
+  \[
+    V_{I} = \eta Z J_{0}J_{1}\qty(\frac{k\delta L}{c})\sin(\Omega\Delta L / c)
+  \]
+  Choosing $\phi = 0$ makes $V_{Q} = 0$ and $V_{I} = \qty[\eta ZJ_{0}J_{1}k\sin(\Omega\Delta L/c)/c]\delta L$;
+  all quantities multiplying $\delta L$ we know or set ourselves, so measuring $V_{I}$ provides a measurement of $\delta L$.
 \end{proof}
 
 \begin{plm}
@@ -226,4 +310,39 @@
   \end{enumerate}
 \end{plm}
 
+\begin{proof}
+  I'd write something up in  TikZ, but I'm running close to the deadline.
+  I have indeed drawn it out to come up with the following ansatze.
+  It's simple to verify the following by induction on the term index, since the case for one or two bounces of a beam of known form is easy.
+  \[
+    E_{back} = r_{1}E_{0}e^{i\omega t} + t_{1}^{2}r_{2}E_{0}e^{i (\omega t - 2ikL)} + t_{1}^{2}r_{2}^{2}r_{1}E_{0}e^{i(\omega t + 4ikL)}
+    + t_{1}^{2}r_{2}^{3}r_{1}^{2}E_{0}e^{i(\omega t - 6ikL)} + \cdots + t_{1}^{2}r_{2}^{n}r_{1}^{n - 1}E_{0}e^{i(\omega t - 2nikL)} + \cdots
+  \]
+  \[
+    E_{in} = t_{1}E_{0}e^{i\omega t} + t_{1}r_{2}e^{i\omega t - ikL} + t_{1}r_{2}r_{1}e^{i\omega t - 2ikL} + t_{1}r_{2}r_{1}^{2}e^{i\omega t - 3ikL}
+    + \cdots + t_{1}r_{2}^{n}r_{1}^{n-1}e^{i\omega t - nikL} + \cdots
+  \]
+  \[
+    E_{out} = t_{1}t_{2}E_{0}e^{i\omega t - ikL} + t_{1}t_{2}r_{2}r_{1}e^{i\omega t - 3ikL} + t_{1}t_{2}r_{2}^{2}r_{1}^{2}e^{i\omega t - 5ikL}
+    + \cdots + t_{1}t_{2}r_{2}^{n}r_{1}^{n}e^{i\omega t - (2n + 1)ikL} + \cdots
+  \]
+  The sums of these series are
+  \[
+    E_{back} = \frac{t_{1}^{2}E_{0}e^{i\omega t}/r_{1}}{1 - r_{1}r_{2}e^{-2ikL}}
+  \]
+  \[
+    E_{in} = \frac{t_{1}E_{0}e^{i\omega t}/r_{1}}{1 - r_{1}r_{2}e^{-ikL}}
+  \]
+  \[
+    E_{out}= \frac{t_{1}t_{2}E_{0}e^{i\omega t - ikL}}{1 - r_{1}r_{2}e^{-2ikL}}
+  \]
+  These are analogous to the steady-state expressions, but the first two have a divisor $r_{1}$ here not appearing otherwise.
+  Since they're mirrors, this divisor will be close to one, making the steady-state approximation excellent.
+  The reflectivity, gain, and transmissivity of the cavities are the three multipliers of $E_{0}e^{i\omega t}$ in the above equations, respectively.
+  Using gnuplot,
+  \inputminted{gnuplot}{p4.gp}
+  \begin{center}
+    \input{p4.tex}
+  \end{center}
+\end{proof}
 \end{document}

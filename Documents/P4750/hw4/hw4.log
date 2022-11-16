@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.5.9)  5 NOV 2022 00:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.5.9)  8 NOV 2022 19:45
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -7,11 +7,11 @@ entering extended mode
 (./hw4.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-02-18>
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/base/article.cls
 Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/base/size10.clo
 File: size10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
 )
@@ -27,20 +27,20 @@ File: size10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
 \belowcaptionskip=\skip48
 \bibindent=\dimen138
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks15
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/iftex/iftex.sty
 Package: iftex 2020/03/06 v1.0d TeX engine tests
 ))
@@ -57,45 +57,45 @@ Package: iftex 2020/03/06 v1.0d TeX engine tests
 \Gm@layoutvoffset=\dimen146
 \Gm@dimlist=\toks16
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/tex-gyre/tgpagella.sty
 Package: tgpagella 2009/09/27 v1.2 TeX Gyre Pagella as default roman family
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
 )))
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2020/09/23 v2.17i AMS math features
 \@mathmargin=\skip49
 
 For additional information on amsmath, use the `?' option.
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01 AMS text
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks17
 \ex@=\dimen147
 ))
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen148
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
@@ -137,11 +137,11 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
 LaTeX Info: Redefining \[ on input line 2923.
 LaTeX Info: Redefining \] on input line 2924.
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
@@ -150,7 +150,7 @@ LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/amscls/amsthm.sty
 Package: amsthm 2020/05/29 v2.20.6
 \thm@style=\toks22
@@ -163,71 +163,71 @@ Package: amsthm 2020/05/29 v2.20.6
 \thm@headsep=\skip54
 \dth@everypar=\toks27
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/pgf/frontendlayer/tikz.sty
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/pgf/basiclayer/pgf.sty
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/pgf/utilities/pgfrcs.sty
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/utilities/pgfutil-common.tex
 \pgfutil@everybye=\toks28
 \pgfutil@tempdima=\dimen156
 \pgfutil@tempdimb=\dimen157
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/utilities/pgfutil-common-lists.tex))
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/utilities/pgfutil-latex.def
 \pgfutil@abb=\box49
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/utilities/pgfrcs.code.tex
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/pgf.revision.tex)
 Package: pgfrcs 2020/12/27 v3.1.8b (3.1.8b)
 ))
 Package: pgf 2020/12/27 v3.1.8b (3.1.8b)
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/pgf/basiclayer/pgfcore.sty
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/graphics/graphics.sty
 Package: graphics 2020/08/30 v1.4c Standard LaTeX Graphics (DPC,SPQR)
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/graphics/trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 105.
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen158
 \Gin@req@width=\dimen159
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/pgf/systemlayer/pgfsys.sty
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
 Package: pgfsys 2020/12/27 v3.1.8b (3.1.8b)
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/utilities/pgfkeys.code.tex
 \pgfkeys@pathtoks=\toks29
 \pgfkeys@temptoks=\toks30
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.tex
 \pgfkeys@tmptoks=\toks31
 ))
@@ -252,35 +252,35 @@ Package: pgfsys 2020/12/27 v3.1.8b (3.1.8b)
 \t@pgf@tokc=\toks34
 \pgf@sys@id@count=\count272
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2020/12/27 v3.1.8b (3.1.8b)
 )
 Driver file for pgf: pgfsys-pdftex.def
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
 File: pgfsys-pdftex.def 2020/12/27 v3.1.8b (3.1.8b)
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
 File: pgfsys-common-pdf.def 2020/12/27 v3.1.8b (3.1.8b)
 )))
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgfsyssoftpath@smallbuffer@items=\count273
 \pgfsyssoftpath@bigbuffer@items=\count274
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 ))
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
@@ -295,17 +295,17 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
 Package: pgfcore 2020/12/27 v3.1.8b (3.1.8b)
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/math/pgfmath.code.tex
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/math/pgfmathcalc.code.tex
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/math/pgfmathutil.code.tex)
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/math/pgfmathparser.code.tex
 \pgfmath@dimen=\dimen170
 \pgfmath@count=\count275
@@ -314,31 +314,31 @@ Package: pgfcore 2020/12/27 v3.1.8b (3.1.8b)
 \pgfmath@stack@operand=\toks36
 \pgfmath@stack@operation=\toks37
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex)
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex)
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex)
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex)
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex)
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex)
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex)
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex)))
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/math/pgfmathfloat.code.tex
 \c@pgfmathroundto@lastzeros=\count276
 ))
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/math/pgfint.code.tex)
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
 File: pgfcorepoints.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgf@picminx=\dimen171
@@ -358,23 +358,23 @@ File: pgfcorepoints.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 LaTeX Font Info:    Trying to load font information for OT1+qpl on input line 9
 26.
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/tex-gyre/ot1qpl.fd
 File: ot1qpl.fd 2009/09/25 v1.2 font definition file for OT1/qpl
 ))
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
 File: pgfcorepathconstruct.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgf@path@lastx=\dimen185
 \pgf@path@lasty=\dimen186
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex
 File: pgfcorepathusage.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgf@shorten@end@additional=\dimen187
 \pgf@shorten@start@additional=\dimen188
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
 File: pgfcorescopes.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgfpic=\box51
@@ -382,112 +382,112 @@ File: pgfcorescopes.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgf@layerbox@main=\box53
 \pgf@picture@serial@count=\count277
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgflinewidth=\dimen189
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex
 File: pgfcoretransformations.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgf@pt@x=\dimen190
 \pgf@pt@y=\dimen191
 \pgf@pt@temp=\dimen192
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
 File: pgfcorequick.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
 File: pgfcoreobjects.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex
 File: pgfcorepathprocessing.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
 File: pgfcorearrows.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgfarrowsep=\dimen193
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgf@max=\dimen194
 \pgf@sys@shading@range@num=\count278
 \pgf@shadingcount=\count279
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
 File: pgfcoreexternal.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgfexternal@startupbox=\box54
 ))
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
 File: pgfcorelayers.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
 File: pgfcoretransparency.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
 File: pgfcorepatterns.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
 File: pgfcorerdf.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 )))
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
 File: pgfmoduleshapes.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgfnodeparttextbox=\box55
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
 File: pgfmoduleplot.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
 Package: pgfcomp-version-0-65 2020/12/27 v3.1.8b (3.1.8b)
 \pgf@nodesepstart=\dimen195
 \pgf@nodesepend=\dimen196
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
 Package: pgfcomp-version-1-18 2020/12/27 v3.1.8b (3.1.8b)
 ))
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/pgf/utilities/pgffor.sty
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/pgf/utilities/pgfkeys.sty
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/pgf/math/pgfmath.sty
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/math/pgfmath.code.tex))
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/utilities/pgffor.code.tex
 Package: pgffor 2020/12/27 v3.1.8b (3.1.8b)
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/math/pgfmath.code.tex)
 \pgffor@iter=\dimen197
 \pgffor@skip=\dimen198
 \pgffor@stack=\toks38
 \pgffor@toks=\toks39
 ))
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
 Package: tikz 2020/12/27 v3.1.8b (3.1.8b)
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgf@plot@mark@count=\count280
@@ -510,7 +510,7 @@ File: pgflibraryplothandlers.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \tikznumberofcurrentchild=\count283
 \tikz@fig@count=\count284
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgfmatrixcurrentrow=\count285
@@ -519,28 +519,28 @@ File: pgfmodulematrix.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 )
 \tikz@expandcount=\count288
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 )))
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/minted/minted.sty
 Package: minted 2017/07/19 v2.5 Yet another Pygments shim for LaTeX
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/fvextra/fvextra.sty
 Package: fvextra 2019/02/04 v1.4 fvextra - extensions and patches for fancyvrb
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/base/ifthen.sty
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count289
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/fancyvrb/fancyvrb.sty
 Package: fancyvrb 2021/01/20 v3.7 verbatim text (tvz,hv)
 \FV@CodeLineNo=\count290
@@ -550,12 +550,12 @@ Package: fancyvrb 2021/01/20 v3.7 verbatim text (tvz,hv)
 \FV@StepNumber=\count292
 \FV@OutFile=\write4
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/upquote/upquote.sty
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
 tim
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/lineno/lineno.sty
 Package: lineno 2005/11/02 line numbers on paragraphs v4.41
 \linenopenalty=\count293
@@ -597,7 +597,7 @@ LaTeX Info: Redefining \\ on input line 3056.
 \FV@LineIndentBox=\box65
 \FV@LineWidth=\dimen274
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/tools/calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count311
@@ -611,21 +611,21 @@ LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Ccount=\count313
 \calc@Cskip=\skip58
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/tools/shellesc.sty
 Package: shellesc 2019/11/08 v1.0c unified shell escape interface for LaTeX
 Package shellesc Info: Unrestricted shell escape enabled on input line 75.
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/ifplatform/ifplatform.sty
 Package: ifplatform 2017/10/13 v0.4a Testing for the operating system
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pdftexcmds/pdftexcmds.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
 )
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/infwarerr/infwarerr.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 )
@@ -633,15 +633,15 @@ Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/catchfile/catchfile.sty
 Package: catchfile 2019/12/09 v1.8 Catch the contents of a file (HO)
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/etexcmds/etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 ))
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/iftex/ifluatex.sty
 Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
 )
@@ -651,16 +651,16 @@ runsystem(uname -s > "hw4.w18")...executed.
 runsystem(rm -- "hw4.w18")...executed.
 
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/xstring/xstring.sty
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/xstring/xstring.tex
 \integerpart=\count314
 \decimalpart=\count315
 )
 Package: xstring 2019/02/06 v1.83 String manipulations (CT)
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/framed/framed.sty
 Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 \OuterFrameSep=\skip59
@@ -669,7 +669,7 @@ Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 \FrameRule=\dimen279
 \FrameSep=\dimen280
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count316
@@ -689,31 +689,31 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 runsystem(mkdir -p _minted-hw4)...executed.
 
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/physics/physics.sty
 Package: physics 
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/l3packages/xparse/xparse.sty
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/l3kernel/expl3.sty
 Package: expl3 2021-02-18 L3 programming layer (loader) 
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count320
 \l__pdf_internal_box=\box69
 ))
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/l3packages/xparse/xparse-2020-10-01.sty
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/l3packages/xparse/xparse-generic.tex))))
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/siunitx/siunitx.sty
 Package: siunitx 2020/02/25 v2.8b A comprehensive (SI) units package
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/tools/array.sty
 Package: array 2020/10/01 v2.5c Tabular extension package (FMi)
 \col@sep=\dimen281
@@ -724,7 +724,7 @@ Package: array 2020/10/01 v2.5c Tabular extension package (FMi)
 \backup@length=\skip61
 \ar@cellbox=\box71
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
 Package: l3keys2e 2021-03-12 LaTeX2e option processing using LaTeX3 keys
 )
@@ -769,47 +769,47 @@ Package: l3keys2e 2021-03-12 LaTeX2e option processing using LaTeX3 keys
 \l__siunitx_table_number_align_skip=\skip64
 \l__siunitx_table_text_align_skip=\skip65
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/translator/translator.sty
 Package: translator 2020-08-03 v1.12c Easy translation of strings in LaTeX
 )) (./gnuplot-lua-tikz.sty
 Package: gnuplot-lua-tikz 2021/10/08 22:39:00 (rev. 115) GNUPLOT Lua terminal s
 tyle
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryarrows.code.tex
 File: tikzlibraryarrows.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/libraries/pgflibraryarrows.code.tex
 File: pgflibraryarrows.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \arrowsize=\dimen295
 ))
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypatterns.code.tex
 File: tikzlibrarypatterns.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/libraries/pgflibrarypatterns.code.tex
 File: pgflibrarypatterns.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 ))
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryplotmarks.code.te
 x
 File: tikzlibraryplotmarks.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex
 File: pgflibraryplotmarks.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 ))
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarybackgrounds.code.
 tex
 File: tikzlibrarybackgrounds.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgf@layerbox@background=\box79
 \pgf@layerboxsaved@background=\box80
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfit.code.tex
 File: tikzlibraryfit.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 )
@@ -877,7 +877,7 @@ LaTeX Font Info:    ... okay on input line 22.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count339
@@ -892,36 +892,36 @@ LaTeX Font Info:    ... okay on input line 22.
 \makeMPintoPDFobject=\count344
 \everyMPtoPDFconversion=\toks46
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/siunitx/siunitx-abbreviations.cfg
 File: siunitx-abbreviations.cfg 2017/11/26 v2.7k siunitx: Abbreviated units
 )
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/translator/translator-basic-dictionary-English.dict
 Dictionary: translator-basic-dictionary, Language: English 
 )
 LaTeX Font Info:    Trying to load font information for U+msa on input line 22.
 
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 22.
 
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+(/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
@@ -933,10 +933,10 @@ OT1/cmr/m/n/10 (\U/msb/m/n/10 ~\OML/cmm/m/it/10 !\OT1/cmr/m/n/10 ) =
 
 [1
 
-{/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
+{/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
 -dist/fonts/map/pdftex/updmap/pdftex.map}]
 (./_minted-hw4/default-pyg-prefix.pygstyle) (./_minted-hw4/default.pygstyle)
-(./_minted-hw4/91552DA68144C60502C2A17E1D1D4AF9297D6700053E761079C0C4FFBE3F38C2
+(./_minted-hw4/90B32F13D45706D8F9EC0271D86D6452297D6700053E761079C0C4FFBE3F38C2
 .pygtex
 
 LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
@@ -958,10 +958,6 @@ LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
 
 
 LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
-(Font)              using `OT1/cmtt/bx/n' instead on input line 16.
-
-
-LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
 (Font)              using `OT1/cmtt/bx/n' instead on input line 17.
 
 
@@ -970,35 +966,7 @@ LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
 
 
 LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
-(Font)              using `OT1/cmtt/bx/n' instead on input line 18.
-
-
-LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
-(Font)              using `OT1/cmtt/bx/n' instead on input line 19.
-
-
-LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
-(Font)              using `OT1/cmtt/bx/n' instead on input line 19.
-
-
-LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
-(Font)              using `OT1/cmtt/bx/n' instead on input line 20.
-
-
-LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
-(Font)              using `OT1/cmtt/bx/n' instead on input line 20.
-
-
-LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
-(Font)              using `OT1/cmtt/bx/n' instead on input line 21.
-
-
-LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
-(Font)              using `OT1/cmtt/bx/n' instead on input line 21.
-
-
-LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
-(Font)              using `OT1/cmtt/bx/n' instead on input line 21.
+(Font)              using `OT1/cmtt/bx/n' instead on input line 22.
 
 
 LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
@@ -1014,23 +982,29 @@ LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
 
 
 LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
+(Font)              using `OT1/cmtt/bx/n' instead on input line 23.
+
+
+LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
 (Font)              using `OT1/cmtt/bx/n' instead on input line 24.
 
-) (./p1.tex
-LaTeX Font Info:    Trying to load font information for TS1+qpl on input line 1
-68.
 
-(/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
--dist/tex/latex/tex-gyre/ts1qpl.fd
-File: ts1qpl.fd 2009/09/25 v1.2 font definition file for TS1/qpl
-)) [2] [3]
-<loop.png, id=28, 758.835pt x 376.40625pt>
+LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
+(Font)              using `OT1/cmtt/bx/n' instead on input line 25.
+
+) (./p1.tex) [2]
+Overfull \hbox (12.51025pt too wide) detected at line 112
+\OML/cmm/m/it/10 h[] \OT1/cmr/m/n/10 = [] = [] = [][] = [][] = [][]
+ []
+
+[3]
+<loop.png, id=30, 758.835pt x 376.40625pt>
 File: loop.png Graphic file (type png)
 <use loop.png>
-Package pdftex.def Info: loop.png  used on input line 102.
+Package pdftex.def Info: loop.png  used on input line 127.
 (pdftex.def)             Requested size: 189.70828pt x 94.10132pt.
  [4 <./loop.png>]
-Overfull \hbox (13.47356pt too wide) detected at line 149
+Overfull \hbox (13.47356pt too wide) detected at line 174
 \OT1/cmr/m/n/10 = [] = []
  []
 
@@ -1065,45 +1039,91 @@ LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
 LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
 (Font)              using `OT1/cmtt/bx/n' instead on input line 22.
 
-) (./p2.tex) [5] [6] [7] (./hw4.aux) ) 
+) (./p2.tex) [5] [6]
+Overfull \hbox (16.5844pt too wide) in paragraph at lines 265--270
+\OT1/qpl/m/n/10 The cor-re-spond-ing de-mod-u-lated sig-nals are merely this ti
+mes $[][][] \OT1/cmr/m/n/10 = [][][] [] \OML/cmm/m/it/10 ^^^ \OT1/cmr/m/n/10 + 
+[][][] [] \OML/cmm/m/it/10 ^^^$
+ []
+
+[7]
+Overfull \hbox (57.5052pt too wide) detected at line 320
+\OML/cmm/m/it/10 E[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 r[]E[]e[] \OT1/cmr/m/n/
+10 + \OML/cmm/m/it/10 t[]r[]E[]e[] \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 t[]r[]r[]
+E[]e[] \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 t[]r[]r[]E[]e[] \OT1/cmr/m/n/10 + [] 
++ \OML/cmm/m/it/10 t[]r[]r[]E[]e[] \OT1/cmr/m/n/10 + []
+ []
+
+
+(./_minted-hw4/8B0B9B78CBAE34C5219B25D284E976C4009161E86813747144554A28866E4AB0
+.pygtex [8]
+
+LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
+(Font)              using `OT1/cmtt/bx/n' instead on input line 2.
+
+
+LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
+(Font)              using `OT1/cmtt/bx/n' instead on input line 3.
+
+
+LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
+(Font)              using `OT1/cmtt/bx/n' instead on input line 7.
+
+
+LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
+(Font)              using `OT1/cmtt/bx/n' instead on input line 26.
+
+
+LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
+(Font)              using `OT1/cmtt/bx/n' instead on input line 27.
+
+
+LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
+(Font)              using `OT1/cmtt/bx/n' instead on input line 28.
+
+
+LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
+(Font)              using `OT1/cmtt/bx/n' instead on input line 30.
+
+) (./p4.tex) [9] [10] (./hw4.aux) ) 
 Here is how much of TeX's memory you used:
- 21073 strings out of 478994
- 456508 string characters out of 5833535
- 793738 words of memory out of 5000000
- 38136 multiletter control sequences out of 15000+600000
- 440041 words of font info for 78 fonts, out of 8000000 for 9000
+ 21059 strings out of 478994
+ 456469 string characters out of 5833535
+ 794429 words of memory out of 5000000
+ 38120 multiletter control sequences out of 15000+600000
+ 438892 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 113i,15n,116p,622b,1214s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724
-xlk-texlive-texmf-20210325/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}
-{/gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf
--dist/fonts/enc/dvips/tex-gyre/q-rm.enc}</gnu/store/c2k1qcg04iidbsp24cwn6hvy797
-24xlk-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-ex10.pfb></gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/sh
-are/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></gnu/store/c2k1qcg04
-iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmmi10.pfb></gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive
--texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></gnu
-/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr10.pfb></gnu/store/c2k1qcg04iidbsp24cwn6hvy7
-9724xlk-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr5.pfb></gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/sh
-are/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></gnu/store/c2k1qcg04iid
-bsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmsy10.pfb></gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-te
-xmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></gnu/st
-ore/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmtt10.pfb></gnu/store/c2k1qcg04iidbsp24cwn6hvy797
-24xlk-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/symbo
-ls/msbm10.pfb></gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf-202103
-25/share/texmf-dist/fonts/type1/public/tex-gyre/qplb.pfb></gnu/store/c2k1qcg04i
-idbsp24cwn6hvy79724xlk-texlive-texmf-20210325/share/texmf-dist/fonts/type1/publ
-ic/tex-gyre/qplr.pfb></gnu/store/c2k1qcg04iidbsp24cwn6hvy79724xlk-texlive-texmf
--20210325/share/texmf-dist/fonts/type1/public/tex-gyre/qplri.pfb>
-Output written on hw4.pdf (7 pages, 334781 bytes).
+ 113i,15n,116p,812b,1214s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8
+-texlive-texmf-20210325/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-rm.enc}</gn
+u/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmex10.pfb></gnu/store/hnsjynry65sj4pdwg10hdal
+rab1881m8-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmitt10.pfb></gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-202103
+25/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></gnu/store/hnsjy
+nry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmmi5.pfb></gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texl
+ive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></
+gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmr10.pfb></gnu/store/hnsjynry65sj4pdwg10hda
+lrab1881m8-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr5.pfb></gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325
+/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></gnu/store/hnsjynry6
+5sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmsy10.pfb></gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive
+-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></gnu
+/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmtt10.pfb></gnu/store/hnsjynry65sj4pdwg10hdalr
+ab1881m8-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/sy
+mbols/msbm10.pfb></gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-202
+10325/share/texmf-dist/fonts/type1/public/tex-gyre/qplb.pfb></gnu/store/hnsjynr
+y65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf-dist/fonts/type1/p
+ublic/tex-gyre/qplr.pfb></gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-te
+xmf-20210325/share/texmf-dist/fonts/type1/public/tex-gyre/qplri.pfb>
+Output written on hw4.pdf (10 pages, 361271 bytes).
 PDF statistics:
- 94 PDF objects out of 1000 (max. 8388607)
- 68 compressed objects within 1 object stream
+ 104 PDF objects out of 1000 (max. 8388607)
+ 74 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  18 words of extra memory for PDF output out of 10000 (max. 10000000)
 

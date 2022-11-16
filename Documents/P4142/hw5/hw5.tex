@@ -66,6 +66,25 @@
     = 0
     \Leftrightarrow \lambda^{2} - c^{2} - d^{2} \Rightarrow \lambda = \pm \sqrt{c^{2} + d^{2}}
   \]
+  The corresponding eigenvectors are
+  \[
+    \begin{pmatrix}
+      \frac{-a \pm \sqrt{a^{2} + b^{2}}}{b} \\
+      1
+    \end{pmatrix}
+  \]
+  and
+  \[
+    \begin{pmatrix}
+      -\frac{id}{c} \\
+      1
+    \end{pmatrix},
+    \begin{pmatrix}
+      -1 \\
+      1
+    \end{pmatrix}
+
+  \]
 \end{proof}
 
 \begin{plm}
@@ -235,7 +254,7 @@
   \]
   It's clear that this problem has an angular component, from the presence of $L_{z}$, and that the $z$-axis is distinguished,
   from the dot-product term.
-  Accordingly, we move to cylindrical coordinates, in which $L_{z} = -i\hbar\pdv{\phi}{\theta}$.
+  Accordingly, we move to cylindrical coordinates, in which $L_{z} = -i\hbar\pdv{\psi}{\theta}$.
   \[
     \frac{1}{2m}\qty[-\hbar^{2}\qty(\frac{1}{r}\pdv{r}\qty[r\pdv{\psi}{r}] + \frac{1}{r^{2}}\pdv[2]{\psi}{\theta} + \pdv[2]{\psi}{z})
     + ie\hbar B_{0}\pdv{\psi}{\theta}] + \frac{e^{2}B_{0}^{2}}{2m}r^{2}\psi + eKz^{2}\psi = E\psi.
@@ -244,8 +263,7 @@
     \frac{-\hbar^{2}}{2m}\qty[\qty(\frac{1}{r}\pdv{r}\qty[r\pdv{\psi}{r}] - \frac{e^{2}B_{0}^{2}}{\hbar^{2}}r^{2}\psi)
     + \qty(\frac{1}{r^{2}}\pdv[2]{\psi}{\theta} -\frac{ieB_{0}}{\hbar}\pdv{\psi}{\theta})
     + \qty(\pdv[2]{\psi}{z} - \frac{2meKz^{2}}{\hbar^{2}}\psi)]  = E\psi.
-
-\]
+  \]
   Assuming the problem separates, i.e. $\psi = R(r)\Theta(\theta)Z(z)$ where each factor depends only on the indicated variable, this becomes
   \[
     \frac{-\hbar^{2}}{2m}\bigg[\Theta(\theta)Z(z)\qty(\frac{1}{r}\pdv{r}\qty[r\pdv{R}{r}] - \frac{e^{2}B_{0}^{2}}{\hbar^{2}}r^{2}R(r))
@@ -285,4 +303,41 @@
   \end{enumerate}
 \end{plm}
 
+\begin{proof}
+  The generalized uncertainty principle states
+  \[
+    \Delta A\Delta B \geq \qty|\frac{1}{2i}\expval{\qty[{A}, {B}]}|.
+  \]
+  We first compute the commutator:
+  \[
+    \qty[A, B] = \qty[x^{2}, L_{z}] = x\qty[x, L_{z}] + \qty[x, L_{z}]x
+    = x\qty[x, xp_{y} - yp_{x}] + \qty[x, xp_{y} - yp_{x}]x
+  \]
+  \[
+    = x\qty([x, xp_{y}] - [x, yp_{x}]) + \qty([x, xp_{y}] - [x, yp_{x}])x
+  \]
+  \[
+    = x\qty([x, x]p_{y} + x[x, p_{y}] - [x, y]p_{x} - y[x, p_{x}]) + \qty([x, x]p_{y} + x[x, p_{y}] - [x, y]p_{x} - y[x, p_{x}])x
+  \]
+  The commutator among any two position operators and that of a position and a momentum operator along different axes is zero; accordingly,
+  \[
+    = -xy[x, p_{x}] - y[x, p_{x}]x
+    = -xyi\hbar - yxi\hbar
+    = -i\hbar(xy + yx)
+  \]
+  \[
+    = -2i\hbar xy
+  \]
+  The uncertainty principle is therefore
+  \[
+    \Delta A \Delta B \geq \hbar\qty|\expval{xy}|
+  \]
+  The variance of the $B$ operator is given by $\langle L_{z}^{2} \rangle - \langle L_{z} \rangle^{2}$;
+  the former is by $L_{z}$ Hermitian $\bra{\psi}L_{z}^{2}\ket{\psi} = \bra{L_{z}\psi}\ket{L_{z}\psi}$.
+  The $\ket{n\ell m_{\ell}}$ state of hydrogen is in an eigenstate of $L_{z}$ by assumption (corresponding to the eigenvalue $m_{\ell}$).
+  In particular, $L_{z} \psi = \hbar m_{\ell}\psi \Rightarrow \expval{L_{z}^{2}} = \hbar^{2}m_{\ell}^{2}$,
+  and $\expval{L_{z}}$ is the eigenvalue of $L_{z}$ corresponding to the eigenstate; of course, $\hbar m_{\ell}$.
+  So, the variance of $B$ is $\hbar^{2}m_{\ell}^{2} - \hbar^{2}m_{\ell}^{2} = 0$.
+  This necessarily means $\expval{xy} = 0$.
+\end{proof}
 \end{document}

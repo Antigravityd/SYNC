@@ -7,16 +7,17 @@ h = 6.63e-34
 m = 40
 l = 1064e-9
 L = 4e3
+fcp = pi * c / (2 * 450 * L)
 
-shot(f, P) =  (1 / L) * sqrt(h * c * l / P)
+shot(f, P) =  (1 / L) * sqrt(h * c * l / P) * sqrt(1 + (f / fcp)**2)
 radp(f, P) = 1 / (m * f**2 * L) * sqrt(h * P / (pi**2 * c * l))
 qnoise(f, P) = sqrt(shot(f, P)**2 + radp(f, P)**2)
 
 set logscale xy
-set yrange [1e-23:1e-19]
-set label "\\SI{".gprintf("%.3e", qnoise(1000, 40))."}{}" at 1000,qnoise(1000, 40)
-set label "\\SI{".gprintf("%.3e", qnoise(1000, 40e3))."}{}" at 1000,qnoise(1000, 40e3)
-set label "\\SI{".gprintf("%.3e", qnoise(1000, 40e6))."}{}" at 1000,qnoise(1000, 40e6)
+set yrange [1e-23:1e-19]	
+# set label "\\SI{".gprintf("%.3e", qnoise(1000, 40))."}{}" at 1000,qnoise(1000, 40)
+# set label "\\SI{".gprintf("%.3e", qnoise(1000, 40e3))."}{}" at 1000,qnoise(1000, 40e3)
+# set label "\\SI{".gprintf("%.3e", qnoise(1000, 40e6))."}{}" at 1000,qnoise(1000, 40e6)
 set xlabel "$\\log(\\textrm{Frequency (Hz)})$"
 set ylabel "$\\log(h)$" offset -2,0
 set title "Standard Quantum Limit for Different LIGO Laser Powers"

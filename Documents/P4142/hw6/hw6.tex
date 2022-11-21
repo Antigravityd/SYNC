@@ -210,15 +210,64 @@
   \[
     |E| = \frac{e^{2}}{4\pi\epsilon_{0}r^{2}}\frac{r^{3}}{r_{p}^{3}} = \frac{e^{2}}{4\pi\epsilon_{0}}\frac{r}{r_{p}^{3}}
   \]
-  Integrating from $r_{p}$ (where $V = -\frac{e^{2}}{4\pi\epsilon_{0}r_{p}}$ as before) to $r$, the potential is
+  Integrating from $r_{p}$ (whereupon $V = -\frac{e^{2}}{4\pi\epsilon_{0}r_{p}}$ as before) to $r$, the potential is
   \[
-    V = -\frac{e^{2}}{4\pi\epsilon_{0}r_{p}^{3}}(r^{2} - r_{p}^{2}) - \frac{e^{2}}{4\pi\epsilon_{0}r_{p}}
-    = -\frac{e^{2}r^{2}}{4\pi\epsilon_{0}r_{p}^{3}}
+    V = -\frac{e^{2}}{8\pi\epsilon_{0}r_{p}^{3}}(r^{2} - r_{p}^{2}) - \frac{e^{2}}{4\pi\epsilon_{0}r_{p}}
+    = -\frac{e^{2}r^{2}}{8\pi\epsilon_{0}r_{p}^{3}} - \frac{e^{2}}{8\pi\epsilon_{0} r_{p}}
   \]
   Accordingly, we get new Hamiltonians
   \[
-    H = H_{0} +
+    H = H_{0} + H' = \qty(\frac{p^{2}}{2m} - \frac{e^{2}}{4\pi\epsilon_{0} r}) + \Theta(r_{p} - r)\qty(\frac{e^{2}}{4\pi\epsilon_{0} r}
+    - \frac{e^{2}}{4\pi\epsilon_{0} r_{p}})
   \]
+  and
+  \[
+    H = H_{0} + H' = \qty(\frac{p^{2}}{2m} - \frac{e^{2}}{4\pi\epsilon_{0} r}) + \Theta(r_{p} - r)\qty(\frac{e^{2}}{4\pi\epsilon_{0} r}
+    - \frac{e^{2}r^{2}}{8\pi\epsilon_{0} r_{p}^{3}} - \frac{e^{2}}{8\pi\epsilon_{0}r_{p}})
+  \]
+  The first-order correction to the energies can be computed directly:
+  \[
+    E_{n}^{1} = \bra{\psi_{n}^{0}} H' \ket{\psi_{n}^{0}}
+    = \bra{\psi_{n}^{0}} \Theta(r_{p} - r)\qty(\frac{e^{2}}{4\pi\epsilon_{0} r} - \frac{e^{2}}{8\pi\epsilon_{0} r_{p}}) \ket{\psi_{n}^{0}}
+  \]
+  \[
+    = \frac{e^{2}}{4\pi\epsilon_{0}}\bra{n\ell m} \frac{\Theta(r_{p} - r)}{r} \ket{n\ell m}
+    - \frac{e^{2}}{8\pi\epsilon_{0} r_{p}}\bra{n\ell m} \Theta(r_{p} - r) \ket{n\ell m}
+  \]
+  and
+  \[
+    E_{n}^{1} = \bra{\psi_{n}^{0}} H' \ket{\psi_{n}^{0}}
+    = \bra{\psi_{n}^{0}} \Theta(r_{p} - r)\qty(\frac{e^{2}}{4\pi\epsilon_{0} r} - \frac{e^{2}r^{2}}{8\pi\epsilon_{0} r_{p}^{3}}
+    - \frac{e^{2}}{8\pi\epsilon_{0} r_{p}}) \ket{\psi_{n}^{0}}
+  \]
+  \[
+    = \frac{e^{2}}{4\pi\epsilon_{0}}\bra{n\ell m} \frac{\Theta(r_{p} - r)}{r} \ket{n\ell m}
+    - \frac{e^{2}}{8\pi\epsilon_{0}r_{p}^{3}}\bra{n\ell m} r^{2}\Theta(r_{p} - r) \ket{n\ell m}
+    - \frac{e^{2}}{8\pi\epsilon_{0} r_{p}}\bra{n\ell m} \Theta(r_{p} - r) \ket{n\ell m}
+  \]
+  To evaluate these, we need to compute several integrals; the angular variables are trivially 1, but the radial integrals are
+  \[
+    \bra{n\ell m} \frac{\Theta(r_{p} - r)}{r} \ket{n\ell m} = \int_{0}^{r_{p}}r|R_{n\ell}(r)|^{2}dr
+  \]
+  \[
+    \bra{n\ell m} r^{2}\Theta(r_{p} - r) \ket{n\ell m} = \int_{0}^{r_{p}}r^{3}|R_{n\ell}(r)|^{2}dr
+  \]
+  \[
+    \bra{n\ell m}\Theta(r_{p} - r) \ket{n\ell m} = \int_{0}^{r_{p}}r^{2}|R_{n\ell}(r)|^{2}dr
+  \]
+  which, since we're going to first-order anyway, can be estimated by exploiting orthogonality with the approximation
+  \[
+    \int_{0}^{r_{p}}r^{2}|R_{n\ell}(r)|^{2}dr \approx \int_{0}^{\infty}r^{2}|R_{n\ell}(r)|^{2}dr = 1
+  \]
+  since $R_{n\ell}(r) \sim e^{-r}$ as $r \to \infty$.
+  This allows us to prove an inductive formula via integration by parts: forms a base case, and
+  \[
+    \int_{0}^{r_{p}}r^{3}|R_{n\ell}(r)|^{2}
+  \]
+  \[
+    \int_{0}^{r_{p}}r^{n}|R_{n\ell}(r)|^{2}dr = r_{p}^{n-2} - \int_{0}^{r_{p}}
+  \]
+
 \end{proof}
 
 \begin{plm}

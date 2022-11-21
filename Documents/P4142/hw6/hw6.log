@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.5.9)  14 NOV 2022 07:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.5.9)  18 NOV 2022 07:21
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -888,7 +888,7 @@ File: ts1qpl.fd 2009/09/25 v1.2 font definition file for TS1/qpl
 ) [1
 
 {/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf
--dist/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] (./hw6.aux) ) 
+-dist/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] (./hw6.aux) ) 
 Here is how much of TeX's memory you used:
  19745 strings out of 478994
  421200 string characters out of 5833535
@@ -897,35 +897,35 @@ Here is how much of TeX's memory you used:
  440328 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  113i,9n,116p,403b,687s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/gnu/store
-/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf-dist/fonts
-/enc/dvips/tex-gyre/q-ts1.enc}{/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texl
-ive-texmf-20210325/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-rm.enc}</gnu/sto
-re/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmex10.pfb></gnu/store/hnsjynry65sj4pdwg10hdalrab18
-81m8-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
-i10.pfb></gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/sha
-re/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></gnu/store/hnsjynry65sj
-4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmmi7.pfb></gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-tex
-mf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></gnu/sto
-re/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmr5.pfb></gnu/store/hnsjynry65sj4pdwg10hdalrab1881
-m8-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.
-pfb></gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></gnu/store/hnsjynry65sj4pd
-wg10hdalrab1881m8-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsy7.pfb></gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-
-20210325/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></gnu/
-store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf-dist/
-fonts/type1/public/tex-gyre/qplb.pfb></gnu/store/hnsjynry65sj4pdwg10hdalrab1881
-m8-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/tex-gyre/qplr.pfb
-></gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texm
-f-dist/fonts/type1/public/tex-gyre/qplri.pfb>
-Output written on hw6.pdf (4 pages, 256818 bytes).
+{/gnu/s
+tore/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf-dist/f
+onts/enc/dvips/tex-gyre/q-ts1.enc}{/gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-
+texlive-texmf-20210325/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-rm.enc}</gnu
+/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmex10.pfb></gnu/store/hnsjynry65sj4pdwg10hdalr
+ab1881m8-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmmi10.pfb></gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325
+/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></gnu/store/hnsjynry
+65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmmi7.pfb></gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive
+-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></gnu
+/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr5.pfb></gnu/store/hnsjynry65sj4pdwg10hdalrab
+1881m8-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr7.pfb></gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/sha
+re/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></gnu/store/hnsjynry65s
+j4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmsy7.pfb></gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-te
+xmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></
+gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/texmf-d
+ist/fonts/type1/public/tex-gyre/qplb.pfb></gnu/store/hnsjynry65sj4pdwg10hdalrab
+1881m8-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/tex-gyre/qplr
+.pfb></gnu/store/hnsjynry65sj4pdwg10hdalrab1881m8-texlive-texmf-20210325/share/
+texmf-dist/fonts/type1/public/tex-gyre/qplri.pfb>
+Output written on hw6.pdf (5 pages, 262050 bytes).
 PDF statistics:
- 78 PDF objects out of 1000 (max. 8388607)
- 58 compressed objects within 1 object stream
+ 81 PDF objects out of 1000 (max. 8388607)
+ 60 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

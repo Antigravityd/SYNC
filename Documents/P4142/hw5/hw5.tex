@@ -83,7 +83,6 @@
       -1 \\
       1
     \end{pmatrix}
-
   \]
 \end{proof}
 
@@ -240,57 +239,22 @@
     = \frac{1}{2m}\qty[-\hbar^{2}\laplacian + i\hbar eB_{0}\qty(x\pdv{y} - y\pdv{x}) + e^{2}B_{0}^{2}(x^{2} + y^{2})] + eKz^{2}
   \]
   \[
-    = \frac{1}{2m}\qty[-\hbar^{2}\laplacian - eB_{0}L_{z} + e^{2}B_{0}^{2}(x^{2} + y^{2})] + eKz^{2}
+    = \frac{1}{2m}\qty[-\hbar^{2}\laplacian - eB_{0}L_{z} + e^{2}B_{0}^{2}r^{2}] + eKz^{2}
   \]
   \[
-    = \frac{1}{2m}\qty[-\hbar^{2}\laplacian - eB_{0}L_{z}] + \qty[\frac{e^{2}B_{0}^{2}}{2m}\hat{i} + \frac{e^{2}B_{0}^{2}}{2m}\hat{j} + eK\hat{z}]
-    \cdot \qty[x^{2}\hat{i} + y^{2}\hat{j} + z^{2}\hat{k}]
+    = \frac{p^{2}}{2m} - \frac{eB_{0}}{2m}L_{z} + \frac{e^{2}B_{0}^{2}}{2m}r^{2} + eKz^{2}
   \]
-
-  Applying this to a wave function $\psi$,
+  The $L_{z}$ operator commutes with this Hamiltonian: it commutes with central-potential Hamiltonians, with itself,
+  and with the $z$ operator, so it must commute with a linear combination of these three.
+  Therefore, it is simultaneously diagonalizable with the Hamiltonian; call its eigenvalue $\hbar m_{\ell}$ as usual.
+  The right two potential terms are independent harmonic oscillator potentials with
+  $k_{r} = \frac{e^{2}B_{0}^{2}}{m} \Rightarrow \omega_{r} = \frac{eB_{0}}{m}$
+  and $k_{z} = 2eK \Rightarrow \omega_{z} = \sqrt{\frac{2eK}{m}}$.
+  The energies of these two solutions are $\hbar\omega_{r}(n_{r} + \frac{1}{2})$ and $\hbar\omega_{z}(n_{z} + \frac{1}{2})$.
+  When the Hamiltonian acts on a simultaneous eigenstate in the Schr\"odinger equation, the eigenvalues of these operators add
+  to yield allowed energies
   \[
-    H\psi = \frac{1}{2m}\qty[-\hbar^{2}\laplacian{\psi} - eB_{0}L_{z}\psi] + \qty[\frac{e^{2}B_{0}^{2}}{2m}\hat{i}
-    + \frac{e^{2}B_{0}^{2}}{2m}\hat{j} + eK\hat{z}] \cdot \qty[x^{2}\hat{i} + y^{2}\hat{j} + z^{2}\hat{k}]\psi = E\psi
-  \]
-  It's clear that this problem has an angular component, from the presence of $L_{z}$, and that the $z$-axis is distinguished,
-  from the dot-product term.
-  Accordingly, we move to cylindrical coordinates, in which $L_{z} = -i\hbar\pdv{\psi}{\theta}$.
-  \[
-    \frac{1}{2m}\qty[-\hbar^{2}\qty(\frac{1}{r}\pdv{r}\qty[r\pdv{\psi}{r}] + \frac{1}{r^{2}}\pdv[2]{\psi}{\theta} + \pdv[2]{\psi}{z})
-    + ie\hbar B_{0}\pdv{\psi}{\theta}] + \frac{e^{2}B_{0}^{2}}{2m}r^{2}\psi + eKz^{2}\psi = E\psi.
-  \]
-  \[
-    \frac{-\hbar^{2}}{2m}\qty[\qty(\frac{1}{r}\pdv{r}\qty[r\pdv{\psi}{r}] - \frac{e^{2}B_{0}^{2}}{\hbar^{2}}r^{2}\psi)
-    + \qty(\frac{1}{r^{2}}\pdv[2]{\psi}{\theta} -\frac{ieB_{0}}{\hbar}\pdv{\psi}{\theta})
-    + \qty(\pdv[2]{\psi}{z} - \frac{2meKz^{2}}{\hbar^{2}}\psi)]  = E\psi.
-  \]
-  Assuming the problem separates, i.e. $\psi = R(r)\Theta(\theta)Z(z)$ where each factor depends only on the indicated variable, this becomes
-  \[
-    \frac{-\hbar^{2}}{2m}\bigg[\Theta(\theta)Z(z)\qty(\frac{1}{r}\pdv{r}\qty[r\pdv{R}{r}] - \frac{e^{2}B_{0}^{2}}{\hbar^{2}}r^{2}R(r))
-    + R(r)Z(z)\qty(\frac{1}{r^{2}}\pdv[2]{\Theta}{\theta} -\frac{ieB_{0}}{\hbar}\pdv{\Theta}{\theta})
-  \]
-  \[
-    + R(r)\Theta(\theta)\qty(\pdv[2]{Z}{z} - \frac{2meKz^{2}}{\hbar^{2}}Z(z))\bigg]  = ER(r)\Theta(\theta)Z(z)
-  \]
-  \[
-    \Leftrightarrow
-    \frac{-\hbar^{2}}{2m}\bigg[\frac{1}{R(r)}\qty(\frac{1}{r}\pdv{r}\qty[r\pdv{R}{r}] - \frac{e^{2}B_{0}^{2}}{\hbar^{2}}r^{2}R(r))
-    + \frac{1}{\Theta(\theta)}\qty(\frac{1}{r^{2}}\pdv[2]{\Theta}{\theta} -\frac{ieB_{0}}{\hbar}\pdv{\Theta}{\theta})
-  \]
-  \[
-    + \frac{1}{Z(z)}\qty(\pdv[2]{Z}{z} - \frac{2meKz^{2}}{\hbar^{2}}Z(z))\bigg]  = E.
-  \]
-  Each term must be equal to a constant, since the sum is: if any varied with respect to its variable, the others don't depend on that variable,
-  and so can't vary to compensate and make the entire expression equal $E$.
-  The problem then splits into three ODEs:
-  \[
-    \frac{1}{r}\dv{r}\qty(r\dv{R}{r}) = \qty(c_{1} + \frac{e^{2}B_{0}}{\hbar^{2}}r^{2})R(r),
-  \]
-  \[
-    \frac{1}{r^{2}}\dv[2]{\Theta}{\theta} - \frac{ieB_{0}}{\hbar}\dv{\Theta}{\theta} - c_{2}\Theta(\theta) = 0,
-  \]
-  \[
-    \dv[2]{Z}{z} = \qty(c_{3} + \frac{2meK}{\hbar^{2}}z^{2})Z(z)
+    E(n_{r}, n_{z}, m_{\ell}) = \hbar\omega_{r}\qty(n_{r} + \frac{1}{2}) + \hbar\omega_{z}\qty(n_{z} + \frac{1}{2}) + \hbar m_{\ell}
   \]
 \end{proof}
 

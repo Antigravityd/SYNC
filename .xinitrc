@@ -1,8 +1,8 @@
 setxkbmap us -option compose:menu
 xmodmap ~/.Xmodmap
 # emacs --daemon
-/home/dnw/.fehbg &
-bash /home/dnw/status.sh &
+#/home/dnw/.fehbg &
+#bash /home/dnw/status.sh &
 pulseaudio --start
 
 # EXWM start

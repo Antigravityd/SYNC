@@ -1,29 +1,28 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.5.9)  23 NOV 2022 03:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.5.9)  29 NOV 2022 08:04
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**aia.tex
-(./aia.tex
+**hw12.tex
+(./hw12.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-02-18>
 (/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf
--dist/tex/latex/base/book.cls
-Document Class: book 2020/04/10 v1.4m Standard LaTeX document class
+-dist/tex/latex/base/article.cls
+Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
 
 (/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf
--dist/tex/latex/base/bk10.clo
-File: bk10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
+-dist/tex/latex/base/size10.clo
+File: size10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
 )
 \c@part=\count179
-\c@chapter=\count180
-\c@section=\count181
-\c@subsection=\count182
-\c@subsubsection=\count183
-\c@paragraph=\count184
-\c@subparagraph=\count185
-\c@figure=\count186
-\c@table=\count187
+\c@section=\count180
+\c@subsection=\count181
+\c@subsubsection=\count182
+\c@paragraph=\count183
+\c@subparagraph=\count184
+\c@figure=\count185
+\c@table=\count186
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
 \bibindent=\dimen138
@@ -45,9 +44,9 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 -dist/tex/generic/iftex/iftex.sty
 Package: iftex 2020/03/06 v1.0d TeX engine tests
 ))
-\Gm@cnth=\count188
-\Gm@cntv=\count189
-\c@Gm@tempcnt=\count190
+\Gm@cnth=\count187
+\Gm@cntv=\count188
+\c@Gm@tempcnt=\count189
 \Gm@bindingoffset=\dimen139
 \Gm@wd@mp=\dimen140
 \Gm@odd@mp=\dimen141
@@ -100,13 +99,13 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 -dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count191
+\inf@bad=\count190
 LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count192
-\leftroot@=\count193
+\uproot@=\count191
+\leftroot@=\count192
 LaTeX Info: Redefining \overline on input line 399.
-\classnum@=\count194
-\DOTSCASE@=\count195
+\classnum@=\count193
+\DOTSCASE@=\count194
 LaTeX Info: Redefining \ldots on input line 496.
 LaTeX Info: Redefining \dots on input line 499.
 LaTeX Info: Redefining \cdots on input line 620.
@@ -115,15 +114,15 @@ LaTeX Info: Redefining \cdots on input line 620.
 \big@size=\dimen149
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count196
-\c@MaxMatrixCols=\count197
+\macc@depth=\count195
+\c@MaxMatrixCols=\count196
 \dotsspace@=\muskip16
-\c@parentequation=\count198
-\dspbrk@lvl=\count199
+\c@parentequation=\count197
+\dspbrk@lvl=\count198
 \tag@help=\toks18
-\row@=\count266
-\column@=\count267
-\maxfields@=\count268
+\row@=\count199
+\column@=\count266
+\maxfields@=\count267
 \andhelp@=\toks19
 \eqnshift@=\dimen150
 \alignsep@=\dimen151
@@ -244,14 +243,14 @@ Package: pgfsys 2020/12/27 v3.1.8b (3.1.8b)
 \pgf@yd=\dimen169
 \w@pgf@writea=\write3
 \r@pgf@reada=\read2
-\c@pgf@counta=\count269
-\c@pgf@countb=\count270
-\c@pgf@countc=\count271
-\c@pgf@countd=\count272
+\c@pgf@counta=\count268
+\c@pgf@countb=\count269
+\c@pgf@countc=\count270
+\c@pgf@countd=\count271
 \t@pgf@toka=\toks32
 \t@pgf@tokb=\toks33
 \t@pgf@tokc=\toks34
-\pgf@sys@id@count=\count273
+\pgf@sys@id@count=\count272
 
 (/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/systemlayer/pgf.cfg
@@ -270,8 +269,8 @@ File: pgfsys-common-pdf.def 2020/12/27 v3.1.8b (3.1.8b)
 (/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2020/12/27 v3.1.8b (3.1.8b)
-\pgfsyssoftpath@smallbuffer@items=\count274
-\pgfsyssoftpath@bigbuffer@items=\count275
+\pgfsyssoftpath@smallbuffer@items=\count273
+\pgfsyssoftpath@bigbuffer@items=\count274
 )
 (/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
@@ -309,7 +308,7 @@ Package: pgfcore 2020/12/27 v3.1.8b (3.1.8b)
 (/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/math/pgfmathparser.code.tex
 \pgfmath@dimen=\dimen170
-\pgfmath@count=\count276
+\pgfmath@count=\count275
 \pgfmath@box=\box50
 \pgfmath@toks=\toks35
 \pgfmath@stack@operand=\toks36
@@ -335,7 +334,7 @@ Package: pgfcore 2020/12/27 v3.1.8b (3.1.8b)
 -dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex)))
 (/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count277
+\c@pgfmathroundto@lastzeros=\count276
 ))
 (/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/math/pgfint.code.tex)
@@ -381,7 +380,7 @@ File: pgfcorescopes.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgfpic=\box51
 \pgf@hbox=\box52
 \pgf@layerbox@main=\box53
-\pgf@picture@serial@count=\count278
+\pgf@picture@serial@count=\count277
 )
 (/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
@@ -416,8 +415,8 @@ File: pgfcorearrows.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 -dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgf@max=\dimen194
-\pgf@sys@shading@range@num=\count279
-\pgf@shadingcount=\count280
+\pgf@sys@shading@range@num=\count278
+\pgf@shadingcount=\count279
 )
 (/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
@@ -491,7 +490,7 @@ Package: tikz 2020/12/27 v3.1.8b (3.1.8b)
 (/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2020/12/27 v3.1.8b (3.1.8b)
-\pgf@plot@mark@count=\count281
+\pgf@plot@mark@count=\count280
 \pgfplotmarksize=\dimen199
 )
 \tikz@lastx=\dimen256
@@ -506,19 +505,19 @@ File: pgflibraryplothandlers.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \tikz@figbox@bg=\box57
 \tikz@tempbox=\box58
 \tikz@tempbox@bg=\box59
-\tikztreelevel=\count282
-\tikznumberofchildren=\count283
-\tikznumberofcurrentchild=\count284
-\tikz@fig@count=\count285
+\tikztreelevel=\count281
+\tikznumberofchildren=\count282
+\tikznumberofcurrentchild=\count283
+\tikz@fig@count=\count284
 
 (/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2020/12/27 v3.1.8b (3.1.8b)
-\pgfmatrixcurrentrow=\count286
-\pgfmatrixcurrentcolumn=\count287
-\pgf@matrix@numberofcolumns=\count288
+\pgfmatrixcurrentrow=\count285
+\pgfmatrixcurrentcolumn=\count286
+\pgf@matrix@numberofcolumns=\count287
 )
-\tikz@expandcount=\count289
+\tikz@expandcount=\count288
 
 (/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
@@ -539,16 +538,16 @@ Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 (/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count290
+\etb@tempcnta=\count289
 )
 (/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/fancyvrb/fancyvrb.sty
 Package: fancyvrb 2021/01/20 v3.7 verbatim text (tvz,hv)
-\FV@CodeLineNo=\count291
+\FV@CodeLineNo=\count290
 \FV@InFile=\read3
 \FV@TabBox=\box60
-\c@FancyVerbLine=\count292
-\FV@StepNumber=\count293
+\c@FancyVerbLine=\count291
+\FV@StepNumber=\count292
 \FV@OutFile=\write4
 )
 (/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf
@@ -559,41 +558,41 @@ tim
 (/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/lineno/lineno.sty
 Package: lineno 2005/11/02 line numbers on paragraphs v4.41
-\linenopenalty=\count294
+\linenopenalty=\count293
 \output=\toks40
-\linenoprevgraf=\count295
+\linenoprevgraf=\count294
 \linenumbersep=\dimen264
 \linenumberwidth=\dimen265
-\c@linenumber=\count296
-\c@pagewiselinenumber=\count297
-\c@LN@truepage=\count298
-\c@internallinenumber=\count299
-\c@internallinenumbers=\count300
+\c@linenumber=\count295
+\c@pagewiselinenumber=\count296
+\c@LN@truepage=\count297
+\c@internallinenumber=\count298
+\c@internallinenumbers=\count299
 \quotelinenumbersep=\dimen266
 \bframerule=\dimen267
 \bframesep=\dimen268
 \bframebox=\box61
 LaTeX Info: Redefining \\ on input line 3056.
 )
-\c@FV@TrueTabGroupLevel=\count301
-\c@FV@TrueTabCounter=\count302
+\c@FV@TrueTabGroupLevel=\count300
+\c@FV@TrueTabCounter=\count301
 \FV@TabBox@Group=\box62
 \FV@TmpLength=\skip55
-\c@FV@HighlightLinesStart=\count303
-\c@FV@HighlightLinesStop=\count304
-\FV@LoopCount=\count305
+\c@FV@HighlightLinesStart=\count302
+\c@FV@HighlightLinesStop=\count303
+\FV@LoopCount=\count304
 \FV@NCharsBox=\box63
 \FV@BreakIndent=\dimen269
-\FV@BreakIndentNChars=\count306
+\FV@BreakIndentNChars=\count305
 \FV@BreakSymbolSepLeft=\dimen270
-\FV@BreakSymbolSepLeftNChars=\count307
+\FV@BreakSymbolSepLeftNChars=\count306
 \FV@BreakSymbolSepRight=\dimen271
-\FV@BreakSymbolSepRightNChars=\count308
+\FV@BreakSymbolSepRightNChars=\count307
 \FV@BreakSymbolIndentLeft=\dimen272
-\FV@BreakSymbolIndentLeftNChars=\count309
+\FV@BreakSymbolIndentLeftNChars=\count308
 \FV@BreakSymbolIndentRight=\dimen273
-\FV@BreakSymbolIndentRightNChars=\count310
-\c@FancyVerbLineBreakLast=\count311
+\FV@BreakSymbolIndentRightNChars=\count309
+\c@FancyVerbLineBreakLast=\count310
 \FV@LineBox=\box64
 \FV@LineIndentBox=\box65
 \FV@LineWidth=\dimen274
@@ -601,15 +600,15 @@ LaTeX Info: Redefining \\ on input line 3056.
 (/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/tools/calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count312
-\calc@Bcount=\count313
+\calc@Acount=\count311
+\calc@Bcount=\count312
 \calc@Adimen=\dimen275
 \calc@Bdimen=\dimen276
 \calc@Askip=\skip56
 \calc@Bskip=\skip57
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count314
+\calc@Ccount=\count313
 \calc@Cskip=\skip58
 )
 (/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf
@@ -646,18 +645,18 @@ Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 -dist/tex/generic/iftex/ifluatex.sty
 Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
 )
-runsystem(uname -s > "aia.w18")...executed.
+runsystem(uname -s > "hw12.w18")...executed.
 
- (./aia.w18)
-runsystem(rm -- "aia.w18")...executed.
+ (./hw12.w18)
+runsystem(rm -- "hw12.w18")...executed.
 
 )
 (/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/xstring/xstring.sty
 (/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf
 -dist/tex/generic/xstring/xstring.tex
-\integerpart=\count315
-\decimalpart=\count316
+\integerpart=\count314
+\decimalpart=\count315
 )
 Package: xstring 2019/02/06 v1.83 String manipulations (CT)
 )
@@ -673,7 +672,7 @@ Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 (/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count317
+\c@float@type=\count316
 \float@exts=\toks41
 \float@box=\box66
 \@float@everytoks=\toks42
@@ -682,12 +681,12 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \minted@appexistsfile=\read4
 \minted@bgbox=\box68
 \minted@code=\write5
-\c@minted@FancyVerbLineTemp=\count318
-\c@minted@pygmentizecounter=\count319
+\c@minted@FancyVerbLineTemp=\count317
+\c@minted@pygmentizecounter=\count318
 \@float@every@listing=\toks43
-\c@listing=\count320
+\c@listing=\count319
 )
-runsystem(mkdir -p _minted-aia)...executed.
+runsystem(mkdir -p _minted-hw12)...executed.
 
 
 (/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf
@@ -703,7 +702,7 @@ Package: expl3 2021-02-18 L3 programming layer (loader)
 (/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count321
+\l__color_backend_stack_int=\count320
 \l__pdf_internal_box=\box69
 ))
 (/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf
@@ -731,27 +730,27 @@ Package: l3keys2e 2021-03-12 LaTeX2e option processing using LaTeX3 keys
 )
 \l__siunitx_tmp_box=\box72
 \l__siunitx_tmp_dim=\dimen283
-\l__siunitx_tmp_int=\count322
-\l__siunitx_number_mantissa_length_int=\count323
-\l__siunitx_number_uncert_length_int=\count324
-\l__siunitx_round_int=\count325
-\l__siunitx_process_decimal_int=\count326
-\l__siunitx_process_uncertainty_int=\count327
-\l__siunitx_process_fixed_int=\count328
-\l__siunitx_process_integer_min_int=\count329
-\l__siunitx_process_precision_int=\count330
-\l__siunitx_group_min_int=\count331
+\l__siunitx_tmp_int=\count321
+\l__siunitx_number_mantissa_length_int=\count322
+\l__siunitx_number_uncert_length_int=\count323
+\l__siunitx_round_int=\count324
+\l__siunitx_process_decimal_int=\count325
+\l__siunitx_process_uncertainty_int=\count326
+\l__siunitx_process_fixed_int=\count327
+\l__siunitx_process_integer_min_int=\count328
+\l__siunitx_process_precision_int=\count329
+\l__siunitx_group_min_int=\count330
 \l__siunitx_angle_marker_box=\box73
 \l__siunitx_angle_unit_box=\box74
 \l__siunitx_angle_marker_dim=\dimen284
 \l__siunitx_angle_unit_dim=\dimen285
-\l__siunitx_unit_int=\count332
-\l__siunitx_unit_denominator_int=\count333
-\l__siunitx_unit_numerator_int=\count334
-\l__siunitx_unit_prefix_int=\count335
-\l__siunitx_unit_prefix_base_int=\count336
-\l__siunitx_unit_prefix_gram_int=\count337
-\l__siunitx_number_product_int=\count338
+\l__siunitx_unit_int=\count331
+\l__siunitx_unit_denominator_int=\count332
+\l__siunitx_unit_numerator_int=\count333
+\l__siunitx_unit_prefix_int=\count334
+\l__siunitx_unit_prefix_base_int=\count335
+\l__siunitx_unit_prefix_gram_int=\count336
+\l__siunitx_number_product_int=\count337
 \c__siunitx_one_fill_skip=\skip62
 \l__siunitx_table_unit_align_skip=\skip63
 \l__siunitx_table_exponent_dim=\dimen286
@@ -774,13 +773,13 @@ Package: l3keys2e 2021-03-12 LaTeX2e option processing using LaTeX3 keys
 -dist/tex/latex/translator/translator.sty
 Package: translator 2020-08-03 v1.12c Easy translation of strings in LaTeX
 ))
-\c@plm=\count339
-runsystem(which pygmentize && touch aia.aex)...executed.
+\c@plm=\count338
+runsystem(which pygmentize && touch hw12.aex)...executed.
 
-runsystem(rm aia.aex)...executed.
+runsystem(rm hw12.aex)...executed.
 
- (./aia.aux)
-\openout1 = `aia.aux'.
+ (./hw12.aux)
+\openout1 = `hw12.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
 LaTeX Font Info:    ... okay on input line 20.
@@ -804,30 +803,30 @@ LaTeX Font Info:    ... okay on input line 20.
 * paper: letterpaper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: twoside 
-* h-part:(L,W,R)=(73.71613pt, 430.00462pt, 110.57425pt)
+* modes: 
+* h-part:(L,W,R)=(92.14519pt, 430.00462pt, 92.14519pt)
 * v-part:(T,H,B)=(95.39737pt, 556.47656pt, 143.09605pt)
 * \paperwidth=614.295pt
 * \paperheight=794.96999pt
 * \textwidth=430.00462pt
 * \textheight=556.47656pt
-* \oddsidemargin=1.44614pt
-* \evensidemargin=38.30426pt
-* \topmargin=-6.94011pt
+* \oddsidemargin=19.8752pt
+* \evensidemargin=19.8752pt
+* \topmargin=-13.87262pt
 * \headheight=12.0pt
-* \headsep=18.06749pt
+* \headsep=25.0pt
 * \topskip=10.0pt
-* \footskip=25.29494pt
-* \marginparwidth=125.0pt
-* \marginparsep=7.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
 * \columnsep=10.0pt
 * \skip\footins=9.0pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
 * \@twocolumnfalse
-* \@twosidetrue
-* \@mparswitchtrue
+* \@twosidefalse
+* \@mparswitchfalse
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
@@ -835,16 +834,16 @@ LaTeX Font Info:    ... okay on input line 20.
 (/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf
 -dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count340
+\scratchcounter=\count339
 \scratchdimen=\dimen295
 \scratchbox=\box79
-\nofMPsegments=\count341
-\nofMParguments=\count342
+\nofMPsegments=\count340
+\nofMParguments=\count341
 \everyMPshowfont=\toks45
-\MPscratchCnt=\count343
+\MPscratchCnt=\count342
 \MPscratchDim=\dimen296
-\MPnumerator=\count344
-\makeMPintoPDFobject=\count345
+\MPnumerator=\count343
+\makeMPintoPDFobject=\count344
 \everyMPtoPDFconversion=\toks46
 )
 (/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf
@@ -879,61 +878,57 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 20.
 (/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+)
+Overfull \hbox (1.77704pt too wide) in paragraph at lines 81--85
+[]\OT1/qpl/m/n/10 For $\OML/cmm/m/it/10 n \OT1/cmr/m/n/10 = 1$\OT1/qpl/m/n/10 ,
+ the fields are of the form $\U/msb/m/n/10 Z\OML/cmm/m/it/10 =p\U/msb/m/n/10 Z$
+\OT1/qpl/m/n/10 , and the el-e-ments are equiv-a-lence classes $[]\OML/cmm/m/it
+/10 ; []; [] ; []$\OT1/qpl/m/n/10 .
+ []
 
+[1
 
 {/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf
--dist/fonts/map/pdftex/updmap/pdftex.map}]
-
-LaTeX Font Warning: Font shape `OT1/qpl/m/sl' in size <10> not available
-(Font)              Font shape `OT1/qpl/m/it' tried instead on input line 24.
-
-[2
-
-]
-Chapter 1.
-<galaxy_brain.png, id=13, 1052.93375pt x 732.7375pt>
-File: galaxy_brain.png Graphic file (type png)
-<use galaxy_brain.png>
-Package pdftex.def Info: galaxy_brain.png  used on input line 56.
-(pdftex.def)             Requested size: 315.88255pt x 219.82294pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [3]
-[4 <./galaxy_brain.png>]
-Chapter 2.
-[5
-
-] [6
-
-] (./aia.toc)
-\tf@toc=\write6
-\openout6 = `aia.toc'.
-
- [7] (./aia.aux) ) 
+-dist/fonts/map/pdftex/updmap/pdftex.map}] [2] (./hw12.aux) ) 
 Here is how much of TeX's memory you used:
- 19749 strings out of 478994
- 421043 string characters out of 5833535
- 714461 words of memory out of 5000000
- 36861 multiletter control sequences out of 15000+600000
- 438516 words of font info for 74 fonts, out of 8000000 for 9000
+ 19717 strings out of 478994
+ 420687 string characters out of 5833535
+ 719012 words of memory out of 5000000
+ 36833 multiletter control sequences out of 15000+600000
+ 435266 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 113i,6n,116p,403b,382s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20
-210325/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-rm.enc}</gnu/store/830xpsp83
-hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmmi10.pfb></gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive
--texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></gn
-u/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf-dis
-t/fonts/type1/public/tex-gyre/qplb.pfb></gnu/store/830xpsp83hqh1w8sv0yixdsggp3g
-aic9-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/tex-gyre/qplr.p
-fb></gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/te
-xmf-dist/fonts/type1/public/tex-gyre/qplri.pfb>
-Output written on aia.pdf (7 pages, 482716 bytes).
+ 113i,8n,116p,404b,198s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/gnu/store/830xps
+p83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf-dist/fonts/enc/dv
+ips/tex-gyre/q-rm.enc}</gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texm
+f-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></gnu/sto
+re/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmmi10.pfb></gnu/store/830xpsp83hqh1w8sv0yixdsggp3g
+aic9-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+i5.pfb></gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/shar
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></gnu/store/830xpsp83hqh1
+w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr10.pfb></gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texm
+f-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></gnu/store
+/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmsy10.pfb></gnu/store/830xpsp83hqh1w8sv0yixdsggp3gai
+c9-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5
+.pfb></gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></gnu/store/830xpsp83hqh1w8
+sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/am
+sfonts/symbols/msbm10.pfb></gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-
+texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb><
+/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf-
+dist/fonts/type1/public/tex-gyre/qplb.pfb></gnu/store/830xpsp83hqh1w8sv0yixdsgg
+p3gaic9-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/tex-gyre/qpl
+bi.pfb></gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/shar
+e/texmf-dist/fonts/type1/public/tex-gyre/qplr.pfb></gnu/store/830xpsp83hqh1w8sv
+0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/tex-
+gyre/qplri.pfb>
+Output written on hw12.pdf (2 pages, 284131 bytes).
 PDF statistics:
- 55 PDF objects out of 1000 (max. 8388607)
- 38 compressed objects within 1 object stream
+ 75 PDF objects out of 1000 (max. 8388607)
+ 55 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 18 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,0 +1,24 @@
+* Figures
+
+I'm using org-mode because Babel is great with Haskell diagrams.
+
+#+begin_src haskell
+  {-# LANGUAGE NoMonomorphismRestriction #-}
+  {-# LANGUAGE FlexibleContexts          #-}
+  {-# LANGUAGE TypeFamilies              #-}
+
+  import Diagrams.Prelude
+  import Diagrams.Backend.SVG.CmdLine
+
+  unitC = circle 1 # fc red
+  reds = vsep 0.5 [unitC, hsep 0.5 [unitC, unitC]]
+
+  unitS = square 2 # fc green
+  greens = showOrigin $ circle 5 <> (vsep 0.5 . map showOrigin $ take 3 (repeat unitS))
+
+  diag :: Diagram B
+  diag = hsep 3 [reds, greens]
+
+  main = mainWith diag
+
+#+end_src

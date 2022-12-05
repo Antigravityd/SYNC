@@ -245,29 +245,61 @@
     - \frac{e^{2}}{8\pi\epsilon_{0}r_{p}^{3}}\bra{n\ell m} r^{2}\Theta(r_{p} - r) \ket{n\ell m}
     - \frac{e^{2}}{8\pi\epsilon_{0} r_{p}}\bra{n\ell m} \Theta(r_{p} - r) \ket{n\ell m}
   \]
-  To evaluate these, we need to compute several integrals; the angular variables are trivially 1, but the radial integrals are
+  To evaluate these for the ground state, we need to compute some integrals; the angular integrals are trivially 1,
+  but the radial integrals are
   \[
-    \bra{n\ell m} \frac{\Theta(r_{p} - r)}{r} \ket{n\ell m} = \int_{0}^{r_{p}}r|R_{n\ell}(r)|^{2}dr
+    \bra{n\ell m} \frac{\Theta(r_{p} - r)}{r} \ket{n\ell m} = \int_{0}^{r_{p}}r|R_{10}(r)|^{2}dr = 4a^{-3}\int_{0}^{r_{p}}re^{-2r/a}dr
   \]
   \[
-    \bra{n\ell m} r^{2}\Theta(r_{p} - r) \ket{n\ell m} = \int_{0}^{r_{p}}r^{3}|R_{n\ell}(r)|^{2}dr
+    \bra{n\ell m} r^{2}\Theta(r_{p} - r) \ket{n\ell m} = \int_{0}^{r_{p}}r^{4}|R_{10}(r)|^{2}dr = 4a^{-3}\int_{0}^{r_{p}}r^{4}e^{-2r/a}dr
   \]
   \[
-    \bra{n\ell m}\Theta(r_{p} - r) \ket{n\ell m} = \int_{0}^{r_{p}}r^{2}|R_{n\ell}(r)|^{2}dr
+    \bra{n\ell m}\Theta(r_{p} - r) \ket{n\ell m} = \int_{0}^{r_{p}}r^{2}|R_{10}(r)|^{2}dr = 4a^{-3}\int_{0}^{r_{p}}r^{2}e^{-2r/a}dr.
   \]
-  which, since we're going to first-order anyway, can be estimated by exploiting orthogonality with the approximation
+  There's an integral identity (2.323 in Zwillinger's table 8th ed.)
   \[
-    \int_{0}^{r_{p}}r^{2}|R_{n\ell}(r)|^{2}dr \approx \int_{0}^{\infty}r^{2}|R_{n\ell}(r)|^{2}dr = 1
+    \int P_{m}(x)e^{ax}dx = \frac{{e^{ax}}}a\sum_{k = 0}^{m}(-1)^{k}\frac{P^{(k)}(x)}{a^{k}} + C
   \]
-  since $R_{n\ell}(r) \sim e^{-r}$ as $r \to \infty$.
-  This allows us to prove an inductive formula via integration by parts: forms a base case, and
+  As $x \to 0$, the constant term on the right will dominate, so since $r_{p}$ is a tiny fraction of $a$,
   \[
-    \int_{0}^{r_{p}}r^{3}|R_{n\ell}(r)|^{2}
+    \bra{n\ell m} \frac{\Theta(r_{p} - r)}{r} \ket{n\ell m} \approx \frac{e^{-2r_{p}/a}}{a} - \frac{1}{a}
   \]
   \[
-    \int_{0}^{r_{p}}r^{n}|R_{n\ell}(r)|^{2}dr = r_{p}^{n-2} - \int_{0}^{r_{p}}
+    \bra{n\ell m} r^{2}\Theta(r_{p} - r) \ket{n\ell m} \approx 3a^{2} - 3a^{2}e^{-2r_{p}/a}
   \]
-
+  \[
+    \bra{n\ell m}\Theta(r_{p} - r) \ket{n\ell m} \approx 1 - e^{-2r_{p}/a}
+  \]
+  Accordingly,
+  \[
+    E_{0}^{1} = \frac{e^{2}}{4\pi\epsilon_{0}}\qty[\frac{e^{-2r_{p}/a}}{a} - \frac{1}{a} - \frac{1}{2}\qty(1 - e^{-2r_{p}/a})]
+  \]
+  \[
+    = \frac{(\SI{1.6e-19}{C})^{2}}{4\pi(\SI{8.85e-12}{F/m})} \qty[\frac{e^{2(\SI{e-15}{m})/(\SI{5.29e-11}{m})}}{\SI{5.29e-11}{m}}
+    - \frac{1}{\SI{5.29e-11}{m}} - \frac{1}{2}\qty(1 - e^{2(\SI{e-15}{m})/(5.29e-11)})]
+  \]
+  \[
+    = \SI{-1.65e-22}{J} = \SI{-0.001}{eV}
+  \]
+  and
+  \[
+    E_{0}^{1} = \frac{e^{2}}{4\pi\epsilon_{0}}\qty[\frac{e^{-2r_{p}/a}}{a} - \frac{1}{a} - \frac{1}{2}\qty(3a^{2}
+    - 3a^{2}e^{-2r_{p}/a}) - \frac{1}{2}\qty(1 - e^{-2r_{p}/a})]
+  \]
+  \[
+    = \frac{(\SI{1.6e-19}{J})^{2}}{4\pi (\SI{8.85e-12}{F/m})}\bigg[\frac{e^{-2(\SI{e-15}{m})/(\SI{5.29e-11}{m})}}{(\SI{5.29e-11}{m})}
+    - \frac{1}{(\SI{5.29e-11}{m})}\]
+  \[
+    - \frac{1}{2}\qty(3(\SI{5.29e-11}{m})^{2} - 3(\SI{5.29e-11}{m})^{2}e^{-2(\SI{e-15}{m})/(\SI{5.29e-11}{m})})
+  \]
+  \[
+    - \frac{1}{2}\qty(1 - e^{-2(\SI{e-15}{m})/(\SI{5.29e-11}{m})})\bigg]
+  \]
+  \[
+    = \SI{-1.65e-22}{J} = \SI{-0.001}{eV}
+  \]
+  The difference between the two corrections was roughly 25 orders of magnitude smaller than the presented result, and in both cases,
+  the correction is so small as to be spectrally indistinguishable.
 \end{proof}
 
 \begin{plm}

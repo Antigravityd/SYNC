@@ -21,7 +21,7 @@
 
 \maketitle
 
-\chapter{Preface}
+\chapter*{Preface}
 
 \textit{If you don't know algebra yet, skip to the roadmap; prefaces are directed at people assigning books.}
 \vspace{20pt}
@@ -72,7 +72,7 @@ They are in Lean 4, and are in print separately, in addition to freely distribut
 I have made painstaking attempts to establish everything constructively, and any thus-intractable proof is distinguished by (a symbol) % TOOD: pick
 and the nonconstructive step is identified in the text.
 
-\chapter{Roadmap}
+\chapter*{Roadmap}
 The text is organized into two parts: theory and application.
 The first is entirely self-contained, containing pure algebra.
 % TODO: list of chapters
@@ -99,6 +99,37 @@ For professors of $X$ teaching applied algebra in the $X$ department: pick your 
 
 \tableofcontents
 
+\chapter{Ab Initio}
 
+Everything is function composition.
 
+This is mathematics' dirty little secret, usually introduced in a boring corner of a Topology II course
+for those that've passed harrowing initiations of graduate studenthood, and even then in a context that seems to reduce it
+to a computational expedient aiding the dark art of homology theory.
+A good part of the reason it's not shouted from the rooftops of math departments may be because it seems so trivializing.
+We'd all like to think our work more sophisticated that \textit{just} the operation ``after.''
+Or, perhaps, the forest gets lost in all the trees, the unifying theme of algebra yielding to the iconoclastic elegance of the special cases.
+
+This book is an argument for this statement, a tour through the most natural and historically useful guises in which composition presents itself.
+We'll see this mode of thinking is not only a useful tool for producing interesting and powerful results about concepts as distant as
+symmetry, linear algebra, and compass-and-straightedge constructions, but also makes otherwise arbitrary definitions seem as natural as breathing.
+
+We begin by studying numbers, which, as the first mathematics ever done, provide both an archetype for conducting mathematics
+and the first hints towards the importance of composition.
+Numbers abstract the notion of quantity away from what it's a quantity of.
+There's plenty that's different between 3 sharp rocks and 3 grazing deer, but numbers allow you to forget those differences when it's helpful.
+Counting, addition, and subtraction are all very useful for reasoning about quantities,
+and are clearly concepts independent of the type of quantity.
+\begin{center}
+  \begin{tikzpicture}
+    \filldraw[green] (0, 0) circle (.3);
+    \filldraw[green] (1, 0) circle (.3);
+    \filldraw[green] (0, 1) circle (.3);
+
+    \filldraw[red] (3, -.3) rectangle (3.6, .3);
+    \filldraw[red] (4, -.3) rectangle (4.6, .3);
+    \filldraw[red] (3, .7) rectangle (3.6, 1.3);
+  \end{tikzpicture}
+\end{center}
+The notion
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.5.9)  23 NOV 2022 03:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.5.9)  30 NOV 2022 05:24
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -891,7 +891,6 @@ LaTeX Font Warning: Font shape `OT1/qpl/m/sl' in size <10> not available
 [2
 
 ]
-Chapter 1.
 <galaxy_brain.png, id=13, 1052.93375pt x 732.7375pt>
 File: galaxy_brain.png Graphic file (type png)
 <use galaxy_brain.png>
@@ -901,9 +900,7 @@ Package pdftex.def Info: galaxy_brain.png  used on input line 56.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [3]
-[4 <./galaxy_brain.png>]
-Chapter 2.
-[5
+[4 <./galaxy_brain.png>] [5
 
 ] [6
 
@@ -911,29 +908,33 @@ Chapter 2.
 \tf@toc=\write6
 \openout6 = `aia.toc'.
 
- [7] (./aia.aux) ) 
+ [7] [8
+
+]
+Chapter 1.
+[9] (./aia.aux) ) 
 Here is how much of TeX's memory you used:
- 19749 strings out of 478994
- 421043 string characters out of 5833535
+ 19775 strings out of 478994
+ 421745 string characters out of 5833535
  714461 words of memory out of 5000000
- 36861 multiletter control sequences out of 15000+600000
+ 36887 multiletter control sequences out of 15000+600000
  438516 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 113i,6n,116p,403b,382s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20
-210325/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-rm.enc}</gnu/store/830xpsp83
-hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmmi10.pfb></gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive
--texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></gn
-u/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf-dis
-t/fonts/type1/public/tex-gyre/qplb.pfb></gnu/store/830xpsp83hqh1w8sv0yixdsggp3g
-aic9-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/tex-gyre/qplr.p
-fb></gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/te
-xmf-dist/fonts/type1/public/tex-gyre/qplri.pfb>
-Output written on aia.pdf (7 pages, 482716 bytes).
+ 113i,6n,116p,403b,462s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-202
+10325/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-rm.enc}</gnu/store/830xpsp83h
+qh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmmi10.pfb></gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-
+texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></gnu
+/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/texmf-dist
+/fonts/type1/public/tex-gyre/qplb.pfb></gnu/store/830xpsp83hqh1w8sv0yixdsggp3ga
+ic9-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/tex-gyre/qplr.pf
+b></gnu/store/830xpsp83hqh1w8sv0yixdsggp3gaic9-texlive-texmf-20210325/share/tex
+mf-dist/fonts/type1/public/tex-gyre/qplri.pfb>
+Output written on aia.pdf (9 pages, 484793 bytes).
 PDF statistics:
- 55 PDF objects out of 1000 (max. 8388607)
- 38 compressed objects within 1 object stream
+ 61 PDF objects out of 1000 (max. 8388607)
+ 42 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  18 words of extra memory for PDF output out of 10000 (max. 10000000)
 

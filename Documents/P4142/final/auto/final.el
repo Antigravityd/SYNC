@@ -1,5 +1,5 @@
 (TeX-add-style-hook
- "hw1"
+ "final"
  (lambda ()
    (TeX-add-to-alist 'LaTeX-provided-package-options
                      '(("geometry" "letterpaper")))
@@ -8,12 +8,15 @@
     "article"
     "art10"
     "geometry"
+    "tgpagella"
     "amsmath"
+    "amssymb"
     "amsthm"
-    "amssymb")
-   (TeX-add-symbols
-    "supp")
-   (LaTeX-add-amsthm-newtheorems
-    "lemma"))
+    "tikz"
+    "minted"
+    "physics"
+    "siunitx")
+   (LaTeX-add-environments
+    "plm"))
  :latex)
 

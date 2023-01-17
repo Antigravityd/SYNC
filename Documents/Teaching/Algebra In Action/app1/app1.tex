@@ -1,0 +1,77 @@
+\chapter{Logical Foundations}
+I consider the standard mathematical foundations (classical logic and Zermelo-Frankel set theory with the axiom of choice) to be true;
+non-constructive proofs are valid in a philosophical sense.
+However, \textit{doing} classical logic does absolutely nothing but hide relevant information about computability,
+and immensely complicates the interpretation of infinity.
+
+The Curry-Howard correspondence lets us say that if we have a constructive proof of a quantified proposition (``for all $x$, $y$''),
+then we have an algorithm for producing a proof of $y$ given any $x$.
+Conversely, in classical logic, we often have no way of actually \textit{producing} things we prove exist.
+This is, in principle, fine (such a proof generally consists of establishing that non-existence is an absurdity),
+but if we can solve a problem both ways, it's very clear that the former is preferred.
+Moreover, working in a constructive system, it's possible to gain insight as to what classical logic would say:
+the G\"odel-Gentzen translation is a way of taking a formula, and obtaining an associated formula that has a constructive proof
+iff the original has a classical proof.
+This means that constructive logic is \textit{strictly more general} than classical logic, in a practical sense.
+Here's a quick rundown of those standard mathematical foundations, for reference\footnote
+{
+For more detailed exposition, see \cite{Enderton} or \cite{Forall}.
+
+}.
+
+Our formal language will be considered to that of Lean 4, with
+
+\begin{definition}
+  A \textbf{function} or \textbf{map} $f: A \to B$ is a subset of the Cartesian product $A \times B$ (with $(a, b) \in f$ written $b = f(a)$)
+  that is \textbf{well-defined}: $x = y \Rightarrow f(x) = f(y)$.
+  The set $A$ is called the \textbf{domain}, and the set $B$ is the \textbf{codomain}.
+  Often, the map $f$ is specified by a \textbf{assignment rule} or simply \textbf{rule} $a \mapsto g(a)$ or $f(a) = g(a)$,
+  where $g(a)$ is some other concretely-defined function.
+\end{definition}
+
+\begin{definition}
+  Given any subset $X \subseteq A$ and a function $f: A \to B$, the subset $f(X) \subseteq B$ defined by
+  \[
+    f(X) = \{b \in B \mid \exists x \in X, b = f(x)\}
+  \]
+  is called the \textbf{image} of $X$ under $f$, or, if $X = A$, the image of $f$.
+\end{definition}
+
+\begin{definition}
+  A function $f: A \to B$ is \textbf{injective} if $f(x) = f(y) \Rightarrow x = y$, for all $x, y \in A$.
+  This can be denoted by $f: A \hookrightarrow B$.
+\end{definition}
+
+\begin{definition}
+  A function $f: A \to B$ is \textbf{surjective} if $f(A) = B$, that is, if $b \in B \Rightarrow \exists a \in A, b = f(a)$.
+  This can be denoted by $f: A \twoheadrightarrow B$.
+\end{definition}
+
+\begin{definition}
+  A function is \textbf{bijective} if it is both injective and surjective.
+  This can be denoted by $f: A \hooktwoheadrightarrow B$
+\end{definition}
+
+\begin{definition}
+  When $f: A \to B$ and $g: B \to C$, we may define the \textbf{composite map} $g \circ f: A \to C$ (read ``g after f'')
+  by $(g \circ f)(a) = g(f(a))$.
+\end{definition}
+
+\begin{definition}
+  The \textbf{identity function} $id_{A}: A \to A$ is given by $id_{A}(a) = a$.
+\end{definition}
+
+\begin{thm}
+  If a function is injective, then it has a left-inverse: letting $f: A \to B$ be injective, there exists a function $f^{-1}_{L}: f(B) \to A$
+  such that $f^{-1}_{L} \circ f = id_{A}$.
+\end{thm}
+
+\begin{thm}
+  If a function is surjective, then it has a right-inverse: letting $f: A \to B$ be surjective, there exists a function $f^{-1}_{R}: B \to A$
+  such that $f \circ f^{-1}_{R} = id_{A}$.
+\end{thm}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../aia"
+%%% End:

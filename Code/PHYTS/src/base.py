@@ -1,35 +1,4 @@
-from collections import namedtuple
-# Small wrapper to distinguish objects that are intended to end up in some section of a .inp file, and define equality and hashability in sensible ways.
-
-# Discursion on the object model is warranted.
-# In general, the user will create an object using an __init__ with some arguments; some are required by PHITS for that
-# subsection, some are optional. The non-inclusion of a particular argument in the input file is indicated by its value
-# being None. Some objects have different parameter/attribute names in Python than in the PHITS input, either for better
-# mnemonic ability than the 6-char-limited Fortran-style names they often use or because of differing identifier lexing rules.
-# Similarly, options that take enumerated values would be well-served in having descriptive string names.
-# There are two types of lines that are written to the input file: grid-like lines, which are just a list of whitespace-delimited
-# values, and parameter-like lines, which are assignments of the form <identifier> = <value>.
-# Some lines are position-dependent.
-
-# The PhitsObject class is a factory. I want to suck-start a shotgun for the mere fact of having ever considered writing one, but
-# it seems justified here. It has a "name" attribute that serves to identify which subsection of the .inp the object's definition
-# ought to be placed, a "required" argument that contains  all of the required attributes, an "optional" argument that
-# contains all the attributes that can be set but aren't required, a "positional" argument that contains a tuple of the
-# required attribute names that are allowed to be specified positionally, a "shape" argument that contains a tuple
-# that indicates the sequencing of the given attributes' definitions in the .inp (sub-tuples indicate the values of those
-# parameters are to appear alone on a line, the bare values indicate a single assignment on the line, or a string literal
-# on that line, if the given string is not in the attributes of the object), an "ident_map" argument that contains
-# the remapping of Python attribute names to what ought to appear in the .inp, and "value_map" is the same but for the values.
-# The "subobjects" parameter is a list of tuples of attributes that contain PhitsObjects that need a property set to the value
-# of the current object if it's None in the subobject; the second element is the name of the property to set.
-# The override parameter, if set, calls the object's override() method and appends the resulting string at the point
-# in the shape array corresponding to the numeric value of the parameter.
-# Any attribute that's a tuple or frozenset
-
-
-# args and kwargs here are pulled directly from the arguments to the __init__ of the subclass
-# Subclasses must have class parameters name, required, positional, optional, shape, ident_map, value_map, subobjects, and nones
-
+from collections import namedtuple, Iterable
 
 def continue_lines(inp):        # Continue lines that are too long
     r = ""
@@ -52,6 +21,74 @@ def continue_lines(inp):        # Continue lines that are too long
 
 
 class PhitsObject:
+    r"""The base class distinguishing objects that are intended to end up in some section of a .inp file,
+    and defining equality and hashability of such objects in sensible ways.
+
+    PhitsObject values correspond to some section of an input file.
+    As such, they have a .definition() method that returns a textual representation of the value to be inserted into the input file:
+    >>> print( Cylindrical("241Am", 2.2, fissile="neutrons", bounds=(-0.25, 0.25), r_out=0.3).definition() )
+
+    They also have a .prelude() method that returns the line that is to preceed the whole set of values of that type:
+    >>> print()
+
+    Last, there's a .section_title() method that gives the name of the section into which the objects definition will be placed:
+    >>> print()
+
+    The PhitsObject class is also a factory for subtypes.
+    As an example of how subtypes should be defined:
+    >>> class Cylindrical(PhitsObject):
+    ...    name = "source"
+    ...    required = ["projectile", "energy"]
+    ...    positional = ["projectile", "energy"]
+    ...    optional = ["spin", "mask", "transform", "weight", "factor", "charge_override", "fissile", \
+    ...                "center", "bounds", "r_out", "r_in", "elevation", "azimuth", "dispersion"]
+    ...    ident_map = {"spin": ("sx", "sy", "sz"), "mask": ("reg", "ntmax"), "transform": "trcl", \
+    ...                 "weight": "wgt", "charge_override": "izst", "fissile": "ispfs", "center": ("x0", "y0"), \
+    ...                 "bounds": ("z0", "z1"), "r_out": "r0", "r_in": "r1", "elevation": "dir", "azimuth": "phi", \
+    ...                 "dispersion": "dom", "energy": "e0", "projectile": "proj"}
+    ...    value_map = {"neutrons": 2, True: 1}
+    ...    shape = ("s-type = 1", "projectile", "spin", "mask", "transform", "weight", "factor", "charge_override", \
+    ...             "fissile", "center", "bounds", "r_out", "r_in", "elevation", "azimuth", "dispersion", "energy")
+
+    The "name" attribute is the [Section] of the input file into which the definition is to be inserted.
+
+    "Required" gives the required (keyword or positional) arguments to the constructor, "positional" those which must be positional,
+    and "optional" the optional (keyword or positional) arguments.
+
+    The "ident_map" is a dictionary whose keys are arguments to the constructor (which become attributes of the instance),
+    and whose values are the identifier(s) to which those arguments are to be converted for insertion into the input file.
+    The inserted line is always something like "r0 = 5.3", hence the term "identifier" (the text to the left of the equality is substituted)
+    This allows more idiomatic and descriptive naming of parameters, for example, "charge_override" as opposed to "izst" above,
+    or the passage of iterables for assignments that ought to be grouped, like the components of a vector quantity.
+    >>> print() # charge_override -> izst example
+    >>> print() # spin -> sx, sy, sz example
+    Similarly, the "value_map" does the same for the other side of the equals sign.
+
+    Not shown in the above example, the "subobjects" parameter is used to indicate the names of any sections whose types can appear as attributes.
+    These subobjects usually need a reference to the current object in their definition, so this parameter indicates to later processing
+    to go in and update the subobjects accordingly
+    This is used, for example, in the Material() object to enable the passage of TimeChange() objects directly to the material that is to change:
+    >>> print()
+    The "nones" parameter, also not shown above, is used to set a default value to a parameter that we consider optional, but that PHITS doesn't.
+    >>> print()
+
+    The real magic is in the "shape" parameter.
+    It's a purpose-specific, ugly, and questionably-implemented analog of Emacs Lisp's skeleton system for programmatic text insertion,
+    encoding how the attributes of the object are to be translated into text in the input file.
+    The lion's share of data in input files are either parameter lines, of the form "<identifier> = <value>", or grid-like lines,
+    of the form "<datum> <datum> <datum> ..."
+    The value of the parameter is a tuple whose entries represent lines of input, ordered as given.
+    If an entry is the name of an attribute of the object, name and value of that attribute are inserted as the parameter line "name = value".
+    If an entry is a string that is not the name of an attribute, then it is inserted verbatim as text.
+    If an entry is callable, it is considered to be a function that takes the current object as an argument and does something more complex.
+    If an entry is a tuple itself, then this indicates a grid-like line, where the entries in the tuple are evaluated exactly as above,
+    only if the entry is an attribute then only its value is inserted, and with spaces rather than newlines separating representations of
+    entries of the tuple.
+    Trailing backslashes in a string disable the insertion of the separating whitespace,
+    and a string entry with only a backslash removes the separating whitespace of the previous entry (in case it's callable).
+
+    There's also a series of parameters related to grouping, that allow
+    """
     required = []
     positional = []
     optional = []
@@ -108,88 +145,89 @@ class PhitsObject:
         if remaining:
             self.parameters = Parameters(**remaining)
 
-        print({k: v for k, v in vars(self).items() if k not in self.no_hash})
 
 
+    def add_definition(self, how, to, assignments=True):
+        def idx(ob):
+            if isinstance(ob, PhitsObject):
+                return str(ob.index)
+            else:
+                return ob
 
+        def attr_map(ob):
+            if ob in self.ident_map:
+                return self.ident_map[ob]
+            else:
+                return ob
 
-        def append(self, tup, app, assignments=True): # Recursion in the case of grid-like lines
-            def idx(ob):
-                if isinstance(ob, PhitsObject):
-                    return str(ob.index)
+        def val_map(ob):
+            if ob in self.value_map:
+                return self.value_map[ob]
+            elif isinstance(ob, tuple):
+                return " ".join(map(val_map, ob))
+            elif isinstance(ob, Mesh): # TODO: consider refactoring out into a method of the Mesh class; it seems out of place here
+                inp = f"{ob.axis[0]}-type = 1\n"
+                inp += f"n{ob.axis[0]} = {len(ob.bins)-1}\n"
+                for i in ob.bins:
+                    inp += f"{i} "
+                inp += "\n"
+                return inp
+            else:
+                return ob
+        
+        for attr in how:
+            if isinstance(attr, str) and attr[0] == "\\": # wat the fug
+                to += attr[1:]
+
+            assign = ""
+            endstr = "\n" if assignments else " "
+            spacing = " "
+
+            if isinstance(attr, str) and attr[-1] == "\\":
+                endstr = " "
+                spacing = ""
+                attr = attr[:-1]
+
+            if callable(attr):
+                to += attr(self)
+                to += endstr
+
+            elif isinstance(attr, tuple):
+                to += self.add_definition(attr, to, assignments=False)
+                if isinstance(attr[-1], str) and attr[-1][-1] == "\\":
+                    to += " "
                 else:
-                    return ob
-            def attr_map(ob):
-                if ob in self.ident_map:
-                    return self.ident_map[ob]
-                else:
-                    return ob
+                    to += "\n"
 
-            def val_map(ob):
-                if ob in self.value_map:
-                    return self.value_map[ob]
-                elif isinstance(ob, tuple):
-                    return " ".join(map(val_map, ob))
-                elif isinstance(ob, Mesh):
-                    inp = f"{ob.axis[0]}-type = 1\n"
-                    inp += f"n{ob.axis[0]} = {len(ob.bins)-1}\n"
-                    for i in ob.bins:
-                        inp += f"{i} "
-                        inp += "\n"
-                    return inp
-                else:
-                    return ob
-
-            for attr in tup:
-                if attr[0] == "\\":
-                    app += attr[1:]
-                assign = ""
-                endstr = "\n" if assignments else " "
-                spacing = " "
-                if isinstance(attr, str) and attr[-1] == "\\":
-                    endstr = " "
-                    spacing = ""
-                    attr = attr[:-1]
-
-                if callable(attr):
-                    app += attr(self)
-                    app += endstr
-                elif isinstance(attr, tuple):
-                    append(attr, app, assignments=False)
-                    if isinstance(attr[-1], str) and attr[-1][-1] == "\\":
-                        app += " "
+            elif hasattr(self, attr):
+                val = getattr(self, attr)
+                if val is not None:
+                    if attr in self.ident_map and isinstance(attr_map(attr), tuple):
+                        for i, (att2, val2) in enumerate(zip(attr_map(attr), val)):
+                            assign = f"{att2}{spacing}={spacing}" if assignments else ""
+                            to += f"{assign}{idx(val_map(val2))}{endstr}"
                     else:
-                        app += "\n"
-                elif hasattr(self, attr):
-                    val = getattr(self, attr)
-                    if val is not None:
-                        if attr in self.ident_map and isinstance(attr_map(attr), tuple):
-                            for i, (att2, val2) in enumerate(zip(attr_map(attr), val)):
-                                assign = f"{att2}{spacing}={spacing}" if assignments else ""
-                                app += f"{assign}{idx(val_map(val2))}{endstr}"
-                        else:
-                            assign = f"{attr_map(attr)}{spacing}={spacing}" if assignments else ""
-                            app += f"{assign}{idx(val_map(val))}{endstr}"
+
+                        assign = f"{attr_map(attr)}{spacing}={spacing}" if assignments else ""
+                        to += f"{assign}{idx(val_map(val))}{endstr}"
+
+            else:
+                if attr == "self":
+                    to += idx(self)
+                    to += endstr
                 else:
-                    if attr == "self":
-                        app += idx(self)
-                        app += endstr
-                    else:
-                        app += attr
-                        app += endstr
+                    to += attr
+                    to += endstr
+        return to
 
     def prelude(self):
-        inp = []
-        self.append(self.prelude, inp)
-        inp = "".join(inp)
+        inp = self.add_definition(self.prelude, "")
 
         return continue_lines(inp)
 
     def definition(self):
-        inp = []
-        self.append(self.shape, inp)
-        inp = "".join(inp)
-        
+        inp = self.add_definition(self.shape, "")
+
         return continue_lines(inp)
 
     def section_title(self):
@@ -212,7 +250,16 @@ class PhitsObject:
                           if (self not in v.__dict__.values() if hasattr(v, "__dict__") else True) and k not in self.no_hash))
 
 
-class Parameters(PhitsObject): # A simple dictionary of variable-value pairs; necessary so we catch it in the base class
+class Parameters(PhitsObject):
+    """A "dictionary with an attitude" representing an entry in the [Parameters] section of an input file.
+    Any extra keyword arguments to any constructors are minted into parameter objects.
+
+
+    >>> print(Parameters(ndedx=2, dbcutoff=3.3).definition())
+    ndedx = 2
+    dbcutoff = 3.3
+
+    """
     def __init__(self, **kwargs):
         self.name = "parameters"
         for k,v in kwargs.items():
@@ -230,6 +277,7 @@ class Parameters(PhitsObject): # A simple dictionary of variable-value pairs; ne
         return inp
 
 class Mesh():
+    """Represents all list-typed data in PHITS."""
     def __init__(self, axis, bins=None): # All bin generation is easily done in Python via list comprehensions
         assert axis in ["energy", "time", "x", "y", "z", "radius", "angle", "let"], f"Unrecognized axis {axis} in mesh definition."
         self.axis = axis

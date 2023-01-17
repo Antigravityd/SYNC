@@ -1,3 +1,4 @@
+2
 from base import *
 
 
@@ -49,4 +50,4 @@ class Material(PhitsObject): # Composition is a list of pairs of (<element name 
              lambda self: f"MT{self.index} {self.thermal_lib}" if self.thermal_lib is not None else "")
     subobjects = ["time_change", "data_max", "mat_name_color"]
     ident_map = {"condensed": "GAS", "conductive": "COND", "electron_step": "ESTEP", "neutron_lib": "NLIB",
-                 "proton_lib": "HLIB", "electron_lib": "HLIB", "photon_lib": "PLIB", "chemical", "chem"}
+                 "proton_lib": "HLIB", "electron_lib": "HLIB", "photon_lib": "PLIB", "chemical": "chem"}

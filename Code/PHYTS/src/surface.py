@@ -6,6 +6,7 @@ from transform import *
 
 class Plane(PhitsObject): # Planar surface stored as Ax+By+Cz-D = 0.
     def __init__(self, *args, **kwargs):
+        super().no_hash.add("inside")
         if len(args) == 4:
             self.name = "surface"
             self.required = ["A", "B", "C", "D"]
@@ -37,6 +38,7 @@ class Plane(PhitsObject): # Planar surface stored as Ax+By+Cz-D = 0.
 
 class Sphere(PhitsObject): # Spherical surface stored as (x-x0)^2+(y-y0)^2+(z-z0)^2-R^2=0
     def __init__(self, *args, **kwargs):
+        super().no_hash.add("inside")
         if len(args) == 1:
             self.name = "surface"
             self.required = ["R"]
@@ -66,6 +68,7 @@ class Sphere(PhitsObject): # Spherical surface stored as (x-x0)^2+(y-y0)^2+(z-z0
 
 class Cylinder(PhitsObject):
     def __init__(self, *args, **kwargs):
+        super().no_hash.add("inside")
         symb = args[0]
         if len(args) == 2:
             self.name = "surface"
@@ -89,6 +92,7 @@ class Cylinder(PhitsObject):
 
 class Cone(PhitsObject):
     def __init__(self, *args, **kwargs):
+        super().no_hash.add("inside")
         if isinstance(args[1], list):
             self.name = "surface"
             self.required = ["on", "coordinate", "t_squared", "sheet"]
@@ -121,6 +125,8 @@ class SimpleConic(PhitsObject): # ellipsoid, hyperboloid, or paraboloid parallel
     shape = ((lambda self: f"*{self.index}" if self.reflective else
               (f"+{self.index}" if self.white else f"{self.index}"),
               "transform", "SQ", "A", "B", "C", "D", "E", "F", "G", "center"),)
+    def __init__(self, *args, **kwargs):
+        super().no_hash.add("inside")
 
 
 
@@ -133,6 +139,8 @@ class GeneralConic(PhitsObject): # ellipsoid, hyperboloid, or paraboloid of the 
     shape = ((lambda self: f"*{self.index}" if self.reflective else
               (f"+{self.index}" if self.white else f"{self.index}"),
               "transform", "GQ", "A", "B", "C", "D", "E", "F", "G", "H", "J", "K"),)
+    def __init__(self, *args, **kwargs):
+        super().no_hash.add("inside")
 
 
 
@@ -145,6 +153,8 @@ class Torus(PhitsObject): # torus parallel to an axis of the form
     shape = ((lambda self: f"*{self.index}" if self.reflective else
               (f"+{self.index}" if self.white else f"{self.index}"),
               "transform", lambda self: f"T{self.parallel}", "center", "A", "B", "C"),)
+    def __init__(self, *args, **kwargs):
+        super().no_hash.add("inside")
 
 
 
@@ -157,6 +167,8 @@ class Box(PhitsObject): # box formed by three vectors with tails at a given base
     shape = ((lambda self: f"*{self.index}" if self.reflective else
               (f"+{self.index}" if self.white else f"{self.index}"),
               "transform", "BOX", "base", "s1", "s2", "s3"),)
+    def __init__(self, *args, **kwargs):
+        super().no_hash.add("inside")
 
 
 class HexagonalPrism(PhitsObject):
@@ -167,6 +179,8 @@ class HexagonalPrism(PhitsObject):
     shape = ((lambda self: f"*{self.index}" if self.reflective else
               (f"+{self.index}" if self.white else f"{self.index}"),
               "transform", "HEX", "base", "height", "s1", "s2", "s3"))
+    def __init__(self, *args, **kwargs):
+        super().no_hash.add("inside")
 
 
 class ElipticalCylinder(PhitsObject):
@@ -177,6 +191,8 @@ class ElipticalCylinder(PhitsObject):
     shape = ((lambda self: f"*{self.index}" if self.reflective else
               (f"+{self.index}" if self.white else f"{self.index}"),
               "transform", "REC", "center", "height", "major_axis", "minor_axis"),)
+    def __init__(self, *args, **kwargs):
+        super().no_hash.add("inside")
 
 
 
@@ -188,6 +204,8 @@ class TruncatedCone(PhitsObject):
     shape = ((lambda self: f"*{self.index}" if self.reflective else
               (f"+{self.index}" if self.white else f"{self.index}"),
               "transform", "TRC", "center", "height", "r_top", "r_bottom"))
+    def __init__(self, *args, **kwargs):
+        super().no_hash.add("inside")
 
 
 
@@ -199,6 +217,8 @@ class Spheroid(PhitsObject):
     shape = ((lambda self: f"*{self.index}" if self.reflective else
               (f"+{self.index}" if self.white else f"{self.index}"),
               "transform", "ELL", "focus_1", "focus_2", "major_axis"),)
+    def __init__(self, *args, **kwargs):
+        super().no_hash.add("inside")
 
 
 class Wedge(PhitsObject):
@@ -209,3 +229,5 @@ class Wedge(PhitsObject):
     shape = ((lambda self: f"*{self.index}" if self.reflective else
               (f"+{self.index}" if self.white else f"{self.index}"),
               "transform", "WED", "tip", "s1", "s2", "height"),)
+    def __init__(self, *args, **kwargs):
+        super().no_hash.add("inside")

@@ -1,0 +1,79 @@
+\chapter*{How to Read This Book}
+I write this book to motivate.
+As such, there's plenty of material in each chapter that's logically unnecessary for its subject, and is there for your philosophical satiety.
+It's nevertheless my belief that this material is \textit{essential} for an integrated understanding---omit my rambles at your peril.
+
+The text begins with a look at numbers and their history from a mature mathematical perspective.
+This leads to the core philosophical insight of an \textbf{action}: a set whose elements somehow ``do something'' to another set.
+In the next part, the idea of an action is made more precise in the context of studying symmetries---following intuitive geometric examples,
+the abstract definition of a \textbf{group} is bootstrapped from laws constraining reasonable interpretations of what ``symmetry'' means.
+The third part deals with \textbf{rings}, which are groups that act on themselves rather than another set.
+Equivalently, they describe symmetries that are themselves symmetric; despite seeming like a special requirement,
+examples in application and other mathematics abound (indeed, arithmetic can be seen as the study of particularly nice rings).
+In the fourth part, we expound on the observation that in ring theory we often found ourselves almost-but-not-quite repeating our study of groups.
+The core commonalities are extracted into the notion of a \textbf{category},
+which provides an even better notion of an action with the idea of a \textbf{functor},
+and deciding how to tell when two functors are truly different or nothing more than different notation for the same idea (e.g. left/right actions)
+leads to the \textbf{natural transformation}.
+We also find we can reinterpret the process of going from groups to rings---which seemed to yield richer results---in the new language.
+This is explored in the final part, where the process is iterated again, forming \textbf{modules}: ``rings of rings,''
+or ``symmetries of symmetries acting on symmetries.''
+We apply our newfound techniques to great effect here.
+This is the end of the road, though; if you have something that plays nice in the same way rings and modules do
+(anything with an \textbf{Abelian category} structure), then you can always recast it as some kind of module
+(even though you'd best stay in category-land).
+
+I advise going through this in order.
+A principal distinction of this book is its development of category-theoretic concepts without requiring of its reader
+graduate-level familiarity with two or three massive subject areas.
+The downside of this, however, is comparative over-dependence on the subject areas it does develop.
+Standalone treatments of category theory (my current favorite is \cite{Reihl}) are able to cite dozens of applications
+of their not-immediately-natural concepts to the most distant areas of mathematics, overwhelming the reader's disquiet with their sheer utility.
+This is rhetorically effective for the initiate; for the newcomer to formal mathematics, though (welcome!),
+it's necessary to build those concepts out from scratch, which is what the initial sections do.
+For some hard evidence, here's a section-level dependency graph of the results save basic set theory and logic: % TODO
+
+The situation with examples and problems, by contrast, is more nuanced.
+I mentally divide these into several categories, based on what I've seen in other pedagogical material; I distinguish them for your convenience.
+Some examples are throwaway, serving only to illustrate a concept for those finding a mere definition wanting.
+These I tend to skip, but they're so absolutely helpful when they're necessary that I include them.
+Do whatever suits you; they're indicated with a <symbol here>. % TODO
+Others are primary mental models for their respective concept: intuitively mapping \textit{any} situation onto the specific case
+works so well that it's permissible to use the specific as a mental image for the general, and is probably the most practical way to do it.
+These (indicated by a <symbol here>) I wouldn't omit---I've certainly be guilty of doing it myself, but will appeal to fog of the moment % TODO
+(most texts don't classify like this, and it's hard to tell what's what without foreknowledge of the subject).
+Still others are critical counterexamples.
+These demonstrate why and where different mental models for a slippery concept fail, and provide important whetstones against which to throw
+intuitions, conjectures, and the like.
+These are absolutely crucial to good understanding: any test worth its ink will ask you to produce one or two,
+and there are those who have built careers on careful construction of convoluted objects that explode prior understanding\footnote
+{
+  For example, it was thought for a good century in topology that continuous structure and smooth structure always agree---that is,
+  homeomorphic $\Leftrightarrow$ diffeomorphic. In fact, not only is this not true, it's not true even for \textit{flat, Euclidean space}!
+  Weirder still, it happens to be true in all dimensions except 4, in which there are uncountably infinitely many incompatible structures!
+  This leads to the mathematical limerick $1, 1, 1, \mathfrak{c}, 1, 1, \ldots$
+  (which has a Jeapordy answer: ``How many distinct manifold structures are there on $\mathbb{R}^{n}$, for each positive $n$?'' )
+}.
+These have a <symbol here>. % TODO
+
+Problems in general are the \textit{only} way to truly understand things.
+Nevertheless, man's finite time makes it likely I'm the only one doing everything, and I classify them for you to prioritize to taste.
+There are two broad categories: important and trivial problems.
+These terms are in the sense of likelihood you'll encounter concepts they introduce beyond this book; trivial problems can be quite difficult,
+but are meant to cultivate skill, and nothing more, whereas important problems ask you to develop the fundamental properties
+of a construction of genuine mathematical interest.
+Obviously, the important problems are good candidates for deference---you should at least read them, for nominal familiarity with what they define.
+In addition, there are different problem difficulties, and different problem targets.
+The former is fairly obvious: there are easy warm-up problems that merely help embed a definition in your brain (no mark),
+reasonable problems that involve a nontrivial step or two ($*$), difficult problems with several steps that you need to find yourself ($**$),
+and open research problems meant as fodder for your daydreams ($***$).
+Targets indicate what is expected for a solution.
+These range, in rough order of freedom in your response, from a right answer, a proof, an algorithm, a question,
+evidence of critical thinking, to multiple of any of the previous.
+This might correlate with difficulty in practice, independent though it is in theory.
+For some exercises, my solution requires nonconstructive machinery; this is indicated in the same way as for results in the text.
+Try to do better than me, but don't worry to much if you can't!
+
+While I've done every problem to ensure they're appropriate, I don't share those solutions, because they will immediately go on libgen,
+and I feel worse off for having used such pirated solutions on occasion myself.
+See the appendix for how to determine if a solution is right, even without a key.

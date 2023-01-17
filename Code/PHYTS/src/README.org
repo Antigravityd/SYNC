@@ -7,7 +7,7 @@ PHITS is still based on input cards, which make it both harder to use and less f
 
 For example, if one wants to set the horizontal axis of a graph to anything other than linear or logarithmic, it's necessary to generate the points using an external tool and paste them into the input.
 
-Specifying the input via an object system in a general-purpose programming language is both more readable, as objects can be named instead of numbered and "ownership" relationships can be explicit (e.g. a cell "has a" surface), and more expressive, e.g. using comprehension expressions to generate the points in the example above.
+Specifying the input via an object system in a general-purpose programming language is both more readable, as objects can be named instead of numbered and "ownership" relationships can be explicit (e.g. a cell "has a" surface), and more expressive, e.g. using comprehension expressions to generate the points in the example below.
 
 * Example
 
@@ -187,3 +187,11 @@ The central unimplemented functionality is the output parsing. I have half a par
 The core object model currently doesn't support a few edge cases: the multiplier section, energy-distributed sources, and all but the first 5 tallies.
 
 It would be nice if the Fortran-Python interop would make it possible to write the user-defined sources, cross-sections, functions, and tallies in Python. Similarly, defining the (electro)magnetic field files and other external files via Python would be feasible.
+
+Testing with Hypothesis is /extremely desirable/---property-based testing is probably the only way I get something working in a reasonable time frame.
+
+Converting to Julia might make for /far/ cleaner code---pending my finding a property-based testing library for the language.
+
+* Publication
+
+the Journal of Open Source Software (JOSS) looks like a good option for submitting the final result of the work.

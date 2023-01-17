@@ -247,15 +247,15 @@ class SurfaceSource(PhitsObject):
                 "elevation", "azimuth", "dispersion"]
     ident_map = {"spin": ("sx", "sy", "sz"), "mask": ("reg", "ntmax"), "transform": "trcl",
                  "weight": "wgt", "charge_override": "izst", "fissile": "ispfs",
-                 "surface": "suf"
+                 "surface": "suf",
                  "elevation": "dir", "azimuth": "phi", "dispersion": "dom", "energy": "e0"}
     value_map = {"neutrons": 2, True: 1}
     shape = ("s_type = 26", "projectile", "spin", "mask", "transform", "weight", "factor",
              "charge_override", "fissile", "surface", "cut", "elevation", "azimuth", "dispersion", "energy")
 
-class Duct(PhitsObject):
-    name = "source"
-    required = ["wall", "dl0", "dl1", "dl2", "dpf", "drd"]
-    positional = ["wall", "dl0", "dl1", "dl2", "dpf", "drd"]
-    optional = ["dxw", "dyw"]
-    def __init__(self, *args, **kwargs):
+# class Duct(PhitsObject):
+#     name = "source"
+#     required = ["wall", "dl0", "dl1", "dl2", "dpf", "drd"]
+#     positional = ["wall", "dl0", "dl1", "dl2", "dpf", "drd"]
+#     optional = ["dxw", "dyw"]
+#     def __init__(self, *args, **kwargs):

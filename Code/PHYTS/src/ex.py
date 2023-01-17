@@ -16,12 +16,12 @@ from source import *
 mats = [Material([("C", i/100), ("H", (2/3)*(100-i)/100), ("O", (1/3)*(100-i)/100)]) for i in range(55,100)]
 
 # Or loops
-cells = [Cell([(Sphere(1), "<")], mats[0], -1)]
+cells = [Cell([Sphere(1)], mats[0], -1)]
 for i in range(1,11):
-    new = Cell([(Sphere(i+1), "<") , (Sphere(i), ">")], mats[i], -1)
+    new = Cell([Sphere(i+1), Sphere(i, inside=False)], mats[i], -1)
     cells.append(new)
 
-ocean = Void([(Sphere(11), ">")],                             # Assign objects associated with a cell /to/ the cell
+ocean = Void([Sphere(11, inside=False)],                             # Assign objects associated with a cell /to/ the cell
              tally=Deposition(Mesh("energy",  [float(i) for i in np.arange(0, 10, 0.25)]), "deposit", "1/source", "reg"))
 
 

@@ -6,6 +6,14 @@
    (add-to-list 'LaTeX-verbatim-environments-local "minted")
    (TeX-run-style-hooks
     "latex2e"
+    "front/preface"
+    "front/how2read"
+    "chap1/chap1"
+    "chap2/chap2"
+    "chap3/chap3"
+    "chap4/chap4"
+    "app1/app1"
+    "app2/app2"
     "book"
     "bk10"
     "geometry"
@@ -16,8 +24,23 @@
     "tikz"
     "minted"
     "physics"
-    "siunitx")
+    "siunitx"
+    "cite"
+    "appendix")
+   (TeX-add-symbols
+    "hooktwoheadrightarrow")
+   (LaTeX-add-environments
+    "philosophy")
+   (LaTeX-add-bibliographies
+    "ref")
+   (LaTeX-add-counters
+    "philosophy")
    (LaTeX-add-amsthm-newtheorems
-    "plm"))
+    "definition"
+    "thm"
+    "lem"
+    "cor"
+    "prob"
+    "exam"))
  :latex)
 

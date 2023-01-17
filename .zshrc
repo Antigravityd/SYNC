@@ -48,3 +48,8 @@ export PHITSPATH=/home/dnw/phits327A/phits
 export PATH=/home/dnw/phits327A/phits/bin:${PATH}
 export PATH=/home/dnw/phits327A/phits/dchain-sp/bin:${PATH}
 export PATH=/home/dnw/Code/bin:${PATH}
+
+export ANDROID_HOME=$HOME/Code/Android
+export PATH=$ANDROID_HOME/cmdline-tools/bin/:$PATH
+export PATH=$ANDROID_HOME/emulator/:$PATH
+export PATH=$ANDROID_HOME/platform-tools/:$PATH

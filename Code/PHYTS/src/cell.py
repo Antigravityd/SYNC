@@ -2,7 +2,6 @@ import copy
 from base import *
 
 
-
 def tup_to_def(tup):
     r = ""
     for el in tup:
@@ -10,12 +9,13 @@ def tup_to_def(tup):
             sense = "-" if el.inside is not None else ""
             r += f"{sense}{el.index} "
         elif isinstance(el, tuple):
-            r += "(" + tup_to_def(tup) + ") "
+            r += "(" + tup_to_def(el) + ") "
         elif el == "~":
             r += "#"
         elif el == "|":
             r += ": "
         else:
+            breakpoint()
             raise ValueError(f"Unrecognized token {el} in cell region definition.")
 
     return r
@@ -33,7 +33,7 @@ class Void(PhitsObject):
                 "tet_format", "tet_file", "tet_scale"]
     shape = (("self", "-1\\"), lambda self: tup_to_def(self.regions),
              "volume\\", "temperature\\", "transform\\", "containing_universe\\", "lattice\\",
-             lambda self: "LAT=3 " + (f"tfile={self.tet_file}" if self.tet_format == "tetgen" else f"nfile={self.tet_file}"),
+             lambda self: ("LAT=3 " + (f"tfile={self.tet_file}" if self.tet_format == "tetgen" else f"nfile={self.tet_file}")) if self.lattice is not None else "",
              "tet_scale\\", lambda self: f"FILL={self.index}" if self.universe_contents else "")
     ident_map = {"volume": "VOL", "temperature": "TMP", "transform": "TRCL", "containing_universe": "U", "lattice": "LAT",
                  "tet_scale": "TSFAC"},
@@ -61,7 +61,8 @@ class Cell(PhitsObject):
                 "tet_format", "tet_file", "tet_scale"]
     shape = (("self", "material", "density\\"), lambda self: tup_to_def(self.regions),
              "volume\\", "temperature\\", "transform\\", "containing_universe\\", "lattice\\",
-             lambda self: "LAT=3 " + (f"tfile={self.tet_file}" if self.tet_format == "tetgen" else f"nfile={self.tet_file}"),
+             lambda self: "LAT=3 " + (f"tfile={self.tet_file}" if self.tet_format == "tetgen" else f"nfile={self.tet_file}") \
+             if self.lattice is not None else "",
              "tet_scale\\", lambda self: f"FILL={self.index}" if self.universe_contents else "")
     ident_map = {"volume": "VOL", "temperature": "TMP", "transform": "TRCL", "containing_universe": "U", "lattice": "LAT",
                  "tet_scale": "TSFAC"},

@@ -54,13 +54,12 @@ from tco import *
 # and
 
 def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=dict(), cross_sections=[], raw=""): # [Super Mirror], [Elastic Option], [Weight Window], and [WW Bias] aren't supported due to poor documentation.
-
+    """"""
     unique = set()
 
 
     def add_to_set(an_obj, the_set, prev=None):  # Recursively add subtypes to set if they represent an "entry" in one of the sections
-
-        if isinstance(an_obj, tuple):
+        if isinstance(an_obj, col.Iterable):
             for ob in an_obj:
                 add_to_set(ob, the_set)
         if isinstance(an_obj, PhitsObject):
@@ -77,7 +76,7 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
 
     add_to_set(cells, unique)
     for cell in cells: # TODO: this ideally should "just work." Every language should have ADTs
-        for sur, orient in cell.regions:
+        for sur in cell.regions:
             add_to_set(sur, unique)
     add_to_set(sources, unique)
     add_to_set(tallies, unique)
@@ -85,7 +84,7 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
 
 
 
-
+    breakpoint()
     # We now have that if any two PHITS objects A and B have a property C and D (respectively) such that C == D, C /is/ D.
 
 
@@ -162,9 +161,9 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
 
     adjust_subobjects(cells, representatives)
     for cell in cells:
-        for i, (sur, orient) in enumerate(cell.regions):
+        for i, sur in enumerate(cell.regions):
             adjust_subobjects(sur, representatives)
-            cell.regions = tuple(map(lambda tup: (representatives[tup[0]], tup[1]), cell.regions))
+            cell.regions = tuple(representatives[s] for s in cell.regions)
     adjust_subobjects(sources, representatives)
     adjust_subobjects(tallies, representatives)
 
@@ -183,20 +182,20 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
                     for group in grouped:
                         rep = group[0]
                         inp += rep.separator(rep)
-                        if hasattr(rep, "prelude"):
+                        if hasattr(rep, "prelude_shape"):
                             inp += rep.prelude()
                         for obj in group:
                             inp += obj.definition()
                 else:
                     inp += objs[0].section_title()
-                    if hasattr(objs[0], "prelude"):
+                    if hasattr(objs[0], "prelude_shape"):
                         inp += objs[0].prelude()
                     for obj in objs:
                         inp += obj.definition()
 
 
 
-
+    breakpoint()
     inp += "[Title]\n"
     inp += title + '\n'
 
@@ -206,7 +205,7 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
             if var not in {"totfact", "iscorr"}:
                 inp += f"{var} = {val}\n"
 
-        add_defs("parameters", title="") # parameters associated with object declarations, but that need to be in this global context
+        add_defs("parameters") # parameters associated with object declarations, but that need to be in this global context
 
 
     inp += "[Source]\n"
@@ -229,14 +228,14 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
     add_defs("surface")
     add_defs("cell")
     add_defs("transform")
-    add_defs("mat_time_change", header_line="mat time change")
-    add_defs("magnetic_field", header_line="reg typ gap mgf trcl time")
-    add_defs("neutron_magnetic_field", header_line="reg typ gap mgf trcl polar time", title="[Magnetic Field]")
-    add_defs("mapped_magnetic_field", header_line="reg typ gap mgf trcl file", title="[Magnetic Field]")
-    add_defs("uniform_electromagnetic_field", header_line="reg elf mgf trcle trclm", title="[Electro Magnetic Field]")
-    add_defs("mapped_electromagnetic_field", header_line="reg type typm gap elf mlf trcle trclm filee filem", title="[Electro Magnetic Field]")
-    add_defs("delta_ray", header_line="reg del")
-    add_defs("track_structure", header_line="reg mID")
+    add_defs("mat_time_change")
+    add_defs("magnetic_field")
+    add_defs("neutron_magnetic_field")
+    add_defs("mapped_magnetic_field")
+    add_defs("uniform_electromagnetic_field")
+    add_defs("mapped_electromagnetic_field")
+    add_defs("delta_ray")
+    add_defs("track_structure")
 
     if cross_sections:
         inp += "[Frag Data]\n"
@@ -274,12 +273,12 @@ def make_input(cells, sources, tallies, title=str(datetime.now()), parameters=di
   # if type_divided["repeated_collisions"]:
   # if type_divided["multiplier"]:
 
-    add_defs("mat_name_color", header_line="mat name size color")
-    add_defs("reg_name", header_line="reg name size")
+    add_defs("mat_name_color")
+    add_defs("reg_name")
 
   # if type_divided["counter"]
 
-    add_defs("timer", header_line="reg in out coll ref")
+    add_defs("timer")
 
     add_defs("t-track")
     add_defs("t-cross")

@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{k}{define}\PYG{+w}{ }\PYG{n+nv}{p0}\PYG{+w}{ }\PYG{o}{\PYGZsq{}}\PYG{p}{())}
+\PYG{p}{(}\PYG{k}{define}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{succ}\PYG{+w}{ }\PYG{n+nv}{n}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{list}\PYG{+w}{ }\PYG{n+nv}{n}\PYG{p}{))}
+\PYG{p}{(}\PYG{k}{define}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{+}\PYG{+w}{ }\PYG{n+nv}{a}\PYG{+w}{ }\PYG{n+nv}{b}\PYG{p}{)}
+\PYG{+w}{  }\PYG{p}{(}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{equal?}\PYG{+w}{ }\PYG{n+nv}{b}\PYG{+w}{ }\PYG{n+nv}{p0}\PYG{p}{)}
+\PYG{+w}{      }\PYG{n+nv}{a}
+\PYG{+w}{      }\PYG{p}{(}\PYG{n+nf}{succ}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{+}\PYG{+w}{ }\PYG{n+nv}{a}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{car}\PYG{+w}{ }\PYG{n+nv}{b}\PYG{p}{)))))}
+
+\PYG{p}{(}\PYG{n+nb}{+}\PYG{+w}{ }\PYG{c+c1}{;; 3 + 2 = 5}
+\PYG{+w}{ }\PYG{o}{\PYGZsq{}}\PYG{p}{(((())))}
+\PYG{+w}{ }\PYG{o}{\PYGZsq{}}\PYG{p}{((())))}
+\end{Verbatim}

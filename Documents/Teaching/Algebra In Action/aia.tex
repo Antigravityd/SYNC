@@ -11,22 +11,27 @@
 \usepackage{siunitx}
 \usepackage{cite}
 \usepackage{appendix}
+\input{fitch.sty}
 
 \sisetup{detect-all}
+
+\newcommand{\prooflang}{eng}
+\newcommand{\getproof}[1]{\input{chap\thechapter/proofs/\prooflang/#1}}
+\theoremstyle{definition}
 \newtheorem{definition}{Definition}
 \newtheorem{thm}{Theorem}
 \newtheorem{lem}{Lemma}
 \newtheorem{cor}{Corollary}
 \newtheorem{prob}{Problem}
 \newtheorem{exam}{Example}
+\newcounter{philosophy}
+\newenvironment{philosophy}{\refstepcounter{philosophy}\equation}{\tag{P\thephilosophy}\endequation}
 
 \DeclareMathOperator{\Succ}{succ}
 \DeclareMathOperator{\ar}{ar}
 \newcommand{\hooktwoheadrightarrow}{\hookrightarrow\mathrel{\mspace{-15mu}}\rightarrow}
 
 \AddToHook{cmd/section/before}{\clearpage}
-\newcounter{philosophy}
-\newenvironment{philosophy}{\refstepcounter{philosophy}\equation}{\tag{P\thephilosophy}\endequation}
 
 
 \title{Algebra in Action}

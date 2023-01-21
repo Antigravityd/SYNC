@@ -6,6 +6,7 @@
    (add-to-list 'LaTeX-verbatim-environments-local "minted")
    (TeX-run-style-hooks
     "latex2e"
+    "fitch"
     "front/preface"
     "front/how2read"
     "chap1/chap1"
@@ -28,6 +29,8 @@
     "cite"
     "appendix")
    (TeX-add-symbols
+    '("getproof" 1)
+    "prooflang"
     "hooktwoheadrightarrow")
    (LaTeX-add-environments
     "philosophy")

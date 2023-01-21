@@ -15,8 +15,8 @@ It's an awfully bold one, and it seems to require total knowledge to substantiat
 Let's look a bit deeper at what mathematics is, to assuage these initial concerns, and pave the way for what's to come.
 
 Geometer Michael Attiyah said ``mathematics is the science of analogy.''
-It's a science in the sense that it's systematic, and it studies analogies in the sense of well-defined abstract concepts.
-So, less pithily, ``mathematics is the systematic study of well-defined abstraction.''
+It's a science in the sense that it's systematic, and it studies analogies in the sense of precisely-defined abstract concepts.
+So, less pithily, ``mathematics is the systematic study of precise abstraction.''
 Still less pithily, the day-to-day business of mathematics is roughly
 \begin{enumerate}
 \item Have a concept that demands complicated and delicate reasoning,
@@ -60,11 +60,13 @@ Our ambient concept, the \textit{raison d'etre} of numbers, is that of (discrete
 We want a way to study quantity in general, insulated from the follow-up question ``quantity of what?''
 Foreknowledge can explain why this is useful: there's no reason to add differently for each \textit{type} of quantity,
 with a completely different set of numeric symbols to be learned every time.
-This innocent observation is a rather deep idea in less familiar contexts, so I'll isolate it here for futre recall.
+This innocent observation is a rather deep idea in less familiar contexts, so I'll isolate it here for future recall.
+
 \begin{philosophy}
   \label{phil:suppress}
   \fbox{Suppress useless information.}
 \end{philosophy}
+
 Counting is good candidate for what's fundamental about quantity---it's certainly the first thing everyone's taught about it.
 What's counting?
 Well, you start somewhere, and repeatedly tick off numbers until whatever you're counting (or you yourself) is exhausted,
@@ -108,17 +110,8 @@ There's an equivalent way of describing the third rule, more familiar to people 
   and $P(0)$ hold, then $P(n)$ holds for all $n$.
 \end{thm}
 
-\begin{proof}
-  The key observation is that logical formulas correspond to subsets, via the axiom of specification.
-  First, presume the old formulation: $0 \in N \land (n \in N \Rightarrow \Succ(n) \in N) \Rightarrow \mathbb{N} \subseteq N$.
-  Then, for any logical formula $P$ satisfying the conditions of the new formulation, the set $N = \{n \in \mathbb{N} \mid P(n)\}$
-  has the property that $0 \in N$ and if $n \in N$ then $\Succ(n) \in N$, so by assumption $\mathbb{N} \subseteq N$,
-  i.e. every natural number $n$ satisfies $P(n)$.
-  Conversely, presume the new formulation.
-  Then, for any set $N$ satisfying the conditions of the old formulation, the logical proposition $P(n) = n \in N$ has $P(0)$
-  and $P(n) \Rightarrow P(\Succ(n))$, and so $P(n)$ holds for all $n \in \mathbb{N}$ by assumption, i.e. $n \in \mathbb{N} \Rightarrow n \in N$,
-  or $\mathbb{N} \subseteq N$.
-\end{proof}
+\getproof{logical_induction}
+
 
 We can define addition recursively: $a + 0 = a$, and $a + \Succ(b) = \Succ(a + b)$.
 This might seem like an unhelpful way to define something (how do I actually \textit{do} addition?),
@@ -134,37 +127,13 @@ Here's an actual program that implements addition this way, albeit with a rather
   Addition, with the definition above, is commutative.
 \end{exam}
 
-\begin{proof}
-  We certainly have that $a + 0 = 0 + a$ by induction on $a$, since it's immediate when $a = 0$ and if we assume the result for $a$, then
-  \[
-    0 + \Succ(a) = \Succ(0 + a) = \Succ(a + 0) = \Succ(a) = \Succ(a) + 0.
-  \]
-  Let $a, b \in \mathbb{N}$, and presume that $a + b = b + a$.
-  Then $a + \Succ(b) = \Succ(a + b) = \Succ(b + a) = b + \Succ(a)$.
-  We want to turn this into $\Succ(b) + a$ to get our inductive step, so we prove the following intermediate result:
-  for all $n, m \in \mathbb{N}$, $n + \Succ(m) = \Succ(n) + m$.
-  Clearly, if $m = 0$ then $n + \Succ(0) = \Succ(n + 0) = \Succ(n) = \Succ(n) + 0$, and if the result holds for $m$, then
-  \[
-    n + \Succ(\Succ(m)) = \Succ(n + \Succ(m)) = \Succ(\Succ(n) + m) = \Succ(n) + \Succ(m),
-  \]
-  so the intermediate result holds for all $m$.
-  We can therefore append $b + \Succ(a) = \Succ(b) + a$ where we left of above, completing the original induction.
-\end{proof}
+\getproof{add_comm}
 
 \begin{exam}
   Addition, with the definition above, is associative.
 \end{exam}
 
-\begin{proof}
-  Let $a, b, c \in \mathbb{N}$; we wish to prove $a + (b + c) = (a + b) + c$.
-  We do so by induction on $a$.
-  If $a = 0$, then $0 + (b + c) = b + c = (0 + b) + c$ (using commutativity to flip $0 + x$ into $x + 0$, so we can apply the definition).
-  If associativity holds for $a$, then
-  \[
-    \Succ(a) + (b + c) = a + \Succ(b + c) = a + (b + \Succ(c)) = (a + b) + \Succ(c) = \Succ(a + b) + c = (\Succ(a) + b) + c,
-  \]
-  where we have made liberal use of the intermediate result used in the previous example.
-\end{proof}
+\getproof{add_assoc}
 
 To not spoil all the fun, the rest of the laws of arithmetic are left to you in the exercises.
 This is enough to illustrate the central theme of algebra: recasting the natural numbers in terms of the most obvious \textit{function}
@@ -174,6 +143,7 @@ can actually be \textit{derived} from perfectly natural properties of a system f
 This definition of the natural numbers is our first example of a mathematical \textbf{structure}---roughly, a way of puting math inside logic,
 in a formal way.
 Precisely,
+
 \begin{definition}
   A structure is a triple $\mathcal{S} = (U, \sigma, I)$, where $U$ is any set, called the \textbf{underlying set}, \textbf{universe},
   or \textbf{domain}, the \textbf{signature} $\sigma = (F, \ar)$ is a set $F$ of function and relation symbols to be added to the logical language
@@ -183,7 +153,7 @@ Precisely,
 
 Structures are closely related to \textbf{theories}, any collection of logical sentences (usually deduced from some subset of axioms),
 because those logical sentences may incorporate symbols from the signature, enabling reasoning about non-logical concepts.
-If all of a theory's sentences are true when the symbols non-logical symbols are interpreted in a particular structure,
+If all of a theory's sentences are true when the non-logical symbols are interpreted in a particular structure,
 then the theory is said to be \textbf{satisfied} by the structure, and the structure to \textbf{model}, \textbf{implement},
 or be a \textbf{model of} the theory\footnote
 {

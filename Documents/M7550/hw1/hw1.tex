@@ -1,0 +1,47 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{tgpagella}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{minted}
+\usepackage{physics}
+\usepackage{siunitx}
+
+\sisetup{detect-all}
+\newtheorem{plm}{Problem}
+
+\title{Math 7550 HW 1}
+\author{Duncan Wilkie}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{plm}[Bredon 2.2.1]
+  Show that a second-countable Hausdorff space $X$ with functional structure $F$ is an $n$-manifold
+  $\Leftrightarrow$ every point in $X$ has a neighborhood $U$ such that the functions $f_{1}, \ldots, f_{n} \in F(U)$
+  such that: a real valued function $g$ on $U$ is in $F(U)$ iff there exists a smooth function $h(x_{1}, \ldots, x_{n})$
+  of $n$ real variables satisfying $g(p) = f(h_{1}(p), \ldots, h_{n}(p))$ for all $p \in U$.
+\end{plm}
+
+\begin{plm}[Bredon 2.2.2]
+  Complete the discussion of the two definitions of smooth manifolds by showing that if one goes from one of the descriptions to the other,
+  as indicated, and then back, you end up with the same structure as at the start.
+\end{plm}
+
+\begin{plm}[Bredon 2.2.3]
+  Show that a map $f: M \to N$ between smooth manifolds $M$ and $N$, with functional structures $F_{M}$ and $F_{N}$,
+  is smooth in the sheaf-morphism sense iff it is smooth in the chart sense.
+\end{plm}
+
+\begin{plm}[Bredon 2.2.4]
+  Let $X$ be the graph of the real-valued function $\theta(x) = |x|$ of a real variable $x$.
+  Define a functional structure on $X$ by taking $f \in F(U)$ iff $f$ is the restriction to $U$ of a $C^{\infty}$ function
+  on some open set $V$ in the plane with $U = V \cap X$.
+  Show that $X$ with this functional structure is \textbf{not} diffeomorphic to the real line with the usual $C^{\infty}$ structure.
+\end{plm}
+\end{document}

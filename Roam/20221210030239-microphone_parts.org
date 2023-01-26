@@ -1,0 +1,38 @@
+:PROPERTIES:
+:ID:       90811512-8769-4dc6-b678-0e90dd01b3f1
+:END:
+#+title: Microphone Parts
+* Parts
+| Name                          | Link | Source      | Count | Unit Price | Shipping | Total Price | Purchased | Arriving |
+|-------------------------------+------+-------------+-------+------------+----------+-------------+-----------+----------|
+| Resistors                     | [[https://www.amazon.com/gp/product/B006CEY8F6/ref=ox_sc_act_title_4?psc=1][a]]    | Amazon      |     1 |      12.90 |     4.99 |       17.89 |           |          |
+| Ceramic 100pF                 | [[https://www.mouser.com/ProductDetail/Vishay-BC-Components/K101J15C0GF5UH5?qs=YhDfSRCt1jSNtrTVm%2FrvOw%3D%3D][a]]    | Mouser      |     1 |       0.23 |          |        0.23 |           |          |
+| Ceramic 47pF                  | [[https://www.mouser.com/ProductDetail/Vishay-BC-Components/K470J15C0GF53L2?qs=sGAEpiMZZMt7gvpyg0xT8uCCXHbS75E5%252B5Mzahs%2Fr6g%3D][a]]    | Mouser      |     1 |       0.27 |          |        0.27 |           |          |
+| Ceramic 10nF                  | [[https://www.mouser.com/ProductDetail/Vishay/2C20C0G103J050B?qs=wtJBjE46HQtYaYVCsb0C4g%3D%3D][a]]    | Mouser      |     2 |       1.20 |          |         2.4 |           |          |
+| Cermaic 100nF                 | [[https://www.mouser.com/ProductDetail/Murata-Electronics/RDE5C1H104J2K1H03B?qs=qSfuJ%252Bfl%2Fd5AenvWFcK7kg%3D%3D][a]]    | Mouser      |     1 |       0.65 |          |        0.65 |           |          |
+| Polyester film 220nF          | [[https://www.newark.com/multicomp-pro/mcpbsfc-1j102ka45/cap-1000pf-63v-film-radial/dp/49P5381][a]]    | Newark      |     1 |       .025 |          |       0.025 |           |          |
+| Polyester film 100nF          | [[https://www.newark.com/multicomp-pro/mcpbsfc-1j104ka45/cap-0-1uf-63v-film-radial/dp/49P5383?st=mcpbsfc-][a]]    | Newark      |     2 |       .025 |          |        0.05 |           |          |
+| Polyester film 1nF            | [[https://www.newark.com/multicomp-pro/mcpbsfc-1j102ka45/cap-1000pf-63v-film-radial/dp/49P5381][a]]    | Newark      |     1 |       .025 |          |       0.025 |           |          |
+| BC549C                        | [[https://www.digikey.com/en/products/detail/dcomponents/BC549C/13574947][a]]    | Digikey     |    25 |      .2408 |          |        6.02 |           |          |
+| BC557B                        | [[https://www.digikey.com/en/products/detail/dcomponents/BC557B/13575187][a]]    | Digikey     |    25 |      .2408 |          |        6.02 |           |          |
+| J113 JFET                     | [[https://www.digikey.com/en/products/detail/onsemi/J113/1048989][a]]    | Digikey     |     1 |       0.44 |          |        0.44 |           |          |
+| Zener                         | [[https://www.digikey.com/en/products/detail/onsemi/BZX79C6V2/977935][a]]    | Digikey     |     2 |       0.22 |          |        0.44 |           |          |
+| Crystal                       | [[https://www.digikey.com/en/products/detail/iqd-frequency-products/LFXTAL003169BULK/8633714][a]]    | Digikey     |     1 |       0.50 |          |         0.5 |           |          |
+| Tunable transformer           | [[https://www.ebay.co.uk/itm/282588615138][a]]    | Ebay        |     2 |       7.38 |          |       14.76 |           |          |
+| Chokes                        | [[https://cpc.farnell.com/multicomp/mcal0410a1-101ku/inductor-choke-axial-100uh-0-275a/dp/FT01517?st=mcal0410a1][a]]    | CPC/Farnell |     2 |       0.54 |          |        1.08 |           |          |
+| Mic capsule                   | [[https://www.aliexpress.us/item/2255800370843554.html?_randl_shipto=US][a]]    | Alibaba     |     1 |      26.43 |          |       26.43 |           |          |
+| Mic body                      | [[https://www.ebay.com/itm/185685185798?LH_ItemCondition=3000][a]]    | Ebay        |     1 |         15 |          |          15 |           |          |
+| XLR supply                    | [[https://www.amazon.com/EBXYA-2-Channel-Condenser-Microphone-Recording/dp/B08BJ1JHB4][a]]    | Amazon      |     1 |      24.99 |          |       24.99 |           |          |
+| Mounting saddle---end address | [[https://www.shapeways.com/product/EFE6MUJYM/34mm-ldc-mic-bracket?optionId=123657963][a]]    | Shapeways   |     1 |       5.46 |          |        5.46 |           |          |
+| M1.6x5mm screws, 5ct          | [[https://www.ebay.com/itm/M1-6-M2-M2-5-M3-A2-STAINLESS-POSI-PAN-HEAD-MACHINE-SCREWS-POZI-POZIDRIVE-SCREW/221326204336?][a]]    | Ebay        |     1 |       3.06 |          |        3.06 |           |          |
+| M2.5x8mm screws, 5ct          | [[https://www.ebay.com/itm/M1-6-M2-M2-5-M3-A2-STAINLESS-POSI-PAN-HEAD-MACHINE-SCREWS-POZI-POZIDRIVE-SCREW/221326204336?][a]]    | Ebay        |     1 |       2.97 |          |        2.97 |           |          |
+| Grommets, 20ct                | [[https://www.modelsport.co.uk/product/368157][a]]    | Modelsport  |     1 |       2.33 |          |        2.33 |           |          |
+| Totals                        |      |             |       |            |          |      131.04 |           |          |
+| PCB                           |      |             |       |            |          |           0 |           |          |
+| Ceramic ???                   |      |             |       |            |          |           0 |           |          |
+
+#+TBLFM: $7=$4*$5+$6::@24$7=vsum(@2..@23)
+
+The products from cpc.farnell.com could well be purchased from farnell itself, with better shipping.
+The PCB can be had for around $2 + shipping, apparently.
+The unfilled capacitor must be selected to match the capsule.

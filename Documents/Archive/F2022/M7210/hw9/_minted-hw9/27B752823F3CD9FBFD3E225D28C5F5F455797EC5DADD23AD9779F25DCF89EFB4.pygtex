@@ -1,0 +1,52 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{p}{(}\PYG{k}{use\PYGZhy{}modules}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{srfi}\PYG{+w}{ }\PYG{n+nv}{srfi\PYGZhy{}1}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{ice\PYGZhy{}9}\PYG{+w}{ }\PYG{n+nv}{pretty\PYGZhy{}print}\PYG{p}{))}
+
+
+\PYG{c+c1}{;; Cartesian product of sets, implemented on lists.}
+\PYG{p}{(}\PYG{k}{define}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{cart\PYGZhy{}product}\PYG{+w}{ }\PYG{n+nv}{lists}\PYG{p}{)}
+\PYG{+w}{  }\PYG{p}{(}\PYG{n+nb}{fold\PYGZhy{}right}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{lambda}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{xs}\PYG{+w}{ }\PYG{n+nv}{ys}\PYG{p}{)}
+\PYG{+w}{                }\PYG{p}{(}\PYG{n+nb}{append\PYGZhy{}map}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{lambda}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{x}\PYG{p}{)}
+\PYG{+w}{                              }\PYG{p}{(}\PYG{n+nb}{map}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{lambda}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{y}\PYG{p}{)}
+\PYG{+w}{                                     }\PYG{p}{(}\PYG{n+nb}{cons}\PYG{+w}{ }\PYG{n+nv}{x}\PYG{+w}{ }\PYG{n+nv}{y}\PYG{p}{))}
+\PYG{+w}{                                   }\PYG{n+nv}{ys}\PYG{p}{))}
+\PYG{+w}{                            }\PYG{n+nv}{xs}\PYG{p}{))}
+\PYG{+w}{              }\PYG{o}{\PYGZsq{}}\PYG{p}{(())}
+\PYG{+w}{              }\PYG{n+nv}{lists}\PYG{p}{))}
+
+\PYG{c+c1}{;; Cartesian power of a single set, implemented on lists.}
+\PYG{c+c1}{;; These first two functions}
+\PYG{p}{(}\PYG{k}{define}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{cart\PYGZhy{}power}\PYG{+w}{ }\PYG{n+nv}{xs}\PYG{+w}{ }\PYG{n+nv}{n}\PYG{p}{)}
+\PYG{+w}{  }\PYG{p}{(}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{=}\PYG{+w}{ }\PYG{n+nv}{n}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{+w}{      }\PYG{p}{(}\PYG{n+nb}{map}\PYG{+w}{ }\PYG{n+nb}{list}\PYG{+w}{ }\PYG{n+nv}{xs}\PYG{p}{)}
+\PYG{+w}{      }\PYG{p}{(}\PYG{n+nf}{cart\PYGZhy{}product}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{map}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{lambda}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{\PYGZhy{}}\PYG{p}{)}\PYG{+w}{ }\PYG{n+nv}{xs}\PYG{p}{)}
+\PYG{+w}{			 }\PYG{p}{(}\PYG{n+nb}{iota}\PYG{+w}{ }\PYG{n+nv}{n}\PYG{p}{)))))}
+
+
+\PYG{c+c1}{;; Check if the 5\PYGZhy{}tuple of the form $(a, b, c, d, n)$ representing the product}
+\PYG{c+c1}{;; $(a + b\sqrt{-n})(c + d\sqrt{-n})$ has the desired form.}
+\PYG{c+c1}{;; Doesn\PYGZsq{}t check for square\PYGZhy{}freeness, as that\PYGZsq{}d add factorization complexity;}
+\PYG{c+c1}{;; it\PYGZsq{}s easy enough to do that by inspection.}
+\PYG{p}{(}\PYG{k}{define}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{suitable?}\PYG{+w}{ }\PYG{n+nv}{five}\PYG{p}{)}
+\PYG{+w}{  }\PYG{p}{(}\PYG{k}{and}
+\PYG{+w}{   }\PYG{p}{(}\PYG{n+nb}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{modulo}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{car}\PYG{+w}{ }\PYG{n+nv}{five}\PYG{p}{)}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}
+\PYG{+w}{   }\PYG{p}{(}\PYG{n+nb}{not}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{modulo}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{cadr}\PYG{+w}{ }\PYG{n+nv}{five}\PYG{p}{)}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{))}
+\PYG{+w}{   }\PYG{p}{(}\PYG{n+nb}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{modulo}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{caddr}\PYG{+w}{ }\PYG{n+nv}{five}\PYG{p}{)}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}
+\PYG{+w}{   }\PYG{p}{(}\PYG{n+nb}{not}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{modulo}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{cadddr}\PYG{+w}{ }\PYG{n+nv}{five}\PYG{p}{)}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{))}
+\PYG{+w}{   }\PYG{p}{(}\PYG{n+nb}{\PYGZgt{}}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{car}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{cddddr}\PYG{+w}{ }\PYG{n+nv}{five}\PYG{p}{))}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{p}{)))}
+
+\PYG{c+c1}{;; Run through the pair products in $R$ with entries smaller than ``limit\PYGZsq{}\PYGZsq{}}
+\PYG{c+c1}{;; that satisfy the criteria and check if they multiply to 2.}
+\PYG{p}{(}\PYG{k}{define}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{check}\PYG{+w}{ }\PYG{n+nv}{target}\PYG{+w}{ }\PYG{n+nv}{limit}\PYG{+w}{ }\PYG{n+nv}{start}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nb}{filter}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{lambda}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{five}\PYG{p}{)}
+\PYG{+w}{	  }\PYG{p}{(}\PYG{n+nb}{=}\PYG{+w}{ }\PYG{l+m+mi}{2}
+\PYG{+w}{	     }\PYG{p}{(}\PYG{n+nb}{\PYGZhy{}}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{*}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{car}\PYG{+w}{ }\PYG{n+nv}{five}\PYG{p}{)}
+\PYG{+w}{		   }\PYG{p}{(}\PYG{n+nb}{caddr}\PYG{+w}{ }\PYG{n+nv}{five}\PYG{p}{))}
+\PYG{+w}{		}\PYG{p}{(}\PYG{n+nb}{*}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{cadr}\PYG{+w}{ }\PYG{n+nv}{five}\PYG{p}{)}
+\PYG{+w}{		   }\PYG{p}{(}\PYG{n+nb}{cadddr}\PYG{+w}{ }\PYG{n+nv}{five}\PYG{p}{)}
+\PYG{+w}{		   }\PYG{p}{(}\PYG{n+nb}{car}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{cddddr}\PYG{+w}{ }\PYG{n+nv}{five}\PYG{p}{))))))}
+\PYG{+w}{	}\PYG{p}{(}\PYG{n+nb}{filter}\PYG{+w}{ }\PYG{n+nv}{suitable?}
+\PYG{+w}{		}\PYG{p}{(}\PYG{n+nf}{cart\PYGZhy{}power}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{iota}\PYG{+w}{ }\PYG{n+nv}{limit}\PYG{+w}{ }\PYG{n+nv}{start}\PYG{p}{)}\PYG{+w}{ }\PYG{l+m+mi}{5}\PYG{p}{))))}
+
+\PYG{p}{(}\PYG{n+nf}{check}\PYG{+w}{ }\PYG{l+m+mi}{15}\PYG{+w}{ }\PYG{l+m+mi}{\PYGZhy{}2}\PYG{p}{)}
+\PYG{c+c1}{;; =\PYGZgt{} ((2 1 4 1 6) (4 1 2 1 6) (4 1 8 5 6) (4 5 8 1 6) (8 1 4 5 6) ...)}
+\end{Verbatim}

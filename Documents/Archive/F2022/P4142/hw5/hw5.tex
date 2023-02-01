@@ -1,0 +1,307 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{tgpagella}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{minted}
+\usepackage{physics}
+\usepackage{siunitx}
+
+\sisetup{detect-all}
+\newtheorem{plm}{Problem}
+\renewcommand*{\proofname}{Solution}
+
+\title{4142 HW 5}
+\author{Duncan Wilkie}
+\date{28 October 2022}
+
+\begin{document}
+
+\maketitle
+
+\begin{plm}
+  Consider the energy matrix
+  \[
+    \begin{pmatrix}
+      $a$ & 0 & 0 & $-b$ \\
+      0 & $c$ & $id$ & 0 \\
+      0 & $-id$ & $-c$ & 0 \\
+      $-b$ & 0 & 0 &  $-a$
+    \end{pmatrix}
+  \]
+  Find the eigenvalues and eigenvectors of this Hamiltonian.
+  It will help to not approach this as a direct diagonalization but regard the elements above as coupling between four states.
+\end{plm}
+
+\begin{proof}
+  Looking at what will happen when the basis vectors, it's clear this is actually is two noninteracting problems:
+  vectors in combinations of the first and last basis vectors get mapped to each other, and likewise for the second and third.
+  The individual problems are
+  \[
+    \begin{pmatrix}
+      a & -b \\
+      -b & -a
+    \end{pmatrix}
+    \Rightarrow \det
+    \begin{vmatrix}
+      a - \lambda & -b \\
+      -b & -a - \lambda
+    \end{vmatrix} = 0
+    \Leftrightarrow \lambda^{2} - a^{2} - b^{2} = 0 \Rightarrow \lambda = \pm \sqrt{a^{2} + b^{2}}
+  \]
+  and
+  \[
+    \begin{pmatrix}
+      c & id \\
+      -id & -c
+    \end{pmatrix}
+    \Rightarrow \det
+    \begin{vmatrix}
+      c - \lambda & id \\
+      -id & -c - \lambda
+    \end{vmatrix}
+    = 0
+    \Leftrightarrow \lambda^{2} - c^{2} - d^{2} \Rightarrow \lambda = \pm \sqrt{c^{2} + d^{2}}
+  \]
+  The corresponding eigenvectors are
+  \[
+    \begin{pmatrix}
+      \frac{-a \pm \sqrt{a^{2} + b^{2}}}{b} \\
+      1
+    \end{pmatrix}
+  \]
+  and
+  \[
+    \begin{pmatrix}
+      -\frac{id}{c} \\
+      1
+    \end{pmatrix},
+    \begin{pmatrix}
+      -1 \\
+      1
+    \end{pmatrix}
+  \]
+\end{proof}
+
+\begin{plm}
+  At time $t = 0$, a spin-1/2 particle is in the state $\ket{S_{z} = +}$.
+  \begin{enumerate}
+  \item If $S_{x}$ is measured at $t = 0$, what is the probability of getting a value $\hbar/2$?
+  \item Instead, with no measurement at $t = 0$, suppose the system evolves in a magnetic field $\vec{B} = B_{0}\hat{e}_{y}$.
+    Use the $S_{z}$ basis to calculate the state of the system at time $t$.
+  \item Suppose you now measure $S_{x}$ at $t$.
+    What is the probability of getting the value $\hbar/2$?
+  \end{enumerate}
+\end{plm}
+
+\begin{proof}
+  In general,
+  \[
+    \chi =
+    \begin{pmatrix}
+      a \\
+      b
+    \end{pmatrix}
+    = \frac{a + b}{\sqrt{2}}\chi_{+}^{(x)} + \frac{a - b}{\sqrt{2}}\chi_{-}^{(x)},
+  \]
+  so in the state $S_{z} = + \Rightarrow a = 1, b = 0,$ so the probability that a measurement of $S_{x}$ yields $\hbar / 2$ is
+  \[
+    P(S_{x} = +) = \frac{1}{\sqrt{2}}.
+  \]
+
+  The Hamiltonian in the presence of the magnetic field is
+  \[
+    H = \gamma B_{0}S_{y} = -\frac{\gamma B_{0}\hbar}{2}
+    \begin{pmatrix}
+      0 & -i \\
+      i & 0
+    \end{pmatrix}
+  \]
+  The eigenstates of this are the usual eigenstates of $S_{y}$: in the $S_{z}$ basis,
+  \[
+    \chi_{+}^{(y)} =
+    \begin{pmatrix}
+      -i / \sqrt{2} \\
+      1 / \sqrt{2}
+    \end{pmatrix},\
+    \chi_{-}^{(y)} =
+    \begin{pmatrix}
+      i / \sqrt{2} \\
+      1 / \sqrt{2}
+    \end{pmatrix}
+  \]
+  and accordingly
+  \[
+    \chi = \frac{b + ia}{\sqrt{2}}\chi_{+}^{(y)} + \frac{b - ia}{\sqrt{2}}\chi_{-}^{(y)}
+  \]
+  Since this is time-independent, the time-dependent solution expressed in the $S_{y}$ basis is
+  \[
+    \chi(t) =
+    \begin{pmatrix}
+      ae^{-iE_{+}t/\hbar} \\
+      be^{-iE_{-}t/\hbar}
+    \end{pmatrix}
+  \]
+  where $a, b$ are specified by the initial condition (in this case, $\chi(0) = \ket{S_{z} = +} \Rightarrow a = \frac{i}{\sqrt{2}},
+  b = \frac{-i}{\sqrt{2}}$)
+  and $E_{\pm}$ are the energies of the $\chi_{\pm}^{(y)}$ eigenstates, which are $\mp \frac{\gamma B_{0}\hbar}{2}$ by the eigenvalues of the states:
+  \[
+    \chi(t) =
+    \begin{pmatrix}
+      \frac{i}{\sqrt{2}}e^{i\gamma B_{0}t/2} \\
+      \frac{-i}{\sqrt{2}}e^{-i\gamma B_{0}t/2}
+    \end{pmatrix}.
+  \]
+  Changing back to the $S_{z}$ basis,
+  \[
+    \chi(t) = \qty(\frac{i}{\sqrt{2}}e^{i\gamma B_{0}t/2})\qty(\frac{-i}{\sqrt{2}}\chi_{+} + \frac{1}{\sqrt{2}}\chi_{-})
+    + \qty(\frac{-i}{\sqrt{2}}e^{-i\gamma B_{0}t/2})\qty(\frac{i}{\sqrt{2}}\chi_{+} + \frac{1}{\sqrt{2}}\chi_{-})
+  \]
+  \[
+    = \frac{e^{i\gamma B_{0}t/2}}{2}\chi_{+} + \frac{ie^{i\gamma B_{0}t/2}}{2}\chi_{-} + \frac{e^{-i\gamma B_{0}t/2}}{2}\chi_{+}
+    - \frac{ie^{-i\gamma B_{0}t/2}}{2}\chi_{-}
+  \]
+  \[
+    =
+    \begin{pmatrix}
+      \cos(\gamma B_{0}t/2) \\
+      -\sin(\gamma B_{0}t/2)
+    \end{pmatrix}
+  \]
+  This looks a lot like a clockwise parameterization of a circle.
+
+  The change of basis from $S_{z}$ to $S_{x}$ is
+  \[
+    \chi = \frac{a + b}{\sqrt{2}}\chi_{+}^{(x)} + \frac{a - b}{\sqrt{2}}\chi_{-}^{(x)},
+  \]
+  so the coefficient of $\chi_{+}^{(x)}$ using the above expression for the $S_{z}$ basis is
+  \[
+    \frac{\cos(\gamma B_{0}t / 2) - \sin(\gamma B_{0}t/2)}{\sqrt{2}}
+  \]
+  The corresponding probability of a measurement resulting in $\chi_{+}^{(x)}$ (which has eigenvalue $\hbar/2$) is
+  \[
+    \qty(\frac{\cos(\gamma B_{0}t / 2) - \sin(\gamma B_{0}t/2)}{\sqrt{2}})^{2} = \frac{1}{2}\qty(1 - 2\sin(\gamma B_{0}t))
+  \]
+\end{proof}
+
+\begin{plm}
+  Three quarks, each of spin $1/2$, form a baryon.
+  What are the allowed values of baryon spin?
+\end{plm}
+
+\begin{proof}
+  Distinguish one pair of quarks.
+  This combination has a spin of either 1 or 0, as those are the only integers between $\frac{1}{2} + \frac{1}{2}$ and $\frac{1}{2} - \frac{1}{2}$.
+  The spin of the whole system is a combination of the spin of the pair with the spin of the remaining quark;
+  it's either $1 + \frac{1}{2} \Rightarrow \frac{3}{2}, \frac{1}{2}$ or $0 + \frac{1}{2} \Rightarrow \frac{1}{2}, -\frac{1}{2}$.
+  Accordingly, the only possibly baryon spins are $\frac{1}{2}$ and $\frac{3}{2}$.
+\end{proof}
+
+\begin{plm}
+  Suppose an electron is in potentials $\vec{A} = B_{0}(x\hat{j} - y\hat{i})$, $\Phi = Kz^{2}$.
+  \begin{enumerate}
+  \item Find the electric and magnetic fields.
+  \item Find the allowed energies of the electron.
+  \end{enumerate}
+\end{plm}
+
+\begin{proof}
+  Since $\Phi$ is time-independent, $\vec{B} = \curl{\vec{A}}$ and $\vec{E} = \grad{\Phi}$:
+  \[
+    \curl{\vec{A}} = \det
+    \begin{vmatrix}
+      \hat{i} & \hat{j} & \hat{k} \\
+      \pdv{x} & \pdv{y} & \pdv{z} \\
+      -B_{0}y & B_{0}x & 0
+    \end{vmatrix}
+    = 2B_{0}\hat{k},
+  \]
+  \[
+    \grad{\Phi} = 2Kz\hat{k}.
+  \]
+
+  The minimal coupling Hamiltonian is
+  \[
+    H = \frac{1}{2m}(-i\hbar\grad - e\vec{A})^{2} + e\Phi
+    = \frac{1}{2m}(-i\hbar\grad + eB_{0}(x\hat{j} - y\hat{i}))^{2} + eKz^{2}
+  \]
+  \[
+    = \frac{1}{2m}(i\hbar\grad + eB_{0}(x\hat{j} - y\hat{i})) \cdot (i\hbar\grad + eB_{0}(x\hat{j} - y\hat{i})) + eKz^{2}
+  \]
+  \[
+    = \frac{1}{2m}\qty[-\hbar^{2}\grad^{2} + i\hbar eB_{0}\qty(\div{(x\hat{j} - y\hat{i})} + (x\hat{j} - y\hat{i}) \cdot \grad)
+    + e^{2}B_{0}^{2}(x^{2} + y^{2})] + eKz^{2}
+  \]
+  \[
+    = \frac{1}{2m}\qty[-\hbar^{2}\laplacian + i\hbar eB_{0}\qty(x\pdv{y} - y\pdv{x}) + e^{2}B_{0}^{2}(x^{2} + y^{2})] + eKz^{2}
+  \]
+  \[
+    = \frac{1}{2m}\qty[-\hbar^{2}\laplacian - eB_{0}L_{z} + e^{2}B_{0}^{2}r^{2}] + eKz^{2}
+  \]
+  \[
+    = \frac{p^{2}}{2m} - \frac{eB_{0}}{2m}L_{z} + \frac{e^{2}B_{0}^{2}}{2m}r^{2} + eKz^{2}
+  \]
+  The $L_{z}$ operator commutes with this Hamiltonian: it commutes with central-potential Hamiltonians, with itself,
+  and with the $z$ operator, so it must commute with a linear combination of these three.
+  Therefore, it is simultaneously diagonalizable with the Hamiltonian; call its eigenvalue $\hbar m_{\ell}$ as usual.
+  The right two potential terms are independent harmonic oscillator potentials with
+  $k_{r} = \frac{e^{2}B_{0}^{2}}{m} \Rightarrow \omega_{r} = \frac{eB_{0}}{m}$
+  and $k_{z} = 2eK \Rightarrow \omega_{z} = \sqrt{\frac{2eK}{m}}$.
+  The energies of these two solutions are $\hbar\omega_{r}(n_{r} + \frac{1}{2})$ and $\hbar\omega_{z}(n_{z} + \frac{1}{2})$.
+  When the Hamiltonian acts on a simultaneous eigenstate in the Schr\"odinger equation, the eigenvalues of these operators add
+  to yield allowed energies
+  \[
+    E(n_{r}, n_{z}, m_{\ell}) = \hbar\omega_{r}\qty(n_{r} + \frac{1}{2}) + \hbar\omega_{z}\qty(n_{z} + \frac{1}{2}) + \hbar m_{\ell}
+  \]
+\end{proof}
+
+\begin{plm}
+  Consider the observables $A = x^{2}$ and $B = L_{z}$.
+  \begin{enumerate}
+  \item Find the uncertainty principle governing $A$ and $B$, that is, $\Delta A\Delta B$.
+  \item Evaluate $\Delta B$ for the hydrogenic $\ket{n\ell m}$ state.
+  \item Therefore, what can you conclude about $\expval{xy}$ in this state?
+  \end{enumerate}
+\end{plm}
+
+\begin{proof}
+  The generalized uncertainty principle states
+  \[
+    \Delta A\Delta B \geq \qty|\frac{1}{2i}\expval{\qty[{A}, {B}]}|.
+  \]
+  We first compute the commutator:
+  \[
+    \qty[A, B] = \qty[x^{2}, L_{z}] = x\qty[x, L_{z}] + \qty[x, L_{z}]x
+    = x\qty[x, xp_{y} - yp_{x}] + \qty[x, xp_{y} - yp_{x}]x
+  \]
+  \[
+    = x\qty([x, xp_{y}] - [x, yp_{x}]) + \qty([x, xp_{y}] - [x, yp_{x}])x
+  \]
+  \[
+    = x\qty([x, x]p_{y} + x[x, p_{y}] - [x, y]p_{x} - y[x, p_{x}]) + \qty([x, x]p_{y} + x[x, p_{y}] - [x, y]p_{x} - y[x, p_{x}])x
+  \]
+  The commutator among any two position operators and that of a position and a momentum operator along different axes is zero; accordingly,
+  \[
+    = -xy[x, p_{x}] - y[x, p_{x}]x
+    = -xyi\hbar - yxi\hbar
+    = -i\hbar(xy + yx)
+  \]
+  \[
+    = -2i\hbar xy
+  \]
+  The uncertainty principle is therefore
+  \[
+    \Delta A \Delta B \geq \hbar\qty|\expval{xy}|
+  \]
+  The variance of the $B$ operator is given by $\langle L_{z}^{2} \rangle - \langle L_{z} \rangle^{2}$;
+  the former is by $L_{z}$ Hermitian $\bra{\psi}L_{z}^{2}\ket{\psi} = \bra{L_{z}\psi}\ket{L_{z}\psi}$.
+  The $\ket{n\ell m_{\ell}}$ state of hydrogen is in an eigenstate of $L_{z}$ by assumption (corresponding to the eigenvalue $m_{\ell}$).
+  In particular, $L_{z} \psi = \hbar m_{\ell}\psi \Rightarrow \expval{L_{z}^{2}} = \hbar^{2}m_{\ell}^{2}$,
+  and $\expval{L_{z}}$ is the eigenvalue of $L_{z}$ corresponding to the eigenstate; of course, $\hbar m_{\ell}$.
+  So, the variance of $B$ is $\hbar^{2}m_{\ell}^{2} - \hbar^{2}m_{\ell}^{2} = 0$.
+  This necessarily means $\expval{xy} = 0$.
+\end{proof}
+\end{document}

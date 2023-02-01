@@ -1,0 +1,222 @@
+
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{tgpagella}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\title{7210 HW 4}
+\author{Duncan Wilkie}
+\date{20 September 2022}
+
+\newcommand{\nsub}{\trianglelefteq}
+\newtheorem*{3.4.8}{3.4.8}
+\newtheorem*{3.5.10}{3.5.10}
+\newtheorem*{4.2.7}{4.2.7}
+\newtheorem*{4.2.8}{4.2.8}
+\newtheorem*{4.2.10}{4.2.10}
+\newtheorem{lem}{Lemma}
+
+\begin{document}
+
+\maketitle
+
+\begin{lem}
+  If $H \nsub G$ is cyclic, then every $K \leq H$ has $K \nsub G$.
+\end{lem}
+
+\begin{proof}
+  Write $H = \langle a \rangle$.
+  Normality of $H$ in $G$ is $ga^{k}g^{-1} = a^{k'}$ for all $g \in G$
+  Subgroups of cyclic groups are also cyclic and so $H = \langle (a^k)^{i} \rangle$; normality of $H$ is then
+  \[
+    ga^{ki}g^{-1} = (ga^{k}g^{-1})^{i} = a^{k'i} = (a^{i})^{k'}
+  \]
+  which is in $\langle a^{i} \rangle$ by closure.
+\end{proof}
+
+\begin{3.4.8}
+  For a finite group $G$, the following are equivalent:
+  \begin{enumerate}
+  \item $G$ is solvable
+  \item $G$ has a chain of subgroups $1 = H_{0} \nsub H_{1} \nsub \cdots \nsub H_{s} = G$ such that $H_{i+1}/H_{i}$ is always cyclic
+  \item all composition factors of $G$ are of prime order
+  \item $G$ has a chain of subgroups $1 = N_{0} \nsub N_{1} \nsub \cdots \nsub N_{t} = G$
+    such that each $N_{i}$ is a normal subgroup of $G$ and $N_{i+1} / N_{i}$ is always Abelian.
+  \end{enumerate}
+\end{3.4.8}
+
+\begin{proof}
+  It's very evident that $3 \Rightarrow 2$, $3 \Rightarrow 4$, $3 \Rightarrow 1$, $2 \Rightarrow 1$, and $4 \Rightarrow 1$.
+  The observations necessary for each are, in order:
+  \begin{itemize}
+  \item simple groups of prime order are cyclic,
+  \item simple groups of prime order are cyclic, and every subgroup of a normal cyclic subgroup is normal in the parent group by Lemma 1.
+  \item simple groups of prime order are cyclic and therefore Abelian,
+  \item cyclic groups are Abelian,
+  \item the only difference is an extra condition in 4.
+  \end{itemize}
+
+  It therefore suffices to prove $1 \Rightarrow 3$, as 3 implies every other statement, and every other statement implies 1.
+  This certainly holds when $|G| = 1$, since $1 = G_{0} = G_{s} = G$ is a solution chain,
+  and $1 / 1 = 1$ has no normal subgroups other than itself and the trivial group, so it is also a composition series.
+  Presume for induction again that this holds for solvable groups with order less than $|G|$.
+  By assumption, $G$ has a solution chain
+  \[
+    1 = G_{0} \nsub G_{1} \nsub \cdots \nsub G_{t}  = G
+  \]
+  such that $G_{i+1} / G_{i}$ is Abelian.
+  $G_{t-1}$ has order less than $G$, so it has composition factors all of prime order.
+  We may then write
+  \[
+    1 = H_{0} \nsub H_{1} \nsub \cdots \nsub H_{k} \nsub G_{t-1} \nsub G_{t} = G
+  \]
+  where $H_{i+1} / H_{i}$ is a simple group of prime order.
+  Additionally, $G_{t} / G_{t-1}$ has order less than $G$, and so has a composition series
+  \[
+    1 = K_{0} \nsub K_{1} \nsub \cdots \nsub K_{m} = G_{t} / G_{t-1},
+  \]
+  where $K_{i+1} / K_{i}$ is a simple group of prime order, and therefore cyclic.
+  By the lattice isomorphism theorem, the elements of this composition series correspond bijectively to subgroups of $G_{t}$ containing $G_{t-1}$;
+  this bijection preserves normality by the text of the theorem, but it also preserves the cyclic nature of subgroups and their order,
+  since the bijection sends a coset to the set of its representatives and a set of representatives to the coset they mutually represent,
+  and the order of a coset is the order of any of its representatives.
+  Call the images of $K_{i}$ under this bijection $K'_{i}$; we then have a chain
+  \[
+    1 = H_{0} \nsub H_{1} \nsub \cdots \nsub H_{k} \nsub G_{t-1} \nsub K'_{0} \nsub \cdots \nsub K'_{m} \nsub G_{t} = G
+  \]
+  such that $H_{i+1} / H_{i}$, $G_{t-1} / H_{k}$, $K'_{0} / G_{t-1}$, $K'_{i+1} / K'_{i}$, and $G_{t} / K'_{m}$ are simple of prime order.
+
+\end{proof}
+
+\begin{3.5.10}
+  Write a composition series for $A_{4}$ and deduce that $A_{4}$ is solvable.
+\end{3.5.10}
+
+\begin{proof}
+  Looking at the lattice of subgroups of $A_{4}$ in the text, we're inspired to consider \newline $G = \langle (1 \; 2)(3 \; 4), (1 \; 3)(2 \; 4) \rangle$,
+  since it appears to have a unique position in the lattice.
+  The generated subgroup is defined as all words of arbitrary powers of generator elements;
+  since disjoint two-cycles commute, the powers of generator elements may be distributed into powers of all two-cycles appearing in the generators.
+  These powers are the same two-cycles, which again commute, so the words of arbitrary powers of generator elements may be rearranged into the form
+  $g = [(1 \; 2)(3 \; 4)]^{n}[(1 \; 3)(2 \; 4)]^{k}$ for some $n,k \in \mathbb{Z}$.
+  For all $n,k \neq 0$, the power is the same as the underlying element, so we can restrict to $n, k \in \{0, 1\}$.
+  The elements of $G$ are then
+  \begin{itemize}
+  \item  $1$
+  \item $(1 \; 2)(3 \; 4)$
+  \item $(1 \; 3)(2 \; 4)$
+  \item $(1 \; 2)(3 \; 4)(1 \; 3)(2 \; 4) = (1 \; 4)(2 \; 3)$
+  \end{itemize}
+  Note now that conjugation preserves the decomposition signature.
+  Consider $\mu = \tau\sigma\tau^{-1}$ and the cycle
+  $a_{1}\overset{\sigma}{\mapsto}a_{2}\overset{\sigma}{\mapsto}\cdots\overset{\sigma}{\mapsto}a_{k}\overset{\sigma}{\mapsto}a_{1}$.
+  Notice that just by expanding the definition
+  \[
+    \mu\tau(a_{i}) = \tau\sigma(a_{i}) = \tau(a_{i+1}).
+  \]
+  This implies that
+  $\tau(a_{1})\overset{\mu}{\mapsto}\tau(a_{2})\overset{\mu}{\mapsto}  \cdots\overset{\mu}{\mapsto}\tau(a_{k})\overset{\mu}{\mapsto}\tau(a_{1})$,
+  i.e. $k$-cycles of $\sigma$ bijectively correspond with $k$-cycles of $\tau\sigma\tau^{-1}$ by applying $\tau$ to each element of the cycle of $\sigma$.
+  Of course, conjugation of a cycle decomposition is conjugation of each of the cycles:
+  \[
+    \tau\sigma\tau^{-1} = \tau\sigma_{1}\tau^{-1}\tau\sigma_{2}\tau^{-1}\cdots\tau\sigma_{n}\tau^{-1}.
+  \]
+  Since permutations are bijective, the disjointness of the initial cycle decomposition implies disjointness of the product of the conjugated cycles,
+  so the ``decomposition signature'' of a permutation is preserved under conjugation, i.e. the number of cycles in the decomposition and their lengths.
+
+  $G$ is exactly all twofold products of 2-cycles, and the above result implies conjugation yields another twofold product of 2-cycles, so $G \nsub A_{4}$.
+
+  Further, by Lagrange's theorem, $|A_{4} / G| = |A_{4}| / |G| = 12 / 4 = 3$.
+  There is only one group of order 3: a general such group has distinct elements $\{1, a, b\}$, and $ab = 1$, as $ab = a \Rightarrow b = 1$ and vice versa.
+  Correspondingly, $a = b^{-1} \Leftrightarrow a^{-1} = b$.
+  Further, since every finite group has an element of order $p$ for every prime $p$ dividing $|G|$, one of $a$ or $b$ cubes to 1.
+  Suppose WLOG it's $a$; then $a^{2} = a^{3}a^{-1} = 1b = b$.
+  This implies $a$ generates the group, since $a^{1}, a^{2} = b, a^{3} = 1$ enumerates every element.
+  It is therefore isomorphic to $\mathbb{Z} / 3\mathbb{Z}$.
+
+  This proves we have a composition series, since groups of prime order have no nontrivial subgroups
+  and so no nontrivial normal subgroups by Lagrange's theorem.
+  Fully, we've demonstrated
+  \[
+    1 = H_{0} \nsub G \nsub H_{1} = A_{4}
+  \]
+  such that $A_{4} / H_{1} \cong \mathbb{Z} / 3\mathbb{Z}$, which is simple.
+
+  Additionally, the composition factor is Abelian, so the composition series serves to show $A_{4}$ is solvable.
+\end{proof}
+
+\begin{4.2.7}
+  Let $Q_{8}$ be the quaternion group of order 8.
+  $Q_{8}$ is isomorphic to a subgroup of $S_{8}$, but not to any subgroup of $S_{n}$ for $n \leq 7$.
+\end{4.2.7}
+
+\begin{proof}
+  We can follow the outline given in the proof of Cayley's theorem.
+  $Q_{8}$ as a list is
+  \[
+    1, -1, i, j, k, -i, -j, -k.
+  \]
+  This list represents a bijection $\phi$ between $Q_{8}$ and $9 = \{1, 2, 3, 4, 5, 6 , 7, 8\}$.
+  Let $Q_{8}$ act on itself by left-multiplication (corresponding to $H = 1$ in Theorem 3, just like in Cauchy's theorem).
+  The map $\phi \circ (g\cdot) \circ \phi^{-1}$ is an element of $S_{8}$ that takes a number between 1 and 8, represents it as an element of $Q_{8}$,
+  does multiplication by $g \in Q_{8}$, and then uses the representation to find what number from 1 to 8 this corresponds to.
+  The permutation representation of each element of $Q_{8}$ in 1-line notation on $Q_{8}$ and then in cycle notation on 9,
+  in order according to the order given by the list, is
+  \begin{itemize}
+  \item $1, -1, i, j, k, -i, -j, -k \mapsto 1$,
+  \item $-1, 1, -i, -j, -k, i, j, k \mapsto (1 \; 2)(3 \; 6)(4 \; 7)(5 \; 8)$,
+  \item $i, -i, -1, k, j, 1, -k, -j \mapsto (1 \; 6 \; 2 \; 3)(4 \; 5)(7 \; 8)$,
+  \item $j, -j, -k, -1, i, k, 1, -i \mapsto (1 \; 7 \; 2 \; 4)(3 \; 5 \; 6 \; 8)$,
+  \item $k, -k, -j, -i, -1, j, i, 1 \mapsto (1 \; 8 \; 2 \; 5)(3 \; 7)(4 \; 6)$,
+  \item $-i, i, 1, -k, -j, -1, k, j \mapsto (1 \; 3 \; 2 \; 6)(4 \; 8)(5 \; 7)$,
+  \item $-j, j, k, 1, -i, -k, -1, i \mapsto (1 \; 4 \; 2 \; 7)(3 \; 8 \; 6 \; 5)$,
+  \item $-k, k, j, i, 1, -j, -i, -1 \mapsto (1 \; 5 \; 2 \; 8)(3 \; 4)(6 \; 7)$.
+  \end{itemize}
+
+  If $Q_{8} \cong K \leq S_{7}$, then $K$ is a permutation representation of $Q_{8}$ acting on a 7 element set.
+  Accordingly, the action of $K$ on the 8-element set $Q_{8}$ must fix some element of $Q_{8}$; this element is in the kernel of the action.
+  However, the action of $Q_{8}$ on itself must be transitive, and if it fixes some element of $Q_{8}$, that is a separate orbit.
+  Since isomorphisms preserve representation-independent properties of groups, such as transitivity of particular actions, this is a contradiction.
+\end{proof}
+
+\begin{4.2.8}
+  If $H \leq G$ has finite index $n$ then there is a normal subgroup $K$ of $G$ with $K \leq H$ and $|G:K|\leq n!$
+\end{4.2.8}
+
+\begin{proof}
+  Let $G$ act on the left cosets of $H$ by left-multiplication.
+  There's an associated permutation representation induced by this action; by Theorem 3, the kernel of this action $K$ is a normal subgroup of $G$
+  that is the largest such subgroup contained in $H$.
+  Applying the first isomorphism theorem to the representation homomorphism, $G / K$ is isomorphic to a subgroup of $S_{|G : H|} = S_{n}$,
+  since the image of the representation is the set on which $G$ acts.
+  The cardinality of $S_{n}$ is $n!$, and so $|G : K| \leq n!$.
+\end{proof}
+
+\begin{4.2.10}
+  Every non-Abelian group of order 6 has a non-normal subgroup of order 2. Classify groups of order 6.
+\end{4.2.10}
+
+\begin{proof}
+  By Sylow's theorem, there exists subgroups of any group of order 6 with orders 2 and 3.
+  There's only one group of order 2 and of order 3 up to isomorphism: $\mathbb{Z} / 2\mathbb{Z}$ and $\mathbb{Z} / 3\mathbb{Z}$ (for the latter cf. above).
+  Let $a$ be the generator of the subgroup with order 2, and $b$ the generator of that with order 3.
+  If $ab = ba$, then $G$ is cyclic, since distributivity of exponentiation over commuting products means $(ab)^{6} = (a^{2})^{3}(b^{3})^{2} = 1$;
+  this implies $G$ is cyclic, generated by $ab$ (it has 6 elements and is a subgroup of $G$), but it must be non-Abelian.
+
+  Therefore, $b\langle a \rangle = \{ba^{k} \mid k = 0, 1\} = \{b, ba\}$ is not equal to $\langle a \rangle b = \{a^{k}b \mid k = 0, 1\} = \{b, ab\}$,
+  so the group of order 2 is not a normal subgroup.
+
+  Every non-Abelian group of order 6 is isomorphic to $S_{3}$: the permutation representation of the action of $G$ by left-multiplication
+  on the cosets of $\langle a \rangle$ has kernel contained in $\langle a \rangle$,
+  since no elements of $\langle b \rangle$ commute with those of $\langle a \rangle$ as we've proven their generators don't commute and each is cyclic.
+  The kernel is therefore trivial, since $\langle a \rangle$ has 2 elements and if the kernel included the nonidentity one it'd show
+  $\langle a \rangle$ was be normal.
+  Therefore, the representation homomorphism is an injective function between two groups of the same order, and so it's a bijection,
+  showing $G \cong S_{3}$.
+  All non-Abelian groups of order 6 were shown to be Abelian in the proof of the first part, so groups of order 6 have isomorphism class of either
+  $S_{3}$ or $\mathbb{Z} / 6\mathbb{Z}$.
+\end{proof}
+\end{document}

@@ -1,0 +1,231 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{tgpagella}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{minted}
+\usepackage{physics}
+\usepackage{siunitx}
+
+\sisetup{detect-all}
+\newtheorem{plm}{Problem}
+\newtheorem{lem}{Lemma}
+\renewcommand*{\proofname}{Solution}
+\DeclareMathOperator{\lcm}{lcm}
+
+\title{7210 HW 7}
+\author{Duncan Wilkie}
+\date{25 October 2022}
+
+\begin{document}
+
+\maketitle
+
+\begin{plm}[D\&F 7.1.30]
+  Let $A = \mathbb{Z} \times \mathbb{Z} \times \cdots$ be the direct product of copies of $\mathbb{Z}$ indexed by the positive integers
+  (so $A$ is a ring under componentwise addition and multiplication) and let $R$ be the ring of all group homomorphisms from $A$ to itself
+  with addition pointwise and multiplication defined as function composition.
+  Let $\phi$ be the element of $R$ defined by $\phi(a_{1}, a_{2}, a_{3}, ...) = (a_{2}, a_{3}, ...)$.
+  Let $\psi$ be the element of $R$ defined by $\psi(a_{1}, a_{2}, a_{3}, ...) = (0, a_{1}, a_{2}, a_{3},...)$
+  \begin{enumerate}
+  \item Prove that $\phi\psi$ is the identity of $R$ but $\psi\phi$ is not the identity of $R$ (i.e. $\psi$ is a right, but not a left, inverse for $\phi$).
+  \item Exhibit infinitely many right inverses for $\phi$.
+  \item Find a nonzero element $\pi$ in $R$ such that $\phi\pi = 0$ but $\pi\phi \neq 0$.
+  \item Prove that there is no nonzero element $\lambda \in R$ such that $\lambda\phi = 0$ (i.e. $\phi$ is a left zero divisor but not a right zero divisor).
+  \end{enumerate}
+\end{plm}
+
+\begin{proof}
+  $\phi\circ\psi(a_{1}, a_{2}, \cdots)  = \phi(0, a_{1}, a_{2}, \cdots) = (a_{1}, a_{2}, \cdots)$; since $(a_{1}, a_{2}, \cdots)$ is a general element of $A$,
+q  this proves $\phi \circ \psi$ is the identity function $id_{A}$, which is the ring identity on $R$,
+  since $id_{A} \circ f = f \circ id_{A} = f$ for all (set) endomorphisms $f$ on $A$.
+  Inversely, $\psi \circ \phi(a_{1}, a_{2}, a_{3}, \cdots) = \psi(a_{2}, a_{3}, \cdots) = (0, a_{2}, a_{3}, \cdots)$,
+  and taking any element of $A$ with $a_{1} \neq 0$ shows $\psi\phi$ is not the identity.
+
+  Consider functions $f_{i}: (a_{1}, a_{2}, \cdots) \mapsto (i, a_{1}, a_{2}, \cdots)$; these are infinitely many right inverses to $\phi$,
+  since $\phi \circ f_{i}(a_{1}, a_{2}, \cdots) = \phi(i, a_{1}, a_{2}, \cdots) = (a_{1}, a_{2}, \cdots)$.
+
+  Taking $\pi: (a_{1}, a_{2}, \cdots) \mapsto (1, 0, \cdots)$, $\phi \circ \pi = \phi(1, 0, \cdots) = (0, 0, \cdots) = 0$
+  and $\pi \circ \phi = (1, 0, \cdots) \neq 0$.
+
+  Suppose $\lambda\phi(a_{1}, a_{2}, a_{3} \cdots) = \lambda(a_{2}, a_{3}, \cdots) = 0$.
+  If $\lambda \neq 0$, then there exists some input $a$ such that $\lambda a \neq (0, 0, \cdots)$;
+  the sequence $\psi(a)$ has $\lambda\circ\phi(\psi(a)) = \lambda(a) \neq 0$, showing $\lambda\phi \neq 0$.
+\end{proof}
+
+
+
+\begin{plm}[D\&F 7.3.29]
+  Let $R$ be a commutative ring.
+  Recall that an element $x \in R$ is nilpotent if $x^{n} = 0$ for some $n \in \mathbb{Z}^{+}$.
+  Prove that the set of nilpotent elements from an ideal---called the nilradical of $R$ and denoted $\eta(R)$.
+\end{plm}
+
+\begin{proof}
+  The set of nilpotent elements is first a subring.
+  It contains the zero of the ring trivially, and if nonzero $a, b \in \eta(R)$ then $a^{n} = b^{n'} = 0$ for some $n, n' \in \eta(R)$,
+  so assuming WLOG $n' \geq n$,
+  \[
+    (a - b)^{nn'} = \sum_{k=0}^{nn'}\binom{nn'}{k}a^{k}(-b)^{nn' - k}
+    = \sum_{k = 0}^{n'}\binom{nn'}{k}a^{k}(-b)^{nn'-k}\sum_{k = n'}^{nn'}\binom{nn'}{k}a^{k}(-b)^{nn' - k}
+  \]
+  \[
+    = \sum_{k = 0}^{n'}\binom{nn'}{k}a^{k}(-b)^{nn'-k}\sum_{k = n'}^{nn'}\binom{nn'}{k}a^{nn' - k}(-b)^{nn'}
+  \]
+  In the left sum, every term has since $0 \leq k \leq n'$ and $n \geq 2$ (by $a$ nonzero) that $nn' - k \geq n' \Leftrightarrow nn' \geq n' + k$,
+  implying $b^{nn' - k} = 0$ and therefore also $(-b)^{nn' - k} = (-1)^{nn' - k}b^{nn' - k} = 0$, making the term and the whole sum zero.
+  In the right sum, every term has since $n' \geq n$ that $a^{k} = 0$, making this sum also zero.
+  Therefore, $(a - b)^{nn'} = 0$.
+  If one of $a, b$ are zero, then $a - b$ equals either 0, the other nonzero term, or the negative of the other nonzero term,
+  all of which are immediately nilpotent, so for all $a, b \in \eta(R)$ one has $a - b \in \eta(R)$, i.e. $R$ is closed under subtraction.
+  Similarly, $(ab)^{nn'} = a^{nn'}b^{nn'}$ by commutativity (cf. proof of Lemma 6 of the first homework; it uses only associativity of group products),
+  and since each exponent contains a factor of the element's nilpotency exponent, the term is zero.
+
+  Showing closure of the now-subring under multiplication is far easier: if $a \in \eta(R)$ has nilpotency exponent $n$ and $r \in R$,
+  then by commutativity $(ar)^{n} = a^{n}r^{n} = 0r^{n} = 0$, so $\eta(R)$ is a left-ideal and by commutativity also a right-sided ideal.
+\end{proof}
+
+
+
+\begin{plm}[D\&F 7.3.33]
+  Assume $R$ is commutative.
+  Let $p(x) = a_{n}x^{n} + a_{n-1}x^{n-1} + \cdots + a_{1}x + a_{0}$ be an element of the polynomial ring $R[x]$.
+  \begin{enumerate}
+  \item Prove that $p(x)$ is a unit in $R[x]$ iff $a_{0}$ is a unit and $a_{1}, a_{2}, \ldots, a_{n}$ are nilpotent in $R$.
+  \item Prove that $p(x)$ is nilpotent in $R[x]$ iff $a_{0}, a_{1}, \ldots, a_{n}$ are nilpotent elements of $R$.
+  \end{enumerate}
+\end{plm}
+
+\begin{proof}
+  Suppose $a_{0}$ is a unit and $a_{1}, a_{2}, \ldots, a_{n}$ are nilpotent with nilpotency exponents $k_{1}, k_{2}, \ldots, k_{n}$.
+  First, note that $y = a_{n}x^{n} + a_{n-1}x^{n-1} + \cdots + a_{1}x$ is nilpotent in $R[x]$: by commutativity,
+  $(a_{i}x^{i})^{k_{i}} = a_{i}^{k_{i}}x^{i + k_{i}} = 0x^{i + k_{i}} = 0$.
+  The sum of nilpotent elements is again nilpotent by the above argument that $\eta(R)$ is an ideal and therefore closed under addition.
+  Since $a_{0}$ is a unit in $R$, it's also a unit in $R[x]$, so $p(x)$ is the sum of a unit and a nilpotent element.
+
+  Conversely, suppose $p(x)$ is a unit.
+  Then there exists $p^{-1}(x) = b_{n}x^{n} + b_{n-1}x^{n-1} + \cdots + b_{0}$ such that $p(x)p^{-1}(x) = 1$;
+  equivalently, the $i$th coefficient of the product polynomial is for all $i \neq 0$
+  \[
+    \sum_{l=0}^{i}a_{l}b_{i - l} = 0
+  \]
+  and for $i = 0$ $a_{0}b_{0} = 1$.
+  Clearly, the latter shows that $a_{0}$ must be a unit.
+  For nilpotency, we induct on the degree of polynomials in the formula ``$p(x)$ is unit'' $\Rightarrow$ ``non-constant coefficients are nilpotent.''
+  It clearly holds for $\deg p = 0$ vacuously, since degree-zero polynomials have no non-constant coefficients.
+  Presume it holds for all polynomials with degree less than $n$.
+  One can additively cancel in the expression for the $i$th coefficient of the product to obtain
+  \[
+    a_{i}b_{0} = - \sum_{l=0}^{i-1}a_{l}b_{i-l}
+  \]
+  Since $b_{0}$ is a unit with inverse $a_{0}$,
+  \[
+    a_{i} = -a_{0} \sum_{l=0}^{i-1}a_{l}b_{i-l}
+  \]
+  The polynomial $a_{0} + a_{1}x + \cdots + a_{n-1}x^{n-1}$ has inverse $b_{0} + b_{1}x + \cdots + b_{n-1}x^{n-1}$, since in the product of $p$ and $p^{-1}$,
+  the $n$th terms of the factors only contribute to the $n$th term of the product, so omitting them merely removes that term.
+  By the induction hypothesis, then $a_{1}, a_{2} \ldots a_{n-1}$ are nilpotent.
+  Similarly, $b_{1}, b_{2}, \ldots b_{n}$ are nilpotent, so every addend of the sum expression of $a_n$ contains a nilpotent factor, and $a_n$ is nilpotent.
+  Accordingly, all non-constant coefficients of $p$ are nilpotent, proving the converse.
+
+  For the second proposition, note that if $a_{0}, a_{1}, \ldots, a_{n}$ are nilpotent,
+  the above argument that $a_{i}x^{i}$ applies to show $p(x)$ is the sum of nilpotent elements and therefore nilpotent.
+  Conversely, suppose $p(x)$ is nilpotent.
+  We induct on the degree of $p$ with the formula ``$p(x)$ is nilpotent'' $\Rightarrow$ ``all its coefficients are nilpotent.''
+  The property once again holds for $\deg p = 0$ trivially; suppose it holds for $\deg p = n - 1$.
+  Nilpotency to exponent $k$ says
+  \[
+    0 = (a_{0} + a_{1}x + \cdots + a_{n}x^{n})^{k}
+    = \sum_{0\leq j_{1} +  j_{2} + \cdots + j_{n} \leq k}\binom{k}{j_{1},j_{2},\ldots,j_{n}}\prod_{l=1}^{n}a_{l}^{j_{l}}x^{l\cdot j_{l}},
+  \]
+  using the multinomial theorem.
+  The coefficient of $x^{nk}$ in this sum is $a_{n}^{k}$: unless $j_{n} = k$, all other $j_{i} = 0$, and $l = n$ the product $l\cdot j_{l}$ is less than $nk$.
+  Comparing coefficients, this implies $a_{n}^{k} = 0$, so $a_{n}$ is nilpotent, concluding the induction.
+\end{proof}
+
+\begin{plm}[D\&F 7.4.15]
+  Let $x^{2} + x + 1$ be an element of the polynomial ring $E = \mathbb{F}_{2}[x]$
+  and use the bar notation to denote passage to the quotient ring $\mathbb{F}_{2}[x] / (x^{2} + x + 1)$.
+  \begin{enumerate}
+  \item Prove that $\overline{E}$ has 4 elements: $\bar{0}, \bar{1}, \bar{x}$, and $\overline{x + 1}$.
+  \item Write out the $4 \times 4$ addition table for $\overline{E}$ and deduce that the additive group $\overline{E}$ is isomorphic to the Klein 4-group.
+  \item Write out the $4 \times 4$ multiplication table for $\overline{E}$ and prove that $\overline{E}^{\times}$ is isomorphic to $Z_{3}$.
+    Deduce that $\overline{E}$ is a field.
+  \end{enumerate}
+\end{plm}
+
+\begin{proof}
+  Two polynomials in $\mathbb{F}_{2}[x]$ are the same in $\mathbb{F}_{2}[x] / (x^{2} + x + 1)$ if they differ by a multiple of $x^{2} + x + 1$
+  with multiplier in $\mathbb{F}_{2}[x]$.
+  The elements $0$, $1$, $x$, and $x + 1$ are all elements of $\mathbb{F}_{2}[x]$ with degree $\leq 1$;
+  these represent distinct equivalence classes in quotient, since polynomials of degree lower than 2 are not multiples of any polynomial of higher degree,
+  and they're distinct in $\mathbb{F}_{2}[x]$.
+  Additionally, these are the only equivalence classes: by induction on $n$, any polynomial of the form
+  $a_{n}x^{n} + \cdots + a_{1}x + a_{0}$ where $a_{i} \in \mathbb{F}_{2}$ can be written as a multiple of these elements.
+  For degree zero, every polynomial is either $0$ or $1$, which are parts of $\bar{0}$ and $\bar{1}$.
+  Suppose every polynomial of degree $n-1$ is in one of the equivalence classes.
+  Then every polynomial of degree $n$ is of the form $p(x) = x^{n} + p_{n-1}(x)$ for some polynomial $p_{n-1}$ of degree $n-1$.
+  Accordingly, $p(x) =  x(x^{n - 1} + p_{n-1}'(x)) + a_0$, where $p_{n-1}'$ is the $p_{n-1}$ without its constant coefficient with all exponents reduced by 1.
+  The polynomial in the parenthesis is of degree $n-1$, and so is in one of the equivalence classes.
+  $x$ times any element of an equivalence class is again in an equivalence class, so if $a_{0} = 0$ we're done.
+  If $a_{0} = 1$, $p$ is in the equivalence class according to the rules $\bar{0} + \bar{1} = 1$, $\bar{1} + \bar{1} = \bar{0}$,
+  $\bar{x} + \bar{1} = \overline{x + 1}$, and $\overline{x+1} + \bar{1} = \bar{x}$.
+\end{proof}
+
+\begin{plm}[D\&F 7.4.27]
+  Let $R$ be a commutative ring with $1\neq 0 $. Prove that if $a$ is a nilpotent element of $R$ then $1-ab$ is a unit for all $b\in R$.
+\end{plm}
+
+\begin{proof}
+  By the last problem on the previous homework, $ab$ is nilpotent for all $b \in R$.
+  Similarly, $-x = (-1)x$ is nilpotent if $x$ is.
+  Then $1 - ab$ is of the form $1 + x$, where $x$ is nilpotent; it is therefore a unit.
+\end{proof}
+
+\begin{plm}[D\&F 7.4.30]
+  Let $I$ be an ideal of the commutative ring $R$ and define
+  \[
+    \mathcal{R}(I) = \{r \in R \mid r^{n} \in I \text{ for some } n \in \mathbb{Z}^{+}\}
+  \]
+  called the radical of $I$.
+  Prove that $\mathcal{R}(I)$ is an ideal containing $I$ and that $\mathcal{R}(I) / I$ is the nilradical of the quotient ring $R / I$,
+  i.e. $\mathcal{R}/I = \eta(R / I)$.
+\end{plm}
+
+\begin{proof}
+  The proof that the nilradical is an ideal translates: if $r^{n} \in I$ and $s^{n} \in I$, then $(r - s)^{nm} \in I$ using the binomial theorem
+  and the fact that $I$ is an ideal and therefore closed under internal addition and arbitrary multiplication.
+  $\mathcal{R}(I)$ contains $I$ as those elements of $R$ in the ideal satisfy the membership property with $n = 1$.
+
+  The set $\mathcal{R} / I$ is the set cosets of the form $rI$ where $r^{n} \in I$ for some $n \in \mathbb{Z}^{+}$.
+  The set $\eta(R / I)$ is the set of cosets of the form $rI$ where $r$ is arbitrary that satisfy the condition
+  \[
+    (rI)^{n} = 0 \Leftrightarrow r^{n}I = 0 \Leftrightarrow r^{n} \in I \text{ for some } n \in \mathbb{Z}^{+}
+  \]
+  The two sets are therefore equal.
+\end{proof}
+
+\begin{plm}[D\&F 7.4.37]
+  Prove that a subset $X$ of $[0,1]$ is a Zariski closed set iff it is closed in the usual sense as a subset of $\mathbb{R}$.
+\end{plm}
+
+\begin{proof}
+  Suppose a subset $S$ of $[0,1]$ is Zariski closed, meaning it is of the form $V(J) = \{x \in [0,1] \mid f(x) = 0 \text{ for all } f\in J\}$,
+  where $J$ is some ideal of the ring $R$ of all continuous functions from $[0,1]$ to $\mathbb{R}$.
+  Since points are closed in $\mathbb{R}$, $f^{-1}(0)$ is a closed subset of $[0,1]$ for any continuous function $f$,
+  since a continuous preimage of a closed set is closed.
+  $V(J)$ is the intersection of continuous preimages of $0$ inside $[0,1]$, and closed sets remain closed under arbitrary intersection,
+  so Zariski closed $\Rightarrow$ closed.
+
+  Conversely, suppose $X$ is a closed subset of $[0,1]$.
+  The set $I(X)$ of functions $[0,1] \to \mathbb{R}$ that vanish on $X$ is an ideal by the result of exercise 34.
+  According to exercise 36, $X = V(I(X))$, i.e. $X$ is the Zariski closed set generated by the ideal $I(X)$; in particular, $X$ is Zariski closed.
+\end{proof}
+
+
+
+
+\end{document}

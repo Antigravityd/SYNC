@@ -6,12 +6,15 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{tikz}
-\usepackage{minted}
+% \usepackage{minted}
 \usepackage{physics}
 \usepackage{siunitx}
 
 \sisetup{detect-all}
 \newtheorem{plm}{Problem}
+\newtheorem{lem}{Lemma}
+
+\usetikzlibrary{cd}
 
 \title{Math 7550 HW 1}
 \author{Duncan Wilkie}
@@ -21,22 +24,67 @@
 
 \maketitle
 
-\begin{plm}[Bredon 2.2.1]
-  Show that a second-countable Hausdorff space $X$ with functional structure $F$ is an $n$-manifold
-  $\Leftrightarrow$ every point in $X$ has a neighborhood $U$ such that the functions $f_{1}, \ldots, f_{n} \in F(U)$
-  such that: a real valued function $g$ on $U$ is in $F(U)$ iff there exists a smooth function $h(x_{1}, \ldots, x_{n})$
-  of $n$ real variables satisfying $g(p) = f(h_{1}(p), \ldots, h_{n}(p))$ for all $p \in U$.
-\end{plm}
+% \begin{plm}[Bredon 2.2.1]
+%   Show that a second-countable Hausdorff space $X$ with functional structure $F$ is an $n$-manifold
+%   $\Leftrightarrow$ every point in $X$ has a neighborhood $U$ such that there are functions $f_{1}, \ldots, f_{n} \in F(U)$
+%   such that: a real valued function $g$ on $U$ is in $F(U)$ iff there exists a smooth function $h(x_{1}, \ldots, x_{n})$
+%   of $n$ real variables satisfying $g(p) = h(f_{1}(p), \ldots, f_{n}(p))$ for all $p \in U$.
+% \end{plm}
 
-\begin{plm}[Bredon 2.2.2]
-  Complete the discussion of the two definitions of smooth manifolds by showing that if one goes from one of the descriptions to the other,
-  as indicated, and then back, you end up with the same structure as at the start.
-\end{plm}
+% \begin{proof}
+%   First, the forward implication.
+%   Suppose $X$ is a second-countable Hausdorff space with functional structure $F$ that makes it an $n$-manifold.
+%   By definition, this means that each point has a neighborhood $U$ such that $(U, F_{U})$
+%   is isomorphic to $(V, C^{\infty}(V)) \subseteq (\mathbb{R}^{n}, C^{\infty})$.
+%   Such an isomorphism takes any map $F_{V} \ni f: V \to \mathbb{R}$ to $f \circ \phi: U \to \mathbb{R}$, which by definition is in $F_{U}$,
+%   and vice versa ($\phi^{-1}(V) = U$ because isomorphism $\Rightarrow$ bijective in concrete categories).
+%   Take the $f_{i}$ to be $\pi_{i} \circ \phi$, i.e. first map from $X$ into $\mathbb{R}^{n}$ by the sheaf isomorphism and project to the $i$th axis.
+%   Suppose $g \in F(U)$.
+%   Then $f \circ \phi^{-1}: V \to \mathbb{R}$ is a smooth function from $V \subseteq \mathbb{R}^{n}$ to $\mathbb{R}$,
+%   and has that $h(f_{1}(p), \ldots, f_{n}(p)) = h(\pi_{1}(\phi(p)), \ldots, \pi_{n}(\phi(p)))$
+%   % \[
+%   %   \begin{tikzcd}
+%   %     X \arrow[rd] \arrow[ld] \arrow[d] \\
+%   %     A & A \times B & B
+%   %   \end{tikzcd}
+%   % \]
+% \end{proof}
+
+
+% \begin{plm}[Bredon 2.2.2]
+%   Complete the discussion of the two definitions of smooth manifolds by showing that if one goes from one of the descriptions to the other,
+%   as indicated, and then back, you end up with the same structure as at the start.
+% \end{plm}
 
 \begin{plm}[Bredon 2.2.3]
   Show that a map $f: M \to N$ between smooth manifolds $M$ and $N$, with functional structures $F_{M}$ and $F_{N}$,
-  is smooth in the sheaf-morphism sense iff it is smooth in the chart sense.
+  is smooth in the sheaf-morphism sense iff it is smooth in the atlas sense.
 \end{plm}
+
+\begin{proof}
+  First, suppose the map $f: M \to N$ with functional structures $F_{M}$ and $F_{N}$ is smooth in the sense of inducing a morphism.
+  In other words, for all $V \in \mathcal{O}(N)$ and $g \in F_{M}(V)$ one has $g \circ f \in F_{M}(f^{-1}(V))$.
+  Since these are manifolds, there are isomorphisms of functional structure $\phi: M \to \mathbb{R}^{n}$ and $\psi: N \to \mathbb{R}^{n}$.
+  By the equivalence of the definition of manifolds, these isomorphisms of functional structure correspond to charts
+  when restricted to open sets in the manifolds.
+  By the universal propery of the product, we can rewrite the map $\psi \circ f \circ \phi^{-1}$ in the form
+  $([\pi_{1} \circ \psi] \circ f \circ \phi^{-1}, \ldots, [\pi_{n} \circ \psi]  \circ f \circ \phi^{-1})$.
+  Projections are (linear and therefore) $C^{\infty}$, so since $\psi$ is a morphism the function in brackets is in $F_{N}$.
+  Since $f$ is also a morphism, the function including one more composition is in $F_{M}$.
+  Since $\phi^{-1}$ is yet again a morphism, each coordinate function is in the functional structure on $\mathbb{R}^{n}$, i.e. is $C^{\infty}$.
+  A function is smooth on $\mathbb{R}^{n}$ iff each of its projections are smooth (i.e. all its partials exist)---so,
+  $\psi \circ f \circ \phi$ is smooth in the atlas sense.
+
+  Conversely, suppose $f : M \to N$ is smooth in the sense that for any charts $\phi, \psi$ of $U, V$ open in $M, N$, the map
+  $\psi \circ f \circ \phi^{-1}: \phi(U) \to \psi(V)$ is $C^{\infty}$ where defined.
+  Then $\phi$, $\psi$ induce isomorphisms $F_{M}(U)$ to $C^{\infty}(\phi(U))$ and $F_{N}(V)$ to $C^{\infty}(\psi(V))$
+  by the equivalence of the two definitions of manifolds; if $g \in F_{N}(V)$, then by definition of the functional structure induced by an atlas
+  $g = h \circ \psi$ for some $h \in C^{\infty}(\psi(V))$.
+  This clearly implies that $g \circ f = h \circ \psi \circ f \in F_{M}(f^{-1}(V))$  (in turn, since $g$ was arbitrary, that $f$ is a morphism),
+  because $h \circ \psi \circ f = a \circ \phi$ for some $a \in C^{\infty}(\phi(f^{-1}(V)))$
+  can be written $h \circ [\psi \circ f \circ \phi^{-1}] \in C^{\infty}(\phi(f^{-1}(V)))$;
+  this is immediate, since the bracketed quantity is smooth on all of $\phi(U)$ and $h$ is in $C^{\infty}(\psi(V))$.
+\end{proof}
 
 \begin{plm}[Bredon 2.2.4]
   Let $X$ be the graph of the real-valued function $\theta(x) = |x|$ of a real variable $x$.
@@ -44,4 +92,73 @@
   on some open set $V$ in the plane with $U = V \cap X$.
   Show that $X$ with this functional structure is \textbf{not} diffeomorphic to the real line with the usual $C^{\infty}$ structure.
 \end{plm}
+
+\begin{proof}
+  Consider the open ball $V$ in the plane containing the origin, and the function $f$ on it mapping each point to its $y$-coordinate.
+  This is clearly $C^{\infty}$---it's a projection.
+  Therefore, it's restriction to $U = V \cap X$ is in $F(U)$ by definition.
+  If some diffeomorphism $\phi: X \to \mathbb{R}$ existed, it must yield $f = g \circ \phi^{-1}$ for some $g \in C^{\infty}(\phi(U))$.
+  However, both functions have signature $\mathbb{R} \to \mathbb{R}$---the first is not $C^{\infty}$,
+  as it has a first derivative discontinuous at zero, so the other can't be $C^{\infty}$.
+  Accordingly, no such diffeomorphism exists.
+\end{proof}
+
+\begin{plm}[Bredon 2.4.1]
+  Consider the 3-sphere $S^{3}$ as the set of unit quaternions
+  \[
+    \{x + iy + jz + kw \mid x^{2} + y^{2} + z^{2} + w^{2} = 1\}.
+  \]
+  Let $\phi: U \to \mathbb{R}^{3}$  be $\phi(x + iy + jz + kw) = (y, z, w)$ where
+  \[
+    U = \{x + iy + jz + kw \in S^{3} \mid x  > 0\}.
+  \]
+  Consider $\phi$ as a chart.
+  For each $q \in S^{3}$, define a chart $\psi_{q}$ by $\psi_{q}(p) = \phi(q^{-1}p)$.
+  Show that this set of charts is an atlas for a smooth structure on $S^{3}$.
+\end{plm}
+
+\begin{proof}
+  First, we must note that the topology on quaternions comes from the norm induced by the inner product $\langle p, q \rangle = pq^{*}$,
+  where the conjugate is obtained by negating all three ``complex'' components of a quaternion.
+  This agrees with the topology induced as a subspace of $\mathbb{R}^{4}$, because writing out the norm yields exactly that of Euclidean space;
+  we may abusively regard sets and maps in the quaternions in either context, as convenient.
+  Unit quaternion (left-)multiplication is then a homeomorphism: it's certainly an isometry,
+  as for all $u \in S^{3}$ and $q \in \mathbb{H}$ one has
+  \[
+    \norm{uq} = \sqrt{uq(uq)^{*}} = \sqrt{uqq^{*}u^{*}} = \sqrt{u\norm{q}^{2}u^{*}} = \norm{u}\norm{q} = \norm{q}
+  \]
+  by the multiplicative property of conjugation and the fact that $S^{3}$ is defined by $\norm{u} = 1$;
+  all isometries are homeomorphisms.
+  $\phi$ is also a homeomorphism: it's the restriction of the projection map onto the $yzw$ hyperplane to $U$,
+  and so continuous (even smooth, by linearity); invertibility comes from noting
+  \[
+    \phi^{-1}(y, z, w) = \sqrt{1 - y^{2} - z^{2} - w^{2}} + iy + jz + kw.
+  \]
+  This inverse is itself continuous (indeed, also smooth) when viewed as a map $\mathbb{R}^{3} \to \mathbb{R}^{4}$
+  by the basic analyic theorems about those properties' stability under simple function-construction operations.
+  Since unit quaternions are invertible, $\psi_{q}$ is the composition of homeomorphisms and so is a homeomorphism for every $q$.
+
+  Clearly, every point $q$ is in the domain of the chart $\psi_{q}$; 1 is positive.
+
+  Given two charts $\psi_{q}$, $\psi_{q'}$, the transation map is given by $T = \psi_{q} \circ \psi_{q'}^{-1}(x) = \phi(q^{-1}q'\phi^{-1}(x))$.
+  Considering quaternions in terms of $\mathbb{R}^{4}$, unit quaternion multiplication fixes the origin, and so is an origin-preserving isometry.
+  This implies it's linear, and, accordingly, smooth.
+  The maps $\phi$ and $\phi^{-1}$ are as well, for the reasons noted above.
+  Putting everything together, $T$ is the composition of a whole bunch of smooth functions, and so is smooth.
+\end{proof}
+
+% \begin{plm}[Bredon 2.4.2]
+%   Let $X$ be a copy of the real line $\mathbb{R}$ and let $\phi: X \to \mathbb{R}$ be $\phi(x) = x^{3}$.
+%   Taking $\phi$ as a chart, this defines a smooth structure on $X$.
+%   Prove or disprove the following statements:
+%   \begin{enumerate}
+%   \item $X$ is diffeomorphic to $\mathbb{R}$;
+%   \item the identity map $X \to \mathbb{R}$ is a diffeomorphism;
+%   \item $\phi$ together with the identity map comprise an atlas;
+%   \item on the one-point compactification $X^{+}$ of $X$,  $\phi$ and $\psi$ give an atlas, where $\psi(x) = \frac{1}{x}$,
+%     for $x \neq 0, \infty$ and $\phi(\infty) = 0$.
+%   \end{enumerate}
+% \end{plm}
+
+
 \end{document}

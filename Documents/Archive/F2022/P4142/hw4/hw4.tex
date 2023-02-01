@@ -1,0 +1,452 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{tgpagella}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{minted}
+\usepackage{physics}
+\usepackage{siunitx}
+
+\newtheorem{plm}{Problem}
+\renewcommand*{\proofname}{Solution}
+
+\title{4142 HW 4}
+\author{Duncan Wilkie}
+\date{10 October 2022}
+
+\begin{document}
+
+\maketitle
+
+\begin{plm}
+  A spin-1/2 particle is in the state
+  \[
+    \chi = \frac{1}{\sqrt{6}}
+    \begin{pmatrix}
+      1 - i \\
+      2
+    \end{pmatrix}
+  \]
+  What are the probabilities a measurement of $S_{z}$ yields $\hbar / 2$ and $-\hbar / 2$?
+  What are the probabilities of a measurement of $S_{x}$?
+\end{plm}
+
+\begin{proof}
+  The two measurement values are the up and down eigenstates of spin, which is the basis with respect to which the state is represented.
+  The probabilities are then $|(1 - i)/\sqrt{6}|^{2} = \frac{1}{3}$ and $|2/\sqrt{6}|^{2} = \frac{2}{3}$.
+  A general spinor can be represented with respect to the eigenstates of $S_{x}$ as $\chi = \frac{(a+b)}{\sqrt{2}}\chi_{+}^{(x)}
+  + \frac{(a-b)}{\sqrt{2}}\chi_{-}^{(x)}$; accordingly, the probabilities that measurement of $S_{x}$ yields $\pm \hbar/2$ (the corresponding eigenvalues) are
+  \[
+    P(\chi_{+}^{(x)}) = |(a + b)/\sqrt{2}|^{2} = \frac{10}{12} = \frac{5}{6}
+  \]
+  and
+  \[
+    P(\chi_{-}^{(x)}) = |(a - b)/\sqrt{2}|^{2} = \frac{1}{6}
+  \]
+\end{proof}
+
+\begin{plm}
+  Find the eigenvalues and eigenstates of spin oriented in an arbitrary direction $(\theta, \phi)$.
+\end{plm}
+
+\begin{proof}
+  The unit vector in spherical coordinates is
+  \[
+    \hat{r} = \sin\theta\cos\phi\hat{i} + \sin\theta\sin\phi\hat{j} + \cos\theta\hat{k}
+  \]
+  A linear combination of the spin eigenstates by the above coefficients yields a general state:
+  \[
+    S_{r} = \sin\theta\cos\phi\frac{\hbar}{2}
+    \begin{pmatrix}
+      0 & 1 \\
+      1 & 0
+    \end{pmatrix}
+    + \sin\theta\sin\phi\frac{\hbar}{2}
+    \begin{pmatrix}
+      0 & -i \\
+      i & 0
+    \end{pmatrix}
+    + \cos\theta\frac{\hbar}{2}
+    \begin{pmatrix}
+      1 & 0 \\
+      0 & -1
+    \end{pmatrix}
+  \]
+  \[
+    = \frac{\hbar}{2}
+    \begin{pmatrix}
+      \cos\theta & \sin\theta\cos\phi - i\sin\theta\sin\phi \\
+      \sin\theta\cos\phi + i\sin\theta\sin\phi & -\cos\theta
+    \end{pmatrix}
+  \]
+  Computing the eigenvalues,
+  \[
+    \det|S_{r}-\lambda I| = \frac{\hbar}{2}\det
+    \begin{pmatrix}
+      \cos\theta - \frac{2}{\hbar}\lambda & \sin\theta\cos\phi - i\sin\theta\sin\phi \\
+      \sin\theta\cos\phi + i\sin\theta\sin\phi & -\cos\theta-\frac{2}{\hbar}\lambda
+    \end{pmatrix}
+    = -\cos^{2}\theta + \frac{4}{\hbar^{2}}\lambda^{2}
+    - \sin^{2}\theta
+  \]
+  \[
+    = \frac{4\lambda^{2}}{\hbar^{2}} - 1
+    \Rightarrow \lambda = \pm \hbar/2
+  \]
+  The eigenstates are
+  \[
+    \frac{\hbar}{2}
+    \begin{pmatrix}
+      \cos\theta & \sin\theta\cos\phi - i\sin\theta\sin\phi \\
+      \sin\theta\cos\phi + i\sin\theta\sin\phi & -\cos\theta
+    \end{pmatrix}
+    \begin{pmatrix}
+      a \\
+      b
+    \end{pmatrix}
+    = \pm\frac{\hbar}{2}
+    \begin{pmatrix}
+      a \\
+      b
+    \end{pmatrix}
+  \]
+  \[
+    \Leftrightarrow
+    \begin{pmatrix}
+      a\cos\theta + b\sin\theta\cos\phi - bi\sin\theta\sin\phi \\
+      a\sin\theta\cos\phi + ai\sin\theta\sin\phi -b\cos\theta
+    \end{pmatrix}
+    = \pm
+    \begin{pmatrix}
+      a \\
+      b
+    \end{pmatrix}
+  \]
+  \[
+    \pm a = a\cos\theta+b\sin\theta\cos\phi - bi\sin\theta\sin\phi,
+  \]
+  \[
+    \pm b = a\sin\theta\cos\phi + ai\sin\theta\sin\phi - b\cos\theta
+  \]
+  \[
+    \Rightarrow a = b[\sin\theta\cos\phi -i\sin\theta\sin\phi] / (\pm 1 - \cos\theta) = b\sin\theta e^{-i\phi} / (\pm 1 - \cos\theta),
+  \]
+  \[
+    \Rightarrow b = ae^{i\phi}(\pm 1 - \cos\theta) / \sin\theta
+  \]
+  There are double-angle identities $1 + \cos\theta = 2\cos^{2}\frac{\theta}{2}$, $1 - \cos\theta = 2\sin^{2}\frac{\theta}{2}$,
+  and $\sin\theta = 2\sin\frac{\theta}{2}\cos\frac{\theta}{2}$; accordingly, this becomes
+  \[
+    b = ae^{i\phi}(2\sin^{2}\frac{\theta}{2}) / (2\sin\frac{\theta}{2}\cos\frac{\theta}{2}) = ae^{i\phi}\tan\frac{\theta}{2}
+  \]
+  for the upper branch and
+  \[
+    b = ae^{i\phi}(-2\cos^{2}\frac{\theta}{2}) / (2\sin\frac{\theta}{2}\cos\frac{\theta}{2}) = -ae^{i\phi}\cot\frac{\theta}{2}
+  \]
+  for the lower.
+
+  The normalization condition $|a|^{2} + |b|^{2} = 1$ implies
+  \[
+    |a|^{2} + |a|^{2}\tan^{2}\frac{\theta}{2} = 1 \Rightarrow |a| = \cos\frac{\theta}{2}
+  \]
+  for the upper branch and
+  \[
+    |a|^{2} + |a|^{2}\cot^{2}\frac{\theta}{2} = 1 \Rightarrow |a| = \sin\frac{\theta}{2}
+  \]
+  for the lower.
+  Choosing the phase of the $a$'s to be zero,
+  \[
+    \chi^{+} =
+    \begin{pmatrix}
+      \cos\frac{\theta}{2} \\
+      \cos\frac{\theta}{2}e^{i\phi}\tan\frac{\theta}{2}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      \cos\frac{\theta}{2} \\
+      e^{i\phi}\sin\frac{\theta}{2}
+    \end{pmatrix}
+  \]
+  and
+  \[
+    \chi^{-} =
+    \begin{pmatrix}
+      \sin\frac{\theta}{2} \\
+      -\sin\frac{\theta}{2}e^{i\phi}\cot\frac{\theta}{2}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      \sin\frac{\theta}{2} \\
+      -e^{i\phi}\cos\frac{\theta}{2}
+    \end{pmatrix}
+  \]
+\end{proof}
+
+
+\begin{plm}
+  An electron is at rest in an oscillating magnetic field $\vec{B} = B_{0}\cos\omega t \hat{k}$.
+  Construct the Hamiltonian for this system.
+  Suppose the electron starts at $t = 0$ in the up-state with respect to $x$, that is,
+  \[
+    \chi = \frac{1}{\sqrt{2}}
+    \begin{pmatrix}
+      1 \\
+      1
+    \end{pmatrix}
+  \]
+  Solve the time-dependent Schr\"odinger equation to get the probability of finding the electron in the orthogonal ``down'' state at a later time $t$.
+\end{plm}
+
+\begin{proof}
+  The Hamiltonian is
+  \[
+    H = - \gamma\vec{S} \cdot \vec{B} = -\gamma B_{0}\cos\omega t S_{z}
+  \]
+  The corresponding time-dependent Schr\"odinger equation is
+  \[
+    i\hbar\pdv{\Psi}{t} = H\Psi
+    = -\gamma B_{0}\cos(\omega t)S_{z}\Psi
+  \]
+  This is two separable, first-order ODEs in $t$, easily solved:
+  \[
+    i\hbar\frac{\partial \Psi_{+}}{\partial t} = -\gamma B_{0}\cos(\omega t)\frac{\hbar}{2}\Psi_{+}
+    \Leftrightarrow \frac{\partial \Psi_{+}}{\Psi_{+}} = i\gamma B_{0}\cos(\omega t)/2\partial t
+    \Leftrightarrow \Psi_{+} = \Psi_{+}(0)e^{i\gamma B_{0}\sin(\omega t)/2}
+  \]
+  \[
+    i\hbar\frac{\partial \Psi_{-}}{\partial t} = \gamma B_{0}\cos(\omega t)\frac{\hbar}{2}\Psi_{-}
+    \Leftrightarrow \frac{\partial \Psi_{-}}{\Psi_{-}} = -i\gamma B_{0}\cos(\omega t)/2\partial t
+    \Leftrightarrow \Psi_{-} = \Psi_{-}(0)e^{-i\gamma B_{0}\sin(\omega t)/2}
+  \]
+  The probability of a down-state result for $S_{x}$ is
+  \[
+    \qty|(a - b) / \sqrt{2}|^{2} = \frac{1}{4}\qty|e^{i\gamma B_{0}\sin(\omega t)/2} - e^{-i\gamma B_{0}\sin(\omega t)/2}|^{2}
+  \]
+  \[
+    = \frac{1}{4}\qty|\cos(\gamma B_{0}\sin(\omega t) / 2) + i\sin(\gamma B_{0}\sin(\omega t) / 2) - \cos(-\gamma B_{0}\sin(\omega t) / 2)
+    - i\sin(-\gamma B_{0}\sin(\omega t) / 2)|^{2}
+  \]
+  \[
+    = \frac{1}{4}\qty|2i\sin(\gamma B_{0}\sin(\omega t) / 2)|^{2} = \sin^{2}(\gamma B_{0}\sin(\omega t) / 2)
+  \]
+\end{proof}
+
+\begin{plm}
+  Find the eigenvalues and eigenvectors of
+  \[
+    A =
+    \begin{pmatrix}
+      1 & 1 & 1 & 1 \\
+      1 & 1 & 1 & 1 \\
+      1 & 1 & 1 & 1 \\
+      1 & 1 & 1 & 1
+    \end{pmatrix}
+  \]
+\end{plm}
+
+\begin{proof}
+  It's a simple matter: for $v \neq 0$,
+  \[
+    Av = \lambda v \Leftrightarrow Av = \lambda Iv \Leftrightarrow (A-\lambda I) v = 0 \Leftrightarrow \det|A - \lambda I| = 0,
+  \]
+  with the last equality because invertibility is equivalent to the determinant being nonzero,
+  and the proceeding statement says both $v$ and $0$ map to $0$, so $A - \lambda I$ isn't injective, and therefore isn't invertible.
+  Accordingly, we take
+  \[
+    \det
+    \begin{pmatrix}
+      1 - \lambda & 1 & 1 & 1 \\
+      1 & 1 - \lambda & 1 & 1 \\
+      1 & 1 & 1 - \lambda & 1 \\
+      1 & 1 & 1 & 1 - \lambda
+    \end{pmatrix}
+  \]
+  \[
+    = (1-\lambda)\det
+    \begin{pmatrix}
+      1 - \lambda & 1 & 1 \\
+      1 & 1 - \lambda & 1 \\
+      1 & 1 & 1 - \lambda
+    \end{pmatrix}
+    - \det
+    \begin{pmatrix}
+      1 & 1 & 1 \\
+      1 & 1 - \lambda & 1 \\
+      1 & 1 & 1 - \lambda
+    \end{pmatrix}
+    + \det
+    \begin{pmatrix}
+      1 & 1 - \lambda & 1 \\
+      1 & 1 & 1 \\
+      1 & 1 & 1 - \lambda
+    \end{pmatrix}
+  \]
+  \[
+    - \det
+    \begin{pmatrix}
+      1 & 1 - \lambda & 1 \\
+      1 & 1 & 1 - \lambda \\
+      1 & 1 & 1
+    \end{pmatrix}
+  \]
+  Since permutation of the rows and columns changes the sign of the determinant,
+  \[
+    = (1-\lambda)\det
+    \begin{pmatrix}
+      1 - \lambda & 1 & 1 \\
+      1 & 1 - \lambda & 1 \\
+      1 & 1 & 1 - \lambda
+    \end{pmatrix}
+    - 3\det
+    \begin{pmatrix}
+      1 & 1 & 1 \\
+      1 & 1 - \lambda & 1 \\
+      1 & 1 & 1 - \lambda
+    \end{pmatrix}
+  \]
+  \[
+    =(1 - \lambda)\qty[(1 - \lambda)[(1 - \lambda)^{2} - 1] - (1-\lambda - 1) + (1 - [1 - \lambda])] \]
+  \[- 3\qty[[(1-\lambda)^{2} - 1] - (1 - \lambda - 1) + ( 1 - (1 - \lambda))]
+  \]
+  \[
+    = (1 - \lambda)\qty[(1 - \lambda)(\lambda^{2}-2\lambda) + 2\lambda] - 3\qty[ 2\lambda + \lambda^{2} + 2\lambda]
+  \]
+  \[
+    = (1 - \lambda)\qty[-\lambda^{3} + 2\lambda^{2} + \lambda^{2} - 2\lambda + 2 \lambda] - 3\qty[\lambda^{2}]
+    = \lambda^{4} - 3\lambda^{3} - \lambda^{3} + 3\lambda^{2}- 3\lambda^{2}
+  \]
+  \[
+    = \lambda ^{4} - 4\lambda^{3}  =  \lambda^{3}(\lambda - 4)
+  \]
+  The eigenvalues are therefore 0 (with multiplicity 3) and 4.
+  One can guess eigenvectors due to the simple form of the matrix:
+  \[
+    \begin{pmatrix}
+      1 \\
+      -1 \\
+      0 \\
+      0
+    \end{pmatrix},
+  \]
+  \[
+    \begin{pmatrix}
+    1 \\
+    0 \\
+    -1 \\
+    0
+    \end{pmatrix},
+  \]
+  and
+  \[
+    \begin{pmatrix}
+      1 \\
+      0 \\
+      0 \\
+      -1
+    \end{pmatrix}
+  \]
+  have eigenvalue 0, and
+  \[
+    \begin{pmatrix}
+      1 \\
+      1 \\
+      1 \\
+      1
+    \end{pmatrix}
+  \]
+  has eigenvalue 4.
+\end{proof}
+
+\begin{plm}
+  Instead of the $z$-representation of Pauli matrices with $\sigma_{z}$ diagonal,
+  suppose you transformed to the $x$-representation by diagonalizing $\sigma_{x}$.
+  Construct explicitly the similarity transformation that accomplishes this,
+  and then examine what happens to the other two Pauli matrices in this new representation.
+  Examine the result to see its geometrical interpretation.
+\end{plm}
+
+\begin{proof}
+  \[
+    \sigma_{x} =
+    \begin{pmatrix}
+      0 & 1 \\
+      1 & 0
+    \end{pmatrix}
+  \]
+  We want to find $P$ such that
+  \[
+    P^{-1}\sigma_{x}P = D
+  \]
+  where $D$ is some diagonal matrix with eigenvalue entries on the diagonal.
+  Left-canceling $P^{-1}$,
+  \[
+    \sigma_{x}P = PD
+    \Leftrightarrow  \sigma_{x} P_{i} = \lambda_{i}P_{i}
+  \]
+  where $P_{i}$ is the $i$th column vector of $P$ and $\lambda_{i}$ is the sole entry in the $i$th column (or row) of $D$.
+  The problem then reduces to finding eigenvalues and eigenvectors of $\sigma_{x}$; by inspection,
+  $
+  \begin{pmatrix}
+    1 \\
+    1
+  \end{pmatrix}
+  $
+  and
+  $
+  \begin{pmatrix}
+    1 \\
+    -1
+  \end{pmatrix}
+  $
+  are eigenvectors, with eigenvalues 1 and $-1$, respectively.
+  Accordingly,
+  \[
+    D =
+    \begin{pmatrix}
+      1 & 0 \\
+      0 & -1
+    \end{pmatrix}
+  \]
+  and
+  \[
+    P =
+    \begin{pmatrix}
+      1 & 1 \\
+      1 & -1
+    \end{pmatrix}
+  \]
+  The conjugacy action of $P$ on the spin matrices is
+  \[
+    \sigma_{x} \mapsto
+    \begin{pmatrix}
+      1 & 0 \\
+      0 & -1
+    \end{pmatrix}
+    = \sigma_{z}
+  \]
+  \[
+    \sigma_{y} \mapsto
+    \begin{pmatrix}
+      0 & i \\
+      -i & 0
+    \end{pmatrix}
+    = -\sigma_{y}
+  \]
+  \[
+    \sigma_{z} \mapsto
+    \begin{pmatrix}
+      0 & 1 \\
+      1 & 0
+    \end{pmatrix}
+    = \sigma_{x}
+  \]
+  This is the qualitative result expected \textit{ab initio}: the choice of the $z$-axis to align spin along is arbitrary,
+  and choosing to change it mid-problem should yield broadly consistent characterization of spin.
+  Unexpected, however, is the change in sign of the $\sigma_{y}$ matrix.
+  It appears this diagonalization does something like changing the chirality of the coordinate system when rotating
+  the $x$-axis onto the $z$-axis.
+\end{proof}
+\end{document}

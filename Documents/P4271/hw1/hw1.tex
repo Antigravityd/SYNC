@@ -1,0 +1,287 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{tgpagella}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{minted}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{mhchem}
+
+\sisetup{detect-all}
+\newtheorem{plm}{Problem}
+\renewcommand*{\proofname}{Solution}
+
+
+\title{4271 HW 1}
+\author{Duncan Wilkie}
+\date{1 February 2023}
+
+\begin{document}
+
+\maketitle
+
+\begin{plm}
+  Calculate the average binding energy for \ce{^{40}K}.
+\end{plm}
+
+\begin{proof}
+  Applying the binding energy formula,
+  \[
+    B(19, 40) = \qty[ZM(\ce{^{1}H}) + (A - Z)M_{n} - M(A, Z)] \cdot c^{2}
+  \]
+  \[
+    = \qty[(19)(\SI{938.783}{MeV/c^{2}}) + (40 - 19)(\SI{939.565}{MeV/c^{2}}) - (\SI{39.963998}{u})(\SI{931.49432}{MeV/c^{2}u})] \cdot c^{2}
+  \]
+  \[
+    = \SI{341.5}{MeV}.
+  \]
+\end{proof}
+
+\begin{plm}
+  The mass of \ce{^{74}Ge} is \SI{73.921177}{u}.
+  \begin{enumerate}
+  \item Calculate its mass defect in \si{MeV/c^2}.
+  \item Calculate its binding energy in \si{MeV}.
+  \item What is the binding energy per nucleon?
+  \end{enumerate}
+\end{plm}
+
+\begin{proof}
+  The mass defect is
+  \[
+    \Delta = (M(A, Z) - A)c^{2} = (\SI{73.921177}{u} - \SI{74}{u})(\SI{931.49}{MeV/u}) = \SI{-73.423}{MeV}.
+  \]
+  The binding energy in terms of the mass defect is
+  \[
+    B(32, 74) = \qty[ZM(\ce{^{1}H}) + (A - Z)M_{n} - \qty(A + \frac{\Delta}{c^{2}})]c^{2}
+  \]
+  \[
+    = 32(\SI{938.783}{MeV}) + (74 - 32)(\SI{939.565}{MeV}) - \qty(74(\SI{931.49}{MeV/u}) - \SI{73.423}{MeV})
+    = \SI{645.95}{MeV}.
+  \]
+  There are 74 nucleons, so the binding energy per nucleon is \SI{8.729}{MeV}.
+\end{proof}
+
+\begin{plm}
+  \;
+  \begin{enumerate}
+  \item Calculate the energy released in the beta decay of \ce{^{32}P}.
+  \item If the resulting beta particle has energy \SI{650}{keV}, how much energy does the antineutrino have?
+  \end{enumerate}
+\end{plm}
+
+\begin{proof}
+  This is a $\beta^{-}$ decay, because the nucleus has a neutron excess; its equation is
+  \[
+    \ce{^{32}P -> ^{32}S + e^{-} + \bar{\nu}_{e}}.
+  \]
+  The energy released in the $\beta$-decay can be deduced from the difference in the atomic masses:
+  \[
+    Q = m(15, 17)c^{2} - m(16, 16)c^{2}
+    = (\SI{31.973907}{u})(\SI{931.49}{MeV/u}) - (\SI{31.972071}{u})(\SI{931.49}{MeV/u})
+  \]
+  \[
+    = \SI{1.71}{MeV}.
+  \]
+  Because the mass of the nucleus is large, the energy imparted by the recoil from the ejection is negligible.
+  Accordingly, the released energy is approximately the sum of that in the two ejected particles; the neutrino energy can then be estimated to be
+  \[
+    E(\bar{\nu}_{e}) = Q - E(e^{-}) = \SI{1.71}{MeV} - \SI{0.650}{MeV} = \SI{1.06}{MeV}.
+  \]
+\end{proof}
+
+\begin{plm}
+  Use the semi-empirical mass formula to estimate the prompt energy released in spontaneous fission of \ce{^{239}Pu} as
+  \begin{center}
+    \ce{^{239}Pu -> ^{112}Pd + ^{124}Cd + 3n}
+  \end{center}
+\end{plm}
+
+\begin{proof}
+  Applying the semi-empirical mass formula to the initial case, which has $f_{5} = 0$ since the mass number is odd,
+  \[
+    M(94, 239) = ZM(\ce{^{1}H}) + (A - Z)(M_{n}) - a_{v}A + a_{s}A^{2/3} + a_{C}\frac{Z^{2}}{A^{1/3}} + a_{a}\frac{(Z - A/2)^{2}}{A}
+  \]
+  \[
+     = 94(\SI{938.783}{MeV/c^{2}}) + 145(\SI{939.565}{MeV/c^{2}}) - 15.56(239) + 17.23(239)^{2/3} + 0.697\frac{(94)^{2}}{(239)^{1/3}}
+   \]
+   \[
+     + 93.14\frac{(94 - 239/2)^{2}}{239}
+   \]
+   \[
+     = \SI{222.673}{GeV/c^{2}}
+   \]
+   The associated mass defect is
+   \[
+     \Delta = [M(94, 239) - A]c^{2} = \SI{222.673}{GeV} - (\SI{239}{u})(\SI{931.49}{MeV/u}) = \SI{47.00}{MeV}
+   \]
+   To calculate the final energy, we must calculate the energy of each of the components.
+   Using the formula above,
+   \[
+     M(46, 112) = 46(\SI{938.783}{MeV/c^{2}}) + 66(\SI{939.565}{MeV/c^{2}}) - 15.56(112) + 17.23(112)^{2/3} + 0.697\frac{(46)^{2}}{(112)^{1/3}}
+   \]
+   \[
+     + 93.14\frac{(46 - 112/2)^{2}}{112} - \frac{11.2}{(112)^{1/2}}
+   \]
+   \[
+     = \SI{104.241}{GeV/c^{2}}
+     \Rightarrow \Delta = \SI{104.241}{GeV} - 112(\SI{931.49}{MeV/u}) = \SI{-85.88}{MeV}
+   \]
+   \[
+     M(48, 124) = 48(\SI{938.783}{MeV/c^{2}}) + 76(\SI{939.565}{MeV/c^{2}}) - 15.56(124) + 17.23(124)^{2/3} + 0.697\frac{(48)^{2}}{(124)^{1/3}}
+   \]
+   \[
+     + 93.14\frac{(48 - 124/2)^{2}}{124} - \frac{11.2}{(124)^{1/2}}
+   \]
+   \[
+     = \SI{124.831}{GeV/c^{2}}
+     \Rightarrow \Delta = \SI{115.436}{GeV} - 124(\SI{931.49}{MeV/u}) = \SI{-68.97}{MeV}
+   \]
+   \[
+     3M_{n} = 3(\SI{939.565}{MeV/c^{2}}) = \SI{2.81}{GeV/c^{2}}
+     \Rightarrow \Delta = \SI{2.81}{GeV/c^{2}} - 3(\SI{931.49}{MeV/u}) = \SI{15.53}{MeV}
+   \]
+   The total yield is then
+   \[
+     Q = \Delta(\ce{^{239}Pu}) - \Delta(\ce{^{112}Pd + ^{134}Cd + 3n})
+     = \SI{47.00}{MeV} - (\SI{-85.88}{MeV} - \SI{68.97}{MeV} + \SI{15.53}{MeV})
+   \]
+   \[
+     = \SI{186}{MeV}
+   \]
+\end{proof}
+
+\begin{plm}
+  Use \textit{accurate} masses from the 2021 atomic mass evaluation to calculate the actual prompt energy released in problem 4.
+  Compare the answers.
+  How different are they?
+\end{plm}
+
+\begin{proof}
+  According to the tabulated mass defects,
+  \[
+     Q = \Delta(\ce{^{239}Pu}) - \Delta(\ce{^{112}Pd + ^{124}Cd + 3n})
+     = \SI{48.59}{MeV} - (\SI{-86.32}{MeV} - \SI{76.70}{MeV} + \SI{15.53}{MeV})
+   \]
+   \[
+     = \SI{196}{MeV}
+   \]
+   These are different by \SI{10}{MeV} or 5\%.
+\end{proof}
+
+\begin{plm}
+  Following spontaneous fission from the last problem, a chain of beta decays converts the \ce{^{112}Pd} and \ce{^{124}Cd} to stable nuclei.
+  \begin{enumerate}
+  \item What are the final nuclei produced?
+  \item What is the total beta-delayed energy released in the beta-decay chains?
+    What is the ratio of beta-delayed to prompt energy released?
+  \item (Bonus) About how long does it take (on average) for all the energy to be released?
+  \end{enumerate}
+\end{plm}
+
+\begin{proof}
+  The decay chains are
+  \[
+    \ce{^{112}Pd -> ^{112}Ag + e^{-} + \bar{\nu}_{e} ->  ^{112}Cd + e^{-} + \bar{\nu}_{e}}
+  \]
+  \[
+    \ce{^{124}Cd -> ^{124}In + e^{-} + \bar{\nu}_{e} -> ^{124}Sn + e^{-} + \bar{\nu}_{e}}
+  \]
+  The beta-delayed energies of these chains are simply calculated from tabulated mass defects:
+  \[
+    Q = \Delta(\ce{^{112}Pd}) - \Delta(^{112}Cd) = \SI{-86.321}{MeV} - \SI{-90.574}{MeV} = \SI{4.25}{MeV}
+  \]
+  and
+  \[
+    Q = \Delta(\ce{^{124}Cd}) - \Delta(\ce{^{124}Sn}) = \SI{-76.699}{MeV} - \SI{-88.231}{MeV} = \SI{11.53}{MeV}
+  \]
+  The total beta-delayed energy is then \SI{15.79}{MeV}.
+  This is 8.1\% of the prompt energy.
+\end{proof}
+
+\begin{plm}
+  The isotope \ce{^{252}Cf} is commonly used to study the geology around underground wells due to the high number of neutrons emitted.
+  Each spontaneous fission of \ce{^{252}Cf} produces an average of 3.77 neutrons.
+  However, alpha decay dominates, with only 3.09\% of the decays being fission.
+  \begin{enumerate}
+  \item Calculate the activity (in Curies) of \ce{^{252}Cf} that would be requried to produce \SI{5e8}{neutrons/s}.
+  \item If we make such a source, the neutron flux will decrease over time as the \ce{^{252}Cf} decays.
+    How many \si{neutrons/s} will be produced 4 years later? ($t_{1/2} = \SI{2.645}{yr}$)
+  \end{enumerate}
+\end{plm}
+
+\begin{proof}
+  We want
+  \[
+    3.77 \cdot .0309   \cdot A = \SI{5e8}{}
+    \Leftrightarrow A = \frac{\SI{5e8}{}}{3.77 \cdot .0309} = \SI{4.292e9}{Bq} = \SI{.116}{Ci}.
+  \]
+  The proportion of californium remaining is $e^{-t\ln(2)/t_{1/2}} = e^{-(4)\ln(2)/(2.645)} = 0.351$; accordingly, since everything else stays the same,
+  the production is $0.351(\SI{5e8}{}) = \SI{175.2e6}{neutrons/s}$.
+\end{proof}
+
+\begin{plm}
+  The oldest formerly living objects that can be measured by \ce{^{14}C} dating are about \SI{50000}{yo}.
+  \begin{enumerate}
+  \item What is the ratio of \ce{^{14}C/^{12}C} in such a sample?
+  \item Assume the natural abundance ratio in the atmosphere is \SI{1.5e-12}{}.
+    If you have to count 25 atoms of \ce{^{14}C} to make a measurement (20\% accuracy),
+    how much mass of carbon would you need to date a \SI{50000}{yo} object?
+  \end{enumerate}
+\end{plm}
+
+\begin{proof}
+  Given the half-life of $\ce{^{14}C}$ being \SI{5700}{y}, the proportion remaining after \SI{50000}{y} is
+  \[
+    \frac{N}{N_{0}} = e^{-t\ln(2)/t_{1/2}} = e^{-(\SI{50000}{y})\ln(2)/(\SI{5700}{y})} = 0.00229.
+  \]
+  We want
+  \[
+    0.00229(\SI{1.5e-12}{})n_{C} = 25
+    \Leftrightarrow n_{C} = \frac{25}{(0.00229)(\SI{1.5e-12}{})} = \SI{7.278e15}{atoms}
+  \]
+  \[
+    = \SI{1}{g/mol}\cdot \frac{\SI{7.278e15}{atoms}}{\SI{6.02e23}{atoms/mol}} = \SI{12.1}{ng}
+  \]
+\end{proof}
+
+\begin{plm}
+  The Cassini spacecraft went into orbit around the planet Saturn in July 2004, after a nearly seven-year journey from Earth.
+  On-board electrical systems were powered by heat from three radioisotope thermoelectric generators,
+  which together utilized a total of \SI{32.7}{kg} of \ce{^{238}Pu}, encapsulated as \ce{PuO_2}.
+  The isotope has a half-life of \SI{86.4}{y} and emits an alpha particle with an average energy of \SI{5.49}{MeV}.
+  \begin{enumerate}
+  \item How much total thermal power is generated in the spacecraft?
+  \item To see why RTGs are so attractive, calculate the solar panel area needed to produce the same amount of wattage at the distance of Saturn.
+    Assume your solar panel is 10\% efficient and that the Sun's luminosity is \SI{3.8e26}{W}.
+  \end{enumerate}
+\end{plm}
+
+\begin{proof}
+  The total number of atoms of $\ce{^{238}Pu}$ intially on the spacecraft is
+  \[
+    N = \frac{3 \cdot \SI{32.7}{kg}}{\SI{0.001}{kg / mol}} \cdot \SI{6.02e23}{atoms / mol} = \SI{59.1e27}{atoms},
+  \]
+  leading to an activity of
+  \[
+    A = \lambda N = \frac{\ln 2}{t_{1/2}}N = \frac{\ln 2}{\SI{86.4}{y} \cdot \SI{365}{d/y} \cdot \SI{24}{h/d} \cdot \SI{3600}{s/h}}
+    \cdot \SI{59.1e27}{atoms}
+    = \SI{8.622e17}{Bq}.
+  \]
+  Each decay liberates $\SI{5.49}{MeV}$, so the total thermal power is
+  \[
+    P = (\SI{5.49}{MeV})(\SI{8.622e17}{Bq}) = \SI{4.733e18}{MeV/s} = \SI{757.3}{kW}.
+  \]
+
+  Saturn's orbit has semi-major axis \SI{1.434e12}{m}, and, accordingly, the power density at such a distance is
+  \[
+    P = \frac{\SI{3.8e26}{W}}{4\pi(\SI{1.434e12}{m})^{2}} = \SI{14.71}{W/m^{2}}.
+  \]
+  Ten percent of this is $\SI{1.471}{W/m^{2}}$---roughly six orders of magnitude smaller than the RTGs.
+\end{proof}
+
+\end{document}

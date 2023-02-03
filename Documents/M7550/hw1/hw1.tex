@@ -24,37 +24,41 @@
 
 \maketitle
 
-% \begin{plm}[Bredon 2.2.1]
-%   Show that a second-countable Hausdorff space $X$ with functional structure $F$ is an $n$-manifold
-%   $\Leftrightarrow$ every point in $X$ has a neighborhood $U$ such that there are functions $f_{1}, \ldots, f_{n} \in F(U)$
-%   such that: a real valued function $g$ on $U$ is in $F(U)$ iff there exists a smooth function $h(x_{1}, \ldots, x_{n})$
-%   of $n$ real variables satisfying $g(p) = h(f_{1}(p), \ldots, f_{n}(p))$ for all $p \in U$.
-% \end{plm}
+\begin{plm}[Bredon 2.2.1]
+  Show that a second-countable Hausdorff space $X$ with functional structure $F$ is an $n$-manifold
+  $\Leftrightarrow$ every point in $X$ has a neighborhood $U$ such that there are functions $f_{1}, \ldots, f_{n} \in F(U)$
+  such that: a real valued function $g$ on $U$ is in $F(U)$ iff there exists a smooth function $h(x_{1}, \ldots, x_{n})$
+  of $n$ real variables satisfying $g(p) = h(f_{1}(p), \ldots, f_{n}(p))$ for all $p \in U$.
+\end{plm}
 
-% \begin{proof}
-%   First, the forward implication.
-%   Suppose $X$ is a second-countable Hausdorff space with functional structure $F$ that makes it an $n$-manifold.
-%   By definition, this means that each point has a neighborhood $U$ such that $(U, F_{U})$
-%   is isomorphic to $(V, C^{\infty}(V)) \subseteq (\mathbb{R}^{n}, C^{\infty})$.
-%   Such an isomorphism takes any map $F_{V} \ni f: V \to \mathbb{R}$ to $f \circ \phi: U \to \mathbb{R}$, which by definition is in $F_{U}$,
-%   and vice versa ($\phi^{-1}(V) = U$ because isomorphism $\Rightarrow$ bijective in concrete categories).
-%   Take the $f_{i}$ to be $\pi_{i} \circ \phi$, i.e. first map from $X$ into $\mathbb{R}^{n}$ by the sheaf isomorphism and project to the $i$th axis.
-%   Suppose $g \in F(U)$.
-%   Then $f \circ \phi^{-1}: V \to \mathbb{R}$ is a smooth function from $V \subseteq \mathbb{R}^{n}$ to $\mathbb{R}$,
-%   and has that $h(f_{1}(p), \ldots, f_{n}(p)) = h(\pi_{1}(\phi(p)), \ldots, \pi_{n}(\phi(p)))$
-%   % \[
-%   %   \begin{tikzcd}
-%   %     X \arrow[rd] \arrow[ld] \arrow[d] \\
-%   %     A & A \times B & B
-%   %   \end{tikzcd}
-%   % \]
-% \end{proof}
+\begin{proof}
+  First, the forward implication.
+  Suppose $X$ is a second-countable Hausdorff space with functional structure $F$ that makes it an $n$-manifold.
+  By definition, this means that each point has a neighborhood $U$ such that $(U, F_{U})$
+  is isomorphic to $(V, C^{\infty}(V)) \subseteq (\mathbb{R}^{n}, C^{\infty})$.
+  Such an isomorphism takes any smooth map $f: V \to \mathbb{R}$ to $f \circ \phi: U \to \mathbb{R}$, which by definition is in $F_{U}$,
+  and vice versa ($\phi^{-1}(V) = U$ because isomorphism $\Rightarrow$ bijective in concrete categories).
+  Take the $f_{i}$ to be $\pi_{i} \circ \phi$, i.e. first map from $X$ into $\mathbb{R}^{n}$ by the sheaf isomorphism and project to the $i$th axis.
+  Suppose $g \in F(U)$.
+  Then $h = g \circ \phi^{-1}: V \to \mathbb{R}$ is a smooth function from $V \subseteq \mathbb{R}^{n}$ to $\mathbb{R}$,
+  and has that
+  \[
+    h(f_{1}(p), \ldots, f_{n}(p)) = h(\pi_{1}(\phi(p)), \ldots, \pi_{n}(\phi(p))) = g \circ \phi^{-1}(\pi_{1}(\phi(p)), \ldots, \phi_{n}(\phi(p))).
+  \]
+  By the univeral property of the product, this is $c \circ \phi^{-1}(\phi(p)) = g(p)$.
+
+  Conversely, suppose the other side holds.
+  Then the function $\phi = f_{1} \times \cdots \times f_{n}: U \to \mathbb{R}^{n}$ is an isomorphism of functional structure:
+  we have that that for all $g$ in $F(U)$ there exists $h \in C^{\infty}(V)$ (curried version of that given) such that $g = h  \circ \phi$,
+  the very definition of a morphism.
+  Similarly,
+\end{proof}
 
 
-% \begin{plm}[Bredon 2.2.2]
-%   Complete the discussion of the two definitions of smooth manifolds by showing that if one goes from one of the descriptions to the other,
-%   as indicated, and then back, you end up with the same structure as at the start.
-% \end{plm}
+\begin{plm}[Bredon 2.2.2]
+  Complete the discussion of the two definitions of smooth manifolds by showing that if one goes from one of the descriptions to the other,
+  as indicated, and then back, you end up with the same structure as at the start.
+\end{plm}
 
 \begin{plm}[Bredon 2.2.3]
   Show that a map $f: M \to N$ between smooth manifolds $M$ and $N$, with functional structures $F_{M}$ and $F_{N}$,

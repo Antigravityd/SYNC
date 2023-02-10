@@ -14,6 +14,7 @@
       \shift = #4;
       \discmid0 = \maxy - \discs + 0.5;
       \discmid1 = \maxy - \above - \discs - \shift + 0.5;
+      % given a node number and a side, produce TikZ coordinates
       function ntoxy(\n, \side) {
         if \side = 0 then { % left side
           return (0,{\maxy - \n + 1});
@@ -21,15 +22,17 @@
           return (\maxx,{\maxy - \n + 1});
         };
       };
+
+      % given an input node number, produce the output node coordinates
       function otherend(\n) {
-        if \n <= 7 then { % left side
+        if \n <= \points then { % left side
           if \n <= 2*\discs then { % disk point (always warp-free)
-            return ;
+            return \ntoxy(2*\discs - \n, 0);
           } else {
-            if \x > \points - 2*\disks - \above then { % above arc (always warp-free)
-              return (\maxx,{\maxy - (\shift - 1) - (\x - \below - 1)});
+            if \x <= \points - \below then { % above arc (always warp-free)
+              return \ntoxy(\points + \x - 2*\disks);
             } else { % below arc
-              if mod(\x - \shift, \points) > \x then { % modular wraparound, so this warps
+              if mod(\x + (\shift - 1) - 1, \points) + 1 < \x then { % modular wraparound, so this warps
                 return (\x,0);
               } else { % warp-free
                 return (\maxx,{\x - \shift + 1});

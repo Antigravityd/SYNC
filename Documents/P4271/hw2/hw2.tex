@@ -32,30 +32,128 @@
   \end{enumerate}
 \end{plm}
 
+\begin{proof}
+  The Coulomb potential is
+  \[
+    V(r) = \frac{1}{4\pi\epsilon_{0}}\frac{Z_{1}Z_{2}e^{2}}{r}.
+  \]
+  Whenever the reactants are close enough to make ``physical'' contact, the strong force kicks in;
+  the Coulomb potential at this radius is roughly the peak of the Coulomb barrier.
+  The radius of nuclei can be estimated as $r = \SI{1.2}{fm} \cdot A^{1/3}$.
+
+  This gives us sufficient information to compute:
+  \[
+    r_{p + p} = 2r_{p} = 2(\SI{1.2}{fm})(1)^{1/3} = \SI{2.4}{fm}
+    \Rightarrow E_{p + p} = \frac{1}{4\pi\epsilon_{0}}\frac{Z_{1}Z_{2}e^{2}}{r_{p + p}}
+    = \frac{1}{4\pi(\SI{8.85e-12}{F/m})}\frac{1 \cdot 1 \cdot (\SI{1.6e-19}{C})^{2}}{\SI{2.4}{fm}}
+  \]
+  \[
+    = \SI{9.6e-14}{J} = \SI{559}{keV}
+  \]
+  \[
+    r_{\ce{p + {}^{12}C}} = r_{p} + r_{\ce{^{12}C}} = \SI{1.2}{fm} + \SI{1.2}{fm} \cdot (12)^{1/3} = \SI{3.95}{fm}
+    \Rightarrow E_{\ce{p + ^{12}C}} = \frac{1}{4\pi\epsilon_{0}}\frac{Ze^{2}}{r_{\ce{p + ^{12}C}}}
+  \]
+  \[
+    = \frac{1}{4\pi(\SI{8.85e-12}{F/m})}\frac{1 \cdot 6 \cdot (\SI{1.6e-19}{C})^{2}}{\SI{3.95}{fm}}
+    = \SI{2.19}{MeV}
+  \]
+  \[
+    r_{\ce{^{4}He + ^{208}Pb}} = r_{\ce{^{4}He}} + r_{\ce{^{208}Pb}} = \SI{1.2}{fm} \cdot 4^{1/3} + \SI{1.2}{fm} \cdot 208^{1/3}
+    = \SI{9.01}{fm}
+  \]
+  \[
+    \Rightarrow E_{\ce{^{4}He + ^{208}Pb}} = \frac{1}{4\pi\epsilon_{0}}\frac{Z_{1}Z_{2}e^{2}}{r}
+    = \frac{1}{4\pi(\SI{8.85e-12}{F/m})}\frac{4 \cdot 208 \cdot (\SI{1.6e-19}{C})^{2}}{\SI{9.01}{fm}}
+    = \SI{133}{GeV}
+  \]
+\end{proof}
+
 \begin{plm}
   The cross section for charged-particle reactions is proportional to the probability of tunneling through the Coulomb barrier
-  given by the Gamow factor, which haas a convenient approximation:
+  given by the Gamow factor, which has a convenient approximation:
   \[
-    e^{-2\pi\eta} = e^{-2\pi  ZZZ_{1}Z_{2}e^{2}/\hbar\nu} = e^{-31.287Z_{1}Z_{2}\sqrt{\mu/E}}
+    e^{-2\pi\eta} = e^{-2\pi Z_{1}Z_{2}e^{2}/\hbar\nu} = e^{-31.287Z_{1}Z_{2}\sqrt{\mu/E}}
   \]
   where $\mu$ is the reduced mass in \si{amu} and $E$ is the center-of-mass energy in \si{keV}.
-  For the 3 cases you considered above, calculate the Gamow factor for an energy that is one-quarter the barrier energy you found in problem 1.,
+  For the 3 cases you considered above, calculate the Gamow factor for an energy that is one-quarter the barrier energy you found in problem 1.
 \end{plm}
+
+\begin{proof}
+  Plug-and-chug:
+  \[
+    \mu_{\ce{p + p}} = \frac{m_{p}m_{p}}{m_{p} + m_{p}} = \frac{m_{p}}{2} = \SI{0.5}{amu}
+    \Rightarrow G_{\ce{p + p}} = \exp\qty(-31.287 \cdot 1 \cdot 1 \sqrt{\frac{\SI{0.5}{amu}}{\SI{559}{keV} / 4}})
+    = \SI{0.94}{}
+  \]
+  \[
+    \mu_{\ce{p + ^{12}C}} = \frac{m_{p}m_{\ce{^{12}C}}}{m_{p} + m_{\ce{^{12}C}}} = \frac{\SI{1}{amu}\cdot\SI{12}{amu}}{\SI{1}{amu}+\SI{12}{amu}}
+    = \SI{0.92}{amu}
+    \Rightarrow G_{\ce{p + ^{12}C}} = \exp\qty(-31.287 \cdot 1 \cdot 6 \sqrt{\frac{\SI{0.92}{amu}}{\SI{2.91}{MeV} / 4}})
+  \]
+  \[
+    = \SI{0.81}{}
+  \]
+  \[
+    \mu_{\ce{^{4}He + ^{208}Pb}} = frac{m_{\ce{^{4}He}}m_{\ce{^{208}{Pb}}}}{m_{\ce{^{4}He}} + m_{\ce{^{208}{Pb}}}}
+    = \frac{\SI{4}{amu} \cdot \SI{208}{amu}}{\SI{4}{amu} + \SI{208}{amu}} = \SI{3.92}{amu}
+  \]
+  \[
+    \Rightarrow G_{\ce{^{4}He + ^{208}Pb}} = \exp\qty(-31.287 \cdot 4 \cdot 208 \sqrt{\frac{\SI{3.92}{amu}}{\SI{133}{GeV} / 4}})
+    = \SI{0.75}{}
+  \]
+\end{proof}
 
 \begin{plm}
   A \SI{2}{MeV} beam of protons bombards a \ce{^{16}O} target and the differential cross section is measured to be \SI{0.094}{b/sr}
   at a lab angle of $167^{\circ}$.
   \begin{enumerate}
-  \item What is the expected cross section if you assume Rutherford scattering?
-  \item What is the calculated Mott cross section?
+  \item What is the expected cross-section if you assume Rutherford scattering?
+  \item What is the calculated Mott cross-section?
   \item How do your answers to (a) and (b) differ from the measured cross section and why might they be different?
   \end{enumerate}
 \end{plm}
+
+\begin{proof}
+  Using the nonrelativistic Rutherford scattering formula (\SI{2}{MeV} is pretty slow),
+  \[
+    \qty(\dv{\sigma}{\Omega})_{\text{Rutherford}} = \frac{(zZe^{2})^{2}}{(4\pi\epsilon_{0})^{2} \cdot (4E_{kin})^{2} \sin^{4}\frac{\theta}{2}}
+    = \frac{(1 \cdot 8 (\SI{1.6e-19}{C})^{2})^{2}}{(4\pi \cdot \SI{8.85e-12}{F/m})^{2} \cdot (4 \cdot \SI{2}{MeV})^{2}\sin^{4}\frac{167}{2}}
+    = \SI{0.0212}{b/sr}.
+  \]
+
+  The Mott cross-section can be computed by
+  \[
+    \qty(\dv{\sigma}{\Omega})_{\text{Mott}} = \qty(\dv{\sigma}{\Omega})_{\text{Rutherford}} \cdot \cos^{2}\frac{\theta}{2}
+    = (\SI{0.0212}{b/sr}) \cdot \cos^{2}\frac{167}{2} = \SI{2.72e-4}{b/sr}.
+  \]
+  The Rutherford cross-section is within an order of magnitude, whereas the Mott cross-section is pretty far off.
+  The large discrepancy in the Mott cross-section is expected, since it's designed to account for spin effects in relativistic fermions,
+  and this is a nonrelativistic boson scattering.
+  The Ruterford cross-section doesn't take into account any spin effects, so that may be the source of its discrepancy.
+\end{proof}
 
 \begin{plm}
   Assume that $^{197}Au$ is made from a solid, uniform sphere of nuclear material with a radius of $R = \SI{1.2}{fm} \cdot A^{1/3}$.
   Calculate the form factor $F(q)$.
 \end{plm}
+
+\begin{proof}
+  The charge distribution is
+  \[
+    \rho(r) =
+    \begin{cases}
+      \frac{Ze}{4\pi R^{3}/3} & r \leq R \\
+      0 & r > R
+    \end{cases}
+  \]
+  The nonzero density part can be computed to be $\frac{87 \cdot \SI{1.6e-19}{C}}{4\pi (\SI{1.2}{fm} \cdot 197^{1/3})/3} = \SI{4.76e-4}{C/m^{3}}$.
+  Conditionnal on the Born approximation and presuming minimal nuclear recoil, the Fourier transform of this is the form factor:
+  \[
+    F(q^{2}) = (2\pi)^{3} \int_{\mathbb{R}^{3}}
+  \]
+
+\end{proof}
 
 \begin{plm}
   Show that the mean-square charge radius of a uniformly charged sphere is $\expval{r^{2}} = 3R^{2}/5$.

@@ -1,4 +1,4 @@
-setxkbmap us -option compose:menu
+setxkbmap us -option ctrl:swapcaps
 xmodmap ~/.Xmodmap
 # emacs --daemon
 #/home/dnw/.fehbg &

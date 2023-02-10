@@ -25,19 +25,17 @@
   If $\phi: \mathbb{R}^{m} \to \mathbb{R}^{n}$ is a linear map and we identify $T_{p}(\mathbb{R}^{k})$ with $\mathbb{R}^{k}$
   by identifying $\pdv{x}$ with the $i$th standard basis vector, show that $\phi_{*}$ is just $\phi$.
 
-  In other words, using the $(d\phi)_{p}$ notation for $\phi_{*}$ at $p$, for any $p \in \mathbb{R}^{m}$, show that $(d\phi))_{p} = \phi$.
+  In other words, using the $(d\phi)_{p}$ notation for $\phi_{*}$ at $p$, for any $p \in \mathbb{R}^{m}$, show that $(d\phi)_{p} = \phi$.
   (Note that you are implicitly showing that $\phi$ is differentiable)
 \end{plm}
 
 \begin{proof}
-  One has by definition $\phi_{*}(D_{\gamma}) = D_{\phi \circ \gamma}$; letting this act on a function $f: M \to \mathbb{R}$,
+  The identification is given by considering paths through $p$ given by $\gamma_{v} = p + tv$, and noticing that $D_{\gamma_{v}} = v$.
+  By definition,
   \[
-    D_{\phi \circ \gamma}[f] = \pdv{t}f(\phi(\gamma_{1}(t)), \phi(\gamma_{2}(t)), \ldots, \phi(\gamma_{n}(t)))\bigg|_{t = 0}
+    \phi_{*}(D_{\gamma_{v}}) = D_{\phi \circ \gamma_{v}} = \dv{t}\phi(p + tv)\bigg|_{t = 0} = \dv{t}\qty[\phi(p) + t\phi(v)]\bigg|_{t = 0}
+    = \phi(v).
   \]
-  \[
-    = \sum_{i = 1}^{n} \pdv{f}{x_{i}}\bigg|_{t = 0}
-  \]
-
 \end{proof}
 
 \begin{plm}
@@ -45,18 +43,71 @@
   and that, for any $(p, q) \in \mathbb{R}^{m} \times \mathbb{R}^{n}$, we have $(d\phi)_{(p,q)}(x,  y) = \phi(p, y) + \phi(x, q)$.
 \end{plm}
 
+\begin{proof}
+  Writing elements of the domain $(u, v)$, we can define a natural vector space structure from the isomorphic space $\mathbb{R}^{n+m}$:
+  $a(u, v) + (u', v') = (au + u', av + v')$.
+  With respect to this, we can define a path through $(p, q)$ analogous to that above by $\gamma_{(u, v)}(t) = (p, q) + t(u, v)$.
+  Note that this vector space structure is used strictly to define $\gamma_{(u, v)}$; the result does not depend on it.
+  Similarly, one can immediately see that $D_{\gamma_{(u, v)}} = (u, v)$ and
+  \[
+    \phi_{*}(D_{\gamma_{(u, v)}}) = D_{\phi \circ \gamma_{(u, v)}} = \dv{t}\phi[(p, q) + t(u, v)]\eval_{t = 0} = \dv{t}\phi(p + tu, q + tv)\eval_{t = 0}
+  \]
+  \[
+    = \dv{t}\qty[\phi(p, q + tv) + \phi(tu, q + tv)]\eval_{t = 0}
+    = \dv{t}\qty[\phi(p, q) + \phi(p, tv) + \phi(tu, q) + \phi(tu, tv)]\eval_{t = 0}
+  \]
+  \[
+    = \dv{t}\qty[\phi(p, q) + t\phi(p, v) + t\phi(u, q) + t^{2}\phi(u, v)]\eval_{t = 0}
+    = \phi(p, v) + \phi(u, q) + 2t\phi(u, v)\eval_{t = 0}
+  \]
+  \[
+    = \phi(p, v) + \phi(u, q)
+  \]
+  which is of the desired form (despite my using different variables).
+\end{proof}
+
 \begin{plm}
   Let $M = M_{m,n}(\mathbb{R})$ be the set of $m \times n$ matrices with real entries.
-  Fix $k \leq \min{m,  n}$, and let $U_{k} = \{A \in MMMMMM \mid \rank(A) \geq q\}$.
+  Fix $k \leq \min{m,  n}$, and let $U_{k} = \{A \in M \mid \rank(A) \geq k\}$.
   Describe a $C^{\infty}$ structure for $U_{k}$.
-
-  Hint: prove that $U_{k}$ is open in $M$ by showing that th complement is closed, and identify $M$.
 \end{plm}
+
+\begin{proof}
+  The topology on the set of matrices is not specified, so I'll presume it's the one borrowed from Euclidean space
+  by considering matrices as vectors in $\mathbb{R}^{mn}$.
+  One can apply row- or column-reduction to matrices in $U_{k}$ (according to whichever dimension is the smallest).
+  Since there are $k$ linearly independent rows or columns, the reduced echelon form has a $k \times k$ identity submatrix in the initial part,
+  and an arbitrary matrix with $k$ entries one way and $\max{m, n} - k$ in the other left over.
+  Interpreting this left-over matrix as a vector in $\mathbb{R}^{k(\max{m, n} - k)}$, one has a map from $U_{k}$ to $\mathbb{R}^{k(\max{m, n} - k)}$:
+  reduce, and reinterpret.
+  The desired functional structure can then be the functional structure induced by this map.
+\end{proof}
 
 \begin{plm}
   The Grassman manifold or Grassmannian $G_{k,n}$: let $G_{k,n}$ be the set of all $k$-dimensional vector subspaces of $\mathbb{R}^{n}$.
   Show that $G_{k,n}$ is a smooth manifold of dimension $k(n - k)$.
-
 \end{plm}
+
+\begin{proof}
+  There is an onto correspondence of lists of $k$ linearly-independent vectors in $\mathbb{R}^{n}$ and its $k$-dimensional vector subspaces,
+  since such lists generate subspaces by spanning and every subspace can be so-generated since every subspace has a basis.
+  Such lists can be viewed as $k \times n$ matrices with real entries by just concatenating the column vectors wrt. the standard basis;
+  the condition that the list is linearly independent translates to these matrices having rank $k$, by definition of rank.
+  Noticing that this means that the space of such lists is $U_k$ from the previous problem, we can borrow the $C^{\infty}$ structure defined there.
+  Defining two elements of $U_{k}$ to be equivalent via $\sim$ if their column space is the same
+  (or, equivalently, if they have the same reduced column echelon form), the functional structure in the previous problem
+  becomes a smooth manifold on the quotient.
+  The resulting quotient is obviously in bijective correspondence with $G_{k, n}$, so we'll define everything on $G_{k, n}$ via this correspondence,
+  forgetting the difference and writing $G_{k, n} = U_{k} / \sim$.
+
+  It remains to prove that the map $f: U_{k} \to \mathbb{R}^{k(n - k)}$ actually gives local homeomorphisms.
+  We'll proceed by interpreting the map $f: U_{k} \to \mathbb{R}^{k(n - k)}$ given in the previous problem as a chart.
+  Applying $f$ and then mapping to the equivalence class containing that representative
+  is precisely the quotient map for the equivalence we've defined, with $\tau \sim \sigma$ iff their images are equal,
+  so the quotient topological space $G_{k, n}$ and $\mathbb{R}^{k(n-k)}$ are homeomorphic.
+  Of course, any restriction of a homeomorphism is also a homeomorphism, so the local homeomorphism condition is satisfied.
+  Certainly, every element of $G_{k, n}$ is in the domain of this chart.
+  The transition condition follows since these charts are invertible linear maps, making the transition functions smooth.
+\end{proof}
 
 \end{document}

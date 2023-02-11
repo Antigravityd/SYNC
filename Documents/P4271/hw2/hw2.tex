@@ -122,15 +122,16 @@
     = \SI{0.0212}{b/sr}.
   \]
 
-  The Mott cross-section can be computed by
+  For the Mott cross-section, we first need the relativistic $\beta$:
   \[
-    \qty(\dv{\sigma}{\Omega})_{\text{Mott}} = \qty(\dv{\sigma}{\Omega})_{\text{Rutherford}} \cdot \cos^{2}\frac{\theta}{2}
-    = (\SI{0.0212}{b/sr}) \cdot \cos^{2}\frac{167}{2} = \SI{2.72e-4}{b/sr}.
+    \beta = \frac{v}{c} \approx \frac{\sqrt{2E/m_{p}}}{c} = \SI{0.065}{}
   \]
-  The Rutherford cross-section is within an order of magnitude, whereas the Mott cross-section is pretty far off.
-  The large discrepancy in the Mott cross-section is expected, since it's designed to account for spin effects in relativistic fermions,
-  and this is a nonrelativistic boson scattering.
-  The Ruterford cross-section doesn't take into account any spin effects, so that may be the source of its discrepancy.
+  \[
+    \qty(\dv{\sigma}{\Omega})_{\text{Mott}} = \qty(\dv{\sigma}{\Omega})_{\text{Rutherford}} \cdot \qty(1 - \beta^{2}\sin^{2}\frac{\theta}{2})
+    = (\SI{0.0212}{b/sr}) \cdot \qty(1 - (\SI{0.065}{})^{2}\sin^{2}\frac{167}{2}) = \SI{0.0211}{b/sr}.
+  \]
+  This is within an order of magnitude, but barely.
+  The discrepancy may be attributable to nuclear recoil (1/16 isn't \textit{too} small a ratio), or charge inhomogeneity in the nucleus.
 \end{proof}
 
 \begin{plm}
@@ -148,16 +149,30 @@
     \end{cases}
   \]
   The nonzero density part can be computed to be $\frac{87 \cdot \SI{1.6e-19}{C}}{4\pi (\SI{1.2}{fm} \cdot 197^{1/3})/3} = \SI{4.76e-4}{C/m^{3}}$.
-  Conditionnal on the Born approximation and presuming minimal nuclear recoil, the Fourier transform of this is the form factor:
+  Conditional on the Born approximation and presuming minimal nuclear recoil, the Fourier transform of this is the form factor.
+  Going off of the book's statement of the form factor for homogeneous spheres
+  (to avoid a hard-to-spot Bessel-function computation I'd expect you to spare us from), the form factor is
   \[
-    F(q^{2}) = (2\pi)^{3} \int_{\mathbb{R}^{3}}
+    F(\vb{q}) = Ze\frac{3\hbar^{3}}{|\vb{q}|^{3}R^{3}}\qty(\sin\frac{|\vb{q}|R}{\hbar} - \frac{|\vb{q}|R}{\hbar}\cos\frac{|\vb{q}|R}{\hbar})
   \]
-
+  which computes to
+  \[
+    = \frac{\SI{7.71e-105}{}}{|\vb{q}|^{3}}\qty(\sin(\SI{6.65e19}{}|\vb{q}|) - \SI{6.65e19}{}|\vb{q}| \cos(\SI{6.65e19}{}|\vb{q}|))
+\]
 \end{proof}
 
 \begin{plm}
   Show that the mean-square charge radius of a uniformly charged sphere is $\expval{r^{2}} = 3R^{2}/5$.
 \end{plm}
+
+\begin{proof}
+  An exercise in probability theory and calculus, calculating the expectation of $r^{2}$ with a uniform volumetric pdf of radius $R$.
+  \[
+    \expval{r^{2}} = \int_{\mathbb{R}^{3}}r^{2}\frac{3}{4\pi R^{3}}\chi_{S}(r)dV
+    = \frac{3}{4\pi R^{3}}\int_{0}^{\pi}\int_{0}^{2\pi}\int_{0}^{R}r^{4}\sin\theta drd\theta d\phi
+    = \frac{3}{R^{3}}\qty(\frac{r^{5}}{5}\eval_{r = 0}^{r = R}) = \frac{3R^{2}}{5}
+  \]
+\end{proof}
 
 \begin{plm}
   A nuclear charge distribution more realistic than the uniformly charged distribution is the Fermi distribution,
@@ -165,8 +180,51 @@
   Find the value of $a$ if $t = \SI{2.3}{fm}$
 \end{plm}
 
+\begin{proof}
+  $t$ is the falloff parameter of the distribution, giving the separation between where $\rho$ is $10\%$ and $90\%$ of $\rho_{0}$;
+  call these $r_{1}$ and $r_{2}$, respectively.
+  We can then generate the equations
+  \[
+    \rho(r_{1}) = 0.1\rho_{0} = \frac{\rho_{0}}{1 + \exp\qty[(r_{1} - c) / a]}
+  \]
+  \[
+    \rho(r_{2}) = 0.9\rho_{0} = \frac{\rho_{0}}{1 + \exp\qty[(r_{2} - c) / a]}
+  \]
+  \[
+    t = \SI{2.3}{fm} = r_{2} - r_{1}
+  \]
+  Simplifying these,
+  \[
+    r_{1} = a\ln(9) + c
+  \]
+  \[
+    r_{2} = c -  a\ln(9)
+  \]
+  \[
+    \Rightarrow t = r_{2} - r_{1} = -a\ln(81) \Rightarrow a = \frac{t}{\ln(1/81)}
+    = \frac{\SI{2.3}{fm}}{\ln(1/81)} = \SI{-0.523}{fm}
+  \]
+
+\end{proof}
+
 \begin{plm}[Bonus]
   Evaluate $\expval{r^{2}}$ for the Fermi distribution in Problem 6.
 \end{plm}
+
+\begin{proof}
+  Another probability exercise.
+  \[
+    \expval{r^{2}} = \int_{\mathbb{R}^{3}}r^{2}\rho(r)dV = \rho_{0}\int_{0}^{\pi}\int_{0}^{2\pi}\int_{0}^{\infty}\frac{r^{2}}{1 + \exp[(r - c) / a]}dV
+    = 4\pi\rho_{0}a\int_{0}^{\infty}\frac{r^{4}}{1 + e^{(r - c) / a}}du
+  \]
+  Integrals of the form after the obvious $u$-sub are trancendental, in general, even with bounds from zero to infinity;
+  with the non-zero lower bound that $u$-sub generates, it's no doubt worse.
+  So, it doesn't pay to carry this further.
+  This integral can be readily computed via any favorite numerical method.
+  Here's mine, in Guile Scheme (complete overkill for the three digits of precision I tend to carry things to):
+  \inputminted[mathescape]{scheme}{integrate.scm}
+  I'm adjusting to a new computer setup, and can't actually \textit{execute} the forms above, which sucks.
+  In any case, I'm unable to disambiguate the integrand, as I can't seem to find $c$.
+\end{proof}
 
 \end{document}

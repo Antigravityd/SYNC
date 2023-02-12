@@ -19,6 +19,7 @@
     "siunitx"
     "mhchem")
    (LaTeX-add-amsthm-newtheorems
+    "thm"
     "plm"))
  :latex)
 

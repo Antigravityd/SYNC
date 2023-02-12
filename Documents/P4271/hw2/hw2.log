@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.5.9)  10 FEB 2023 21:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.5.9)  12 FEB 2023 08:53
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -810,7 +810,8 @@ Package mhchem Warning: You did not specify a 'version' option for the mhchem
 .
 
 )
-\c@plm=\count342
+\c@thm=\count342
+\c@plm=\count343
 runsystem(which pygmentize && touch hw2.aex)...executed.
 
 runsystem(rm hw2.aex)...executed.
@@ -818,20 +819,20 @@ runsystem(rm hw2.aex)...executed.
  (./hw2.aux)
 \openout1 = `hw2.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -871,16 +872,16 @@ LaTeX Font Info:    ... okay on input line 22.
 (/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf
 -dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count343
+\scratchcounter=\count344
 \scratchdimen=\dimen299
 \scratchbox=\box79
-\nofMPsegments=\count344
-\nofMParguments=\count345
+\nofMPsegments=\count345
+\nofMParguments=\count346
 \everyMPshowfont=\toks45
-\MPscratchCnt=\count346
+\MPscratchCnt=\count347
 \MPscratchDim=\dimen300
-\MPnumerator=\count347
-\makeMPintoPDFobject=\count348
+\MPnumerator=\count348
+\makeMPintoPDFobject=\count349
 \everyMPtoPDFconversion=\toks46
 )
 (/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf
@@ -903,23 +904,23 @@ File: siunitx-abbreviations.cfg 2017/11/26 v2.7k siunitx: Abbreviated units
 Dictionary: translator-basic-dictionary, Language: English 
 )
 
-Package chemgreek Info: Activating mapping `default' on line 22.
+Package chemgreek Info: Activating mapping `default' on line 23.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 22.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 23.
 
 
 (/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 22.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 23.
 
 
 (/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (49.1814pt too wide) detected at line 49
+Overfull \hbox (49.1814pt too wide) detected at line 50
 \OML/cmm/m/it/10 r[] \OT1/cmr/m/n/10 = 2\OML/cmm/m/it/10 r[] \OT1/cmr/m/n/10 = 
 2([] [])(1)[] = [] [] \OMS/cmsy/m/n/10 ) \OML/cmm/m/it/10 E[] \OT1/cmr/m/n/10 =
  [][] = [][]
@@ -929,18 +930,18 @@ Overfull \hbox (49.1814pt too wide) detected at line 49
 
 {/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf
 -dist/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (15.33533pt too wide) detected at line 93
+Overfull \hbox (15.33533pt too wide) detected at line 94
 \OML/cmm/m/it/10 ^^V[] \OT1/cmr/m/n/10 = [] = [] = [] [] \OMS/cmsy/m/n/10 ) \OM
 L/cmm/m/it/10 G[] \OT1/cmr/m/n/10 = [] []
  []
 
 
-Overfull \hbox (33.876pt too wide) detected at line 123
+Overfull \hbox (33.876pt too wide) detected at line 124
 [][] \OT1/cmr/m/n/10 = [] = [] = [] []\OML/cmm/m/it/10 :
  []
 
 
-Overfull \hbox (6.34283pt too wide) detected at line 132
+Overfull \hbox (6.34283pt too wide) detected at line 133
 [][] \OT1/cmr/m/n/10 = [][] \OMS/cmsy/m/n/10 ^^A [] \OT1/cmr/m/n/10 = ([] []) \
 OMS/cmsy/m/n/10 ^^A [] \OT1/cmr/m/n/10 = [] []\OML/cmm/m/it/10 :
  []
@@ -1026,10 +1027,10 @@ LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
 
 [5]) [6] (./hw2.aux) ) 
 Here is how much of TeX's memory you used:
- 20800 strings out of 478994
- 443968 string characters out of 5833535
- 773292 words of memory out of 5000000
- 37893 multiletter control sequences out of 15000+600000
+ 20806 strings out of 478994
+ 443999 string characters out of 5833535
+ 773325 words of memory out of 5000000
+ 37899 multiletter control sequences out of 15000+600000
  439819 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  113i,16n,116p,403b,753s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1064,7 +1065,7 @@ onts/type1/public/tex-gyre/qplb.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibb
 q-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/tex-gyre/qplr.pfb>
 </gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf
 -dist/fonts/type1/public/tex-gyre/qplri.pfb>
-Output written on hw2.pdf (6 pages, 314267 bytes).
+Output written on hw2.pdf (6 pages, 323215 bytes).
 PDF statistics:
  99 PDF objects out of 1000 (max. 8388607)
  72 compressed objects within 1 object stream

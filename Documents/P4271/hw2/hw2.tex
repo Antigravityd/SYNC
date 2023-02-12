@@ -12,6 +12,7 @@
 \usepackage{mhchem}
 
 \sisetup{detect-all}
+\newtheorem{thm}{Theorem}
 \newtheorem{plm}{Problem}
 \renewcommand*{\proofname}{Solution}
 
@@ -225,6 +226,48 @@
   \inputminted[mathescape]{scheme}{integrate.scm}
   I'm adjusting to a new computer setup, and can't actually \textit{execute} the forms above, which sucks.
   In any case, I'm unable to disambiguate the integrand, as I can't seem to find $c$.
+\end{proof}
+
+\begin{proof}[Addenum]
+  I've found a new toy to play with.
+  \begin{thm}[Ramanujan's Master Theorem]
+    Holomorphic functions of $-z$ have simple Mellin transforms; namely, if $f(z): \mathbb{C} \to \mathbb{C}$ is differentiable with
+    $f(z) = \sum_{k = 0}^{\infty} \frac{a_{k}}{k!}(-z)^{k}$, where $a_{k}$ is given by an invertible transition rule $\sigma: a_{k} \mapsto a_{k+1}$,
+    then
+    \[
+      \int_{0}^{\infty}x^{t-1}f(x)dx = \Gamma(t)a_{-t}.
+    \]
+  \end{thm}
+  There's a general formula, derivable through rearrangement of formal power series,
+  \begin{thm}
+    Letting $f(x) = \sum_{n = 0}^{\infty}b_{n}x^{n}$ and $\frac{1}{f(x)} = \sum_{n = 0}^{\infty}d_{n}x^{n}$, one has
+    \[
+      d_{n} =
+      \begin{cases}
+        \frac{1}{b_{0}} & n = 0 \\
+        -\sum_{k = 0}^{n-1}\frac{d_{k}}{b_{0}}b_{n - k} & n \geq 1
+      \end{cases}
+    \]
+    Or, eliminating the recursion via induction,
+    \[
+      d_{n} = \sum_{|\alpha| = n}(-1)^{l(\alpha)}\frac{b_{\alpha}}{b_{0}^{l(\alpha) - 1}} = (-1)^{n}\sum_{|\alpha| = n}(-1)^{l(\alpha) - n}
+      \frac{b_{\alpha}}{(b_{0})^{l(\alpha) - 1}}
+    \]
+    where $\alpha$ is a natural multi-index of length $l(\alpha)$, $|\alpha|$ is the sum of all the terms of $\alpha$,
+    and $b_{\alpha}$ is the product of $b_{\alpha_{i}}$.
+  \end{thm}
+  A natural extension of $d_{n}$ to negative $n$ is made by negating every entry of all multi-indices with $|\alpha| = -n$,
+  so they can sum to negative values; it remains to be proven that this agrees with the state transition, but if it doesn't, that'd really suck.
+
+  Accordingly, the function $f(x) = \frac{1}{1 + e^{x}}$ has Maclaurin expansion coefficients
+  \[
+    a_{n} = (-1)^{n}\sum_{|\alpha| = n}\frac{(-1)^{l(\alpha) - n}}{2^{l(\alpha) - 1}\prod_{\alpha}(\alpha_{i}!)}
+  \]
+  This allows us to compute
+  \[
+    \int_{0}^{\infty}\frac{x^{2}}{1 + e^{x}}dx = \Gamma(3) \cdot \qty[- \sum_{|\alpha| = - 3}\frac{(-1)^{l(\alpha) - 3}}{2^{l(\alpha) - 1}}
+    \prod_{\alpha}(\alpha_{i}!)]
+  \]
 \end{proof}
 
 \end{document}

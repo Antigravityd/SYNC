@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.5.9)  10 FEB 2023 10:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.5.9)  13 FEB 2023 10:17
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -774,6 +774,7 @@ Package: l3keys2e 2021-03-12 LaTeX2e option processing using LaTeX3 keys
 Package: translator 2020-08-03 v1.12c Easy translation of strings in LaTeX
 ))
 \c@plm=\count338
+\c@lem=\count339
 runsystem(which pygmentize && touch hw2.aex)...executed.
 
 runsystem(rm hw2.aex)...executed.
@@ -781,20 +782,20 @@ runsystem(rm hw2.aex)...executed.
  (./hw2.aux)
 \openout1 = `hw2.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -834,16 +835,16 @@ LaTeX Font Info:    ... okay on input line 20.
 (/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf
 -dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count339
+\scratchcounter=\count340
 \scratchdimen=\dimen295
 \scratchbox=\box79
-\nofMPsegments=\count340
-\nofMParguments=\count341
+\nofMPsegments=\count341
+\nofMParguments=\count342
 \everyMPshowfont=\toks45
-\MPscratchCnt=\count342
+\MPscratchCnt=\count343
 \MPscratchDim=\dimen296
-\MPnumerator=\count343
-\makeMPintoPDFobject=\count344
+\MPnumerator=\count344
+\makeMPintoPDFobject=\count345
 \everyMPtoPDFconversion=\toks46
 )
 (/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf
@@ -865,14 +866,14 @@ File: siunitx-abbreviations.cfg 2017/11/26 v2.7k siunitx: Abbreviated units
 -dist/tex/latex/translator/translator-basic-dictionary-English.dict
 Dictionary: translator-basic-dictionary, Language: English 
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 20.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 21.
 
 
 (/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 20.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 21.
 
 
 (/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf
@@ -884,10 +885,10 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 -dist/fonts/map/pdftex/updmap/pdftex.map}]
 [2] (./hw2.aux) ) 
 Here is how much of TeX's memory you used:
- 19711 strings out of 478994
- 420603 string characters out of 5833535
- 720004 words of memory out of 5000000
- 36828 multiletter control sequences out of 15000+600000
+ 19717 strings out of 478994
+ 420634 string characters out of 5833535
+ 721035 words of memory out of 5000000
+ 36834 multiletter control sequences out of 15000+600000
  427078 words of font info for 70 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  113i,6n,116p,403b,198s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -914,7 +915,7 @@ ublic/tex-gyre/qplb.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-te
 xmf-20210325/share/texmf-dist/fonts/type1/public/tex-gyre/qplr.pfb></gnu/store/
 8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/
 type1/public/tex-gyre/qplri.pfb>
-Output written on hw2.pdf (2 pages, 235909 bytes).
+Output written on hw2.pdf (2 pages, 240718 bytes).
 PDF statistics:
  67 PDF objects out of 1000 (max. 8388607)
  49 compressed objects within 1 object stream

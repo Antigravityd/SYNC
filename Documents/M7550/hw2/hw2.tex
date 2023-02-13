@@ -12,6 +12,7 @@
 
 \sisetup{detect-all}
 \newtheorem{plm}{Problem}
+\newtheorem{lem}{Lemma}
 
 \title{Math 7550 HW 2}
 \author{Duncan Wilkie}
@@ -23,7 +24,7 @@
 
 \begin{plm}
   If $\phi: \mathbb{R}^{m} \to \mathbb{R}^{n}$ is a linear map and we identify $T_{p}(\mathbb{R}^{k})$ with $\mathbb{R}^{k}$
-  by identifying $\pdv{x}$ with the $i$th standard basis vector, show that $\phi_{*}$ is just $\phi$.
+  by identifying $\pdv{x_{i}}$ with the $i$th standard basis vector, show that $\phi_{*}$ is just $\phi$.
 
   In other words, using the $(d\phi)_{p}$ notation for $\phi_{*}$ at $p$, for any $p \in \mathbb{R}^{m}$, show that $(d\phi)_{p} = \phi$.
   (Note that you are implicitly showing that $\phi$ is differentiable)
@@ -31,6 +32,9 @@
 
 \begin{proof}
   The identification is given by considering paths through $p$ given by $\gamma_{v} = p + tv$, and noticing that $D_{\gamma_{v}} = v$.
+  This restricted set of paths is sufficient to determine the rule of $\phi_{*}$,
+  because the tangent vectors so-generated span a space of dimension $n$, and since they are all elements of $T_{p}M$,
+  which is of dimension $n$, they must span $T_{p}M$.
   By definition,
   \[
     \phi_{*}(D_{\gamma_{v}}) = D_{\phi \circ \gamma_{v}} = \dv{t}\phi(p + tv)\bigg|_{t = 0} = \dv{t}\qty[\phi(p) + t\phi(v)]\bigg|_{t = 0}
@@ -48,6 +52,7 @@
   $a(u, v) + (u', v') = (au + u', av + v')$.
   With respect to this, we can define a path through $(p, q)$ analogous to that above by $\gamma_{(u, v)}(t) = (p, q) + t(u, v)$.
   Note that this vector space structure is used strictly to define $\gamma_{(u, v)}$; the result does not depend on it.
+  For identical reasons as in the previous problem, such paths are sufficient to describe al germs of differential operators through $(p, q)$.
   Similarly, one can immediately see that $D_{\gamma_{(u, v)}} = (u, v)$ and
   \[
     \phi_{*}(D_{\gamma_{(u, v)}}) = D_{\phi \circ \gamma_{(u, v)}} = \dv{t}\phi[(p, q) + t(u, v)]\eval_{t = 0} = \dv{t}\phi(p + tu, q + tv)\eval_{t = 0}
@@ -68,19 +73,25 @@
 
 \begin{plm}
   Let $M = M_{m,n}(\mathbb{R})$ be the set of $m \times n$ matrices with real entries.
-  Fix $k \leq \min{m,  n}$, and let $U_{k} = \{A \in M \mid \rank(A) \geq k\}$.
+  Fix $k \leq \min(m,  n)$, and let $U_{k} = \{A \in M \mid \rank(A) \geq k\}$.
   Describe a $C^{\infty}$ structure for $U_{k}$.
 \end{plm}
 
 \begin{proof}
   The topology on the set of matrices is not specified, so I'll presume it's the one borrowed from Euclidean space
   by considering matrices as vectors in $\mathbb{R}^{mn}$.
-  One can apply row- or column-reduction to matrices in $U_{k}$ (according to whichever dimension is the smallest).
-  Since there are $k$ linearly independent rows or columns, the reduced echelon form has a $k \times k$ identity submatrix in the initial part,
-  and an arbitrary matrix with $k$ entries one way and $\max{m, n} - k$ in the other left over.
-  Interpreting this left-over matrix as a vector in $\mathbb{R}^{k(\max{m, n} - k)}$, one has a map from $U_{k}$ to $\mathbb{R}^{k(\max{m, n} - k)}$:
-  reduce, and reinterpret.
-  The desired functional structure can then be the functional structure induced by this map.
+  The complement of $U_{k}$ is the set of matrices $A$ of rank less than $k$.
+  A matrix has rank $< k$ iff for every $r \geq k$, the determinant of every $r \times r$ submatrix is zero.
+  The number of such submatrices for a given $r$ is computed by choosing which rows and columns to include,
+  so $\sum_{r = k}^{\min(n,m)}\binom{n}{r}\binom{m}{r}$; call this number $l$.
+  Consider the linear map $f: M \to \mathbb{R}^{l}$ that, with respect to some arbitrary ordering of the submatrices counted by $l$,
+  maps a matrix to the vector whose $i$th entry is the determinant of the $i$th submatrix.
+  This is continuous, because the determinant is a linear functional,
+  and the fact that maps into products are continuous iff all their projections are continuous.
+  Then the complement of $U_{k}$ is the kernel of $f$; kernels of continuous maps are closed, and so $U_{k}$ is open in $M$.
+
+  This allows us to immediately borrow the functional structure from $M$, identified with $\mathbb{R}^{mn}$,
+  as $U_{k}$ is accordingly identified with an open subset of $\mathbb{R}^{mn}$, and as such has a chart.
 \end{proof}
 
 \begin{plm}
@@ -91,23 +102,29 @@
 \begin{proof}
   There is an onto correspondence of lists of $k$ linearly-independent vectors in $\mathbb{R}^{n}$ and its $k$-dimensional vector subspaces,
   since such lists generate subspaces by spanning and every subspace can be so-generated since every subspace has a basis.
-  Such lists can be viewed as $k \times n$ matrices with real entries by just concatenating the column vectors wrt. the standard basis;
-  the condition that the list is linearly independent translates to these matrices having rank $k$, by definition of rank.
-  Noticing that this means that the space of such lists is $U_k$ from the previous problem, we can borrow the $C^{\infty}$ structure defined there.
-  Defining two elements of $U_{k}$ to be equivalent via $\sim$ if their column space is the same
-  (or, equivalently, if they have the same reduced column echelon form), the functional structure in the previous problem
-  becomes a smooth manifold on the quotient.
-  The resulting quotient is obviously in bijective correspondence with $G_{k, n}$, so we'll define everything on $G_{k, n}$ via this correspondence,
-  forgetting the difference and writing $G_{k, n} = U_{k} / \sim$.
+  Such lists, call them $F_{k,n}$, can be viewed as $k \times n$ matrices with real entries by just juxtaposing the column vectors expressed
+  wrt. the standard basis; the condition that the list is linearly independent translates to these matrices having rank $k$, by definition of rank.
+  Since $n \geq k$, and $k$ is one dimension of the matrix, the space of such lists is $U_k$ from the previous problem;
+  we can borrow the $C^{\infty}$ structure defined there.
+  Letting two elements of $F_{k,n}$ be equivalent via $\sim$ if the lists span the same vector subspace, one recognizes $G_{k,n} = F_{k,n} / \sim$.
+  In a just world, we'd have a way of constructing quotient manifolds already.
+  But we don't yet.
 
-  It remains to prove that the map $f: U_{k} \to \mathbb{R}^{k(n - k)}$ actually gives local homeomorphisms.
-  We'll proceed by interpreting the map $f: U_{k} \to \mathbb{R}^{k(n - k)}$ given in the previous problem as a chart.
-  Applying $f$ and then mapping to the equivalence class containing that representative
-  is precisely the quotient map for the equivalence we've defined, with $\tau \sim \sigma$ iff their images are equal,
-  so the quotient topological space $G_{k, n}$ and $\mathbb{R}^{k(n-k)}$ are homeomorphic.
-  Of course, any restriction of a homeomorphism is also a homeomorphism, so the local homeomorphism condition is satisfied.
-  Certainly, every element of $G_{k, n}$ is in the domain of this chart.
-  The transition condition follows since these charts are invertible linear maps, making the transition functions smooth.
+  The coordinate charts on $G_{k, n}$ may be given by taking some choice $J$ of $k$ elements of $\{1, \ldots, n\}$
+  and producing an open subset $U_{k, n} \subseteq F_{k,n}$ given by the set of all $k \times k$ submatrices with column indices in $J$
+  with nonzero determinant.
+  All matrices in such an open subset have reduced-row echelon form (i.e. are in the same equivalence class)
+  with the same row and column interchange operations;
+  since there is a $k \times k$ submatrix with nonzero determinant in each one, the $k \times k$ submatrix at the extreme left
+  of the reduced matrix is the identity matrix, and the leftover submatrix has dimensions $k \times (n - k)$.
+  The charts are obtained by mapping each element of the open set to the vector in $\mathbb{R}^{k(n - k)}$ obtained
+  by flattening this leftover submatrix.
+
+  Certainly, every matrix in $F_{k,n}$ is in some $U_{k,n}$ by the definition of linear independence.
+  The mapping is linear and invertible (as a linear map), since the reduced-row echelon form uniquely characterizes the column space.
+  It is, accordingly, a local homeomorphism.
+  Given two such mappings for two different open sets, the fact their inverses are linear maps imply the transition maps are linear,
+  and accordingly smooth.
 \end{proof}
 
 \end{document}

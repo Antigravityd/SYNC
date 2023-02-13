@@ -66,26 +66,26 @@
               };
             };
           };
-        };
-      } else { % right side
-        \preimage = mod(\n - \shift, \points);
-        if \preimage - \above <= 2*\discs then { % disk point
-          if abs(\otherside(\n) - \n) {
+        } else { % right side
+          \preimage = mod(\n - \shift, \points);
+          if \preimage - \above <= 2*\discs then { % disk point
+            if abs(\otherside(\n) - \n) {
 
-          }
-        } else {
-          if \preimage <= \above then { % above arc
-            return 2*\discs + \preimage;
-          } else { % below arc
-            return mod(\n - \shift - 1, \points) + 1;
+            }
+          } else {
+            if \preimage <= \above then { % above arc
+              return 2*\discs + \preimage;
+            } else { % below arc
+              return mod(\n - \shift - 1, \points) + 1;
+            };
           };
         };
       };
-    };
-    % given a node number, return the coordinates of the other endpoint of the line segment out of it
-    function otherend(\n) {
-      if sign(\n - \points) == sign(\corresp(n) - \points) { % disc point
+      % given a node number, return the coordinates of the other endpoint of the line segment out of it
+      function otherend(\n) {
+        if sign(\n - \points) == sign(\corresp(n) - \points) { % disc point
 
+        }
       }
     }
   }
@@ -131,7 +131,7 @@
 
 
 \end{tikzpicture}
-}
+
 \begin{document}
 \heegaard{11}{3}{1}{5}
 \end{document}

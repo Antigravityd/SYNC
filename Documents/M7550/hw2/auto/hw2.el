@@ -18,6 +18,7 @@
     "physics"
     "siunitx")
    (LaTeX-add-amsthm-newtheorems
-    "plm"))
+    "plm"
+    "lem"))
  :latex)
 

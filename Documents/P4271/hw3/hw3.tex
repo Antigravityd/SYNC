@@ -1,0 +1,254 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{tgpagella}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{minted}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{mhchem}
+
+\usetikzlibrary{math,calc}
+\sisetup{detect-all}
+\newtheorem{plm}{Problem}
+\renewcommand*{\proofname}{Solution}
+
+\newcommand{\oddoddcoupling}[4]{ % args are: proton j, neutron j, total J, and total parity.
+  \begin{tikzpicture}
+    \tikzmath{
+      \maxj = #1 + #2;
+      \minj = abs(#1 - #2);
+      \actual = #3 - \minj;
+      for \j in {\minj,\minj+1,...,\maxj}{
+        if \j == #3 then { % actual value
+          {
+            \draw[->] (0,0) -- (\j,\j) node[near end, above left] {$\vec{J} = |j_{p} - j_{n}| + \actual = \j$};
+            \draw[->] (0,0) -- (\j,0) node[near end, below right] {$\vec{j}_{n} = #2$};
+            \draw[->] (\j,0) -- (\j,\j) node[near end, below right] {$\vec{j}_{p} = #1$};
+          };
+        };
+      };
+    }
+  \end{tikzpicture}
+}
+
+\newcommand{\oddoddls}[4]{ % args are: proton j, neutron j, total J, and total parity.
+  \begin{tikzpicture}
+    \tikzmath{
+      \maxj = #1 + #2;
+      \minj = abs(#1 - #2);
+      \actual = #3 - \minj;
+      for \j in {\minj,\minj+1,...,\maxj}{
+        if \j == #3 then { % actual value
+          \negj = 0 - \j;
+          \doubj = 2 * \j;
+          {
+            \draw[->] (0,0) -- (\j,\j) node[near end, above left] {$\vec{J} = |j_{p} - j_{n}| + \actual = \j$};
+            \draw[->] (0,0) -- (\j,0) node[midway, below right] {$\vec{j}_{n} = #2$};
+            \draw[->] (\j,0) -- (\j,\j) node[midway, below right] {$\vec{j}_{p} = #1$};
+            \draw[->] (0,0) -- (\j,\negj) node[midway, below right] {$\vec{\ell}_{n}$};
+            \draw[->] (\j,\negj) -- (\j,0) node[midway, below right] {$\vec{s}_{n}$};
+            \draw[->] (\j,0) -- (\doubj,\j) node[midway, below right] {$\vec{\ell}_{p}$};
+            \draw[->] (\doubj,\j) -- (\j,\j) node[midway, below right] {$\vec{s}_{p}$};
+          };
+        };
+      };
+    }
+  \end{tikzpicture}
+}
+
+\title{4271 HW 3}
+\author{Duncan Wilkie}
+\date{17 February 2023}
+
+\begin{document}
+
+\maketitle
+
+\begin{plm}
+  Find the angle between the angular momentum vector $\ell$ and the $z$-axis for all possible orientations when $\ell = 3$.
+\end{plm}
+
+\begin{proof}
+  The $z$-component of $\ell$ in angular momentum space, $\ell_{z}$, is determined by $m_{\ell}$, with eigenvalues $\hbar m_{\ell}$.
+  The magnitude of $\ell$ is given by $\sqrt{\ell^{2}}$, which has eigenvalue $\hbar\sqrt{\ell(\ell + 1)}$.
+  A vector of magnitude $\hbar\sqrt{\ell(\ell + 1)}$ and $z$-component $\hbar m_{\ell}$ has elevation angle
+  \[
+    \theta = \cos^{-1}\qty(\frac{m_{\ell}}{\sqrt{\ell(\ell + 1)}}).
+  \]
+  For $\ell = 3$, $\sqrt{\ell(\ell + 1)} = \sqrt{12} = 2\sqrt{3}$, and $m_{\ell}$ ranges from $-3$ to $3$.
+  Accordingly, the possible angles are
+  \[
+    \theta_{m_{\ell} = 0} = \SI{90}{deg}
+  \]
+  \[
+    \theta_{m_{\ell} = 1} = \SI{73.2}{deg}
+  \]
+  \[
+    \theta_{m_{\ell} = -1} = \SI{106.8}{deg}
+  \]
+  \[
+    \theta_{m_{\ell} = 2} = \SI{54.7}{deg}
+  \]
+  \[
+    \theta_{m_{\ell} = -2} = \SI{125.3}{deg}
+  \]
+  \[
+    \theta_{m_{\ell} = 3} = \SI{30}{deg}
+  \]
+  \[
+    \theta_{m_{\ell} = -3} = \SI{150}{deg}
+  \]
+\end{proof}
+
+\begin{plm}
+  Calculate the binding energy and binding energy per nucleon of the deuteron.
+\end{plm}
+
+\begin{proof}
+  The atomic mass of the deuteron is
+  \[
+    BE(Z, N) = \qty(Zm_{H} + Nm_{n} - M_{A})c^{2}
+  \]
+  \[
+    \Rightarrow BE(1, 1) = \qty(1 \cdot \SI{1.007825}{amu} + 1 \cdot \SI{1.008665}{amu} - \SI{2.014102}{amu}) \cdot (\SI{931.49}{MeV/amu})
+    = \SI{2.22}{MeV}
+  \]
+  \[
+    \Rightarrow BE(1,1)/A = \SI{2.22}{MeV} / 2 = \SI{1.11}{MeV}
+  \]
+\end{proof}
+
+\begin{plm}
+  At what energy in the laboratory system does a proton beam scattering off a proton target become inelastic---i.e.
+  at what proton beam energy can pions be produced?
+\end{plm}
+
+\begin{proof}
+  This is just conservation of energy: at this threshold, all of the kinetic energy of the beam goes into creating the pion,
+  and the protons are at rest, so
+  \[
+    E = \frac{m_{p}c^{2}}{\sqrt{1 - \frac{v^{2}}{c^{2}}}} = 2m_{p}c^{2} + m_{\pi}c^{2}
+    \Leftrightarrow v = c\sqrt{1 - \frac{1}{(2 + \frac{m_{\pi}}{m_{p}})^{2}}}
+  \]
+  \[
+    = c \sqrt{1 - \frac{1}{(2 + \frac{\SI{135}{MeV/c^{2}}}{\SI{938}{MeV/c^{2}}})^{2}}} = 0.885c
+  \]
+  This corresponds to a beam energy of
+  \[
+    K_{b} = \frac{mc^{2}}{\sqrt{1 - \frac{v^{2}}{c^{2}}}}
+    = \frac{\SI{1.007825}{amu} \cdot \SI{931.49}{MeV/amu}}{\sqrt{1 - \frac{(0.885c)^{2}}{c^{2}}}}
+    = \SI{2.016}{GeV}.
+  \]
+\end{proof}
+
+\begin{plm}
+  In the spherical shell model, what are the expected ground state spins and parities for:
+  $\ce{^{11}B}$, $\ce{^{15}C}$, $\ce{^{17}F}$, $\ce{^{31}P}$, $\ce{^{141}Pr}$, and $\ce{^{207}Pb}$.
+  Look up the experimental values.
+  Do they agree?
+\end{plm}
+
+\begin{proof}
+  $\ce{^{11}B}$ has 5 protons and 6 neutrons, and so is even-odd; the neutrons contribute $0^{+}$, and, looking at the spin-orbit coupling chart,
+  the unpaired proton is in a $1p_{3/2}$ state.
+  Accordingly, the atom will have spin equal to the angular momentum of this unpaired electron, or $J^{\pi} = \frac{3}{2}^{(-1)^{1}}
+  = \frac{3}{2}^{-}$.
+
+  Proceeding similarly (writing less painstaking detail, since it's all the same),
+  \[
+    \ce{^{15}C} = 6p + 9n \Rightarrow n_{unp} \in 1d_{5/2} \Rightarrow J^{\pi} = \frac{5}{2}^{+}
+  \]
+  \[
+    \ce{^{17}F} = 9p + 8n \Rightarrow p_{unp} \in 1d_{5/2} \Rightarrow J^{\pi} = \frac{5}{2}^{+}
+  \]
+  \[
+    \ce{^{31}P} = 15p + 16n \Rightarrow p_{unp} \in 2s_{1/2} \Rightarrow J^{\pi} = \frac{1}{2}^{+}
+  \]
+  \[
+    \ce{^{141}Pr} = 59p + 82n \Rightarrow p_{unp} \in 2d_{5/2} \Rightarrow J^{\pi} = \frac{5}{2}^{+}
+  \]
+  \[
+    \ce{^{207}Pb} = 82p + 125n \Rightarrow n_{unp} \in 1i_{13/2} \Rightarrow J^{\pi} = \frac{13}{2}^{+}
+  \]
+  Comparing with JAEA's nuclide charts, $\ce{^{15}C}$ is given as $\frac{1}{2}^{+}$ and $\ce{^{207}Pb}$ as $\frac{1}{2}^{-}$
+  (however, there is an excited state with spin-parity $\frac{13}{2}^{+}$).
+  The rest agree.
+  This is possibly attributable to $\ce{^{15}C}$ being unstable and $\ce{^{207}Pb}$ being large and non-spherical.
+\end{proof}
+
+\begin{plm}
+  The ground state of $\ce{^{17}F}$ has spin-parity of $\frac{5}{2}^{+}$ and the first excited state has a spin-parity of $\frac{1}{2}^{+}$.
+  Using Povh Fig. 18.7, suggest two possible configurations for this excited state.
+\end{plm}
+
+\begin{proof}
+  If the unpaired proton elevates into the $2s_{1/2}$ state just above $1d_{5/2}$, the excited state will have $J^{\pi} = \frac{1}{2}^{+}$.
+  Since this destination state has a degeneracy of 2, there are two microstates corresponding to this energy.e
+\end{proof}
+
+\begin{plm}
+  The ground state of a nucleus with an odd proton and an odd neutron (aka. an ``odd-odd'' nucleus)
+  is determined from the angular momentum coupling of the odd proton and neutron: $\vec{J} = \vec{j}_{p} + \vec{j}_{n}$.
+  Consider the following nuclei: $\ce{^{16}N}(2^{-})$, $\ce{^{12}B}(1^{+})$, $\ce{^{34}P}(1^{+})$, $\ce{^{28}Al}(3^{+})$.
+  \begin{enumerate}
+  \item Draw simple vector diagrams illustrating these couplings---i.e.  $\vec{J} = \vec{j}_{p} + \vec{j}_{n}$.
+  \item Replace $\vec{j}_{p}$ and $\vec{j}_{n}$, respectively, by $\vec{\ell}_{p} + \vec{s}_{p}$ and $\vec{\ell}_{n} + \vec{s}_{n}$,
+    illustrating the two vectors $\vec{\ell}$ and $\vec{s}$.
+  \item Examine your four diagrams and deduce an empirical rule for the relative orientation
+    of $\vec{s}_{p}$ and $\vec{s}_{n}$ in the ground state.
+  \item Use this empirical rule to predict the $\vec{J}^{\pi}$ assignments of $\ce{^{26}Na}$ and $\ce{^{28}Na}$.
+  \end{enumerate}
+\end{plm}
+
+\begin{proof}
+  Noting $\ce{^{16}N} = 7p + 9n$, $\ce{^{12}B} = 5p + 9n$, $\ce{^{34}P} = 15p + 19n$, and $\ce{^{28}Al} = 13p + 15n$,
+  we can use the shell model to compute the $\vec{j}$ for each proton and neutron, and verify that the given $J$ is in the vector sum:
+  \begin{center}
+    \oddoddcoupling{0.5}{2.5}{2}{0}
+  \end{center}
+  \begin{center}
+    \oddoddcoupling{1.5}{2.5}{1}{1}
+  \end{center}
+  \begin{center}
+    \oddoddcoupling{0.5}{0.5}{1}{1}
+  \end{center}
+  \begin{center}
+    \oddoddcoupling{2.5}{0.5}{3}{1}
+  \end{center}
+
+  Adding on the spin dependence (please excuse the shoddy TikZing; I don't quite have time to work out the scaling properly),
+  \begin{center}
+     \oddoddls{0.5}{2.5}{2}{0}
+  \end{center}
+  \begin{center}
+    \oddoddls{1.5}{2.5}{1}{1}
+  \end{center}
+  \begin{center}
+    \oddoddls{0.5}{0.5}{1}{1}
+  \end{center}
+  \begin{center}
+    \oddoddls{2.5}{0.5}{3}{1}
+  \end{center}
+
+  My conjecture is that the spins of the unpaired nucleons must be aligned and pointing in the direction indicated by the parity.
+  I am not quite sure how this, or any alternative conjecture, could possibly disambiguate things enough to determine $\vec{J}$.
+  At this point, I'm not even sure the vector sum is associative.
+\end{proof}
+
+\begin{plm}[Bonus]
+  Let's suppose we can form $\ce{^{3}He}$ or $\ce{^{3}H}$ by adding a proton or a neutron (respectively) to $\ce{^{2}H}$,
+  which has $\vec{J}^{\pi} = 1^{+}$.
+  \begin{enumerate}
+  \item What are the possile values of the total angular momentum for $\ce{^{3}He}$ and $\ce{^{3}H}$,
+    given an orbital angular momentum $\ell$ for the added nucleon?
+  \item Given that $\ce{^{3}He}$ and $\ce{^{3}H}$ have positive parity, which of these is still possible?
+  \item What is the most likely value for the ground-state orbital angular momentum of $\ce{^{3}He}$ and $\ce{^{3}H}$.
+  \end{enumerate}
+\end{plm}
+\begin{proof}[No attempt]
+\end{proof}
+\end{document}

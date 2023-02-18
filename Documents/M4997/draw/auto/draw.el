@@ -5,8 +5,11 @@
     "latex2e"
     "article"
     "art10"
+    "graphicx"
     "tikz")
    (TeX-add-symbols
-    '("heegaard" 4)))
+    '("ucover" 6)
+    '("heegaard" 4)
+    '("diagram" 4)))
  :latex)
 

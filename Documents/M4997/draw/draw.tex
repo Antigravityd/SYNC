@@ -1,142 +1,147 @@
 \documentclass{article}
 
+\usepackage{graphicx}
 \usepackage{tikz}
-\usetikzlibrary{math}
-\newcommand{\heegaard}[4]{
-  \begin{tikzpicture}[dot/.style = {circle, fill, minimum size=#1, inner sep=0pt, outer sep=0pt}, dot/.default = 6pt]
-    \tikzmath{
-      \points = #1;
-      \maxy = \points;
-      \maxx = \points;
-      \discs = #2;
-      \above = #3;
-      \below = #1 - 2*#2 - #3;
-      \shift = #4 - 1;
-      \discmid0 = \maxy - \discs + 0.5;
-      \discmid1 = \maxy - \above - \discs - \shift + 0.5;
-      % given a node number 1 to 2p, produce coordinates
-      function ntoxy(\n) {
-        if \n <= \points then { % left side
-          return (0,{\maxy - \n + 1});
-        } else { % right side
-          return (\maxx,{\maxy - \n + 1});
-        };
+\usetikzlibrary{math,calc}
+
+
+\newcommand{\diagram}[4]{ % arguments-to-math key: the four-tuple (p, a, b, r) is represented by (#1, #2, #3, #4)
+  \tikzmath{ % everything else
+    \points = #1;
+    \maxy = \points + 1;
+    \maxx = \points;
+    \discs = #2;
+    \abov = #3;
+    \belo = \points - 2*\discs - \abov;
+    \shift = #4 - 1;
+    \discmidl = \maxy - \discs - 0.5;
+    \discmidr = \maxy - mod(\abov + \discs + \shift, \points) - 0.5;
+    % annoyingly, these functions don't seem to be able to output coordinates.
+    % this is a fix: a function call that emulates a coordinate depending on an axis parameter
+    function proj(\vala, \valb, \whaxis) {
+      if \whaxis == 0 then {
+        return \vala;
+      } else {
+        return \valb;
       };
-
-      % given an input node number, return the number of the node it's connected to.
-      function corresp(\n) {
-        if \n <= \points then { % left side
-          if \n <= 2*\discs then { % disc point
-            return 2*\discs - \n + 1;
-          } else {
-            if \x <= \points - \below then { % above arc
-              return \points + \n - 2*\disks;
-            } else { % below arc
-              return mod(\n + \shift - 1, \points) + \points + 1;
-
+    };
+    % given an input node number, return the number of the node it's connected to.
+    % first coordinate if axis = 0; second otherwise.
+    function otherend(\n, \axis) {
+      if \n <= \points then { % left side
+        if \n <= 2*\discs then { % disc point
+          \endpoint = 2 * \discs - \n + 1;
+          return proj(abs(\n - \discs - 0.5), \discmidl, \axis);
+        } else {
+          if \n <= \points - \belo then { % above arc
+            \endpoint = mod(\n + \points - 2*\discs + \shift - 1, \points) + 1;
+            if \endpoint < \n then { % warps
+              return proj(\maxx - \n + 1, 0, \axis);
+            } else {
+              return proj(\maxx, \maxy - \endpoint, \axis);
+            };
+          } else { % below arc
+            \endpoint = mod(\n + \shift - 1, \points) + 1;
+            if \endpoint < \n then { % warps
+              return proj(\maxx - \n + 1, 0, \axis);
+            } else { % no warp
+              return proj(\maxx, \maxy - \endpoint, \axis);
             };
           };
-        } else { % right side
-          \preimage = mod(\n - \shift, \points);
-          if \preimage - \above <= 2*\discs then { % disk point
-            return mod((2*\discs - \preimage + 1) + \shift, \points) + \above + \points;
-          } else {
-            if \preimage <= \above then { % above arc
-              return 2*\discs + \preimage;
-            } else { % below arc
-              return mod(\n - \shift - 1, \points) + 1;
-            };
-          };
         };
-      };
-
-      % return 1 if the path warps around the outside of the diagram, and 0 if it can be drawn continuously
-      function warp(\n) {
-        if \n <= \points then { % left side
-          if \n <= 2*\discs then { % disc point
-            return 0;
+      } else { % right side
+        \preimage = mod(\n - \shift - 1, \points) + 1;
+        \preerimage = mod(\preimage - \abov - 1, \points) + 1;
+        if \preimage <= \abov then { % above arc
+          \endpoint = 2*\discs + \preimage;
+          if \endpoints < \n then {
+            return proj(\maxx - (\n - \points), \maxy, \axis);
           } else {
-            if \x <= \points - \below then { % above arc
-              return 0;
-            } else { % below arc
-              if mod(\otherside(\n), \points) < \n {
-                return 1;
-              } else {
-                return 0
+            return proj(0, \maxy - \endpoint, \axis);
+          };
+        } else {
+          if \preerimage <= 2*\discs then { % disc point
+            \endpoint = mod((2*\discs - \preerimage + 1) + \shift + \abov - 1, \points) + \points + 1;
+            if \preerimage <= \discs then { % top half
+              if \endpoint < \n then { % warps
+                return proj(\n - \points - 1, 0, \axis);
+              } else { % no warp
+                return proj(\maxx - abs(\preerimage - \discs - 0.5), \discmidr, \axis);
+              };
+            } else { % bottom half
+              if \n < \endpoint then { % warps
+                return proj(\maxx - (\n - \points), \maxy, \axis);
+              } else { % no warp
+                return proj(\maxx - abs(\preerimage - \discs - 0.5), \discmidr, \axis);
               };
             };
-          };
-        } else { % right side
-          \preimage = mod(\n - \shift, \points);
-          if \preimage - \above <= 2*\discs then { % disk point
-            if abs(\otherside(\n) - \n) {
-
-            }
-          } else {
-            if \preimage <= \above then { % above arc
-              return 2*\discs + \preimage;
-            } else { % below arc
-              return mod(\n - \shift - 1, \points) + 1;
+          } else { % below arc
+            \endpoint = mod(\n - \shift - 1, \points) + 1;
+            if \n < \endpoint + \points then { % warps
+              return proj(\maxx - (\n - \points), \maxy, \axis);
+            } else { % no warp
+              return proj(0, \maxy - \endpoint, \axis);
             };
           };
         };
       };
-      % given a node number, return the coordinates of the other endpoint of the line segment out of it
-      function otherend(\n) {
-        if sign(\n - \points) == sign(\corresp(n) - \points) { % disc point
+    };
+    % now actually draw it
+    for \i in {1,...,\points}{
+      \lx = 0;
+      \ly = \maxy - \i;
+      \rx = \maxx;
+      \ry = \maxy - \i;
+      \otherlx = otherend(\i, 0);
+      \otherly = otherend(\i, 1);
+      \otherrx = otherend(\i + \points, 0);
+      \otherry = otherend(\i + \points, 1);
+      {
+        \node[dot] (c) at (\lx,\ly) {};
+        \node[dot] (d) at (\rx,\ry) {};
+        \draw (\lx,\ly) -- (\otherlx,\otherly);
+        \draw (\rx,\ry) -- (\otherrx,\otherry);
+      };
+    };
+  }
+  % bounding square
+  \draw (0,0) rectangle (\maxx,\maxy);
+}
 
-        }
-      }
+% Put the diagram in a tikzpicture and draw the node labels
+\newcommand{\heegaard}[4]{
+  \begin{tikzpicture}[dot/.style = {circle, fill, minimum size=6pt, inner sep=0pt, outer sep=0pt}, dot/.default = 6pt]
+    \diagram{#1}{#2}{#3}{#4}
+    \draw (0,0) node foreach \i in {1,...,#1} at (-0.5,#1-\i+1) {$\i$};
+    \draw (0,0) node foreach \i in {1,...,#1} at (#1+0.5,#1-\i+1) {$\i$};
+  \end{tikzpicture}
+}
+
+% Given [p, a, b, r] and an x and a y, make an x-by-y grid of Heegaard diagrams.
+\newcommand{\ucover}[6]{
+  \tikzset{
+    tile/.pic={
+      \diagram{#1}{#2}{#3}{#4}
     }
   }
-  % arguments-to-math key: the four-tuple (p, a, b, r) is represented by (#1, #2, #3, #4)
-  \draw (0,0) rectangle (#1,#1+1); % bounding square
-
-  \foreach \x in {1,...,#1} { % boundary points
-    \node[dot,label=left:\x] (c) at (0,#1-\x+1) {};
-    \node[dot,label=right:\x] (d) at (#1,#1-\x+1) {};
-  }
-
-  \foreach \x in {1,...,#2} {
-    \draw [rounded corners=1cm] (0,{#1-#2+\x}) -- (\x,{#1-#2+0.5}) -- (0,{#1-#2-\x+1}); % left disks
-    \draw [rounded corners=1cm] (#1,{#1-#2-#3-(#4-1)+\x}) -- ({#1-\x},{#1-#2-#3-(#4-1)+0.5}) -- (#1,{#1-#2-#3-(#4-1)-\x+1}); % right disks
-  }
-
-
-
-  \foreach \x in {1,...,#3} { % above arcs (automatically no-warp)
-    \draw (0,{#1-2*#2-(\x-1)}) -- (#1,{#1-(#4-1)});
-  }
-
-  \tikzmath{
-    \belows = #1 - 2*#2 - #3;
-    \nowrapct = \belows - (#4 - 1);
-    if \nowrapct>0 then {
-      {
-        \foreach \x in {1,...,\nowrapct} { % below arcs, no-wrap
-          \draw (0,\belows-\x+1) -- (#1,{\belows-\x+1-(#4-1)});
+  \begin{tikzpicture}[dot/.style = {circle, fill, minimum size=6pt, inner sep=0pt, outer sep=0pt}, dot/.default = 6pt]
+    \foreach \x in {1,...,#5}  {
+      \foreach \y in {1,...,#6} {
+        \tikzmath{
+          \xorig = (\x - 1) * #1;
+          \yorig = (\y - 1) * (#1 + 1);
         }
+        \pic (S) at (\xorig,\yorig) {tile};
       };
     };
-    \wrapct = #4-1;
-    if \wrapct>0 then {
-      {
-        \foreach \x in {1,...,\wrapct} {
-          \draw (0,\x) -- (\x,0);
-          \draw (#1-\x, #1+1) -- (#1,#1-\x+1);
-        }
-      };
-    };
-  }
-
-
-\end{tikzpicture}
+  \end{tikzpicture}
+}
 
 \begin{document}
-\heegaard{11}{3}{1}{5}
+\begin{center}
+  \scalebox{0.45}{\heegaard{33}{1}{24}{19}}
+\end{center}
 \end{document}
-
 % Test cases: [5, 1, 1, 2], [7, 2, 1, 3], [7, 3, 1, 5], and [11, 3, 1, 5]
 % PARTIAL CORRECTNESS PROOF (no intersections)
 % Accept the following lemma from the (1-1) knots paper:
-%

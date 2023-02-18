@@ -1,5 +1,4 @@
 setxkbmap us -option ctrl:swapcaps
-xmodmap ~/.Xmodmap
 # emacs --daemon
 #/home/dnw/.fehbg &
 #bash /home/dnw/status.sh &

@@ -1,0 +1,275 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{tgpagella}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{minted}
+\usepackage{physics}
+\usepackage{siunitx}
+
+\sisetup{detect-all}
+\newtheorem{plm}{Problem}
+
+\title{7550 HW 3}
+\author{Duncan Wilkie}
+\date{1 March 2023}
+
+\begin{document}
+
+\maketitle
+
+\begin{plm}[Bredon II.5.4]
+  If $M^{m} \subseteq \mathbb{R}^{n}$ is a smoothly embedded manifold and $f$ is a smooth real valued function defined
+  on a neighborhood of $p \in M^{m}$ in $\mathbb{R}^{n}$ and which is constant on $M$,
+  show that $\grad{f}$ is perpendicular to $T_{p}M$ at $p$.
+\end{plm}
+
+\begin{proof}
+  By the problem prior to this one in the text, it would suffice to show $D_{v}(f) = 0$ for all $v \in T_{p}(M)$,
+  since $D_{v}(f) = \langle \grad{f}, v \rangle = 0$ is the definition of perpendicularity.
+
+  Let $\phi$ be the embedding in question.
+  View $p$ in $M$, and consider coordinate functions $y_{1}, \ldots, y_{m}$ for one of its neighborhoods.
+  The vectors $\pdv{y_{i}}$ are the standard basis for $T_{p}M$, and, since $\phi_{*}$ is a monomorphism,
+  are also a basis for $\phi_{*}(T_{p}M)$ in $T_{p}\mathbb{R}^{n}$.
+  This basis can be extended by $n - m$ linearly independent vectors $\pdv{y'_{i}}$ not in $\phi_{*}(T_{p}M)$
+  to get a basis for $T_{p}\mathbb{R}^{n}$.
+
+  This extended basis corresponds also to a basis for $\mathbb{R}^{n}$:
+  letting $A$ be the change-of-basis matrix (isomorphism) out of $\pdv{x_{i}}$ and the isomorphism betwen $T_{p}\mathbb{R}^{n}$
+  and $\mathbb{R}^{n}$ be $\psi$, the images of $\pdv{x_{i}}$ under the isomorphism $\psi \circ A$
+  are a basis for $\mathbb{R}^{n}$.
+
+  Since the argument in Example 5.4 is basis-independent, we may apply its result in our bases:
+  \[
+    D_{v} = \sum_{i = 1}^{m}v_{i}\pdv{f}{y_{i}} + \sum_{i = m + 1}^{n}v_{i}\pdv{f}{y'_{i}}.
+  \]
+  However, since $f$ is constant on $M$, and so also for projections of $f \circ y^{-1}$, $\pdv{f}{y_{i}} = 0$.
+  Furthermore, vectors in $T_{p}M$ are by construction precisely those whose $\pdv{y'_{i}}$ components are zero, for every $i$;
+  therefore $D_{\gamma_{v}} = 0$, for all $v \in T_{p}M$, precisely what was desired.
+\end{proof}
+
+\begin{plm}[Bredon II.7.1 et. al.]
+  Consider the real-valued function $f(x, y, z) = (2 - (x^{2} + y^{2})^{1/2})^{2} + z^{2}$ on $\mathbb{R}^{3} - \{(0, 0, z)\}$.
+  \begin{enumerate}
+  \item Show that 1 is a regular value of $f$.
+    Identify the manifold $M = f^{-1}(1)$.
+  \item Show that $M$ is transverse to $N_{1} = \{(x, y, z) \in \mathbb{R}^{3} \mid x^{2} + y^{2} = 4\}$.
+    Identify the manifold $M \pitchfork N_{1}$.
+  \item Show that $M$ is not transverse to $N_{2} = \{(x, y, z) \in \mathbb{R}^{3} \mid x^{2} + y^{2} = 1\}$.
+    Is $M \cap N_{2}$ a manifold?
+  \item Show that $M$ is not transverse to $N_{3} = \{(x, y, z) \in \mathbb{R}^{3} \mid x = 1\}$.
+    Is $M \cap N_{3}$ a manifold?
+  \end{enumerate}
+\end{plm}
+
+\begin{proof}
+  Let $N = \mathbb{R}^{3} - \{(0, 0, z)\}$, and let $p$ be any element of $f^{-1}(1)$.
+  Consider local coordinates in a neighborhood of $p$ (in $N$), and a smooth path $\gamma$ through $p$ at 0.
+  One has
+  \[
+    df(D_{\gamma})g = D_{f(\gamma)}g = \dv{t}g(f(\gamma_{1}(t), \gamma_{2}(t), \gamma_{3}(t)))\eval_{t = 0}
+    = g'(f(\gamma_{1}(t), \gamma_{2}(t), \gamma_{3}(t)))\qty(\sum_{i = 1}^{3} \pdv{f}{x_{i}}\dv{\gamma_{i}}{t})\eval_{t = 0}
+  \]
+  The quantity in the brackets is certainly never zero, given that one is free to choose $\dv{\gamma_{i}}{t}$ at will.
+  Accordingly, this operator behaves like some multiple of $\dv{t}$ to functions $g: \mathbb{R} \to \mathbb{R}$---which
+  definitely spans the tangent space; $df$ is onto for all points in $f^{-1}(1)$, so 1 is a regular value
+
+  One can take slices along the $z$-axis to get an idea of the contour diagram.
+  At $z = 0$ one has
+  \[
+    1 = (2 - \sqrt{x^{2} + y^{2}})^{2} \Leftrightarrow |2 - \sqrt{x^{2} + y^{2}}| = 1
+    \Leftrightarrow x^{2} + y^{2} = 1 \lor x^{2} + y^{2} = 9;
+  \]
+  these are two circles of radius 1 and 3.
+  If $|z| > 1$, the plane doesn't intersect the shape, as $(2 - \sqrt{x^{2} - y^{2}}) > 0$,
+  and so the sum of it with something greater than 1 can never equal 1.
+  At $|z| = 1$, one has $(2 - \sqrt{x^{2} + y^{2}})^{2} = 0 \Leftrightarrow x^{2} + y^{2} = 4$---a single circle of radius 2.
+  As $|z|$ increases towards 1, the value of $\sqrt{1 - z^{2}}$ decreases, so $|2 - \sqrt{x^{2} + y^{2}}|$ must also.
+  This means that the circle of smaller radius, corresponding to the positive branch of the absolute value,
+  gets larger; the larger circle gets smaller.
+  This feels a lot like a torus!
+  Sure enough, taking cross-sections in the $x-z$ plane yields
+  \[
+    1 = (2 - \sqrt{x^{2}})^{2} + z^{2} \Leftrightarrow (|x| - 2)^{2} + z^{2} = 1.
+  \]
+  This is two copies of a circle, with a center shifted two units to the left and right of the $z$-axis, respectively.
+
+  $N_{1}$ is a cylinder concentric with the $z$-axis of radius 2.
+  It intersects $M$ at those points of $M$ satisfying
+  \[
+    1 = (2 - \sqrt{4})^{2} + z^{2} \Leftrightarrow z^{2} = 1 \Leftrightarrow z = \pm 1.
+  \]
+  As discussed above, these are two circles in the topmost and bottommost $x-y$ planes intersecting the torus.
+  Pick any point $p$ in these intersections, and coordinates on $\mathbb{R}^{3}$ near it $x, y, z$.
+  The space $T_{p}\mathbb{R}^{3}$ then has basis $\{\pdv{x}, \pdv{y}, \pdv{z}\}$.
+  Exhibiting each of these as a linear combination of vectors in $T_{p}N_{1}$ or $T_{p}M$ suffices to show transversality;
+  if one can do so, then anything in $T_{p}\mathbb{R}^{3}$ (a linear combination of the basis)
+  can be easily rearranged such that closure of the subspaces under linear combination implies the result
+  is a sum of a vector from each subspace.
+
+  Let $p = (x_{p}, y_{p}, z_{p})$.
+  One, $\pdv{z}$, can be realized completely in $N_{1}$
+  as corresponding to the unit-speed curve passing through $p$ parallel to the axis of the cylinder.
+  Let $\gamma(t) = (x_{p}, y_{p}, t \pm 1)$, according to whether $z_{p} = \pm 1$.
+  This lies completely within $N_{1}$, as $p \in N^{1} \Rightarrow x_{p}^{2} + y_{p}^{2} = 4$.
+  In $\mathbb{R}^{3}$,
+  \[
+    D_{\gamma}g = \dv{t}g(\gamma_{x}(t), \gamma_{y}(t), \gamma_{z}(t))\eval_{t = 0}
+    = \pdv{g}{x}\dv{\gamma_{x}}{t} + \pdv{g}{y}\dv{\gamma_{y}}{t} + \pdv{g}{z}\dv{\gamma_{z}}{t}\eval_{t = 0}
+    = \pdv{g}{z},
+  \]
+  so, indeed, $D_{\gamma} \in T_{p}N_{1}$ realizes $\pdv{z} \in T_{p}\mathbb{R}^{3}$.
+
+  The other two are realizable completely within $M$, as curves in slices of the torus
+  parallel to the axes not appearing in the basis vector.
+  Let
+  \[
+    \gamma_{x} = \qty(t - x_{p}, y_{p}, \pm\sqrt{1 - \qty(2 - \sqrt{y_{p}^{2} + (x_{p} - t)^{2}})^{2}})
+  \]
+  and
+  \[
+    \gamma_{y} = \qty(x_{p}, t - y_{p}, \pm\sqrt{1 - \qty(2 - \sqrt{x_{p}^{2} + (y_{p} - t)^{2}})^{2}}),
+  \]
+  with the $\pm$, as before, chosen according to the value of $z$ at $p$.
+  These are both in $M$ for all $t$:
+  \[
+    (2 - \sqrt{x(\gamma_{x}(t))^{2} + y(\gamma_{x}(t))^{2}})^{2} + z(\gamma_{x}(t))^{2}
+    = (2 - \sqrt{(x_{p} - t)^{2} + y_{p}^{2}})^{2} + \qty(\pm \sqrt{1 - (2 - \sqrt{y_{p}^{2} + (x_{p} - t)^{2}})^{2}})^{2} = 1
+  \]
+  and
+  \[
+    (2 - \sqrt{x(\gamma_{x}(t))^{2} + y(\gamma_{y}(t))^{2}})^{2} + z(\gamma_{z}(t))^{2}
+    = (2 - \sqrt{x_{p}^{2} + (y_{p} - t)^{2}})^{2} + \qty(\sqrt{1 - (2 - \sqrt{x_{p}^{2} + (y_{p} - t)^{2}})^{2}})^{2} = 1
+  \]
+  both hold immediately (as constructed).
+  Analogously, $\gamma_{x}(0) = \gamma_{y}(0) = p$.
+  We may compute
+  \[
+    D_{\gamma_{x}}g = \dv{t}g(\gamma_{xx}(t), \gamma_{xy}(t), \gamma_{xz}(t))\eval_{t = 0}
+    = \pdv{g}{x}\dv{\gamma_{xx}}{t} + \pdv{g}{y}\dv{\gamma_{xy}}{t} + \pdv{g}{z}\dv{\gamma_{xz}}{t}\eval_{t = 0}
+  \]
+  \[
+    = \pdv{g}{x} + \pdv{g}{y} \cdot 0 + \pdv{g}{z} \cdot \frac{\mp \qty(2 - \sqrt{y_{p}^{2} + (x_{p} - t)^{2}})}
+    {\sqrt{1 - \qty(2 - \sqrt{y_{p}^{2} + (x_{p} - t)^{2}})^{2}}} \cdot \frac{x_{p} - t}{\sqrt{y_{p}^{2} + (x_{p} - t)^{2}}}
+    \eval_{t = 0}
+  \]
+  Of course, since $p$ is one of the points such that $|z| = 1$, in order for the defining equation of $M$ to be satisfied
+  one must have $1 = \qty(2 - \sqrt{x_{p}^{2} + y_{p}^{2}})^{2} + 1^{2} \Leftrightarrow 2 - \sqrt{x_{p}^{2} + y_{p}^{2}} = 0$,
+  so the above is
+  \[
+    = \pdv{g}{x}.
+  \]
+  Since addition is commutative, renaming $x_{p}$ to $y_{p}$ and vice versa doesn't change the calculus computation above, so
+  \[
+    D_{\gamma_{y}}g = \pdv{g}{y}.
+  \]
+
+  We therefore may say $\pdv{x} = D_{\gamma_{x}} \in T_{p}M$, $\pdv{y} = D_{\gamma_{y}} \in T_{p}M$,
+  and $\pdv{z} = D_{\gamma_{x}} \in T_{p}N_{1}$, and conclude $T_{p}\mathbb{R}^{3} = T_{p}M + T_{p}N_{1}$,
+  i.e. $M \pitchfork N_{1}$.
+
+  $N_{2}$ is another cylinder concentric with the the $z$-axis, but this time of radius 1.
+  One sees
+  \[
+    1 = (2 - \sqrt{1})^{2} + z^{2} \Leftrightarrow z = 0;
+  \]
+  this identifies the intersection as the circle centered on the origin of radius 1 in the $x-y$ plane with $z = 0$
+  (indeed, a manifold).
+
+  We merely need to exhibit any point $p$ such that there's a vector in $T_{p}\mathbb{R}^{3}$ that cannot be written
+  as an element of $T_{p}M + T_{p}N_{2}$.
+  Our candidate is $\pdv{x}$ at $p = (1, 0, 0)$.
+
+  Take any smooth path $\gamma(t)$ in $M$ through $p$ at $t = 0$.
+  Then
+  \[
+    D_{\gamma}g = \dv{t}g(\gamma_{x}(t), \gamma_{y}(t), \gamma_{z}(t))\eval_{t = 0}
+    = \pdv{g}{x}\dv{\gamma_{x}}{t} + \pdv{g}{y}\dv{\gamma_{y}}{t} + \pdv{g}{z}\dv{\gamma_{z}}{t}.
+  \]
+  If $D_{\gamma} = \pdv{x} + \pdv{y}$, then $\dv{\gamma_{x}}{t}\eval_{t = 0} = \dv{\gamma_{y}}{t}\eval_{t = 0} = 1$
+  and $\dv{\gamma_{z}}{t}\eval_{t = 0} = 0$.
+  However, for paths in $M$ one must have
+  \[
+    1 = \qty(2 - \sqrt{\gamma_{x}(t)^{2} + \gamma_{y}(t)^{2}})^{2} + \gamma_{z}(t)^{2}
+    \Rightarrow 2\gamma_{z}(t)\pdv{\gamma_{z}}{t} = \qty(4 - 2\sqrt{\gamma_{x}(t)^{2} + \gamma_{y}(t)^{2}})
+    \cdot \frac{\gamma_{x}(t)\dv{\gamma_{x}}{t} + \gamma_{y}(t)\dv{\gamma_{y}}{t}}{\sqrt{\gamma_{x}(t)^{2} + \gamma_{y}(t)^{2}}}
+  \]
+  Evaluating this at $t = 0$ so that $\gamma(t) = p$, one obtains $\dv{\gamma_{x}}{t} = 0$,
+  so $T_{p}M$ spans the $\pdv{y}$-$\pdv{z}$ plane and nothing more.
+
+  The other case proceeds similarly.
+  Take any smooth path $\gamma(t)$ in $N_{2}$ through $p$ at $t = 0$.
+  Then
+  \[
+    D_{\gamma}g = \dv{t}g(\gamma_{x}(t), \gamma_{y}(t), \gamma_{z}(t))\eval_{t = 0}
+    = \pdv{g}{x}\dv{\gamma_{x}}{t} + \pdv{g}{y}\dv{\gamma_{y}}{t} + \pdv{g}{z}\dv{\gamma_{z}}{t} \eval_{t = 0}.
+  \]
+  For paths in $N_{2}$ one must have
+  \[
+    \gamma_{x}(t)^{2} + \gamma_{y}(t)^{2} = 1
+    \Rightarrow \gamma_{x}(t)\dv{\gamma_{x}}{t} + \gamma_{y}(t)\dv{\gamma_{y}}{t} = 0;
+  \]
+  evaluating this at $t = 0$, one obtains $\dv{\gamma_{x}}{t} = 0$,
+  and, like above, this means $T_{p}N_{2}$ is the subspace of $T_{p}\mathbb{R}^{3}$ spanned by $\pdv{y}$ and $\pdv{z}$.
+  This proves that $M$ is not transverse to $N_{2}$, as the sum of identical subspaces is just the subspace,
+  and, for example, $\pdv{x}$ is not in this subspace.
+
+  $N_{3}$ is a $y$-$z$ plane with $x = 1$; it slices the torus so that the two circular regions of the cross-section
+  intersect at a single point, whereupon their tangents coencide.
+  As above, we need only exhibit some $p$ and some element of $T_{p}\mathbb{R}^{3}$ at that point that isn't an element
+  of $T_{p}N_{3} + T_{p}M$.
+  This point where the tangents heuristically coencide seems to be a good bet:
+  let's again let $p = (1, 0, 0)$, and try to show that $\pdv{x}$ isn't representable in the sum.
+
+  The $M$ case is unchanged from the above---we're using the same point.
+  Let $\gamma$ be a path in $N_{3}$ through $p$.
+  Then, as always,
+  \[
+    D_{\gamma}g = \dv{t}g(\gamma_{x}(t), \gamma_{y}(t), \gamma_{z}(t))\eval_{t = 0}
+    = \pdv{g}{x}\dv{\gamma_{x}}{t} + \pdv{g}{y}\dv{\gamma_{y}}{t} + \pdv{g}{z}\dv{\gamma_{z}}{t} \eval_{t = 0}.
+  \]
+  For paths of $N_{3}$, $\gamma_{x}(t) = 1 \Rightarrow \dv{\gamma_{x}}{t} = 0$.
+  This means that $T_{p}N_{3}$ also coincides with $T_{p}M$, and, consequently, that $M$ is not transverse to $N_{3}$
+\end{proof}
+
+\begin{plm}
+  Let $f: M \to N$ be a smooth map.
+  \begin{enumerate}
+  \item Show that $f$ induces a smooth map $T(f): T(M) \to T(N)$ on tangent bundles.
+  \item Show that $f$ is an immersion iff $T(f)$ is injective on each fiber of $\pi: T(M) \to M$.
+  \end{enumerate}
+\end{plm}
+
+\begin{proof}
+  Let $T(f): (x, \xi) \mapsto (f(x), df(\xi))$.
+  Consider a chart $\phi$ for a point $p \in M$, and a chart $\psi$ for its image $f(p) \in N$.
+  These induce charts on the bundles $\phi \times d\phi$ and $\psi \times d\psi$.
+  Smoothness of $f$ tells us that $\psi \circ f \circ \phi^{-1}$ is smooth where it's defined,
+  and we want the same for
+  \[
+    \qty[\psi \times d\psi] \circ T(f) \circ \qty[\phi \times d\phi]^{-1}
+    = (\psi \circ f \circ \phi^{-1}, d\psi \circ df \circ (d\phi)^{-1})
+  \]
+  Note that the differential of a chart is immediately an isomorphism of vector spaces $T_{p}M$ onto $T_{p}\mathbb{R}^{m}$,
+  by the definition of the local coordinates, so the inverse appearing here really does make sense.
+  As a map $\mathbb{R}^{2m} \to \mathbb{R}^{2n}$, this is presumed smooth in its first $m$ components,
+  and linear and therefore smooth (cf. last homework) also in its last $m$.
+  Certainly in Euclidean space, the Cartesian product of smooth functions is smooth, so $T(f)$ so-defined is smooth.
+
+  If $f$ is an immersion, then its differential is a monomorphism of vector spaces at all points,
+  i.e. for all $p$, the map $df: T_{p}M \to T_{p}N$ is injective.
+  The restriction of $T(f)$ to a fiber of the bundle projection is merely the statement
+  that one is restricting the $x$ in $(x, \xi)$ in the domain to be a single point; calling that $p$,
+  injectivity of $T(f)$ on that fiber is, by definition of $T(f)$, exactly injectivity of $df$.
+
+  Conversely, if $T(f)$ is injective on a fiber of the bundle projection is exactly the statement that $df$ is injective,
+  as whenever the first $m$ coordinates are fixed, injectivity of the map is injectivity of the map comprising those that remain.
+
+\end{proof}
+\end{document}
+% TODO: finish 2.1; I interpreted `regular value' wrong
+% TODO: completely rework my arguments; I need to show not in the SUM, but there's plenty in the SUM not in EITHER.

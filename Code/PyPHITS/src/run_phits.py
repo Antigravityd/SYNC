@@ -335,8 +335,8 @@ def run_phits(sources, cells, tallies, command="phits", error_stop=True, filenam
                 print(r)
 
 
-        for t in tallies:
-            if
+        # for t in tallies:
+        #     if
 
         return result
 

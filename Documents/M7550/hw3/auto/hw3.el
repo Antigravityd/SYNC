@@ -1,8 +1,9 @@
 (TeX-add-style-hook
- "functionals"
+ "hw3"
  (lambda ()
    (TeX-add-to-alist 'LaTeX-provided-package-options
                      '(("geometry" "letterpaper")))
+   (add-to-list 'LaTeX-verbatim-environments-local "minted")
    (TeX-run-style-hooks
     "latex2e"
     "article"
@@ -16,9 +17,7 @@
     "minted"
     "physics"
     "siunitx")
-   (LaTeX-add-environments
-    "plm"
-    "thm"
-    "definition"))
+   (LaTeX-add-amsthm-newtheorems
+    "plm"))
  :latex)
 

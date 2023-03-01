@@ -54,7 +54,7 @@
         \preerimage = mod(\preimage - \abov - 1, \points) + 1;
         if \preimage <= \abov then { % above arc
           \endpoint = 2*\discs + \preimage;
-          if \endpoints < \n then {
+          if \n - \points < \endpoint then {
             return proj(\maxx - (\n - \points), \maxy, \axis);
           } else {
             return proj(0, \maxy - \endpoint, \axis);
@@ -139,7 +139,7 @@
 
 \begin{document}
 \begin{center}
-  \scalebox{0.45}{\heegaard{33}{1}{24}{19}}
+  \scalebox{0.45}{\heegaard{33}{1}{24}{1}}
 \end{center}
 \end{document}
 % Test cases: [5, 1, 1, 2], [7, 2, 1, 3], [7, 3, 1, 5], and [11, 3, 1, 5]

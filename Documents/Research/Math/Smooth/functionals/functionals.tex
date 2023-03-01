@@ -23,7 +23,7 @@
 
 \maketitle
 
-\section{Introduction}
+\section{Abstract}
 
 The smooth infinitesimal analysis introduced by Lawvere and Kock, among others,
 through intense search for the proper topos for differential geometry, has promise as a better axiomatic implementation of the continuum.
@@ -71,7 +71,7 @@ Consider the following example from Griffiths' \textit{Introduction to Electroma
       -\frac{1}{2}\mu_{0}n\frac{dI}{dt}s\hat{\phi}, & (s < R)
     \end{cases}
   \]
-  It's this electric field, tangent to the surface of the charges, that torques the cylinders in opposite directions;
+  It's this electric field, tangent to the surface of the shells, that torques the cylinders in opposite directions;
   indeed this is what's physically observed.
 \end{proof}
 
@@ -107,14 +107,18 @@ The takeaway is that the ``more physical'' version of Maxwell's equations are th
 Indeed, this justifies many other subtle arguments deep in the weeds of E\&M, such as the interface conditions for the fields when exiting media.
 
 Is this just a quirk of electromagnetism?
-No---in fact, it's a much more general pattern in physics that the key mathematically-tractable examples are \textit{fundamentally} discontinuous.
+No---in fact, it's a much more general pattern in physics that key mathematically-tractable examples are \textit{fundamentally} discontinuous.
 There's a canonical example from quantum mechanics where the potential isn't even a \textit{function}!
 The Dirac potential is a fundamental model for particle-particle scattering and strong-force capture.
 
-The unifying mathematical machinery can be obtained by noticing that all examples seem to come from objects whose primary purpose
-is to ``act'' on functions to produce directly observable phenomena (in the end, a numerical measurement).
-For quantum potentials, this is especially obvious; for both electromagnetic fields and source distributions,
-it requires noticing that \textit{trajectories} of charged particles are fundamental,
+The unifying mathematical machinery can be obtained by synthesizing the opposing intuition of both the physicist and the mathematician.
+The physicist notices that such examples arise from application of approximation, and so posits \textit{limits} of smooth functions
+as the proper mathematical grounding; his dreams contain results asymptotically bounding such approximations,
+giving \textit{quantitative} limits on his scribblings' predictive power, and, should he be so daring, renormalization-free QFT.
+The mathematician (or philosopher) notices that the \textit{raison d'etre} of these objects never was their being \textit{functions} anyway.
+They exist to \textit{act} on smooth functions.
+For quantum potentials, this is especially obvious; for both electromagnetic fields and distributions of their sources,
+it requires noticing that \textit{trajectories} of charged particles are the fundamental observed quantites,
 and that fields and even sources are deduced from how trajectories are modified by their presence\footnote
 {
   If the lack of a physically measurable distinction between sources and the field they introduce bothers you,
@@ -123,29 +127,62 @@ and that fields and even sources are deduced from how trajectories are modified 
   Review the great experimentalists' work if doubts remain; physics is the study of motion, after all,
   and it's only through analysis of motion that we deduce the physical existence of \textit{anything.}
 }.
+These trajectories are, by assumptions held for half a millenium, smooth; one has no guarantee that the phenomena influencing them are,
+and certainly not that the mere function that happens to represent the desired function-of-functions via some analytical gadget is.
+The mathematician dreams of vector spaces, of alternative models for $L^{2}(\mathbb{C})$ and Sobolev space.
 
 Nestruev noticed that the restriction of physical observation in a lab naturally places a smooth-manifold structure on anything classical.
-His excellent text develops the modern, sheaf-theoretic notions of differential geometry using this motivation;
-we'll adopt his viewpoint that a physics lab is a commutative, unital algebra; the sensors in that lab are elements of the algebra;
-physical states are algebra homomorphisms onto the trivial algebra structure on the reals; and sensor outputs are outputs of these homomorphisms.
-All this induces a manifold structure on the space of all physical states---exactly the configuration space.
-
-These discontinuous objects arise from a higher-order consideration.
-An electric field is deduced by taking a particle that behaves trivially, changing something, and then observing (quantifying) how it changes.
-That is, such an action maps any measurement of a physical situation (a function from configuration space to the reals)
-to a measurement (real number) quantifying the effect of the change on the input measurement.
-The domain of this kind of a thing is clearly a vector space, and, given that putting additions and scalar multiplication circuits before or after
-the readout shouldn't change the output, this identifies things like the electric field as
-\textbf{linear functionals}\footnote
+His excellent text develops the modern, sheaf-theoretic notions of differential geometry using this motivation.
+We'll adopt his viewpoint that a physics lab is a commutative, unital algebra; the sensors in that lab are elements of the algebra;
+physical states are algebra homomorphisms onto the trivial algebra structure on the reals;
+and sensor outputs are the image of an element under the homomorphism.
+Such structure, although much more general than the standard definition, certainly deserves the title of ``smooth manifold.''
+Accordingly, it's plausible that the most natural context in which to do physical mathematics is,
+rather than set-theoretical orthodoxy, those topoi painstakingly constructed to temper the agony of dealing with such objects\footnote
 {
-  These, when the domain is a space of compactly-supported functions, are traditionally called \textbf{distributions}.
+  Explained at a bird's-eye level in Bell, these were developed by Lawvere and Kock in an attempt to find places where
+  one might embed the category of manifolds, fully and faithfully.
+  As my use of the plural might indicate, there is no unique such object, and in fact a healthy spectrum of theories and models.
+  By all means, window-shop; some of the stronger ones have fancy features like the ability to emulate nonstandard analysis,
+  another formulation of infinitesimal calculus that realizes infinitesimals as reciprocals of transfinite cardinals.
 }.
 
-\section{Formalism}
+Bell considers the image of the reals in these so-called smooth worlds.
+The calculus so-constructed is simple, computational, and delightfully geometric---perfectly regular, no $\epsilon$ or $\delta$
+(save those whose square is zero), and straightforward proofs.
+There \textit{aren't} non-smooth functions, though.
+How does one recover the myriad discontinuities of physical mathematics?
 
-Such things are easily definable in smooth worlds, in which all subsequent notation ought to be interpreted (in particular,
-$R$ is the continuum of smooth infinitesimal analysis).
-We follow the construction of Egorov.
+\section{Recovering Discontinuities}
+
+A formalism for generalized functions that's excellent even for ordinary analysis is that presented by Egorov\footnote
+{
+  It's primary advantage from that perspective is its algebraic manners.
+  With, say, the standard Schwartz theory, one cannot obtain an associative product of distributions,
+  despite successful application of such intuition in physical contexts.
+  Additionally, it has the rare feature of being both more general and \textit{dead} simple---for a contrast on both counts,
+  see the elegant-but-complicated fruits of the Sato school.
+  From a physical and philosophical perspective, Egorov presents many delightful examples
+  of how his notion coincides with physical observations, and presents extensions of distributional theory
+  to nonlinear contexts where past constructions failed.
+}.
+It's all readily reinterpretable in a smooth world, in one of which all subsequent notation ought to be interpreted (in particular,
+$\mathbf{R}$ is the continuum of smooth infinitesimal analysis, and $\mathbf{C}$ is a field extension of it by roots of $x^{2} + 1$).
+
+The first step is to define generalized complex numbers: take the compactification of $\mathbf{C}$ by a point $\infty$,
+and consider the set of equivalence classes of sequences in this compactification that are eventually the same.
+That is, identify $a_{n} \equiv b_{n}$ iff there exists $N$ such that $a_{k} = b_{k}$ for all $k > N$.
+This construction, with the obvious pairwise structure making it an algebra, is termed the \textbf{extended complex plane},
+and any of its elements is a \textbf{generalized complex number}.
+
+Analogously, one may consider all sequences of functions on a domain $\Omega$ in $\mathbf{R}^{n}$ (\textit{a fortiori} smooth functions),
+and identify sequences that are eventually the same on every compact subset,
+i.e $f_{k} \equiv g_{k}$ iff for each compact $K \subseteq \Omega$ there exists $N$ such that $f_{k}(x) = g_{k}(x)$ for all $k > N, x \in K$.
+This identified set is denoted $\mathcal{G}(\Omega)$, and its elements are called \textbf{generalized functions}.
+
+
+
+
 
 \begin{definition}
   The space $F_{c}(U)$ of compactly-supported functions on $U$ is, for any open subset $U \subseteq R^{n}$,

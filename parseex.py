@@ -1,5 +1,5 @@
 from lark import Lark, Transformer
-
+from functools import partial
 
 logic = Lark(r"""
 wff: ATOMIC | and_ | or_ | implies | equiv | not_
@@ -37,11 +37,14 @@ class Tf(Transformer):
         return wff[0]
 
 
-def booleanfunc(st):
+def booleanfunc(st, arity):
+    dummy = arity - len(schema[0])
+    assert dummy >= 0, f"The wff {st} is not representable as a function of arity {arity}!"
     schema = Tf().transform(logic.parse(st))
     scope = locals()
-    exec("def r(" + ''.join([f"{i}," for i in schema[0][:-1]]) + f"{schema[0][-1]}):\n\treturn {schema[1]}", scope)
+    exec("def r(" + ''.join([f"{i}," for i in schema[0][:-1]] + [f"B{i}" for i in dummy]) + f"{schema[0][-1]}):\n\treturn {schema[1]}", scope)
+
     return scope["r"]
 
-print(booleanfunc("(A₀)∨(A₂)")(True, False))
+
 #print(logic.parse("(A₀)∨(A₂)").pretty())

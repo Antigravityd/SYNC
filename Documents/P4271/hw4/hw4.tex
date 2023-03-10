@@ -1,0 +1,257 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{tgpagella}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{minted}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{mhchem}
+\usepackage{float}
+\usepackage{endiagram}
+\usepackage{gnuplot-lua-tikz}
+
+\sisetup{detect-all}
+\newtheorem{plm}{Problem}
+\renewcommand*{\proofname}{Solution}
+
+\title{4271 HW 4}
+\author{Duncan Wilkie}
+\date{8 March 2023}
+
+\begin{document}
+
+\maketitle
+
+\begin{plm}
+  For the following gamma transitions, give all permitted multipoles and indicate which might be the most intense:
+  \begin{enumerate}
+  \item $\frac{9}{2}^{-} \mapsto \frac{7}{2}^{+}$
+  \item $\frac{1}{2}^{-} \mapsto \frac{7}{2}^{-}$
+  \item ${1}^{-} \mapsto 2^{+}$
+  \item $4^{+} \mapsto 2^{+}$
+  \item $3^{+} \mapsto 3^{+}$
+  \end{enumerate}
+\end{plm}
+
+\begin{proof}
+  In the first case, the vector diference yields possible $L$ of $1, 2, 3, 4, 5, 6, 7$.
+  The parity is $(-1)^{L}$ for an electric transition, and $-(-1)^{L}$ for a magnetic transition,
+  so these correspond to an electric dipole, magnetic quadrupole, electric octupole, magnetic 16-pole, etc. on up to electric 128-pole.
+  In general, the lower-$L$ transitions tend to be more intense.
+
+  Proceeding similarly, but in less detail for the other cases, with the most intese guess underlined,
+  \[
+    3 \leq J_{f}- J_{i} \leq 4 \Leftrightarrow L = 3, 4 \Rightarrow \textrm{\underline{magnetic octupole} and electric 16-pole transitions.}
+  \]
+  \[
+    1 \leq J_{f} - J_{i} \leq 3 \Rightarrow L = 1, 2, 3 \Rightarrow \textrm{\underline{electric dipole}, magnetic quadrupole,
+      and electric octupole transitions.}
+  \]
+  \[
+    2 \leq J_{f} - J_{i} \leq 6 \Rightarrow L = 2, 3, 4, 5, 6 \Rightarrow \textrm{electric \underline{quadrupole}, magnetic octupole,
+      electic 16-pole,}\]
+  \[
+    \text{magnetic 32-pole, and electric 64-pole transitions.}
+  \]
+
+  In the last case, there can be no gamma transition, as there is no change in angular momentum.
+\end{proof}
+
+\begin{plm}
+  An even-$Z$, even-$N$ nucleus has the following sequence of levels: $0+$ (ground state), $2+$ (\SI{89}{keV}), $4+$ (\SI{288}{keV}),
+  $6+$ (\SI{585}{keV}), $0+$ (\SI{1050}{keV}), $2+$ (\SI{1129}{keV}).
+  Drawn an energy level diagram and show all reasonbably probable gamma-ray transitions and their dominant multipole assignments.
+\end{plm}
+
+\begin{proof}
+  Possible transitions:
+  \begin{center}
+    \begin{endiagram}
+      \ENcurve{11, 10, 10}
+      \node[above] at (N1-1) {$2^{+}$};
+      \node[below,xshift=0.6cm] at (N1-2) {$0^{+}$};
+      \ShowGain[label=Electric quadrupole]
+      \ShowNiveaus[niveau=N1-1]
+      \ENcurve{5, 2, 1, 0}
+      \ShowEa[max=all]
+      \node[above] at (N2-1) {$6^{+}$};
+      \ShowEa[from = {(N2-1) to (N2-2)}, label=Electric 16-pole]
+      \node[below] at (N2-2) {$4^{+}$};
+      \node[below] at (N2-3) {$2^{+}$};
+      \ShowEa[from = {(N2-2) to (N2-3)}, label=Electric quadrupole]
+      \node[below] at (N2-4) {$0^{+}$};
+      \ShowEa[from = {(N2-3) to (N2-4)}, label=Electric quadrupole]
+      \ShowNiveaus
+    \end{endiagram}
+  \end{center}
+  There is also an electric quadrupole transition from the highest $2^{+}$ state to the lowest $0^{+}$;
+  the chemistry package I yoinked this drawing code from doesn't support that kind of a thing so easily.
+\end{proof}
+
+\begin{plm}
+  The excited states of $\ce{^{174}Hf}$ have two similar rotational bands, with energies (in \si{MeV}) given in the following table.
+  Calculate the moments of inertia for these two bands and comment on the difference.
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+      \hline
+      & $E(0^{+})$ & $E(2^{+})$ & $E(4^{+})$ & $E(6^{+})$ & $E(8^{+})$ & $E(10^{+})$ & $E(12^{+})$ \\
+      \hline
+      Band 1 & 0 & 0.091 & 0.297 & 0.608 & 1.010 & 1.486 & 2.021 \\
+      \hline
+      Band 2 & 0.827 & 0.900 & 1.063 & 1.307 & 1.630 & 2.026 & 2.489 \\
+      \hline
+    \end{tabular}
+  \end{table}
+\end{plm}
+
+\begin{proof}
+  A quick linear fit yields:
+  \begin{center}
+    \input{plt.tex}
+  \end{center}
+  The exact fit parameters extracted from gnuplot yield slopes of $0.0130 \pm 0.0002$ and $0.0106 \pm 0.0001$,
+  for bands 1 and 2 respectively; the rule for rotational kinetic energy is that
+  \[
+    E_{rot} = \frac{\hbar^{2}}{2I}[J(J+1)] + E_{k},
+  \]
+  implying that the moment of inertia in terms of the slope $m$ is, considering $J$ in natural units of $\hbar$,
+  \[
+    I = \frac{\hbar^{2}}{2m} = \frac{\SI{1}{\hbar^{2}}}{2(\SI{0.013}{})} = \SI{38.5}{}
+  \]
+  for the first band and
+  \[
+    I = \frac{\hbar^{2}}{2m} = \frac{\SI{1}{\hbar^{2}}}{2(\SI{0.0106}{})} = \SI{47.2}{}
+  \]
+  for the second.
+\end{proof}
+
+\begin{plm}[Bonus]
+  Show explicitly that a uniformly-charged ellipsoid at rest with a total charge of $Ze$ and semi-axes $a$ and $b$ has a quadrupole moment
+  \[
+    Q = \frac{2}{5}Z\qty(a^{2} - b^{2})
+  \]
+\end{plm}
+
+\begin{proof}
+  First, the volume of an ellipsoid with semi-axes $a$, $b$, $c$: in angular ellipsoidal coordinates,
+  in which the angular coordinates from spherical coordinates remain unchanged,
+  but the remaining variable parameterizes larger ellipsoidal constant surfaces with semi-axes $a, b, c$,
+  \[
+    V = \int_{0}^{\pi}\int_{0}^{2\pi}\int_{0}^{1}abcs^{2}\sin\theta dsd\phi d\theta
+    = 4\pi abc\qty(\frac{s^{3}}{3}\eval_{s = 0}^{1}) = \frac{4}{3}\pi abc.
+  \]
+  The quadrupole moment is computed by
+  \[
+    Q_{ij} = \int \rho(\vec{r})\qty(3r_{i}r_{j} - |\vec{r}|^{2}\delta_{ij})dV
+  \]
+  \[
+    = \int_{0}^{\pi}\int_{0}^{2\pi}\int_{0}^{c}\frac{Ze}{V}\qty(3r_{i}r_{j}
+    - s^{2}(a^{2}\sin^{2}\theta\cos^{2}\phi + b^{2}\sin^{2}\theta\sin^{2}\phi
+    + c^{2}\cos^{2}\theta)\delta_{ij})abcs^{2}\sin\theta dsd\phi d\theta
+  \]
+  \[
+    = \int_{0}^{\pi}\int_{0}^{2\pi}\int_{0}^{c}\frac{3Ze}{V}r_{i}r_{j} abcs^{2}\sin\theta dsd\phi d\theta
+  \]
+  \[
+    - \delta_{ij}\frac{Zec^{5}abc}{5V}\qty(a^{2}\int_{0}^{\pi}\sin^{3}\theta d\theta\int_{0}^{2\pi}\cos^{2}\phi d\phi
+    + b^{2}\int_{0}^{\pi}\sin^{3}\theta d\theta\int_{0}^{2\pi}\sin^{2}\phi d\phi
+    + 2\pi c^{2}\int_{0}^{\pi}\sin\theta\cos^{2}\theta d\theta)
+  \]
+  With some trig identities, we can compute antiderivatives:
+  \[
+    \cos(2\theta) = \cos^{2}\theta - \sin^{2}\theta = 1 - 2\sin^{2}\theta
+    \Rightarrow \sin^{2}\theta = \frac{1}{2} - \frac{1}{2}\cos(2\theta)
+    \Rightarrow \text{antideriv.} = \frac{\theta}{2} - \frac{1}{4}\sin(2\theta) + c
+  \]
+  \[
+    \cos^{2}\theta = \sin^{2}(\theta + \frac{\pi}{2}) \Rightarrow \text{antideriv} = \frac{\theta}{2} + \frac{1}{4} \sin(2\theta)
+    + c.
+  \]
+  These entail, alongside integration by parts and $u$-substitution, that the original integral is
+  \[
+    = \int_{0}^{\pi}\int_{0}^{2\pi}\int_{0}^{c}\frac{3Ze}{V}r_{i}r_{j}abcs^{2}\sin\theta dsd\phi d\theta
+  \]
+
+  \[
+    - \delta_{ij}\frac{Zec^{5}abc}{5V}\qty(a^{2}\qty(\frac{4}{3})\qty(\pi)
+    + b^{2}\qty(\frac{4}{3})(\pi) + 2\pi c^{2}\qty(\frac{2}{3}))
+  \]
+  \[
+    = \frac{3Ze}{4\pi}\int_{0}^{\pi}\int_{0}^{2\pi}\int_{0}^{c}r_{i}r_{j}s^{2}\sin\theta dsd\phi d\theta
+    - \frac{Zec^{5}\delta_{ij}}{5}(a^{2} + b^{2} + c^{2})
+  \]
+  which in particular is
+  \[
+    Q_{xx} = \frac{3Ze}{4\pi}\int_{0}^{\pi}\int_{0}^{2\pi}\int_{0}^{1}a^{2}s^{4}\sin^{3}\theta\cos^{2}\phi dsd\phi d\theta
+    - \frac{Zec^{5}}{5}(a^{2} + b^{2} + c^{2})
+    = \frac{Ze}{5}(2a^{2} - b^{2} - c^{2})
+  \]
+  \[
+    Q_{yy} = \frac{3Ze}{4\pi}\int_{0}^{\pi}\int_{0}^{2\pi}\int_{0}^{1}b^{2}s^{4}\sin^{3}\theta \sin^{2}\phi dsd\phi d\theta
+    - \frac{Zec^{5}}{5}(a^{2} + b^{2} + c^{2})
+    = \frac{Ze}{5}(2b^{2} - a^{2} - c^{2})
+  \]
+  \[
+    Q_{zz} = \frac{3Ze}{4\pi}\int_{0}^{\pi}\int_{0}^{2\pi}\phi^{2}\int_{0}^{1}c^{2}s^{4}\cos^{2}\theta \sin\theta ds d\phi d\theta
+    - \frac{Zec^{5}}{5}(a^{2} + b^{2} + c^{2})
+    = \frac{Ze}{5}(2c^{2} - a^{2} - b^{2})
+  \]
+
+  I caved and used a table (Gradshteyn-Ryzhik), but these little trig integrals should be pretty quick with integration-by-parts.
+  The quadrupole tensor is symmetric, because multiplication and the Kronecker delta are commutative.
+  Furthermore, the symmetry of the problem would indicate that the non-diagonal components are zero;
+  indeed, if one writes them out, one finds immediate functional parity arguments to enforce this,
+  so this is the full quadrupole moment.
+  From the form of the solution, I presume it is intended that this is an ellipsoid of revolution,
+  i.e. circular in some projection; say WLOG $b = c$.
+
+  Accordingly, the tensor becomes
+  \[
+    \frac{Ze}{5}
+    \begin{pmatrix}
+      2a^{2} - 2b^{2} & 0 & 0 \\
+      0 & b^{2} - a^{2} & 0 \\
+      0 & 0 & b^{2} - a^{2}
+    \end{pmatrix}
+  \]
+  Were I to privelege an axis along which to compute, it'd be the axis of revolution of the ellipsoid, which is the $x$-axis
+  (given our choice of which semi-axes are identified).
+  Accordingly, the $1$-$1$ component of the tensor is a sensible choice for a scalar to be called the ``quadrupole moment:''
+  \[
+    Q = \frac{2Ze}{5}(a^{2} - b^{2}),
+  \]
+  which matches the form given closely enough that I'm not too worried about it.
+\end{proof}
+
+\begin{plm}
+  Use the answer to Problem 4 to determine the sizes of the semi-major and semi-minor axes of $\ce{^{165}Ho}$,
+  which has a quadrupole moment of $Q = \SI{3.5}{b}$.
+\end{plm}
+
+\begin{proof}
+  My result derived above has units of $\si{C \cdot m^{2}}$; to get areal units, I'll suppose that I've missed a convention somewhere,
+  and that the formula given, with $e$ divided out, is the correct one.
+  If the ``average'' radius obeys the phenomenological rule $r = \SI{1.2}{fm} A^{1/3} = \SI{6.58}{fm}$,
+  but the nucleus is truly spherical,
+  then $r = \frac{a + b}{2} \Leftrightarrow a = 2r - b$.
+  This gives us a second equation to solve simultaneously with that given by the quadrupole moment formula:
+  \[
+    Q = \frac{2Z}{5}((2r - b)^{2} - b^{2}) = \frac{2Z}{5}(b^{2} - 4rb + 4r^{2} - b^{2})
+    \Leftrightarrow b = \frac{1}{4r}\qty[4r^{2} - \frac{5Q}{2Z}] = r - \frac{5Q}{8Z r}
+  \]
+
+  \[
+    = \SI{6.58}{fm} - \frac{5 \cdot \SI{3.5e-28}{m}}{8 \cdot 67 \cdot \SI{6.58}{fm}}
+    = \SI{6.08}{fm}
+  \]
+  \[
+    \Rightarrow a = 2 \cdot \SI{6.58}{fm} - \SI{6.08}{fm} = \SI{7.08}{fm}
+  \]
+\end{proof}
+
+\end{document}

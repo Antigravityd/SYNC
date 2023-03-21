@@ -44,9 +44,9 @@ function precmd() {
 PROMPT='%F{blue}%2~%f%(?..%F{88} %?%f) %F{magenta}%Bᛋ%b%f '
 
 source ~/.guix-profile/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-export PHITSPATH=/home/dnw/phits327A/phits
-export PATH=/home/dnw/phits327A/phits/bin:${PATH}
-export PATH=/home/dnw/phits327A/phits/dchain-sp/bin:${PATH}
+export PHITSPATH=/home/dnw/phits326A/phits
+export PATH=/home/dnw/phits326A/phits/bin:${PATH}
+export PATH=/home/dnw/phits326A/phits/dchain-sp/bin:${PATH}
 export PATH=/home/dnw/Code/bin:${PATH}
 
 export ANDROID_HOME=$HOME/Code/Android

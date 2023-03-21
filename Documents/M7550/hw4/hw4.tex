@@ -1,0 +1,83 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{tgpagella}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{minted}
+\usepackage{physics}
+\usepackage{siunitx}
+
+\sisetup{detect-all}
+\newtheorem{plm}{Problem}
+\renewcommand*{\proofname}{Solution}
+
+\title{7550 HW 4}
+\author{Duncan Wilkie}
+\date{25 March 2023}
+
+\begin{document}
+
+\maketitle
+
+\begin{plm}
+  Let $f: V \to W$ be linear.
+  Show that if $f$ is surjective, then the induced map $f^{*}: W^{*} \to V^{*}$ defined by $(f^{*}(g))(v) = g(f(v))$ is injective.
+\end{plm}
+
+\begin{plm}
+  Let $f: V \to V$ be a linear endomorphism, and let $\mathcal{B}$ and $\mathcal{B}^{*}$ be dual bases for $V$ and $V^{*}$.
+  If $A$ and $B$ are the matrices of $f$ and $f^{*}: V^{*} \to V^{*}$ with respect to $\mathcal{B}$ and $\mathcal{B}^{*}$,
+  show that $B$ is the transpose of $A$.
+\end{plm}
+
+\begin{plm}
+  If $f: V_{1} \to V_{2}$ is a surjective linear map, show that, for any $W$, the induced map $V_{1} \otimes W \to V_{1} \otimes W$
+  defined by $v_{1} \otimes w \mapsto f(v_{1}) \otimes w$, is also surjective.
+\end{plm}
+
+\begin{plm}
+  Show that $\{v_{1}, \ldots, v_{r}\}$ is a linearly independent set in $V$ iff $v_{1} \land \cdots \land v_{r} \neq 0$.
+\end{plm}
+
+\begin{plm}
+  Show that two linearly independent sets $\{v_{1}, \ldots, v_{r}\}$ and $\{w_{1}, \ldots, w_{r}\}$ in $V$
+  span the same $r$-dimensional subspace iff $v_{1} \land \ldots \land v_{r}= c \cdot w_{1} \land \ldots \land w_{r}$,
+  where $c = \det(A)$, and $A = (a_{ij})$ is given by $v_{i} = \sum_{j = 1}^{r}a_{ij}w_{j}$.
+\end{plm}
+
+\begin{plm}
+  Let $f: V \to V$ be linear, let $\mathcal{B}$ be a basis for $V$, and let $A$ be the matrix of $f$ with respect to $\mathcal{B}$.
+  \begin{enumerate}
+  \item Let $\phi: \Lambda^{n}V \to \Lambda^{n}V$ be the map induced by $f$, defined by
+    $\phi(v_{1} \land \cdots \land v_{n}) = f(v_{1}) \land \cdots \land f(v_{n})$.
+    Since $\Lambda^{n}V$ is 1-dimensional, $\phi$ corresponds to multiplication by some scalar, say $c$.
+    Show that $c = \det(A)$.
+  \end{enumerate}
+\end{plm}
+
+\begin{plm}
+  Let $V$ be a real  inner product space, a real vector space equiped with a symmetric non-degenerate bilinear form
+  $\langle \cdot, \cdot \rangle: V \times V \to \mathbb{R}$, with $\langle v, v \rangle = 0 \Leftrightarrow v = 0$.
+  Then $\langle \cdot, \cdot \rangle$ induces an inner product $\langle \cdot, \cdot \rangle: \Lambda V \times \Lambda V \to \mathbb{R}$,
+  defined as follows: if $u = u_{1} \land \cdots \land u_{r}$ and $v = v_{1} \land \cdots \land v_{s}$ are pure wedges,
+  set $\langle u, v \rangle = 0$ if $r \neq s$ and $\langle u, v \rangle = \det(\langle u_{i}, v_{j} \rangle)$ if $r = s$.
+  This can be extended linearly in each argument.
+  Let $\{e_{1}, \ldots, e_{n}\}$ be an \textit{orthonormal} basis for $V$, a basis for which $\langle e_{i}, e_{j} \rangle = \delta_{ij}$.
+  Show that the basis $\{e_{i_{1}} \land \cdots \land e_{i_{r}} \mid 1 \leq i_{1} < \cdots < i_{r} \leq n, 0 \leq r \leq n\}$
+  is an orthonormal basis for $\Lambda V$.
+  For $r = 0$, the empty wedge product is interpreted to be $1 \in \mathbb{R} = \Lambda^{0}V$.
+\end{plm}
+
+\begin{plm}
+  An endomorphism $\psi: \Lambda V \to \Lambda V$ is an \textit{anti-derivation} if, for $u \in \Lambda^{k}V$ and $v \in  \Lambda V$,
+  $\psi(u \land v) = \psi(u) \land v + (-1)^{k}u \land \psi(v)$.
+  Show that $\psi: \Lambda V \to \Lambda V$ is an anti-derivation iff
+  \[
+    \psi(v_{1} \land \cdots \land v_{r}) = \sum_{k = 1}^{r}(-1)^{k+1}v_{1} \land \cdots \land \psi(v_{k}) \land \cdots \land v_{r}
+  \]
+\end{plm}
+
+\end{document}

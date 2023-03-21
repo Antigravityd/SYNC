@@ -1,4 +1,5 @@
-from collections import namedtuple, Iterable
+from valspec import *
+import re
 
 def continue_lines(inp):        # Continue lines that are too long
     r = ""
@@ -19,6 +20,28 @@ def continue_lines(inp):        # Continue lines that are too long
     return r
 
 
+# Configuration options
+g_value_type = "Python"
+def settings(value_type="Python"):
+    """Configure module-level parameters.
+
+    Options:
+      - value_type = "Python" | "PHITS"
+        If "Python", use a remapped syntax that's more informative. E.g., `Parameters(control="output_echo_only")`
+        instead of `Parameters(icntl=3)`.
+
+        If "PHITS", use a syntax identical to that specified in the manual (i.e., the latter form in the above example).
+        Note that some identifiers in PHITS do not conform to Python's identifier syntax (e.g. 2d-type, emin(14));
+        these identifiers are sanitized as follows:
+           - dashes -> underscores
+           - beginning with a number -> that clause moved to the end
+           - parentheses -> omitted
+
+        For the examples above, the sanitized identifiers would be type_2d and emin14.
+    """
+    global g_value_type
+    g_value_type = new_value_type
+
 
 class PhitsObject:
     r"""The base class distinguishing objects that are intended to end up in some section of a .inp file,
@@ -26,14 +49,14 @@ class PhitsObject:
 
     PhitsObject values correspond to some section of an input file.
     As such, they have a .definition() method that returns a textual representation of the value to be inserted into the input file:
-    >>> print( Cylindrical("241Am", 2.2, fissile="neutrons", bounds=(-0.25, 0.25), r_out=0.3).definition() )
+    >>> print(Cylindrical("241Am", 2.2, fissile="neutrons", bounds=(-0.25, 0.25), r_out=0.3).definition())
 
-    They also have a .prelude() method that returns the line that is to preceed the whole set of values of that type:
+    They also have a .prelude_str() method that returns text that is to preceed the whole set of values of that type:
     >>> print()
 
     Last, there's a .section_title() method that gives the name of the section into which the objects definition will be placed:
     >>> print()
-
+n
     The PhitsObject class is also a factory for subtypes.
     As an example of how subtypes should be defined:
     >>> class Cylindrical(PhitsObject):
@@ -114,45 +137,77 @@ class PhitsObject:
     def __init__(self, *args,  **kwargs):
         assert self.name in self.names, f"Unrecognized PHITS type {self.name} in PhitsObject initialization."
 
-        if len(args) == len(self.positional):
-            for idx, arg in enumerate(args):
-                setattr(self, self.positional[idx], arg if not isinstance(arg, list) else tuple(arg))
-        else:
-            raise TypeError(f"Wrong number of positional arguments specified in the definition of {self.name} object.")
+        if hasattr(self, syntax): # new-style definition, with high-resolution mapping
+            required = list(map(lambda tup: tup[0],
+                                sorted([(k, v) for k, v in self.syntax.items() if v[2] is not None], key=lambda tup: tup[1][2])))
+            assert len(args) == len(required), f"Wrong number of positional arguments specified in the definition of {self.name} object."
+            for idx, iden in enumerate(args):
+                setattr(self, required[idx], arg if not isinstance(arg, list) else tuple(arg))
 
-        for arg in self.required:
-            if arg not in self.positional:
+            for arg in self.syntax:
                 if arg in kwargs:
-                    setattr(self, arg, kwargs[arg] if not isinstance(kwargs[arg], list) else tuple(kwargs[arg]))
-                else:
-                    raise TypeError(f"Missing required argument in the definition of {self.name} object.")
-
-        for arg in self.optional:
-            if arg in kwargs:
-                setattr(self, arg, kwargs[arg] if not isinstance(kwargs[arg], list) else tuple(kwargs[arg]))
-            else:
-                if arg in self.nones:
-                    setattr(self, arg, self.nones[arg])
+                    setattr(self, arg, kwargs[arg] if not isinstance(arg, list) else tuple(arg))
                 else:
                     setattr(self, arg, None)
 
+            # TODO: reconsider
+            for attr in self.subobjects:
+                child = getattr(self, attr)
+                if hasattr(child, self.name):
+                    val = getattr(child, self.name)
+                    if val is None:
+                        setattr(child, self.name, self)
 
-        for attr in self.subobjects:
-            child = getattr(self, attr)
-            if hasattr(child, self.name):
-                val = getattr(child, self.name)
-                if val is None:
-                    setattr(child, self.name, self)
+            remaining = {k: v for k, v in kwargs.items() if k not in self.syntax}
+            if remaining:
+                self.parameters = Parameters(**remaining)
+
+        else: # Old-style definition, with "required" and "optional" lists, separate mappings, no value reassignment, etc.
+              # Should be removed eventually.
+
+            if len(args) == len(self.positional):
+                for idx, arg in enumerate(args):
+                    setattr(self, self.positional[idx], arg if not isinstance(arg, list) else tuple(arg))
+            else:
+                raise TypeError(f"Wrong number of positional arguments specified in the definition of {self.name} object.")
+
+            for arg in self.required:
+                if arg not in self.positional:
+                    if arg in kwargs:
+                        setattr(self, arg, kwargs[arg] if not isinstance(kwargs[arg], list) else tuple(kwargs[arg]))
+                    else:
+                        raise TypeError(f"Missing required argument in the definition of {self.name} object.")
+
+            for arg in self.optional:
+                if arg in kwargs:
+                    setattr(self, arg, kwargs[arg] if not isinstance(kwargs[arg], list) else tuple(kwargs[arg]))
+                else:
+                    if arg in self.nones:
+                        setattr(self, arg, self.nones[arg])
+                    else:
+                        setattr(self, arg, None)
+
+            # TODO: reconsider
+            for attr in self.subobjects:
+                child = getattr(self, attr)
+                if hasattr(child, self.name):
+                    val = getattr(child, self.name)
+                    if val is None:
+                        setattr(child, self.name, self)
 
 
 
-        remaining = {k: v for k, v in kwargs.items() if k not in self.required and k not in self.optional}
-        if remaining:
-            self.parameters = Parameters(**remaining)
+            remaining = {k: v for k, v in kwargs.items() if k not in self.required and k not in self.optional}
+            if remaining:
+                self.parameters = Parameters(**remaining)
 
 
 
     def add_definition(self, how, to, assignments=True):
+        """Helper function to handle shape and prelude skeletons."""
+        if callable(how):
+            how = how(self)
+
         def idx(ob):
             if isinstance(ob, PhitsObject):
                 return str(ob.index)
@@ -226,20 +281,36 @@ class PhitsObject:
         return to
 
     def prelude_str(self):
+        """Return a string to appear before all instances of a type of PhitsObject."""
         inp = self.add_definition(self.prelude, "")
 
         return continue_lines(inp)
 
     def definition(self):
+        """Return the string representing the particular PhitsObject."""
         inp = self.add_definition(self.shape, "")
 
         return continue_lines(inp)
 
     def section_title(self):
+        """Return the section title under which a PhitsObject belongs."""
         sec_name = self.name.replace("_", " ").title()
         return f"[{sec_name}]\n"
 
 
+    def sanitize(self, iden):
+        """Make a PHITS identifier Python-acceptable.
+
+        See the documentation for settings().
+        """
+        r = iden.replace("-", "_")
+        r = r.replace("(", "")
+        r = r.replace(")", "")
+        if r[0].isdigit():
+            if m := re.match(".*?_", r):
+                r = r[m.end():] + "_" + r[:m.end() - 1]
+
+        return r
 
 
     def __eq__(self, other):
@@ -255,54 +326,4 @@ class PhitsObject:
                           if (self not in v.__dict__.values() if hasattr(v, "__dict__") else True) and k not in self.no_hash))
 
 
-class Parameters(PhitsObject):
-    """A "dictionary with an attitude" representing an entry in the [Parameters] section of an input file.
-    Any extra keyword arguments to any constructors are minted into parameter objects.
 
-
-    >>> print(Parameters(ndedx=2, dbcutoff=3.3).definition())
-    ndedx = 2
-    dbcutoff = 3.3
-
-    """
-    def __init__(self, **kwargs):
-        self.name = "parameters"
-        for k,v in kwargs.items():
-            setattr(self, k, v)
-    def __getitem__(self, key):
-        return self.__dict__[key]
-    def empty(self):
-        return True if self.__dict__ == {"name": "parameters"} else False
-    def definition(self):
-        inp = ""
-        for var, val in  self.__dict__.items():
-            if var != "name":
-                inp += f"{var} = {val}\n"
-
-        return inp
-
-# I want to get rid of this
-class Mesh():
-    """Represents all list-typed data in PHITS."""
-    def __init__(self, axis, bins=None): # All bin generation is easily done in Python via list comprehensions
-        assert axis in ["energy", "time", "x", "y", "z", "radius", "angle", "let"], f"Unrecognized axis {axis} in mesh definition."
-        self.axis = axis
-        self.bins = tuple(bins)
-        print(self.bins)
-        if axis != "angle":
-            self.type = 2
-        else:
-            pass  # TODO: figure out angle mesh
-
-
-    def __eq__(self, other):
-        if type(self) != type(other):
-            return False
-
-        else:
-            return {k: v for k, v in self.__dict__.items() if v is not other} \
-                == {k: v for k, v in other.__dict__.items() if v is not self}
-
-    def __hash__(self):
-        return hash(tuple(v for k, v in sorted(self.__dict__.items()) \
-                          if (self not in v.__dict__.values() if hasattr(v, "__dict__") else True)))

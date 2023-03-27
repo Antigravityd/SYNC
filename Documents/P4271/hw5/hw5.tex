@@ -88,7 +88,9 @@
 
 \begin{proof}
   The TikZ package for Feynman diagrams is unmaintained and doesn't work, so I caved and used a pen.
-  \includegraphics
+  \begin{center}
+    \includegraphics[scale=0.08,angle=90]{feyn.jpg}
+  \end{center}
 \end{proof}
 
 \begin{plm}
@@ -101,15 +103,57 @@
 \end{plm}
 
 \begin{proof}
-  In each case, energy will be conserved, as will the momentum in the original rest frame; the latter necessarily means
-  both decay products will have the same momentum magnitude $p = m\gamma v$:
+  The conservation of 4-momentum is, with $c = 1$,
   \[
-    m_{0}c^{2} = m_{a}\gamma_{b} c^{2} + m_{b}\gamma_{b} c^{2}
-    = \frac{pc^{2}}{v_{a}} + \frac{pc^{2}}{v_{b}}
+    p_{0} = p_{a} + p_{b}
+    \Rightarrow m_{b}^{2} = p_{b}^{2} = (p_{0} - p_{a})^{2} = p_{0}^{2} - 2p_{0} \cdot p_{1} + p_{1}^{2}
   \]
   \[
-    \Leftrightarrow K =
+    = m_{0}^{2} - 2m_{0}E_{a} + m_{a}^{2} \Leftrightarrow E_{a} = \frac{m_{0}^{2} + m_{a}^{2} -  m_{b}^{2}}{2m_{0}}
   \]
+  and, doing the same for $a$,
+  \[
+    E_{b} = \frac{m_{0}^{2} + m_{b}^{2} -  m_{a}^{2}}{2m_{0}}
+  \]
+  Evaluating these for the above situations, using the mass values tabulated online,
+  \[
+    E_{\mu} = \frac{m_{\pi^{+}}^{2} + m_{\nu_{\mu}}^{2} - m_{\mu^{+}}^{2}}{2m_{\pi^{+}}}
+    = \frac{(\SI{140}{MeV})^{2} + (\SI{0.2}{MeV})^{2} - (\SI{106}{MeV})^{2}}{2(\SI{140}{MeV})}
+    = \SI{29.9}{MeV}
+  \]
+  \[
+    E_{\nu_{\mu}} = \frac{m_{\pi^{+}}^{2} + m_{{\mu}}^{2} - m_{\nu_{\mu}}^{2}}{2m_{\pi^{+}}}
+    = \frac{(\SI{140}{MeV})^{2} + (\SI{106}{MeV})^{2} - (\SI{0.2}{MeV})^{2}}{2(\SI{140}{MeV})}
+    = \SI{110}{MeV}
+  \]
+  \[
+    E_{p} = \frac{m_{\Lambda^{0}}^{2} + m_{p}^{2} - m_{\pi}^{2}}{2m_{\Lambda^{0}}}
+    = \frac{(\SI{1116}{MeV})^{2} + (\SI{938}{MeV})^{2} - (\SI{170}{MeV})^{2}}{2(\SI{1116}{MeV})}
+    = \SI{939}{MeV}
+  \]
+  \[
+    E_{\pi} = \frac{m_{\Lambda^{0}}^{2} + m_{\pi}^{2} - m_{p}^{2}}{2m_{\Lambda^{0}}}
+    = \frac{(\SI{1116}{MeV})^{2} + (\SI{170}{MeV})^{2} - (\SI{938}{MeV})^{2}}{2(\SI{1116}{MeV})}
+    = \SI{177}{MeV}
+  \]
+  For the last, the masses of the differently-charged pions is the same, so we can save some calculation and note
+  \[
+    E_{\pi^{+}} = E_{\pi^{-}} = \frac{m_{K^{+}}}{2} = \frac{\SI{494}{MeV}}{2} = \SI{247}{MeV}
+  \]
+
 \end{proof}
+
+\section*{Topic Ranking}
+
+\begin{enumerate}
+\item Detectors for subatomic physics
+\item Biological effects of radiation
+\item Origin of the elements
+\item Nuclear reactors
+\item Fusion
+\item The big bang
+\item The atomic bomb
+\item Nuclear disasters
+\end{enumerate}
 
 \end{document}

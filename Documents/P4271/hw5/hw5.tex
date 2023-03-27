@@ -87,23 +87,29 @@
 \end{plm}
 
 \begin{proof}
-  There's a TikZ library for everything.
-  \begin{enumerate}
-  \item
-    \feynmandiagram[vertical=a to b]{
-      ne [particle=$\nu_{e}$] -- [fermion] a -- [fermion] nef [particle=$\nu_{e}$],
-      a -- [boson, edge label=$Z_{0}$] b,
-      nm [particle=$\nu_{\mu}$] -- [fermion] b -- [fermion] nmf [particle=$\nu_{\mu}$],
+  The TikZ package for Feynman diagrams is unmaintained and doesn't work, so I caved and used a pen.
+  \includegraphics
+\end{proof}
 
-    };
+\begin{plm}
+  Find the kinetic energy (in the rest frame of the original particle) of each product particle in the following two-body decays:
+  \begin{itemize}
+  \item $\pi^{+} \to \mu^{+} + \nu_{\mu}$
+  \item $\Lambda^{0} \to p + \pi^{-}$
+  \item $K^{+} \to \pi^{+} + \pi^{-}$
+  \end{itemize}
+\end{plm}
 
-  \item \feynmandiagram[horizontal=a to b]{
-      a  -- [photon, edge label=$\gamma$] b,
-      i1 [particle=$e^{+}$] -- [fermion]  a -- i2 [particle=$e^{-}$],
-      o1 [particle=$e^{+}$] -- [fermion] b -- o2 [particle=$e^{-}$],
-
-    };
-  \end{enumerate}
+\begin{proof}
+  In each case, energy will be conserved, as will the momentum in the original rest frame; the latter necessarily means
+  both decay products will have the same momentum magnitude $p = m\gamma v$:
+  \[
+    m_{0}c^{2} = m_{a}\gamma_{b} c^{2} + m_{b}\gamma_{b} c^{2}
+    = \frac{pc^{2}}{v_{a}} + \frac{pc^{2}}{v_{b}}
+  \]
+  \[
+    \Leftrightarrow K =
+  \]
 \end{proof}
 
 \end{document}

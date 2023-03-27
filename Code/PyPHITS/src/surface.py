@@ -3,117 +3,88 @@ from base import *
 from transform import *
 
 
+common = {"reflective": (None, Choice10(), None),
+          "white": (None, Choice10(), None),
+          "transform": (None, IsA(Transform, index=True), None),
+          "inside": (None, Choice10(), None)}
 
-class Plane(PhitsObject): # Planar surface stored as Ax+By+Cz-D = 0.
-    def __init__(self, *args, **kwargs):
-        super().no_hash.add("inside")
-        if len(args) == 4:
-            self.name = "surface"
-            self.required = ["A", "B", "C", "D"]
-            self.positional = ["A", "B", "C", "D"]
-            self.optional = ["reflective", "white", "transform", "inside"]
-            self.shape = ((lambda self: f"*{self.index}" if self.reflective else
+
+class Plane(PhitsObject):
+    """A plane of the form Ax + By + Cz - D = 0."""
+    name = "surface"
+    syntax = common | {"A": (None, Real(), 0),
+                       "B": (None, Real(), 1),
+                       "C": (None, Real(), 2),
+                       "D": (None, Real(), 3)}
+
+    shape = lambda self: ((f"*{self.index}" if self.reflective else
                            (f"+{self.index}" if self.white else f"{self.index}"),
                            "transform", "P", "A", "B", "C", "D"))
-            super().__init__(*args, **kwargs)
-        elif len(args) == 3:
-            self.name = "surface"
-            self.required = ["p1", "p2", "p3"]
-            self.positional = ["p1", "p2", "p3"]
-            self.optional = ["reflective", "white", "transform", "inside"]
-            self.shape = ((lambda self: f"*{self.index}" if self.reflective else
-                           (f"+{self.index}" if self.white else f"{self.index}"), "transform", "P", "p1", "p2", "p3"),)
-            super().__init__(*args, **kwargs)
-        else:
-            self.name = "surface"
-            self.required = ["parallel", "D"]
-            self.positional = ["parallel", "D"]
-            self.optional = ["reflective", "white", "transform", "inside"]
-            self.shape = ((lambda self: f"*{self.index}" if self.reflective else
-                      (f"+{self.index}" if self.white else f"{self.index}"),
-                      "transform",
-                      lambda self: f"P{self.parallel}", "D"))
-            super().__init__(*args, **kwargs)
 
 
-class Sphere(PhitsObject): # Spherical surface stored as (x-x0)^2+(y-y0)^2+(z-z0)^2-R^2=0
-    def __init__(self, *args, **kwargs):
-        super().no_hash.add("inside")
-        if len(args) == 1:
-            self.name = "surface"
-            self.required = ["R"]
-            self.positional = ["R"]
-            self.optional = ["reflective", "white", "transform", "inside"]
-            self.shape = ((lambda self: f"*{self.index}" if self.reflective else
-                           (f"+{self.index}" if self.white else f"{self.index}"), "transform", "SO", "R"),)
-            super().__init__(*args, **kwargs)
-        elif len(args) == 2:
-            self.name = "surface"
-            self.required = ["center", "R"]
-            self.positional = ["center", "R"]
-            self.optional = ["reflective", "white", "transform", "inside"]
-            self.shape = ((lambda self: f"*{self.index}" if self.reflective else
-                           (f"+{self.index}" if self.white else f"{self.index}"), "transform", "S", "center", "R"),)
-            super().__init__(*args, **kwargs)
-        elif len(args) == 3:
-            self.name = "surface"
-            self.required = ["coordinate", "on", "R"]
-            self.positional = ["coordinate", "on" "R"]
-            self.optional = ["reflective", "white", "transform", "inside"]
-            self.shape = ((lambda self: f"*{self.index}" if self.reflective else
+# TODO: consider obliterating the next 2
+class PointPlane(PhitsObject):
+    """A plane specified by three points."""
+    name = "surface"
+    syntax = common | {"p1": (None, Tuple(Real(), Real(), Real()), 0),
+                       "p2": (None, Tuple(Real(), Real(), Real()), 1),
+                       "p3": (None, Tuple(Real(), Real(), Real()), 2)
+                       }
+
+    shape = lambda self: ((f"*{self.index}" if self.reflective else
                            (f"+{self.index}" if self.white else f"{self.index}"),
-                           "transform", lambda self: f"S{self.on}", "coordinate" "R"),)
-            super().__init__(*args, **kwargs)
+                           "transform", "P",
+                           f"{self.p1[0]}", f"{self.p1[1]}", f"{self.p1[2]}",
+                           f"{self.p2[0]}", f"{self.p2[1]}", f"{self.p2[2]}",
+                           f"{self.p3[0]}", f"{self.p3[1]}", f"{self.p3[2]}"))
+
+class ParallelPlane(PhitsObject):
+    """A plane of the form x_i = D."""
+    name = "surface"
+    syntax = common | {"parallel": (None, FinBij({"x": "X", "y": "Y", "z":"Z"}), 0),
+                       "D": (None, Real(), 1)}
+
+    shape = lambda self: ((f"*{self.index}" if self.reflective else
+                           (f"+{self.index}" if self.white else f"{self.index}"),
+                           "transform", f"P{self.parallel}", "D"))
+
+
+class Sphere(PhitsObject):
+    "A sphere of radius R centered on (x0, y0, z0)."
+    name = "surface"
+    syntax = common | {"radius": (None, PosReal(), 0),
+                       "center": (None, Tuple(Real(), Real(), Real()), 1)}
+
+    shape = lambda self: ((f"*{self.index}" if self.reflective else
+                           (f"+{self.index}" if self.white else f"{self.index}"),
+                           "transform",
+                           "SPH", f"{self.center[0]}", f"{self.center[1]}", f"{self.center[2]}" "R"))
 
 
 class Cylinder(PhitsObject):
-    def __init__(self, *args, **kwargs):
-        super().no_hash.add("inside")
-        symb = args[0]
-        if len(args) == 2:
-            self.name = "surface"
-            self.required = ["on", "R"]
-            self.positional = ["on", "R"]
-            self.optional = ["reflective", "white", "transform", "inside"]
-            self.shape = ((lambda self: f"*{self.index}" if self.reflective else
+    """A right-circular cylinder with center of the bottom face (x_0, y_0, z_0), height vector from the bottom to top face (H_x, H_y, H_z),
+    and radius R."""
+    name = "surface"
+    syntax = common | {"center": (None, Tuple(Real(), Real(), Real()), 0),
+                       "height": (None, Tuple(Real(), Real(), Real()), 1),
+                       "radius": (None, PosReal(), 2)}
+    shape = lambda self: ((f"*{self.index}" if self.reflective else
                            (f"+{self.index}" if self.white else f"{self.index}"),
-                           "transform", lambda self: f"C{self.on}", "R"),)
-            super().__init__(*args, **kwargs)
-        elif len(args) == 3:
-            self.name = "surface"
-            self.required = ["parallel", "center", "R"]
-            self.positional = ["parallel", "center", "R"]
-            self.optional = ["reflective", "white", "transform", "inside"]
-            self.shape = ((lambda self: f"*{self.index}" if self.reflective else
-                           (f"+{self.index}" if self.white else f"{self.index}"),
-                           "transform", lambda self: f"C/{self.parallel}", "center", "R"),)
-            super().__init__(*args, **kwargs)
-
+                           "transform",
+                           "RCC", " ".join(self.center), " ".join(self.height), "radius"))
 
 class Cone(PhitsObject):
-    def __init__(self, *args, **kwargs):
-        super().no_hash.add("inside")
-        if isinstance(args[1], list):
-            self.name = "surface"
-            self.required = ["on", "coordinate", "t_squared", "sheet"]
-            self.positional = ["on","coordinate", "t_squared", "sheet"]
-            self.optional = ["reflective", "white", "transform", "inside"]
-            self.shape = ((lambda self: f"*{self.index}" if self.reflective else
+    """A truncated right-angle cone with bottom-face center (x_0, y_0, z_0), height vector (H_x, H_y, H_z), and bottom and top radii
+    R_1 and R_2 respectively."""
+    name = "surface"
+    syntax = common | {"center": (None, Tuple(Real(), Real(), Real()), 0),
+                       "height": (None, Tuple(Real(), Real(), Real()), 1),
+                       "bottom_r": (None, PosReal(), 2),
+                       "top_r": (None, PosReal(), 3)}
+    shape = lambda self: ((f"*{self.index}" if self.reflective else
                            (f"+{self.index}" if self.white else f"{self.index}"),
-                           "transform", lambda self: f"K{self.on}", "coordinate", "t_squared", "sheet"),)
-            self.value_map = {"upper": 1.0, "lower": -1.0}
-            super().__init__(*args, **kwargs)
-
-        else:
-            self.name = "surface"
-            self.required = ["parallel", "coordinate", "t_squared", "sheet"]
-            self.positional = ["parallel","coordinate", "t_squared", "sheet"]
-            self.optional = ["reflective", "white", "transform", "inside"]
-            self.shape = ((lambda self: f"*{self.index}" if self.reflective else
-                           (f"+{self.index}" if self.white else f"{self.index}"),
-                           "transform", lambda self: f"K/{self.parallel}", "coordinate", "t_squared", "sheet"),),
-            self.value_map = {"upper": 1.0, "lower": -1.0}
-            super().__init__(*args, **kwargs)
+                           "transform",
+                           "TRC", " ".join(self.center), " ".join(self.height), "bottom_r", "top_r"))
 
 
 class SimpleConic(PhitsObject): # ellipsoid, hyperboloid, or paraboloid parallel to an axis of the form

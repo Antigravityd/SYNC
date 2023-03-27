@@ -27,26 +27,136 @@
   Show that if $f$ is surjective, then the induced map $f^{*}: W^{*} \to V^{*}$ defined by $(f^{*}(g))(v) = g(f(v))$ is injective.
 \end{plm}
 
+\begin{proof}
+  Suppose $f^{*}(g_{1}) = f^{*}(g_{2})$.
+  By definition, this is equivalent to $g_{1} \circ f = g_{2} \circ f$; since surjections are epic, one may right-cancel $f$
+  to get $g_{1} = g_{2}$.
+\end{proof}
+
+
 \begin{plm}
-  Let $f: V \to V$ be a linear endomorphism, and let $\mathcal{B}$ and $\mathcal{B}^{*}$ be dual bases for $V$ and $V^{*}$.
-  If $A$ and $B$ are the matrices of $f$ and $f^{*}: V^{*} \to V^{*}$ with respect to $\mathcal{B}$ and $\mathcal{B}^{*}$,
+  Let $f$ be a linear operator on $V$ (finite-dimensional), and let $\mathcal{B}$ and $\mathcal{B}^{*}$ be dual bases for $V$ and $V^{*}$.
+  If $A$ and $B$ are the matrices of $f$ and $f^{*}$ with respect to $\mathcal{B}$ and $\mathcal{B}^{*}$,
   show that $B$ is the transpose of $A$.
 \end{plm}
 
+\begin{proof}
+  The matrix of a linear operator $f$ with respect to a basis $\mathcal{B}$ is defined by
+  \[
+    a_{ij} = f(\mathcal{B}_{i})_{j}
+  \]
+  where $\mathcal{B}_{i}$ is the $i$th basis vector and $v_{i}$ is the coefficient of the $i$th basis vector in the (unique) expression of $v$
+  as a linear combination of $\mathcal{B}$.
+  By definition of the transpose, we must show the entries $a_{ij}$ of $A$ and $b_{ij}$ of $B$ satisfy $b_{ij} = a_{ji}$,
+  or $f^{*}(\mathcal{B}^{*}_{i})_{j} = f(\mathcal{B}_{j})_{i}$.
+  The dual basis vector $\mathcal{B}^{*}_{i}$ is the functional that evaluates to 1 on $\mathcal{B}_{i}$ and 0 on the other basis vectors;
+  that is, it picks out the coefficient of the $i$th basis vector.
+  Accordingly,
+  \[
+    f^{*}(\mathcal{B}^{*}_{i}) = \qty[v \mapsto \mathcal{B}^{*}_{i}(f(v))]
+    = \qty[\sum_{k}c_{k}\mathcal{B}_{k} \mapsto \sum_{k}c_{k}\mathcal{B}^{*}_{i}(f(\mathcal{B}_{k}))]
+  \]
+  The action of this functional on the vector $\mathcal{B}_{j}$ is its $j$th component in the dual space,
+  and so $f^{*}(\mathcal{B}_{i}^{*})_{j} = B_{i}^{*}f(B_{j}) = f(B_{j})_{i}$.
+\end{proof}
+
 \begin{plm}
-  If $f: V_{1} \to V_{2}$ is a surjective linear map, show that, for any $W$, the induced map $V_{1} \otimes W \to V_{1} \otimes W$
+  If $f: V_{1} \to V_{2}$ is a surjective linear map, show that, for any $W$, the induced map $V_{1} \otimes W \to V_{2} \otimes W$
   defined by $v_{1} \otimes w \mapsto f(v_{1}) \otimes w$, is also surjective.
 \end{plm}
+
+\begin{proof}
+  The tensor product is constructed as a quotient of the (ordinary categorical) product.
+  Therefore, if it can be shown that the corresponding map on the products (which takes $(v, w) \to (f(v), w)$ before quotienting)
+  is surjective, then the induced map on the quotient (sending further each element to the coset containing it) is obviously also surjective:
+  the map from element to coset is surjective, since every coset is nonempty, and the composition of surjective maps is surjective.
+  Indeed, for any element $(v_{2}, w) \in V_{2} \times W$, by surjectivity of $f$ there must be $v_{1}$ such that $v_{2} = f(v_{1})$,
+  and, accordingly, $(v_{2}, w) = (f(v_{1}), w)$.
+  The identity is trivially surjective, and product maps are surjective iff their components are.
+\end{proof}
 
 \begin{plm}
   Show that $\{v_{1}, \ldots, v_{r}\}$ is a linearly independent set in $V$ iff $v_{1} \land \cdots \land v_{r} \neq 0$.
 \end{plm}
+
+\begin{proof}
+  We show this for the case $r = 2$, and generalize by trivial induction.
+
+  The fact that the exterior product is anticommuting means that $v_{1} \land v_{2} = - v_{2} \land v_{1}$,
+  so it suffices to show that the exterior product is commutative iff there are $a_{1}, a_{2}$ such that $a_{1}v_{1} + a_{2}v_{2} = 0$.
+
+  In order for $v_{1} \wedge v_{2} = v_{2} \wedge v_{1}$ in $\Lambda(V)$,
+  one must have in $T(V)$, since the exterior product is that induced by the tensor product under the quotient by the ideal $I$ consisting of
+  finite linear combinations of elements of the form $x \otimes x$,
+  $v_{1} \otimes v_{2} - v_{2} \otimes v_{1} \in I \Leftrightarrow v_{1} \otimes v_{2} - v_{2} \otimes v_{1} = \sum_{i}a_{i}x_{i} \otimes x_{i}$
+  for some collection of scalars $a_{i}$ and tensors $x_{i}$.
+  $v_{1} \otimes v_{2}$ is of rank 2, and since each grading of the tensor algebra is a vector subspace, each $x_{i}$ must be an element of $V$.
+
+  Suppose $a_{1}v_{1} + a_{2}v_{2} = 0$ for some scalars $a_{1}, a_{2}$.
+  By linearity, $v_{1} \otimes v_{2} = \frac{-1}{a_{1}a_{2}} \cdot \qty(a_{1}v_{1}\otimes -a_{2}v_{2})$, and the bracketed term is of the form
+  $x \otimes x$ for some $x$ by the linear dependence assumption; accordingly, when this tensor product is quotiented
+  to become $v_{1} \wedge v_{2}$, it vanishes, as this is the very definition for elements of the ideal by which one quotients.
+
+  Conversely, suppose $v_{1} \wedge v_{2} = 0$.
+  Then $v_{1} \otimes v_{2} = \sum_{i}a_{i}x_{i} \otimes x_{i}$, for some scalars $a_{i}$ and vectors $x_{i}$.
+  In terms of a basis $\mathcal{B}$ for $V$, which induces an obvious basis on $V \otimes V$, linearity lets one compute
+  \[
+    \sum_{i, j}b_{i}c_{j} \mathcal{B}_{i} \otimes \mathcal{B}_{j} = v_{1} \otimes v_{2} = \sum_{i}a_{i}x_{i} \otimes x_{i}
+    = \sum_{i,j,k}a_{i}d_{j}d_{k}\mathcal{B}_{j} \otimes \mathcal{B}_{k}
+  \]
+  In particular, we may compare coefficients and see that $b_{i}c_{j} = \qty(\sum_{k}a_{k})d_{i}d_{j}$.
+  Were $v_{1}, v_{2}$ linearly independent, we could take them as the first two elements of the basis.
+  Then $b_{i} = \delta_{1i}$ and $c_{j} = \delta_{2j}$, implying $v_{1} \otimes v_{2} = 0$.
+  But this necessarily means that one of the factors is 0, and therefore cannot be a basis vector---a contradiction.
+
+
+  This forms a base case.
+  If the theorem holds for $r$ vectors, then the $r+1$ case equivalently characterizes linear independence of
+  $\{v_{1} \wedge \cdots \wedge v_{r}, v_{r+1}\}$ by $(v_{1} \wedge \cdots \wedge v_{r}) \wedge v_{r+1} \neq 0$---a list is linearly independent
+  iff all sublists are, and the wedge product is associative.
+  Successive application of the inductive hypothesis and the base case produces the full result.
+\end{proof}
 
 \begin{plm}
   Show that two linearly independent sets $\{v_{1}, \ldots, v_{r}\}$ and $\{w_{1}, \ldots, w_{r}\}$ in $V$
   span the same $r$-dimensional subspace iff $v_{1} \land \ldots \land v_{r}= c \cdot w_{1} \land \ldots \land w_{r}$,
   where $c = \det(A)$, and $A = (a_{ij})$ is given by $v_{i} = \sum_{j = 1}^{r}a_{ij}w_{j}$.
 \end{plm}
+
+\begin{proof}
+  Consider first the reverse implication.
+  Linear independence means, by the above result, that each product term is nonzero.
+  Accordingly, $A$ must be nonsingular, as if the determinant were zero, the left side of the equality with the products would be zero.
+  Furthermore, this is equivalent to $A$ being an isomorphism of vector spaces.
+  By definition of $A$, any element in the span of $\{v_{1}, \ldots, v_{r}\}$ is
+  \[
+    \sum_{i}c_{i}v_{i} = \sum_{i}\sum_{j}c_{i}a_{ij}w_{j},
+  \]
+  establishing that every element of the span of $\{v_{1}, \ldots, v_{r}\}$ is a linear combination of $\{w_{1} \ldots, w_{r}\}$,
+  i.e. is in the span of $\{w_{1} \ldots, w_{r}\}$.
+  Since $A$ is invertible, we can apply the same reasoning to $A^{-1} = b_{ij}$ for which $w_{i} = \sum_{j = 1}^{r}b_{ij}v_{j}$,
+  establishing bicontainment and therefore equality of the spans of these two sets.
+
+  Conversely, suppose the two sets span the same $r$-dimensional subspace.
+  This means that there exists a change-of-basis matrix $A$ from $w_{i}$ to $v_{i}$ of the above form---they are bases for the same subspace.
+  We may simply chug along:
+  \[
+    v_{1} \wedge \cdots \wedge v_{r} = \qty(\sum_{j_{1} = 1}^{r}a_{1j_{1}}w_{j_{1}}) \wedge \cdots \wedge \qty(\sum_{j_{r} = 1}^{r}a_{rj_{r}}w_{j_{r}})
+  \]
+  \[
+    = \sum_{j_{1}, \ldots, j_{r} = 1}^{r}a_{1j_{1}} \cdots a_{rj_{r}} w_{j_{1}} \wedge \cdots \wedge w_{j_{r}}
+  \]
+  If any two $j_{i}$ are the same, then that summand goes to zero.
+  Permuting the factors of a wedge picks up the sign of the permutation.
+  Accordingly, we may choose our favorite canonical ordering to the $w_{i}$ (I'll do ascending), put all wedges in this form,
+  and sum instead over the permutations of the wedges, with a coefficient ensuring that the permuted summands correspond
+  bijectively with summands in the above.
+  \[
+    \sum_{\sigma \in S_{r}} \epsilon(\sigma)a_{1\sigma(1)}\cdots a_{r\sigma(r)} w_{1} \wedge \cdots \wedge w_{r}
+    = \qty(\sum_{\sigma \in S_{r}} \epsilon(\sigma)a_{1\sigma(1)}\cdots a_{r\sigma(r)}) w_{1} \wedge \cdots \wedge w_{r}
+  \]
+  This is precisely the constructive definition of the determinant.
+\end{proof}
 
 \begin{plm}
   Let $f: V \to V$ be linear, let $\mathcal{B}$ be a basis for $V$, and let $A$ be the matrix of $f$ with respect to $\mathcal{B}$.
@@ -55,11 +165,41 @@
     $\phi(v_{1} \land \cdots \land v_{n}) = f(v_{1}) \land \cdots \land f(v_{n})$.
     Since $\Lambda^{n}V$ is 1-dimensional, $\phi$ corresponds to multiplication by some scalar, say $c$.
     Show that $c = \det(A)$.
+
+  \item Use the above to prove the product formula $\det(AB) = \det(A) \cdot \det(B)$
   \end{enumerate}
 \end{plm}
 
+\begin{proof}
+  First, the constant corresponding to the identity mapping is clearly 1, as $\phi(v_{1} \wedge \cdots \wedge v_{n})
+  = v_{1} \wedge \cdots \wedge v_{n}$ is the identity linear map on a one-dimensional vector space.
+  Secondly, considered as a functional from all possible columns of $A$'s to $c$'s,
+  $\phi$ is linear in each argument: multiplying by $a$ and adding $w$ to the $j$th column of a matrix results in
+  $f(v) \mapsto af(v) + \sum_{i}v_{i}w_{i}\mathcal{B}_{j}$ by the definition of matrix multiplication,
+  and so by linearity of the wedge product the scalar corresponding to $\phi$ changes linearly.
+  It's also alternating.
+  If two consective columns in $A$ are the same, then the kernel of $f$ is nontrivial by the rank-nullity theorem.
+  Accordingly, there exists a nonzero vector $v$ such that $f(v) = 0$; any element $\lambda \in \Lambda^{n}V$
+  that includes a factor of this vector will have $\phi(\lambda) = 0$.
+  There exists a nonzero such $\lambda$: we can choose a basis for $V$ containing $v$, and the wedge of this basis is nonzero
+  by Problem 4 above.
+  If a linear operator on a one-dimensional space has a nontrivial kernel, then it must be the zero operator,
+  as any nonzero vector in the kernel spans the space---so if two columns in $A$ are the same, then $c = 0$.
+
+  The determinant is the unique alternating multilinear functional on matrices of linear maps that sends the identity to 1,
+  establishing the first result.
+
+  Letting $g$ be a linear map whose matrix is $B$, the number $\det(AB)$ corresponds to the $\phi$ given by $f \circ g$,
+  which acts as $\phi_{f\circ g}(v_{1} \wedge \cdots \wedge v_{n}) = f \circ g(v_{1}) \wedge \cdots \wedge f \circ g(v_n) = \phi_f \circ \phi_g$.
+  Composition of 1-dimensional linear operators is scalar multiplication, so this yields exactly
+  \[
+    \det(AB) = \det(A) \cdot \det(B).
+  \]
+  Interestingly, this establishes that this property of the determinant is \textit{precisely} a functoriality result.
+\end{proof}
+
 \begin{plm}
-  Let $V$ be a real  inner product space, a real vector space equiped with a symmetric non-degenerate bilinear form
+  Let $V$ be a real inner product space, a real vector space equiped with a symmetric non-degenerate bilinear form
   $\langle \cdot, \cdot \rangle: V \times V \to \mathbb{R}$, with $\langle v, v \rangle = 0 \Leftrightarrow v = 0$.
   Then $\langle \cdot, \cdot \rangle$ induces an inner product $\langle \cdot, \cdot \rangle: \Lambda V \times \Lambda V \to \mathbb{R}$,
   defined as follows: if $u = u_{1} \land \cdots \land u_{r}$ and $v = v_{1} \land \cdots \land v_{s}$ are pure wedges,
@@ -71,13 +211,94 @@
   For $r = 0$, the empty wedge product is interpreted to be $1 \in \mathbb{R} = \Lambda^{0}V$.
 \end{plm}
 
+\begin{proof}
+  Given two basis elements of different lengths, their inner product is \textit{a fortiori} zero.
+  Suppose the two basis elements have the same length, but there's some wedge factor $u_{i}$ (WLOG; the symmetry of the form
+  implies that the matrix of dot products is symmetric) that doesn't equal any $v_{j}$.
+  Then the column given by $\langle u_{i}, v_{j} \rangle$ is all zeroes, and the matrix is degenerate, so the dot product is zero.
+  If, however, two basis elements are identical, then $\langle u_i, v_j\rangle = \delta_{ij}$ by the definition of the dual basis,
+  i.e., the matrix is the identity matrix, which has determinant 1 (by definition).
+  Accordingly, the orthonormal condition holds for all possible basis elements of this cannonical basis for $\Lambda V$.
+
+  Furthermore, it is indeed a basis for $\Lambda V$.
+  A basis for a graded vector space is a basis for each grading, so we may restrict attention to $\Lambda^{r}V$.
+  This space is a quotient of the space of $r$-fold tensor products; by definition, this in turn has basis of the form
+  $e_{i_{1}} \otimes \cdots \otimes e_{i_{r}}$ for $1 \leq i_{j} \leq n$.
+  Under the quotient, precisely the following linear dependences between these basis elements are introduced: as seen in Problem 5,
+  any basis element with repeated factors goes to the zero vector, and vectors that are the same up to reordering are the same
+  up to a sign (the sign of the permutation that reorders them).
+  In the latter case, we can choose the basis vector whose indices are in ascending order to represent the associated class in the quotient.
+  This recovers precisely our candidate basis: the wedge product of distinct basis elements for $V$ with ascending indices.
+\end{proof}
+
 \begin{plm}
   An endomorphism $\psi: \Lambda V \to \Lambda V$ is an \textit{anti-derivation} if, for $u \in \Lambda^{k}V$ and $v \in  \Lambda V$,
   $\psi(u \land v) = \psi(u) \land v + (-1)^{k}u \land \psi(v)$.
-  Show that $\psi: \Lambda V \to \Lambda V$ is an anti-derivation iff
+  Show that $\psi: \Lambda V \to \Lambda V$ is an anti-derivation iff for all $r$
   \[
-    \psi(v_{1} \land \cdots \land v_{r}) = \sum_{k = 1}^{r}(-1)^{k+1}v_{1} \land \cdots \land \psi(v_{k}) \land \cdots \land v_{r}
+    \psi(v_{1} \land \cdots \land v_{r}) = \sum_{k = 1}^{r}(-1)^{k+1}v_{1} \land \cdots \land \psi(v_{k}) \land \cdots \land v_{r}.
   \]
 \end{plm}
+
+\begin{proof}
+  Suppose that $\psi(v_{1} \wedge \cdots \wedge v_{r}) = \sum_{k=1}^{r} (-1)^{k+1}v_{1} \wedge \cdots \psi(v_{k}) \wedge \cdots \wedge v_{r}$.
+  Then, given any $u \in \Lambda^{k}V$ and $v \in \Lambda V$, we may write $u$ as a $k$-fold pure wedge and
+  $v$ as a sum of pure wedges, and apply linearity:
+  \[
+    \psi(u \wedge v)
+    = \psi\qty(u_{1} \wedge \cdots \wedge u_{k} \wedge \sum_{i}\bigwedge_{j = 1}^{i}v_{j})
+    = \psi\qty(\sum_{i}u_{1} \wedge \cdots \wedge u_{k} \wedge v_{1} \wedge \cdots \wedge v_{i})
+  \]
+  Representing the $j$th vector in the wedge above as $w_{j}$,
+  \[
+    = \sum_{i}\psi(w_{1} \wedge \cdots \wedge w_{k + i})
+    = \sum_{i}\sum_{j=1}^{k+i}(-1)^{j+1}w_{1} \wedge \cdots \wedge \psi(w_{j}) \wedge \cdots \wedge w_{k+i}
+  \]
+  \[
+    = \qty(\sum_{i}\sum_{j = 1}^{k} (-1)^{j+1}w_{1} \wedge \cdots \wedge \psi(w_{j}) \wedge \cdots \wedge w_{k+i})
+    + \qty(\sum_{j = k+1}^{k+i}\sum_{i}(-1)^{j+1}w_{1} \wedge \cdots \wedge \psi(w_{j}) \wedge \cdots \wedge w_{k+i})
+  \]
+  \[
+    = \qty(\sum_{i}\qty(\sum_{j = 1}^{k} (-1)^{j+1}w_{1} \wedge \cdots \wedge \psi(w_{j}) \wedge w_{k})
+    \wedge w_{k+1} \wedge \cdots \wedge w_{k+i})
+  \]
+  \[
+    + \qty(\sum_{i}w_{1} \wedge \cdots \wedge w_{k}
+    \wedge \qty(\sum_{j=k+1}^{k+i}(-1)^{j+1}w_{k+1} \wedge \cdots \wedge \psi(w_{j}) \wedge \cdots \wedge w_{k+i}))
+  \]
+  \[
+    = \qty(\sum_{i}\psi(u_{1} \wedge \cdots \wedge u_{k}) \wedge v_{1} \wedge \cdots \wedge v_{i})
+    + \qty(u_{1} \wedge \cdots \wedge u_{k} \wedge \qty(\sum_{i}\sum_{j = 1}^{i}(-1)^{j+1-k}v_{1} \wedge \cdots \wedge \psi(v_{j})
+    \wedge \cdots \wedge v_{i}))
+  \]
+  Factoring out the scalar $(-1)^{-k} = (-1)^{k}$ from each term,
+  \[
+    = \qty(\psi(u)\wedge \sum_{i}v_{1} \wedge \cdots \wedge v_{i})
+    + \qty(u \wedge (-1)^{k}\sum_{i}\sum_{j = 1}^{i}(-1)^{j+1}v_{1} \wedge \cdots \wedge \psi(v_{j}) \wedge \cdots \wedge{v_{i}})
+  \]
+  \[
+    = \psi(u)\wedge v + (-1)^{k}u \wedge \sum_{i}\psi(v_{i})
+    = \psi(u)\wedge v + (-1)^{k}u \wedge \psi(v)
+  \]
+
+  Conversely, suppose that for all $k$, $u \in \Lambda^{k}V$, and $v \in \Lambda V$ that $\psi(u \wedge v) = \psi(u) \wedge v
+  + (-1)^{k}u \wedge \psi(v)$.
+  Proceeding by induction, it's clear that for $r = 0$ the conclusion is reflexive.
+  Supposing that it holds for $r$, then by the supposition
+  \[
+    \psi((v_{1} \wedge \cdots \wedge v_{r}) \wedge v_{r+1}) = \psi(v_{1} \wedge \cdots \wedge v_{r}) \wedge v_{r+1}
+    + (-1)^{r}(v_{1} \wedge \cdots \wedge v_{r}) \wedge \psi(v_{r+1}).
+  \]
+  Applying the induction hypothesis,
+  \[
+    = \qty(\sum_{k = 1}^{r}(-1)^{k+1}v_{1} \wedge \cdots \wedge \psi(v_{k}) \wedge \cdots \wedge v_{r}) \wedge v_{r+1}
+    + (-1)^{r}(v_{1} \wedge \cdots \wedge v_{r}) \wedge \psi(v_{r+1}).
+  \]
+  Since $(-1)^{r} = (-1)^{(r+1)+1}$, we can distribute and get
+  \[
+    = \sum_{k = 1}^{r+1}(-1)^{k+1}v_{1} \wedge \cdots \wedge \psi(v_{k}) \wedge \cdots \wedge v_{r+1}.
+  \]
+\end{proof}
+
 
 \end{document}

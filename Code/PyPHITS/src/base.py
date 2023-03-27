@@ -21,8 +21,8 @@ def continue_lines(inp):        # Continue lines that are too long
 
 
 # Configuration options
-g_value_type = "Python"
-def settings(value_type="Python"):
+g_readable_remapping = True
+def settings(readable_remapping=True):
     """Configure module-level parameters.
 
     Options:
@@ -39,8 +39,8 @@ def settings(value_type="Python"):
 
         For the examples above, the sanitized identifiers would be type_2d and emin14.
     """
-    global g_value_type
-    g_value_type = new_value_type
+    global g_readable_mapping
+    g_readable_mapping = readable_mapping
 
 
 class PhitsObject:
@@ -137,11 +137,11 @@ n
     def __init__(self, *args,  **kwargs):
         assert self.name in self.names, f"Unrecognized PHITS type {self.name} in PhitsObject initialization."
 
-        if hasattr(self, syntax): # new-style definition, with high-resolution mapping
+        if hasattr(self, "syntax"): # new-style definition, with high-resolution mapping
             required = list(map(lambda tup: tup[0],
                                 sorted([(k, v) for k, v in self.syntax.items() if v[2] is not None], key=lambda tup: tup[1][2])))
             assert len(args) == len(required), f"Wrong number of positional arguments specified in the definition of {self.name} object."
-            for idx, iden in enumerate(args):
+            for idx, arg in enumerate(args):
                 setattr(self, required[idx], arg if not isinstance(arg, list) else tuple(arg))
 
             for arg in self.syntax:
@@ -297,6 +297,28 @@ n
         sec_name = self.name.replace("_", " ").title()
         return f"[{sec_name}]\n"
 
+    @classmethod
+    def syntax_whole(self):
+        """Return a readable summary of the initialization syntax of the PhitsObject in question."""
+        required = sorted([(k, v) for k, v in self.syntax.items() if v[2] is not None], key=lambda tup: tup[1][2])
+        opt = [(k, v) for k, v in cls.syntax.items() if v[2] is None]
+        r = "Required arguments:\n\tPHITS name\tAccepted value\n"
+        for py_attr, (phits_attr, valspec, position) in required:
+            r += f"\t{phits_attr}\t{valspec.description()}\n"
+
+        r += "Optional arguments:\n\tPython name\tPHITS name\tAccepted value\n"
+        for py_attr, (phits_attr, valspec, position) in required:
+            r += f"\t{py_attr}\t{phits_attr}\t{valspec.description().capitalize()}."
+
+        return r
+
+
+    @classmethod
+    def syntax_for(self, attr):
+        """Return a readable summary of a specific entry of the PhitsObject in question."""
+        r = "PHITS name\tAccepted value\tPosition\n"
+        r += f"{self.syntax[attr][0]}\t{self.syntax[attr][1]}\t{self.syntax[attr][2]}"
+        return r
 
     def sanitize(self, iden):
         """Make a PHITS identifier Python-acceptable.
@@ -314,6 +336,7 @@ n
 
 
     def __eq__(self, other):
+        """PhitsObjects should be equal if their definitions would be the same."""
         if type(self) != type(other):
             return False
         elif hasattr(self, "__dict__") and hasattr(other, "__dict__"):
@@ -322,6 +345,7 @@ n
             return d1 == d2
 
     def __hash__(self):
+        """PhitsObjects should be the hash of their attributes."""
         return hash(tuple(v for k, v in sorted(self.__dict__.items()) \
                           if (self not in v.__dict__.values() if hasattr(v, "__dict__") else True) and k not in self.no_hash))
 

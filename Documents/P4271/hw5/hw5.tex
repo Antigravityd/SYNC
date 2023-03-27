@@ -1,0 +1,109 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{tgpagella}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{tikz-feynman}
+\usepackage{minted}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{mhchem}
+
+\sisetup{detect-all}
+\newtheorem{plm}{Problem}
+\renewcommand*{\proofname}{Solution}
+
+\title{4271 HW 5}
+\author{Duncan Wilkie}
+\date{27 March 2023}
+
+\begin{document}
+
+\maketitle
+
+\begin{plm}
+  Which of the following reactions are allowed and which are forbidden by the conservation laws appropriate for weak interactions?
+  \begin{itemize}
+  \item $\nu_{\mu} + p \to \mu^{+} + n$
+  \item $\nu_{e} + p \to n + e^{-} + \pi^{+}$
+  \item $K^{+} \to \pi^{0} + \mu^{+} + \nu_{\mu}$
+  \item $\nu_{e} + p \to e^{-} + \pi^{+} + p$
+  \item $\tau^{+} \to \mu^{+} + \bar{\nu}_{\mu} + \nu_{\tau}$
+  \end{itemize}
+\end{plm}
+
+\begin{proof}
+  If a conserved quantity is not mentioned, that is because it is zero on both sides of the equation in question.
+  The first is allowed, because baryon number and muon lepton number are conserved.
+  The second is allowed, because baryon number and electron lepton number are all conserved.
+  The third is disallowed, because strangeness goes from 1 to zero.
+  The fourth is allowed, because baryon number and electron lepton number all conserved.
+  The fifth is allowed, because tau lepton number and muon lepton number are conserved.
+\end{proof}
+
+\begin{plm}
+  In the decay of $\ce{^{47}Ca}$ to $\ce{^{47}Sc}$, what kinetic energy is given to the neutrino when the electron
+  has kinetic energy $\SI{0.8}{MeV}$.
+\end{plm}
+
+\begin{proof}
+  Looking at the JAEA nuclear data tables, the difference in atomic masses of these two nucleides is, in energy terms, $\SI{1.992}{MeV}$.
+  Accordingly, the kinetic energy of the neutrino is, taking a relativistic approximation so that the mass of both ejectates is negligible,
+  \[
+    K_{\nu} = BE - K_{e} = \SI{1.992}{MeV} - \SI{0.8}{MeV} = \SI{1.19}{MeV}
+  \]
+\end{proof}
+
+\begin{plm}
+  Classify the following decays by degree of forbiddenness:
+  \begin{enumerate}
+  \item $\ce{^{81}Ge}\qty(\frac{5}{2}^{-}) \to \ce{^{81}Ge}\qty(\frac{9}{2}^{+})$
+  \item $\ce{^{93}Kr}\qty(\frac{1}{2}^{+}) \to \ce{^{93}Rb}\qty(\frac{5}{2}^{+})$
+  \item $\ce{^{93}Kr}\qty(\frac{1}{2}^{+}) \to \ce{^{93}Rb}\qty(\frac{3}{2}^{+})$
+  \item $\ce{^{178}Lu}\qty(1^{+}) \to \ce{^{178}Hf}\qty(3^{+})$
+  \end{enumerate}
+\end{plm}
+
+\begin{proof}
+  Looking at the table in the slides,
+  \begin{enumerate}
+  \item $\Delta J = 2$, parity changes $\Rightarrow$ first-forbidden
+  \item $\Delta J = 2$, parity the same $\Rightarrow$ second-forbidden
+  \item $\Delta J = 1$, parity the same $\Rightarrow$ allowed
+  \item $\Delta J = 2$, parity the same $\Rightarrow$ second-forbidden
+  \end{enumerate}
+\end{proof}
+
+\begin{plm}
+  Draw the lowest-order Feynman diagrams for:
+  \begin{enumerate}
+  \item $\nu_{e}-\nu_{\mu}$ elastic scattering,
+  \item $e^{+} + e^{-} \to e^{+} + e^{-}$,
+  \item (Bonus) a fourth-order diagram for $\gamma + \gamma \to e^{-} + e^{+}$
+  \end{enumerate}
+\end{plm}
+
+\begin{proof}
+  There's a TikZ library for everything.
+  \begin{enumerate}
+  \item
+    \feynmandiagram[vertical=a to b]{
+      ne [particle=$\nu_{e}$] -- [fermion] a -- [fermion] nef [particle=$\nu_{e}$],
+      a -- [boson, edge label=$Z_{0}$] b,
+      nm [particle=$\nu_{\mu}$] -- [fermion] b -- [fermion] nmf [particle=$\nu_{\mu}$],
+
+    };
+
+  \item \feynmandiagram[horizontal=a to b]{
+      a  -- [photon, edge label=$\gamma$] b,
+      i1 [particle=$e^{+}$] -- [fermion]  a -- i2 [particle=$e^{-}$],
+      o1 [particle=$e^{+}$] -- [fermion] b -- o2 [particle=$e^{-}$],
+
+    };
+  \end{enumerate}
+\end{proof}
+
+\end{document}

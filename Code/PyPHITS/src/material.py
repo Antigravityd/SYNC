@@ -30,23 +30,22 @@ class Material(PhitsObject): # Composition is a list of pairs of (<element name 
 
 class MatTimeChange(PhitsObject):
     name = "mat_time_change"
-    syntax = {"time": (None, PosReal(), 0),
-              "new": (None, IsA(Material, index=True), 1),
+    syntax = {"time": (None, PosReal(), 0, "non"),
+              "new": (None, IsA(Material, index=True), 1, "non"),
               "old": (None, IsA(Material, index=True), None)}
-    prelude = (("mat", "\\time", "change"))
+    prelude = (("mat", "'time", "change"))
     shape = (("old", "time", "new"))
-    nones = {"time": "non", "change": "non"}
 
 
 
 class DataMax(PhitsObject): # requires special handling in make_input
     name = "data_max"
-    syntax = {"particles": ("part", List(Particle()), 0), # TODO: particle
+    syntax = {"particles": ("part", List(FinBij({"neutron": "neutron", "proton": "proton", "all": "all"})), 0), # TODO: particle
               "nucleus": (None, OneOf(Element(), FinBij({"all": "all"})), 1),
               "threshold": (None, PosReal(), 2),
               "material": (None, OneOf(IsA(Material), FinBij({"all": "all"})), None)
               }
-    prelude = ("particles", (("mat", "\\nucleus", "dmax")))
+    prelude = ("particles", (("mat", "'nucleus", "dmax")))
     shape = (("material", "nucleus", "threshold"))
     group_by = lambda self: self.particles
     max_groups = 6

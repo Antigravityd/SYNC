@@ -8,8 +8,152 @@
 A lot of work, like [[id:e57b70f1-780c-422f-bf1c-eafdbb5c3834][Emacs Binary Inspection Mode]] or an Emacs Biblical commentary reading and writing mode I've contemplated, not to mention the general software applications (compilation, etc.), seems to have multiple files that are all representing the same content in different forms.
 
 The bulk of the work of programs that operate on them may be in the transformation between those forms, so what if there was a format that could give you a two-dimensional file object, with one index in the file bytes, and one index in the "stack" of files?
-* Similar Work
 
-* Feasibility
+Ok, in fact what I want here is a /relational file system/. The rest of this describes this idea, with the intention of implementing it on top of the seL4 microkernel. Don't know if I'll ever get there.
+
+* What's Wrong with POSIX?
+
+A POSIX file system is (logically) a tree whose (i)nodes are sequences of content bytes plus a miniscule amount of metadata, and whose edges represent containment. What are the semantics of this tree in practice?
+
+#+begin_src shell
+
+  ls /
+
+#+end_src
+
+#+RESULTS:
+| bin        |
+| boot       |
+| dev        |
+| etc        |
+| gnu        |
+| home       |
+| lost+found |
+| mnt        |
+| proc       |
+| root       |
+| run        |
+| sys        |
+| tmp        |
+| usr        |
+| var        |
+
+
+#+begin_src shell
+
+  ls /dev | head -20
+
+#+end_src
+
+#+RESULTS:
+| autofs          |
+| block           |
+| bsg             |
+| btrfs-control   |
+| bus             |
+| cdrom           |
+| char            |
+| console         |
+| core            |
+| cpu_dma_latency |
+| cuse            |
+| disk            |
+| dri             |
+| ecryptfs        |
+| fb0             |
+| fd              |
+| full            |
+| fuse            |
+| hidraw0         |
+| hidraw1         |
+...
+
+
+It seems that people have come to use directories as tags, the directory =/dev= being a "tag" for device files, =/tmp= for temporary files, =/home= for user home directories, etc. However, a tree is /not/ the natural data structure associated with tagging systems. Instead, that'd be an arbitrary concept lattice. These are sufficiently different structures, in general, that it's hard to effectively translate between one and the other, resulting in a large amount of functionality that doesn't "cleanly" fit anywhere---the =/etc= directory witnesses this. Moreover, the features that serve to ameliorate some of the difference are seldom-used aberrations, namely, links, which allow data to have multiple properties in something other than a direct line of inheritance.
+
+Furthermore, the actual /contents/ of the files have no structure enforced by the filesystem. The extra metadata stored with each (i)node in the tree enforces differences between formats of stored data more or less only when it is required to perform syscalls, for instance if a file cannot be read at an arbitrary index (perhaps an input device file). The problem with this state of affairs is evident to any enjoyer of strongly-typed programming languages: it requires runtime checks and validation of file contents, it's harder to reason about (and therefore automate) file relationships at a system level, &c.
+
+Why, then, did Thompson and Ritchie accept this problem? What did they do to mitigate it?
+
+Well, in the first case, both because solving it contrasted with their aims, and because the contemporary cures were /far/ worse than the disease. UNIX was written by developers, for developers, on machines with approximately zero resources, to be as simple as possible. Accordingly, its authors chose to solve problems with the cleanest, fastest, and smallest implementation, with ease-of-use left as an exercise for the user---he would be a programmer, after all, so he no doubt could understand documentation and roll something to suit his needs. Furthermore, database file systems, analogous to this tags-based approach, were the status quo at the time, and working with them was horrendous. Anyone who has the misfortune of needing to interact with COBOL or fixed-format FORTRAN in current year knows the agony of old record formatting schemes; these file systems were little more than the extension of those schemes to every file in the system. This failure seems to be attributable to the brittleness of the type system imposed; modern knowledge about what makes a nice type system for programming languages should be applicable to designing a type system for files.
+
+To the second question, the saving grace was userspace utilities that remain the /apotheosis/ of performing and composing text manipulation: the shell, grep, awk, sed, ed, lex, yacc, and friends. If one cannot look to the system to guarantee the properties of data, then one had better be able to recognize and massage that data yourself. These are a large part of what has enabled UNIX and its derivatives to dominate computation for 50 years. However, it's still a mitigation. Preferred would be a solution.
+
+* Doing Better
+
+We need to get rid of directories.
+
+I propose a system that enables a Haskell-style (or, essentially equivalently, a Rust-style) type system contained in the inodes. Each inode would have a type, and a typeclass/trait system would enable the specification of permissible behavior on the data of a file. An inheritance system would avoid the torture of using filenames to type files, as, for example, a =.py= file should support all of the behaviors common to all UTF-8 encoded text files.
+
+The methods of these typeclasses should be abe to emit other files, and the result accessible through the file from which it was generated---it should look like files contain other files, or, more precisely, that subsections of a file have functional correspondences defined on them which are /part of the data of the file/ (in logic alone; certainly, an implementation would have a separate block on disk for the output of this file, and merely ensure that the child files faithfully represent the state of their parents). Therefore, the structure of data in the filesystem follows the flow of data through computation. Imagine the myriad use cases---constant functions permit structural description of relationships between static text, and are useful for representing commentary on text; debug symbols in a binary may contain descriptions of /every/ step in the compiler pipeline used to generate each of its sections; no need for a .git if you can store the chain of diffs this way; a method to parse the contents of a file according to a grammar can be invoked by an editor to lint code without such odious things as LSP; documentation can be written, rendered, and represented alongside the code it refers to.
+
+Fundamentally, I'd describe the modifications as flattening and multidimensionalizing the file system.
 
 * Implementation
+
+I don't plan to touch the main content of the inodes, the idea of file descriptors, or the generalities of the syscalls. I merely want to change the higher-level API, modifying the metadata in the stat table.
+
+
+Here's a sketch of my proposed inode table, including the traditional parts for reference, and excluding the parts that shouldn't appear on disk:
+
+#+begin_src C
+
+  struct Inode {
+    Cptr min_r_cap; // We completely change security model; no user/mode/security stuff
+    Cptr min_w_cap;
+    file_pos i_size;
+    real_time i_modtime;
+    type i_type;
+    Inode subs[]; // Subfile tree; the file server will take care of updating these when the parent changes
+    zone direct;
+    zone indirect;
+    zone double_indirect;
+  } Inode;
+
+  struct type {
+    void *data; // Implementation takes care of casting this around; should point to some struct that is the record type.
+                // In the unstructured case, this struct will just be a `struct PlainFile { uint8_t *contents; file_pos size; };`,
+                // but additional state (for instance, a parse tree) can be dumped here.
+
+
+    Cptr fns[]; // Call() capabilities to the methods in the user code
+  } type;
+
+#+end_src
+
+The rwx stuff should be contained in the capabilities /to/ a file---which the file descriptor is. The file server should issue read and write capabilities as a part of the descriptor of each file to processes with sufficiently high capabilities to be granted them, and anyone with those capabilities can then handle minting of more restricted access modes. This can involve minting the callable capabilities to the inode's methods, possibly not issuing them down the chain.
+
+As far as a rough syscall interface, adapted from MINIX 1:
+
+| Name    | Status | Description                                                  |
+|---------+--------+--------------------------------------------------------------|
+| Access  | ?      | ?                                                            |
+| Chdir   | Gone   | Replace with Chset                                           |
+| Chset   | New    | Changes the current set to a list of IDs                     |
+| Chmod   | Gone   | Replace with Chcap                                           |
+| Chcap   | New    | Substitute a file's minimum capabilities with different ones |
+| Chroot  | ?      | ?                                                            |
+| Close   | Same   |                                                              |
+| Creat   | Same   |                                                              |
+| Dup     | ?      | ?                                                            |
+| Fstat   | Same   |                                                              |
+| Ioctl   | ?      | ?                                                            |
+| Link    | Gone   | Absolutely no need                                           |
+| Lseek   | Same   |                                                              |
+| Mknod   | ?      | ?                                                            |
+| Mount   | Same   |                                                              |
+| Open    | Same   |                                                              |
+| Pipe    | Gone   | Use better IPC                                               |
+| Read    | Same   |                                                              |
+| Stat    | Same   |                                                              |
+| Stime   | Same   |                                                              |
+| Sync    | Same   |                                                              |
+| Time    | Same   |                                                              |
+| Times   | Same   |                                                              |
+| Umask   | Gone   | Capabilities, as above                                       |
+| Umount  | Same   |                                                              |
+| Unlink  | Gone   | No links                                                     |
+| Utime   | Same   |                                                              |
+| Write   | same   |                                                              |
+| Revive  | ?      | ?                                                            |
+| Unpause | ?      | ?                                                            |

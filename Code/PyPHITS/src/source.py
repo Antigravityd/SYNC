@@ -1,16 +1,8 @@
-# Sources will be specified by an iterable whose elements are a tuple  (Source(), weight) where the last two are optional.
-# totfact and iscorr may be specified in the general parameters section.
+"""Regions of space that emit particles."""
 
-# Currently, no a-type mesh support for the elevation angles.
+
 from base import *
-from cell import Cell
 from transform import Transform
-
-# Sources will be specified by an iterable whose elements are a tuple  (Source(), weight) where the last two are optional.
-# totfact and iscorr may be specified in the general parameters section.
-
-# Currently, no a-type mesh support for the elevation angles.
-from base import *
 from valspec import *
 from distribution import *
 
@@ -52,7 +44,7 @@ class Rectangular(PhitsObject):
                         "ybounds": (("x0", "x1"), (Real(), Real()), None),
                         "zbounds": (("x0", "x1"), (Real(), Real()))} | semi_common
 
-    shape=("s_type = 2", "projectile", "spin", "mask", "transform", "weight", "charge_override", "counter_start"
+    shape=("s-type = 2", "projectile", "spin", "mask", "transform", "weight", "charge_override", "counter_start"
            "fissile", "xbounds", "ybounds", "zbounds", "elevation", "azimuth", "dispersion", "spectrum")
 
 
@@ -66,7 +58,7 @@ class Gaussian(PhitsObject):
     syntax = common | {"center": (("x0", "y0", "z0"), (Real(), Real(), Real()), None),
                        "fwhms": (("x1", "y1", "z1"), (PosReal(), PosReal(), PosReal()), None)} | semi_common
 
-    shape = ("s_type = 3", "projectile", "spin", "mask", "transform", "weight", "counter_start",
+    shape = ("s-type = 3", "projectile", "spin", "mask", "transform", "weight", "counter_start",
                   "charge_override", "fissile", "center", "fwhms", "elevation", "azimuth", "dispersion", "spectrum")
 
 class GaussianPrism(PhitsObject):
@@ -75,7 +67,7 @@ class GaussianPrism(PhitsObject):
                        "fwhm": ("r1", PosReal(), None),
                        "zbounds": (("z0", "z1"), (Real(), Real()), None)} | semi_common
 
-    shape = ("s_type = 13", "projectile", "spin", "mask", "transform", "weight", "counter_start",
+    shape = ("s-type = 13", "projectile", "spin", "mask", "transform", "weight", "counter_start",
                   "charge_override", "fissile", "center", "fwhm", "zbounds", "elevation", "azimuth", "dispersion", "spectrum")
 
 
@@ -88,7 +80,7 @@ class Parabolic(PhitsObject):
                        "width": (("x1", "y1"), (Real(), Real()), None),
                        "zbounds": (("z0", "z1"), (Real(), Real()), None),
                        "order": ("rn", Integer(), None)} | semi_common
-    shape = ("s_type = 7", "projectile", "spin", "mask", "transform", "weight", "counter_start",
+    shape = ("s-type = 7", "projectile", "spin", "mask", "transform", "weight", "counter_start",
                   "charge_override", "fissile", "center", "width", "zbounds", "order", "elevation", "azimuth",
                   "dispersion", "spectrum")
 
@@ -99,7 +91,7 @@ class ParabolicPrism(PhitsObject):
                        "width": ("r1", Real(), None),
                        "zbounds": (("z0", "z1"), (Real(), Real()), None),
                        "order": ("rn", Integer(), None)} | semi_common
-    shape = ("s_type = 15", "projectile", "spin", "mask", "transform", "weight", "counter_start",
+    shape = ("s-type = 15", "projectile", "spin", "mask", "transform", "weight", "counter_start",
                   "charge_override", "fissile", "center", "width", "zbounds", "order", "elevation", "azimuth",
                   "dispersion", "spectrum")
 
@@ -113,7 +105,7 @@ class Spherical(PhitsObject):
                        "elevation_bounds": (("ag1", "ag2"), (Real(), Real()), None),
                        "azimuth_bounds": (("pg1", "pg2"), (Real(), Real()), None),
                        "resample_cutoff": ("isbias", Choice10(), None)} | semi_common
-    shape = ("s_type = 9", "projectile", "spin", "mask", "transform", "weight", "counter_start",
+    shape = ("s-type = 9", "projectile", "spin", "mask", "transform", "weight", "counter_start",
            "charge_override", "fissile", "center", "r_in", "r_out", "direction", "elevation_bounds",
            "azimuth_bounds", "resample_cutoff", "spectrum")
 
@@ -132,7 +124,7 @@ class Beam(PhitsObject): # I don't understand what this is trying to do
                        "positive": ("dir", Choice10(true=1, false=-1), None),
                        "spectrum": ("e-type", IsA(EnergyDistribution), 1)}
 
-    shape = ("s_type = 11", "projectile", "spin", "mask", "transform", "weight", "counter_start",
+    shape = ("s-type = 11", "projectile", "spin", "mask", "transform", "weight", "counter_start",
              "charge_override", "fissile", "center", "eccentricity", "zbounds", "phase_gradients", "sampling", "dispersion",
              "angle_dispersion", "phase_center", "phase_angle_center", "positive", "spectrum")
 
@@ -146,7 +138,7 @@ class Conical(PhitsObject):
                        "altitude": (("x1", "y1", "z1"), (Real(), Real(), Real()), None),
                        "trim": (("r0", "r1"), (Real(), Real()), None),
                        "angle": ("r2", PosReal(), None)} | semi_common
-    shape = ("s_type = 18", "projectile", "spin", "mask", "transform", "weight", "counter_start",
+    shape = ("s-type = 18", "projectile", "spin", "mask", "transform", "weight", "counter_start",
              "charge_override", "fissile", "top", "altitude", "trim", "angle", "elevation", "azimuth",
              "dispersion", "spectrum")
 
@@ -159,7 +151,7 @@ class TrianglePrism(PhitsObject):
                        "side2": (("x2", "y2", "z2"), (Real(), Real(), Real()), None),
                        "extrusion": (("x3", "y3", "z3"), (Real(), Real(), Real()), None),
                        "attenuation": ("exa", PosReal(), None)} | semi_common
-    shape = ("s_type = 20", "projectile", "spin", "mask", "transform", "weight", "counter_start",
+    shape = ("s-type = 20", "projectile", "spin", "mask", "transform", "weight", "counter_start",
              "charge_override", "fissile", "origin", "side1", "side2", "extrusion", "attenuation", "elevation", "azimuth",
              "dispersion", "spectrum")
 
@@ -176,7 +168,7 @@ class TrianglePrism(PhitsObject):
 #                  "weight": "wgt", "charge_override": "izst", "fissile": "ispfs",
 #                  "elevation": "dir", "azimuth": "phi", "dispersion": "dom", "energy": "e0"}
 #     value_map = {"neutrons": 2, True: 1}
-#     shape = ("s_type = 22", "projectile", "spin", "mask", "transform", "weight", "factor",
+#     shape = ("s-type = 22", "projectile", "spin", "mask", "transform", "weight", "factor",
 #              "charge_override", "fissile", "mesh", "elevation", "azimuth", "dispersion", "energy")
 
 
@@ -184,7 +176,7 @@ class TrianglePrism(PhitsObject):
 # class TetrahedralSource(PhitsObject): # TODO: subobjects
 #     name = "source"
 #     syntax = common | {"cell": ("tetreg", IsA(Cell), 2)} | semi_common
-#     shape = ("s_type = 24", "projectile", "spin", "mask", "transform", "weight", "counter_start",
+#     shape = ("s-type = 24", "projectile", "spin", "mask", "transform", "weight", "counter_start",
 #              "charge_override", "fissile", "cell", "elevation", "azimuth", "dispersion", "spectrum")
 
 
@@ -193,7 +185,7 @@ class TrianglePrism(PhitsObject):
 #     syntax = common | {"surface": ("suf", IsA(Surface), 2),
 #                        "cut": ("cut", IsA(Cell), 3)} | semi_common # TODO: cut sus
 
-#     shape = ("s_type = 26", "projectile", "spin", "mask", "transform", "weight", "counter_start",
+#     shape = ("s-type = 26", "projectile", "spin", "mask", "transform", "weight", "counter_start",
 #              "charge_override", "fissile", "surface", "cut", "elevation", "azimuth", "dispersion", "spectrum")
 
 # dump file

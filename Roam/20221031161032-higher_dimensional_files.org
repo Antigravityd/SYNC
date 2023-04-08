@@ -21,7 +21,7 @@ A POSIX file system is (logically) a tree whose (i)nodes are sequences of conten
 
 #+end_src
 
-#+RESULTS:
+ #+RESULTS:
 | bin        |
 | boot       |
 | dev        |

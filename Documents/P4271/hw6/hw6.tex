@@ -1,0 +1,182 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{tgpagella}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{minted}
+\usepackage{physics}
+\usepackage{siunitx}
+
+\sisetup{detect-all}
+\newtheorem{plm}{Problem}
+\renewcommand*{\proofname}{Solution}
+
+\title{4721 HW 6}
+\author{Duncan Wilkie}
+\date{6 April 2023}
+
+\begin{document}
+
+\maketitle
+
+\begin{plm}
+  Common forms assumed for the momentum distributions of valence quarks in the proton are:
+  \[
+    F_{u} = xu(x) = a(1 - x)^{3}, \; F_{d}(x) = xd(x) = b(1 - x)^{3}.
+  \]
+  If the valence quarks account for half of the proton's momentum---i.e.
+  \[
+    \int_{0}^{1}xu(x)dx + \int_{0}^{1}xd(x)dx = \frac{1}{2},
+  \]
+  find the values of $a$ and $b$.
+  Hint: the $u$ quarks carry approximately twice as much momentum as the $d$ quarks in the proton.
+\end{plm}
+
+\begin{proof}
+  Some calculus:
+  \[
+    \int_{0}^{1}(1 - x)^{3}dx = \int_{1}^{0}u^{3} \cdot -du = \frac{u^{4}}{4}\eval_{u=0}^{u=1} = \frac{(1 - x)^{4}}{4}\eval_{x=1}^{x=0}
+    = \frac{1}{4}
+  \]
+  Accordingly,
+  \[
+    \int_{0}^{1}xu(x)dx + \int_{0}^{1}xd(x)dx = \frac{1}{2}
+    \Leftrightarrow a\int_{0}^{1}(1 - x)^{3}dx + b\int_{0}^{1}(1 - x)^{3}dx = \frac{1}{2}
+    \Leftrightarrow \frac{a}{4} + \frac{b}{4} = \frac{1}{2}
+    \Leftrightarrow a + b = 2.
+  \]
+  There are two valence up quarks, and one valence down quark, so one would expect the total momentum in the up quarks to be double
+  that of the down quark---accordingly,
+  \[
+    2b + b = 2 \Leftrightarrow b = \frac{2}{3} \Rightarrow a = \frac{4}{3}.
+  \]
+\end{proof}
+
+\begin{plm}
+  What is the color wavefunction for mesons, in analogy to that for baryons of
+  \[
+    y_{baryon} = y_{space}y_{spin}(rgb + gbr + brg - rbg - bgr - grb)?
+  \]
+  Explain your answer.
+\end{plm}
+
+\begin{proof}
+  This baryon color wavefunction comes from noticing that baryons are made up of three quarks, all of different color charge
+  (so as to produce a color-neutral baryon), and then requiring the resulting wavefunction to be antisymmetric under particle interchange,
+  so as to produce a fermionic composite particle.
+  By contrast, mesons are bosonic, and so the color wavefunction must stay the same under particle interchange:
+  \[
+    y_{meson} = y_{space}y_{spin}\qty(r\bar{r} + g\bar{g} + b\bar{b}).
+  \]
+\end{proof}
+
+\begin{plm}
+  The diagram below shows the internal gluon interactions in a proton.
+  Complete the diagram by labelling the color of the quarks and gluons.
+\end{plm}
+
+\begin{proof}
+  The governing principle is that the net color of the proton is always white.
+
+\end{proof}
+
+\begin{plm}
+  Which of the following processes are allowed?
+  If not allowed, state why.
+  If allowed, say whether the process is strong, weak, or electromagnetic.
+  \begin{enumerate}
+  \item $\nu_{e} + p \to e^{-} + \pi^{+} + p$
+  \item $e^{+} + e^{-} \to \mu^{+} + \mu^{-}$
+  \item $\Sigma^{-} \to n + \pi^{-}$
+  \item $\bar{\nu}_{e} + p \to e^{-} + n$
+  \item $e^{-} + p \to \nu_{e} + \pi^{0}$
+  \end{enumerate}
+\end{plm}
+
+\begin{proof} \;
+  \begin{enumerate}
+  \item Allowed; weak.
+  \item Allowed; electromagnetic.
+  \item Allowed; strong.
+  \item Disallowed; charge changes.
+  \item Disallowed; baryon number changes.
+  \end{enumerate}
+\end{proof}
+
+\begin{plm}[Double Points]
+  The differential cross section for $e^{+} + e^{-} \to \mu^{+} + \mu^{-}$ is given by
+  \[
+    \dv{\sigma}{\Omega} = \frac{\alpha^{2}}{4s}(\hbar c)^{2}(1 + \cos^{2}\theta)
+  \]
+  in a collider experiment where $s = 4E_{e}$ and $E_{e}$ is the electron/positron energy.
+  \begin{enumerate}
+  \item Integrate over the solid angle to obtain an expression for the total cross section.
+  \item If you use an electron beam energy of \SI{4}{GeV}, what rate of production of $\mu^{+}\mu^{-}$ would you expect at a luminosity of
+    \SI{e33}{Hz/cm^{2}}?
+  \item Calculate the ratio of the hadronic production cross section to that for $\mu^{+}\mu^{-}$ at $E_{e} = \SI{500}{GeV}$.
+    If you use an electron beam energy of \SI{500}{GeV}, what must the luminosity be to measure the hadronic cross section within 24 hours
+    with 10\% statistical uncertainty?
+  \end{enumerate}
+\end{plm}
+
+\begin{proof} \;
+  \begin{enumerate}
+  \item We have a total cross-section
+    \[
+      \int \dv{\sigma}{\Omega} d\Omega = \int_{0}^{2\pi}\int_{0}^{\pi}\frac{\alpha^{2}}{4s}(\hbar c)^{2}\qty(1 + \cos^{2}\theta)\sin\theta
+      d\theta d\phi
+      = \frac{2\pi(\alpha\hbar c)^{2}}{4s}\int_{0}^{\pi}\sin\theta + \sin\theta\cos^{2}\theta d\theta
+    \]
+    \[
+      = \frac{\pi(\alpha\hbar c)^{2}}{2s}\qty(2 - \int_{1}^{-1}u^{2}du)
+      = \frac{\pi(\alpha\hbar c)^{2}}{2s}\qty(2 + \frac{u^{3}}{3}\eval_{-1}^{1})
+      = \frac{\pi(\alpha\hbar c)^{2}}{2s}\qty(2 + \frac{2}{3})
+      = \frac{4\pi(\alpha\hbar c)^{2}}{3s}
+    \]
+  \item If the electron beam energy is \SI{4}{GeV}, $s = 4 \cdot E_{e} = \SI{16}{GeV}$, and at the given luminosity,
+    the expected production rate is
+    \[
+      L \cdot \sigma = \SI{e33}{Hz/cm^{2}} \cdot \frac{4\pi(\frac{1}{137} \cdot \SI{3.16e-24}{J \cdot cm})^{2}}{3 \cdot \SI{16}{GeV}}
+      = \SI{8.71e-10}{Hz}
+    \]
+  \item % TODO
+  \end{enumerate}
+\end{proof}
+
+\begin{plm}[Double Points]
+  In an $e^{+}e^{-}$ collider experiment, a resonance $R$ is observed at $E_{cm} = \SI{10}{GeV}$ in both the $\mu^{+}\mu^{-}$
+  and hadronic final states.
+  The integrated cross sections are
+  \[
+    \int \sigma_{\mu \mu}(E)dE = \SI{10}{nb \cdot GeV}
+  \]
+  and
+  \[
+    \int \sigma_{h}(E)dE = \SI{300}{nb \cdot GeV}.
+  \]
+  Use a Breit-Wigner form for the resonance production to deduce the partial widths $\Gamma_{\mu\mu}$ and $\Gamma_{h}$ in \si{MeV}
+  for the decays $R \to \mu^{+}\mu^{-}$ and $R \to \text{hadrons}$.
+  Assume the integral
+  \[
+    \int_{resonance}\frac{dE}{(E - Mc^{2}) + \Gamma^{2}/4} \approx \frac{2\pi}{\Gamma}.
+  \]
+\end{plm}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{plm}
+  Find the threshold kinetic energy for each of the following reactions, assuming the first particle to be incident on the second particle
+  at rest:
+  \begin{enumerate}
+  \item $K^{-} + p \to \Xi^{-} + K^{+}$
+  \item $\bar{p} + p \to \Upsilon$
+  \item $\pi^{-} + p \to \omega + n$
+  \end{enumerate}
+\end{plm}
+
+\end{document}

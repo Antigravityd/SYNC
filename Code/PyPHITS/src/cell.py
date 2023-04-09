@@ -1,6 +1,8 @@
 import copy
 from base import *
-
+from transform import *
+from misc import *
+from material import *
 
 def tup_to_def(tup):
     r = ""
@@ -23,7 +25,7 @@ def tup_to_def(tup):
 
 # TODO: define universe object
 # "containing_universe": ("U", PosInt(), None), # should be dynamically assigned
-subobject_syntax = {"universe": ("FILL", List(IsA(Cell, index=True)), None),
+subobject_syntax = {# "universe": ("FILL", List(IsA(Cell, index=True)), None),
                     "transform": ("TRCL", IsA(Transform, index=True), None),
                     "temperature": (None, IsA(Temperature), None),
                     "magnetic_field": (None, IsA(MagneticField), None),
@@ -43,8 +45,7 @@ subobject_syntax = {"universe": ("FILL", List(IsA(Cell, index=True)), None),
                     "volume": (None, IsA(Volume), None),
                     "reg_name": (None, IsA(RegName), None),
                     "counter": (None, IsA(Counter), None),
-                    "timer": (None, IsA(Timer), None),
-                    "tally": (None, IsA(Tally), None)}
+                    "timer": (None, IsA(Timer), None)}
 
 common_syntax = subobject_syntax | {"containing_universe": ("U", PosInt(), None),
                                     "lattice": ("LAT", FinBij({"quadrilateral": 1, "hexagonal": 2, "tetrahedral": 3}), None),

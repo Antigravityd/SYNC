@@ -15,7 +15,8 @@
     "tikz"
     "minted"
     "physics"
-    "siunitx")
+    "siunitx"
+    "revsymb")
    (LaTeX-add-environments
     "plm"))
  :latex)

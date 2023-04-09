@@ -1,12 +1,12 @@
 from base import *
-from cell import *
+from cell import Cell
 import collections as col
 
 
-common = {"cells": ("reg", List(IsA(Cell, index=True)), 0),
+# common = {"cells": ("reg", List(IsA(Cell, index=True)), 0),
 
-          "particles": ("part", List(Particle()), None),
-          }
+#           "particles": ("part", List(Particle()), None),
+#           }
 # counters? std cutoff? bounds?
 class DumpFluence(PhitsObject):
     name = "t-cross"

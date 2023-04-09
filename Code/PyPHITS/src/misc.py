@@ -1,4 +1,5 @@
 from base import *
+from transform import *
 
 # no temperature; do that at the cell level for now
 
@@ -9,7 +10,7 @@ class MagneticField(PhitsObject): # Right now, the only way to set this is to do
               "gap": (None, PosReal(), None, 0.0),
               "transform": (None, IsA(Transform, index=True), None, 0),
               "time": (None, PosReal(), None, "non"),
-              "cell": (None, IsA(Cell, index=True), None)}
+              }
     prelude = (("reg", "'typ", "'gap", "mgf", "trcl", "'time"))
     shape = (("cell", "typ", "gap", "strength", "transform", "time"))
 
@@ -20,10 +21,10 @@ class NeutronMagneticField(PhitsObject):
                                     "quadrupole": 104, "sextupole": 106}), 0),
               "strength": (None, Real(), 1),
               "gap": (None, PosReal(), None, 0.0),
-              "polarization": (None, Real(), "non")
+              "polarization": (None, Real(), "non"),
               "transform": (None, IsA(Transform, index=True), None, 0),
               "time": (None, PosReal(), None, "non"),
-              "cell": (None, IsA(Cell, index=True), None)}
+              }
     prelude = (("reg", "'typ", "'gap", "mgf", "trcl", "'polar", "time"))
     shape = (("cell", "typ", "gap", "strength", "transform", "polar", "time"))
 
@@ -35,7 +36,7 @@ class MappedMagneticField(PhitsObject):
               "calc_freq": (None, PosReal(), 2),
               "m_file": (None, Path(), 3),
               "transform": (None, IsA(Transform, index=True), None, 0),
-              "cell": (None, IsA(Cell, index=True), None)}
+              }
     prelude = (("reg", "'typ", "gap", "mgf", "trcl", "file"))
     shape = (("cell", "typ", "calc_step", "normalization", "transform", "m_file"))
 
@@ -47,7 +48,7 @@ class UniformElectromagneticField(PhitsObject):
               "m_strength": (None, Real(), 1),
               "e_transform": (None, IsA(Transform, index=True), None, 0),
               "m_transform": (None, IsA(Transform, index=True), None, 0),
-              "cell": (None, IsA(Cell, index=True))}
+              }
     prelude = (("reg", "elf", "mgf", "trcle", "trclm"))
     shape = (("cell", "e_strength", "m_strength", "e_transform", "m_transform"))
 
@@ -72,7 +73,7 @@ class MappedElectromagneticField(PhitsObject):
 class DeltaRay(PhitsObject):
     name = "delta_ray"
     syntax = {"threshold": (None, PosReal(), 0),
-              "cell": (None, IsA(Cell, index=True), None)}
+              }
     prelude = (("reg", "del"))
     shape = (("cell", "threshold"))
 
@@ -81,7 +82,7 @@ class DeltaRay(PhitsObject):
 class TrackStructure(PhitsObject):
     name = "track_structure"
     syntax = {"model": (None, FinBij({None: 0, "general": -1, "optimized": 1}), 0),
-              "cell": (None, IsA(Cell, index=True), None)}
+              }
     prelude = ("reg", "mID")
     shape = lambda self: (("cell", "model"))
 
@@ -127,7 +128,7 @@ class Importance(PhitsObject):
     name = "importance"
     syntax = {"particles": ("part", List(Particle()), 0),
               "importance": (None, PosReal(), 0),
-              "cell": (None, IsA(Cell, index=True), None)}
+              }
     prelude = ("particles", ("reg", "imp"))
     shape = (("cell", "importance"))
     group_by = lambda self: self.particles
@@ -139,9 +140,9 @@ class Importance(PhitsObject):
 class WeightWindow(PhitsObject):
     name = "weight_window"
     syntax = {"particles": ("part", List(Particle()), 0), # TODO: geometrical meshes
-              "variable": (None, FinBij({"energy": "energy", "time": "time"}), 2)
-              "windows": (None, List(Tuple(PosReal(), PosReal)), 1),
-              "cell": (None, IsA(Cell, index=True), None)}
+              "variable": (None, FinBij({"energy": "energy", "time": "time"}), 2),
+              "windows": (None, List(Tuple(PosReal(), PosReal())), 1),
+              }
     prelude = lambda self: ("mesh = reg", "particles",
                             f"eng = {len(self.windows)}" if self.variable == "energy" else f"tim = {len(self.windows)}",
                             " ".join(map(lambda t: t[0], self.windows)),
@@ -156,10 +157,10 @@ class WWBias(PhitsObject):
     name = "ww_bias"
     syntax = {"particles": ("part", List(Particle()), 0),
               "biases": (None, List(Tuple(PosReal(), PosReal())), 1),
-              "cell": (None, IsA(Cell, index=True), None)}
+              }
     prelude = lambda self: ("particles", f"eng = {len(self.biases)}", " ".join(map(lambda t: t[0], self.biases)),
                             ("reg", " ".join(f"wwb{i}" for i in range(1, len(self.biases) + 1))))
-    shape = (("cell", " ".join(map(lambda t: t[1], self.biases))))
+    shape = lambda self: (("cell", " ".join(map(lambda t: t[1], self.biases))))
     group_by = lambda self: (self.particles, self.mesh)
     separator = lambda self: self.section_title()
     max_groups = 6
@@ -172,7 +173,7 @@ class ForcedCollisions(PhitsObject):
     syntax = {"particles": ("part", List(Particle()), 0),
               "factor": (None, PosReal(), 1),
               "force_secondaries": (None, FinBij({True: 1, False: -1}), None),
-              "cell": (None, IsA(Cell, index=True), None)}
+              }
 
     prelude = ("particles", ("reg", "fcl"))
     shape = lambda self: (("cell", f"{self.force_secondaries * self.factor}"))
@@ -189,8 +190,8 @@ class RepeatedCollisions(PhitsObject):
               "collision_reps": (None, PosInt(), 1),
               "evaporation_reps":  (None, PosInt(), 2),
               "ebounds": (("emin", "emax"), (PosReal(), PosReal()), None),
-              "mother": (None, List(Nulceides()), None),
-              "cell": (None, IsA(Cell, index=True), None)}
+              "mother": (None, List(Nucleide()), None),
+              }
 
     prelude = lambda self: ("particles",
                             f"mother = {len(self.mother)}" if self.mother else "",
@@ -221,7 +222,7 @@ class RegionName(PhitsObject):
     name = "region_name"
     syntax = {"reg_name": (None, Text(), 0),
               "size": (None, PosReal(), 1),
-              "cell": (None, IsA(Cell, index=True), None)}
+              }
     shape = (("cell", "reg_name", "size"))
 
 
@@ -233,7 +234,7 @@ class Counter(PhitsObject):
               "exit": (None, Integer(), None, "non"),
               "collision": (None, Integer(), None, "non"),
               "reflection": (None, Integer(), None, "non"),
-              "cell": (None, IsA(Cell, index=True), None)}
+              }
 
     prelude = ("particles", ("reg", "in", "out", "coll", "ref"))
     shape = (("cell", "entry", "exit", "collision", "reflection"))
@@ -248,6 +249,6 @@ class Timer(PhitsObject):
               "exit": (None, Integer(), None),
               "collision": (None, Integer(), None),
               "reflection": (None, Integer(), None),
-              "cell": (None, IsA(Cell, index=True), None)}
+              }
     prelude = (("reg", "in", "out", "coll", "ref"))
     shape = (("cell", "entry", "exit", "collision", "reflection"))

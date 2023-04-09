@@ -1,6 +1,30 @@
 
 from base import *
 
+class MatTimeChange(PhitsObject):
+    name = "mat_time_change"
+    syntax = {"time": (None, PosReal(), 0, "non"),
+              "new": (None, IsA(Material, index=True), 1, "non"),
+              "old": (None, IsA(Material, index=True), None)}
+    prelude = (("mat", "'time", "change"))
+    shape = (("old", "time", "new"))
+
+
+
+class DataMax(PhitsObject): # requires special handling in make_input
+    name = "data_max"
+    syntax = {"particles": ("part", List(FinBij({"neutron": "neutron", "proton": "proton", "all": "all"})), 0), # TODO: particle
+              "nucleus": (None, OneOf(Element(), FinBij({"all": "all"})), 1),
+              "threshold": (None, PosReal(), 2),
+              "material": (None, OneOf(IsA(Material), FinBij({"all": "all"})), None)
+              }
+    prelude = ("particles", (("mat", "'nucleus", "dmax")))
+    shape = (("material", "nucleus", "threshold"))
+    group_by = lambda self: self.particles
+    max_groups = 6
+    separator = lambda self: self.section_title()
+
+
 # TODO: how the libraries work isn't well-documented. Is there a single library set for the whole material, or
 # does one set a library after each element of the compositon? Can the thermal neutron library be set anywhere?
 class Material(PhitsObject): # Composition is a list of pairs of (<element name string>, <ratio>) e.g. ("8Li", 0.5)
@@ -28,28 +52,6 @@ class Material(PhitsObject): # Composition is a list of pairs of (<element name 
 
 
 
-class MatTimeChange(PhitsObject):
-    name = "mat_time_change"
-    syntax = {"time": (None, PosReal(), 0, "non"),
-              "new": (None, IsA(Material, index=True), 1, "non"),
-              "old": (None, IsA(Material, index=True), None)}
-    prelude = (("mat", "'time", "change"))
-    shape = (("old", "time", "new"))
-
-
-
-class DataMax(PhitsObject): # requires special handling in make_input
-    name = "data_max"
-    syntax = {"particles": ("part", List(FinBij({"neutron": "neutron", "proton": "proton", "all": "all"})), 0), # TODO: particle
-              "nucleus": (None, OneOf(Element(), FinBij({"all": "all"})), 1),
-              "threshold": (None, PosReal(), 2),
-              "material": (None, OneOf(IsA(Material), FinBij({"all": "all"})), None)
-              }
-    prelude = ("particles", (("mat", "'nucleus", "dmax")))
-    shape = (("material", "nucleus", "threshold"))
-    group_by = lambda self: self.particles
-    max_groups = 6
-    separator = lambda self: self.section_title()
 
 
 # TODO: necessary?

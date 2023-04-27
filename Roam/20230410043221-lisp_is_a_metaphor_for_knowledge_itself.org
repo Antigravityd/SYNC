@@ -1,0 +1,66 @@
+:PROPERTIES:
+:ID:       8bb9c07e-9805-44ea-b3af-dea14be95535
+:END:
+#+title: Lisp is a Metaphor for Knowledge Itself
+* Lisp is a Fully Faithful Metaphor for Knowledge Itself
+
+I've done a lot of thinking about mathematical philosophy recently, with the prodding of some friends asking questions about mathematical foundations. I stumbled into a /perfect/ analogy between the mathematical process and the metacircular evaluator in one of those discussions; it was so good I couldn't help but reproduce it.
+
+** Knowledge Itself
+
+One of my favorite quotes comes courtesy geometer Sir Michael Atiyah: "mathematics is the science of analogy." Despite my having a different perspective on the meaning of "science" (closer to "natural philosophy"), I think it captures the essential features of what mathematics is: a systematic study of systematic abstractions. Analogies/abstractions take a bag of concrete "things" (say, 3 apples, 3 pears, 3 shoes) and identifies that which they share as a "thing" in its own right (the quantity 3). These abstractions are then free to be abstracted over in their own right; in keeping with the parenthesized examples, we might abstract from "the quantity 2," "the quantity 3," and "the quantity 4" the idea of "quantity" itself---so defining the natural numbers. These novel abstractions then find application in novel concrete situations (say we're confronted with 3 people), and so find boundless utility.
+
+To summarize this, I view perception (synonymously, "interpretation," "understanding," or "knowledge") as a mapping from concrete experience ("sensation") to summaries of past experience ("abstraction").
+
+$$\text{perception}: \{\text{sensation}\} \to \{\text{abstraction}\}$$
+
+Several regions of thought organize themselves naturally with respect to this analogy: science is that concerned with the restriction of perception to the natural world, mathematics is concerned with the codomain, and experimentalists devote themselves to expanding the domain. However, this is a static analogy; a better one takes into account the evolution of all three constitents over time.
+
+** Lisp
+
+It's clear to me that the domain and codomain are mutually corecursive structures, and the map itself constructs both. How does one obtain a new sensation? Well, in experimental physics, for instance, it requires /obscene/ amounts of physics already known (and the abstractions onto which that physics maps) to arrive at a novel sensation. On a more philosophical level, even determining whether an experimental observation is novel or not depends on the physics already known---evidently, the map also provides a quotient on the codomain (I think it's sensible to be so as to make the map bijective, i.e. sensations producing identical abstractions are the same "thing"). Additionally, what constitutes a valid (or, if you prefer, "relevant") abstraction depends ultimately on how expedient that abstraction is for enabling perception.
+
+However, at this point the analogy fails by obscurity. The abstractions it requires are so sophisticated as to discourage comprehension; I don't know, for instance, how to draw this idea like know how to draw a function abstractly. I'm saved, and introduced to a plain better analogy, by my favorite maps defining mutually corecursive structures: =eval= and =apply=.
+
+How does the metacircular evaluator work, again? Here's its definition, from SICP:
+
+#+begin_src scheme
+
+  (define (eval exp env)
+    (cond ((self-evaluating? exp) exp)
+          ((variable? exp) (lookup-variable-value exp env))
+          ((quoted? exp) (text-of-quotation exp))
+          ((assignment? exp) (eval-assignment exp env))
+          ((definition? exp) (eval-definition exp env))
+          ((if? exp) (eval-if exp env))
+          ((lambda? exp)
+           (make-procedure (lambda-parameters exp)
+                           (lambda-body exp)
+                           env))
+          ((begin? exp)
+           (eval-sequence (begin-actions exp) env))
+          ((cond? exp) (eval (cond->if exp) env))
+          ((application? exp)
+           (apply (eval (operator exp) env)
+                  (list-of-values (operands exp) env)))
+          (else
+           (error "Unknown expression type -- EVAL" exp))))
+
+
+  (define (apply procedure arguments)
+    (cond ((primitive-procedure? procedure)
+           (apply-primitive-procedure procedure arguments))
+          ((compound-procedure? procedure)
+           (eval-sequence
+             (procedure-body procedure)
+             (extend-environment
+               (procedure-parameters procedure)
+               arguments
+               (procedure-environment procedure))))
+          (else
+           (error
+            "Unknown procedure type -- APPLY" procedure))))
+
+#+end_src
+
+In Lisp, there is a namespace called the "environment" (analogous to $\{\text{abstractions}\}$) that contains variables and functions.

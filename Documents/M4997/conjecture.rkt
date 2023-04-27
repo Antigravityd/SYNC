@@ -13,18 +13,23 @@
 (define (jump-pabr p a b r)
   (intfn p a b r #:depth 4))
 
-(define (check-jump impl p a b r)
-  (define vals
-    (hash ()))
-  (assume (> p 0))
-  (assume (> a 0))
-  (assume (> b 0))
-  (assume (> r 0))
-  )
+
 (define conjecture
   (synthesize
    #:forall (list p a b r)
-   #:guarantee (if )))
+   #:guarantee (begin
+                 (assume (>= p 3))
+                 (assume (>= a 1))
+                 (assume (>= b 0))
+                 (assume (>= r 1))
+                 (assume (= (modulo p 2)
+                            1))
+                 (assume (<= a (/ (sub1 p)
+                                  2)))
+                 (assume (< b
+                            (- p (2 * a))))
+                 (= (jump-pabr p a b r)
+                    (observed p a b r)))))
 
 (define (extrapolate alist)
   (let ([arity (length (car (car alist)))])

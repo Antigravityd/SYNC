@@ -1,0 +1,160 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{tgpagella}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{minted}
+\usepackage{physics}
+\usepackage{siunitx}
+
+\sisetup{detect-all}
+\newtheorem{plm}{Problem}
+
+\title{7550 HW 5}
+\author{Duncan Wilkie}
+\date{21 April 2023}
+
+\begin{document}
+
+\maketitle
+
+\begin{plm}
+  On an open set $U \subseteq \mathbb{R}^{n}$, show that the exterior derivative is the only operator
+  $d: \Omega^{p}(U) \to \Omega^{p+1}(U)$ satisfying:
+  \begin{enumerate}
+  \item $d(\omega + \eta) = d\omega + d\eta$;
+  \item $\omega \in \Omega^{p}(U), \eta \in \Omega^{q}(U) \Rightarrow d(\omega \wedge \eta) = d\omega \wedge \eta+(-1)^p\omega\wedge d\eta$;
+  \item $f \in \Omega^{0}(U) \Rightarrow df(X) = X(f)$; and
+  \item $f \in \Omega^{0}(U) \Rightarrow d(df) = 0$.
+  \end{enumerate}
+  Deduce that $d$ is independent of the coordinate system used to define it.
+\end{plm}
+
+\begin{proof}
+  This smells a lot like it'd follow from uniqueness of categorical limits, but I don't want to mess around with sheaf ideas.
+  Accordingly, I'll have to do it the normal way.
+
+  Suppose that  $d'$ satisfies each of the properties above.
+  We merely must show that $d'$ satisfies the defining characteristic of $d$, namely, that if $X$ is a smooth vector field
+  on $U$, that $d'f(X) = X(f)$, and, letting $\omega = fdx_{1} \wedge \cdots \wedge dx_{p}$,
+  that $d'\omega = d'fdx_{1} \wedge \cdots \wedge x_{p}$ (which can be extended linearly to all forms).
+
+  Let $X$ be a smooth vector field on $U$.
+  In local coordinates, $X = \sum_{i = 1}^{n}a_{i}\pdv{x_{i}}$, where $a_{i}$ are smooth functions on $U$.
+  Property 3 yields $d'f(X) = X(f)$, as zero-forms are exactly smooth functions.
+
+  If $\omega = fdx_{1} \wedge \cdots \wedge dx_{p} = f \wedge dx_{1} \wedge \cdots \wedge dx_{p}$, then by property 2
+  applied with $p = 0$ we can induct on $p$ (the index in the wedges).
+  For $p = 0$, it's immediate that the pure zero-form $\omega = f$ has $d'\omega = d'f$.
+  Suppose that the property holds for all pure wedges with $p - 1$ terms.
+  Then
+  \[
+    d'\omega = d'f \wedge dx_{1} \wedge \cdots \wedge dx_{p} + (-1)^{0}f \wedge d'(dx_{1} \wedge \cdots \wedge dx_{p})
+  \]
+  \[
+    = d'f \wedge dx_{1} \wedge \cdots \wedge dx_{p} + (-1)^{0}f \wedge \qty(\sum_{i}dx_{1} \wedge \cdots d'dx_{i} \wedge \cdots \wedge dx_{p})
+  \]
+  By property 2, which is $d'f = \sum_{i}\pdv{f}{x_{i}}dx_{i}$ in local coordinates, we can take $f = x_{i}$ (the coordinate function) to get
+  \[
+    d'x_{i} = \sum_{j}\pdv{x_{i}}{x_{j}}dx_{j} = dx_{i}.
+  \]
+  Accordingly, $dx_{i} = d'(x_{i})$, so we can apply property 4 to get $d'dx_{i} = 0$---all the terms on the right vanish,
+  and we get what we want:
+  \[
+    d'\omega = d'f \wedge dx_{1} \wedge \cdots \wedge dx_{p}.
+  \]
+
+  By assumption in property 1, $d'$ is additive, but is it linear?
+  Well, let $c \in \Omega^{0}(U)$ be a constant and $\eta$ be a pure form of the form of $\omega$ above.
+  By property 2 and the definition of the wedge product and scalar product in the exterior algebra,
+  \[
+    d'(c\eta) = d'(c \wedge \eta) = d'c \wedge \eta + (-1)^{0}c \wedge d'\eta
+  \]
+  Trivially by the property proven above, $d'c = 0$---so $d'(c\eta) = cd'\eta$.
+  This means that $d'$ is indeed linear on forms that look like $\omega$, and so can be honest-to-goodnes linearly extended to all forms.
+
+  In any particular coordinate system, the text proves that the $d$ defined by that coordinate system has all four properties.
+  Accordingly, since none of these properties (including the forms themselves) are coordinate-dependent,
+  any two coordinate systems must define the same $d$ operator.
+\end{proof}
+
+Let $G$ be a Lie group, and $g \in G$.
+Recall that left-translation by $g$, $L_{g}: G \to G$, is given by $L_{g}(h) = gh$,
+and recall also the definition and importance of left-invariant vector fields.
+A differential form $\omega$ on $G$ is left-invariant if $L_{g}^{*}\omega = \omega$ for each $g \in G$.
+Let $E^{p}(G)$ denote the vector space of left-invariant $p$-forms on $G$, and $E^{*}(G) = \bigoplus_{p = 0}^{\dim G}E^{p}(G)$.
+Here are some of their properties to establish.
+Several of them are analogs of properties of left-invariant vector fields we've seen.
+
+\begin{plm}
+  Left-invariant forms are smooth.
+\end{plm}
+
+\begin{proof}
+  We must show that any left-invariant form, when expressed in local coordinates near $g$ as
+  \[
+    \omega_{g} = \sum f_{i_{1, \ldots, i_{p}}}dx_{i_{1}} \wedge \cdots \wedge dx_{i_{p}},
+  \]
+  has $f_{i_{1}, \ldots, i_{p}}$ smooth.
+
+  A general $p$-form $\omega$ presented as above acts on $p$ tangent vectors $X_{1}, \ldots, X_{p}$ at $q$---these
+  in turn act on smooth functions $f$ on $G$.
+  Left-invariance expresses
+  \[
+    \omega_{g}(X_{1}(f), \ldots, X_{p}(f)) = L_{g}^{*}(\omega_{e}(X_{1}(f), \ldots, X_{p}(f)))
+    = \omega_{e}(X_{1}(f \circ L_{g}), \ldots, X_{p}(f \circ L_{g}))
+  \]
+  If $g$ is close to the identity (i.e. such that $gq$ is in the neighborhood where the local coordinates $x_{i}$ apply),
+  then we can express the above equality as
+  \[
+    \sum f_{i_{1, \ldots, i_{p}}}dx_{i_{1}} \wedge \cdots \wedge dx_{i_{p}}
+    = \sum g_{i_{1, \ldots, i_{p}}}dx_{i_{1}} \wedge \cdots \wedge dx_{i_{p}}.
+  \]
+  Since $dx_{i_{j}}$ is a basis for the exterior algebra(s near $q$),
+  
+  However, $gq$ is a point in $G$---give it local coordinates $y_{1}, \ldots y_{n}$.
+  With respect to these,
+  \[
+    \omega_{q} = \omega_{gq} = \sum g_{i_{1}, \ldots, i_{p}} dy_{i_{1}} \wedge \cdots \wedge dy_{i_{p}};
+  \]
+
+\end{proof}
+
+\begin{plm}
+  $E^{*}(G)$ is a subalgebra of the algebra $\Omega^{*}(G)$ of all smooth differential forms on $G$.
+  If $e$ denotes the identity element of $G$, the map $\omega \mapsto \omega_{e}$ is an algebra isomorphism of $E^{*}(G)$
+  and the exterior algebra $\Lambda((T_{e}G)^{*})$.
+  Note that this map gives an isomorphism of $E^{1}(G)$ with $(T_{e}G)^{*}$, that is, with the dual space of the Lie algebra $\mathfrac{g}$
+  of $G$.
+\end{plm}
+
+\begin{proof}
+  First, the subalgebra condition.
+  If $\omega, \nu$ are left-invariant, then $L_{g}*(\omega + \nu)$
+\end{proof}
+
+\begin{plm}
+  If $\omega$ is a left-invariant form and $X$ is a left-invariant vector field, then $\omega(X)$ is a constant function on $G$.
+\end{plm}
+
+\begin{plm}
+  Let $\{X_{1}, \ldots, X_{n}\}$ and $\{\omega_{1}, \ldots, \omega_{n}\}$ be dual bases for $\mathfrak{g}$ and $E^{1}(G)$.
+  Then there are constants $c_{ijk}$ so that $[X_{i}, X_{j}] = \sum_{k = 1}^{n}c_{ijk}X_{k}$.
+  These \textit{structure constants} of $G$ with respect to the specified basis of $\mathfrak{g}$ satisfy $c_{ijk} + c_{jik} = 0$
+  and $\sum_{r}(c_{ijr}c_{rks} + c_{jkr}c_{ris} + c_{kir}c_{rjs}) = 0$.
+  Use the invariant formula for the exterior derivative to show that the exterior derivatives of the form $\omega_{i}$
+  are given by the \textit{Maurer-Cartan} equations
+  \[
+    d\omega_{i} = \sum_{j < k}c_{jki}\omega_{k} \wedge \omega_{j}.
+  \]
+\end{plm}
+
+\begin{plm}
+  Show that a Lie group $G$ is orientable. Hint: can you use (a basis for) $E^{1}(G)$ to produce a nowhere-vanishing $n$-form,
+  where $n = \dim G$?
+\end{plm}
+
+\end{document}

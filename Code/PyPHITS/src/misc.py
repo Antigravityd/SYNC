@@ -1,3 +1,4 @@
+import sys
 from base import *
 from transform import *
 
@@ -21,7 +22,7 @@ class NeutronMagneticField(PhitsObject):
                                     "quadrupole": 104, "sextupole": 106}), 0),
               "strength": (None, Real(), 1),
               "gap": (None, PosReal(), None, 0.0),
-              "polarization": (None, Real(), "non"),
+              "polarization": (None, Real(), None, "non"),
               "transform": (None, IsA(Transform, index=True), None, 0),
               "time": (None, PosReal(), None, "non"),
               }
@@ -116,8 +117,8 @@ class SuperMirror(PhitsObject):
 class FragData(PhitsObject):
     name = "frag_data"
     syntax = {"semantics": (None, FinBij({"histogram": 1, "extrapolated": 4, "interpolated": 5}), 0),
-              "projectile": (None, OneOf(Particle(), Nucleide()), 1),
-              "target": (None, Nucleide(), 2),
+              "projectile": (None, OneOf(Particle(), Nuclide()), 1),
+              "target": (None, Nuclide(), 2),
               "file": (None, Path(), 3)}
     prelude = (("opt", "proj", "targ", "'file"))
     shape = (("semantics", "projectile", "target", "file"))
@@ -127,7 +128,7 @@ class FragData(PhitsObject):
 class Importance(PhitsObject):
     name = "importance"
     syntax = {"particles": ("part", List(Particle()), 0),
-              "importance": (None, PosReal(), 0),
+              "importance": (None, PosReal(), 1),
               }
     prelude = ("particles", ("reg", "imp"))
     shape = (("cell", "importance"))
@@ -147,7 +148,7 @@ class WeightWindow(PhitsObject):
                             f"eng = {len(self.windows)}" if self.variable == "energy" else f"tim = {len(self.windows)}",
                             " ".join(map(lambda t: t[0], self.windows)),
                             ("reg", " ".join(f"ww{i}" for i in range(1, len(self.windows) + 1))))
-    shape = lambda self: (("cell", " ".join(map(lambda t: t[1], self.windows))))
+    shape = lambda self: (("cell", " ".join(map(lambda t: str(t[1]), self.windows))))
     group_by = lambda self: (self.mesh, self.particles, self.grid)
     separator = lambda self: self.section_title()
     max_groups = 6
@@ -160,7 +161,7 @@ class WWBias(PhitsObject):
               }
     prelude = lambda self: ("particles", f"eng = {len(self.biases)}", " ".join(map(lambda t: t[0], self.biases)),
                             ("reg", " ".join(f"wwb{i}" for i in range(1, len(self.biases) + 1))))
-    shape = lambda self: (("cell", " ".join(map(lambda t: t[1], self.biases))))
+    shape = lambda self: (("cell", " ".join(map(lambda t: str(t[1]), self.biases))))
     group_by = lambda self: (self.particles, self.mesh)
     separator = lambda self: self.section_title()
     max_groups = 6
@@ -190,7 +191,7 @@ class RepeatedCollisions(PhitsObject):
               "collision_reps": (None, PosInt(), 1),
               "evaporation_reps":  (None, PosInt(), 2),
               "ebounds": (("emin", "emax"), (PosReal(), PosReal()), None),
-              "mother": (None, List(Nucleide()), None),
+              "mother": (None, List(Nuclide()), None),
               }
 
     prelude = lambda self: ("particles",
@@ -219,7 +220,7 @@ class Multiplier(PhitsObject):
 
 
 class RegionName(PhitsObject):
-    name = "region_name"
+    name = "reg_name"
     syntax = {"reg_name": (None, Text(), 0),
               "size": (None, PosReal(), 1),
               }
@@ -229,7 +230,7 @@ class RegionName(PhitsObject):
 
 class Counter(PhitsObject):
     name = "counter"
-    syntax = {"particles": ("part", List(OneOf(Particle(), Nucleide())), 0),
+    syntax = {"particles": ("part", List(OneOf(Particle(), Nuclide())), 0),
               "entry": (None, Integer(), None, "non"),
               "exit": (None, Integer(), None, "non"),
               "collision": (None, Integer(), None, "non"),
@@ -239,7 +240,7 @@ class Counter(PhitsObject):
     prelude = ("particles", ("reg", "in", "out", "coll", "ref"))
     shape = (("cell", "entry", "exit", "collision", "reflection"))
 
-    group_by = lambda self: self.particles
+    group_by = lambda self: self.particles # TODO: grouping separator stuff sus
     separator = lambda self: f"counter = {self.index}"
     max_groups = 3
 
@@ -252,3 +253,10 @@ class Timer(PhitsObject):
               }
     prelude = (("reg", "in", "out", "coll", "ref"))
     shape = (("cell", "entry", "exit", "collision", "reflection"))
+
+__pdoc__ = dict()
+__pdoc__["builds"] = False
+__pdoc__["slices"] = False
+for name, cl in list(sys.modules[__name__].__dict__.items()):
+    if type(cl) == type and issubclass(cl, PhitsObject) and cl != PhitsObject:
+        __pdoc__[cl.__name__] = cl.__doc__ + cl.syntax_desc() if cl.__doc__ else cl.syntax_desc()

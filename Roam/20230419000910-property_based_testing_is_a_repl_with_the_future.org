@@ -1,0 +1,7 @@
+:PROPERTIES:
+:ID:       1f15f510-c371-4a1d-8221-f6d9476557cc
+:END:
+#+title: Property-Based Testing is a REPL with the Future
+* Property-Based Testing
+
+Recently, I've used Python's [[https:hypothesis.readthedocs.io][Hypothesis]] framework in order to get a project of mine of the ground. And it's

@@ -127,18 +127,77 @@ Several of them are analogs of properties of left-invariant vector fields we've 
   $E^{*}(G)$ is a subalgebra of the algebra $\Omega^{*}(G)$ of all smooth differential forms on $G$.
   If $e$ denotes the identity element of $G$, the map $\omega \mapsto \omega_{e}$ is an algebra isomorphism of $E^{*}(G)$
   and the exterior algebra $\Lambda((T_{e}G)^{*})$.
-  Note that this map gives an isomorphism of $E^{1}(G)$ with $(T_{e}G)^{*}$, that is, with the dual space of the Lie algebra $\mathfrac{g}$
+  Note that this map gives an isomorphism of $E^{1}(G)$ with $(T_{e}G)^{*}$, that is, with the dual space of the Lie algebra $\mathfrak{g}$
   of $G$.
 \end{plm}
 
 \begin{proof}
   First, the subalgebra condition.
-  If $\omega, \nu$ are left-invariant, then $L_{g}*(\omega + \nu)$
+  Clearly, the zero-form is left-invariant.
+  Let $\omega, \nu$ be left-invariant $p$-forms (smooth functions).
+  Letting these act on a vector fields $X_{1}, \ldots, X_{p}$, which in turn act on a smooth function $f$,
+  \[
+    L_{g}^{*}(\omega(X_{1}(f), \ldots, X_{p}(f)) + \nu(X_{1}(f), \ldots, X_{p}(f)))
+  \]
+  \[
+    = \omega(X_{1}(f \circ L_{g}), \ldots, X_{p}(f \circ L_{g})) + \nu(X_{1}(f \circ L_{g}), \ldots, X_{p}(f \circ L_{g}))
+  \]
+  \[
+    = L_{g}^{*}(\omega(X_{1}(f), \ldots, X_{p}(f))) + L_{g}^{*}(\nu(X_{1}(f), \ldots, X_{p}(f)))
+  \]
+  \[
+    = \omega(X_{1}(f), \ldots, X_{p}(f)) + \nu(X_{1}(f), \ldots, X_{p}(f)),
+  \]
+  and, if $k$ is a constant,
+  \[
+    L_{g}^{*}(k\omega(X_{1}(f), \ldots, X_{p}(f))
+    = k\omega(X_{1}(f \circ L_{g}), \ldots, X_{p}(f \circ L_{g}))
+    = k\qty(L_{g}^{*}(\omega(X_{1}(f), \ldots, X_{p}(f))));
+  \]
+  \[
+    = k\omega(X_{1}(f), \ldots, X_{p}(f))
+  \]
+  This shows that $E^{*}(G)$ is a vector subspace.
+
+  Further, if $\omega, \nu$ are as above,
+  then
+  \[
+    L_{g}^{*}(\omega(X_{1}(f), \ldots, X_{p}(f)) \wedge \nu(X_{1}(f), \ldots, X_{p}(f)))
+  \]
+  \[
+    = \omega(X_{1}(f \circ L_{g}), \ldots, X_{p}(f \circ L_{g})) \wedge \nu(X_{1}(f \circ L_{g}), \ldots, X_{p}(f \circ L_{g}))
+  \]
+  \[
+    = L_{g}^{*}(\omega(X_{1}(f), \ldots, X_{p}(f))) \wedge L_{g}^{*}(\nu(X_{1}(f), \ldots, X_{p}(f)))
+  \]
+  \[
+    = \omega(X_{1}(f), \ldots, X_{p}(f)) \wedge (X_{1}(f), \ldots, X_{p}(f)),
+  \]
+  so it is also a subalgebra.
+  Note that all of these proofs are by way of showing that $L_{g}^{*}$ has a homomorphism property with respect to each operation checked,
+  and accordingly is an algebra homomorphism.
+
+  For the map $\omega \mapsto \omega_{e}$, one notes that it is an algebra homomorphism by the fact that it is a restriction map
+  onto a subalgebra; % TODO: fix argument
+  the map taking $\omega_{e}$ to the global form given at $g$ by $\omega_{g} = L_{g}^{*}\omega_{e}$ is an inverse.
+  If $\omega_{g}$ is the
+
 \end{proof}
 
 \begin{plm}
   If $\omega$ is a left-invariant form and $X$ is a left-invariant vector field, then $\omega(X)$ is a constant function on $G$.
 \end{plm}
+
+\begin{proof}
+  Both left-invariant forms and left-invariant vector fields are completely determined by their behavior at $e$.
+  Accordingly, for any function $f$ and any point $g$,
+  \[
+    \omega_{g}(X_{g}(f)) = L_{g}^{*}(\omega_{e}(L_{g}^{*}(X_{e}(f))))
+    = \omega_{e}(X_{e}(f \circ L_{g^{2}})).
+  \]
+  Regardless of how $f$ is modified, $\omega_{e}(X_{e})$ will always operate on the function at the identity.
+  So, $\omega(X)$ takes the same value everywhere else.
+\end{proof}
 
 \begin{plm}
   Let $\{X_{1}, \ldots, X_{n}\}$ and $\{\omega_{1}, \ldots, \omega_{n}\}$ be dual bases for $\mathfrak{g}$ and $E^{1}(G)$.
@@ -152,9 +211,32 @@ Several of them are analogs of properties of left-invariant vector fields we've 
   \]
 \end{plm}
 
+\begin{proof}
+  Applying that invariant form,
+  \[
+    (d\omega_{i})(X_{j}, X_{k}) = X_{j}(\omega_{i}(X_{k})) - X_{k}(\omega_{i}(X_{j})) - \omega_{i}([X_{j}, X_{k}])
+    = X_{j}(\omega_{i}(X_{k})) - X_{k}(\omega_{i}(X_{j})) - \omega_{i}\qty(\sum_{l = 1}^{n}c_{jkl}X_{l})
+  \]
+  \[
+    = X_{j}(\omega_{i}(X_{k})) - X_{k}(\omega_{i}(X_{j})) - \sum_{l = 1}^{n}c_{jkl}\omega_{i}\qty(X_{l}).
+  \]
+  Since $\omega_{i}$ is left-invariant, % TODO: finsih
+\end{proof}
+
 \begin{plm}
   Show that a Lie group $G$ is orientable. Hint: can you use (a basis for) $E^{1}(G)$ to produce a nowhere-vanishing $n$-form,
   where $n = \dim G$?
 \end{plm}
+
+\begin{proof}
+  Let $\omega_{i}$ be a basis for $E^{1}(G)$.
+  The isomorphism in Problem 3 yields, when restricted to the 1-forms, $E^{1}(G) \cong \Lambda^{1}(T_{e}^{*}G)$;
+  the cotangent space $T_{e}^{*}G$ has the same dimension as $T_{e}G$, i.e. $n$---and
+  the dimension of the $p$th grading of the exterior algebra is $\binom{n}{p}$, implying this basis has $\binom{n}{1} = n$ elements.
+  We can choose the form given pointwise by $\nu_{g} = L_{g^{-1}}^{*}(\omega_{1} \wedge \cdots \wedge \omega_{n})$.
+  Since the $\omega_{i}$ are smooth, $\wedge$ is an algebra product on smooth forms, and $L_{g^{-1}}^{*}$ is an epimorphism of smooth forms,
+  the resulting form is smooth.
+
+\end{proof}
 
 \end{document}

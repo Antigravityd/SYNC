@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.5.9)  28 APR 2023 03:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.5.9)  30 APR 2023 06:45
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**hw5.tex
-(./hw5.tex
+**hw7.tex
+(./hw7.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-02-18>
 (/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf
@@ -645,10 +645,10 @@ Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 -dist/tex/generic/iftex/ifluatex.sty
 Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
 )
-runsystem(uname -s > "hw5.w18")...executed.
+runsystem(uname -s > "hw7.w18")...executed.
 
- (./hw5.w18)
-runsystem(rm -- "hw5.w18")...executed.
+ (./hw7.w18)
+runsystem(rm -- "hw7.w18")...executed.
 
 )
 (/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf
@@ -686,7 +686,7 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@every@listing=\toks43
 \c@listing=\count319
 )
-runsystem(mkdir -p _minted-hw5)...executed.
+runsystem(mkdir -p _minted-hw7)...executed.
 
 
 (/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf
@@ -773,28 +773,65 @@ Package: l3keys2e 2021-03-12 LaTeX2e option processing using LaTeX3 keys
 -dist/tex/latex/translator/translator.sty
 Package: translator 2020-08-03 v1.12c Easy translation of strings in LaTeX
 ))
-\c@plm=\count338
-runsystem(which pygmentize && touch hw5.aex)...executed.
+(/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf
+-dist/tex/latex/mhchem/mhchem.sty
+Package: mhchem 2018/06/22 v4.08 for typesetting chemical formulae
 
-runsystem(rm hw5.aex)...executed.
+(/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf
+-dist/tex/latex/chemgreek/chemgreek.sty
+Package: chemgreek 2020/01/16 v1.1a interface for upright Greek letters for use
+ in chemistry (CN)
+\l__chemgreek_tmpa_int=\count338
+\g__chemgreek_tmpa_int=\count339
+)
+\l__mhchem_ce_distanceFromLastComma_int=\count340
+\__mhchem_arrow_extPgfLength_skip=\skip66
+\mhchem@minispace@tmp=\skip67
+\mhchem@minibackspace@tmp=\skip68
+\mhchem@bondwidth=\skip69
+\mhchem@bondheight=\skip70
+\mhchem@smallbondwidth@tmpA=\skip71
+\mhchem@smallbondwidth@tmpB=\skip72
+\mhchem@smallbondwidth=\skip73
+\mhchem@bondtmp@minussidebearingleft=\skip74
+\mhchem@bondtmp@minussidebearingright=\skip75
+\l__mhchem_option_version_int=\count341
+\mhchem@option@minusmathsidebearingleft=\dimen295
+\mhchem@option@minusmathsidebearingright=\dimen296
+\mhchem@option@minustextsidebearingleft=\dimen297
+\mhchem@option@minustextsidebearingright=\dimen298
 
- (./hw5.aux)
-\openout1 = `hw5.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
+Package mhchem Warning: You did not specify a 'version' option for the mhchem
+(mhchem)                package. Please write \usepackage[version=4]{mhchem}
+(mhchem)                in your preamble (or any lower number for
+(mhchem)                compatibility mode), because you might get slightly
+(mhchem)                different output with the same input in future versions
+.
+
+)
+\c@plm=\count342
+runsystem(which pygmentize && touch hw7.aex)...executed.
+
+runsystem(rm hw7.aex)...executed.
+
+ (./hw7.aux)
+\openout1 = `hw7.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -834,16 +871,16 @@ LaTeX Font Info:    ... okay on input line 20.
 (/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf
 -dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count339
-\scratchdimen=\dimen295
+\scratchcounter=\count343
+\scratchdimen=\dimen299
 \scratchbox=\box79
-\nofMPsegments=\count340
-\nofMParguments=\count341
+\nofMPsegments=\count344
+\nofMParguments=\count345
 \everyMPshowfont=\toks45
-\MPscratchCnt=\count342
-\MPscratchDim=\dimen296
-\MPnumerator=\count343
-\makeMPintoPDFobject=\count344
+\MPscratchCnt=\count346
+\MPscratchDim=\dimen300
+\MPnumerator=\count347
+\makeMPintoPDFobject=\count348
 \everyMPtoPDFconversion=\toks46
 )
 (/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf
@@ -865,81 +902,109 @@ File: siunitx-abbreviations.cfg 2017/11/26 v2.7k siunitx: Abbreviated units
 -dist/tex/latex/translator/translator-basic-dictionary-English.dict
 Dictionary: translator-basic-dictionary, Language: English 
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 20.
+
+Package chemgreek Info: Activating mapping `default' on line 22.
+
+LaTeX Font Info:    Trying to load font information for U+msa on input line 22.
 
 
 (/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 20.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 22.
 
 
 (/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Trying to load font information for TS1+qpl on input line 5
+4.
+
+(/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf
+-dist/tex/latex/tex-gyre/ts1qpl.fd
+File: ts1qpl.fd 2009/09/25 v1.2 font definition file for TS1/qpl
 ) [1
 
 {/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf
 -dist/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Trying to load font information for U+euf on input line 130
-.
-
-(/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf
--dist/tex/latex/amsfonts/ueuf.fd
-File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
-) [2]
-Overfull \hbox (12.90335pt too wide) detected at line 219
-\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 d![]\OT1/cmr/m/n/10 )(\OML/cmm/m/it/10 X[]; X
-[]\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 X[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ![]
-\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X[]\OT1/cmr/m/n/10 )) \OMS/cmsy/m/n/10 ^^@ \O
-ML/cmm/m/it/10 X[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ![]\OT1/cmr/m/n/10 (\OML/cm
-m/m/it/10 X[]\OT1/cmr/m/n/10 )) \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 ![]\OT1/c
-mr/m/n/10 ([\OML/cmm/m/it/10 X[]; X[]\OT1/cmr/m/n/10 ]) = \OML/cmm/m/it/10 X[]\
-OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ![]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X[]\OT1/c
-mr/m/n/10 )) \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 X[]\OT1/cmr/m/n/10 (\OML/cmm
-/m/it/10 ![]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X[]\OT1/cmr/m/n/10 )) \OMS/cmsy/m
-/n/10 ^^@ \OML/cmm/m/it/10 ![][]
+Overfull \hbox (0.51712pt too wide) detected at line 137
+\OML/cmm/m/it/10 E \OT1/cmr/m/n/10 = [] = [] = [] [] = [] []
  []
 
-[3] [4] (./hw5.aux) ) 
+[2] (./_minted-hw7/default-pyg-prefix.pygstyle) (./_minted-hw7/default.pygstyle
+)
+(./_minted-hw7/A59B90E5691B4C7B2CA2310704DE8623F947EE29006FBB66C45CF9855EB590B3
+.pygtex
+
+LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
+(Font)              using `OT1/cmtt/bx/n' instead on input line 2.
+
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 2.
+
+LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
+(Font)              using `OT1/cmtt/bx/n' instead on input line 3.
+
+
+LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
+(Font)              using `OT1/cmtt/bx/n' instead on input line 4.
+
+
+LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
+(Font)              using `OT1/cmtt/bx/n' instead on input line 5.
+
+
+LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
+(Font)              using `OT1/cmtt/bx/n' instead on input line 5.
+
+
+LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
+(Font)              using `OT1/cmtt/bx/n' instead on input line 11.
+
+
+LaTeX Font Warning: Font shape `OT1/cmtt/b/n' undefined
+(Font)              using `OT1/cmtt/bx/n' instead on input line 15.
+
+[3]) [4] (./hw7.aux) ) 
 Here is how much of TeX's memory you used:
- 19726 strings out of 478994
- 420969 string characters out of 5833535
- 720995 words of memory out of 5000000
- 36837 multiletter control sequences out of 15000+600000
- 427786 words of font info for 73 fonts, out of 8000000 for 9000
+ 20817 strings out of 478994
+ 444362 string characters out of 5833535
+ 769877 words of memory out of 5000000
+ 37908 multiletter control sequences out of 15000+600000
+ 442419 words of font info for 79 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 113i,8n,116p,403b,198s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf
--20210325/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-rm.enc}</gnu/store/8aakda
-n6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmex10.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texl
-ive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
-/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></gnu/store/8aakdan6lbwdw0l0axkzy
-4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmmi7.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-202103
-25/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></gnu/store/8aakda
-n6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmr5.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texliv
-e-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></gnu
-/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmsy10.pfb></gnu/store/8aakdan6lbwdw0l0axkzy461
-3k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmsy5.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/
-share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></gnu/store/8aakdan6l
+ 113i,18n,116p,439b,845s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texm
+f-20210325/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-rm.enc}{/gnu/store/8aakd
+an6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/enc/d
+vips/tex-gyre/q-ts1.enc}</gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-te
+xmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></gnu/s
+tore/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmitt10.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613
+k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmi10.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/
+share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></gnu/store/8aakdan6l
 bwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/pub
-lic/amsfonts/euler/eufm10.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texl
-ive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.
-pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/t
-exmf-dist/fonts/type1/public/tex-gyre/qplb.pfb></gnu/store/8aakdan6lbwdw0l0axkz
-y4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/tex-gyr
-e/qplr.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/
-share/texmf-dist/fonts/type1/public/tex-gyre/qplri.pfb>
-Output written on hw5.pdf (4 pages, 254960 bytes).
+lic/amsfonts/cm/cmr10.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-
+texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></gnu/s
+tore/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmr7.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4w
+ibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cms
+y10.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/sha
+re/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></gnu/store/8aakdan6lbwd
+w0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmtt10.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-te
+xmf-20210325/share/texmf-dist/fonts/type1/public/tex-gyre/qplb.pfb></gnu/store/
+8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/
+type1/public/tex-gyre/qplbi.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-te
+xlive-texmf-20210325/share/texmf-dist/fonts/type1/public/tex-gyre/qplr.pfb></gn
+u/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dis
+t/fonts/type1/public/tex-gyre/qplri.pfb>
+Output written on hw7.pdf (4 pages, 311605 bytes).
 PDF statistics:
- 81 PDF objects out of 1000 (max. 8388607)
+ 80 PDF objects out of 1000 (max. 8388607)
  59 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)

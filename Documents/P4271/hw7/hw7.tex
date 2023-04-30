@@ -1,0 +1,176 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{tgpagella}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{minted}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{mhchem}
+
+\sisetup{detect-all}
+\newtheorem{plm}{Problem}
+\renewcommand*{\proofname}{Solution}
+
+\title{4271 HW 7}
+\author{Duncan Wilkie}
+\date{28 April 2023}
+
+\begin{document}
+
+\maketitle
+
+\begin{plm}
+  Suppose you have a KamLAND-like experiment where a detector \SI{200}{m} from a reactor detects $\bar{\nu}_e$ at 90\% of the flux expected
+  with no oscillations.
+  Assuming a 2-component model with maximal mixing ($\theta = 45^{\circ}$) and an average neutrino energy of \SI{3}{MeV},
+  what is the squared mass difference of the $\bar{\nu}_{e}$ and its oscillating partner?
+\end{plm}
+
+\begin{proof}
+  The two-component oscillation formula states
+  \[
+    P(\bar{\nu}_{e} \to \bar{\nu}') = \sin^{2}2\theta\sin^{2}\qty(1.27 \cdot \frac{\Delta m_{21}^{2}L}{E})
+    \Leftrightarrow \Delta m_{21}^{2} = \frac{E}{1.27L}\sin^{-1}\qty(\frac{\sqrt{P}}{\sin 2\theta})
+  \]
+  \[
+    = \frac{\SI{0.003}{GeV}}{1.27 \cdot \SI{0.2}{km}} \cdot \sin^{-1}\qty(\frac{\sqrt{0.1}}{\sin(2 \cdot 45^{\circ})})
+    = \SI{0.218}{eV^{2}}
+  \]
+\end{proof}
+
+\begin{plm}
+  A neutron star is nearly pure neutron matter with a density near that of nuclear matter (\SI{0.17}{nucleons/fm^3}).
+  \begin{enumerate}
+  \item Calculate the radius of a $\SI{1.0}{M_\odot}$ neutron star and compare to that of the sun.
+  \item A neutron star is formed from a supernova explosion when the core of the star (mostly iron and nickel) collapses.
+    Assuming the neutron star is made by converting all of the protons in nickel into neutrons, calculate the number of neutrinos
+    produced by the supernova explosion leaving behind a one-solar-mass neutron star.
+  \item The Super-K solar neutrino detector contains \SI{500000}{t} pure water.
+    Using your answer from the previous part, calculate the maximum distance at which Super-K can observe supernovae.
+    Assume the cross-section for neutrino interactions is \SI{e-44}{cm^2}.
+  \end{enumerate}
+\end{plm}
+
+\begin{proof}
+  \;
+  \begin{enumerate}
+  \item A solar mass is
+    \[
+      M_{\odot} = \frac{\SI{2e30}{kg}}{\SI{1.6e-27}{kg}} = \SI{1.25e57}{neutron\;masses}.
+    \]
+    Accordingly, presuming the given density of a neutron star,
+    \[
+      \frac{M_{\odot}}{\rho} = V = \frac{4}{3}\pi R^{3}
+      \Rightarrow R = \sqrt[3]{\frac{3M_{\odot}}{4\pi\rho}}
+      = \sqrt[3]{\frac{3 \cdot \SI{1.25e57}{neutrons}}{4 \pi \cdot \SI{0.17}{neutrons/fm^{3}}}}
+      = \SI{1.21e19}{fm} = \SI{12.1}{km}
+    \]
+  \item The number of neutrons necessary to make a solar mass was computed above.
+    Using this, there are
+    \[
+      \frac{\SI{1.25e57}{neutrons}}{\SI{56}{nucleons/nickel\; nucleus}}
+      = \SI{2.23e55}{nickel\; nuclei}
+    \]
+    that need to be converted for an all-nickel star to become an all-neutron star.
+    For each of these nuclei, there are 28 protons that must be converted to neutrons, and for each conversion, a neutrino,
+    so there are \SI{6.25e56}{neutrinos} produced over the entire conversion process.
+  \item Presuming isotropic emissions of these neutrinos, they will be evenly spread over a spherical surface
+    of radius equal to the distance to the supernova.
+    This allows us to relate the luminosity at the detector over the entire supernova event to the distance, via
+    \[
+      L = \Phi N_{b} \Rightarrow L_{int} = FN_{b} = \frac{\SI{6.25e56}{neutrinos}}{{4}\pi R^{2}}N_{b}
+    \]
+    where $F$ is the neutrino fluence at Earth and $N_{b}$ is the number of target water particles.
+    In order to detect a supernova, one needs at least one neutrino interaction (presuming, unrealistically, that there is no background
+    so as to get an upper bound).
+    Accordingly, by $N = \sigma L_{int}$, we can obtain an upper bound on the detectable distance of supernovae as
+    \[
+      R = \sqrt{\frac{\sigma \cdot \SI{6.25e56}{neutrinos}}{4\pi}N_{b}}
+      = \sqrt{\frac{(\SI{e-44}{cm^{2}}) \cdot \SI{6.25e56}{neutrinos}}{4\pi}}
+    \]
+    \[
+      \cdot \sqrt{\SI{50000}{t} \cdot \SI{5.46e29}{amu/t} \cdot \SI{18}{water\;molecules/amu}\cdot\SI{10}{electrons/water\;molecule}}
+    \]
+    \[
+      = \SI{1.56e24}{cm} = \SI{0.51}{Mpc}
+    \]
+  \end{enumerate}
+\end{proof}
+
+\begin{plm}
+  Calculate the energy of the Coulomb barrier for:
+  \begin{enumerate}
+  \item $\ce{d + t}$,
+  \item $\ce{p + ^{12}C}$,
+  \item $\ce{^{4}He + ^{12}C}$,
+  \item $\ce{^{28}Si + ^{28}Si}$.
+  \end{enumerate}
+\end{plm}
+
+\begin{proof} \;
+  \begin{enumerate}
+  \item The strong force kicks in at a distance of $R_{d} + R_{t} \approx \SI{1.2}{fm} \cdot 2^{1/3} + \SI{1.2}{fm} \cdot 3^{1/3}
+    = \SI{3.24}{fm}$.
+    Accordingly, the Coulomb barrier energy is
+    \[
+      E = \frac{ke^{2}}{R_{d} + R_{t}} = \frac{\SI{9e9}{N \cdot m^{2}/ C^{2}} \cdot (\SI{1.6e-19}{C})^{2}}{\SI{3.24e-15}{m}}
+      = \SI{7.11e-14}{J} = \SI{444}{keV}
+    \]
+  \item As above, $R_{p} + R_{^{12}C} \approx \SI{1.2}{fm} \cdot 1^{1/3} + \SI{1.2}{fm} \cdot 12^{1/3} = \SI{3.95}{fm}$;
+    \[
+      E = \frac{6ke^{2}}{R_{p} + R_{^{12}C}} = \frac{\SI{9e9}{N \cdot m^{2}/C^{2}} \cdot 6(\SI{1.6e-19}{C})^{2}}{\SI{3.95e-15}{m}}
+      = \SI{3.5e-13}{J} = \SI{2.19}{MeV}
+    \]
+  \item $R_{^{4}He} + R_{^{12}C} \approx \SI{1.2}{fm} \cdot 4^{1/3} + \SI{1.2}{fm} \cdot 12^{1/3} = \SI{4.65}{fm}$
+    \[
+      E = \frac{12ke^{2}}{R_{^{4}He} + R_{^{12}C}} = \frac{12 \cdot \SI{9e9}{N \cdot m^{2}/C^{2}} \cdot (\SI{1.6e-19}{C})^2}{\SI{4.65e-15}{m}}
+      = \SI{5.95e-13}{J} = \SI{3.72}{MeV}
+    \]
+  \item $R_{^{28}Si} + R_{^{28}Si} \approx 2 \cdot \SI{1.2}{fm} \cdot 28^{1/3} = \SI{7.29}{fm}$
+    \[
+      E = \frac{196ke^{2}}{R_{^{28}Si} + R_{^{28}Si}} = \frac{196 \cdot \SI{9e9}{N\cdot m^{2}/C^{2}}\cdot(\SI{1.6e-19}{C})^2}{\SI{7.29e-15}{m}}
+      = \SI{6.19e-12}{J} = \SI{38.7}{MeV}
+    \]
+  \end{enumerate}
+\end{proof}
+
+\begin{plm}
+  Four hypothetical narrow s-wave resonances occur at low energies in the $\ce{^{20}Ne}(p, \gamma)\ce{^{21}Na}$ reaction
+  at $E_{r}= 10, 40, 60,$ and \SI{120}{keV}.
+  The resonance strengths are \SI{7.24e-33}{eV}, \SI{3.81e-15}{eV}, \SI{1.08e-9}{eV}, and \SI{3.27e-4}{eV}, respectively.
+  \textbf{Without} calculating reaction rates, which resonances do you expect to dominate the total reaction rates at $T = \SI{0.03}{GK}$?
+  At $T = \SI{0.09}{GK}$?
+\end{plm}
+
+\begin{proof}
+  We can compute the Gamow peak for these two temperatures as
+  \[
+    E_{0} = 0.122\qty[10^{2} \cdot 11^{2} \frac{20 \cdot 21}{20 + 21} \cdot 0.03^{2}]^{1/3}
+    = \SI{539}{keV};
+  \]
+  \[
+    E_{0} = 0.122\qty[10^{2} \cdot 11^{2} \frac{20 \cdot 21}{20 + 21} \cdot 0.09^{2}]^{1/3}
+    =  \SI{1.12}{MeV}.
+  \]
+  This is way off the end of the scale for the resonances, but this would lead one to conclude that the $\SI{120}{keV}$ resonance
+  will dominate in both cases, with the lower-energy resonances being rarer.
+\end{proof}
+
+\begin{plm}
+  For the hypothetical resonances given in Problem 4, calculate the reaction rates numerically for $T = \SI{0.03}{GK}$
+  and $T = \SI{0.09}{GK}$.
+  Is the Gamow peak concept valid in this case?
+\end{plm}
+
+\begin{proof}
+  Scheme:
+  \inputminted{scheme}{calc.scm}
+  Since the Gamow peak applies to non-resonant reactions, one wouldn't expect it to apply to a resonant reaction;
+  indeed, this indicates a \textit{larger} reaction rate for the \textit{lower} temperature---opposite the prediction above.
+\end{proof}
+
+\end{document}

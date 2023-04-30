@@ -1,0 +1,27 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{k}{define}\PYG{+w}{ }\PYG{n+nv}{mu}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{*}\PYG{+w}{ }\PYG{l+m+mi}{21}\PYG{+w}{ }\PYG{l+m+mi}{20}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{+}\PYG{+w}{ }\PYG{l+m+mi}{21}\PYG{+w}{ }\PYG{l+m+mi}{20}\PYG{p}{)))}
+\PYG{p}{(}\PYG{k}{define}\PYG{+w}{ }\PYG{n+nv}{fac1}\PYG{+w}{ }\PYG{l+m+mf}{1.5399e11}\PYG{p}{)}
+\PYG{p}{(}\PYG{k}{define}\PYG{+w}{ }\PYG{n+nv}{fac2}\PYG{+w}{ }\PYG{l+m+mf}{11.605}\PYG{p}{)}
+\PYG{p}{(}\PYG{k}{define}\PYG{+w}{ }\PYG{n+nv}{resonances}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{map}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{lambda}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{x}\PYG{p}{)}
+\PYG{+w}{			  }\PYG{p}{(}\PYG{n+nb}{list}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{car}\PYG{+w}{ }\PYG{n+nv}{x}\PYG{p}{)}\PYG{+w}{ }\PYG{l+m+mi}{1e6}\PYG{p}{)}
+\PYG{+w}{				}\PYG{p}{(}\PYG{n+nb}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{cadr}\PYG{+w}{ }\PYG{n+nv}{x}\PYG{p}{)}\PYG{+w}{ }\PYG{l+m+mi}{1e6}\PYG{p}{)))}
+\PYG{+w}{		    }\PYG{o}{\PYGZsq{}}\PYG{p}{((}\PYG{l+m+mi}{10}\PYG{+w}{ }\PYG{l+m+mf}{7.24e\PYGZhy{}33}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{40}\PYG{+w}{ }\PYG{l+m+mf}{3.81e\PYGZhy{}15}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{60}\PYG{+w}{ }\PYG{l+m+mf}{1.08e\PYGZhy{}9}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{120}\PYG{+w}{ }\PYG{l+m+mf}{3.27e\PYGZhy{}4}\PYG{p}{))))}
+
+
+\PYG{p}{(}\PYG{k}{define}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{reaction\PYGZhy{}rate}\PYG{+w}{ }\PYG{n+nv}{T9}\PYG{p}{)}
+\PYG{+w}{  }\PYG{p}{(}\PYG{n+nb}{*}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{/}\PYG{+w}{ }\PYG{n+nv}{fac1}
+\PYG{+w}{	}\PYG{p}{(}\PYG{n+nb}{expt}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{*}\PYG{+w}{ }\PYG{n+nv}{mu}\PYG{+w}{ }\PYG{n+nv}{T9}\PYG{p}{)}
+\PYG{+w}{	      }\PYG{p}{(}\PYG{n+nb}{/}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{)))}
+\PYG{+w}{     }\PYG{p}{(}\PYG{n+nb}{apply}\PYG{+w}{ }\PYG{n+nb}{+}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{map}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{lambda}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{x}\PYG{p}{)}
+\PYG{+w}{		     }\PYG{p}{(}\PYG{n+nb}{*}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{cadr}\PYG{+w}{ }\PYG{n+nv}{x}\PYG{p}{)}
+\PYG{+w}{			}\PYG{p}{(}\PYG{n+nb}{exp}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{*}\PYG{+w}{ }\PYG{l+m+mi}{\PYGZhy{}1}
+\PYG{+w}{				}\PYG{n+nv}{fac2}
+\PYG{+w}{				}\PYG{p}{(}\PYG{n+nb}{car}\PYG{+w}{ }\PYG{n+nv}{x}\PYG{p}{)}
+\PYG{+w}{				}\PYG{p}{(}\PYG{n+nb}{/}\PYG{+w}{ }\PYG{n+nv}{T9}\PYG{p}{)))))}
+\PYG{+w}{		   }\PYG{n+nv}{resonances}\PYG{p}{))))}
+
+\PYG{p}{(}\PYG{n+nf}{reaction\PYGZhy{}rate}\PYG{+w}{ }\PYG{l+m+mf}{0.03}\PYG{p}{)}
+\PYG{c+c1}{;; =\PYGZgt{} 282.1641000008018}
+\PYG{p}{(}\PYG{n+nf}{reaction\PYGZhy{}rate}\PYG{+w}{ }\PYG{l+m+mf}{0.09}\PYG{p}{)}
+\PYG{c+c1}{;; =\PYGZgt{} 56.009257991628544}
+\end{Verbatim}

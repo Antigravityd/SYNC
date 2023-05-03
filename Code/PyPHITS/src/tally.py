@@ -23,7 +23,7 @@ class DumpFluence(PhitsObject):
               "maximum_error": ("stdcut", PosReal(), None),
               "energy_bounds": ((None, None), (PosReal(), PosReal()), None),
               "angle_bounds": ((None, None), (PosReal(), PosReal()), None),
-              "angle_semantics": ("iangform", FinBij({"to_normal": 0, "to_x": 1, "to_y": 2, "to_z": 3}), None)
+              "angle_semantics": ("iangform", FinBij({"to_normal": 0, "to_x": 1, "to_y": 2, "to_z": 3}), None),
               "time_bounds": ((None, None), (PosReal(), PosReal()), None)}
 
     prelude = lambda self: ("particles", "unit = 1", "axis = reg", f"file = cross{self.index}", "factor", "output_type",

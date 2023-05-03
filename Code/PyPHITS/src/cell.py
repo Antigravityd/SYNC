@@ -1,4 +1,4 @@
-import copy
+from copy import deepcopy
 from base import *
 from transform import *
 from misc import *
@@ -22,6 +22,9 @@ def tup_to_def(tup):
             raise ValueError(f"Unrecognized token {el} in cell region definition.")
 
     return r
+
+def outer_void(tup):
+    return "~ (" + " : ".join(map(lambda x: tup_to_def((x,)), tup)) + ")"
 
 
 subobject_syntax = {"transform": ("TRCL", IsA(Transform, index=True), None),
@@ -53,22 +56,74 @@ class Tetrahedral(PhitsObject):
                               "tet_file": (None, Path(), 2),
                               "scale_factor": ("TSFAC", PosReal(), None)}
 
-    shape = lambda self: (("self", "material", "density\\"), tup_to_def((self.within)),
+    shape = lambda self: (("self", "material", "density\\"), tup_to_def((self.within,)),
                           "volume\\", "temperature\\", "transform\\", "LAT=3",
                           f"tfile={self.tet_file}" if self.tet_format == "tetgen" else f"nfile={self.tet_file}", "scale_factor\\")
 
     subobjects = set(subobject_syntax.keys())
 
 
-
 class Void(PhitsObject):
     name = "cell"
     syntax = common_syntax | {"regions": (None, List(surface_spec), 0)}
-    shape = lambda self: (("self", "-1", tup_to_def((self.regions)), "volume\\", "temperature\\", "transform\\"),)
+    shape = lambda self: (("self", "0", tup_to_def(self.regions), "volume\\", "temperature\\", "transform\\"),)
     subobjects = set(subobject_syntax.keys())
 
+    def __or__(self, other): # Union of cells; adopts leftmost's properties
+        r = deepcopy(self)
+        setattr(r, "regions", self.regions + ("|",) + other.regions)
+        return r
 
+    def __invert__(self): # Set complement of cell; new cell has old properties
+        r = deepcopy(self)
+        r.regions = ("~", self.regions)
+        return r
 
+    def __and__(self, other): # Intersection of cells; drops properties
+        r = deepcopy(self)
+        r.regions = self.regions + other.regions
+        return r
+
+    def __rshift__(self, other): # returns other's regions with self's properties
+        r = deepcopy(self)
+        r.regions = other.regions
+        return r
+
+    def __lshift__(self, other): # returns self's region with other's properties
+        r = deepcopy(other)
+        r.regions = self.regions
+        return r
+
+class OuterVoid(PhitsObject):
+    name = "cell"
+    syntax = common_syntax | {"regions": (None, List(surface_spec), 0)}
+    shape = lambda self: (("self", "-1", tup_to_def(self.regions), "volume\\", "temperature\\", "transform\\"),)
+    subobjects = set(subobject_syntax.keys())
+
+    def __or__(self, other): # Union of cells; adopts leftmost's properties
+        r = deepcopy(self)
+        setattr(r, "regions", self.regions + ("|",) + other.regions)
+        return r
+
+    def __invert__(self): # Set complement of cell; new cell has old properties
+        r = deepcopy(self)
+        r.regions = ("~", self.regions)
+        return r
+
+    def __and__(self, other): # Intersection of cells; drops properties
+        r = deepcopy(self)
+        r.regions = self.regions + other.regions
+        return r
+
+    def __rshift__(self, other): # returns other's regions with self's properties
+        r = deepcopy(self)
+        r.regions = other.regions
+        return r
+
+    def __lshift__(self, other): # returns self's region with other's properties
+        r = deepcopy(other)
+        r.regions = self.regions
+        return r
 
 # TODO: operations
 class Cell(PhitsObject):
@@ -80,27 +135,27 @@ class Cell(PhitsObject):
 
 
     def __or__(self, other): # Union of cells; adopts leftmost's properties
-        r = copy.deepcopy(self)
+        r = deepcopy(self)
         setattr(r, "regions", self.regions + ("|",) + other.regions)
         return r
 
-    def __inv__(self): # Set complement of cell; new cell has old properties
-        r = copy.deepcopy(self)
+    def __invert__(self): # Set complement of cell; new cell has old properties
+        r = deepcopy(self)
         r.regions = ("~", self.regions)
         return r
 
-    def __and__(self, other): # Intersection of cells; drops properties
-        r = copy.deepcopy(self)
+    def __and__(self, other): # Intersection of cells; adopts leftmost's properties
+        r = deepcopy(self)
         r.regions = self.regions + other.regions
         return r
 
     def __rshift__(self, other): # returns other's regions with self's properties
-        r = copy.deepcopy(self)
+        r = deepcopy(self)
         r.regions = other.regions
         return r
 
     def __lshift__(self, other): # returns self's region with other's properties
-        r = copy.deepcopy(other)
+        r = deepcopy(other)
         r.regions = self.regions
         return r
 

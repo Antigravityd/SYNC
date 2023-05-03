@@ -167,21 +167,20 @@ class PhitsObject:
         for attr in self.subobjects:
             if attr in kwargs:
                 child = kwargs[attr]
-                for py_attr, (phits_attr, valspec, idx) in child.syntax:
-                    if valspec.description() == IsA(type(self)).description(): # possibly brittle
-                        if hasattr(child, py_attr):
-                            val = getattr(child, py_attr)
-                            if val is None:
-                                setattr(child, py_attr, self)
+                if child is not None:
+                    for py_attr, (phits_attr, valspec, idx) in child.syntax:
+                        if valspec.description() == IsA(type(self)).description(): # possibly brittle
+                            if hasattr(child, py_attr):
+                                val = getattr(child, py_attr)
+                                if val is None:
+                                    setattr(child, py_attr, self)
 
         remaining = {k: v for k, v in kwargs.items() if k not in self.syntax and k not in self.subobjects}
         if remaining:
             self.parameters = Parameters(**remaining)
 
         # check restrictions satisfied
-        for r in self.restrictions():
-            if r != True:
-                raise r
+        self.restrictions()
 
     def _add_definition(self, how: tuple, to: str, assignments: bool = True) -> str:
         """Recursively performs skeleton insertions according to `how` at the end of `to`."""
@@ -329,6 +328,6 @@ class PhitsObject:
         return hash(tuple(v for k, v in sorted(self.__dict__.items()) \
                           if (self not in v.__dict__.values() if hasattr(v, "__dict__") else True) and k in self.syntax))
 
-    # def _repr_pretty_(self, p, cycle) -> str:
-    #     """Hypothesis uses this when printing failing cases."""
-    #     return str(self.__dict__)
+    def _repr_pretty_(self, p, cycle) -> str:
+        """Hypothesis uses this when printing failing cases."""
+        p.text(str(self.__dict__) + "\n\n" + self.definition())

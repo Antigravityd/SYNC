@@ -9,7 +9,8 @@ from distribution import *
 from cell import Cell
 # TODO: global scaling factor totfact, and correlation option iscorr. Something with group_by?
 
-common = {"projectile": ("proj", List(OneOf(Particle(), Nuclide(), FinBij({"all": "all"}))), 0),
+# removed from projectile spec: FinBij({"all": "all"})
+common = {"projectile": ("proj", List(OneOf(Particle(), Nuclide())), 0),
           "spin": (("sx", "sy", "sz"), (PosReal(), PosReal(), PosReal()), None),
           "mask": (("reg", "ntmax"), (IsA(Cell, index=True), PosInt()), None),
           "transform": ("trcl", IsA(Transform, index=True), None),
@@ -20,7 +21,7 @@ common = {"projectile": ("proj", List(OneOf(Particle(), Nuclide(), FinBij({"all"
           # ibatch?
           }
 
-semi_common = {"elevation": ("dir", OneOf(PosReal(), FinBij({"isotropic": "all"}), IsA(AngleDistribution)), None),
+semi_common = {"elevation": ("dir", OneOf(RealBetween(0.0, 1.0), FinBij({"isotropic": "all"}), IsA(AngleDistribution)), None),
                "azimuth": ("phi", PosReal(), None),
                "dispersion": ("dom", OneOf(PosReal(), FinBij({"cos^2": -1})), None),
                # "energy": ("e0", PosReal(), 1), unsupported; just use a uniform energy distribution
@@ -50,14 +51,16 @@ class Rectangular(PhitsObject):
 
 
 
-
+# TODO: update with correct dir definition
 class Gaussian(PhitsObject):
     name = "source"
     syntax = common | {"center": (("x0", "y0", "z0"), (Real(), Real(), Real()), None),
                        "fwhms": (("x1", "y1", "z1"), (PosReal(), PosReal(), PosReal()), None)} | semi_common
 
-    shape = ("s-type = 3", "projectile", "spin", "mask", "transform", "weight", "counter_start",
-                  "charge_override", "fissile", "center", "fwhms", "elevation", "azimuth", "dispersion", ("spectrum",))
+    shape = lambda self: ("s-type = 3", "projectile", "spin", "mask", "transform", "weight", "counter_start",
+                          "charge_override", "fissile", "center", "fwhms",
+                          (f"dir = data\n{self.elevation.definition()}" if isinstance(self.elevation, AngleDistribution) \
+                          else f"dir = {self.elevation}") if self.elevation is not None else "", "azimuth", "dispersion", ("spectrum",))
 
 class GaussianPrism(PhitsObject):
     name = "source"
@@ -65,8 +68,10 @@ class GaussianPrism(PhitsObject):
                        "fwhm": ("r1", PosReal(), None),
                        "zbounds": (("z0", "z1"), (Real(), Real()), None)} | semi_common
 
-    shape = ("s-type = 13", "projectile", "spin", "mask", "transform", "weight", "counter_start",
-                  "charge_override", "fissile", "center", "fwhm", "zbounds", "elevation", "azimuth", "dispersion", ("spectrum",))
+    shape = lambda self: ("s-type = 13", "projectile", "spin", "mask", "transform", "weight", "counter_start",
+                          "charge_override", "fissile", "center", "fwhms", "zbounds",
+                          (f"dir = data\n{self.elevation.definition()}" if isinstance(self.elevation, AngleDistribution) \
+                          else f"dir = {self.elevation}") if self.elevation is not None else "", "azimuth", "dispersion", ("spectrum",))
 
 
 

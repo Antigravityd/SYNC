@@ -1,6 +1,7 @@
 from datetime import datetime
 import subprocess as sp
 import itertools as it
+from functools import reduce
 import collections as col
 import numpy as np
 import pandas as pd
@@ -10,10 +11,12 @@ import os
 
 from base import PhitsObject
 from parameters import Parameters
+from cell import OuterVoid
 
 
 
-def make_input(cells, sources, tallies, title: str = str(datetime.now()), parameters: dict = dict(), cross_sections=[], raw="", **kwargs) -> str:
+def make_input(cells, sources, tallies, title: str = str(datetime.now()), parameters: dict = dict(), cross_sections=[], raw="",
+               outer_void_properties: dict = dict(), **kwargs) -> str:
     """Given a situation, produces a corresponding input file.
 
     Required arguments:
@@ -51,12 +54,16 @@ def make_input(cells, sources, tallies, title: str = str(datetime.now()), parame
                     if child is not prev:
                         add_to_set(child, the_set, an_obj)
 
-
-
     add_to_set(cells, unique)
     for cell in cells: # this ideally should "just work." Every language should have ADTs
-        for sur in cell.regions:
-            add_to_set(sur, unique)
+        if hasattr(cell, "regions"):
+            for sur in cell.regions:
+                add_to_set(sur, unique)
+
+    toset = OuterVoid([], **outer_void_properties)
+    toset.regions = (~reduce(lambda c1, c2: c1 | c2, cells)).regions
+    unique.add(toset)
+
     add_to_set(sources, unique)
     add_to_set(tallies, unique)
 
@@ -272,7 +279,7 @@ def run_phits(cells, sources, tallies, command: str = "phits", hard_error: bool 
     """
     with tf.TemporaryDirectory() as newdir:
         inp = make_input(sources, cells, tallies, **make_input_kwargs)
-        with open(newdir + filename, "w") as inp_file:
+        with open(os.path.join(newdir, filename), "w") as inp_file:
             inp_file.write(inp)
 
         try:
@@ -284,7 +291,9 @@ def run_phits(cells, sources, tallies, command: str = "phits", hard_error: bool 
             r += f"stdout: {out.stdout}\n"
             r += f"stderr: {out.stderr}\n"
             r += "Offending input file:\n"
-            r += inp
+            for idx, line in enumerate(inp.split("\n")):
+                r += f"{idx}:    {line}\n"
+
             if hard_error:
                 raise RuntimeError(r)
             else:

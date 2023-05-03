@@ -73,22 +73,21 @@ def test_a(cls):
 
     @given(builds_right(cls, req, opt), builds_right(cls, req, opt))
     @settings(deadline=None, suppress_health_check=[HealthCheck.too_slow])
-    def definition_bijective_wrt_equivalence(ins1, ins2): # this is Noether's first isomorphism theorem
+    def eq_is_definitional_equality(ins1, ins2): # this is Noether's first isomorphism theorem
         if ins1 == ins2:
             assert ins1.definition() == ins2.definition(), "Objects that are __eq__ should have the same definition."
 
         if ins1.definition() == ins2.definition():
             assert ins1 == ins2, "Objects that have the same definition should be __eq__."
 
-    definition_bijective_wrt_equivalence()
-
+    eq_is_definitional_equality()
 
 
 
 
 if __name__ == '__main__':
-    import base,  source, parameters #, cell, surface, tally, transform, material,
-    for mod in [base, source, parameters]: # cell, misc, source, surface, tally, transform, material,  ]:
+    import base,  source, parameters, cell, surface, tally, transform, material, misc
+    for mod in [base, source, parameters, cell, misc, source, surface, tally, transform, material]: # cell, misc, source, surface, tally, transform, material,  ]:
         for name, cls in mod.__dict__.items():
             if isinstance(cls, type) and cls.__module__ == mod.__name__ and issubclass(cls, PhitsObject) and cls != PhitsObject:
                 test_a(cls)

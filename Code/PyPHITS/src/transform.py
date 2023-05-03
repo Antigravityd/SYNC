@@ -1,4 +1,6 @@
 from base import *
+from numpy.linalg import det
+import numpy as np
 import sys
 
 vector = Tuple(Real(), Real(), Real())
@@ -13,6 +15,12 @@ class Transform(PhitsObject): #
     shape = lambda self: ((f"*TR{self.index}" if self.units == "degrees" else f"TR{self.index}",
                            " ".join(str(i) for i in self.translation),
                            " ".join(" ".join(str(j) for j in i) for i in self.rotation), "rotate_first"),)
+
+
+    def restrictions(self):
+        if det(self.rotation) != 1 or np.array(self.rotation) @ np.transpose(self.rotation) != np.identity(3):
+            raise ValueError(f"Degenerate rotation {self.rotation} encountered in Transform.")
+
 
 #idTransform = Transform([0.0, 0.0, 0.0], [0.0 for i in range(9)])
 

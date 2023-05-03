@@ -132,29 +132,62 @@
   If some structure isn't a group, but has a Noether-like theorem, then it's just as useful as a symmetry.
 \end{frame}
 
-\begin{frame}
-  \frametitle{Conserved Noether Current?}
-  How, \textit{precisely}, are these conserved quantities useful?
-  \begin{thm}[Noether]
-    If an (action) functional $S[q] = \int_{a}^{b}L(t, q, \dot{q})dx$ is invariant under the action of
-    a one-dimensional Lie group $G$ on the base space,
-    then a particular expression in terms of the integral kernel $L$ and quantities associated with $G$ must be constant.
-  \end{thm}
-
-  Invariant under $S[q(t)] \mapsto S[q(t + t_{0})]$ $\Leftrightarrow$ constant $\frac{1}{2}m\dot{q}^{2} + V(q)$
-\end{frame}
-
-
 
 \begin{frame}
   \frametitle{Non-Invertible Symmetry? Topological Symmetry?}
-  Are groups the only structures with Noether-style theorems?
+  In quantum mechanics, there's a \textbf{spin-statistics theorem}: multiparticle states are either fermionic or bosonic.
+  \begin{itemize}
+  \item Particle interchange: idempotent, linear operator on quantum states (a possible symmetry!).
+  \item Bosons: $+1$ eigenstates of particle interchange.
+  \item Fermions: $-1$ eigenstate of particle interchange.
+  \item \textit{Proof requires dimension $> 2$!!}
+  \end{itemize}
 
-  Lots of sophisticated work (involving TQFT, higher categories, SUSY/string theory) brings into view \textbf{topological symmetries}:
+  The proof is Lie groups: $d > 2 \Rightarrow \pi_{1}(SO(d, 1)) \cong \pi_{1}(Po(d, 1)) \cong \mathbb{Z}_{2}$.
+  \newline
+  \begin{itemize}
+  \item $d = 2 \Rightarrow \mathbb{Z}!$
+  \item \textit{Infinitely many} possible statistics in two-dimensional systems!
+  \item Called ``anyon'' quasiparticles.
+  \end{itemize}
+
+  Called ``topological'' behavior because $\pi_{1}$ is a \textbf{topological property}.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Non-Invertible Symmetry? Topological Symmetry?}
+  Difference is intuitively understood via obstructions and knot theory.
+  \begin{enumerate}
+  \item 3D rotational symmetry lets one ``un-braid'' a particle interchange.
+  \item Not so in 2D---confined to planar movements.
+  \end{enumerate}
   \begin{center}
-    \includegraphics[scale=0.5]{tqft.png}
+    \includegraphics[scale=1.2]{braid.png}
   \end{center}
+  These are non-invertible symmetries!
+  Swapping particles and then swapping them back braids worldlines twice, instead of undoing it (monoid structure).
+  There's nevertheless a conserved quantity associated with this symmetry (context: $n$-groups)---which makes it useful.
+\end{frame}
 
+\begin{frame}
+  \frametitle{Fractional Quantum Hall Effect}
+  Ordinary quantum and condensed-matter: quantum Hall effect.
+  \begin{enumerate}
+  \item Drude/Sommerfeld theory (kinetic theory + EM): current gets diagonal when magnetic field applied.
+  \item Quantizes at high-$B$, low-$T$---$R_{H} = \frac{V_{H}}{I_{C}} = \frac{h}{e\nu}$
+  \item Expected when $\nu = 1, 2, 3,\ldots$ but observed for $\nu = \frac{1}{3}, \frac{2}{5}, \frac{3}{7}, \ldots$!
+  \end{enumerate}
+  \begin{figure}
+    \begin{subfigure}{0.5\textwidth}
+      \centering
+      \includegraphics[width=0.6\linewidth]{he-app.png}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+      \centering
+      \includegraphics[scale=0.17]{fqhe.png}
+    \end{subfigure}
+  \end{figure}
+  Now understood as quasiparticles with anyonic statistics---so there's a non-invertible symmetry operator!
 \end{frame}
 
 \begin{frame}
@@ -163,10 +196,41 @@
   \begin{itemize}
   \item (Johnny) Classical $\to$ quantum $\Leftrightarrow$ $[A, B] = 0 \to [A, B] = i\hbar$.
   \item Sometimes, quantization breaks a symmetry: \textbf{Adler-Bell-Jackiw (ABJ, or chiral) anomaly}.
-  \item This happens for QED; explains several CP-violating observations.
+  \item This happens for QED with $U(1)$ (adding a phase $e^{i\phi}$); explains several CP-violating observations.
   \item Wrong width predicted for $\pi^{0} \to 2\gamma$ otherwise.
   \item (Predicts exactly 3 generations of quarks)
   \end{itemize}
+  This paper: Standard Model conserves $U(1)$ composed with fractional quantum Hall operator,
+  a gauge-invariant, non-invertible transformation with a corresponding conserved quantity.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Implications}
+
+  \begin{itemize}
+  \item For the first time: $\pi^{0}$ decay is necessary to \textit{preserve} a symmetry, rather than to explain \textit{breaking}.
+  \item Borrows ideas from TQFT---an area of active \textit{mathematical} research (Joyal-Lurie $(\infty, 1)$-categories, HoTT).
+  \item More symmetries = more ways to solve problems via symmetry arguments (think Gauss's law).
+  \item New exactly-solvable QED/QCD systems?
+  \item New mathematical structure of physical theories? (open question: what's the ``fusion algebra'' of these symmetries?)
+  \item Application to axion theories?
+  \item Other still-unknown symmetries?
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Appendix}
+
+  \begin{figure}
+    \begin{subfigure}{0.5\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{operator.png}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+      \centering
+      \includegraphics[scale=0.5]{tqft.png}
+    \end{subfigure}
+  \end{figure}
 \end{frame}
 
 \end{document}

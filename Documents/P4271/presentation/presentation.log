@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.5.9)  26 APR 2023 20:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.5.9)  3 MAY 2023 08:49
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1457,16 +1457,48 @@ LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <5> not available
 ] [8
 
 ]
-<tqft.png, id=76, 282.30469pt x 105.39375pt>
-File: tqft.png Graphic file (type png)
-<use tqft.png>
-Package pdftex.def Info: tqft.png  used on input line 158.
-(pdftex.def)             Requested size: 141.152pt x 52.69673pt.
+<braid.png, id=77, 131.87956pt x 51.96054pt>
+File: braid.png Graphic file (type png)
+<use braid.png>
+Package pdftex.def Info: braid.png  used on input line 170.
+(pdftex.def)             Requested size: 158.25467pt x 62.35233pt.
  [9
 
- <./tqft.png>] [10
+ <./braid.png>]
+<he-app.png, id=84, 343.46877pt x 379.97629pt>
+File: he-app.png Graphic file (type png)
+<use he-app.png>
+Package pdftex.def Info: he-app.png  used on input line 191.
+(pdftex.def)             Requested size: 92.18788pt x 101.98618pt.
+<fqhe.png, id=85, 885.86629pt x 701.83856pt>
+File: fqhe.png Graphic file (type png)
+<use fqhe.png>
+Package pdftex.def Info: fqhe.png  used on input line 191.
+(pdftex.def)             Requested size: 150.59528pt x 119.31097pt.
+
+Overfull \vbox (22.28374pt too high) detected at line 191
+ []
+
+[10
+
+ <./he-app.png> <./fqhe.png>] [11
+
+] [12
 
 ]
+<operator.png, id=105, 345.29pt x 71.26625pt>
+File: operator.png Graphic file (type png)
+<use operator.png>
+Package pdftex.def Info: operator.png  used on input line 234.
+(pdftex.def)             Requested size: 153.64493pt x 31.71173pt.
+<tqft.png, id=106, 282.30469pt x 105.39375pt>
+File: tqft.png Graphic file (type png)
+<use tqft.png>
+Package pdftex.def Info: tqft.png  used on input line 234.
+(pdftex.def)             Requested size: 141.152pt x 52.69673pt.
+ [13
+
+ <./operator.png> <./tqft.png>]
 \tf@nav=\write6
 \openout6 = `presentation.nav'.
 
@@ -1476,7 +1508,8 @@ Package pdftex.def Info: tqft.png  used on input line 158.
 \tf@snm=\write8
 \openout8 = `presentation.snm'.
 
- (./presentation.aux)
+
+(./presentation.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1484,10 +1517,10 @@ Package rerunfilecheck Info: File `presentation.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 29091 strings out of 478994
- 617673 string characters out of 5833535
+ 29136 strings out of 478994
+ 618343 string characters out of 5833535
  857201 words of memory out of 5000000
- 45955 multiletter control sequences out of 15000+600000
+ 45990 multiletter control sequences out of 15000+600000
  421153 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  131i,17n,132p,1811b,1282s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1500,27 +1533,29 @@ onts/cm/cmbsy10.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-
 /type1/public/amsfonts/cm/cmmi10.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wib
 bq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi1
 2.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></gnu/store/8aakdan6lbwdw
-0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmss8.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texm
-f-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></gnu/stor
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></gnu/store/8aakdan6lbwdw0
+l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmss10.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texm
+f-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></gnu/stor
 e/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/font
-s/type1/public/amsfonts/cm/cmssbx10.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4
-wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-ssi10.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/s
-hare/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></gnu/store/8aakdan6l
-bwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmsy10.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive
--texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></gnu
+s/type1/public/amsfonts/cm/cmss9.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wib
+bq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssb
+x10.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/sha
+re/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></gnu/store/8aakdan6lb
+wdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmssi8.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-
+texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></gnu
 /store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist
-/fonts/type1/public/amsfonts/symbols/msam10.pfb></gnu/store/8aakdan6lbwdw0l0axk
-zy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfon
-ts/symbols/msbm10.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texm
-f-20210325/share/texmf-dist/fonts/type1/public/cm-super/sfss1000.pfb>
-Output written on presentation.pdf (10 pages, 628176 bytes).
+/fonts/type1/public/amsfonts/cm/cmsy7.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613
+k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/sym
+bols/msam10.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-2021
+0325/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></gnu/stor
+e/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/font
+s/type1/public/cm-super/sfss1000.pfb>
+Output written on presentation.pdf (13 pages, 1014413 bytes).
 PDF statistics:
- 147 PDF objects out of 1000 (max. 8388607)
- 104 compressed objects within 2 object streams
- 21 named destinations out of 1000 (max. 500000)
- 63 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 175 PDF objects out of 1000 (max. 8388607)
+ 121 compressed objects within 2 object streams
+ 27 named destinations out of 1000 (max. 500000)
+ 83 words of extra memory for PDF output out of 10000 (max. 10000000)
 

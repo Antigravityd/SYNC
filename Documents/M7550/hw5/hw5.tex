@@ -89,39 +89,49 @@ Let $E^{p}(G)$ denote the vector space of left-invariant $p$-forms on $G$, and $
 Here are some of their properties to establish.
 Several of them are analogs of properties of left-invariant vector fields we've seen.
 
-\begin{plm}
-  Left-invariant forms are smooth.
-\end{plm}
+% \begin{plm}
+%   Left-invariant forms are smooth.
+% \end{plm}
 
-\begin{proof}
-  We must show that any left-invariant form, when expressed in local coordinates near $q$ as
-  \[
-    \omega_{q} = \sum f_{i_{1, \ldots, i_{p}}}dx_{i_{1}} \wedge \cdots \wedge dx_{i_{p}},
-  \]
-  has $f_{i_{1}, \ldots, i_{p}}$ smooth.
+% \begin{proof}
+%   This is done by induction on arity of forms.
+%   One-forms are elements of $(T_{q}G)^{*}$---
+%   We must show that any left-invariant form, when expressed in local coordinates near $q$ as
+%   \[
+%     \omega_{q} = \sum f_{i_{1, \ldots, i_{p}}}dx_{i_{1}} \wedge \cdots \wedge dx_{i_{p}},
+%   \]
+%   has $f_{i_{1}, \ldots, i_{p}}$ smooth.
 
-  A general $p$-form $\omega$ presented as above acts on $p$ tangent vectors $X_{1}, \ldots, X_{p}$ at $q$---these
-  in turn act on smooth functions $f$ on $G$.
-  Left-invariance expresses
-  \[
-    \omega_{q}(X_{1}(f), \ldots, X_{p}(f)) = L_{g}^{*}(\omega_{q}(X_{1}(f), \ldots, X_{p}(f)))
-    = \omega_{q }(X_{1}(f \circ L_{g}), \ldots, X_{p}(f \circ L_{g}))
-  \]
-  If $g$ is close to the identity (i.e. such that $gq$ is in the neighborhood where the local coordinates $x_{i}$ apply),
-  then we can express the above equality as
-  \[
-    \sum f_{i_{1, \ldots, i_{p}}}dx_{i_{1}} \wedge \cdots \wedge dx_{i_{p}}
-    = \sum g_{i_{1, \ldots, i_{p}}}dx_{i_{1}} \wedge \cdots \wedge dx_{i_{p}}.
-  \]
-  Since $dx_{i_{j}}$ is a basis for the exterior algebra(s near $q$),
-  
-  However, $gq$ is a point in $G$---give it local coordinates $y_{1}, \ldots y_{n}$.
-  With respect to these,
-  \[
-    \omega_{q} = \omega_{gq} = \sum g_{i_{1}, \ldots, i_{p}} dy_{i_{1}} \wedge \cdots \wedge dy_{i_{p}};
-  \]
+%   A general $p$-form $\omega$ presented as above acts on $p$ tangent vectors $X_{1}, \ldots, X_{p}$ at $q$---these
+%   in turn act on smooth functions $f$ on $G$.
+%   Left-invariance expresses
+%   \[
+%     \omega_{q}(X_{1}, \ldots, X_{p}) = L_{g}^{*}(\omega_{q}(X_{1}(f), \ldots, X_{p}(f)))
+%     = \omega_{q}(X_{1}(f \circ L_{g}), \ldots, X_{p}(f \circ L_{g}))
+%     = \omega_{q}.
+%   \]
+%   In local coordinates $x_{i}$ near $q$, the vector fields can be written $X_{i} = \sum_{j}a_{ij}\pdv{x_{j}}$,
+%   and the leftmost expression above becomes
+%   \[
+%     \sum_{i,j}a_{ij}dx_{1} \wedge \cdots \wedge dx_{p}.
+%   \]
+%   This, by smoothness of Lie group multiplication, $f$, scalar multiplication, and pointwise addition, is a smooth function,
+%   and so also the left side of the
+%   If $g$ is chosen to be close to the identity (i.e. such that $gq$ is in the neighborhood where the local coordinates $x_{i}$ apply),
+%   then we can express the above equality as
+%   \[
+%     \sum f_{i_{1, \ldots, i_{p}}}dx_{i_{1}} \wedge \cdots \wedge dx_{i_{p}}
+%     = \sum f_{i_{1, \ldots, i_{p}}} \circ L_{g}dx_{i_{1}} \wedge \cdots \wedge dx_{i_{p}}.
+%   \]
+%   Since $dx_{i_{j}}$ is a basis for the exterior algebra(s near $q$),
 
-\end{proof}
+%   However, $gq$ is a point in $G$---give it local coordinates $y_{1}, \ldots y_{n}$.
+%   With respect to these,
+%   \[
+%     \omega_{q} = \omega_{gq} = \sum g_{i_{1}, \ldots, i_{p}} dy_{i_{1}} \wedge \cdots \wedge dy_{i_{p}};
+%   \]
+
+% \end{proof}
 
 \begin{plm}
   $E^{*}(G)$ is a subalgebra of the algebra $\Omega^{*}(G)$ of all smooth differential forms on $G$.
@@ -177,10 +187,14 @@ Several of them are analogs of properties of left-invariant vector fields we've 
   Note that all of these proofs are by way of showing that $L_{g}^{*}$ has a homomorphism property with respect to each operation checked,
   and accordingly is an algebra homomorphism.
 
-  For the map $\omega \mapsto \omega_{e}$, one notes that it is an algebra homomorphism by the fact that it is a restriction map
-  onto a subalgebra; % TODO: fix argument
-  the map taking $\omega_{e}$ to the global form given at $g$ by $\omega_{g} = L_{g}^{*}\omega_{e}$ is an inverse.
-  If $\omega_{g}$ is the
+
+  Since (the operations on) global forms are defined by gluing together forms at points,
+  the map restricting to the identity is trivially a homomorphism.
+  However, for all left-invariant $\omega$, the value $\omega_{g}$ is the same as $L_{g}^{*}\omega_{e}$,
+  i.e. $\omega$ is determined solely by its value at $\omega_{e}$; this means that there exists a map from $\nu_{e}$ to $\nu$
+  for all forms at the identity $\nu$.
+  This is, in particular, given pointwise by $\nu_{g} = L_{g}^{*}\nu_{e}$; as $L_{g}^{*}$ has the homomorphism property,
+  this inverse is a homomorphism also.
 
 \end{proof}
 
@@ -189,14 +203,11 @@ Several of them are analogs of properties of left-invariant vector fields we've 
 \end{plm}
 
 \begin{proof}
-  Both left-invariant forms and left-invariant vector fields are completely determined by their behavior at $e$.
-  Accordingly, for any function $f$ and any point $g$,
+  At a point $g$,
   \[
-    \omega_{g}(X_{g}(f)) = L_{g}^{*}(\omega_{e}(L_{g}^{*}(X_{e}(f))))
-    = \omega_{e}(X_{e}(f \circ L_{g^{2}})).
+    \omega_{g}(X_{g}) = L_{g}^{*}\omega_{e}(L_{g}^{*}X_{e}) = \omega_{e}(X_{e}),
   \]
-  Regardless of how $f$ is modified, $\omega_{e}(X_{e})$ will always operate on the function at the identity.
-  So, $\omega(X)$ takes the same value everywhere else.
+  i.e. for every $g$, $\omega(X)$ takes on the same value.
 \end{proof}
 
 \begin{plm}
@@ -211,14 +222,20 @@ Several of them are analogs of properties of left-invariant vector fields we've 
   \]
 \end{plm}
 
-\begin{proof}
+\begin{proof} % TODO
   Applying that invariant form,
   \[
-    (d\omega_{i})(X_{j}, X_{k}) = X_{j}(\omega_{i}(X_{k})) - X_{k}(\omega_{i}(X_{j})) - \omega_{i}([X_{j}, X_{k}])
-    = X_{j}(\omega_{i}(X_{k})) - X_{k}(\omega_{i}(X_{j})) - \omega_{i}\qty(\sum_{l = 1}^{n}c_{jkl}X_{l})
+    (d\omega_{i})(X_{m}, X_{n}) = X_{m}(\omega_{i}(X_{n})) - X_{n}(\omega_{i}(X_{m})) - \omega_{i}([X_{m}, X_{n}]).
   \]
   \[
-    = X_{j}(\omega_{i}(X_{k})) - X_{k}(\omega_{i}(X_{j})) - \sum_{l = 1}^{n}c_{jkl}\omega_{i}\qty(X_{l}).
+    = X_{m}(\omega_{i}(X_{n})) - X_{n}(\omega_{i}(X_{m})) - \omega_{i}\qty(\sum_{l = 1}^{n}c_{mnl}X_{l})
+    = X_{m}(\omega_{i}(X_{n})) - X_{n}(\omega_{i}(X_{m})) - \sum_{l = 1}^{n}c_{mnl}\omega_{i}\qty(X_{l}).
+  \]
+  On the other hand,
+  \[
+    \qty(\sum_{j < k}c_{jki}\omega_{k} \wedge \omega_{j})(X_{m}, X_{n})
+    = \sum_{j < k}c_{jki}\qty(\omega_{k}(X_{m})\omega_{j}(X_{n}) - \omega_{k}(X_{n})\omega_{j}(X_{m})))
+    = \sum_{}
   \]
   Since $\omega_{i}$ is left-invariant, % TODO: finsih
 \end{proof}
@@ -233,10 +250,14 @@ Several of them are analogs of properties of left-invariant vector fields we've 
   The isomorphism in Problem 3 yields, when restricted to the 1-forms, $E^{1}(G) \cong \Lambda^{1}(T_{e}^{*}G)$;
   the cotangent space $T_{e}^{*}G$ has the same dimension as $T_{e}G$, i.e. $n$---and
   the dimension of the $p$th grading of the exterior algebra is $\binom{n}{p}$, implying this basis has $\binom{n}{1} = n$ elements.
-  We can choose the form given pointwise by $\nu_{g} = L_{g^{-1}}^{*}(\omega_{1} \wedge \cdots \wedge \omega_{n})$.
-  Since the $\omega_{i}$ are smooth, $\wedge$ is an algebra product on smooth forms, and $L_{g^{-1}}^{*}$ is an epimorphism of smooth forms,
-  the resulting form is smooth.
-
+  We can choose the form given by $\nu = \omega_{1} \wedge \cdots \wedge \omega_{n}$.
+  If there were some $g$ such that $\nu_{g} = 0$, then by left-invariance $\nu_{e} = 0$.
+  However, this means that for all $X_{1}, \ldots, X_{n}$
+  \[
+    \omega_{1} \wedge \cdots \wedge \omega_{n}(X_{1}, \ldots, X_{n}) = \det[\omega_{i}(X_{j})] = 0;
+  \]
+  Choosing a basis for the tangent space, this expresses a linear dependence between $\omega_{i}$, contradicting that they're a basis,
+  so this form must not vanish.
 \end{proof}
 
 \end{document}

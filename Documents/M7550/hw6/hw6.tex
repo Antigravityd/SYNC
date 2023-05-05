@@ -1,0 +1,216 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{tgpagella}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{minted}
+\usepackage{physics}
+\usepackage{siunitx}
+
+\sisetup{detect-all}
+\newtheorem{plm}{Problem}
+
+\title{7550 HW 6}
+\author{Duncan Wilkie}
+\date{5 May 2023}
+
+\begin{document}
+
+\maketitle
+
+\begin{plm}[Volume form on a sphere]
+  Let $S^{n}(r)$ be the sphere of radius $r$ in $\mathbb{R}^{n+1}$, given by $x_{1}^{2} + x_{2}^{2} + \cdots + x_{n+1}^{2} = r^{2}$,
+  \[
+    \omega = \frac{1}{r}\sum_{i = 1}^{n+1}(-1)^{i-1}x_{i}dx_{1} \wedge \cdots \wedge \widehat{dx_{i}} \wedge \cdots \wedge dx_{n+1}.
+  \]
+  \begin{enumerate}
+  \item Compute the integral $\int_{S^{n}(1)}\omega$ and conclude that $\omega$ is not exact.
+  \item Viewing $r$ as a function on $\mathbb{R}^{n+1} \setminus \{0\}$, show that $dr \wedge \omega = dx_{1} \wedge \cdots \wedge dx_{n+1}$.
+  \end{enumerate}
+\end{plm}
+
+\begin{proof}
+  By definition, since the sphere is compact and so $\omega$ is compactly supported,
+  \[
+    \int_{S^{n}(1)}\omega = \sum_{i = 1}^{n+1}(-1)^{i-1}\int_{S^{n}(1)}\frac{x_{i}}{r}dx_{1} \cdots \widehat{dx_{i}} \cdots dx_{n+1}.
+  \]
+  \[
+    = \sum_{i = 1}^{n+1}(-1)^{i-1}\frac{x_{i}}{r}A_{S^{n}(1)},
+  \]
+  which, since the surface area of a nondegenerate hypersphere is nonzero, is nonzero, so $\omega$ is not exact.
+
+  \[
+    dr \wedge \omega = d(r \wedge \omega) + r \wedge d\omega
+  \]
+
+\end{proof}
+
+\begin{plm}
+  If $f: M \to N$ is a submersion of smooth manifolds, show that $f^{*}: \Omega^{*}(N) \to \Omega^{*}(M)$ is injective.
+\end{plm}
+
+\begin{proof}
+  Submersion means $f_{*}: T_{p}M \to T_{f(p)}N$ is onto at all $p$.
+  The dual is a contravariant functor, so the image of $f_{*}$ is the map $f^{*}: T_{f(p)}^{*}N \to T_{p}^{*}M$; epics in $C^{op}$
+  are monic in $C$.
+  Are monics preserved under dualization?
+  Sufficient is right-adjointness; the internal hom (bi)functor is right-adjoint to the tensor product (bi)functor,
+  so this is indeed satisfied (restricting the second argument to the bifunctors to $\mathbb{R}$), and $f^{*}$ is injective.
+
+  Extending this map ``algebra-homomorphically'' will preserve injectivity, as it is such an extension by which $\Omega^{*}$ is defined.
+\end{proof}
+
+\begin{plm}
+  Find the dimension of the vector space $H_{\Omega}^{1}(\mathbb{R}^{2} \setminus \{n \text{ points}\})$.
+  Can you find differential forms representing basis elements?
+  Can you describe the ring structure of $H_{\Omega}^{*}(\mathbb{R}^{2} \setminus \{n \text{ points}\})$?
+\end{plm}
+
+\begin{proof}
+  First of all, the punctured plane is homotopic to a circle.
+  The circle can be covered by intersecting arcs; these are homotopic to line segments $A$ and $B$, each of which (as it is contractible)
+  has de Rahm cohomology $H_{\Omega}^{*} =
+  \begin{cases}
+    \mathbb{R}, & * = 0 \\
+    0 & \text{else}
+  \end{cases}
+  $.
+  The intersection is homotopic to the disjoint union of two line segments.
+  This yields an initial segment of the Mayer-Vietoris sequence (surpressing the $_{\Omega}$ for visual clarity)
+  \[
+    0 \to H^{0}(A \cup B) \cong \mathbb{R} \to H^{0}(A) \oplus H^{0}(B) \cong \mathbb{R} \oplus \mathbb{R} \cong \mathbb{R}^{2}
+    \to H^{0}(A \cap B) \cong \mathbb{R}^{2} \to H^{1}(A \cup B),
+  \]
+  from which we observe that the pentultimate map must have kernel isomorphic to $\mathbb{R}$---and, accordingly,
+  its image is isomorphic to $\mathbb{R}^{2}/\mathbb{R} \cong \mathbb{R} \cong H^{1}(A \cup B)$.
+  The next map must have kernel $\mathbb{R}$; the sequence is trivial beyond this point.
+
+  We may take $A = \mathbb{R}^{2} \setminus \{p_{1}\}$ and $B = \mathbb{R}^{2} \setminus \{p_{2}, \ldots p_{n}\}$,
+  so that their union is the plane and their intersection is the set of interest.
+  Then, the Mayer-Vietoris sequence is, initially,
+  \[
+    0 \to H^{0}(A \cup B) \cong \mathbb{R} \to H^{0}(A) \oplus H^{0}(B) \cong \mathbb{R}^{2} \to H^{0}(A \cap B)
+    \to H^{1}(A \cup B) \cong 0 \to H^{1}(A) \oplus H^{1}(B) \to H^{1}(A \cap B) \to H^{2}(A \cup B) \cong 0.
+  \]
+
+  At this point, we may suppose for induction that the $n$-punctured plane has $H^{1} \cong \mathbb{R}^{n}$.
+  The once-punctured plane (circle) computation above forms a base case; evaluating the Mayer-Vietoris sequence above yields the segment
+  \[
+    0 \to H^{1}(A) \oplus H^{1}(B) \cong \mathbb{R} \oplus \mathbb{R}^{n} \cong \mathbb{R}^{n+1} \to H^{1}(A \cap B) \to 0.
+  \]
+  This expresses an isomorphism on the middle arrow; accordingly, the inductive hypothesis holds for all $n$;
+  namely,
+  \[
+    H^{*}_{\Omega}(\mathbb{R}^{2} \setminus \{n \text{ points}\}) \cong
+    \begin{cases}
+      \mathbb{R} & * = 0 \\
+      \mathbb{R}^{n} & * = 1 \\
+      0 & \text{otherwise}
+    \end{cases}.
+  \]
+  There are no higher terms because we've shown the $* = 2$ case and higher terms simply have no forms.
+  So, $\dim H_{\Omega}^{1}(\mathbb{R}^{2} \setminus \{n \text{ points}\}) = n$.
+
+  One can make several coordinate systems on the $n$-punctured plane by placing the origin at one of the punctures
+  and describing all of the non-punctured points via polar coordinates.
+  Letting the angular coordinate in each case be $\theta_{i}$, $d\theta_{i}$ are obviously closed.
+  However, despite appearances, these $d\theta_{i}$ are \textit{not} exact: $\theta_{i}$ themselves are not smooth functions,
+  as they're irreparably multi-valued
+  (just like ordinary polar coordinates---their local smoothness makes them fine charts though).
+
+
+\end{proof}
+
+% \begin{plm}
+%   Vector bundles with transition functions/``cocycles'' $\{g_{\alpha\beta}\}$ and $\{g_{\alpha\beta}'\}$ are equivalent if there are maps
+%   $\tau_{\alpha}: U_{\alpha} \to GL(n, \mathbb{R})$ so that $g_{\alpha\beta} = \tau_{\alpha}g'_{\alpha\beta}\tau_{\beta}^{-1}$.
+%   Vector bundles $E$ and $E'$ over $M$ are isomorphic if there is a bundle map $f: E \to E'$ with the restriction of $f$ to each fiber
+%   a vector space isomorphism.
+%   Show that two vector bundles are isomorphic iff their cocycles (for some open cover) are equivalent.
+% \end{plm}
+
+% \begin{proof} % TODO
+%   Suppose that $f: E \to E'$ is a bundle map, and that the restriction to each fiber induces a vector space isomorphism,
+%   let $g_{\alpha\beta}$ and $g'_{\alpha\beta}$ be transition functions for $E$ and $E'$, and $U_{\alpha}$ cover the base space.
+%   If $x \in U_{\alpha} \cap U_{\beta}$, then
+
+
+%   Suppose there is an open cover $U_{\alpha}$ such that $E$ and $E'$ have equivalent cocycles.
+%   Then the
+% \end{proof}
+
+
+\Begin{plm}
+  For the following subsets $X$ of $\mathbb{R}^{3}$, find the dimension of the vector space $H_{\Omega}^{1}(\mathbb{R}^{3} \setminus X)$.
+  \begin{enumerate}
+  \item $X = $ one point.
+  \item $X = $ two distinct points.
+  \item $X = $ one line.
+  \item $X = $ two lines which do not intersect.
+  \item $X = $ two lines which intersect in a point.
+  \end{enumerate}
+\end{plm}
+
+\begin{proof} We omit the zeroth cohomology when possible, as it is identically $\mathbb{R}$ in each case (they're all connected spaces).
+  \begin{enumerate}
+  \item This scenario is cohomologous to that arising from a radial straight-line homotopy: a 2-sphere.
+    Let $A$ and $B$ be open hemispheres whose boundaries lie in the interior of the other.
+    The intersection is then a 1-sphere (cohomology computed above); the pieces are contractable.
+    Mayer-Vietoris:
+    \[
+      0 \to H^{0}(A \cup B) \cong \mathbb{R} \to H^{0}(A) \oplus H^{0}(B) \cong \mathbb{R}^{2} \to H^{0}(A \cap B) \cong \mathbb{R}
+    \]
+    \[
+      \to H^{1}(A \cup B) \to H^{1}(A) \oplus H^{1}(B) \cong 0
+    \]
+    The kernel of the map going into the cohomology we're looking for is isomorphic to $\mathbb{R}$, so the cohomology is trivial.
+  \item This is homotopic to $S^{2} \wedge S^{2}$---let $A$ and $B$ be these spheres; their intersection is homeomorphic to a disc.
+    Mayer-Vietoris, using the computation above for the last group:
+    \[
+      0 \to H^{0}(A \cup B) \cong \mathbb{R} \to H^{0}(A) \oplus H^{0}(B) \cong \mathbb{R}^{2} \to H^{0}(A \cap B) \cong \mathbb{R}
+    \]
+    \[
+      \to H^{1}(A \cup B) \to H^{1}(A) \oplus H^{1}(B) \cong 0;
+    \]
+    the cohomology is trivial because it's the same sequence.
+  \item This is homotopic to a torus, by a simultaneous stereographic projection of the line onto a circle
+    and a straight-line radial homotopy.
+    To compute this, do ``interpenetrating toroidal hemispheres'' (which flatten out to annuli, and ultimately circles):
+    \[
+      0 \to H^{0}(A \cup B) \cong \mathbb{R} \to H^{0}(A) \oplus H^{0}(B) \cong \mathbb{R}^{2} \to H^{0}(A \cap B) \cong \mathbb{R}^{2}
+    \]
+    \[
+      \to H^{1}(A \cup B) \to H^{1}(A) \oplus H^{1}(B) \cong \mathbb{R}^{2} \to H^{1}(A \cap B) \cong \mathbb{R}^{2}
+    \]
+    The kernel going into the critical one is again isomorphic to $\mathbb{R}$, so $H^{1}(A \cup b) \cong \mathbb{R}^{2}/ \mathbb{R}.
+    \cong \mathbb{R}$
+
+  \item The space may be homotopically deformed until the lines are parallel; a cross-section with the lines out of the page
+    can be reduced to a figure-8; and a stereographic-style projection made to produce a two-celled torus: $(S^{1} \wedge S^{1})
+    \times S^{1}$.
+    We can let $A$ and $B$ be toroids, and their intersection be a circle along which they're glued to form the above.
+    \[
+      0 \to H^{0}(A \cup B) \cong \mathbb{R} \to H^{0}(A) \oplus H^{0}(B) \cong \mathbb{R}^{2} \to H^{0}(A \cap B) \cong \mathbb{R}
+    \]
+    \[
+      \to H^{1}(A \cup B) \to H^{1}(A) \oplus H^{1}(B) \cong \mathbb{R}^{2} \to H^{1}(A \cap B) \cong \mathbb{R}
+    \]
+    This will be trivial by the arguments made for the first two.
+  \item Straight-line homotopies down the barrel of the lines followed by stereographic projection of the arms in opposite directions
+    results in $T^{2}#T^{2}$, which can be divided into two punctured tori (homotopic to figure-8's) with intersection homotopic
+    to a circle.
+    \[
+      0 \to H^{0}(A \cup B) \cong \mathbb{R} \to H^{0}(A) \oplus H^{0}(B) \cong \mathbb{R}^{2} \to H^{0}(A \cap B) \cong \mathbb{R}
+    \]
+    \[
+      \to H^{1}(A \cup B) \to H^{1}(A) \oplus H^{1}(B) \cong \mathbb{R}^{4} \to H^{1}(A \cap B) \cong \mathbb{R}
+    \]
+    which is trivial by the arguments made for the first three. % TODO: I think by sequence chasing is dogwater
+  \end{enumerate}
+\end{proof}
+
+
+\end{document}

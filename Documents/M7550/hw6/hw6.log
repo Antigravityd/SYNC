@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.5.9)  5 MAY 2023 01:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.5.9)  5 MAY 2023 13:06
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**hw5.tex
-(./hw5.tex
+**hw6.tex
+(./hw6.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-02-18>
 (/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf
@@ -645,10 +645,10 @@ Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 -dist/tex/generic/iftex/ifluatex.sty
 Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
 )
-runsystem(uname -s > "hw5.w18")...executed.
+runsystem(uname -s > "hw6.w18")...executed.
 
- (./hw5.w18)
-runsystem(rm -- "hw5.w18")...executed.
+ (./hw6.w18)
+runsystem(rm -- "hw6.w18")...executed.
 
 )
 (/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf
@@ -686,7 +686,7 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@every@listing=\toks43
 \c@listing=\count319
 )
-runsystem(mkdir -p _minted-hw5)...executed.
+runsystem(mkdir -p _minted-hw6)...executed.
 
 
 (/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf
@@ -774,12 +774,12 @@ Package: l3keys2e 2021-03-12 LaTeX2e option processing using LaTeX3 keys
 Package: translator 2020-08-03 v1.12c Easy translation of strings in LaTeX
 ))
 \c@plm=\count338
-runsystem(which pygmentize && touch hw5.aex)...executed.
+runsystem(which pygmentize && touch hw6.aex)...executed.
 
-runsystem(rm hw5.aex)...executed.
+runsystem(rm hw6.aex)...executed.
 
- (./hw5.aux)
-\openout1 = `hw5.aux'.
+ (./hw6.aux)
+\openout1 = `hw6.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
 LaTeX Font Info:    ... okay on input line 20.
@@ -882,51 +882,102 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 {/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf
 -dist/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Trying to load font information for U+euf on input line 140
-.
+Overfull \hbox (119.42163pt too wide) detected at line 97
+\OT1/cmr/m/n/10 0 \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/
+cmm/m/it/10 A \OMS/cmsy/m/n/10 [ \OML/cmm/m/it/10 B\OT1/cmr/m/n/10 ) [] \U/msb/
+m/n/10 R \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/
+10 A\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^H \OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 
+(\OML/cmm/m/it/10 B\OT1/cmr/m/n/10 ) [] \U/msb/m/n/10 R[] \OMS/cmsy/m/n/10 ! \O
+ML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 A \OMS/cmsy/m/n/10 \ \OML/c
+mm/m/it/10 B\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 H[]\OT1/cmr/m
+/n/10 (\OML/cmm/m/it/10 A \OMS/cmsy/m/n/10 [ \OML/cmm/m/it/10 B\OT1/cmr/m/n/10 
+) [] 0 \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10
+ A\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^H \OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\
+OML/cmm/m/it/10 B\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 H[]\OT1/
+cmr/m/n/10 (\OML/cmm/m/it/10 A \OMS/cmsy/m/n/10 \ \OML/cmm/m/it/10 B\OT1/cmr/m/
+n/10 ) \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10
+ A \OMS/cmsy/m/n/10 [ \OML/cmm/m/it/10 B\OT1/cmr/m/n/10 ) [] 0\OML/cmm/m/it/10 
+:
+ []
 
-(/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf
--dist/tex/latex/amsfonts/ueuf.fd
-File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
-) [2] [3] [4] (./hw5.aux) ) 
+./hw6.tex:146: Undefined control sequence.
+l.146 \Begin
+            {plm}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./hw6.tex:155: LaTeX Error: \begin{document} ended by \end{plm}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.155 \end{plm}
+               
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./hw6.tex:155: Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.155 \end{plm}
+               
+Things are pretty mixed up, but I think the worst is over.
+
+
+Overfull \hbox (1.70148pt too wide) in paragraph at lines 159--163
+\OT1/qpl/m/n/10 The in-ter-sec-tion is then a 1-sphere (co-ho-mol-ogy com-puted
+ above); the pieces are con-tractable.
+ []
+
+[2]
+./hw6.tex:203: You can't use `macro parameter character #' in math mode.
+l.203     results in $T^{2}#
+                            T^{2}$, which can be divided into two punctured ...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+[3] (./hw6.aux) ) 
 Here is how much of TeX's memory you used:
- 19726 strings out of 478994
- 420969 string characters out of 5833535
- 719995 words of memory out of 5000000
- 36837 multiletter control sequences out of 15000+600000
- 427786 words of font info for 73 fonts, out of 8000000 for 9000
+ 19716 strings out of 478994
+ 420667 string characters out of 5833535
+ 722993 words of memory out of 5000000
+ 36833 multiletter control sequences out of 15000+600000
+ 438724 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 113i,8n,116p,403b,212s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive
--texmf-20210325/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-rm.enc}</gnu/store/
-8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmex10.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibb
-q-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10
-.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></gnu/store/8aakdan6lbwdw0l
-0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmmi7.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-
-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></gnu/store/
-8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr5.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-
-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb
-></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></gnu/store/8aakdan6lbwdw0l0ax
-kzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmsy5.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-202
-10325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></gnu/store/8aa
-kdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/typ
-e1/public/amsfonts/euler/eufm10.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibb
-q-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/symbols/m
-sbm10.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/s
-hare/texmf-dist/fonts/type1/public/tex-gyre/qplb.pfb></gnu/store/8aakdan6lbwdw0
-l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/t
-ex-gyre/qplr.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-202
-10325/share/texmf-dist/fonts/type1/public/tex-gyre/qplri.pfb>
-Output written on hw5.pdf (4 pages, 256846 bytes).
+ 113i,10n,116p,403b,273s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-202
+10325/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-rm.enc}</gnu/store/8aakdan6lb
+wdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmex10.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-
+texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></gnu
+/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmi5.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613
+k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmi7.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/s
+hare/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></gnu/store/8aakdan6lb
+wdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmr7.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-te
+xmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></gnu/s
+tore/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmsy7.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4
+wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/symbo
+ls/msbm10.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-202103
+25/share/texmf-dist/fonts/type1/public/tex-gyre/qplb.pfb></gnu/store/8aakdan6lb
+wdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/publ
+ic/tex-gyre/qplr.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf
+-20210325/share/texmf-dist/fonts/type1/public/tex-gyre/qplri.pfb>
+Output written on hw6.pdf (3 pages, 228949 bytes).
 PDF statistics:
- 81 PDF objects out of 1000 (max. 8388607)
- 59 compressed objects within 1 object stream
+ 66 PDF objects out of 1000 (max. 8388607)
+ 48 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

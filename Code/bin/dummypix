@@ -1,0 +1,3 @@
+#!/bin/sh
+
+bash /home/dnw/Code/SpaceX/minipix_uart_interface/software/dummy/linux/run.sh

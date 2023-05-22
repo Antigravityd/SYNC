@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.5.9)  5 MAY 2023 01:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.5.9)  15 MAY 2023 11:33
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -888,45 +888,42 @@ LaTeX Font Info:    Trying to load font information for U+euf on input line 140
 (/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf
 -dist/tex/latex/amsfonts/ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
-) [2] [3] [4] (./hw5.aux) ) 
+) [2] [3] (./hw5.aux) ) 
 Here is how much of TeX's memory you used:
  19726 strings out of 478994
  420969 string characters out of 5833535
- 719995 words of memory out of 5000000
+ 721996 words of memory out of 5000000
  36837 multiletter control sequences out of 15000+600000
  427786 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 113i,8n,116p,403b,212s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive
--texmf-20210325/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-rm.enc}</gnu/store/
-8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmex10.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibb
-q-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10
-.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></gnu/store/8aakdan6lbwdw0l
-0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmmi7.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-
-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></gnu/store/
-8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr5.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-
-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb
+ 113i,8n,116p,403b,198s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-tex
+mf-20210325/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-rm.enc}</gnu/store/8aak
+dan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmex10.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-te
+xlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 ></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></gnu/store/8aakdan6lbwdw0l0ax
-kzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmsy5.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-202
-10325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></gnu/store/8aa
-kdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/typ
-e1/public/amsfonts/euler/eufm10.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibb
-q-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/symbols/m
-sbm10.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/s
-hare/texmf-dist/fonts/type1/public/tex-gyre/qplb.pfb></gnu/store/8aakdan6lbwdw0
-l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/t
-ex-gyre/qplr.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-202
-10325/share/texmf-dist/fonts/type1/public/tex-gyre/qplri.pfb>
-Output written on hw5.pdf (4 pages, 256846 bytes).
+f-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></gnu/store/8aakdan6lbwdw0l0axk
+zy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmmi7.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-2021
+0325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></gnu/store/8aak
+dan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmr7.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texl
+ive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
+/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></gnu/store/8aakdan6lbwdw0l0axkzy
+4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/amsfonts
+/euler/eufm10.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20
+210325/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></gnu/st
+ore/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-dist/fo
+nts/type1/public/tex-gyre/qplb.pfb></gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq
+-texlive-texmf-20210325/share/texmf-dist/fonts/type1/public/tex-gyre/qplr.pfb><
+/gnu/store/8aakdan6lbwdw0l0axkzy4613k4wibbq-texlive-texmf-20210325/share/texmf-
+dist/fonts/type1/public/tex-gyre/qplri.pfb>
+Output written on hw5.pdf (3 pages, 238641 bytes).
 PDF statistics:
- 81 PDF objects out of 1000 (max. 8388607)
- 59 compressed objects within 1 object stream
+ 70 PDF objects out of 1000 (max. 8388607)
+ 51 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

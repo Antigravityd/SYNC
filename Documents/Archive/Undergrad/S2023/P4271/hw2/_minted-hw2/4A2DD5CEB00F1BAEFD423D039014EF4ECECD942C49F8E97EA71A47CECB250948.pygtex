@@ -1,0 +1,100 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{c+c1}{;; All spicy Legendre polynomial and weight computation tricks courtesy Bogaert et. al. 2012}
+
+\PYG{p}{(}\PYG{k}{use\PYGZhy{}modules}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{srfi}\PYG{+w}{ }\PYG{n+nv}{srfi\PYGZhy{}1}\PYG{p}{))}
+\PYG{c+c1}{;; Recursion relation for the polynomials themselves}
+\PYG{p}{(}\PYG{k}{define}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{legendre\PYGZhy{}poly}\PYG{+w}{ }\PYG{n+nv}{l}\PYG{+w}{ }\PYG{n+nv}{x}\PYG{p}{)}
+\PYG{+w}{  }\PYG{p}{(}\PYG{k}{cond}
+\PYG{+w}{   }\PYG{p}{((}\PYG{n+nb}{=}\PYG{+w}{ }\PYG{n+nv}{l}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{+w}{   }\PYG{p}{((}\PYG{n+nb}{=}\PYG{+w}{ }\PYG{n+nv}{l}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{n+nv}{x}\PYG{p}{)}
+\PYG{+w}{   }\PYG{p}{(}\PYG{k}{else}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{\PYGZhy{}}
+\PYG{+w}{	     }\PYG{p}{(}\PYG{n+nb}{*}
+\PYG{+w}{	      }\PYG{p}{(}\PYG{n+nb}{\PYGZhy{}}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{*}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{n+nv}{l}\PYG{p}{)}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{+w}{	      }\PYG{n+nv}{x}
+\PYG{+w}{	      }\PYG{p}{(}\PYG{n+nf}{legendre\PYGZhy{}poly}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{\PYGZhy{}}\PYG{+w}{ }\PYG{n+nv}{l}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{n+nv}{x}\PYG{p}{))}
+\PYG{+w}{	     }\PYG{p}{(}\PYG{n+nb}{*}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{\PYGZhy{}}\PYG{+w}{ }\PYG{n+nv}{l}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{+w}{		}\PYG{p}{(}\PYG{n+nf}{legendre\PYGZhy{}poly}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{\PYGZhy{}}\PYG{+w}{ }\PYG{n+nv}{l}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{+w}{ }\PYG{n+nv}{x}\PYG{p}{)))}
+\PYG{+w}{	    }\PYG{n+nv}{l}\PYG{p}{))))}
+
+
+
+\PYG{c+c1}{;; Analytical recursion relation for $P_l'(x)$}
+\PYG{p}{(}\PYG{k}{define}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{legendre\PYGZhy{}poly\PYGZhy{}deriv}\PYG{+w}{ }\PYG{n+nv}{l}\PYG{+w}{ }\PYG{n+nv}{x}\PYG{p}{)}
+\PYG{+w}{  }\PYG{p}{(}\PYG{k}{cond}
+\PYG{+w}{   }\PYG{p}{((}\PYG{n+nb}{=}\PYG{+w}{ }\PYG{n+nv}{l}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}
+\PYG{+w}{   }\PYG{p}{((}\PYG{n+nb}{=}\PYG{+w}{ }\PYG{n+nv}{l}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{+w}{   }\PYG{p}{(}\PYG{k}{else}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{/}
+\PYG{+w}{	  }\PYG{p}{(}\PYG{n+nb}{\PYGZhy{}}
+\PYG{+w}{	   }\PYG{p}{(}\PYG{n+nb}{*}\PYG{+w}{ }\PYG{n+nv}{l}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{legendre\PYGZhy{}poly}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{\PYGZhy{}}\PYG{+w}{ }\PYG{n+nv}{l}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{n+nv}{x}\PYG{p}{))}
+\PYG{+w}{	   }\PYG{p}{(}\PYG{n+nb}{*}\PYG{+w}{ }\PYG{n+nv}{l}\PYG{+w}{ }\PYG{n+nv}{x}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{legendre\PYGZhy{}poly}\PYG{+w}{ }\PYG{n+nv}{l}\PYG{+w}{ }\PYG{n+nv}{x}\PYG{p}{)))}
+\PYG{+w}{	  }\PYG{p}{(}\PYG{n+nb}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{expt}\PYG{+w}{ }\PYG{n+nv}{x}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{))))))}
+
+
+
+\PYG{c+c1}{;; Refine the guess above\PYGZhy{}\PYGZhy{}\PYGZhy{}numerical paper promises it\PYGZsq{}s very few iterations \PYGZsq{}till machine $\epsilon$}
+\PYG{p}{(}\PYG{k}{define}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{legendre\PYGZhy{}newton\PYGZhy{}raphson}\PYG{+w}{ }\PYG{n+nv}{l}\PYG{+w}{ }\PYG{n+nv}{guess}\PYG{+w}{ }\PYG{n+nv}{tol}\PYG{p}{)}
+\PYG{+w}{  }\PYG{p}{(}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{\PYGZlt{}=}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{abs}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{legendre\PYGZhy{}poly}\PYG{+w}{ }\PYG{n+nv}{l}\PYG{+w}{ }\PYG{n+nv}{guess}\PYG{p}{))}\PYG{+w}{ }\PYG{n+nv}{tol}\PYG{p}{)}
+\PYG{+w}{      }\PYG{n+nv}{guess}
+\PYG{+w}{      }\PYG{p}{(}\PYG{n+nf}{legendre\PYGZhy{}newton\PYGZhy{}raphson}\PYG{+w}{ }\PYG{n+nv}{l}
+\PYG{+w}{			       }\PYG{p}{(}\PYG{n+nb}{\PYGZhy{}}\PYG{+w}{ }\PYG{n+nv}{guess}
+\PYG{+w}{				  }\PYG{p}{(}\PYG{n+nb}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{legendre\PYGZhy{}poly}\PYG{+w}{ }\PYG{n+nv}{l}\PYG{+w}{ }\PYG{n+nv}{guess}\PYG{p}{)}
+\PYG{+w}{				     }\PYG{p}{(}\PYG{n+nf}{legendre\PYGZhy{}poly\PYGZhy{}deriv}\PYG{+w}{ }\PYG{n+nv}{l}\PYG{+w}{ }\PYG{n+nv}{guess}\PYG{p}{)))}
+\PYG{+w}{			       }\PYG{n+nv}{tol}\PYG{p}{)))}
+
+\PYG{p}{(}\PYG{n+nf}{legendre\PYGZhy{}newton\PYGZhy{}raphson}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{l+m+mf}{0.5}\PYG{+w}{ }\PYG{l+m+mi}{1e\PYGZhy{}15}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nf}{legendre\PYGZhy{}poly}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{legendre\PYGZhy{}newton\PYGZhy{}raphson}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{l+m+mf}{0.5}\PYG{+w}{ }\PYG{l+m+mi}{1e\PYGZhy{}15}\PYG{p}{))}
+
+\PYG{p}{(}\PYG{n+nf}{legendre\PYGZhy{}newton\PYGZhy{}raphson}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{+w}{ }\PYG{l+m+mf}{\PYGZhy{}0.5}\PYG{+w}{ }\PYG{l+m+mi}{1e\PYGZhy{}15}\PYG{p}{)}
+
+\PYG{c+c1}{;; Compute the zeroes of $P_l$}
+\PYG{p}{(}\PYG{k}{define}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{legendre\PYGZhy{}zeros}\PYG{+w}{ }\PYG{n+nv}{l}\PYG{p}{)}
+\PYG{+w}{  }\PYG{p}{(}\PYG{n+nb}{delete\PYGZhy{}duplicates}
+\PYG{+w}{   }\PYG{p}{(}\PYG{n+nb}{map}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{lambda}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{x}\PYG{p}{)}
+\PYG{+w}{	  }\PYG{p}{(}\PYG{n+nf}{legendre\PYGZhy{}newton\PYGZhy{}raphson}\PYG{+w}{ }\PYG{n+nv}{l}\PYG{+w}{ }\PYG{n+nv}{x}\PYG{+w}{ }\PYG{l+m+mi}{1e\PYGZhy{}8}\PYG{p}{))}
+\PYG{+w}{	}\PYG{p}{(}\PYG{n+nb}{iota}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{*}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{n+nv}{l}\PYG{p}{)}
+\PYG{+w}{	      }\PYG{p}{(}\PYG{n+nb}{+}\PYG{+w}{ }\PYG{l+m+mf}{\PYGZhy{}1.0}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{/}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{\PYGZhy{}}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{*}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{n+nv}{l}\PYG{p}{)}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)))}
+\PYG{+w}{	      }\PYG{p}{(}\PYG{n+nb}{/}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{+}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{*}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{n+nv}{l}\PYG{p}{)}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{))))}
+\PYG{+w}{   }\PYG{p}{(}\PYG{k}{lambda}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{x}\PYG{+w}{ }\PYG{n+nv}{y}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{\PYGZlt{}=}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{abs}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{\PYGZhy{}}\PYG{+w}{ }\PYG{n+nv}{x}\PYG{+w}{ }\PYG{n+nv}{y}\PYG{p}{))}
+\PYG{+w}{		     }\PYG{l+m+mi}{1e\PYGZhy{}8}\PYG{p}{))))}
+
+
+
+\PYG{c+c1}{;; Compute the quadrature weights for $P_l$}
+\PYG{p}{(}\PYG{k}{define}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{quadrature\PYGZhy{}weights}\PYG{+w}{ }\PYG{n+nv}{l}\PYG{p}{)}
+\PYG{+w}{  }\PYG{p}{(}\PYG{n+nb}{map}
+\PYG{+w}{   }\PYG{p}{(}\PYG{k}{lambda}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{x}\PYG{p}{)}
+\PYG{+w}{     }\PYG{p}{(}\PYG{n+nb}{/}\PYG{+w}{ }\PYG{l+m+mi}{2}
+\PYG{+w}{	}\PYG{p}{(}\PYG{n+nb}{*}
+\PYG{+w}{	 }\PYG{p}{(}\PYG{n+nb}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{expt}\PYG{+w}{ }\PYG{n+nv}{x}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{))}
+\PYG{+w}{	 }\PYG{p}{(}\PYG{n+nb}{expt}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{legendre\PYGZhy{}poly\PYGZhy{}deriv}\PYG{+w}{ }\PYG{n+nv}{l}\PYG{+w}{ }\PYG{n+nv}{x}\PYG{p}{)}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{))))}
+\PYG{+w}{   }\PYG{p}{(}\PYG{n+nf}{legendre\PYGZhy{}zeros}\PYG{+w}{ }\PYG{n+nv}{l}\PYG{p}{)))}
+
+
+\PYG{c+c1}{;; Change\PYGZhy{}of\PYGZhy{}variables to rescale $\int_a^b$ to $\int_{-1}^1$}
+\PYG{p}{(}\PYG{k}{define}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{change\PYGZhy{}of\PYGZhy{}interval}\PYG{+w}{ }\PYG{n+nv}{f}\PYG{+w}{ }\PYG{n+nv}{a}\PYG{+w}{ }\PYG{n+nv}{b}\PYG{p}{)}
+\PYG{+w}{  }\PYG{p}{(}\PYG{k}{lambda}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{x}\PYG{p}{)}
+\PYG{+w}{    }\PYG{p}{(}\PYG{k}{let}\PYG{+w}{ }\PYG{p}{((}\PYG{n+nf}{mid}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{\PYGZhy{}}\PYG{+w}{ }\PYG{n+nv}{b}\PYG{+w}{ }\PYG{n+nv}{a}\PYG{p}{)}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{))}
+\PYG{+w}{	  }\PYG{p}{(}\PYG{n+nf}{avg}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{+}\PYG{+w}{ }\PYG{n+nv}{b}\PYG{+w}{ }\PYG{n+nv}{a}\PYG{p}{)}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{)))}
+\PYG{+w}{      }\PYG{p}{(}\PYG{n+nb}{*}
+\PYG{+w}{       }\PYG{p}{(}\PYG{n+nf}{f}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{+}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{*}\PYG{+w}{ }\PYG{n+nv}{mid}\PYG{+w}{ }\PYG{n+nv}{x}\PYG{p}{)}\PYG{+w}{ }\PYG{n+nv}{avg}\PYG{p}{))}
+\PYG{+w}{       }\PYG{n+nv}{mid}\PYG{p}{))))}
+
+\PYG{c+c1}{;; Actually computing the Gaussian quadrature $\sum_{i = 1}^n w_i f(x_{n, i})$}
+\PYG{p}{(}\PYG{k}{define}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{gaussian\PYGZhy{}quad}\PYG{+w}{ }\PYG{n+nv}{f}\PYG{+w}{ }\PYG{n+nv}{n}\PYG{+w}{ }\PYG{n+nv}{a}\PYG{+w}{ }\PYG{n+nv}{b}\PYG{p}{)}
+\PYG{+w}{  }\PYG{p}{(}\PYG{n+nb}{apply}\PYG{+w}{ }\PYG{n+nb}{+}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{map}\PYG{+w}{ }\PYG{n+nb}{*}
+\PYG{+w}{		}\PYG{p}{(}\PYG{n+nf}{quadrature\PYGZhy{}weights}\PYG{+w}{ }\PYG{n+nv}{n}\PYG{p}{)}
+\PYG{+w}{		}\PYG{p}{(}\PYG{n+nb}{map}
+\PYG{+w}{		 }\PYG{p}{(}\PYG{n+nf}{change\PYGZhy{}of\PYGZhy{}interval}\PYG{+w}{ }\PYG{n+nv}{f}\PYG{+w}{ }\PYG{n+nv}{a}\PYG{+w}{ }\PYG{n+nv}{b}\PYG{p}{)}
+\PYG{+w}{		 }\PYG{p}{(}\PYG{n+nf}{legendre\PYGZhy{}zeros}\PYG{+w}{ }\PYG{n+nv}{n}\PYG{p}{)))))}
+
+\PYG{p}{(}\PYG{k}{define}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nf}{integrand}\PYG{+w}{ }\PYG{n+nv}{x}\PYG{p}{)}
+\PYG{+w}{  }\PYG{p}{(}\PYG{n+nb}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{+}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{expt}\PYG{+w}{ }\PYG{n+nv}{x}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{+w}{ }\PYG{n+nv}{x}\PYG{p}{)}
+\PYG{+w}{     }\PYG{p}{(}\PYG{n+nb}{1\PYGZhy{}}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{exp}\PYG{+w}{ }\PYG{n+nv}{x}\PYG{p}{))))}
+
+
+
+
+\PYG{p}{(}\PYG{n+nf}{gaussian\PYGZhy{}quad}\PYG{+w}{ }\PYG{n+nv}{integrand}\PYG{+w}{ }\PYG{l+m+mi}{19}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{12}\PYG{p}{)}
+
+\PYG{c+c1}{;; =\PYGZgt{}}
+\end{Verbatim}

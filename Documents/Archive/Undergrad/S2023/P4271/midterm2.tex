@@ -1,0 +1,337 @@
+\documentclass{article}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{tgpagella}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{minted}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{revsymb}
+\usepackage{mhchem}
+
+\sisetup{detect-all}
+\newtheorem{plm}{Problem}
+\renewcommand*{\proofname}{Solution}
+
+\title{4721 HW 6}
+\author{Duncan Wilkie}
+\date{6 April 2023}
+
+\begin{document}
+
+\maketitle
+
+\begin{plm}
+  For the following gamma transitions, give all permitted multipoles and indicate which might be the most intense:
+  \begin{enumerate}
+  \item $\frac{9}{2}^{-} \mapsto \frac{7}{2}^{+}$
+  \item $\frac{1}{2}^{-} \mapsto \frac{7}{2}^{-}$
+  \item ${1}^{-} \mapsto 2^{+}$
+  \item $4^{+} \mapsto 2^{+}$
+  \item $3^{+} \mapsto 3^{+}$
+  \end{enumerate}
+\end{plm}
+\begin{plm}
+  An even-$Z$, even-$N$ nucleus has the following sequence of levels: $0+$ (ground state), $2+$ (\SI{89}{keV}), $4+$ (\SI{288}{keV}),
+  $6+$ (\SI{585}{keV}), $0+$ (\SI{1050}{keV}), $2+$ (\SI{1129}{keV}).
+  Drawn an energy level diagram and show all reasonbably probable gamma-ray transitions and their dominant multipole assignments.
+\end{plm}
+\begin{plm}
+  The excited states of $\ce{^{174}Hf}$ have two similar rotational bands, with energies (in \si{MeV}) given in the following table.
+  Calculate the moments of inertia for these two bands and comment on the difference.
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+      \hline
+      & $E(0^{+})$ & $E(2^{+})$ & $E(4^{+})$ & $E(6^{+})$ & $E(8^{+})$ & $E(10^{+})$ & $E(12^{+})$ \\
+      \hline
+      Band 1 & 0 & 0.091 & 0.297 & 0.608 & 1.010 & 1.486 & 2.021 \\
+      \hline
+      Band 2 & 0.827 & 0.900 & 1.063 & 1.307 & 1.630 & 2.026 & 2.489 \\
+      \hline
+    \end{tabular}
+  \end{table}
+\end{plm}
+\begin{plm}[Bonus]
+  Show explicitly that a uniformly-charged ellipsoid at rest with a total charge of $Ze$ and semi-axes $a$ and $b$ has a quadrupole moment
+  \[
+    Q = \frac{2}{5}Z\qty(a^{2} - b^{2})
+  \]
+\end{plm}
+\begin{plm}
+  Use the answer to Problem 4 to determine the sizes of the semi-major and semi-minor axes of $\ce{^{165}Ho}$,
+  which has a quadrupole moment of $Q = \SI{3.5}{b}$.
+\end{plm}
+\begin{plm}
+  Find the angle between the angular momentum vector $\ell$ and the $z$-axis for all possible orientations when $\ell = 3$.
+\end{plm}
+\begin{plm}
+  Calculate the binding energy and binding energy per nucleon of the deuteron.
+\end{plm}
+\begin{plm}
+  At what energy in the laboratory system does a proton beam scattering off a proton target become inelastic---i.e.
+  at what proton beam energy can pions be produced?
+\end{plm}
+\begin{plm}
+  In the spherical shell model, what are the expected ground state spins and parities for:
+  $\ce{^{11}B}$, $\ce{^{15}C}$, $\ce{^{17}F}$, $\ce{^{31}P}$, $\ce{^{141}Pr}$, and $\ce{^{207}Pb}$.
+  Look up the experimental values.
+  Do they agree?
+\end{plm}
+\begin{plm}
+  The ground state of $\ce{^{17}F}$ has spin-parity of $\frac{5}{2}^{+}$ and the first excited state has a spin-parity of $\frac{1}{2}^{+}$.
+  Using Povh Fig. 18.7, suggest two possible configurations for this excited state.
+\end{plm}
+\begin{plm}
+  The ground state of a nucleus with an odd proton and an odd neutron (aka. an ``odd-odd'' nucleus)
+  is determined from the angular momentum coupling of the odd proton and neutron: $\vec{J} = \vec{j}_{p} + \vec{j}_{n}$.
+  Consider the following nuclei: $\ce{^{16}N}(2^{-})$, $\ce{^{12}B}(1^{+})$, $\ce{^{34}P}(1^{+})$, $\ce{^{28}Al}(3^{+})$.
+  \begin{enumerate}
+  \item Draw simple vector diagrams illustrating these couplings---i.e.  $\vec{J} = \vec{j}_{p} + \vec{j}_{n}$.
+  \item Replace $\vec{j}_{p}$ and $\vec{j}_{n}$, respectively, by $\vec{\ell}_{p} + \vec{s}_{p}$ and $\vec{\ell}_{n} + \vec{s}_{n}$,
+    illustrating the two vectors $\vec{\ell}$ and $\vec{s}$.
+  \item Examine your four diagrams and deduce an empirical rule for the relative orientation
+    of $\vec{s}_{p}$ and $\vec{s}_{n}$ in the ground state.
+  \item Use this empirical rule to predict the $\vec{J}^{\pi}$ assignments of $\ce{^{26}Na}$ and $\ce{^{28}Na}$.
+  \end{enumerate}
+\end{plm}
+\begin{plm}[Bonus]
+  Let's suppose we can form $\ce{^{3}He}$ or $\ce{^{3}H}$ by adding a proton or a neutron (respectively) to $\ce{^{2}H}$,
+  which has $\vec{J}^{\pi} = 1^{+}$.
+  \begin{enumerate}
+  \item What are the possile values of the total angular momentum for $\ce{^{3}He}$ and $\ce{^{3}H}$,
+    given an orbital angular momentum $\ell$ for the added nucleon?
+  \item Given that $\ce{^{3}He}$ and $\ce{^{3}H}$ have positive parity, which of these is still possible?
+  \item What is the most likely value for the ground-state orbital angular momentum of $\ce{^{3}He}$ and $\ce{^{3}H}$.
+  \end{enumerate}
+\end{plm}
+\begin{plm}
+  Common forms assumed for the momentum distributions of valence quarks in the proton are:
+  \[
+    F_{u} = xu(x) = a(1 - x)^{3}, \; F_{d}(x) = xd(x) = b(1 - x)^{3}.
+  \]
+  If the valence quarks account for half of the proton's momentum---i.e.
+  \[
+    \int_{0}^{1}xu(x)dx + \int_{0}^{1}xd(x)dx = \frac{1}{2},
+  \]
+  find the values of $a$ and $b$.
+  Hint: the $u$ quarks carry approximately twice as much momentum as the $d$ quarks in the proton.
+\end{plm}
+\begin{plm}
+  What is the color wavefunction for mesons, in analogy to that for baryons of
+  \[
+    y_{baryon} = y_{space}y_{spin}(rgb + gbr + brg - rbg - bgr - grb)?
+  \]
+  Explain your answer.
+\end{plm}
+\begin{plm}
+  The diagram below shows the internal gluon interactions in a proton.
+  Complete the diagram by labelling the color of the quarks and gluons.
+\end{plm}
+\begin{plm}
+  Which of the following processes are allowed?
+  If not allowed, state why.
+  If allowed, say whether the process is strong, weak, or electromagnetic.
+  \begin{enumerate}
+  \item $\nu_{e} + p \to e^{-} + \pi^{+} + p$
+  \item $e^{+} + e^{-} \to \mu^{+} + \mu^{-}$
+  \item $\Sigma^{-} \to n + \pi^{-}$
+  \item $\bar{\nu}_{e} + p \to e^{-} + n$
+  \item $e^{-} + p \to \nu_{e} + \pi^{0}$
+  \end{enumerate}
+\end{plm}
+\begin{plm}[Double Points]
+  The differential cross section for $e^{+} + e^{-} \to \mu^{+} + \mu^{-}$ is given by
+  \[
+    \dv{\sigma}{\Omega} = \frac{\alpha^{2}}{4s}(\hbar c)^{2}(1 + \cos^{2}\theta)
+  \]
+  in a collider experiment where $s = 4E_{e}$ and $E_{e}$ is the electron/positron energy.
+  \begin{enumerate}
+  \item Integrate over the solid angle to obtain an expression for the total cross section.
+  \item If you use an electron beam energy of \SI{4}{GeV}, what rate of production of $\mu^{+}\mu^{-}$ would you expect at a luminosity of
+    \SI{e33}{Hz/cm^{2}}?
+  \item Calculate the ratio of the hadronic production cross section to that for $\mu^{+}\mu^{-}$ at $E_{e} = \SI{500}{GeV}$.
+    If you use an electron beam energy of \SI{500}{GeV}, what must the luminosity be to measure the hadronic cross section within 24 hours
+    with 10\% statistical uncertainty?
+  \end{enumerate}
+\end{plm}
+\begin{plm}[Double Points]
+  In an $e^{+}e^{-}$ collider experiment, a resonance $R$ is observed at $E_{cm} = \SI{10}{GeV}$ in both the $\mu^{+}\mu^{-}$
+  and hadronic final states.
+  The integrated cross sections are
+  \[
+    \int \sigma_{\mu \mu}(E)dE = \SI{10}{nb \cdot GeV}
+  \]
+  and
+  \[
+    \int \sigma_{h}(E)dE = \SI{300}{nb \cdot GeV}.
+  \]
+  Use a Breit-Wigner form for the resonance production to deduce the partial widths $\Gamma_{\mu\mu}$ and $\Gamma_{h}$ in \si{MeV}
+  for the decays $R \to \mu^{+}\mu^{-}$ and $R \to \text{hadrons}$.
+  Assume the integral
+  \[
+    \int_{resonance}\frac{dE}{(E - Mc^{2}) + \Gamma^{2}/4}dE \approx \frac{2\pi}{\Gamma}.
+  \]
+\end{plm}
+\begin{plm}
+  Find the threshold kinetic energy for each of the following reactions, assuming the first particle to be incident on the second particle
+  at rest:
+  \begin{enumerate}
+  \item $K^{-} + p \to \Xi^{-} + K^{+}$
+  \item $\bar{p} + p \to \Upsilon$
+  \item $\pi^{-} + p \to \omega + n$
+  \end{enumerate}
+\end{plm}
+\begin{plm}
+  Which of the following reactions are allowed and which are forbidden by the conservation laws appropriate for weak interactions?
+  \begin{itemize}
+  \item $\nu_{\mu} + p \to \mu^{+} + n$
+  \item $\nu_{e} + p \to n + e^{-} + \pi^{+}$
+  \item $K^{+} \to \pi^{0} + \mu^{+} + \nu_{\mu}$
+  \item $\nu_{e} + p \to e^{-} + \pi^{+} + p$
+  \item $\tau^{+} \to \mu^{+} + \bar{\nu}_{\mu} + \nu_{\tau}$
+  \end{itemize}
+\end{plm}
+\begin{plm}
+  In the decay of $\ce{^{47}Ca}$ to $\ce{^{47}Sc}$, what kinetic energy is given to the neutrino when the electron
+  has kinetic energy $\SI{0.8}{MeV}$.
+\end{plm}
+\begin{plm}
+  Classify the following decays by degree of forbiddenness:
+  \begin{enumerate}
+  \item $\ce{^{81}Ge}\qty(\frac{5}{2}^{-}) \to \ce{^{81}Ge}\qty(\frac{9}{2}^{+})$
+  \item $\ce{^{93}Kr}\qty(\frac{1}{2}^{+}) \to \ce{^{93}Rb}\qty(\frac{5}{2}^{+})$
+  \item $\ce{^{93}Kr}\qty(\frac{1}{2}^{+}) \to \ce{^{93}Rb}\qty(\frac{3}{2}^{+})$
+  \item $\ce{^{178}Lu}\qty(1^{+}) \to \ce{^{178}Hf}\qty(3^{+})$
+  \end{enumerate}
+\end{plm}
+\begin{plm}
+  Draw the lowest-order Feynman diagrams for:
+  \begin{enumerate}
+  \item $\nu_{e}-\nu_{\mu}$ elastic scattering,
+  \item $e^{+} + e^{-} \to e^{+} + e^{-}$,
+  \item (Bonus) a fourth-order diagram for $\gamma + \gamma \to e^{-} + e^{+}$
+  \end{enumerate}
+\end{plm}
+\begin{plm}
+  Find the kinetic energy (in the rest frame of the original particle) of each product particle in the following two-body decays:
+  \begin{itemize}
+  \item $\pi^{+} \to \mu^{+} + \nu_{\mu}$
+  \item $\Lambda^{0} \to p + \pi^{-}$
+  \item $K^{+} \to \pi^{+} + \pi^{-}$
+  \end{itemize}
+\end{plm}
+\begin{plm}
+  Calculate the average binding energy for \ce{^{40}K}.
+\end{plm}
+\begin{plm}
+  The mass of \ce{^{74}Ge} is \SI{73.921177}{u}.
+  \begin{enumerate}
+  \item Calculate its mass defect in \si{MeV/c^2}.
+  \item Calculate its binding energy in \si{MeV}.
+  \item What is the binding energy per nucleon?
+  \end{enumerate}
+\end{plm}
+\begin{plm}
+  \;
+  \begin{enumerate}
+  \item Calculate the energy released in the beta decay of \ce{^{32}P}.
+  \item If the resulting beta particle has energy \SI{650}{keV}, how much energy does the antineutrino have?
+  \end{enumerate}
+\end{plm}
+\begin{plm}
+  Use the semi-empirical mass formula to estimate the prompt energy released in spontaneous fission of \ce{^{239}Pu} as
+  \begin{center}
+    \ce{^{239}Pu -> ^{112}Pd + ^{124}Cd + 3n}
+  \end{center}
+\end{plm}
+\begin{plm}
+  Use \textit{accurate} masses from the 2021 atomic mass evaluation to calculate the actual prompt energy released in problem 4.
+  Compare the answers.
+  How different are they?
+\end{plm}
+\begin{plm}
+  Following spontaneous fission from the last problem, a chain of beta decays converts the \ce{^{112}Pd} and \ce{^{124}Cd} to stable nuclei.
+  \begin{enumerate}
+  \item What are the final nuclei produced?
+  \item What is the total beta-delayed energy released in the beta-decay chains?
+    What is the ratio of beta-delayed to prompt energy released?
+  \item (Bonus) About how long does it take (on average) for all the energy to be released?
+  \end{enumerate}
+\end{plm}
+\begin{plm}
+  The isotope \ce{^{252}Cf} is commonly used to study the geology around underground wells due to the high number of neutrons emitted.
+  Each spontaneous fission of \ce{^{252}Cf} produces an average of 3.77 neutrons.
+  However, alpha decay dominates, with only 3.09\% of the decays being fission.
+  \begin{enumerate}
+  \item Calculate the activity (in Curies) of \ce{^{252}Cf} that would be requried to produce \SI{5e8}{neutrons/s}.
+  \item If we make such a source, the neutron flux will decrease over time as the \ce{^{252}Cf} decays.
+    How many \si{neutrons/s} will be produced 4 years later? ($t_{1/2} = \SI{2.645}{yr}$)
+  \end{enumerate}
+\end{plm}
+\begin{plm}
+  The oldest formerly living objects that can be measured by \ce{^{14}C} dating are about \SI{50000}{yo}.
+  \begin{enumerate}
+  \item What is the ratio of \ce{^{14}C/^{12}C} in such a sample?
+  \item Assume the natural abundance ratio in the atmosphere is \SI{1.5e-12}{}.
+    If you have to count 25 atoms of \ce{^{14}C} to make a measurement (20\% accuracy),
+    how much mass of carbon would you need to date a \SI{50000}{yo} object?
+  \end{enumerate}
+\end{plm}
+\begin{plm}
+  The Cassini spacecraft went into orbit around the planet Saturn in July 2004, after a nearly seven-year journey from Earth.
+  On-board electrical systems were powered by heat from three radioisotope thermoelectric generators,
+  which together utilized a total of \SI{32.7}{kg} of \ce{^{238}Pu}, encapsulated as \ce{PuO_2}.
+  The isotope has a half-life of \SI{86.4}{y} and emits an alpha particle with an average energy of \SI{5.49}{MeV}.
+  \begin{enumerate}
+  \item How much total thermal power is generated in the spacecraft?
+  \item To see why RTGs are so attractive, calculate the solar panel area needed to produce the same amount of wattage at the distance of Saturn.
+    Assume your solar panel is 10\% efficient and that the Sun's luminosity is \SI{3.8e26}{W}.
+  \end{enumerate}
+\end{plm}
+\begin{plm}
+  Calculate the minimum energy required to be over the Coulomb barrier for:
+  \begin{enumerate}
+  \item $\ce{p + p}$,
+  \item $\ce{p + ^{12}C}$,
+  \item $\ce{^{4}He + ^{208}Pb}$.
+  \end{enumerate}
+\end{plm}
+\begin{plm}
+  The cross section for charged-particle reactions is proportional to the probability of tunneling through the Coulomb barrier
+  given by the Gamow factor, which has a convenient approximation:
+  \[
+    e^{-2\pi\eta} = e^{-2\pi Z_{1}Z_{2}e^{2}/\hbar\nu} = e^{-31.287Z_{1}Z_{2}\sqrt{\mu/E}}
+  \]
+  where $\mu$ is the reduced mass in \si{amu} and $E$ is the center-of-mass energy in \si{keV}.
+  For the 3 cases you considered above, calculate the Gamow factor for an energy that is one-quarter the barrier energy you found in problem 1.
+\end{plm}
+\begin{plm}
+  A \SI{2}{MeV} beam of protons bombards a \ce{^{16}O} target and the differential cross section is measured to be \SI{0.094}{b/sr}
+  at a lab angle of $167^{\circ}$.
+  \begin{enumerate}
+  \item What is the expected cross-section if you assume Rutherford scattering?
+  \item What is the calculated Mott cross-section?
+  \item How do your answers to (a) and (b) differ from the measured cross section and why might they be different?
+  \end{enumerate}
+\end{plm}
+\begin{plm}
+  Assume that $^{197}Au$ is made from a solid, uniform sphere of nuclear material with a radius of $R = \SI{1.2}{fm} \cdot A^{1/3}$.
+  Calculate the form factor $F(q)$.
+\end{plm}
+\begin{plm}
+  Show that the mean-square charge radius of a uniformly charged sphere is $\expval{r^{2}} = 3R^{2}/5$.
+\end{plm}
+\begin{plm}
+  A nuclear charge distribution more realistic than the uniformly charged distribution is the Fermi distribution,
+  $\rho(r) = \frac{\rho_{0}}{1 + \exp\qty[(r - c)/a]}$.
+  Find the value of $a$ if $t = \SI{2.3}{fm}$
+\end{plm}
+\begin{plm}[Bonus]
+  Evaluate $\expval{r^{2}}$ for the Fermi distribution in Problem 6.
+\end{plm}
+
+\end{document}

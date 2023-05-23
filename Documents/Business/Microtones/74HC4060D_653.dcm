@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP 74HC4060D,653
+D 74HC(T)4060 - 14-stage binary ripple counter with oscillator@en-us
+K
+F https://assets.nexperia.com/documents/data-sheet/74HC_HCT4060.pdf
+$ENDCMP
+#
+#End Doc Library

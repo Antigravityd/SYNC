@@ -55,3 +55,5 @@ TODO: find a physical condition on the signalling so that knowledge at a particu
 ** Worst-Case Performance and Comparison
 
 ** Electrical Realization
+
+MCU choice: AT90CAN64. Advantages: confirmed to be in current, active production; AVR architecture has GCC support; decent specs;

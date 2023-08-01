@@ -2,58 +2,10 @@
 
 The keys of a keyboard (musical or computer) are usually interpreted via keyboard matrices. However, these fix the user into a particular key topology, and cap the number of acceptable keyswitches at design-time. Is there a way to design a fully-flexible, user-configurable keyboard readout protocol?
 
-Yes.
+Yes: an expandable keymatrix.
 
 ** Physical Layer
 
-5-pin connectors between adjacent keys, and a single, 5-pin connection to the key controller.
+Each key sits on the intersection of  a pair of wires/cables. The keys are, logically speaking, populated at the intersections on a grid of wires. The terminus of these wires is a small, ultra-low-cost microcontroller board which facilitates the dynamic expansion of the keymatrix: the keyboard controller polls the terminus boards over I2C, and they report the digital state of the wire they manage.
 
-Standard digital logic situation (V_cc, ground, clock, data), plus a "waiting" pin used strictly during initialization.
-
-The key immediately adjacent to the key controller is the /root key/, and the other keys branch out into a tree structure from this root. Each key contains a MOD counter, and volatile storage of its modulus and residue. Additionally, each key is aware of how many output connectors it has, and maintains an ordering of those output connectors.
-
-TODO: clock rate
-
-** Logic Layer
-
-*** Local Initialization: Phase I
-
-Each key's 16-bit, unsigned modulus and residue are undefined on startup, and so the MOD counter does not increment on clock cycles. Keys are awaiting controller action; the data (but not the clock) bus is electrically disconnected at each edge of the key graph. The waiting pin is electrically connected and set to V_cc for every key.
-
-*** Search and Enumerate: Phase II
-
-TODO: pick magic numbers, think about checksumming, and decide if "low or unconnected" works
-
-The controller first needs to know how many keys are connected, and in what order, so as to connect the state of the data bus on a given clock cycle to the press-state of particular keys.
-
-One of a key's data pins gets connected and its intended radix is immediately signalled.
-After reading this into its memory, the key echos a magic byte on the data bus to which it's been connected; the pin that was first connected is the /input pin/, and all the others are /output pins/.
-
-After this is complete, it checks if the first output connector (the one after the input connector) has a waiting signal low or unconnected. If it does, it goes on to check the next output connector. Otherwise, it connects the first output connector's data bus to the input data bus and signals the increment of the just-stored radix. Whenever the waiting pin of this first output connector goes low or unconnected, this signals the start of 16 bits indicating the size of that branch. The key repeats this process for the third output connector, adding the accumulated sizes of the branches to the current key's radix to determine the radix to transmit to each adjacent key.
-
-Whenever all of the output connectors of the current key present a low or unconnected state on their waiting pins, the current key signals a different magic byte on the data bus, and signals the final value of the current key's radix plus the sizes of all adjacent keys over the waiting pin on the input connector (ending with the pin low or unconnected).
-It then waits for a third magic number on the data bus.
-
-After all is said and done, the controller will have received a magic-byte-2-terminated nested list structure with entries magic-byte-1 encoding the tree structure of the keys, and each key will have a radix corresponding to its index in the flattened tree. The waiting pin on the controller will receive the length of this flattened tree, and it is to immediately send the third magic number over the data bus, followed by the length it received. The keys store this value in their modulus registers.
-
-
-*** Operation: Phase III
-
-**** Simplex
-
-On each clock signal, the MOD counters in each key increment. If a key's counter value equals its radix, the value of the key gets signalled on the data bus; the controller, accordingly, interprets the value of the data bus on successive clock cycles as the state of the key corresponding to that residue.
-
-
-**** Velocity
-
-The now-useless waiting bus can be repurposed to signal velocity. If a key has two switches, such that the difference in time between activation is inversely proportional to the speed of the key, the later-activated key can be signalled on the waiting bus identically to that described above. The controller simply polls both busses each clock cycle.
-
-**** Branch Pruning
-
-TODO: find a physical condition on the signalling so that knowledge at a particular node tells you the whole child tree has no keys pressed---in practice, this will be a good optimization, because most of the keys are unpressed most of the time.
-
-** Worst-Case Performance and Comparison
-
-** Electrical Realization
-
-MCU choice: AT90CAN64. Advantages: confirmed to be in current, active production; AVR architecture has GCC support; decent specs;
+Microcontroller possibility: ATTINY202-SSNR

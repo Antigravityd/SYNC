@@ -1,5 +1,5 @@
 setxkbmap us -option ctrl:swapcaps
-# emacs --daemon
+
 #/home/dnw/.fehbg &
 #bash /home/dnw/status.sh &
 pulseaudio --start
@@ -23,9 +23,8 @@ export GTK_IM_MODULE=xim
 export QT_IM_MODULE=xim
 export CLUTTER_IM_MODULE=xim
 
+# required for GTK3 scrolling
+export GDK_CORE_DEVICE_EVENTS=1
 # Finally start Emacs
-exec dbus-run-session -- emacs
-# EXWM end
 
-# dwm start
-#exec dbus-run-session -- dwm
+exec dbus-run-session -- emacsclient -c -a ""

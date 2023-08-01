@@ -1,3 +1,5 @@
+[[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return # prevent TRAMP issues
+
 autoload -U compinit bashcompinit
 compinit
 bashcompinit
@@ -8,14 +10,11 @@ alias ...='cd ../../'
 alias .4='cd ../../..'
 alias grep='grep --color=auto'
 alias mkdir='mkdir -pv'
-alias update='guix pull && guix upgrade'
-alias sysupdate='sudo sh -c "guix pull && guix system reconfigure /etc/config.scm && guix upgrade"'
-
-export EDITOR='emacs'
-
-GUIX_PROFILE="/home/dnw/.guix-profile"
-. "$GUIX_PROFILE/etc/profile"
-
+export EDITOR='emacsclient -a "" '
+export VISUAL='emacsclient -a ""'
+export PAGER=/bin/less
+export GUILE_LOAD_PATH=/usr/local/share/guile/site
+export GUILE_LOAD_COMPILED_PATH=/usr/local/lib/guile/3.0/site-ccache/
 function preexec() {
   timer=$(date +%s%3N)
 }
@@ -43,13 +42,7 @@ function precmd() {
 
 PROMPT='%F{blue}%2~%f%(?..%F{88} %?%f) %F{magenta}%Bᛋ%b%f '
 
-source ~/.guix-profile/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-export PHITSPATH=/home/dnw/phits326A/phits
-export PATH=/home/dnw/phits326A/phits/bin:${PATH}
-export PATH=/home/dnw/phits326A/phits/dchain-sp/bin:${PATH}
-export PATH=/home/dnw/Code/bin:${PATH}
-
-export ANDROID_HOME=$HOME/Code/Android
-export PATH=$ANDROID_HOME/cmdline-tools/bin/:$PATH
-export PATH=$ANDROID_HOME/emulator/:$PATH
-export PATH=$ANDROID_HOME/platform-tools/:$PATH
+# export PHITSPATH=/home/dnw/phits326A/phits
+# export PATH=/home/dnw/phits326A/phits/bin:${PATH}
+# export PATH=/home/dnw/phits326A/phits/dchain-sp/bin:${PATH}
+export PATH=/home/dnw/Code/bin:/home/dnw/go/bin:${PATH}

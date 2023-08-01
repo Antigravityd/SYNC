@@ -1,0 +1,255 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Parabola GNU/Linux-libre) (preloaded format=prv_sicp.org 2023.7.5)  5 JUL 2023 22:12
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**&prv_sicp.org /AUCTEXINPUT{ sicp.org.tex }
+(./sicp.org.tex (/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
+File: l3backend-pdfmode.def 2020-06-03 L3 backend support: PDF mode
+\l__kernel_color_stack_int=\count188
+\l__pdf_internal_box=\box50
+)
+No file sicp.org.aux.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+(/home/dnw/.emacs.d/elpa/auctex-13.2.0/latex/preview.sty
+Package: preview 2023/01/17 13.2 (AUCTeX/preview-latex)
+ (/usr/share/texmf-dist/tex/generic/luatex85/luatex85.sty
+Package: luatex85 2016/06/15 v1.4 pdftex aliases for luatex
+) (/home/dnw/.emacs.d/elpa/auctex-13.2.0/latex/prtightpage.def
+\PreviewBorder=\dimen149
+) (/home/dnw/.emacs.d/elpa/auctex-13.2.0/latex/prauctex.def
+No auxiliary output files.
+
+
+\hbadness=\count189
+\hfuzz=\dimen150
+(/home/dnw/.emacs.d/elpa/auctex-13.2.0/latex/prauctex.cfg)) (/home/dnw/.emacs.d/elpa/auctex-13.2.0/latex/prfootnotes.def)
+\pr@snippet=\count190
+\pr@box=\box51
+\pr@output=\toks24
+
+Preview: Fontsize 10pt
+Preview: PDFoutput 1
+) (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count191
+\scratchdimen=\dimen151
+\scratchbox=\box52
+\nofMPsegments=\count192
+\nofMParguments=\count193
+\everyMPshowfont=\toks25
+\MPscratchCnt=\count194
+\MPscratchDim=\dimen152
+\MPnumerator=\count195
+\makeMPintoPDFobject=\count196
+\everyMPtoPDFconversion=\toks26
+) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+ (/usr/share/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+) (/usr/share/texmf-dist/tex/latex/grfext/grfext.sty
+Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
+ (/usr/share/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)) (/usr/share/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
+ (/usr/share/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
+) (/usr/share/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+)) (/usr/share/texmf-dist/tex/latex/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-04 v0.32 Utility functions of pdfTeX for LuaTeX (HO)
+ (/usr/share/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 504.
+ (/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+))
+./sicp.org.tex:30: Preview: Snippet 1 started.
+<-><->
+      
+l.30 $
+      \frac{5 + 4 + (2 - (3 - (6 + \frac{4}{5})))}{3(6 - 2)(2 - 7)}$
+Not a real error.
+
+Preview: Tightpage -32891 -32891 32891 32891
+./sicp.org.tex:30: Preview: Snippet 1 ended.(748356+340683x5098723).
+<-><->
+      
+l.30 ...3 - (6 + \frac{4}{5})))}{3(6 - 2)(2 - 7)}$
+                                                  
+Not a real error.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+./sicp.org.tex:31: Preview: Snippet 2 started.
+<-><->
+      
+l.31 $
+      a + |b|$
+Not a real error.
+
+./sicp.org.tex:31: Preview: Snippet 2 ended.(491520+163840x1792754).
+<-><->
+      
+l.31 $a + |b|$
+              
+Not a real error.
+
+[2]
+./sicp.org.tex:32: Preview: Snippet 3 started.
+<-><->
+      
+l.32 $
+      y$
+Not a real error.
+
+./sicp.org.tex:32: Preview: Snippet 3 ended.(282168+127431x344824).
+<-><->
+      
+l.32 $y$
+        
+Not a real error.
+
+[3]
+./sicp.org.tex:33: Preview: Snippet 4 started.
+<-><->
+      
+l.33 $
+      x$
+Not a real error.
+
+./sicp.org.tex:33: Preview: Snippet 4 ended.(282168+0x374556).
+<-><->
+      
+l.33 $x$
+        
+Not a real error.
+
+[4]
+./sicp.org.tex:34: Preview: Snippet 5 started.
+<-><->
+      
+l.34 $
+      \frac{x/y^2 + 2y}{3}$
+Not a real error.
+
+./sicp.org.tex:34: Preview: Snippet 5 ended.(726793+225995x2206815).
+<-><->
+      
+l.34 $\frac{x/y^2 + 2y}{3}$
+                           
+Not a real error.
+
+[5]
+./sicp.org.tex:35: Preview: Snippet 6 started.
+<-><->
+      
+l.35 $
+      n$
+Not a real error.
+
+./sicp.org.tex:35: Preview: Snippet 6 ended.(282168+0x393370).
+<-><->
+      
+l.35 $n$
+        
+Not a real error.
+
+[6]
+./sicp.org.tex:36: Preview: Snippet 7 started.
+<-><->
+      
+l.36 $
+      5n^2$
+Not a real error.
+
+./sicp.org.tex:36: Preview: Snippet 7 ended.(533465+0x1015054).
+<-><->
+      
+l.36 $5n^2$
+           
+Not a real error.
+
+[7]
+./sicp.org.tex:37: Preview: Snippet 8 started.
+<-><->
+      
+l.37 $
+      2n$
+Not a real error.
+
+./sicp.org.tex:37: Preview: Snippet 8 ended.(422343+0x721051).
+<-><->
+      
+l.37 $2n$
+         
+Not a real error.
+
+[8]
+./sicp.org.tex:38: Preview: Snippet 9 started.
+<-><->
+      
+l.38 $
+      2^n$
+Not a real error.
+
+./sicp.org.tex:38: Preview: Snippet 9 ended.(435343+0x684415).
+<-><->
+      
+l.38 $2^n$
+          
+Not a real error.
+
+[9]
+./sicp.org.tex:39: Preview: Snippet 10 started.
+<-><->
+      
+l.39 $
+      2\uparrow n$
+Not a real error.
+
+./sicp.org.tex:39: Preview: Snippet 10 ended.(455111+127430x1412812).
+<-><->
+      
+l.39 $2\uparrow n$
+                  
+Not a real error.
+
+[10] ) 
+Here is how much of TeX's memory you used:
+ 1175 strings out of 478313
+ 19482 string characters out of 5880940
+ 276158 words of memory out of 5000000
+ 19279 multiletter control sequences out of 15000+600000
+ 539671 words of font info for 41 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 36i,4n,30p,229b,58s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on sicp.org.pdf (10 pages, 57754 bytes).
+PDF statistics:
+ 65 PDF objects out of 1000 (max. 8388607)
+ 45 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

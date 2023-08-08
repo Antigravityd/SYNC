@@ -1,0 +1,65 @@
+#+TITLE: Stateless Science
+
+TODO: think of a better word for a scientific careerist than "scientist," reserving the latter for the role served. Return to tradition with "Natural Philosopher?"
+
+Argument index:
+
+Science is the process, inherent in acting man, of understanding/perceiving the external world, and consists of a improving a relation between sensations and abstractions according to how useful the relation is in structuring action. In particular, it isn't any particular methodology, and even if you think it is, late-stage science by my definition should end up with your methodology anyway, if it really is correct. Science, like any process, labor, or valued thing, is best organized according to voluntary exchange against money, even though it is a "market externality" in a sense. Accordingly, praxeological terms for functions served by actors in society apply, with "scientist" proper corresponding to "entrepreneur." The /status quo/ (state-funded science administered through universities) fails to satisfy the wants of any party save the university administration (which satisfies no want directly). "Secondary education" should be greatly condensed, frontloading subjects that serve identifiable, especially general roles in the dependency tree of natural science and engineering; "primary education" should contain absolutely no math or science and should emphasize navigating society, learning to read, speak, and negotiate, practice setting and working towards goals, and acquiring practical skills via internships and jobs (especially "shop" style work). Repeating the same fundamental content at increasing levels of sophistication should be avoided at all costs, due allowance made for changes in understanding. Postdocs and PhD positions are disguises for technician roles in science; this should be a separate career, and terminal degrees reserved for their stated purpose. A scientific careerist should serve any of these roles, including student, as much as and in any order as he sees fit (subject, of course, to demand for his services); in particular, he should not be expected to serve all of them in parallel to some minimum level, irrespective of his capacity or interest. The mechanics of scientific collaboration and publishing should, immediately and without regard to any of my other arguments, be replaced with existing decentralized and Free systems that don't depend on the myth of "intellectual property rights." Curated journals still make sense, but shouldn't be definitive, and issues should be more akin to those "collected workshop papers" monographs. Peer review should be abolished. Scientometrics/scientific hiring criteria should give more weight to market success than poor, manipulatable proxies related to citation. The stability demand
+
+
+* What is Science, Anyway?
+
+Epistemological setup.
+
+Talk about my schizo metaphysical view of science, and argue that it doesn't matter anyway, that /if/ people who define science as "my pet methodology" are correct, then surely their science will best satisfy my definition, and succeed on a literal marketplace of ideas.
+
+* Positive Externalities, Praxeology, and Patronage
+
+Economic underpinnings.
+
+Talk about what externalities/neighborhood effects/public goods are, how science is one, how the neoclassical microeconomic picture is unrealistic, and how entrepreneurial activity can solve the problem according to praxeology.
+
+Who, exactly, will "build the roads" here, letting "roads" being pure science as such, disregarding that the distinction is probably moot? Patrons, either as individual altruists, collectives of actors (individual or corporate), external conisseurs, voluntary collective decision-making (DeSci style).
+
+Make an analogy with the praxeological notion of "entrepreneur" to the different
+
+* What Are Universities, Really?
+
+Institutional perscriptions chapter 0: laying out the "wants" exhibited by the current system and how it fails to meet them; remaining sections lay out institutions as one would experience them throughout a career.
+
+** Viz. Students
+** Viz. Researchers
+** Viz. Teachers
+** Viz. Employers
+
+To a small extent, degrees signal technical competence. To a larger degree, they signal time preference, work ethic, ambition.
+
+** Viz. Society
+
+* Technical Secondary Education: The Medieval Pill.
+
+Institutional perscriptions: high school and the BS.
+
+Talk about Sanchez's new trivium/quadrivium, Acton academy model of self/peer-directed instruction, and how it creates optimal natural scientists and engineers.
+
+Argue that basic social science training should be somehow independent from this education.
+
+* Postdocs and PhDs aren't Real.
+
+Institutional perscriptions: de-obfuscating terminal degrees.
+
+There should be a vibrant and large cadre of career "scientific technicians" that perform the technical grunt work currently reserved for graduate students and postdocs. To the extent these people serve a management role, there should also be management positions essentially a lateral move/immediate promotion away. The same secondary education should suffice for technicans, managers, and scientists, possibly with different concentrations. Graduate educations should be "what it says on the tin:" a first significant research contribution of someone aspiring to be a true scientist (someone serving an entrepreneurial function within in the scientific industry: directing activity according to understanding and ability to convince capital of the same).
+
+* A Dance Between Student, Scientist, Educator, Technician, Consultant, and Communicator.
+
+A terminal degree is not necessary to be a scientist, but is a witness to having /been/ a scientist. At any point in a scientific career, one should be able to take large periods of time focusing on a particular role: usually and most often as a technician; once acquiring a novel idea through technical work, pitching it to scientific capital and taking on the role of a scientist proper; if wanting to understand a novel subject in better philosophical detail, one may switch to an educational role, teaching classes (for secondary, terminal degree, and colleagues alike), writing expository material and testing them via teaching; to gather personal capital, one can advertise services as an expert witness in a particular domain to arbitration questions or as a consultant to industry; if wanting to acquire crowdfunding for a project or to affect the behaviors of individual citizens in society on the basis of one's knowledge, one may focus on writing popular science books, appearing on podcasts, applying for non-scientific social jobs, etc.
+
+The key point is that under the status quo all these must be pursued in parallel, to some minimum level regardless to the extent of one's interest or competence, and the "student" role almost not at all after a terminal degree; from a science career's perspective, this is very inconvenient, and leads to worse satisfaction of the wants of those consuming the science career's services.
+
+* Intellectual Property, Journals, Peer Review: Burn it All.
+
+Methodological perscriptions.
+
+Intellectual property is not property by definition. Even if it were, it has negative consequential effects for science and society. ArXiV-like services, possibly with a second-layer for quality screening or with decentralized storage infrastructure, should serve the function journal articles currently do. People should write more expository books and monographs for their field, for a variety of target audiences, better filling the gap between "expert" and "lay." Success in these expository works should weight higher in scientometrology. Peer review has been bastardized since Newton; its proper function was exclusively sorting between ArXiV and ViXrA.
+
+* Collaborations Succeed the University.

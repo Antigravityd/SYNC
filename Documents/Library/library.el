@@ -87,4 +87,4 @@
       forms-write-file-filter nil
       forms-new-record-filter nil
       forms-insert-after nil
-      forms-check-number-of-fields t) ;; Last one sus
+      forms-check-number-of-fields nil)

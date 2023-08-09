@@ -4,8 +4,7 @@ TODO: think of a better word for a scientific careerist than "scientist," reserv
 
 Argument index:
 
-Science is the process, inherent in acting man, of understanding/perceiving the external world, and consists of a improving a relation between sensations and abstractions according to how useful the relation is in structuring action. In particular, it isn't any particular methodology, and even if you think it is, late-stage science by my definition should end up with your methodology anyway, if it really is correct. Science, like any process, labor, or valued thing, is best organized according to voluntary exchange against money, even though it is a "market externality" in a sense. Accordingly, praxeological terms for functions served by actors in society apply, with "scientist" proper corresponding to "entrepreneur." The /status quo/ (state-funded science administered through universities) fails to satisfy the wants of any party save the university administration (which satisfies no want directly). "Secondary education" should be greatly condensed, frontloading subjects that serve identifiable, especially general roles in the dependency tree of natural science and engineering; "primary education" should contain absolutely no math or science and should emphasize navigating society, learning to read, speak, and negotiate, practice setting and working towards goals, and acquiring practical skills via internships and jobs (especially "shop" style work). Repeating the same fundamental content at increasing levels of sophistication should be avoided at all costs, due allowance made for changes in understanding. Postdocs and PhD positions are disguises for technician roles in science; this should be a separate career, and terminal degrees reserved for their stated purpose. A scientific careerist should serve any of these roles, including student, as much as and in any order as he sees fit (subject, of course, to demand for his services); in particular, he should not be expected to serve all of them in parallel to some minimum level, irrespective of his capacity or interest. The mechanics of scientific collaboration and publishing should, immediately and without regard to any of my other arguments, be replaced with existing decentralized and Free systems that don't depend on the myth of "intellectual property rights." Curated journals still make sense, but shouldn't be definitive, and issues should be more akin to those "collected workshop papers" monographs. Peer review should be abolished. Scientometrics/scientific hiring criteria should give more weight to market success than poor, manipulatable proxies related to citation. The stability demand
-
+Science is the process, inherent in acting man, of understanding/perceiving the external world, and consists of a improving a relation between sensations and abstractions according to how useful the relation is in structuring action. In particular, it isn't any particular methodology, and even if you think it is, late-stage science by my definition should end up with your methodology anyway, if it really is correct. Science, like any process, labor, or valued thing, is best organized according to voluntary exchange against money, even though it is a "market externality" in a sense. Accordingly, praxeological terms for functions served by actors in society apply, with "scientist" proper corresponding to "entrepreneur." The /status quo/ (state-funded science administered through universities) fails to satisfy the wants of any party save the university administration (which satisfies no want directly). "Secondary education" should be greatly condensed, frontloading subjects that serve identifiable, especially general roles in the dependency tree of natural science and engineering; "primary education" should contain absolutely no math or science and should emphasize navigating society, learning to read, speak, and negotiate, practice setting and working towards goals, and acquiring practical skills via internships and jobs (especially "shop" style work). Repeating the same fundamental content at increasing levels of sophistication should be avoided at all costs, due allowance made for changes in understanding. Postdocs and PhD positions are disguises for technician roles in science; this should be a separate career, and terminal degrees reserved for their stated purpose. A scientific careerist should serve any of these roles, including student, as much as and in any order as he sees fit (subject, of course, to demand for his services); in particular, he should not be expected to serve all of them in parallel to some minimum level, irrespective of his capacity or interest. The mechanics of scientific collaboration and publishing should, immediately and without regard to any of my other arguments, be replaced with existing decentralized and Free systems that don't depend on the myth of "intellectual property rights." Curated journals still make sense, but shouldn't be definitive, and issues should be more akin to those "collected workshop papers" monographs. Peer review should be abolished. Scientometrics/scientific hiring criteria should give more weight to market success than poor, manipulatable proxies related to citation. The stability demanded by scientific careerists can be satisfied by scientific collaborations providing salary for those working on them.
 
 * What is Science, Anyway?
 
@@ -28,13 +27,28 @@ Make an analogy with the praxeological notion of "entrepreneur" to the different
 Institutional perscriptions chapter 0: laying out the "wants" exhibited by the current system and how it fails to meet them; remaining sections lay out institutions as one would experience them throughout a career.
 
 ** Viz. Students
+
+To some extent, degrees are about acquiring knowledge and in-demand technical competence. To a large extent, they're about acquiring the signal employers expect, and having fun for 4 years at the taxpayer's dime.
+
 ** Viz. Researchers
-** Viz. Teachers
+
+The university operates largely like a cartel, business association, or HOA for researchers: it provides a measure of stability and controls some externalities for researchers.
+
+** Viz. Educators
+
+People preparing educational materials and skills use what demand for teaching exists at a university to optimize and test them.
+
 ** Viz. Employers
 
 To a small extent, degrees signal technical competence. To a larger degree, they signal time preference, work ethic, ambition.
 
 ** Viz. Society
+
+If society actually has a demand here, why does the coercive apparatus of state buraucratic administration better express that demand than voluntary cooperation to satisfy it?
+
+** Viz. Administration
+
+They are the problem. Full stop.
 
 * Technical Secondary Education: The Medieval Pill.
 

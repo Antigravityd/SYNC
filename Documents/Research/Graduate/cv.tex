@@ -57,7 +57,7 @@
 
   \NewEntry{}{\textit{Born Arkansas,}}{3 July 2002} % Birthplace and date
 
-  \NewEntry{email}{\href{mailto:dwilk14@lsu.edu}{dwilk14@lsu.edu}} % Email address
+  \NewEntry{email}{\href{mailto:duncannwilkie@gmail.com}{duncannwilkie@gmail.com}} % Email address
 
   % \NewEntry{website}{\href{http://www.johnsmith.com}{http://www.johnsmith.com}} % Personal website
 
@@ -71,62 +71,51 @@
     that of systematically organizing past experience in
     such a way that the next generation, our students and their students and so on,
     will be able to absorb the essential aspects in as painless a way as possible..."
-    --- Michael Attiyah}\vspace{2em} % Goal text
+    --- Sir Michael Atiyah}\vspace{2em} % Goal text
 
   \noindent\spacedlowsmallcaps{Education}\vspace{1em}
 
-  \NewEntry{2019---}{Bachelor of Science in Physics \ \ $\cdotp$ \ \ 3.87 GPA}
+  \NewEntry{2019--2023}{BS Physics, BS Mathematics \ \ $\cdotp$ \ \ 3.76 GPA}
 
   \Description{\MarginText{Louisiana State University}
-    As it's my primary discipline, I've taken a generalist's undergraduate curriculum,
-    with classes from instrumentation electronics to solid state theory to gravitational wave astronomy.}
-
-  \NewEntry{2019---}{Bachelor of Science in Math \ \ $\cdotp$ \ \ 3.70 GPA}
-
-  \Description{\MarginText{Louisiana State University}
-    Having attempted (at my grades' expense) to exhaust the undergraduate curriculum in pure mathematics as fast as possible,
-    I've been taking graduate classes since sophomore year, with an eye towards the differential, (pseudo-)Riemannian,
-    and algebraic geometry essential for advanced theoretical physics.}
+    Dual degrees, \textit{cum laude}. 15 hours of graduate-level math. Thesis: PyPHITS: A Python Porcelain for JAEA's PHITS.}
   \vspace{1em}
   % ----------------------------------------------------------------------------------------
   %	WORK EXPERIENCE
   % ----------------------------------------------------------------------------------------
 
-  \noindent\spacedlowsmallcaps{Research Projects}\vspace{1em}
+  \noindent\spacedlowsmallcaps{Research Projects and Work Experience}\vspace{1em}
 
-  \NewEntry{Oct 2022---}{Mission Control Software for Lunar Payloads}
+  \NewEntry{Spring 2023}{Heegaard Floer Homology of 1-1 Knots}
+
+  \Description{\MarginText{LSU Math 4997}
+    As the capstone requirement for my math degree, I worked with a professor and graduate student
+    on the mathematical study of a particularly powerful knot invariant.
+    I automated the drawing of the diagrams used to compute this invariant, which was very time consuming,
+    and did exploratory application of Prolog's Popper, an inductive logic programming framework, to automatically generate
+    combinatorial conjectures from lists of data produced by third parties. \\
+    Advisor: Jeffery \textsc{Chancellor}\ \ $\cdotp$\  \ \href{mailto:jeff@spartanphysics.com}{jeff@spartanphysics.com}}
+
+
+  \NewEntry{Oct 2022---May 2023}{Research Commercialization}
 
   \Description{\MarginText{Atlantis Industries}
-    I was hired as a senior software engineer by Dr. Chancellor's startup, formed to commercialize technologies the lab and I
-    had developed in an academic setting, initially funded through a US Space Command phase-II small business research grant.
-    A flagship project of the company is Tiger Eye, a small, light, and low-power radiation detector developed for spaceflight applications.
-    In partnership with Intuitive Machines, this detector is to be flown on a 5-year cislunar orbital mission,
-    gathering data for space weather modeling.
-    Transplanting much of the interface work done in summer '21, I've begun writing MacOS software for interacting with the payload,
-    fetching and displaying its data whenever available. \\
+    I was hired as software engineer/research scientist by my advisor's startup, among its first employees,
+    to commercialize technologies the lab and I had developed in academia, with a grant from the US Space Command.
+    The company was sold this summer. \\
     Advisor: Jeffery \textsc{Chancellor}\ \ $\cdotp$\  \ \href{mailto:jeff@spartanphysics.com}{jeff@spartanphysics.com}}
 
 
-  \NewEntry{Nov 2021---}{A PHITS Python Porcelain}
-
+  \NewEntry{Nov 2021--May 2023}{PHITS Usability Improvements}
   \Description{\MarginText{SpaRTAN Physics}
-    Many modern computational physics programs present Python interfaces.
-    I noticed at our group meetings that graduate students were struggling with the Particle and Heavy Ion Transport code System's
-    card-based interface, so I offered to write a new, object-oriented one in Python that writes the analogous input file for an object tree,
-    runs the transport code on it, and parses the output file to return for the user's further computational needs.
-    This is tantamount to required tooling if one wants to run machine learning computations; for instance,
-    a graduate project for automated design of spacecraft shielding requires kludgy, ad-hoc workarounds that slow the project tremendously.
-    So far, the ``forward-mode'' part is completely written but not completely tested, while the output parsing (using a port of Haskell's Parsec library)
-    can't be called complete in any sense, despite extensive labor. \\ % TODO: github
+    I designed and implemented a Python interface to the card-input Monte Carlo radiation transport code system
+    my research group was using (and graduate students struggling with).
+    This opened many further opportunities for integrating highly-validated transport simulations in larger HPC pipelines,
+    especially the inverse design, medium-energy nuclear physics phenomenology, and computational phantom evaluation workloads
+    that compose the lab's primary scientific output.
+    I also developed an Emacs major mode for the input format and a POSIX-friendly invocation script.
     Advisor: Jeffery \textsc{Chancellor}\ \ $\cdotp$\  \ \href{mailto:jeff@spartanphysics.com}{jeff@spartanphysics.com}}
 
-  \NewEntry{Nov 2021---}{An Emacs Mode and Invocation Script for PHITS}
-
-  \Description{\MarginText{SpaRTAN Physics}
-    Learning to use PHITS for the above project, I wanted better editor support and a POSIX-compliant shell interface, so I wrote it.
-    The former involves theme-aware syntax highlighting, automatic indentation and alignment, and keystroke execution
-    and viewing of calculation results.
-    The latter lets one select which parallelization scheme to use and handles otherwise tedious quirks of the MPI binary.}
   % ------------------------------------------------
 
   \NewEntry{Summer 2021}{Spaceflight Radiation Detector Development}
@@ -134,7 +123,7 @@
   \Description{\MarginText{SpaRTAN Physics}
     I was the primary software developer of an iOS-based interface for ADVACAM's MiniPIX detectors,
     doing 100\% of the Swift app development and much of the embedded C implementation of Apple's proprietary iAP2 protocol.
-    Each was my first program in its respective language.
+    Each was my first project in its respective language.
     The work was intended to fly on SpaceX's Inspiration 4 mission, and we hope it'll become useful for medical physics researchers.
     %A preprint is available, and it has been submitted to NIM-A. \\ % TODO: preprint
     Advisor: Jeffery \textsc{Chancellor}\ \ $\cdotp$\  \ \href{mailto:jeff@spartanphysics.com}{jeff@spartanphysics.com}}
@@ -142,28 +131,19 @@
   % ------------------------------------------------
 
   \NewEntry{AY 2020}{Independent Reading in Quantum Information}
-
   \Description{\MarginText{}
     COVID left few traditional research opportunities, so I self-directed some quantum information reading.
     I began with the Chuang-Nielsen text, and later started to pick up papers in categorical quantum mechanics when I learned of its
-    namesake mathematical field via classes touching on algebraic topology.
-    Specifically, that of Abramsky and Coecke outlining the field and Selinger and Valiron's entailing
-    application of linear logic's lambda calculi to quantum computation piqued my interest, as I had been playing with Lisps,
-    which, philosophically, are a direct implementation of Church's classical construction as a programming language.}
+    namesake mathematical field via classes in homotopy theory.}
 
   % -----------------------------------------------
 
 
   \NewEntry{Summer 2020}{Data Science Intern}
-
   \Description{\MarginText{J. B. Hunt Transport Services}
-    With the pandemic parking me back home and making academic development difficult,
-    I found a remote position in which I could learn computer science skills likely to be useful in physics projects.
-    I trained a machine learning model that estimates the repair time of tractors from basic data (e.g. mileage, repair location)
-    based on Yandex's CatBoost that, to my knowledge, remains deployed.
-    My work was twofold: port the massive, old IBM DB2 query over to Azure MySQL, and to produce a better model of the resulting data.
-    The hybrid categorical-continuous nature of the data led to best performance by a CatBoost model among dozens tested within a
-    hyperparameter optimization framework, beating the existing SPSS model by a difference in mean absolute percent error of 10\%.}
+    I modernized the data pipelining, improved correctness and performance, and ported to Python an old SPSS model
+    that estimated repair time of tractors from basic data (e.g. mileage, repair location).
+    Worked with database systems, most of the features of scikit-learn, SPSS, Databricks, and the Azure DevOps platform.}
 
   % -----------------------------------------------
 
@@ -172,9 +152,6 @@
   \Description{\MarginText{}
     I was directed to read about some of the basics of Lesbegue integration, function spaces, semigroup theory, divergent series,
     and asymptotic analysis.
-    Specifically, Hardy's "Divergent Series," Yosida's "Operational Calculus: A Theory of Hyperfunctions,"
-    and Estrada's "A Distributional Approach to Asymptotics" were major points of focus,
-    alongside smaller passages from other works and non-published, one-on-one instruction.
     This work was to result in a poster on weak ODE solutions, but plans were called off due to COVID-induced cancellation
     of the poster session (and in-person meetings). \\
     Advisor: Frank \textsc{Neubrander}\ \ $\cdotp$\  \ \href{mailto:neubrand@math.lsu.edu}{neubrand@math.lsu.edu}}
@@ -198,64 +175,27 @@
 
   \vspace{1em} % Extra space between major sections
 
-  \spacedlowsmallcaps{Computer Experience}\vspace{1em}
-  \Description{
-    \begin{itemize}
-    \item Extensive
-      \begin{itemize}
-      \item Python and its EDSLs
-      \item GNU/Linux, in theory and practice
-      \item GNU Emacs and Emacs Lisp
-      \item Embedded C (Texas Instruments' ARM CPUs)
-      \item Swift and SwiftUI
-      \item Scheme Lisp, GNU Guix, and reproducible computation
-      \item Parser combinators
-      \item Java
-      \item Numerical C++
-      \item Gnuplot
-      \item LaTeX and TikZ
-      \item SageMath
-      \end{itemize}
-    \item Moderate
-      \begin{itemize}
-      \item Haskell
-      \item Fortran 77 and 90
-      \item Parser generators and EBNF
-      \item GNU Octave/MATLAB
-      \item Z80 and ARM Assembly
-      \item GDB
-      \item Profiling and optimization
-      \end{itemize}
-    \item Cursory
-      \begin{itemize}
-      \item Clash, SystemVerilog, and electronic design automation
-      \item Compiler architecture and intermediate representations
-      \item RISC-V
-      \item CERN ROOT
-      \item Rust
-      \item Lua
-      \item R
-      \end{itemize}
-  \end{itemize}}
-
   \spacedlowsmallcaps{Teaching}\vspace{1em}
 
   \Description{AY 2018 \ \ $\cdotp$ \ \ High/elementary school math and ACT prep tutoring job.}
-  \Description{Aug 2019--- \ \ $\cdotp$ \ \ Informal homework help for other physics majors.}
+  \Description{Aug 2019---May 2023 \ \ $\cdotp$ \ \ Informal homework help for other physics majors.}
   \Description{Fall 2020 \ \ $\cdotp$ \ \ Engineering physics recitation leader.}
-  \Description{Apr 2022--- \ \ $\cdotp$ \ \ Presentations on relativity and differential geometry, discussions, and homework help in a math
-  Discord server.}
+  \Description{Apr 2022--- \ \ $\cdotp$ \ \ Online, informal tutoring via Discord and Matrix.}
   % ----------------------------------------------------------------------------------------
   %	OTHER INFORMATION
   % ----------------------------------------------------------------------------------------
 
-  \spacedlowsmallcaps{Awards}\vspace{1em}
+  \spacedlowsmallcaps{Awards and Scholarships}\vspace{1em}
 
-  \Description{2019- \ \ $\cdotp$ \ \ LSU Ann and Clarence P. Cazalot Jr College of Science Honors Scholar}
+  \Description{2019--2023 \ \ $\cdotp$ \ \ LSU Ann and Clarence P. Cazalot Jr College of Science Honors Scholar}
 
   \vspace{-0.5em}
 
-  \Description{AY 2021\ \ $\cdotp$ \ \ Louisiana Space Grant Consortium Undergraduate Research Assistantship}
+  \Description{2019--2023 \ \ $\cdotp$ \ \ LSU President's Future Leader in Research}
+
+  \vspace{-0.5em}
+
+  \Description{AY 2021\ \ $\cdotp$ \ \ NASA EPSCoR Louisiana Space Grant Consortium Undergraduate Research Assistantship}
 
   \vspace{-0.5em} % Negative vertical space to counteract the vertical space between every \Description command
 
